@@ -1,0 +1,29 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "EasyRpc.Abstractions": "1.0.0-*",
+    "EasyRpc.AspNetCore": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "SimpleFixture.NSubstitute": "2.0.0-RC68",
+    "SimpleFixture.xUnit": "2.0.0",
+    "xunit": "2.2.0-beta4-build3444"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dnxcore50",
+        "portable-net451+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      }
+    }
+  },
+  "testRunner": "xunit"
+}
