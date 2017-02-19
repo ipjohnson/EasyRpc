@@ -5,7 +5,7 @@ Adds JSON-RPC support to AspNetCore
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
   ~
-  app.UseEasyRPC("RpcApi", api =>
+  app.UseJsonRPC("RpcApi", api =>
   {
      // Expose method at /RpcApi/IntMath
      api.Expose<IntMathService>().As("IntMath");
