@@ -43,7 +43,7 @@ namespace EasyRpc.Tests.Middleware
 
             var testClass = new TestClass();
 
-            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 });
+            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 }, context);
 
             instance.Wait();
 
@@ -52,7 +52,7 @@ namespace EasyRpc.Tests.Middleware
 
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_ReturnInt()
+        public void OrderedParameterMethodInvokeBuilder_ReturnInt(HttpContext context)
         {
             var invoker = new OrderedParameterMethodInvokeBuilder();
 
@@ -60,7 +60,7 @@ namespace EasyRpc.Tests.Middleware
 
             var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
 
-            var instance = parameterMethod("2.0", "id", new IntMathService(), new object[] { 2, 3 });
+            var instance = parameterMethod("2.0", "id", new IntMathService(), new object[] { 2, 3 }, context);
 
             instance.Wait();
 
@@ -80,7 +80,7 @@ namespace EasyRpc.Tests.Middleware
 
             var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
 
-            var instance = parameterMethod("2.0", "id", new IntMathService(), new object[] { 2, 3 });
+            var instance = parameterMethod("2.0", "id", new IntMathService(), new object[] { 2, 3 }, context);
 
             instance.Wait();
 
@@ -102,7 +102,7 @@ namespace EasyRpc.Tests.Middleware
 
             var testClass = new TestClass();
 
-            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 });
+            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 }, context);
 
             instance.Wait();
 
