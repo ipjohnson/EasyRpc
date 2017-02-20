@@ -46,6 +46,14 @@ namespace EasyRpc.AspNetCore.Messages
 
     public class ErrorResponseMessage : ResponseMessage
     {
+        [JsonConstructor]
+        private ErrorResponseMessage() { }
+
+        public ErrorResponseMessage(string version, string id) : base(version,id)
+        {
+            
+        }
+
         public class ErrorClass
         {
             [JsonProperty("code")]

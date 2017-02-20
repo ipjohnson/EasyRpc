@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Sample.Service;
+using EdjCase.BasicAuth;
+using EdjCase.BasicAuth.Events;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +41,13 @@ namespace EasyRpc.AspNetCore.Sample
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.AddBasicAuth();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Math", policy => policy.RequireClaim("MathAccess").AddAuthenticationSchemes("Basic"));
+            });
+
             services.AddMvc();
         }
 
@@ -61,7 +72,7 @@ namespace EasyRpc.AspNetCore.Sample
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
+            
             app.UseJsonRpc("RpcApi", api =>
             {
                 api.Expose<IntMathService>().As("IntMath");
@@ -74,5 +85,6 @@ namespace EasyRpc.AspNetCore.Sample
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }

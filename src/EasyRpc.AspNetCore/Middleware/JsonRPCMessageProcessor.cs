@@ -124,7 +124,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 return ExecuteMethod(context, serviceProvider, requestMessage, exposedMethod);
             }
 
-            return ReturnMethodNotFound();
+            return ReturnMethodNotFound(requestMessage.Version, requestMessage.Id);
         }
 
         private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider, string path, RequestMessage requestMessage)
@@ -135,7 +135,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (_exposedMethodInformations.TryGetValue(key, out methodInfo))
             {
-                var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName, _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder);
+                var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName, _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder, methodInfo.MethodAuthorizations);
 
                 AddCache(methodInfo.Names, cache);
 
@@ -168,24 +168,40 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private Task<ResponseMessage> ReturnMethodNotFound()
+        private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)
         {
-            return Task.FromResult<ResponseMessage>(new ErrorResponseMessage { });
+            return Task.FromResult<ResponseMessage>(new ErrorResponseMessage(version, id));
         }
 
-        private Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider, RequestMessage requestMessage, IExposedMethodCache exposedMethod)
+        private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider, RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
+            if (exposedMethod.Authorizations.Length > 0)
+            {
+                foreach (var authorization in exposedMethod.Authorizations)
+                {
+                    if (!await authorization.AsyncAuthorize(context))
+                    {
+                        return ReturnUnauthorizedAccess(requestMessage.Version, requestMessage.Id);
+                    }
+                }
+            }
+
             var newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
 
             if (requestMessage.Parameters == null ||
                 requestMessage.Parameters is object[])
             {
-                return exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
+                return await exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
                     (object[])requestMessage.Parameters);
             }
 
-            return exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
+            return await exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
                 requestMessage.Parameters as IDictionary<string, object>);
+        }
+
+        private ResponseMessage ReturnUnauthorizedAccess(string version, string id)
+        {
+            return new ErrorResponseMessage(version, id);
         }
     }
 }
