@@ -1,0 +1,28 @@
+environment:
+  build_version: 1.0.0   
+  nuget_suffix: Nightly%APPVEYOR_BUILD_NUMBER%
+version: $(build_version)-{build}
+configuration: Release
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '$(build_version).0'
+  assembly_file_version: '$(build_version).{build}'
+  assembly_informational_version: '$(build_version)'
+before_build:
+ - cmd: dotnet restore src/EasyRpc.AspNetCore/project.json
+ - cmd: dotnet restore src/EasyRpc.Client/project.json
+ - cmd: dotnet restore tests/EasyRpc.Tests/project.json
+ - cmd: dotnet restore samples/EasyRpc.AspNetCore.Sample/project.json
+ - cmd: dotnet restore samples/EasyRpc.Client.Sample/project.json
+build:
+  project: EasyRpc.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
+after_build:
+- cmd: dotnet pack src/EasyRpc.AspNetCore/project.json -o . -c Release --version-suffix %nuget_suffix%
+- cmd: dotnet pack src/EasyRpc.Client/project.json -o . -c Release --version-suffix %nuget_suffix%
+artifacts:
+- path: EasyRpc*.nupkg
+  name: EasyRpc
