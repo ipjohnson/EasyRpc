@@ -5,8 +5,8 @@
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "EasyRpc.AspNetCore": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
-    "SimpleFixture.NSubstitute": "2.0.0-RC68",
-    "SimpleFixture.xUnit": "2.0.0",
+    "SimpleFixture.NSubstitute": "2.0.1-RC70",
+    "SimpleFixture.xUnit": "2.0.1",
     "xunit": "2.2.0-beta4-build3444"
   },
 
