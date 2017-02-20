@@ -33,7 +33,9 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly INamedParameterMethodInvokerBuilder _namedParameterMethodInvokerBuilder;
         private string _route;
 
-        public JsonRpcMessageProcessor(ITypeManager typeManager, IJsonSerializerProvider provider, IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder, INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder)
+        public JsonRpcMessageProcessor(ITypeManager typeManager, IJsonSerializerProvider provider,
+            IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder,
+            INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder)
         {
             _typeManager = typeManager;
             _orderedParameterMethodInvokeBuilder = orderedParameterMethodInvokeBuilder;
@@ -58,9 +60,12 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Task ProcessRequest(HttpContext context)
         {
+            RequestPackage requestPackage = null;
+
             try
             {
-                RequestPackage requestPackage;
+                // set as ok by default
+                context.Response.StatusCode = StatusCodes.Status200OK;
 
                 using (var streamReader = new StreamReader(context.Request.Body))
                 {
@@ -69,21 +74,27 @@ namespace EasyRpc.AspNetCore.Middleware
                         requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
                     }
                 }
-
-                if (requestPackage.IsBulk)
-                {
-                    return ProcessBulkRequest(context, requestPackage);
-                }
-
-                return ProcessRequest(context, requestPackage.Requests.First());
             }
             catch (Exception)
             {
-
-                throw;
+                // log error 
             }
-        }
 
+            if (requestPackage == null)
+            {
+                return WriteErrorMessage(context,
+                    new ErrorResponseMessage("", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+            }
+
+            if (requestPackage.IsBulk)
+            {
+                return ProcessBulkRequest(context, requestPackage);
+            }
+
+            return ProcessRequest(context, requestPackage.Requests.First());
+
+        }
+        
         private Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
         {
             throw new NotImplementedException();
@@ -95,16 +106,26 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var response = await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);
 
-            using (var responseStream = new StreamWriter(context.Response.Body))
+            try
             {
-                using (var jsonStream = new JsonTextWriter(responseStream))
+                using (var responseStream = new StreamWriter(context.Response.Body))
                 {
-                    _serializer.Serialize(jsonStream, response);
+                    using (var jsonStream = new JsonTextWriter(responseStream))
+                    {
+                        _serializer.Serialize(jsonStream, response);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                await WriteErrorMessage(context,
+                    new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
+                        JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
         }
 
-        private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider, string path, RequestMessage requestMessage)
+        private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
+            string path, RequestMessage requestMessage)
         {
             RpcMethodCache cache;
             IExposedMethodCache exposedMethod = null;
@@ -127,7 +148,8 @@ namespace EasyRpc.AspNetCore.Middleware
             return ReturnMethodNotFound(requestMessage.Version, requestMessage.Id);
         }
 
-        private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider, string path, RequestMessage requestMessage)
+        private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider,
+            string path, RequestMessage requestMessage)
         {
             ExposedMethodInformation methodInfo;
 
@@ -135,7 +157,9 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (_exposedMethodInformations.TryGetValue(key, out methodInfo))
             {
-                var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName, _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder, methodInfo.MethodAuthorizations);
+                var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
+                    _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder,
+                    methodInfo.MethodAuthorizations);
 
                 AddCache(methodInfo.Names, cache);
 
@@ -168,12 +192,9 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)
-        {
-            return Task.FromResult<ResponseMessage>(new ErrorResponseMessage(version, id));
-        }
 
-        private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider, RequestMessage requestMessage, IExposedMethodCache exposedMethod)
+        private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
+            RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
             if (exposedMethod.Authorizations.Length > 0)
             {
@@ -181,27 +202,77 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     if (!await authorization.AsyncAuthorize(context))
                     {
-                        return ReturnUnauthorizedAccess(requestMessage.Version, requestMessage.Id);
+                        return ReturnUnauthorizedAccess(context, requestMessage.Version, requestMessage.Id);
                     }
                 }
             }
 
-            var newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
+            object newInstance;
 
-            if (requestMessage.Parameters == null ||
-                requestMessage.Parameters is object[])
+            try
             {
-                return await exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                    (object[])requestMessage.Parameters, context);
+                newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
+            }
+            catch (Exception)
+            {
+                // log error 
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
             }
 
-            return await exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                requestMessage.Parameters as IDictionary<string, object>, context);
+            if (newInstance == null)
+            {
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
+            }
+
+            try
+            {
+                if (requestMessage.Parameters == null ||
+                    requestMessage.Parameters is object[])
+                {
+                    return await exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
+                        (object[])requestMessage.Parameters, context);
+                }
+
+                return await exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
+                    requestMessage.Parameters as IDictionary<string, object>, context);
+
+            }
+            catch (Exception)
+            {
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
+            }
         }
 
-        private ResponseMessage ReturnUnauthorizedAccess(string version, string id)
+        private Task WriteErrorMessage(HttpContext context, ErrorResponseMessage errorResponseMessage)
         {
-            return new ErrorResponseMessage(version, id);
+            using (var responseStream = new StreamWriter(context.Response.Body))
+            {
+                using (var jsonStream = new JsonTextWriter(responseStream))
+                {
+                    _serializer.Serialize(jsonStream, errorResponseMessage);
+                }
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)
+        {
+            return
+                Task.FromResult<ResponseMessage>(new ErrorResponseMessage(version, id, JsonRpcErrorCode.MethodNotFound,
+                    "Method not found"));
+        }
+
+        private ResponseMessage ReturnInternalServerError(string version, string id)
+        {
+            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.InternalServerError, "Internal Server");
+        }
+
+        private ResponseMessage ReturnUnauthorizedAccess(HttpContext context, string version, string id)
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+
+            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.UnauthorizedAccess, "No access to this method");
         }
     }
 }

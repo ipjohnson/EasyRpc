@@ -44,14 +44,45 @@ namespace EasyRpc.AspNetCore.Messages
         public T Result { get; private set; }
     }
 
+    /// <summary>
+    /// error codes from http://www.jsonrpc.org/specification#error_object
+    /// </summary>
+    public enum JsonRpcErrorCode
+    {
+        /// <summary>
+        /// Parse error
+        /// </summary>
+        ParseError = -32700,
+
+        /// <summary>
+        /// Invalid request
+        /// </summary>
+        InvalidRequest = -32600,
+
+        /// <summary>
+        /// Method Not Found
+        /// </summary>
+        MethodNotFound = -32601,
+
+        /// <summary>
+        /// Internal server error
+        /// </summary>
+        InternalServerError = -32603,
+
+        /// <summary>
+        /// Unauthorized access
+        /// </summary>
+        UnauthorizedAccess = -32000
+    }
+
     public class ErrorResponseMessage : ResponseMessage
     {
         [JsonConstructor]
         private ErrorResponseMessage() { }
 
-        public ErrorResponseMessage(string version, string id) : base(version,id)
+        public ErrorResponseMessage(string version, string id, JsonRpcErrorCode errorCode, string errorMessage) : base(version, id)
         {
-            
+            Error = new ErrorClass { Code = (int)errorCode, Message = errorMessage };
         }
 
         public class ErrorClass
@@ -64,6 +95,6 @@ namespace EasyRpc.AspNetCore.Messages
         }
 
         [JsonProperty("error", Order = 2)]
-        public ErrorClass Error { get; set; }
+        public ErrorClass Error { get; private set; }
     }
 }
