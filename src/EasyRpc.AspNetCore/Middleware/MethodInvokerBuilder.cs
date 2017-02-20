@@ -7,6 +7,7 @@ using System.Reflection.Emit;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -14,6 +15,21 @@ namespace EasyRpc.AspNetCore.Middleware
     
     public class MethodInvokerBuilder
     {
+        /// <summary>
+        /// Generates IL for From services, it's assumed that HttpContext is the 5 arg to the delegate
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ilGenerator"></param>
+        protected void GenerateIlForFromServices(ParameterInfo info, ILGenerator ilGenerator)
+        {
+            ilGenerator.Emit(OpCodes.Ldarg_S, 4);
+
+            var openMethod = typeof(MethodInvokerBuilder).GetRuntimeMethod("GetValueFromServices",
+                new[] {typeof(HttpContext)});
+
+            ilGenerator.EmitMethodCall(openMethod.MakeGenericMethod(info.ParameterType));
+        }
+
         protected void GenerateReturnStatements(MethodInfo methodInfo, ILGenerator ilGenerator)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
@@ -60,7 +76,12 @@ namespace EasyRpc.AspNetCore.Middleware
 
             ilGenerator.Emit(OpCodes.Ret);
         }
-        
+
+        public static T GetValueFromServices<T>(HttpContext context)
+        {
+            return context.RequestServices.GetService<T>();
+        }
+
         public static async Task<ResponseMessage> CreateAsyncResponse(Task result, string version, string id)
         {
             await result;

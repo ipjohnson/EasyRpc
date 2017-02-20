@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
@@ -20,7 +22,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
                                                             typeof(Task<ResponseMessage>),
-                                                            new[] { typeof(string), typeof(string), typeof(object), typeof(object[]) },
+                                                            new[] { typeof(string), typeof(string), typeof(object), typeof(object[]), typeof(HttpContext) },
                                                             typeof(MethodInvokerBuilder).GetTypeInfo().Module);
 
             var ilGenerator = dynamicMethod.GetILGenerator();
@@ -39,8 +41,17 @@ namespace EasyRpc.AspNetCore.Middleware
             var i = 0;
             foreach (var parameter in methodInfo.GetParameters())
             {
-                GenerateIlForParameter(parameter, ilGenerator, i);
-                i++;
+                var fromServices = parameter.GetCustomAttributes<FromServicesAttribute>();
+
+                if (fromServices.Any())
+                {
+                    GenerateIlForFromServices(parameter, ilGenerator);
+                }
+                else
+                {
+                    GenerateIlForParameter(parameter, ilGenerator, i);
+                    i++;
+                }
             }
 
             ilGenerator.EmitMethodCall(methodInfo);

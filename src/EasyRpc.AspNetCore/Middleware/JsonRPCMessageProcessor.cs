@@ -192,11 +192,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 requestMessage.Parameters is object[])
             {
                 return await exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                    (object[])requestMessage.Parameters);
+                    (object[])requestMessage.Parameters, context);
             }
 
             return await exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                requestMessage.Parameters as IDictionary<string, object>);
+                requestMessage.Parameters as IDictionary<string, object>, context);
         }
 
         private ResponseMessage ReturnUnauthorizedAccess(string version, string id)

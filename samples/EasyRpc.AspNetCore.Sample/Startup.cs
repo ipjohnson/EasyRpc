@@ -4,9 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Sample.Service;
-using EdjCase.BasicAuth;
-using EdjCase.BasicAuth.Events;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,15 +37,15 @@ namespace EasyRpc.AspNetCore.Sample
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.AddBasicAuth();
-
+            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Math", policy => policy.RequireClaim("MathAccess").AddAuthenticationSchemes("Basic"));
             });
 
             services.AddMvc();
+
+            services.AddTransient<IMultiplyService, MultiplyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

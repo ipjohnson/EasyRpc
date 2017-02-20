@@ -13,7 +13,7 @@ namespace EasyRpc.AspNetCore
     /// <param name="instance"></param>
     /// <param name="values"></param>
     /// <returns></returns>
-    public delegate Task<ResponseMessage> InvokeMethodByNamedParameters(string version, string id, object instance, IDictionary<string, object> values);
+    public delegate Task<ResponseMessage> InvokeMethodByNamedParameters(string version, string id, object instance, IDictionary<string, object> values, HttpContext httpContext);
 
     /// <summary>
     /// Delegate to invoke method on instance, parameters in order
@@ -23,5 +23,5 @@ namespace EasyRpc.AspNetCore
     /// <param name="instance"></param>
     /// <param name="values"></param>
     /// <returns></returns>
-    public delegate Task<ResponseMessage> InvokeMethodOrderedParameters(string version, string id, object instance, object[] values);
+    public delegate Task<ResponseMessage> InvokeMethodOrderedParameters(string version, string id, object instance, object[] values, HttpContext httpContext);
 }

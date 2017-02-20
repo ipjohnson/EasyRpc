@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -20,7 +22,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
                                                              typeof(Task<ResponseMessage>),
-                                                             new[] { typeof(string), typeof(string), typeof(object), typeof(IDictionary<string, object>) },
+                                                             new[] { typeof(string), typeof(string), typeof(object), typeof(IDictionary<string, object>), typeof(HttpContext) },
                                                              typeof(MethodInvokerBuilder).GetTypeInfo().Module);
 
             var ilGenerator = dynamicMethod.GetILGenerator();
@@ -35,19 +37,26 @@ namespace EasyRpc.AspNetCore.Middleware
             ilGenerator.DeclareLocal(methodInfo.DeclaringType);
             ilGenerator.Emit(OpCodes.Ldarg_2);
             ilGenerator.Emit(OpCodes.Castclass, methodInfo.DeclaringType);
-
-            var i = 0;
+            
             foreach (var parameter in methodInfo.GetParameters())
             {
-                GenerateIlForParameter(parameter, ilGenerator);
-                i++;
+                var fromServices = parameter.GetCustomAttributes<FromServicesAttribute>();
+
+                if (fromServices.Any())
+                {
+                    GenerateIlForFromServices(parameter, ilGenerator);
+                }
+                else
+                {
+                    GenerateIlForParameter(parameter, ilGenerator);
+                }
             }
 
             ilGenerator.EmitMethodCall(methodInfo);
 
             GenerateReturnStatements(methodInfo, ilGenerator);
         }
-
+        
         private void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator)
         {
             ilGenerator.Emit(OpCodes.Ldarg_3);
@@ -132,7 +141,5 @@ namespace EasyRpc.AspNetCore.Middleware
 
             return (T)Convert.ChangeType(value, typeof(T));
         }
-
-
     }
 }
