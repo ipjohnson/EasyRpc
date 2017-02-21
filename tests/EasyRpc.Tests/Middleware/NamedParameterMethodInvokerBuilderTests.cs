@@ -5,20 +5,20 @@ using System.Reflection;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
-using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
 using SimpleFixture.NSubstitute;
 using SimpleFixture.xUnit;
 using Xunit;
+using NSubstitute;
 
 namespace EasyRpc.Tests.Middleware
 {
     [SubFixtureInitialize]
-    public class OrderedParameterMethodInvokeBuilderTests
+    public class NamedParameterMethodInvokerBuilderTests
     {
-        #region No return value
+        #region return void
+
         public class TestClass
         {
             public void Execute(int a)
@@ -33,39 +33,39 @@ namespace EasyRpc.Tests.Middleware
 
             public int A { get; set; }
         }
-        
+
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_ReturnVoid(HttpContext context)
+        public void NamedParameterMethodInvokerBuilder_Void_Return(HttpContext context)
         {
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
             var method = typeof(TestClass).GetRuntimeMethod("Execute", new[] { typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
 
             var testClass = new TestClass();
 
-            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 }, context);
+            var instance = parameterMethod("2.0", "id", testClass, new Dictionary<string, object> { { "a", 5 } }, context);
 
             instance.Wait();
 
             Assert.Equal(5, testClass.A);
         }
-        
+
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_ReturnTask(HttpContext context)
+        public void NamedParameterMethodInvokerBuilder_Task_Return(HttpContext context)
         {
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
             var method = typeof(TestClass).GetRuntimeMethod("AsyncExecute", new[] { typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
 
             var testClass = new TestClass();
 
-            var instance = parameterMethod("2.0", "id", testClass, new object[] { 5 }, context);
+            var instance = parameterMethod("2.0", "id", testClass, new Dictionary<string, object> { { "a", 5 } }, context);
 
             instance.Wait();
 
@@ -73,7 +73,7 @@ namespace EasyRpc.Tests.Middleware
         }
         #endregion
 
-        #region return value
+        #region Return value
 
         public interface IAdder
         {
@@ -87,37 +87,36 @@ namespace EasyRpc.Tests.Middleware
                 return a + b;
             }
 
-            public async Task<int> TaskAdd(int a, int b)
+            public async Task<int> AsyncAdd(int a, int b)
             {
                 return a + b;
             }
 
-            public int AddFromService([FromServices] IAdder adder, int a, int b)
+            public int AddFromService([FromServices]IAdder adder, int a, int b)
             {
                 return adder.Add(a, b);
             }
 
-            public async Task<int> TaskAddFromService([FromServices] IAdder adder, int a, int b)
+            public async Task<int> AsyncAddFromService([FromServices]IAdder adder, int a, int b)
             {
                 return adder.Add(a, b);
             }
-
         }
 
 
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_Return_Int(HttpContext context)
+        public void NamedParameterMethodInvokerBuilder_Int_Return(HttpContext context)
         {
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
             var method = typeof(Calculator).GetRuntimeMethod("Add", new[] { typeof(int), typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
 
             var calculator = new Calculator();
 
-            var returnValueTask = parameterMethod("2.0", "id", calculator, new object[] { 5, 10 }, context);
+            var returnValueTask = parameterMethod("2.0", "id", calculator, new Dictionary<string, object> { { "a", 5 }, { "b", 10 } }, context);
 
             returnValueTask.Wait();
 
@@ -126,20 +125,21 @@ namespace EasyRpc.Tests.Middleware
             Assert.NotNull(responseMessage);
             Assert.Equal(15, responseMessage.Result);
         }
+        
 
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_Return_Int_TaskAdd(HttpContext context)
+        public void NamedParameterMethodInvokerBuilder_TaskInt_Return(HttpContext context)
         {
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
-            var method = typeof(Calculator).GetRuntimeMethod("TaskAdd", new[] { typeof(int), typeof(int) });
+            var method = typeof(Calculator).GetRuntimeMethod("AsyncAdd", new[] { typeof(int), typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
 
             var calculator = new Calculator();
 
-            var returnValueTask = parameterMethod("2.0", "id", calculator, new object[] { 5, 10 }, context);
+            var returnValueTask = parameterMethod("2.0", "id", calculator, new Dictionary<string, object> { { "a", 5 }, { "b", 10 } }, context);
 
             returnValueTask.Wait();
 
@@ -151,21 +151,21 @@ namespace EasyRpc.Tests.Middleware
         
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_Return_Int_FromService(HttpContext context, IAdder adder)
+        public void NamedParameterMethodInvokerBuilder_FromService_Int_Return(HttpContext context, IAdder adder)
         {
             context.RequestServices.GetService(typeof(IAdder)).Returns(adder);
 
             adder.Add(5, 10).Returns(15);
 
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
             var method = typeof(Calculator).GetRuntimeMethod("AddFromService", new[] { typeof(IAdder), typeof(int), typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
-            
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
+
             var calculator = new Calculator();
 
-            var returnValueTask = parameterMethod("2.0", "id", calculator, new object[] { 5, 10 }, context);
+            var returnValueTask = parameterMethod("2.0", "id", calculator, new Dictionary<string, object> { { "a", 5 }, { "b", 10 } }, context);
 
             returnValueTask.Wait();
 
@@ -174,24 +174,24 @@ namespace EasyRpc.Tests.Middleware
             Assert.NotNull(responseMessage);
             Assert.Equal(15, responseMessage.Result);
         }
-
+        
         [Theory]
         [AutoData]
-        public void OrderedParameterMethodInvokeBuilder_Return_TaskInt_FromService(HttpContext context, IAdder adder)
+        public void NamedParameterMethodInvokerBuilder_Task_FromService_Int_Return(HttpContext context, IAdder adder)
         {
             context.RequestServices.GetService(typeof(IAdder)).Returns(adder);
 
             adder.Add(5, 10).Returns(15);
 
-            var invoker = new OrderedParameterMethodInvokeBuilder();
+            var invoker = new NamedParameterMethodInvokerBuilder();
 
-            var method = typeof(Calculator).GetRuntimeMethod("TaskAddFromService", new[] { typeof(IAdder), typeof(int), typeof(int) });
+            var method = typeof(Calculator).GetRuntimeMethod("AsyncAddFromService", new[] { typeof(IAdder), typeof(int), typeof(int) });
 
-            var parameterMethod = invoker.BuildInvokeMethodOrderedParameters(method);
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
 
             var calculator = new Calculator();
 
-            var returnValueTask = parameterMethod("2.0", "id", calculator, new object[] { 5, 10 }, context);
+            var returnValueTask = parameterMethod("2.0", "id", calculator, new Dictionary<string, object> { { "a", 5 }, { "b", 10 } }, context);
 
             returnValueTask.Wait();
 
