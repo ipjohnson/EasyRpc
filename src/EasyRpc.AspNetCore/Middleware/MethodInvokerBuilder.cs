@@ -40,7 +40,7 @@ namespace EasyRpc.AspNetCore.Middleware
             if (returnType == typeof(void))
             {
                 var constructor =
-                    typeof(ResponseMessage).GetTypeInfo().DeclaredConstructors.First(c => c.GetParameters().Length == 2);
+                    typeof(EmptyResponseMessage).GetTypeInfo().DeclaredConstructors.First(c => c.GetParameters().Length == 2);
 
                 ilGenerator.Emit(OpCodes.Newobj, constructor);
 
