@@ -1,6 +1,8 @@
 environment:
   build_version: 1.0.0   
   nuget_suffix: Nightly%APPVEYOR_BUILD_NUMBER%
+  COVERALLS_REPO_TOKEN:
+    secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
 version: $(build_version)-{build}
 configuration: Release
 assembly_info:
@@ -23,6 +25,9 @@ build:
 after_build:
 - cmd: dotnet pack src/EasyRpc.AspNetCore/project.json -o . -c Release --version-suffix %nuget_suffix%
 - cmd: dotnet pack src/EasyRpc.Client/project.json -o . -c Release --version-suffix %nuget_suffix%
+test_script:
+- cmd: cd tests/EasyRpc.Tests/
+- cmd: CodeCoverageAppVeyor.cmd
 artifacts:
 - path: EasyRpc*.nupkg
   name: EasyRpc
