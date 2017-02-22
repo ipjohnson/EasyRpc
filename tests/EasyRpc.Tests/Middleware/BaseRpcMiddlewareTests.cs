@@ -37,7 +37,7 @@ namespace EasyRpc.Tests.Middleware
 
         protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1")
         {
-            var requestMessage = new RequestMessage { Version = version, Id = id, Method = method, Parameters = new { a = 5, b = 10 } };
+            var requestMessage = new RequestMessage { Version = version, Id = id, Method = method, Parameters = values };
             var responseStream = new MemoryStream();
 
             context.Request.Path = new PathString(route);
