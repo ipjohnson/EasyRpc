@@ -8,10 +8,10 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class ExposedMethodInformation
     {
-        public ExposedMethodInformation(Type type, IEnumerable<string> names, string methodName, MethodInfo method, IMethodAuthorization[] methodAuthorizations)
+        public ExposedMethodInformation(Type type, IEnumerable<string> routeNames,string methodName, MethodInfo method, IMethodAuthorization[] methodAuthorizations)
         {
             Type = type;
-            Names = names;
+            RouteNames = routeNames;
             MethodName = methodName;
             Method = method;
             MethodAuthorizations = methodAuthorizations;
@@ -19,7 +19,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Type Type { get; }
 
-        public IEnumerable<string> Names { get; }
+        public IEnumerable<string> RouteNames { get; }
 
         public string MethodName { get; }
 

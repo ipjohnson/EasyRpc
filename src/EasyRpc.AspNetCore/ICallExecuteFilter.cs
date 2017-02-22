@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore
 {
-    public interface ICallExecuteFilter
+    /// <summary>
+    /// Execute filter
+    /// </summary>
+    public interface ICallExecuteFilter : ICallFilter
     {
         void BeforeExecute(ICallExecutionContext context);
 

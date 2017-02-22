@@ -51,9 +51,11 @@ namespace EasyRpc.AspNetCore.Middleware
 
             foreach (var exposedMethod in configuration.GetExposedMethods())
             {
-                foreach (var name in exposedMethod.Names)
+                foreach (var name in exposedMethod.RouteNames)
                 {
+
                     _exposedMethodInformations[name + "|" + exposedMethod.MethodName] = exposedMethod;
+
                 }
             }
         }
@@ -94,7 +96,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return ProcessRequest(context, requestPackage.Requests.First());
 
         }
-        
+
         private Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
         {
             throw new NotImplementedException();
@@ -161,7 +163,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder,
                     methodInfo.MethodAuthorizations);
 
-                AddCache(methodInfo.Names, cache);
+                AddCache(methodInfo.RouteNames, cache);
 
                 return cache;
             }
