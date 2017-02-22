@@ -70,6 +70,7 @@ namespace EasyRpc.Tests.Middleware
 
             Assert.Equal(15, result);
         }
+        
     }
 
 }
