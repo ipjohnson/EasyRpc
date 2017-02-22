@@ -83,7 +83,7 @@ namespace EasyRpc.AspNetCore.Middleware
             if (requestPackage == null)
             {
                 return WriteErrorMessage(context,
-                    new ErrorResponseMessage("", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+                    new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
             }
 
             if (requestPackage.IsBulk)
