@@ -110,6 +110,6 @@ namespace EasyRpc.AspNetCore
         /// Add exposures to 
         /// </summary>
         /// <param name="provider"></param>
-        void AddExposers(IExposedMethodInformationProvider provider);
+        IApiConfiguration AddExposures(IExposedMethodInformationProvider provider);
     }
 }

@@ -239,12 +239,14 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Add exposures to 
         /// </summary>
         /// <param name="provider"></param>
-        public void AddExposers(IExposedMethodInformationProvider provider)
+        public IApiConfiguration AddExposures(IExposedMethodInformationProvider provider)
         {
             if (provider != null)
             {
                 _providers.Add(provider);
             }
+
+            return this;
         }
 
         public IEnumerable<ExposedMethodInformation> GetExposedMethods()
