@@ -75,6 +75,13 @@ namespace EasyRpc.AspNetCore.Middleware
                     continue;
                 }
 
+                var filterOut = ApiInformation.MethodFilters.Any(func => !func(method));
+
+                if (filterOut)
+                {
+                    continue;
+                }
+
                 yield return new ExposedMethodInformation(type, finalNames, ApiInformation.NamingConventions.MethodNameGenerator(method), method, Authorizations.ToArray(), filters.ToArray());
             }
         }

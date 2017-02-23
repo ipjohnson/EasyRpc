@@ -9,31 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    /// <summary>
-    /// Current information about api
-    /// </summary>
-    public interface ICurrentApiInformation
-    {
-        /// <summary>
-        /// Authorizations to apply
-        /// </summary>
-        ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> Authorizations { get; }
-
-        /// <summary>
-        /// Filters to apply
-        /// </summary>
-        ImmutableLinkedList<Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>>> Filters { get; }
-
-        /// <summary>
-        /// Prefixes to apply
-        /// </summary>
-        ImmutableLinkedList<Func<Type, IEnumerable<string>>> Prefixes { get; }
-
-        /// <summary>
-        /// Current naming conventions
-        /// </summary>
-        NamingConventions NamingConventions { get; }
-    }
 
     public interface IApiConfigurationProvider : IExposedMethodInformationProvider
     {
@@ -50,6 +25,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private ImmutableLinkedList<Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>>> _filters =
             ImmutableLinkedList<Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>>>.Empty;
+
+        private ImmutableLinkedList<Func<MethodInfo, bool>> _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
 
         private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _prefixes = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
 
@@ -240,7 +217,22 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public IApiConfiguration MethodFilter(Func<MethodInfo, bool> methodFilter)
         {
-            throw new NotImplementedException();
+            if (methodFilter == null) throw new ArgumentNullException(nameof(methodFilter));
+            
+            _methodFilters = _methodFilters.Add(methodFilter);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Clear method filters
+        /// </summary>
+        /// <returns></returns>
+        public IApiConfiguration ClearMethodFilters()
+        {
+            _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
+
+            return this;
         }
 
         /// <summary>
@@ -281,7 +273,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 _currentNamingConventions = new NamingConventions { RouteNameGenerator = NamingConventions.RouteNameGenerator, MethodNameGenerator = NamingConventions.MethodNameGenerator };
             }
 
-            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions);
+            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters);
         }
     }
 }

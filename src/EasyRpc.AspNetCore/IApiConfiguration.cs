@@ -101,6 +101,12 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration MethodFilter(Func<MethodInfo, bool> methodFilter);
 
         /// <summary>
+        /// Clear method filters
+        /// </summary>
+        /// <returns></returns>
+        IApiConfiguration ClearMethodFilters();
+
+        /// <summary>
         /// Add exposures to 
         /// </summary>
         /// <param name="provider"></param>
