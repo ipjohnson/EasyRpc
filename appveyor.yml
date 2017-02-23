@@ -26,7 +26,7 @@ build:
   verbosity: minimal
 after_build:
 - cmd: dotnet pack src/EasyRpc.AspNetCore/project.json -o . -c Release --version-suffix %nuget_suffix%
-- cmd: dotnet pack src/EasyRpc.Client/project.json -o . -c Release --version-suffix %nuget_suffix%
+- cmd: dotnet pack src/EasyRpc.DynamicClient/project.json -o . -c Release --version-suffix %nuget_suffix%
 test_script:
 - cmd: cd tests/EasyRpc.Tests/
 - cmd: CodeCoverageAppVeyor.cmd
