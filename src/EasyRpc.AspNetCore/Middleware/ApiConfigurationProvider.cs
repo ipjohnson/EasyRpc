@@ -33,7 +33,6 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Current naming conventions
         /// </summary>
         NamingConventions NamingConventions { get; }
-
     }
 
     public interface IApiConfigurationProvider : IExposedMethodInformationProvider
@@ -195,9 +194,17 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        public IApiConfiguration Filter<T>() where T : ICallFilter
+        public IApiConfiguration ApplyFilter<T>(Func<Type,bool> where = null) where T : ICallFilter
         {
-            _filters = _filters.Add(t => CreateFilter<T>);
+            _filters = _filters.Add(t =>
+            {
+                if (where?.Invoke(t) ?? true)
+                {
+                    return CreateFilter<T>;
+                }
+
+                return null;
+            });
 
             return this;
         }
@@ -212,7 +219,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        public IApiConfiguration Filter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
+        public IApiConfiguration ApplyFilter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
         {
             if (filterFunc == null) throw new ArgumentNullException(nameof(filterFunc));
 

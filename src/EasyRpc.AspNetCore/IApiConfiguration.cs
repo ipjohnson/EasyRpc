@@ -79,14 +79,14 @@ namespace EasyRpc.AspNetCore
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration Filter<T>() where T : ICallFilter;
+        IApiConfiguration ApplyFilter<T>(Func<Type,bool> where = null) where T : ICallFilter;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        IApiConfiguration Filter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc);
+        IApiConfiguration ApplyFilter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc);
 
         /// <summary>
         /// Naming conventions for api

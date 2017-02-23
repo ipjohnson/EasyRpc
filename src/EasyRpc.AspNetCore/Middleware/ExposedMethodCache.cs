@@ -16,6 +16,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         IMethodAuthorization[] Authorizations { get; }
 
+        Func<HttpContext,IEnumerable<ICallFilter>>[] Filters { get; }
+
         InvokeMethodByNamedParameters NamedParametersExecution { get; }
 
         InvokeMethodOrderedParameters OrderedParametersExecution { get; }
@@ -29,12 +31,13 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly IOrderedParameterMethodInvokeBuilder _orderedBuilder;
         private readonly INamedParameterMethodInvokerBuilder _namedBuilder;
         
-        public ExposedMethodCache(MethodInfo methodInfo, string methodName, IOrderedParameterMethodInvokeBuilder orderedBuilder, INamedParameterMethodInvokerBuilder namedBuilder, IMethodAuthorization[] authorizations)
+        public ExposedMethodCache(MethodInfo methodInfo, string methodName, IOrderedParameterMethodInvokeBuilder orderedBuilder, INamedParameterMethodInvokerBuilder namedBuilder, IMethodAuthorization[] authorizations, Func<HttpContext, IEnumerable<ICallFilter>>[] filters)
         {
             _methodInfo = methodInfo;
             _orderedBuilder = orderedBuilder;
             _namedBuilder = namedBuilder;
             Authorizations = authorizations;
+            Filters = filters;
             MethodName = methodName;
             InstanceType = methodInfo.DeclaringType;
         }
@@ -44,6 +47,8 @@ namespace EasyRpc.AspNetCore.Middleware
         public string MethodName { get; }
 
         public IMethodAuthorization[] Authorizations { get; }
+
+        public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         public InvokeMethodByNamedParameters NamedParametersExecution =>
             _invokeMethodByNamed ??

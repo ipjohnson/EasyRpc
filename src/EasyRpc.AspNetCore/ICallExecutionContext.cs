@@ -17,6 +17,6 @@ namespace EasyRpc.AspNetCore
 
         RequestMessage RequestMessage { get; }
 
-        ResponseMessage ResponseMessage { get; }
+        ResponseMessage ResponseMessage { get; set; }
     }
 }

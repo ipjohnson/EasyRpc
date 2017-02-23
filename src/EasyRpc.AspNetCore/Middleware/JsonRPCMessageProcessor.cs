@@ -53,9 +53,7 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 foreach (var name in exposedMethod.RouteNames)
                 {
-
                     _exposedMethodInformations[name + "|" + exposedMethod.MethodName] = exposedMethod;
-
                 }
             }
         }
@@ -161,7 +159,8 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
                     _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder,
-                    methodInfo.MethodAuthorizations);
+                    methodInfo.MethodAuthorizations,
+                    methodInfo.Filters);
 
                 AddCache(methodInfo.RouteNames, cache);
 
@@ -226,21 +225,101 @@ namespace EasyRpc.AspNetCore.Middleware
                 return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
             }
 
-            try
+            List<ICallFilter> filters = null;
+            ICallExecutionContext callExecutionContext = null;
+
+            if (exposedMethod.Filters.Length > 0)
             {
-                if (requestMessage.Parameters == null ||
-                    requestMessage.Parameters is object[])
+                filters = new List<ICallFilter>();
+
+                foreach (var func in exposedMethod.Filters)
                 {
-                    return await exposedMethod.OrderedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                        (object[])requestMessage.Parameters, context);
+                    filters.AddRange(func(context));
                 }
 
-                return await exposedMethod.NamedParametersExecution(requestMessage.Version, requestMessage.Id, newInstance,
-                    requestMessage.Parameters as IDictionary<string, object>, context);
-
+                if (filters.Count > 0)
+                {
+                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, requestMessage);
+                }
             }
-            catch (Exception)
+
+            try
             {
+                ResponseMessage responseMessage;
+
+                if (callExecutionContext != null)
+                {
+                    foreach (var callFilter in filters)
+                    {
+                        ICallExecuteFilter executeFilter = callFilter as ICallExecuteFilter;
+
+                        if (executeFilter != null &&
+                            callExecutionContext.ContinueCall)
+                        {
+                            executeFilter.BeforeExecute(callExecutionContext);
+                        }
+                    }
+                }
+
+                if (callExecutionContext == null || callExecutionContext.ContinueCall)
+                {
+                    if (requestMessage.Parameters == null ||
+                        requestMessage.Parameters is object[])
+                    {
+                        responseMessage =
+                            await exposedMethod.OrderedParametersExecution(requestMessage.Version,
+                                requestMessage.Id,
+                                newInstance,
+                                (object[])requestMessage.Parameters,
+                                context);
+                    }
+                    else
+                    {
+                        responseMessage =
+                            await exposedMethod.NamedParametersExecution(requestMessage.Version,
+                                requestMessage.Id,
+                                newInstance,
+                                (IDictionary<string, object>)requestMessage.Parameters,
+                                context);
+                    }
+                }
+                else
+                {
+                    return callExecutionContext.ResponseMessage;
+                }
+
+                if (callExecutionContext != null)
+                {
+                    callExecutionContext.ResponseMessage = responseMessage;
+
+                    foreach (var callFilter in filters)
+                    {
+                        ICallExecuteFilter executeFilter = callFilter as ICallExecuteFilter;
+
+                        if (executeFilter != null &&
+                            callExecutionContext.ContinueCall)
+                        {
+                            executeFilter.AfterExecute(callExecutionContext);
+                        }
+                    }
+
+                    return callExecutionContext.ResponseMessage;
+                }
+
+                return responseMessage;
+            }
+            catch (Exception exp)
+            {
+                if (callExecutionContext != null)
+                {
+                    foreach (var callFilter in filters)
+                    {
+                        ICallExceptionFilter exceptionFilter = callFilter as ICallExceptionFilter;
+
+                        exceptionFilter?.HandleException(callExecutionContext, exp);
+                    }
+                }
+
                 return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
             }
         }
