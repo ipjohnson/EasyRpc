@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyRpc.DynamicClient", "src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.xproj", "{F7132E15-0A6E-4090-9899-13646C4B8CDC}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyRpc.Sample.Interfaces", "samples\EasyRpc.Sample.Interfaces\EasyRpc.Sample.Interfaces.xproj", "{302F4B85-A5E6-4435-9989-1C0039D08866}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{302F4B85-A5E6-4435-9989-1C0039D08866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{302F4B85-A5E6-4435-9989-1C0039D08866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{302F4B85-A5E6-4435-9989-1C0039D08866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{302F4B85-A5E6-4435-9989-1C0039D08866}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +74,6 @@ Global
 		{1E7AFBE7-3FB1-4EC7-BC81-E5E6553761D4} = {60CDC438-97F8-4008-B727-19A98E7B05F0}
 		{C29BF705-AF87-44CA-9946-69FFDA0213F1} = {60CDC438-97F8-4008-B727-19A98E7B05F0}
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+		{302F4B85-A5E6-4435-9989-1C0039D08866} = {60CDC438-97F8-4008-B727-19A98E7B05F0}
 	EndGlobalSection
 EndGlobal

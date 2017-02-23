@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Sample.Service;
+using EasyRpc.Sample.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -46,13 +47,19 @@ namespace EasyRpc.AspNetCore.Sample
             services.AddMvc();
 
             services.AddTransient<IMultiplyService, MultiplyService>();
+            services.AddTransient<IIntMathService, IntMathService>();
         }
+
+        //public void ConfigureContainer(IInjectionScope scope)
+        //{
+        //    scope.SetupMvc();
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -72,7 +79,8 @@ namespace EasyRpc.AspNetCore.Sample
             
             app.UseJsonRpc("RpcApi", api =>
             {
-                api.Expose<IntMathService>().As("IntMath");
+                // expose implementation at ~/RpcApi/IIntMathService
+                api.Expose<IIntMathService>();
             });
 
             app.UseMvc(routes =>
