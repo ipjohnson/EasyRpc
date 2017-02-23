@@ -57,11 +57,23 @@ namespace EasyRpc.Tests.Middleware
                 throw new Exception("Task never completed");
             }
 
-            var response = responseStream.DeserializeFromMemoryStream<ResponseMessage<T>>();
+            if (typeof(T) == typeof(ErrorResponseMessage))
+            {
+                var response = responseStream.DeserializeFromMemoryStream<T>();
 
-            Assert.NotNull(response);
+                Assert.NotNull(response);
+                Assert.NotNull((response as ErrorResponseMessage)?.Error);
 
-            return response.Result;
+                return response;
+            }
+            else
+            {
+                var response = responseStream.DeserializeFromMemoryStream<ResponseMessage<T>>();
+
+                Assert.NotNull(response);
+
+                return response.Result;
+            }
         }
     }
     public static class SerializeMethods
