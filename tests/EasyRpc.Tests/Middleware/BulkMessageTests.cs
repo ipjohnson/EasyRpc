@@ -80,7 +80,7 @@ namespace EasyRpc.Tests.Middleware
 
             var taskResult = result(context);
 
-            taskResult.Wait(1000);
+            taskResult.Wait(5000);
 
             if (!taskResult.IsCompleted)
             {
