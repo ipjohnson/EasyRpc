@@ -82,8 +82,10 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (requestPackage == null)
             {
-                return WriteErrorMessage(context,
+               WriteErrorMessage(context,
                     new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+
+                return Task.CompletedTask;
             }
 
             if (requestPackage.IsBulk)
@@ -95,9 +97,45 @@ namespace EasyRpc.AspNetCore.Middleware
 
         }
 
-        private Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
+        private async Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
         {
-            throw new NotImplementedException();
+            var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
+
+            var returnListTask = new List<Task<ResponseMessage>>();
+
+            foreach (var request in requestPackage.Requests)
+            {
+                var requestMessage = request;
+
+                var newTask = Task.Run(
+                    () => ProcessRequestMultiThreaded(context, path, requestMessage));
+
+                returnListTask.Add(newTask);
+            }
+
+            var values = await Task.WhenAll(returnListTask);
+
+            try
+            {
+                using (var responseStream = new StreamWriter(context.Response.Body))
+                {
+                    using (var jsonStream = new JsonTextWriter(responseStream))
+                    {
+                        _serializer.Serialize(jsonStream, values);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                WriteErrorMessage(context,
+                    new ErrorResponseMessage("2.0", "",
+                        JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
+            }
+        }
+
+        private async Task<ResponseMessage> ProcessRequestMultiThreaded(HttpContext context,string path, RequestMessage requestMessage)
+        {
+            return await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);        
         }
 
         private async Task ProcessRequest(HttpContext context, RequestMessage requestMessage)
@@ -118,7 +156,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception)
             {
-                await WriteErrorMessage(context,
+                WriteErrorMessage(context,
                     new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
                         JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
@@ -192,8 +230,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 );
             }
         }
-
-
+        
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
             RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
@@ -324,7 +361,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private Task WriteErrorMessage(HttpContext context, ErrorResponseMessage errorResponseMessage)
+        private void WriteErrorMessage(HttpContext context, ErrorResponseMessage errorResponseMessage)
         {
             using (var responseStream = new StreamWriter(context.Response.Body))
             {
@@ -333,8 +370,6 @@ namespace EasyRpc.AspNetCore.Middleware
                     _serializer.Serialize(jsonStream, errorResponseMessage);
                 }
             }
-
-            return Task.CompletedTask;
         }
 
         private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)

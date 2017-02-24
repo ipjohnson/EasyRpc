@@ -17,12 +17,12 @@ namespace EasyRpc.Tests.Middleware
     [SubFixtureInitialize]
     public class BaseRpcMiddlewareTests
     {
-        private class MiddlewareContext
+        protected class MiddlewareContext
         {
             public Func<RequestDelegate, RequestDelegate> ExecuteDelegate { get; set; }
         }
 
-        private MiddlewareContext _middlewareContext;
+        protected MiddlewareContext _middlewareContext;
 
         protected void Configure(IApplicationBuilder app, string route, Action<IApiConfiguration> api)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
 
@@ -16,7 +17,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="nameFunc"></param>
         /// <returns></returns>
-        ITypeSetExposureConfiguration As(Func<Type, string> nameFunc);
+        ITypeSetExposureConfiguration As(Func<Type, IEnumerable<string>> nameFunc);
 
         /// <summary>
         /// Authorize exposures
@@ -39,6 +40,13 @@ namespace EasyRpc.AspNetCore
         /// <param name="filter"></param>
         /// <returns></returns>
         ITypeSetExposureConfiguration Interfaces(Func<Type, bool> filter = null);
+
+        /// <summary>
+        /// Filter methods
+        /// </summary>
+        /// <param name="methodFilter"></param>
+        /// <returns></returns>
+        ITypeSetExposureConfiguration Methods(Func<MethodInfo, bool> methodFilter);
 
         /// <summary>
         /// Expose types, this is the default
