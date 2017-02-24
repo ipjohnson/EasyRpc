@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Middleware;
 using EasyRpc.AspNetCore.Sample.Service;
 using EasyRpc.Sample.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -48,6 +49,7 @@ namespace EasyRpc.AspNetCore.Sample
 
             services.AddTransient<IMultiplyService, MultiplyService>();
             services.AddTransient<IIntMathService, IntMathService>();
+            services.AddScoped<IRpcHeaderContext, RpcHeaderContext>();
         }
 
         //public void ConfigureContainer(IInjectionScope scope)

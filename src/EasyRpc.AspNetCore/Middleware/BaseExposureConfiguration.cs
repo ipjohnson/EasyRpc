@@ -28,17 +28,24 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            var finalNames = Names;
+            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations);
+        }
 
-            if (ApiInformation.Prefixes.Count > 0)
+        public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type, ICurrentApiInformation currentApi, Func<Type, IEnumerable<string>> namesFunc, List<IMethodAuthorization> authorizations)
+        {
+            var names = namesFunc(type).ToArray();
+
+            IEnumerable<string> finalNames;
+
+            if (currentApi.Prefixes.Count > 0)
             {
                 var newNames = new List<string>();
 
-                foreach (var prefixes in ApiInformation.Prefixes)
+                foreach (var prefixes in currentApi.Prefixes)
                 {
                     foreach (var prefix in prefixes(type))
                     {
-                        foreach (var name in Names)
+                        foreach (var name in names)
                         {
                             newNames.Add(prefix + name);
                         }
@@ -47,18 +54,22 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 finalNames = newNames;
             }
+            else
+            {
+                finalNames = names;
+            }
 
-            foreach (var authorization in ApiInformation.Authorizations)
+            foreach (var authorization in currentApi.Authorizations)
             {
                 foreach (var methodAuthorization in authorization(type))
                 {
-                    Authorizations.Add(methodAuthorization);
+                    authorizations.Add(methodAuthorization);
                 }
             }
-            
-            var filters = new List<Func<HttpContext,IEnumerable<ICallFilter>>>();
 
-            foreach (var func in ApiInformation.Filters)
+            var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
+
+            foreach (var func in currentApi.Filters)
             {
                 var filter = func(type);
 
@@ -75,14 +86,14 @@ namespace EasyRpc.AspNetCore.Middleware
                     continue;
                 }
 
-                var filterOut = ApiInformation.MethodFilters.Any(func => !func(method));
+                var filterOut = currentApi.MethodFilters.Any(func => !func(method));
 
                 if (filterOut)
                 {
                     continue;
                 }
 
-                yield return new ExposedMethodInformation(type, finalNames, ApiInformation.NamingConventions.MethodNameGenerator(method), method, Authorizations.ToArray(), filters.ToArray());
+                yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, authorizations.ToArray(), filters.ToArray());
             }
         }
     }

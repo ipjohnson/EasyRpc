@@ -160,7 +160,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public ITypeSetExposureConfiguration Expose(IEnumerable<Type> types)
         {
-            var typeSetConfiguration = new TypeSetExposureConfiguration(types);
+            var typeSetConfiguration = new TypeSetExposureConfiguration(types, GetCurrentApiInformation());
 
             _providers.Add(typeSetConfiguration);
 

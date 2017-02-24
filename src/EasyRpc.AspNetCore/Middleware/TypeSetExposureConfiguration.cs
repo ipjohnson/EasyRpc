@@ -10,20 +10,23 @@ namespace EasyRpc.AspNetCore.Middleware
     public class TypeSetExposureConfiguration : ITypeSetExposureConfiguration, IExposedMethodInformationProvider
     {
         private readonly IEnumerable<Type> _types;
-        private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _nameFuncs = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
+        private readonly ICurrentApiInformation _apiInformation;
+        private Func<Type, IEnumerable<string>> _names;
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations = ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
         private Func<Type, bool> _typeFilter;
         private Func<Type, bool> _interfacesFilter;
         private Func<MethodInfo, bool> _methodFilter;
         private Func<Type, bool> _where;
-         
+
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="types"></param>
-        public TypeSetExposureConfiguration(IEnumerable<Type> types)
+        /// <param name="apiInformation"></param>
+        public TypeSetExposureConfiguration(IEnumerable<Type> types, ICurrentApiInformation apiInformation)
         {
             _types = types;
+            _apiInformation = apiInformation;
         }
 
         /// <summary>
@@ -33,9 +36,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public ITypeSetExposureConfiguration As(Func<Type, IEnumerable<string>> nameFunc)
         {
-            if (nameFunc == null) throw new ArgumentNullException(nameof(nameFunc));
-
-            _nameFuncs = _nameFuncs.Add(nameFunc);
+            _names = nameFunc;
 
             return this;
         }
@@ -153,23 +154,27 @@ namespace EasyRpc.AspNetCore.Middleware
                         expose = _interfacesFilter(type);
                     }
                 }
-                else
+                else if(_typeFilter != null)
                 {
                     expose = _typeFilter(type);
                 }
 
-
-
-                foreach (var methodInfo in type.GetMethods(BindingFlags.Public | BindingFlags.Instance) )
+                if (expose)
                 {
-                    if (_methodFilter != null && !_methodFilter(methodInfo))
+                    List<IMethodAuthorization> authorizations = new List<IMethodAuthorization>();
+
+                    foreach (var authorizationFunc in _authorizations)
                     {
-                        continue;
+                        authorizations.AddRange(authorizationFunc(type));
+                    }
+
+                    foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
+                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations))
+                    {
+                        yield return exposedMethodInformation;
                     }
                 }
             }
-
-            yield break;
         }
     }
 }

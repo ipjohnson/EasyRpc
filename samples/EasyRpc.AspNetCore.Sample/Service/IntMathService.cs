@@ -9,8 +9,26 @@ namespace EasyRpc.AspNetCore.Sample.Service
 {
     public class IntMathService : IIntMathService
     {
+        private IRpcHeaderContext _headerContext;
+
+        public IntMathService(IRpcHeaderContext headerContext)
+        {
+            _headerContext = headerContext;
+        }
+
         public int Add(int a, int b)
         {
+            var addFactor = _headerContext.GetValue<AddFactor>();
+
+            if (addFactor != null)
+            {
+                a += addFactor.Factor;
+
+                addFactor.Factor = 20;
+
+                _headerContext.SetValue(addFactor);
+            }
+
             return a + b;
         }
 

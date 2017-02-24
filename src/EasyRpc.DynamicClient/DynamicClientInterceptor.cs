@@ -15,12 +15,14 @@ namespace EasyRpc.DynamicClient
     {
         private readonly IRpcHttpClientProvider _httpClientProvider;
         private readonly INamingConventionService _namingConventionService;
+        private readonly IHeaderProcessor[] _headerProcessorses;
         protected static int Id;
 
-        public DynamicClientInterceptor(IRpcHttpClientProvider httpClientProvider, INamingConventionService namingConventionService)
+        public DynamicClientInterceptor(IRpcHttpClientProvider httpClientProvider, INamingConventionService namingConventionService, IHeaderProcessor[] headerProcessorses)
         {
             _httpClientProvider = httpClientProvider;
             _namingConventionService = namingConventionService;
+            _headerProcessorses = headerProcessorses;
         }
 
         public void Intercept(IInvocation invocation)
@@ -62,10 +64,20 @@ namespace EasyRpc.DynamicClient
             httpRequest.Content =
                 new StringContent(JsonConvert.SerializeObject(requestMessage), Encoding.UTF8, "application/json");
 
+            foreach (var headerProcessorse in _headerProcessorses)
+            {
+                headerProcessorse.ProcessRequestHeader(httpRequest);
+            }
+
             var response = await client.SendAsync(httpRequest);
 
             if (response.IsSuccessStatusCode)
             {
+                foreach (var headerProcessorse in _headerProcessorses)
+                {
+                    headerProcessorse.ProcessResponseHeader(response);
+                }
+
                 var message =
                     JsonConvert.DeserializeObject<RpcResponseMessage>(await response.Content.ReadAsStringAsync());
 
