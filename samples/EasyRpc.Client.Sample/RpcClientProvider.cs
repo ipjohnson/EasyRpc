@@ -9,7 +9,7 @@ namespace EasyRpc.Client.Sample
 {
     public class RpcClientProvider : IRpcHttpClientProvider
     {
-        private HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:65323/RpcApi/") };
+        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:65323/RpcApi/") };
 
         public IRpcHttpClient GetHttpClient(Type type)
         {

@@ -10,7 +10,7 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class UserPolicyAuthorization : IMethodAuthorization
     {
-        private string _policy;
+        private readonly string _policy;
 
         public UserPolicyAuthorization(string policy)
         {

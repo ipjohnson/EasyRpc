@@ -64,9 +64,6 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                // set as ok by default
-                context.Response.StatusCode = StatusCodes.Status200OK;
-
                 using (var streamReader = new StreamReader(context.Request.Body))
                 {
                     using (var jsonReader = new JsonTextReader(streamReader))

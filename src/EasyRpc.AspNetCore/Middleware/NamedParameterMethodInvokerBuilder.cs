@@ -90,7 +90,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private static MethodInfo _getValueFromDictionaryMethodInfo =
+        private static readonly MethodInfo _getValueFromDictionaryMethodInfo =
             typeof(NamedParameterMethodInvokerBuilder).GetMethod("GetValueFromDictionary");
 
         public static T GetValueFromDictionary<T>(IDictionary<string, object> values, string valueName)
@@ -115,7 +115,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
-        private static MethodInfo _getValueFromDictionaryOrDefaultMethodInfo =
+        private static readonly MethodInfo _getValueFromDictionaryOrDefaultMethodInfo =
             typeof(NamedParameterMethodInvokerBuilder).GetMethod("GetValueFromDictionaryOrDefault");
 
         public static T GetValueFromDictionaryOrDefault<T>(IDictionary<string, object> values, string valueName, T defaultValue)

@@ -8,7 +8,7 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class UserRoleAuthorization : IMethodAuthorization
     {
-        private string _role;
+        private readonly string _role;
 
         public UserRoleAuthorization(string role)
         {

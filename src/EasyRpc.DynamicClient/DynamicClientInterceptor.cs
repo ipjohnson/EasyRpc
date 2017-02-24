@@ -13,8 +13,8 @@ namespace EasyRpc.DynamicClient
 {
     public class DynamicClientInterceptor : IInterceptor
     {
-        private IRpcHttpClientProvider _httpClientProvider;
-        private INamingConventionService _namingConventionService;
+        private readonly IRpcHttpClientProvider _httpClientProvider;
+        private readonly INamingConventionService _namingConventionService;
         protected static int Id;
 
         public DynamicClientInterceptor(IRpcHttpClientProvider httpClientProvider, INamingConventionService namingConventionService)

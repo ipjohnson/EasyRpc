@@ -9,7 +9,7 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class TypeSetExposureConfiguration : ITypeSetExposureConfiguration, IExposedMethodInformationProvider
     {
-        private IEnumerable<Type> _types;
+        private readonly IEnumerable<Type> _types;
         private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _nameFuncs = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations = ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
         private Func<Type, bool> _typeFilter;
