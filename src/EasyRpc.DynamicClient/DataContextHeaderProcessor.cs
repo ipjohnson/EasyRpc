@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using EasyRpc.DynamicClient;
 using Newtonsoft.Json;
 
-namespace EasyRpc.Client.Sample
+namespace EasyRpc.DynamicClient
 {
+
     public interface IRpcContextHeader
     {
         void SetValue<T>(T value, string key = null);
