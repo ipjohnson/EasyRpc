@@ -46,6 +46,7 @@ namespace EasyRpc.AspNetCore.Sample
             });
 
             services.AddMvc();
+            services.AddJsonRpc();
 
             services.AddTransient<IMultiplyService, MultiplyService>();
             services.AddTransient<IIntMathService, IntMathService>();
