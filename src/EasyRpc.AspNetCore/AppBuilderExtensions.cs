@@ -16,7 +16,8 @@ namespace EasyRpc.AspNetCore
         /// Add Easy RPC dependency injection configuration, this is usually only needed if you want to override
         /// </summary>
         /// <param name="collection"></param>
-        public static IServiceCollection AddJsonRpc(this IServiceCollection collection)
+        /// <param name="configuration"></param>
+        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null )
         {
             collection.AddSingleton<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
             collection.AddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
@@ -25,6 +26,8 @@ namespace EasyRpc.AspNetCore
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+            
+            collection.Configure(configuration ?? (option => { }));
 
             return collection;
         }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -30,14 +32,20 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
         private readonly IOrderedParameterMethodInvokeBuilder _orderedParameterMethodInvokeBuilder;
         private readonly INamedParameterMethodInvokerBuilder _namedParameterMethodInvokerBuilder;
+        private readonly IOptions<RpcServiceConfiguration> _configuration;
+        private readonly ILogger<JsonRpcMessageProcessor> _logger;
         private string _route;
 
         public JsonRpcMessageProcessor(IJsonSerializerProvider provider,
             IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder,
-            INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder)
+            INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder,
+            IOptions<RpcServiceConfiguration> configuration,
+            ILogger<JsonRpcMessageProcessor> logger = null)
         {
             _orderedParameterMethodInvokeBuilder = orderedParameterMethodInvokeBuilder;
             _namedParameterMethodInvokerBuilder = namedParameterMethodInvokerBuilder;
+            _configuration = configuration;
+            _logger = logger;
             _serializer = provider.ProvideSerializer();
             _methodCache = new ConcurrentDictionary<string, RpcMethodCache>();
             _exposedMethodInformations = new ConcurrentDictionary<string, ExposedMethodInformation>();
@@ -60,6 +68,11 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             RequestPackage requestPackage = null;
 
+            if (_configuration.Value.DebugLogging)
+            {
+                _logger?.LogInformation(new EventId(10), $"Processing json-rpc request for path {context.Request.Path}");
+            }
+
             try
             {
                 using (var streamReader = new StreamReader(context.Request.Body))
@@ -70,15 +83,20 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exp)
             {
-                // log error 
+                _logger?.LogError("Exception thrown while deserializing request package: " + exp.Message);
+
+                WriteErrorMessage(context,
+                       new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+
+                return Task.CompletedTask;
             }
 
             if (requestPackage == null)
             {
-               WriteErrorMessage(context,
-                    new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+                WriteErrorMessage(context,
+                     new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
 
                 return Task.CompletedTask;
             }
@@ -120,17 +138,19 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exp)
             {
+                _logger?.LogError("Exception thrown while serializing bulk output: " + exp.Message);
+
                 WriteErrorMessage(context,
                     new ErrorResponseMessage("2.0", "",
                         JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
         }
 
-        private async Task<ResponseMessage> ProcessRequestMultiThreaded(HttpContext context,string path, RequestMessage requestMessage)
+        private async Task<ResponseMessage> ProcessRequestMultiThreaded(HttpContext context, string path, RequestMessage requestMessage)
         {
-            return await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);        
+            return await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);
         }
 
         private async Task ProcessRequest(HttpContext context, RequestMessage requestMessage)
@@ -149,8 +169,10 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exp)
             {
+                _logger?.LogError("Exception thrown while serializing response: " + exp.Message);
+
                 WriteErrorMessage(context,
                     new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
                         JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
@@ -175,8 +197,15 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (exposedMethod != null)
             {
+                if (_configuration.Value.DebugLogging)
+                {
+                    _logger?.LogDebug($"Found method for {path} {requestMessage.Method}");
+                }
+
                 return ExecuteMethod(context, serviceProvider, requestMessage, exposedMethod);
             }
+
+            _logger?.LogError($"No method {requestMessage.Method} found at {path}");
 
             return ReturnMethodNotFound(requestMessage.Version, requestMessage.Id);
         }
@@ -225,7 +254,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 );
             }
         }
-        
+
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
             RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
@@ -235,6 +264,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     if (!await authorization.AsyncAuthorize(context))
                     {
+                        if (_configuration.Value.DebugLogging)
+                        {
+                            _logger?.LogDebug($"Unauthorized access to {context.Request.Path} {requestMessage.Method}");
+                        }
+
                         return ReturnUnauthorizedAccess(context, requestMessage.Version, requestMessage.Id);
                     }
                 }
@@ -246,8 +280,10 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
             }
-            catch (Exception)
+            catch (Exception exp)
             {
+                _logger?.LogError($"Exception thrown while creating instance {exposedMethod.InstanceType.Name} for {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+
                 // log error 
                 return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
             }
@@ -342,6 +378,8 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
+                _logger?.LogError($"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+
                 if (callExecutionContext != null)
                 {
                     foreach (var callFilter in filters)

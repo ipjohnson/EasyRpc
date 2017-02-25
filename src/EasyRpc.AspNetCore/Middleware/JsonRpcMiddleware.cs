@@ -20,7 +20,12 @@ namespace EasyRpc.AspNetCore.Middleware
 
             _route = PrepareRoute(route);
 
-            _messageProcessor = app.ApplicationServices.GetService<IJsonRpcMessageProcessor>() ?? CreateMessageProcessor();
+            _messageProcessor = app.ApplicationServices.GetService<IJsonRpcMessageProcessor>();
+
+            if (_messageProcessor == null)
+            {
+                throw new Exception("Please call services.AddJsonRpc()");
+            }
 
             var provider = new ApiConfigurationProvider();
 
@@ -48,12 +53,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             return route;
         }
-
-        private IJsonRpcMessageProcessor CreateMessageProcessor()
-        {
-            return new JsonRpcMessageProcessor(new JsonSerializerProvider(), new OrderedParameterMethodInvokeBuilder(), new NamedParameterMethodInvokerBuilder());
-        }
-
+        
         public static void AttachMiddleware(IApplicationBuilder app, string route,
             Action<IApiConfiguration> configuration)
         {
