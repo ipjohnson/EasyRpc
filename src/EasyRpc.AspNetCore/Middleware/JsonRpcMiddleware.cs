@@ -51,7 +51,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private IJsonRpcMessageProcessor CreateMessageProcessor()
         {
-            return new JsonRpcMessageProcessor(new TypeManager(), new JsonSerializerProvider(), new OrderedParameterMethodInvokeBuilder(), new NamedParameterMethodInvokerBuilder());
+            return new JsonRpcMessageProcessor(new JsonSerializerProvider(), new OrderedParameterMethodInvokeBuilder(), new NamedParameterMethodInvokerBuilder());
         }
 
         public static void AttachMiddleware(IApplicationBuilder app, string route,
