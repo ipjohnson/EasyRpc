@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Messages;
+using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using NSubstitute;
 using SimpleFixture.NSubstitute;
@@ -27,6 +29,11 @@ namespace EasyRpc.Tests.Middleware
         protected void Configure(IApplicationBuilder app, string route, Action<IApiConfiguration> api)
         {
             Func<RequestDelegate, RequestDelegate> executeDelegate = null;
+
+            app.ApplicationServices.GetService(typeof(IJsonRpcMessageProcessor))
+                .Returns(new JsonRpcMessageProcessor(new JsonSerializerProvider(),
+                    new OrderedParameterMethodInvokeBuilder(), new NamedParameterMethodInvokerBuilder(),
+                    Options.Create(new RpcServiceConfiguration())));
 
             app.Use(Arg.Do<Func<RequestDelegate, RequestDelegate>>(func => executeDelegate = func));
 
