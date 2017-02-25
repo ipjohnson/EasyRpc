@@ -102,8 +102,7 @@ namespace EasyRpc.Tests.Middleware
                 return adder.Add(a, b);
             }
         }
-
-
+        
         [Theory]
         [AutoData]
         public void NamedParameterMethodInvokerBuilder_Int_Return(HttpContext context)
@@ -126,7 +125,6 @@ namespace EasyRpc.Tests.Middleware
             Assert.Equal(15, responseMessage.Result);
         }
         
-
         [Theory]
         [AutoData]
         public void NamedParameterMethodInvokerBuilder_TaskInt_Return(HttpContext context)
@@ -199,6 +197,41 @@ namespace EasyRpc.Tests.Middleware
 
             Assert.NotNull(responseMessage);
             Assert.Equal(15, responseMessage.Result);
+        }
+
+        #endregion
+
+
+        #region Default Values
+
+        public class StringCalculator
+        {
+            public string Add(string a, string b = null)
+            {
+                return a + b;
+            }
+        }
+        
+        [Theory]
+        [AutoData]
+        public void NamedParameterMethodInvokerBuilder_Default_String_Null(HttpContext context)
+        {
+            var invoker = new NamedParameterMethodInvokerBuilder();
+
+            var method = typeof(StringCalculator).GetRuntimeMethod("Add", new[] { typeof(string), typeof(string) });
+
+            var parameterMethod = invoker.BuildInvokeMethodByNamedParameters(method);
+
+            var calculator = new StringCalculator();
+
+            var returnValueTask = parameterMethod("2.0", "id", calculator, new Dictionary<string, object> { { "a", "Hello" } }, context);
+
+            returnValueTask.Wait();
+
+            var responseMessage = returnValueTask.Result as ResponseMessage<string>;
+
+            Assert.NotNull(responseMessage);
+            Assert.Equal("Hello", responseMessage.Result);
         }
 
         #endregion

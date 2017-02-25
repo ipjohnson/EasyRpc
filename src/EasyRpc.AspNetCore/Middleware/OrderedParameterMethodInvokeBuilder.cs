@@ -130,7 +130,15 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
                 else if (parameter.ParameterType == typeof(string))
                 {
-                    ilGenerator.Emit(OpCodes.Ldstr, (string)parameter.DefaultValue);
+                    if (parameter.DefaultValue != null)
+                    {
+
+                        ilGenerator.Emit(OpCodes.Ldstr, (string) parameter.DefaultValue);
+                    }
+                    else
+                    {
+                        ilGenerator.Emit(OpCodes.Ldnull);
+                    }
                 }
                 else if (parameter.ParameterType == typeof(double))
                 {
