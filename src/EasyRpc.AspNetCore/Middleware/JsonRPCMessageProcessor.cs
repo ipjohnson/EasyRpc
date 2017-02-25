@@ -25,7 +25,6 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public class JsonRpcMessageProcessor : IJsonRpcMessageProcessor
     {
-        private readonly ITypeManager _typeManager;
         private readonly ConcurrentDictionary<string, RpcMethodCache> _methodCache;
         private readonly JsonSerializer _serializer;
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
@@ -33,11 +32,10 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly INamedParameterMethodInvokerBuilder _namedParameterMethodInvokerBuilder;
         private string _route;
 
-        public JsonRpcMessageProcessor(ITypeManager typeManager, IJsonSerializerProvider provider,
+        public JsonRpcMessageProcessor(IJsonSerializerProvider provider,
             IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder,
             INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder)
         {
-            _typeManager = typeManager;
             _orderedParameterMethodInvokeBuilder = orderedParameterMethodInvokeBuilder;
             _namedParameterMethodInvokerBuilder = namedParameterMethodInvokerBuilder;
             _serializer = provider.ProvideSerializer();
