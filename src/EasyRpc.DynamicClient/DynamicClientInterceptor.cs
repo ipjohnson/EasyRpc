@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Castle.DynamicProxy;
+using EasyRpc.DynamicClient.Exceptions;
 using EasyRpc.DynamicClient.Messages;
 using Newtonsoft.Json;
 
@@ -87,12 +89,32 @@ namespace EasyRpc.DynamicClient
                 }
                 else
                 {
-                    // handle error
+                    if (message.Error != null)
+                    {
+                        if (message.Error.Code == (int) JsonRpcErrorCode.MethodNotFound)
+                        {
+                            throw new MethodNotFoundException(invocation.Method, invocation.Arguments);
+                        }
+
+                        if (message.Error.Code == (int)JsonRpcErrorCode.UnauthorizedAccess)
+                        {
+                            throw new UnauthorizedMethodException(invocation.Method, invocation.Arguments);
+                        }
+
+                        throw new InternalServerErrorException(invocation.Method, invocation.Arguments, message.Error.Message);
+                    }
+
+                    throw new DynamicMethodException(invocation.Method, invocation.Arguments,"Unknown error");
                 }
             }
             else
             {
-                // handle error
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new UnauthorizedMethodException(invocation.Method, invocation.Arguments);
+                }
+
+                throw new DynamicMethodException(invocation.Method,invocation.Arguments, $"Error response status {response.StatusCode}");
             }
         }
 
