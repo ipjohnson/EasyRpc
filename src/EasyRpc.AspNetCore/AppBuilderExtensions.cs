@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EasyRpc.AspNetCore
 {
@@ -16,6 +18,14 @@ namespace EasyRpc.AspNetCore
         /// <param name="collection"></param>
         public static IServiceCollection AddJsonRpc(this IServiceCollection collection)
         {
+            collection.AddSingleton<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
+            collection.AddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
+            collection.AddSingleton<IOrderedParameterMethodInvokeBuilder, OrderedParameterMethodInvokeBuilder>();
+            collection.AddSingleton<INamedParameterMethodInvokerBuilder, NamedParameterMethodInvokerBuilder>();
+
+            collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
+            collection.TryAddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+
             return collection;
         }
 
