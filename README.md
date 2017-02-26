@@ -14,7 +14,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
      api.Expose<StringService>().As("Strings").Authorize(policy: "SomePolicy");
      
      // Expose all types in this assembly in the namespace MyProject.Services
-     api.ExposeThisAssembly().ByType().As(NameMethod).Where(TypesThat.AreInNamespace("MyProject.Services");
+     api.ExposeAssemblyContaining<SomeType>().Types().As(NameMethod).Where(TypesThat.AreInNamespace("MyProject.Services");
   });
   
   app.UseMvc(routes => 
