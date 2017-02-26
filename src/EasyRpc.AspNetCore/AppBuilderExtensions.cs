@@ -19,10 +19,10 @@ namespace EasyRpc.AspNetCore
         /// <param name="configuration"></param>
         public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null )
         {
-            collection.AddSingleton<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
-            collection.AddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
-            collection.AddSingleton<IOrderedParameterMethodInvokeBuilder, OrderedParameterMethodInvokeBuilder>();
-            collection.AddSingleton<INamedParameterMethodInvokerBuilder, NamedParameterMethodInvokerBuilder>();
+            collection.TryAddSingleton<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
+            collection.TryAddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
+            collection.TryAddSingleton<IOrderedParameterMethodInvokeBuilder, OrderedParameterMethodInvokeBuilder>();
+            collection.TryAddSingleton<INamedParameterMethodInvokerBuilder, NamedParameterMethodInvokerBuilder>();
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor,HttpContextAccessor>();
