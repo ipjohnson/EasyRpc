@@ -88,7 +88,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 _logger?.LogError("Exception thrown while deserializing request package: " + exp.Message);
 
                 WriteErrorMessage(context,
-                       new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+                       new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request: " + exp.Message));
 
                 return Task.CompletedTask;
             }
@@ -173,9 +173,16 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 _logger?.LogError("Exception thrown while serializing response: " + exp.Message);
 
+                var errorMessage = "Internal Server Error";
+
+                if (_configuration.Value.ShowErrorMessage)
+                {
+                    errorMessage += ": " + exp.Message;
+                }
+
                 WriteErrorMessage(context,
                     new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
-                        JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
+                        JsonRpcErrorCode.InternalServerError, errorMessage));
             }
         }
 
@@ -285,12 +292,12 @@ namespace EasyRpc.AspNetCore.Middleware
                 _logger?.LogError($"Exception thrown while creating instance {exposedMethod.InstanceType.Name} for {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
                 // log error 
-                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id,$" Could not activate type {exposedMethod.InstanceType.FullName}\n{exp.Message}");
             }
 
             if (newInstance == null)
             {
-                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, $"Could not locate type {exposedMethod.InstanceType.FullName}");
             }
 
             List<ICallFilter> filters = null;
@@ -390,7 +397,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id);
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
             }
         }
 
@@ -412,9 +419,16 @@ namespace EasyRpc.AspNetCore.Middleware
                     "Method not found"));
         }
 
-        private ResponseMessage ReturnInternalServerError(string version, string id)
+        private ResponseMessage ReturnInternalServerError(string version, string id, string expMessage)
         {
-            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.InternalServerError, "Internal Server");
+            var errorMessage = "Internal Server Error";
+
+            if (_configuration.Value.ShowErrorMessage)
+            {
+                errorMessage += " " + expMessage;
+            }
+
+            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.InternalServerError, errorMessage);
         }
 
         private ResponseMessage ReturnUnauthorizedAccess(HttpContext context, string version, string id)
