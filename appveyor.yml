@@ -16,9 +16,6 @@ before_build:
  - cmd: dotnet restore src/EasyRpc.Client/project.json
  - cmd: dotnet restore src/EasyRpc.DynamicClient/project.json
  - cmd: dotnet restore tests/EasyRpc.Tests/project.json
- - cmd: dotnet restore samples/EasyRpc.Sample.Interfaces/project.json
- - cmd: dotnet restore samples/EasyRpc.AspNetCore.Sample/project.json
- - cmd: dotnet restore samples/EasyRpc.Client.Sample/project.json
 build:
   project: EasyRpc.sln
   publish_nuget: true
