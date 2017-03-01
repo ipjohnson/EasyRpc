@@ -2,19 +2,18 @@
 Adds JSON-RPC support to AspNetCore
 
 ```
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddJsonRpc();
+}
+
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
   ~
   app.UseJsonRPC("RpcApi", api =>
   {
-     // Expose method at /RpcApi/IntMath
+     // Expose methods at /RpcApi/IntMath
      api.Expose<IntMathService>().As("IntMath");
-     
-     // Expose methods at /RpcApi/Strings require user to have SomePolicy
-     api.Expose<StringService>().As("Strings").Authorize(policy: "SomePolicy");
-     
-     // Expose all types in this assembly in the namespace MyProject.Services
-     api.ExposeAssemblyContaining<SomeType>().Types().As(NameMethod).Where(TypesThat.AreInNamespace("MyProject.Services");
   });
   
   app.UseMvc(routes => 
@@ -28,5 +27,13 @@ public class IntMathService
     return a + b;
   }
 }
-
 ```
+
+### Features
+
+### Example App
+
+### Build
+[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) [![Coverage Status](https://coveralls.io/repos/github/ipjohnson/EasyRpc/badge.svg?branch=master)](https://coveralls.io/github/ipjohnson/EasyRpc?branch=master)
+
+
