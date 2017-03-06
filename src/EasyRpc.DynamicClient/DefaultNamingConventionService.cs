@@ -8,12 +8,12 @@ namespace EasyRpc.DynamicClient
 {
     public class DefaultNamingConventionService : INamingConventionService
     {
-        public string GetNameForType(Type type)
+        public virtual string GetNameForType(Type type)
         {
             return type.Name;
         }
 
-        public string GetMethodName(MethodInfo method)
+        public virtual string GetMethodName(MethodInfo method)
         {
             return method.Name;
         }

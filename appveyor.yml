@@ -15,6 +15,7 @@ before_build:
  - cmd: dotnet restore src/EasyRpc.AspNetCore/project.json
  - cmd: dotnet restore src/EasyRpc.Client/project.json
  - cmd: dotnet restore src/EasyRpc.DynamicClient/project.json
+ - cmd: dotnet restore src/EasyRpc.DynamicClient.Grace/project.json
  - cmd: dotnet restore tests/EasyRpc.Tests/project.json
 build:
   project: EasyRpc.sln
@@ -24,6 +25,7 @@ build:
 after_build:
 - cmd: dotnet pack src/EasyRpc.AspNetCore/project.json -o . -c Release --version-suffix %nuget_suffix%
 - cmd: dotnet pack src/EasyRpc.DynamicClient/project.json -o . -c Release --version-suffix %nuget_suffix%
+- cmd: dotnet pack src/EasyRpc.DynamicClient.Grace/project.json -o . -c Release --version-suffix %nuget_suffix%
 test_script:
 - cmd: cd tests/EasyRpc.Tests/
 - cmd: CodeCoverageAppVeyor.cmd

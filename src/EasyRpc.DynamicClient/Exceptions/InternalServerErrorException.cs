@@ -8,7 +8,7 @@ namespace EasyRpc.DynamicClient.Exceptions
 {
     public class InternalServerErrorException : DynamicMethodException
     {
-        public InternalServerErrorException(MethodInfo method, object[] arguments, string message) : base(method, arguments, message)
+        public InternalServerErrorException(string method, string message) : base(method, message)
         {
         }
     }

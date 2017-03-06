@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyRpc.DynamicClient", "src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.xproj", "{F7132E15-0A6E-4090-9899-13646C4B8CDC}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyRpc.DynamicClient.Grace", "src\EasyRpc.DynamicClient.Grace\EasyRpc.DynamicClient.Grace.xproj", "{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 		{2B854307-C969-4516-B9F6-E7F65AB5A9C9} = {9F8E444D-4A63-4AF4-B995-BBACD6B4AA8D}
 		{E07BA5EE-0D40-4439-9B90-82EAA3537CFF} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
 	EndGlobalSection
 EndGlobal

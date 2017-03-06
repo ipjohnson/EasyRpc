@@ -8,7 +8,7 @@ namespace EasyRpc.DynamicClient.Exceptions
 {
     public class UnauthorizedMethodException : DynamicMethodException
     {
-        public UnauthorizedMethodException(MethodInfo method, object[] arguments) : base(method, arguments, "Unauthorized access to this method")
+        public UnauthorizedMethodException(string method) : base(method, "Unauthorized access to this method")
         {
 
         }

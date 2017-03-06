@@ -8,7 +8,7 @@ namespace EasyRpc.DynamicClient.Exceptions
 {
     public class MethodNotFoundException : DynamicMethodException
     {
-        public MethodNotFoundException(MethodInfo method, object[] arguments) : base(method, arguments, $"Could not find method for {method.DeclaringType?.Name}.{method.Name}")
+        public MethodNotFoundException(string method) : base(method, $"Could not find method for {method}")
         {
 
         }

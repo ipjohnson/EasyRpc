@@ -8,9 +8,7 @@ namespace EasyRpc.DynamicClient
 {
     public interface IRpcHttpClient
     {
-        bool CallByParameterName { get; }
-
-        int Timeout { get; }
+        //int Timeout { get; }
         
         Task<HttpResponseMessage> SendAsync(HttpRequestMessage message);
     }

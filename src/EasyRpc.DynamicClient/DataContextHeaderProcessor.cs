@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace EasyRpc.DynamicClient
 {
-
     public interface IRpcContextHeader
     {
         void SetValue<T>(T value, string key = null);

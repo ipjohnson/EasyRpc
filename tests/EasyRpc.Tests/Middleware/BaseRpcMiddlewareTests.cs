@@ -102,6 +102,21 @@ namespace EasyRpc.Tests.Middleware
             return new MemoryStream(returnStream.ToArray());
         }
 
+        public static T Deserialize<T>(this byte[] bytes)
+        {
+            var newMemoryStream = new MemoryStream(bytes);
+
+            using (var text = new StreamReader(newMemoryStream))
+            {
+                using (var jsonStream = new JsonTextReader(text))
+                {
+                    var serializer = new JsonSerializer();
+
+                    return serializer.Deserialize<T>(jsonStream);
+                }
+            }
+        }
+
         public static T DeserializeFromMemoryStream<T>(this MemoryStream stream)
         {
             var newMemoryStream = new MemoryStream(stream.ToArray());

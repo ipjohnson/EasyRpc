@@ -9,23 +9,21 @@ namespace EasyRpc.DynamicClient
 {
     public class DefaultRpcClientProvider : IRpcHttpClientProvider, IDisposable
     {
-        private readonly bool _callByNamedParameter;
         private readonly int _timeout;
         private HttpClient _client;
 
-        public DefaultRpcClientProvider(string url, bool callByNamedParameter = false, int timeout = 30)
+        public DefaultRpcClientProvider(string url, int timeout = 30)
         {
-            _callByNamedParameter = callByNamedParameter;
             _timeout = timeout;
             _client = new HttpClient { BaseAddress = new Uri(url) };
         }
 
-        public IRpcHttpClient GetHttpClient(Type type)
+        public virtual IRpcHttpClient GetHttpClient(string className)
         {
-            return new RpcHttpClient(_client, _callByNamedParameter, _timeout);
+            return new RpcHttpClient(_client, _timeout);
         }
 
-        public void ReturnHttpClient(Type type, IRpcHttpClient client)
+        public virtual void ReturnHttpClient(string className, IRpcHttpClient client)
         {
 
         }

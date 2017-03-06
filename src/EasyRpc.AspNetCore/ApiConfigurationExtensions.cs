@@ -23,7 +23,5 @@ namespace EasyRpc.AspNetCore
 
             return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes);
         }
-        
-
     }
 }

@@ -8,8 +8,8 @@ namespace EasyRpc.DynamicClient
 {
     public interface IRpcHttpClientProvider
     {
-        IRpcHttpClient GetHttpClient(Type type);
+        IRpcHttpClient GetHttpClient(string className);
 
-        void ReturnHttpClient(Type type, IRpcHttpClient client);
+        void ReturnHttpClient(string className, IRpcHttpClient client);
     }
 }

@@ -16,7 +16,7 @@ namespace EasyRpc.DynamicClient.Messages
         public string Message { get; set; }
     }
 
-    public class RpcResponseMessage
+    public class RpcResponseMessage<T>
     {
         [JsonProperty("jsonrpc")]
         public string Version { get; set; }
@@ -25,7 +25,7 @@ namespace EasyRpc.DynamicClient.Messages
         public string Id { get; set; }
 
         [JsonProperty("result")]
-        public JToken Result { get; set; }
+        public T Result { get; set; }
 
         [JsonProperty("error")]
         public ErrorClass Error { get; set; }

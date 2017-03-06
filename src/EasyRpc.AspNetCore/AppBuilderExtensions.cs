@@ -33,7 +33,7 @@ namespace EasyRpc.AspNetCore
         }
 
         /// <summary>
-        /// Adds JSON-RPC support
+        /// Adds JSON-RPC 2.0 support
         /// </summary>
         /// <param name="appBuilder">app builder</param>
         /// <param name="basePath">base path for api</param>
