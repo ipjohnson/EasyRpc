@@ -6,8 +6,8 @@
     "EasyRpc.AspNetCore": "1.0.0-*",
     "EasyRpc.DynamicClient": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
-    "SimpleFixture.NSubstitute": "2.0.2-Nightly75",
-    "SimpleFixture.xUnit": "2.0.2-Nightly75",
+    "SimpleFixture.NSubstitute": "2.0.2",
+    "SimpleFixture.xUnit": "2.0.2",
     "xunit": "2.2.0"
   },
 
