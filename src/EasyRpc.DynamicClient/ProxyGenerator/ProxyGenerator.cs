@@ -56,6 +56,11 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                 var proxyConstructor = proxyBuilder.DefineConstructor(MethodAttributes.Public,
                     CallingConventions.Standard,
                     new[] { typeof(IRpcProxyService), typeof(IJsonMethodObjectWriter), typeof(JsonSerializer) });
+
+                proxyConstructor.DefineParameter(1, ParameterAttributes.None, "callService");
+                proxyConstructor.DefineParameter(2, ParameterAttributes.None, "jsonMethodWriter");
+                proxyConstructor.DefineParameter(3, ParameterAttributes.None, "serializer");
+
                 var proxyConstructorILGenerator = proxyConstructor.GetILGenerator();
 
                 proxyConstructorILGenerator.Emit(OpCodes.Ldarg_0);
