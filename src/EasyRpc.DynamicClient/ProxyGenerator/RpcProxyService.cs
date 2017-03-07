@@ -27,10 +27,9 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
     public class RpcProxyService : IRpcProxyService
     {
-        private int _id;
-        private IRpcHttpClientProvider _clientProvider;
-        private IHeaderProcessor[] _headerProcessors;
-        private JsonSerializer _jsonSerializer;
+        private readonly IRpcHttpClientProvider _clientProvider;
+        private readonly IHeaderProcessor[] _headerProcessors;
+        private readonly JsonSerializer _jsonSerializer;
 
         public RpcProxyService(IRpcHttpClientProvider clientProvider, IHeaderProcessor[] headerProcessors, JsonSerializer jsonSerializer)
         {
@@ -81,21 +80,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
         public virtual T MakeCallWithReturn<T>(string className, string methodName, byte[] bytes)
         {
-            var response = MakeAsyncCallWithReturn<T>(className, methodName, bytes);
-
-            response.Wait(600 * 1000);
-
-            if (response.IsCompleted)
-            {
-                return response.Result;
-            }
-
-            if (response.IsFaulted)
-            {
-                throw response.Exception;
-            }
-
-            throw new Exception("Timeout was reached");
+            return  MakeAsyncCallWithReturn<T>(className, methodName, bytes).Result;
         }
 
         protected virtual async Task<HttpResponseMessage> SendByteArray(string className, string methodName, byte[] bytes)
