@@ -19,6 +19,9 @@ namespace EasyRpc.DynamicClient.Grace
                 c.Export<DefaultNamingConventionService>().As<INamingConventionService>().WithPriority(-1);
                 c.ExportInstance(() => new DefaultRpcClientProvider(url)).As<IRpcHttpClientProvider>().WithPriority(-1);
                 c.Export<DataContextHeaderProcessor>().As<IRpcContextHeader>().As<IHeaderProcessor>().WithPriority(-1).Lifestyle.SingletonPerScope();
+                c.Export<JsonMethodObjectWriter>().As<IJsonMethodObjectWriter>().Lifestyle.Singleton().WithPriority(-1);
+                c.Export<RpcProxyService>().As<IRpcProxyService>().WithPriority(-1).Lifestyle.SingletonPerScope();
+
                 c.AddMissingExportStrategyProvider(new ProxyStrategyProvider(callByName,parameters));
             });
         }
