@@ -106,8 +106,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                     Content = new ByteArrayContent(bytes)
                 };
 
-            httpRequest.Content.Headers.ContentType.MediaType = "charset=utf-8";
-            httpRequest.Content.Headers.ContentType.MediaType = "application/json";
+            httpRequest.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json") { CharSet = "utf-8"};
 
             foreach (var headerProcessorse in _headerProcessors)
             {
