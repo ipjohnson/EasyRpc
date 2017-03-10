@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
@@ -13,10 +15,12 @@ namespace EasyRpc.AspNetCore.Middleware
     public class RpcHeaderContext : IRpcHeaderContext
     {
         private readonly IHttpContextAccessor _accessor;
+        private readonly JsonSerializer _serializer;
 
-        public RpcHeaderContext(IHttpContextAccessor accessor)
+        public RpcHeaderContext(IHttpContextAccessor accessor, JsonSerializer serializer)
         {
             _accessor = accessor;
+            _serializer = serializer;
         }
 
         public T GetValue<T>(string key = null)
@@ -43,7 +47,20 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var base64 = headerValue[0];
 
-            return JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(Convert.FromBase64String(base64)));
+            using (var memoryStream = new MemoryStream(Convert.FromBase64String(base64)))
+            {
+                using (var textReader = new StreamReader(memoryStream))
+                {
+                    using (var jsonStream = new JsonTextReader(textReader))
+                    {
+                        var tValue = _serializer.Deserialize<T>(jsonStream);
+
+                        currentValues[stringKey] = tValue;
+
+                        return tValue;
+                    }
+                }
+            }
         }
 
         public void SetValue<T>(T value, string key = null)
@@ -52,12 +69,25 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var stringKey = typeof(T).Name + key;
 
-            string valueString = value != null ? JsonConvert.SerializeObject(value) : "";
+            if (value != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var textWriter = new StreamWriter(memoryStream))
+                    {
+                        _serializer.Serialize(textWriter, value);
+                    }
 
-            var base64String = Convert.ToBase64String(Encoding.UTF8.GetBytes(valueString));
+                    var base64String = Convert.ToBase64String(memoryStream.ToArray());
 
-            httpContext.Response.Headers["RpcContext-" + stringKey] = new StringValues(base64String);
-
+                    httpContext.Response.Headers["RpcContext-" + stringKey] = new StringValues(base64String);
+                }
+            }
+            else
+            {
+                httpContext.Response.Headers["RpcContext-" + stringKey] = new StringValues("");
+            }
+            
             var currentValues = GetCurrentValues(httpContext);
 
             currentValues[stringKey] = value;
@@ -73,7 +103,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             currentValues = new ConcurrentDictionary<string, object>();
-
+            
             context.Items["RpcHeaderValues"] = currentValues;
 
             return currentValues;

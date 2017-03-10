@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -19,6 +20,12 @@ namespace EasyRpc.DynamicClient
     {
         private readonly Dictionary<string, object> _currentObjects = new Dictionary<string, object>();
         private readonly Dictionary<string, string> _serialized = new Dictionary<string, string>();
+        private readonly JsonSerializer _serializer;
+
+        public DataContextHeaderProcessor(JsonSerializer serializer)
+        {
+            _serializer = serializer;
+        }
 
         public void SetValue<T>(T value, string key = null)
         {
@@ -40,7 +47,20 @@ namespace EasyRpc.DynamicClient
 
             if (_serialized.TryGetValue(stringKey, out base64Value))
             {
-                return JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(Convert.FromBase64String(base64Value)));
+                using (var memoryStream = new MemoryStream(Convert.FromBase64String(base64Value)))
+                {
+                    using (var textReader = new StreamReader(memoryStream))
+                    {
+                        using (var jsonReader = new JsonTextReader(textReader))
+                        {
+                            var tValue = _serializer.Deserialize<T>(jsonReader);
+
+                            _currentObjects[stringKey] = tValue;
+
+                            return tValue;
+                        }
+                    }
+                }
             }
 
             return default(T);
@@ -50,13 +70,17 @@ namespace EasyRpc.DynamicClient
         {
             foreach (var valuePair in _currentObjects)
             {
-                var serialized = JsonConvert.SerializeObject(valuePair.Value);
+                using (var memorStream = new MemoryStream())
+                {
+                    using (var textStream = new StreamWriter(memorStream))
+                    {
+                        _serializer.Serialize(textStream,valuePair.Value);
+                    }
 
-                var bytes = Encoding.UTF8.GetBytes(serialized);
+                    var base64String = Convert.ToBase64String(memorStream.ToArray());
 
-                var base64String = Convert.ToBase64String(bytes);
-
-                message.Headers.Add("RpcContext-" + valuePair.Key, base64String);
+                    message.Headers.Add("RpcContext-" + valuePair.Key, base64String);
+                }
             }
 
             foreach (var valuePair in _serialized)

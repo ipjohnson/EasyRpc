@@ -363,7 +363,8 @@ namespace EasyRpc.AspNetCore.Middleware
                     return callExecutionContext.ResponseMessage;
                 }
 
-                if (callExecutionContext != null)
+                if (callExecutionContext != null && 
+                    callExecutionContext.ContinueCall)
                 {
                     callExecutionContext.ResponseMessage = responseMessage;
 

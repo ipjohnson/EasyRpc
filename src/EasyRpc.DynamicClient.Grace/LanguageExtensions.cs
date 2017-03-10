@@ -5,11 +5,41 @@ using System.Threading.Tasks;
 using EasyRpc.DynamicClient.Grace.Impl;
 using EasyRpc.DynamicClient.ProxyGenerator;
 using Grace.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace EasyRpc.DynamicClient.Grace
 {
+    public interface IProxyConfiguration
+    {
+        /// <summary>
+        /// Timeout in seconds
+        /// </summary>
+        /// <param name="timeoutValue"></param>
+        /// <returns></returns>
+        int Timeout(double timeoutValue = 30);
+    }
+
+    public interface IProxyCollectionConfiguration
+    {
+        IProxyConfiguration ProxyNamespace(string proxyNamespace, string url);
+
+        IProxyConfiguration ProxyNamespaceContaining<T>(string url);
+    }
+
     public static class LanguageExtensions
     {
+        public static void SetupProxys(this IInjectionScope scope, Action<IProxyCollectionConfiguration> configuration)
+        {
+            scope.Configure(c =>
+            {
+                if (!c.OwningScope.CanLocate(typeof(IProxyGenerator)))
+                {
+                    
+                }
+            });
+        }
+
+
         public static void ProxyNamespace(this IInjectionScope scope, string url, bool callByName, params string[] parameters)
         {
             scope.Configure(c =>
@@ -21,6 +51,7 @@ namespace EasyRpc.DynamicClient.Grace
                 c.Export<DataContextHeaderProcessor>().As<IRpcContextHeader>().As<IHeaderProcessor>().WithPriority(-1).Lifestyle.SingletonPerScope();
                 c.Export<JsonMethodObjectWriter>().As<IJsonMethodObjectWriter>().Lifestyle.Singleton().WithPriority(-1);
                 c.Export<RpcProxyService>().As<IRpcProxyService>().WithPriority(-1).Lifestyle.SingletonPerScope();
+                c.Export<JsonSerializer>().Lifestyle.Singleton();
 
                 c.AddMissingExportStrategyProvider(new ProxyStrategyProvider(callByName,parameters));
             });

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore
 {
@@ -26,6 +27,7 @@ namespace EasyRpc.AspNetCore
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+            collection.TryAddSingleton(new JsonSerializer());
             
             collection.Configure(configuration ?? (option => { }));
 
