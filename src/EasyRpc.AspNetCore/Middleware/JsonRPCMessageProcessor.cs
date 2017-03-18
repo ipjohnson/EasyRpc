@@ -14,9 +14,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    public class RpcMethodCache : ConcurrentDictionary<string, IExposedMethodCache>
-    {
-    }
 
     public interface IJsonRpcMessageProcessor
     {
@@ -27,7 +24,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public class JsonRpcMessageProcessor : IJsonRpcMessageProcessor
     {
-        private readonly ConcurrentDictionary<string, RpcMethodCache> _methodCache;
+        private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
         private readonly JsonSerializer _serializer;
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
         private readonly IOrderedParameterMethodInvokeBuilder _orderedParameterMethodInvokeBuilder;
@@ -47,7 +44,7 @@ namespace EasyRpc.AspNetCore.Middleware
             _configuration = configuration;
             _logger = logger;
             _serializer = provider.ProvideSerializer();
-            _methodCache = new ConcurrentDictionary<string, RpcMethodCache>();
+            _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
             _exposedMethodInformations = new ConcurrentDictionary<string, ExposedMethodInformation>();
         }
 
@@ -189,15 +186,11 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            RpcMethodCache cache;
             IExposedMethodCache exposedMethod = null;
 
-            if (_methodCache.TryGetValue(path, out cache))
-            {
-                cache.TryGetValue(requestMessage.Method, out exposedMethod);
-            }
+            var methodKey = $"{path}|{requestMessage.Method}";
 
-            if (exposedMethod == null)
+            if (!_methodCache.TryGetValue(methodKey, out exposedMethod))
             {
                 exposedMethod = LocateExposedMethod(context, serviceProvider, path, requestMessage);
             }
@@ -243,22 +236,9 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             foreach (var name in names)
             {
-                _methodCache.AddOrUpdate(name,
-                    s =>
-                    {
-                        var newDictionary = new RpcMethodCache();
+                var methodKey = $"{name}|{cache.MethodName}";
 
-                        newDictionary[cache.MethodName] = cache;
-
-                        return newDictionary;
-                    },
-                    (s, methodCache) =>
-                    {
-                        methodCache[cache.MethodName] = cache;
-
-                        return methodCache;
-                    }
-                );
+                _methodCache.TryAdd(methodKey, cache);
             }
         }
 
@@ -292,7 +272,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 _logger?.LogError($"Exception thrown while creating instance {exposedMethod.InstanceType.Name} for {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
                 // log error 
-                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id,$" Could not activate type {exposedMethod.InstanceType.FullName}\n{exp.Message}");
+                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, $" Could not activate type {exposedMethod.InstanceType.FullName}\n{exp.Message}");
             }
 
             if (newInstance == null)
@@ -336,7 +316,8 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                if (callExecutionContext == null || callExecutionContext.ContinueCall)
+                if (callExecutionContext == null ||
+                    callExecutionContext.ContinueCall)
                 {
                     if (requestMessage.Parameters == null ||
                         requestMessage.Parameters is object[])
@@ -363,7 +344,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     return callExecutionContext.ResponseMessage;
                 }
 
-                if (callExecutionContext != null && 
+                if (callExecutionContext != null &&
                     callExecutionContext.ContinueCall)
                 {
                     callExecutionContext.ResponseMessage = responseMessage;
