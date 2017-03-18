@@ -53,7 +53,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             return route;
         }
-        
+
         public static void AttachMiddleware(IApplicationBuilder app, string route,
             Action<IApiConfiguration> configuration)
         {
@@ -67,7 +67,7 @@ namespace EasyRpc.AspNetCore.Middleware
             var path = context.Request.Path;
 
             if (context.Request.ContentType != null &&
-                context.Request.ContentType.StartsWith("application/json"))
+                context.Request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
             {
                 var pathString = path.Value;
 
@@ -80,7 +80,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     pathString += '/';
                 }
 
-                if (string.Compare(pathString, 0, _route, 0, _route.Length) == 0)
+                if (string.Compare(pathString, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     return _messageProcessor.ProcessRequest(context);
                 }
