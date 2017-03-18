@@ -96,23 +96,28 @@ namespace EasyRpc.AspNetCore.Middleware
             return new ResponseMessage<T>(value, version, id);
         }
 
-        private bool IsTaskResultType(Type type, out Type resultType)
+        private static bool IsTaskResultType(Type type, out Type resultType)
         {
-            if (type.IsConstructedGenericType && type.GetGenericTypeDefinition() == typeof(Task<>))
+            while (true)
             {
-                resultType = type.GenericTypeArguments[0];
+                if (type.IsConstructedGenericType && type.GetGenericTypeDefinition() == typeof(Task<>))
+                {
+                    resultType = type.GenericTypeArguments[0];
 
-                return true;
+                    return true;
+                }
+
+                if (type.GetTypeInfo().BaseType != null && type.GetTypeInfo().BaseType != typeof(object))
+                {
+                    type = type.GetTypeInfo().BaseType;
+
+                    continue;
+                }
+
+                resultType = null;
+
+                return false;
             }
-
-            if (type.GetTypeInfo().BaseType != null && type.GetTypeInfo().BaseType != typeof(object))
-            {
-                return IsTaskResultType(type.GetTypeInfo().BaseType, out resultType);
-            }
-
-            resultType = null;
-
-            return false;
         }
 
         private static readonly MethodInfo _taskFromResult = typeof(Task).GetRuntimeMethods().Single(m => m.Name == "FromResult");
