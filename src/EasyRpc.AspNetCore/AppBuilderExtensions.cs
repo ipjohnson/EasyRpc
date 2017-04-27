@@ -26,7 +26,7 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<INamedParameterMethodInvokerBuilder, NamedParameterMethodInvokerBuilder>();
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
-            collection.TryAddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+            collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             collection.TryAddSingleton(new JsonSerializer());
             
             collection.Configure(configuration ?? (option => { }));
