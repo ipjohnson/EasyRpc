@@ -1,6 +1,6 @@
 environment:
   build_version: 1.0.0   
-  nuget_suffix: Beta%APPVEYOR_BUILD_NUMBER%
+  Version: $(build_version)-Beta%APPVEYOR_BUILD_NUMBER%
   COVERALLS_REPO_TOKEN:
     secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
 version: $(build_version)-{build}
@@ -12,20 +12,16 @@ assembly_info:
   assembly_file_version: '$(build_version).{build}'
   assembly_informational_version: '$(build_version)'
 before_build:
- - cmd: dotnet restore src/EasyRpc.AspNetCore/project.json
- - cmd: dotnet restore src/EasyRpc.Client/project.json
- - cmd: dotnet restore src/EasyRpc.DynamicClient/project.json
- - cmd: dotnet restore src/EasyRpc.DynamicClient.Grace/project.json
- - cmd: dotnet restore tests/EasyRpc.Tests/project.json
+- cmd: nuget restore EasyRpc.sln
 build:
   project: EasyRpc.sln
   publish_nuget: true
   publish_nuget_symbols: true
   verbosity: minimal
 after_build:
-- cmd: dotnet pack src/EasyRpc.AspNetCore/project.json -o . -c Release --version-suffix %nuget_suffix%
-- cmd: dotnet pack src/EasyRpc.DynamicClient/project.json -o . -c Release --version-suffix %nuget_suffix%
-- cmd: dotnet pack src/EasyRpc.DynamicClient.Grace/project.json -o . -c Release --version-suffix %nuget_suffix%
+- cmd: msbuild /t:pack src/EasyRpc.AspNetCore/EasyRpc.AspNetCore.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
+- cmd: msbuild /t:pack src/EasyRpc.DynamicClient/EasyRpc.DynamicClient.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
+- cmd: msbuild /t:pack src/EasyRpc.DynamicClient.Grace/EasyRpc.DynamicClient.Grace.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
 test_script:
 - cmd: cd tests/EasyRpc.Tests/
 - cmd: CodeCoverageAppVeyor.cmd
