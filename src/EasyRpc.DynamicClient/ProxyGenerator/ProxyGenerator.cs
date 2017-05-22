@@ -15,10 +15,10 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
     public class ProxyGenerator : IProxyGenerator
     {
-        private object _typeCreateLock = new object();
+        private readonly object _typeCreateLock = new object();
         private int _proxyCount = 0;
         private ModuleBuilder _moduleBuilder;
-        private INamingConventionService _namingConventionService;
+        private readonly INamingConventionService _namingConventionService;
 
         public ProxyGenerator(INamingConventionService namingConventionService)
         {
@@ -372,10 +372,10 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.BeginExceptionBlock();
         }
 
-        private static MethodInfo _serializeMethod =
+        private static readonly MethodInfo _serializeMethod =
             typeof(JsonSerializer).GetMethod("Serialize", new[] { typeof(JsonTextWriter), typeof(object) });
 
-        private static MethodInfo _writeParam = typeof(JsonTextWriter).GetMethod("WritePropertyName",
+        private static readonly MethodInfo _writeParam = typeof(JsonTextWriter).GetMethod("WritePropertyName",
             new[] { typeof(string), typeof(bool) });
     }
 }

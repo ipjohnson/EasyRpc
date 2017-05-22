@@ -8,7 +8,7 @@ namespace EasyRpc.Tests
 {
     public class SubstituteAttribute : FixtureInitializationAttribute
     {
-        private Type _type;
+        private readonly Type _type;
 
         public SubstituteAttribute(Type type)
         {
@@ -43,7 +43,7 @@ namespace EasyRpc.Tests
             fixture.ExportAs<T, TInterface>();
         }
 
-        private static MethodInfo _substituteType = typeof(SubstituteAttribute).GetMethod("SubstituteType", BindingFlags.NonPublic);
-        private static MethodInfo _substituteInterface = typeof(SubstituteAttribute).GetMethod("SubstituteInterface", BindingFlags.NonPublic);
+        private static readonly MethodInfo _substituteType = typeof(SubstituteAttribute).GetMethod("SubstituteType", BindingFlags.NonPublic);
+        private static readonly MethodInfo _substituteInterface = typeof(SubstituteAttribute).GetMethod("SubstituteInterface", BindingFlags.NonPublic);
     }
 }
