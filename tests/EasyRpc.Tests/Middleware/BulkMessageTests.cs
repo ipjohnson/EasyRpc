@@ -74,7 +74,7 @@ namespace EasyRpc.Tests.Middleware
 
             context.Response.Body = responseStream;
 
-            var result = _middlewareContext.ExecuteDelegate(httpContext => Task.CompletedTask);
+            var result = MiddlewareContextInstance.ExecuteDelegate(httpContext => Task.CompletedTask);
 
             var taskResult = result(context);
 

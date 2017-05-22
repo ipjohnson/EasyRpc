@@ -25,12 +25,12 @@ namespace EasyRpc.AspNetCore.Messages
 
     public class EmptyResponseMessage : ResponseMessage<object>
     {
-        private static readonly object _emptyObject = new object();
+        private static readonly object EmptyObject = new object();
         
         [JsonConstructor]
         private EmptyResponseMessage() { }
             
-        public EmptyResponseMessage(string version, string id) : base(_emptyObject, version, id)
+        public EmptyResponseMessage(string version, string id) : base(EmptyObject, version, id)
         {
         }
     }

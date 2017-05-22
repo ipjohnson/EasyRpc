@@ -41,7 +41,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 ilGenerator.Emit(OpCodes.Newobj, constructor);
 
-                ilGenerator.EmitMethodCall(_taskFromResult.MakeGenericMethod(typeof(ResponseMessage)));
+                ilGenerator.EmitMethodCall(TaskFromResult.MakeGenericMethod(typeof(ResponseMessage)));
             }
             else if (typeof(Task).GetTypeInfo().IsAssignableFrom(returnType.GetTypeInfo()))
             {
@@ -68,7 +68,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 ilGenerator.Emit(OpCodes.Newobj, constructor);
 
-                ilGenerator.EmitMethodCall(_taskFromResult.MakeGenericMethod(typeof(ResponseMessage)));
+                ilGenerator.EmitMethodCall(TaskFromResult.MakeGenericMethod(typeof(ResponseMessage)));
             }
 
             ilGenerator.Emit(OpCodes.Ret);
@@ -117,6 +117,6 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private static readonly MethodInfo _taskFromResult = typeof(Task).GetRuntimeMethods().Single(m => m.Name == "FromResult");
+        private static readonly MethodInfo TaskFromResult = typeof(Task).GetRuntimeMethods().Single(m => m.Name == "FromResult");
     }
 }

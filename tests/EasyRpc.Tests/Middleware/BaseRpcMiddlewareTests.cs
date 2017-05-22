@@ -22,7 +22,7 @@ namespace EasyRpc.Tests.Middleware
             public Func<RequestDelegate, RequestDelegate> ExecuteDelegate { get; set; }
         }
 
-        protected MiddlewareContext _middlewareContext;
+        protected MiddlewareContext MiddlewareContextInstance;
 
         protected void Configure(IApplicationBuilder app, string route, Action<IApiConfiguration> api)
         {
@@ -37,7 +37,7 @@ namespace EasyRpc.Tests.Middleware
 
             app.UseJsonRpc(route, api);
 
-            _middlewareContext = new MiddlewareContext { ExecuteDelegate = executeDelegate };
+            MiddlewareContextInstance = new MiddlewareContext { ExecuteDelegate = executeDelegate };
         }
 
         protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1")
@@ -51,7 +51,7 @@ namespace EasyRpc.Tests.Middleware
 
             context.Response.Body = responseStream;
 
-            var result = _middlewareContext.ExecuteDelegate(httpContext => Task.CompletedTask);
+            var result = MiddlewareContextInstance.ExecuteDelegate(httpContext => Task.CompletedTask);
 
             var taskResult = result(context);
 

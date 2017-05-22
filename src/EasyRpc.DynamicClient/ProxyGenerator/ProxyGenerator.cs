@@ -138,7 +138,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.Emit(OpCodes.Ldstr, "params");
             ilGenerator.Emit(OpCodes.Ldc_I4_0);
-            ilGenerator.Emit(OpCodes.Callvirt, _writeParam);
+            ilGenerator.Emit(OpCodes.Callvirt, WriteParam);
 
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.Emit(OpCodes.Callvirt, typeof(JsonTextWriter).GetMethod("WriteStartArray"));
@@ -159,7 +159,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.Emit(OpCodes.Ldstr, "params");
             ilGenerator.Emit(OpCodes.Ldc_I4_0);
-            ilGenerator.Emit(OpCodes.Callvirt, _writeParam);
+            ilGenerator.Emit(OpCodes.Callvirt, WriteParam);
 
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.Emit(OpCodes.Callvirt, typeof(JsonTextWriter).GetMethod("WriteStartObject"));
@@ -170,7 +170,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                 ilGenerator.Emit(OpCodes.Ldloc_3);
                 ilGenerator.Emit(OpCodes.Ldstr, parameter.Name);
                 ilGenerator.Emit(OpCodes.Ldc_I4_0);
-                ilGenerator.Emit(OpCodes.Callvirt, _writeParam);
+                ilGenerator.Emit(OpCodes.Callvirt, WriteParam);
 
                 EmitParameterWrite(ilGenerator, parameter, parameterIndex, serializer);
                 parameterIndex++;
@@ -306,7 +306,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldfld, serializer);
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.EmitLoadArg(parameterIndex + 1);
-            ilGenerator.Emit(OpCodes.Callvirt, _serializeMethod);
+            ilGenerator.Emit(OpCodes.Callvirt, SerializeMethod);
         }
 
         private bool TryToWriteValue(ILGenerator ilGenerator, ParameterInfo parameter, int parameterIndex)
@@ -372,10 +372,10 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.BeginExceptionBlock();
         }
 
-        private static readonly MethodInfo _serializeMethod =
+        private static readonly MethodInfo SerializeMethod =
             typeof(JsonSerializer).GetMethod("Serialize", new[] { typeof(JsonTextWriter), typeof(object) });
 
-        private static readonly MethodInfo _writeParam = typeof(JsonTextWriter).GetMethod("WritePropertyName",
+        private static readonly MethodInfo WriteParam = typeof(JsonTextWriter).GetMethod("WritePropertyName",
             new[] { typeof(string), typeof(bool) });
     }
 }

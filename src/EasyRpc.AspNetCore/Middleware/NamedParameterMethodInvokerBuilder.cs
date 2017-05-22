@@ -89,15 +89,15 @@ namespace EasyRpc.AspNetCore.Middleware
                     ilGenerator.Emit(OpCodes.Initobj, parameter.ParameterType);
                 }
 
-                ilGenerator.EmitMethodCall(_getValueFromDictionaryOrDefaultMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueFromDictionaryOrDefaultMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
             else
             {
-                ilGenerator.EmitMethodCall(_getValueFromDictionaryMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueFromDictionaryMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
         }
 
-        private static readonly MethodInfo _getValueFromDictionaryMethodInfo =
+        private static readonly MethodInfo GetValueFromDictionaryMethodInfo =
             typeof(NamedParameterMethodInvokerBuilder).GetMethod("GetValueFromDictionary");
 
         public static T GetValueFromDictionary<T>(IDictionary<string, object> values, string valueName)
@@ -122,7 +122,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
-        private static readonly MethodInfo _getValueFromDictionaryOrDefaultMethodInfo =
+        private static readonly MethodInfo GetValueFromDictionaryOrDefaultMethodInfo =
             typeof(NamedParameterMethodInvokerBuilder).GetMethod("GetValueFromDictionaryOrDefault");
 
         public static T GetValueFromDictionaryOrDefault<T>(IDictionary<string, object> values, string valueName, T defaultValue)

@@ -59,7 +59,7 @@ namespace EasyRpc.AspNetCore.Middleware
         }
 
 
-        private static readonly MethodInfo _getValueFromArrayMethodInfo =
+        private static readonly MethodInfo GetValueFromArrayMethodInfo =
             typeof(OrderedParameterMethodInvokeBuilder).GetRuntimeMethod("GetValueFromArray", new[] { typeof(Object[]), typeof(int) });
 
         public static T GetValueFromArray<T>(object[] values, int index)
@@ -84,7 +84,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
-        private static readonly MethodInfo _getValueOrDefaultFromArrayMethodInfo =
+        private static readonly MethodInfo GetValueOrDefaultFromArrayMethodInfo =
             typeof(OrderedParameterMethodInvokeBuilder).GetRuntimeMethods().First(m => m.Name == "GetValueOrDefaultFromArray");
 
         public static T GetValueOrDefaultFromArray<T>(object[] values, int index, T defaultValue)
@@ -148,11 +148,11 @@ namespace EasyRpc.AspNetCore.Middleware
                     ilGenerator.Emit(OpCodes.Initobj, parameter.ParameterType);
                 }
 
-                ilGenerator.EmitMethodCall(_getValueOrDefaultFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueOrDefaultFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
             else
             {
-                ilGenerator.EmitMethodCall(_getValueFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
         }
     }
