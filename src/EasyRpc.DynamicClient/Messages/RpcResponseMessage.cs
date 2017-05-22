@@ -10,7 +10,7 @@ namespace EasyRpc.DynamicClient.Messages
         [JsonProperty("message")]
         public string Message { get; set; }
     }
-
+    
     public class RpcResponseMessage<T>
     {
         [JsonProperty("jsonrpc")]

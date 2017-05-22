@@ -149,7 +149,7 @@ namespace EasyRpc.Tests.DynamicClient
 
         public interface IVoidReturnInterface
         {
-            
+            void VoidMethod(int a, int b);
         }
 
         [Theory]
@@ -162,40 +162,13 @@ namespace EasyRpc.Tests.DynamicClient
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<ResultObject>(typeof(IComplexService).Name, nameof(IComplexService.Add), Arg.Any<byte[]>())
-                .Returns(c =>
-                {
-                    bytes = c.Arg<byte[]>();
+            var proxyType = proxyGenerator.GenerateProxyType(typeof(IVoidReturnInterface), true);
 
-                    return new ResultObject { Result = 15 };
-                });
+            var instance = (IVoidReturnInterface)fixture.Locate(proxyType);
 
-            var proxyType = proxyGenerator.GenerateProxyType(typeof(IComplexService), true);
+            instance.VoidMethod(10, 5);
 
-            var instance = (IComplexService)fixture.Locate(proxyType);
-
-            var value = instance.Add(new ComplexObject { A = 5, B = 10 });
-
-            Assert.NotNull(value);
-            Assert.Equal(15, value.Result);
-
-            var request = bytes.Deserialize<RequestMessage>();
-
-            Assert.NotNull(request);
-            Assert.Equal("2.0", request.Version);
-            Assert.Equal("Add", request.Method);
-            Assert.False(string.IsNullOrEmpty(request.Id));
-
-            var objectDictionary = request.Parameters as Dictionary<string, object>;
-
-            Assert.NotNull(objectDictionary);
-            Assert.Equal(1, objectDictionary.Count);
-
-            var complex = objectDictionary["complex"] as JObject;
-
-            Assert.NotNull(complex);
-            Assert.Equal(5, complex["A"].ToObject(typeof(int)));
-            Assert.Equal(10, complex["B"].ToObject(typeof(int)));
+            proxyService.Received(1).MakeCallNoReturn(typeof(IVoidReturnInterface).Name,nameof(IVoidReturnInterface.VoidMethod),Arg.Any<byte[]>());
         }
     }
 }

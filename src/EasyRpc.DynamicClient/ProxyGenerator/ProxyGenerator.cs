@@ -40,7 +40,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             {
                 _proxyCount++;
 
-                var proxyBuilder = _moduleBuilder.DefineType(proxyType.Name + "Proxy" + _proxyCount, 
+                var proxyBuilder = _moduleBuilder.DefineType(proxyType.Name + "Proxy" + _proxyCount,
                     TypeAttributes.Class | TypeAttributes.Public);
 
                 proxyBuilder.AddInterfaceImplementation(proxyType);
@@ -227,11 +227,6 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldstr, _namingConventionService.GetMethodName(method));
             ilGenerator.Emit(OpCodes.Ldloc_0);
             ilGenerator.Emit(OpCodes.Callvirt, methodToCall);
-
-            if (methodToCall.ReturnType == typeof(void))
-            {
-                ilGenerator.Emit(OpCodes.Pop);
-            }
 
             ilGenerator.Emit(OpCodes.Ret);
         }
