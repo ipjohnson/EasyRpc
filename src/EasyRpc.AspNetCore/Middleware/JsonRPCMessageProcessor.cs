@@ -81,7 +81,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError("Exception thrown while deserializing request package: " + exp.Message);
+                _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while deserializing request package: " + exp.Message);
 
                 WriteErrorMessage(context,
                        new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request: " + exp.Message));
@@ -136,7 +136,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError("Exception thrown while serializing bulk output: " + exp.Message);
+                _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while serializing bulk output: " + exp.Message);
 
                 WriteErrorMessage(context,
                     new ErrorResponseMessage("2.0", "",
@@ -167,7 +167,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError("Exception thrown while serializing response: " + exp.Message);
+                _logger?.LogError(EventIdCode.SerializeException, exp, "Exception thrown while serializing response: " + exp.Message);
 
                 var errorMessage = "Internal Server Error";
 
@@ -268,7 +268,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError($"Exception thrown while creating instance {exposedMethod.InstanceType.Name} for {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+                _logger?.LogError(EventIdCode.ActivationException, exp, $"Exception thrown while creating instance {exposedMethod.InstanceType.Name} for {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
                 // log error 
                 return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, $" Could not activate type {exposedMethod.InstanceType.FullName}\n{exp.Message}");
@@ -366,7 +366,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError($"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+                _logger?.LogError(EventIdCode.ExecutionException, exp, $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
                 if (callExecutionContext != null)
                 {
