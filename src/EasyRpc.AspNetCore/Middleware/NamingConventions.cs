@@ -17,13 +17,8 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         public Func<Type, IEnumerable<string>> RouteNameGenerator
         {
-            get { return _routeNameGenerator; }
-            set
-            {
-                if(value == null) throw new ArgumentNullException(nameof(RouteNameGenerator));
-
-                _routeNameGenerator = value;
-            }
+            get => _routeNameGenerator;
+            set => _routeNameGenerator = value ?? throw new ArgumentNullException(nameof(RouteNameGenerator));
         }
 
         /// <summary>
@@ -31,13 +26,8 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         public Func<MethodInfo, string> MethodNameGenerator
         {
-            get { return _methodNameGenerator; }
-            set
-            {
-                if(value == null) throw new ArgumentNullException(nameof(MethodNameGenerator));
-
-                _methodNameGenerator = value;
-            }
+            get => _methodNameGenerator;
+            set => _methodNameGenerator = value ?? throw new ArgumentNullException(nameof(MethodNameGenerator));
         }
 
         /// <summary>
