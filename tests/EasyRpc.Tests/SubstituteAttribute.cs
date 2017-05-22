@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-using NSubstitute;
 using SimpleFixture;
 using SimpleFixture.Attributes;
 using SimpleFixture.NSubstitute;

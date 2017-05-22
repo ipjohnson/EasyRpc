@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EasyRpc.AspNetCore;
+﻿using EasyRpc.AspNetCore;
 using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.xUnit;
 using Xunit;
-using NSubstitute;
 
 namespace EasyRpc.Tests.Middleware
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EasyRpc.Tests.Classes;
-using EasyRPC.AspNetCore.Tests.Classes;
+﻿using EasyRpc.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.xUnit;
