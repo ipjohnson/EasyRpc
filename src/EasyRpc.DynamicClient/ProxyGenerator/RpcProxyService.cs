@@ -38,7 +38,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
         }
 
-        public async virtual Task MaskAsyncCallNoReturn(string className, string methodName, byte[] bytes)
+        public virtual async Task MaskAsyncCallNoReturn(string className, string methodName, byte[] bytes)
         {
 
         }
