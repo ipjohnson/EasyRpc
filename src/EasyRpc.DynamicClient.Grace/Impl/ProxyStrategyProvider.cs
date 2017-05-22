@@ -20,10 +20,8 @@ namespace EasyRpc.DynamicClient.Grace.Impl
         /// <param name="proxyNamespaces">provide namespaces that will be proxied</param>
         public ProxyStrategyProvider(bool callByName, params string[] proxyNamespaces)
         {
-            if (proxyNamespaces == null) throw new ArgumentNullException(nameof(proxyNamespaces));
-
             _callByName = callByName;
-            _proxyNamespaces = proxyNamespaces;
+            _proxyNamespaces = proxyNamespaces ?? throw new ArgumentNullException(nameof(proxyNamespaces));
         }
 
         /// <summary>Provide exports for a missing type</summary>

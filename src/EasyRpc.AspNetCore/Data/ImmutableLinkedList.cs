@@ -110,7 +110,7 @@ namespace EasyRpc.AspNetCore.Data
     /// Immutable linked list class
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    [DebuggerDisplay("{DebuggerDisplayString,nq}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplayString) + ",nq}")]
     public class ImmutableLinkedList<T> : IEnumerable<T>
     {
         /// <summary>
