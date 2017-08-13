@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.DynamicClient;
+using EasyRpc.DynamicClient.Exceptions;
 using EasyRpc.DynamicClient.ProxyGenerator;
 using EasyRpc.Tests.Middleware;
 using NSubstitute;
@@ -12,6 +13,7 @@ using NSubstitute.Core.Arguments;
 using SimpleFixture.NSubstitute;
 using SimpleFixture.xUnit;
 using Xunit;
+using JsonRpcErrorCode = EasyRpc.AspNetCore.Messages.JsonRpcErrorCode;
 
 namespace EasyRpc.Tests.DynamicClient
 {
@@ -62,6 +64,66 @@ namespace EasyRpc.Tests.DynamicClient
             Assert.Equal(10, intValue);
 
             client.Received().SendAsync(Arg.Is<HttpRequestMessage>(message => ValidateSomeClassSomeMethod(message)));
+        }
+
+        [Theory]
+        [AutoData]
+        public void RpcProxyServiceMakeCallMethodNotFound(IRpcHttpClient client,
+            IRpcHttpClientProvider clientProvider,
+            RpcProxyService proxyService)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted)
+            {
+                Content = new StreamContent(new ErrorResponseMessage("2,0","1",JsonRpcErrorCode.MethodNotFound, "Not Found").SerializeToStream())
+            };
+
+            client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
+
+            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+
+            var bytes = new byte[] { 0, 1, 1, 0 };
+
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
+        }
+
+        [Theory]
+        [AutoData]
+        public void RpcProxyServiceMakeCallMethodNotAuthorized(IRpcHttpClient client,
+            IRpcHttpClientProvider clientProvider,
+            RpcProxyService proxyService)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted)
+            {
+                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.UnauthorizedAccess, "Not Authorized").SerializeToStream())
+            };
+
+            client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
+
+            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+
+            var bytes = new byte[] { 0, 1, 1, 0 };
+
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
+        }
+
+        [Theory]
+        [AutoData]
+        public void RpcProxyServiceMakeCallInternalError(IRpcHttpClient client,
+            IRpcHttpClientProvider clientProvider,
+            RpcProxyService proxyService)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted)
+            {
+                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.InternalServerError, "Internal Server Error").SerializeToStream())
+            };
+
+            client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
+
+            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+
+            var bytes = new byte[] { 0, 1, 1, 0 };
+
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
         }
 
         private bool ValidateSomeClassSomeMethod(HttpRequestMessage message)
