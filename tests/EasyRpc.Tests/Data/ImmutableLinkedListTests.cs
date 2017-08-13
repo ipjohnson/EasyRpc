@@ -33,10 +33,16 @@ namespace EasyRpc.Tests.Data
         }
 
         [Fact]
-        public void ImmutableLinkedList_Create_Returns_Empty_For_Null()
+        public void ImmutableLinkedList_ThreadSafeAddRange()
         {
-            Assert.Equal(ImmutableLinkedList<int>.Empty, ImmutableLinkedList.Create<int>(null));
-            Assert.Equal(ImmutableLinkedList<int>.Empty, ImmutableLinkedList.Create(new int[0]));
+            var list = ImmutableLinkedList<int>.Empty;
+
+            ImmutableLinkedList.ThreadSafeAddRange(ref list, new[] { 5, 10, 15 });
+
+            Assert.Equal(3, list.Count);
+            Assert.Contains(5, list);
+            Assert.Contains(10, list);
+            Assert.Contains(15, list);
         }
 
         [Fact]
