@@ -81,6 +81,7 @@ namespace EasyRpc.Tests.Middleware
             }
         }
     }
+
     public static class SerializeMethods
     {
         public static Stream SerializeToStream<T>(this T value)
