@@ -16,13 +16,22 @@ namespace EasyRpc.AspNetCore.Messages
             Id = id;
         }
 
+        /// <summary>
+        /// json rpc version
+        /// </summary>
         [JsonProperty("jsonrpc", Required = Required.Always, Order = 1)]
         public string Version { get; private set; }
 
+        /// <summary>
+        /// message id
+        /// </summary>
         [JsonProperty("id", Order = 3)]
         public string Id { get; private set; }
     }
 
+    /// <summary>
+    /// Empty response message
+    /// </summary>
     public class EmptyResponseMessage : ResponseMessage<object>
     {
         private static readonly object EmptyObject = new object();
@@ -35,6 +44,10 @@ namespace EasyRpc.AspNetCore.Messages
         }
     }
 
+    /// <summary>
+    /// Type response message
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ResponseMessage<T> : ResponseMessage
     {
         [JsonConstructor]
@@ -42,12 +55,21 @@ namespace EasyRpc.AspNetCore.Messages
         {
 
         }
-
+        
+        /// <summary>
+        /// public constructor
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="version"></param>
+        /// <param name="id"></param>
         public ResponseMessage(T result, string version, string id) : base(version, id)
         {
             Result = result;
         }
 
+        /// <summary>
+        /// Response result
+        /// </summary>
         [JsonProperty("result", Required = Required.Always, Order = 2)]
         public T Result { get; private set; }
     }

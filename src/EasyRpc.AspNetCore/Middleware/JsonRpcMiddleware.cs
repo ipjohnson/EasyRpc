@@ -9,13 +9,10 @@ namespace EasyRpc.AspNetCore.Middleware
     public class JsonRpcMiddleware
     {
         private readonly string _route;
-        private Action<IApiConfiguration> _configuration;
         private readonly IJsonRpcMessageProcessor _messageProcessor;
 
         public JsonRpcMiddleware(IApplicationBuilder app, string route, Action<IApiConfiguration> configuration)
         {
-            _configuration = configuration;
-
             _route = PrepareRoute(route);
 
             _messageProcessor = app.ApplicationServices.GetService<IJsonRpcMessageProcessor>();

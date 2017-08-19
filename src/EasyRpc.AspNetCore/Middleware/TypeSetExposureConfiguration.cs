@@ -152,7 +152,7 @@ namespace EasyRpc.AspNetCore.Middleware
                         expose = _interfacesFilter(type);
                     }
                 }
-                else if(_typeFilter != null)
+                else if (_typeFilter != null)
                 {
                     expose = _typeFilter(type);
                 }
@@ -167,7 +167,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
 
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
-                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations))
+                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter))
                     {
                         yield return exposedMethodInformation;
                     }

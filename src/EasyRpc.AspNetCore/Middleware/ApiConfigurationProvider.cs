@@ -10,9 +10,16 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public interface IApiConfigurationProvider : IExposedMethodInformationProvider
     {
+        /// <summary>
+        /// Gets an immutable representation of what the current configuration values are
+        /// </summary>
+        /// <returns></returns>
         ICurrentApiInformation GetCurrentApiInformation();
     }
 
+    /// <summary>
+    /// Class that is used to configure the api
+    /// </summary>
     public class ApiConfigurationProvider : IApiConfigurationProvider, IApiConfiguration
     {
         private readonly List<IExposedMethodInformationProvider> _providers =

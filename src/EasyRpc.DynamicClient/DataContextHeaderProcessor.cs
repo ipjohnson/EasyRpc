@@ -16,6 +16,8 @@ namespace EasyRpc.DynamicClient
 
     public class DataContextHeaderProcessor : IRpcContextHeader, IHeaderProcessor
     {
+        public const string RpcHeaderString = "RpcContext-";
+
         private readonly Dictionary<string, object> _currentObjects = new Dictionary<string, object>();
         private readonly Dictionary<string, string> _serialized = new Dictionary<string, string>();
         private readonly JsonSerializer _serializer;
@@ -77,7 +79,7 @@ namespace EasyRpc.DynamicClient
 
                     var base64String = Convert.ToBase64String(memorStream.ToArray());
 
-                    message.Headers.Add("RpcContext-" + valuePair.Key, base64String);
+                    message.Headers.Add(RpcHeaderString + valuePair.Key, base64String);
                 }
             }
 
@@ -96,9 +98,9 @@ namespace EasyRpc.DynamicClient
         {
             foreach (var httpResponseHeader in message.Headers)
             {
-                if (httpResponseHeader.Key.StartsWith("RpcContext-"))
+                if (httpResponseHeader.Key.StartsWith(RpcHeaderString))
                 {
-                    var key = httpResponseHeader.Key.Substring("RpcContext-".Length);
+                    var key = httpResponseHeader.Key.Substring(RpcHeaderString.Length);
 
                     _currentObjects.Remove(key);
                     _serialized[key] = httpResponseHeader.Value.FirstOrDefault();

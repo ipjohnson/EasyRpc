@@ -42,7 +42,7 @@ namespace EasyRpc.DynamicClient.Grace
         {                // I mark everything as -1 priority so that if another version is registered it overrides these defaults
             block.Export<ProxyGenerator.ProxyGenerator>().As<IProxyGenerator>().WithPriority(-1).Lifestyle.Singleton();
             block.Export<DefaultNamingConventionService>().As<INamingConventionService>().WithPriority(-1);
-            block.ExportInstance(() => new DefaultRpcClientProvider(config.Url ?? "ReplaceMe")).As<IRpcHttpClientProvider>().WithPriority(-1);
+            block.ExportFactory(() => new DefaultRpcClientProvider(config.Url ?? "ReplaceMe")).As<IRpcHttpClientProvider>().WithPriority(-1);
             block.Export<JsonMethodObjectWriter>().As<IJsonMethodObjectWriter>().Lifestyle.Singleton().WithPriority(-1);
             block.Export<RpcProxyService>().As<IRpcProxyService>().WithPriority(-1).Lifestyle.SingletonPerScope();
             

@@ -7,18 +7,32 @@ using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
+    /// <summary>
+    /// Context object that represents the headers in an rpc call
+    /// </summary>
     public class RpcHeaderContext : IRpcHeaderContext
     {
         private readonly IHttpContextAccessor _accessor;
         private readonly JsonSerializer _serializer;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="accessor"></param>
+        /// <param name="serializer"></param>
         public RpcHeaderContext(IHttpContextAccessor accessor, JsonSerializer serializer)
         {
             _accessor = accessor;
             _serializer = serializer;
         }
 
-        public T GetValue<T>(string key = null)
+        /// <summary>
+        /// Get value from headers
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">optional key</param>
+        /// <returns></returns>
+        public T GetValue<T>(string key = null) where T : class
         {
             var httpContext = _accessor.HttpContext;
 
@@ -30,7 +44,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (currentValues.TryGetValue(stringKey, out value))
             {
-                return (T) value;
+                return (T)value;
             }
 
             var headerValue = httpContext.Request.Headers["RpcContext-" + stringKey];
@@ -58,7 +72,13 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        public void SetValue<T>(T value, string key = null)
+        /// <summary>
+        /// Set value into header
+        /// </summary>
+        /// <typeparam name="T">tpye of value</typeparam>
+        /// <param name="value">value</param>
+        /// <param name="key">optional key</param>
+        public void SetValue<T>(T value, string key = null) where T : class
         {
             var httpContext = _accessor.HttpContext;
 
@@ -82,7 +102,7 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 httpContext.Response.Headers["RpcContext-" + stringKey] = new StringValues("");
             }
-            
+
             var currentValues = GetCurrentValues(httpContext);
 
             currentValues[stringKey] = value;
@@ -98,7 +118,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             currentValues = new ConcurrentDictionary<string, object>();
-            
+
             context.Items["RpcHeaderValues"] = currentValues;
 
             return currentValues;

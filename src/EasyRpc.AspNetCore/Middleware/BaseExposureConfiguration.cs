@@ -17,7 +17,8 @@ namespace EasyRpc.AspNetCore.Middleware
             ApiInformation = apiInformation;
         }
 
-        protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type)
+        protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
+            Func<MethodInfo, bool> methodFilter = null)
         {
             if (Names.Count == 0)
             {
@@ -27,10 +28,14 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations);
+            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter);
         }
 
-        public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type, ICurrentApiInformation currentApi, Func<Type, IEnumerable<string>> namesFunc, List<IMethodAuthorization> authorizations)
+        public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
+                                                                              ICurrentApiInformation currentApi,
+                                                                              Func<Type, IEnumerable<string>> namesFunc,
+                                                                              List<IMethodAuthorization> authorizations,
+                                                                              Func<MethodInfo, bool> methodFilter)
         {
             var names = namesFunc(type).ToArray();
 
@@ -88,6 +93,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 var filterOut = currentApi.MethodFilters.Any(func => !func(method));
 
                 if (filterOut)
+                {
+                    continue;
+                }
+
+                if (methodFilter != null && !methodFilter(method))
                 {
                     continue;
                 }

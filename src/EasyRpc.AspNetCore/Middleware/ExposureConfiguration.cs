@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
     public class ExposureConfiguration : BaseExposureConfiguration, IExposureConfiguration, IExposedMethodInformationProvider
     {
         private readonly Type _type;
+        private Func<MethodInfo, bool> _methods;
 
         public ExposureConfiguration(Type type, ICurrentApiInformation apiInformation) : base(apiInformation)
         {
@@ -37,14 +39,23 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        public IExposureConfiguration Methods(Func<MethodInfo, bool> methods)
+        {
+            _methods = methods;
+
+            return this;
+        }
+
         public IEnumerable<ExposedMethodInformation> GetExposedMethods()
         {
-            return GetExposedMethods(_type);
+            return GetExposedMethods(_type,_methods);
         }
     }
 
     public class ExposureConfiguration<T> : BaseExposureConfiguration, IExposureConfiguration<T>, IExposedMethodInformationProvider
     {
+        private Func<MethodInfo, bool> _methods;
+
         public ExposureConfiguration(ICurrentApiInformation apiInformation) : base(apiInformation)
         {
         }
@@ -74,9 +85,16 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        public IExposureConfiguration<T> Methods(Func<MethodInfo, bool> methods)
+        {
+            _methods = methods;
+
+            return this;
+        }
+
         public IEnumerable<ExposedMethodInformation> GetExposedMethods()
         {
-            return GetExposedMethods(typeof(T));
+            return GetExposedMethods(typeof(T), _methods);
         }
     }
 }
