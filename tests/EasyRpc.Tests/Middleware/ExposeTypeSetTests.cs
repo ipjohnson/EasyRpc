@@ -44,7 +44,6 @@ namespace EasyRpc.Tests.Middleware
             Assert.Equal(15, result.Result);
         }
 
-
         [Theory]
         [AutoData]
         public void ExposeAssemblyContaining_Interfaces_Success(IApplicationBuilder app, HttpContext context)
