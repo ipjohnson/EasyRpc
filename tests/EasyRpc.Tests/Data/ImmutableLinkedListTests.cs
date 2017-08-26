@@ -194,6 +194,8 @@ namespace EasyRpc.Tests.Data
 
             var listOfTasks = new List<Task>();
 
+            listOfTasks.Add(Task.Run(() => RemoveFromList()));
+
             for (var i = 0; i < writerCount; i++)
             {
                 var value = i;
@@ -202,7 +204,6 @@ namespace EasyRpc.Tests.Data
                 listOfTasks.Add(task);
             }
 
-            listOfTasks.Add(Task.Run(() => RemoveFromList()));
 
             _startEvent.Set();
 
