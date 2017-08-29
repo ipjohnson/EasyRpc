@@ -18,7 +18,7 @@ namespace EasyRpc.Tests.Middleware
         {
             serviceCollection.AddJsonRpc();
 
-            Assert.Equal(8, serviceCollection.Count);
+            Assert.Equal(9, serviceCollection.Count);
         }
     }
 }
