@@ -17,6 +17,8 @@ namespace EasyRpc.AspNetCore.Middleware
         public HttpContext Context { get; }
 
         public Type ExecutingClass { get; }
+        
+        public object[] Parameters { get; set; }
 
         public RequestMessage RequestMessage { get; }
 

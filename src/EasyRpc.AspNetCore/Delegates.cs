@@ -6,6 +6,20 @@ using Microsoft.AspNetCore.Http;
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="values"></param>
+    /// <returns></returns>
+    public delegate object[] OrderedParametersToArray(object[] values, HttpContext context);
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="values"></param>
+    /// <returns></returns>
+    public delegate object[] NamedParametersToArray(IDictionary<string, object> values, HttpContext context);
+
+    /// <summary>
     /// Delegate to invoke method on instance, named parameters
     /// </summary>
     /// <param name="instance"></param>

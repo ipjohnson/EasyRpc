@@ -28,6 +28,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
         private readonly IOrderedParameterMethodInvokeBuilder _orderedParameterMethodInvokeBuilder;
         private readonly INamedParameterMethodInvokerBuilder _namedParameterMethodInvokerBuilder;
+        private readonly INamedParameterToArrayDelegateProvider _namedParameterToArrayDelegateProvider;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
         private readonly ILogger<JsonRpcMessageProcessor> _logger;
         private string _route;
@@ -35,11 +36,13 @@ namespace EasyRpc.AspNetCore.Middleware
         public JsonRpcMessageProcessor(IJsonSerializerProvider provider,
             IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder,
             INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder,
+            INamedParameterToArrayDelegateProvider namedParameterToArrayDelegateProvider,
             IOptions<RpcServiceConfiguration> configuration,
             ILogger<JsonRpcMessageProcessor> logger = null)
         {
             _orderedParameterMethodInvokeBuilder = orderedParameterMethodInvokeBuilder;
             _namedParameterMethodInvokerBuilder = namedParameterMethodInvokerBuilder;
+            _namedParameterToArrayDelegateProvider = namedParameterToArrayDelegateProvider;
             _configuration = configuration;
             _logger = logger;
             _serializer = provider.ProvideSerializer();
@@ -221,7 +224,8 @@ namespace EasyRpc.AspNetCore.Middleware
                 var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
                     _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder,
                     methodInfo.MethodAuthorizations,
-                    methodInfo.Filters);
+                    methodInfo.Filters,
+                    _namedParameterToArrayDelegateProvider);
 
                 AddCache(methodInfo.RouteNames, cache);
 
@@ -305,9 +309,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     foreach (var callFilter in filters)
                     {
-                        ICallExecuteFilter executeFilter = callFilter as ICallExecuteFilter;
-
-                        if (executeFilter != null &&
+                        if (callFilter is ICallExecuteFilter executeFilter &&
                             callExecutionContext.ContinueCall)
                         {
                             executeFilter.BeforeExecute(callExecutionContext);
@@ -330,6 +332,9 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                     else
                     {
+                        //var values = exposedMethod.NamedParametersToArrayDelegate(
+                        //    (IDictionary<string, object>) requestMessage.Parameters, context);
+
                         responseMessage =
                             await exposedMethod.NamedParametersExecution(requestMessage.Version,
                                 requestMessage.Id,
