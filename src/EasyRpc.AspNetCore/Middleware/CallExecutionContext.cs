@@ -6,12 +6,13 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class CallExecutionContext : ICallExecutionContext
     {
-        public CallExecutionContext(HttpContext context, Type executingClass, RequestMessage requestMessage)
+        public CallExecutionContext(HttpContext context, Type executingClass, RequestMessage requestMessage, object instance)
         {
             ContinueCall = true;
             Context = context;
             ExecutingClass = executingClass;
             RequestMessage = requestMessage;
+            Instance = instance;
         }
 
         public HttpContext Context { get; }
@@ -22,6 +23,10 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public RequestMessage RequestMessage { get; }
 
+        /// <summary>
+        /// Instance that the execution will happen
+        /// </summary>
+        public object Instance { get; }
         public bool ContinueCall { get; set; }
 
         public ResponseMessage ResponseMessage { get; set; }

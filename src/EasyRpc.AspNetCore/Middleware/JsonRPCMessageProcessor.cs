@@ -26,24 +26,24 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
         private readonly JsonSerializer _serializer;
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
-        private readonly IOrderedParameterMethodInvokeBuilder _orderedParameterMethodInvokeBuilder;
-        private readonly INamedParameterMethodInvokerBuilder _namedParameterMethodInvokerBuilder;
         private readonly INamedParameterToArrayDelegateProvider _namedParameterToArrayDelegateProvider;
+        private readonly IOrderedParameterToArrayDelegateProvider _orderedParameterToArrayDelegateProvider;
+        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
         private readonly ILogger<JsonRpcMessageProcessor> _logger;
         private string _route;
 
-        public JsonRpcMessageProcessor(IJsonSerializerProvider provider,
-            IOrderedParameterMethodInvokeBuilder orderedParameterMethodInvokeBuilder,
-            INamedParameterMethodInvokerBuilder namedParameterMethodInvokerBuilder,
+        public JsonRpcMessageProcessor(IOptions<RpcServiceConfiguration> configuration,
+            IJsonSerializerProvider provider,
             INamedParameterToArrayDelegateProvider namedParameterToArrayDelegateProvider,
-            IOptions<RpcServiceConfiguration> configuration,
+            IOrderedParameterToArrayDelegateProvider orderedParameterToArrayDelegateProvider,
+            IArrayMethodInvokerBuilder invokerBuilder,
             ILogger<JsonRpcMessageProcessor> logger = null)
         {
-            _orderedParameterMethodInvokeBuilder = orderedParameterMethodInvokeBuilder;
-            _namedParameterMethodInvokerBuilder = namedParameterMethodInvokerBuilder;
             _namedParameterToArrayDelegateProvider = namedParameterToArrayDelegateProvider;
             _configuration = configuration;
+            _orderedParameterToArrayDelegateProvider = orderedParameterToArrayDelegateProvider;
+            _invokerBuilder = invokerBuilder;
             _logger = logger;
             _serializer = provider.ProvideSerializer();
             _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
@@ -222,10 +222,11 @@ namespace EasyRpc.AspNetCore.Middleware
             if (_exposedMethodInformations.TryGetValue(key, out methodInfo))
             {
                 var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
-                    _orderedParameterMethodInvokeBuilder, _namedParameterMethodInvokerBuilder,
                     methodInfo.MethodAuthorizations,
                     methodInfo.Filters,
-                    _namedParameterToArrayDelegateProvider);
+                    _namedParameterToArrayDelegateProvider,
+                    _orderedParameterToArrayDelegateProvider,
+                    _invokerBuilder);
 
                 AddCache(methodInfo.RouteNames, cache);
 
@@ -297,16 +298,33 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 if (filters.Count > 0)
                 {
-                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, requestMessage);
+                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, requestMessage, newInstance);
                 }
             }
 
             try
             {
-                ResponseMessage responseMessage;
+
+                object[] parameterValues;
+
+                if (requestMessage.Parameters == null)
+                {
+                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(new object[0], context);
+                }
+                else if (requestMessage.Parameters is object[])
+                {
+                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate((object[])requestMessage.Parameters, context);
+                }
+                else
+                {
+                    parameterValues = exposedMethod.NamedParametersToArrayDelegate(
+                        (IDictionary<string, object>)requestMessage.Parameters, context);
+                }
 
                 if (callExecutionContext != null)
                 {
+                    callExecutionContext.Parameters = parameterValues;
+
                     foreach (var callFilter in filters)
                     {
                         if (callFilter is ICallExecuteFilter executeFilter &&
@@ -315,33 +333,16 @@ namespace EasyRpc.AspNetCore.Middleware
                             executeFilter.BeforeExecute(callExecutionContext);
                         }
                     }
+
+                    parameterValues = callExecutionContext.Parameters;
                 }
+
+                ResponseMessage responseMessage;
 
                 if (callExecutionContext == null ||
                     callExecutionContext.ContinueCall)
                 {
-                    if (requestMessage.Parameters == null ||
-                        requestMessage.Parameters is object[])
-                    {
-                        responseMessage =
-                            await exposedMethod.OrderedParametersExecution(requestMessage.Version,
-                                requestMessage.Id,
-                                newInstance,
-                                (object[])requestMessage.Parameters,
-                                context);
-                    }
-                    else
-                    {
-                        //var values = exposedMethod.NamedParametersToArrayDelegate(
-                        //    (IDictionary<string, object>) requestMessage.Parameters, context);
-
-                        responseMessage =
-                            await exposedMethod.NamedParametersExecution(requestMessage.Version,
-                                requestMessage.Id,
-                                newInstance,
-                                (IDictionary<string, object>)requestMessage.Parameters,
-                                context);
-                    }
+                    responseMessage = await exposedMethod.InvokeMethod(newInstance, parameterValues, requestMessage.Version, requestMessage.Id);
                 }
                 else
                 {
@@ -355,9 +356,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                     foreach (var callFilter in filters)
                     {
-                        ICallExecuteFilter executeFilter = callFilter as ICallExecuteFilter;
-
-                        if (executeFilter != null &&
+                        if (callFilter is ICallExecuteFilter executeFilter &&
                             callExecutionContext.ContinueCall)
                         {
                             executeFilter.AfterExecute(callExecutionContext);

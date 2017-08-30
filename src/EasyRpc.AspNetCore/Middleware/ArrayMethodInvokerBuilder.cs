@@ -1,36 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    
-    public class MethodInvokerBuilder
+    public interface IArrayMethodInvokerBuilder
     {
-        /// <summary>
-        /// Generates IL for From services, it's assumed that HttpContext is the 5 arg to the delegate
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ilGenerator"></param>
-        protected void GenerateIlForFromServices(ParameterInfo info, ILGenerator ilGenerator)
+        InvokeMethodWithArray CreateMethodInvoker(MethodInfo method);
+    }
+    public class ArrayMethodInvokerBuilder : IArrayMethodInvokerBuilder
+    {
+        public InvokeMethodWithArray CreateMethodInvoker(MethodInfo method)
         {
-            ilGenerator.Emit(OpCodes.Ldarg_S, 4);
+            DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
+                typeof(Task<ResponseMessage>),
+                new[] { typeof(object), typeof(object[]), typeof(string), typeof(string) },
+                typeof(ArrayMethodInvokerBuilder).GetTypeInfo().Module);
 
-            var openMethod = typeof(MethodInvokerBuilder).GetRuntimeMethod("GetValueFromServices",
-                new[] {typeof(HttpContext)});
+            var ilGenerator = dynamicMethod.GetILGenerator();
 
-            ilGenerator.EmitMethodCall(openMethod.MakeGenericMethod(info.ParameterType));
+            GenerateMethod(method, ilGenerator);
+
+            return (InvokeMethodWithArray)dynamicMethod.CreateDelegate(typeof(InvokeMethodWithArray));
         }
 
-        protected void GenerateReturnStatements(MethodInfo methodInfo, ILGenerator ilGenerator)
+        private void GenerateMethod(MethodInfo methodInfo, ILGenerator ilGenerator)
         {
+            ilGenerator.DeclareLocal(methodInfo.DeclaringType);
             ilGenerator.Emit(OpCodes.Ldarg_0);
-            ilGenerator.Emit(OpCodes.Ldarg_1);
+            ilGenerator.Emit(OpCodes.Castclass, methodInfo.DeclaringType);
+
+            var parameters = methodInfo.GetParameters();
+
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+                ilGenerator.Emit(OpCodes.Ldarg_1);
+                ilGenerator.EmitInt(i);
+                ilGenerator.Emit(OpCodes.Ldelem_Ref);
+
+                ilGenerator.Emit(!parameter.ParameterType.IsByRef ? OpCodes.Unbox_Any : OpCodes.Castclass,
+                    parameter.ParameterType);
+            }
+
+            ilGenerator.Emit(OpCodes.Callvirt, methodInfo);
+
+            GenerateReturnStatements(methodInfo, ilGenerator);
+        }
+
+        private void GenerateReturnStatements(MethodInfo methodInfo, ILGenerator ilGenerator)
+        {
+            ilGenerator.Emit(OpCodes.Ldarg_2);
+            ilGenerator.Emit(OpCodes.Ldarg_3);
 
             var returnType = methodInfo.ReturnType;
 
@@ -50,14 +77,14 @@ namespace EasyRpc.AspNetCore.Middleware
                 if (IsTaskResultType(returnType, out genericType))
                 {
                     var openMethod =
-                        typeof(MethodInvokerBuilder).GetRuntimeMethods()
+                        typeof(ArrayMethodInvokerBuilder).GetRuntimeMethods()
                             .First(m => m.Name == "CreateAsyncResponseGeneric");
 
                     ilGenerator.EmitMethodCall(openMethod.MakeGenericMethod(genericType));
                 }
                 else
                 {
-                    ilGenerator.EmitMethodCall(typeof(MethodInvokerBuilder).GetRuntimeMethod("CreateAsyncResponse", new Type[] { typeof(Task), typeof(string), typeof(string) }));
+                    ilGenerator.EmitMethodCall(typeof(ArrayMethodInvokerBuilder).GetRuntimeMethod("CreateAsyncResponse", new Type[] { typeof(Task), typeof(string), typeof(string) }));
                 }
             }
             else
@@ -72,11 +99,6 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             ilGenerator.Emit(OpCodes.Ret);
-        }
-
-        public static T GetValueFromServices<T>(HttpContext context)
-        {
-            return context.RequestServices.GetService<T>();
         }
 
         public static async Task<ResponseMessage> CreateAsyncResponse(Task result, string version, string id)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{69810559-DEE2-4EE6-A971-6FFD1C3D149A}"
 EndProject
@@ -19,6 +19,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.DynamicClient", "src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj", "{F7132E15-0A6E-4090-9899-13646C4B8CDC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.DynamicClient.Grace", "src\EasyRpc.DynamicClient.Grace\EasyRpc.DynamicClient.Grace.csproj", "{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.FluentValidation", "src\EasyRpc.AspNetCore.FluentValidation\EasyRpc.AspNetCore.FluentValidation.csproj", "{52358963-7C9B-4DC1-A759-21370877DFD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.AspNetCore.DataAnnotations", "src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj", "{EF958CBB-506D-4E09-9BC5-91DDD5943616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,14 @@ Global
 		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52358963-7C9B-4DC1-A759-21370877DFD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52358963-7C9B-4DC1-A759-21370877DFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52358963-7C9B-4DC1-A759-21370877DFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52358963-7C9B-4DC1-A759-21370877DFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +63,10 @@ Global
 		{2B854307-C969-4516-B9F6-E7F65AB5A9C9} = {9F8E444D-4A63-4AF4-B995-BBACD6B4AA8D}
 		{F7132E15-0A6E-4090-9899-13646C4B8CDC} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
 		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+		{52358963-7C9B-4DC1-A759-21370877DFD4} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+		{EF958CBB-506D-4E09-9BC5-91DDD5943616} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37F1F1AF-51E5-4C20-B82C-97C1F2BD9AC9}
 	EndGlobalSection
 EndGlobal

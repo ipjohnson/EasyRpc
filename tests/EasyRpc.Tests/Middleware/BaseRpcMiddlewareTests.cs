@@ -29,11 +29,12 @@ namespace EasyRpc.Tests.Middleware
             Func<RequestDelegate, RequestDelegate> executeDelegate = null;
 
             app.ApplicationServices.GetService(typeof(IJsonRpcMessageProcessor))
-                .Returns(new JsonRpcMessageProcessor(new JsonSerializerProvider(),
-                    new OrderedParameterMethodInvokeBuilder(),
-                    new NamedParameterMethodInvokerBuilder(),
+                .Returns(new JsonRpcMessageProcessor(Options.Create(new RpcServiceConfiguration()),
+                    new JsonSerializerProvider(),
                     new NamedParameterToArrayDelegateProvider(), 
-                    Options.Create(new RpcServiceConfiguration())));
+                    new OrderedParameterToArrayDelegateProvider(),
+                    new ArrayMethodInvokerBuilder()
+                    ));
 
             app.Use(Arg.Do<Func<RequestDelegate, RequestDelegate>>(func => executeDelegate = func));
 

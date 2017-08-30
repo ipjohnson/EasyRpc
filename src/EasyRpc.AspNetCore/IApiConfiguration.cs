@@ -77,14 +77,14 @@ namespace EasyRpc.AspNetCore
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter<T>(Func<Type,bool> where = null) where T : ICallFilter;
+        IApiConfiguration ApplyFilter<T>(Func<MethodInfo,bool> where = null) where T : ICallFilter;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc);
+        IApiConfiguration ApplyFilter(Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc);
 
         /// <summary>
         /// Naming conventions for api
@@ -109,5 +109,10 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="provider"></param>
         IApiConfiguration AddExposures(IExposedMethodInformationProvider provider);
+
+        /// <summary>
+        /// Application services
+        /// </summary>
+        IServiceProvider AppServices { get; }
     }
 }

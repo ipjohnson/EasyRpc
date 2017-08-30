@@ -1,15 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    public abstract class BaseDelegateProvider
+    public abstract class BaseDelegateProvider<TValues,TDelegate>
     {
+        public TDelegate CreateDelegate(MethodInfo method)
+        {
+            DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
+                typeof(object[]),
+                new[] { typeof(TValues), typeof(HttpContext) },
+                GetType().GetTypeInfo().Module);
+
+            var ilGenerator = dynamicMethod.GetILGenerator();
+
+            GenerateMethod(method, ilGenerator);
+
+            return (TDelegate)((object)dynamicMethod.CreateDelegate(typeof(TDelegate)));
+        }
+
+        private void GenerateMethod(MethodInfo method, ILGenerator ilGenerator)
+        {
+            var parameters = method.GetParameters();
+
+            ilGenerator.EmitInt(parameters.Length);
+
+            ilGenerator.Emit(OpCodes.Newarr, typeof(object));
+
+            var index = 0;
+            var parameterIndex = 0;
+            foreach (var parameter in parameters)
+            {
+                ilGenerator.Emit(OpCodes.Dup);
+                ilGenerator.EmitInt(index);
+
+                index++;
+
+                var fromServices = parameter.GetCustomAttributes<FromServicesAttribute>();
+
+                if (fromServices.Any())
+                {
+                    GenerateIlForFromServices(parameter, ilGenerator);
+                }
+                else
+                {
+                    GenerateIlForParameter(parameter, ilGenerator, parameterIndex);
+                    parameterIndex++;
+                }
+
+                if (!parameter.ParameterType.IsByRef)
+                {
+                    ilGenerator.Emit(OpCodes.Box, parameter.ParameterType);
+                }
+
+                ilGenerator.Emit(OpCodes.Stelem_Ref);
+            }
+
+            ilGenerator.Emit(OpCodes.Ret);
+        }
+
+        protected abstract void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator, int parameterIndex);
+
+
         /// <summary>
         /// Generates IL for From services, it's assumed that HttpContext is the 5 arg to the delegate
         /// </summary>
@@ -19,7 +78,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             ilGenerator.Emit(OpCodes.Ldarg_S, 4);
 
-            var openMethod = typeof(BaseDelegateProvider).GetRuntimeMethod("GetValueFromServices",
+            var openMethod = typeof(BaseDelegateProvider<TValues,TDelegate>).GetRuntimeMethod("GetValueFromServices",
                 new[] { typeof(HttpContext) });
 
             ilGenerator.EmitMethodCall(openMethod.MakeGenericMethod(info.ParameterType));

@@ -8,6 +8,14 @@ namespace EasyRpc.AspNetCore
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="instance"></param>
+    /// <param name="parameterValues"></param>
+    /// <returns></returns>
+    public delegate Task<ResponseMessage> InvokeMethodWithArray(object instance, object[] parameterValues, string version, string id);
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="values"></param>
     /// <returns></returns>
     public delegate object[] OrderedParametersToArray(object[] values, HttpContext context);

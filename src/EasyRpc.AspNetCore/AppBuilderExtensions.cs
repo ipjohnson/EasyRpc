@@ -19,9 +19,9 @@ namespace EasyRpc.AspNetCore
         {
             collection.TryAddSingleton<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
             collection.TryAddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
-            collection.TryAddSingleton<IOrderedParameterMethodInvokeBuilder, OrderedParameterMethodInvokeBuilder>();
-            collection.TryAddSingleton<INamedParameterMethodInvokerBuilder, NamedParameterMethodInvokerBuilder>();
             collection.TryAddSingleton<INamedParameterToArrayDelegateProvider,NamedParameterToArrayDelegateProvider>();
+            collection.TryAddSingleton<IOrderedParameterToArrayDelegateProvider, OrderedParameterToArrayDelegateProvider>();
+            collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -42,7 +42,7 @@ namespace EasyRpc.AspNetCore
             Action<IApiConfiguration> configure)
         {
             JsonRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
-
+            
             return appBuilder;
         }
     }

@@ -70,19 +70,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     authorizations.Add(methodAuthorization);
                 }
             }
-
-            var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
-
-            foreach (var func in currentApi.Filters)
-            {
-                var filter = func(type);
-
-                if (filter != null)
-                {
-                    filters.Add(filter);
-                }
-            }
-
+            
             foreach (var method in type.GetRuntimeMethods())
             {
                 if (method.IsStatic || !method.IsPublic)
@@ -100,6 +88,18 @@ namespace EasyRpc.AspNetCore.Middleware
                 if (methodFilter != null && !methodFilter(method))
                 {
                     continue;
+                }
+
+                var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
+
+                foreach (var func in currentApi.Filters)
+                {
+                    var filter = func(method);
+
+                    if (filter != null)
+                    {
+                        filters.Add(filter);
+                    }
                 }
 
                 yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, authorizations.ToArray(), filters.ToArray());

@@ -22,7 +22,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 throw new Exception("Please call services.AddJsonRpc()");
             }
 
-            var provider = new ApiConfigurationProvider();
+            var provider = new ApiConfigurationProvider(app.ApplicationServices);
 
             configuration(provider);
 

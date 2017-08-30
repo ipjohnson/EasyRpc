@@ -15,39 +15,37 @@ namespace EasyRpc.AspNetCore.Middleware
 
         Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
-        InvokeMethodByNamedParameters NamedParametersExecution { get; }
-
-        InvokeMethodOrderedParameters OrderedParametersExecution { get; }
-
         OrderedParametersToArray OrderedParameterToArrayDelegate { get; }
 
         NamedParametersToArray NamedParametersToArrayDelegate { get; }
+
+        InvokeMethodWithArray InvokeMethod { get; }
     }
 
     public class ExposedMethodCache : IExposedMethodCache
     {
-        private InvokeMethodOrderedParameters _invokeMethodOrdered;
-        private InvokeMethodByNamedParameters _invokeMethodByNamed;
         private NamedParametersToArray _namedParametersToArray;
+        private OrderedParametersToArray _orderedParametersToArray;
+        private InvokeMethodWithArray _invokeMethod;
         private readonly MethodInfo _methodInfo;
-        private readonly IOrderedParameterMethodInvokeBuilder _orderedBuilder;
-        private readonly INamedParameterMethodInvokerBuilder _namedBuilder;
         private readonly INamedParameterToArrayDelegateProvider _namedDelegateProvider;
+        private readonly IOrderedParameterToArrayDelegateProvider _orderedDelegateProvider;
+        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
 
         public ExposedMethodCache(MethodInfo methodInfo,
                                   string methodName,
-                                  IOrderedParameterMethodInvokeBuilder orderedBuilder,
-                                  INamedParameterMethodInvokerBuilder namedBuilder,
                                   IMethodAuthorization[] authorizations,
                                   Func<HttpContext, IEnumerable<ICallFilter>>[] filters,
-                                  INamedParameterToArrayDelegateProvider namedDelegateProvider)
+                                  INamedParameterToArrayDelegateProvider namedDelegateProvider,
+                                  IOrderedParameterToArrayDelegateProvider orderedDelegateProvider,
+                                  IArrayMethodInvokerBuilder invokerBuilder)
         {
             _methodInfo = methodInfo;
-            _orderedBuilder = orderedBuilder;
-            _namedBuilder = namedBuilder;
             Authorizations = authorizations;
             Filters = filters;
             _namedDelegateProvider = namedDelegateProvider;
+            _orderedDelegateProvider = orderedDelegateProvider;
+            _invokerBuilder = invokerBuilder;
             MethodName = methodName;
             InstanceType = methodInfo.DeclaringType;
         }
@@ -60,18 +58,16 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
-        public InvokeMethodByNamedParameters NamedParametersExecution =>
-            _invokeMethodByNamed ??
-            (_invokeMethodByNamed = _namedBuilder.BuildInvokeMethodByNamedParameters(_methodInfo));
-
-        public InvokeMethodOrderedParameters OrderedParametersExecution =>
-            _invokeMethodOrdered ??
-            (_invokeMethodOrdered = _orderedBuilder.BuildInvokeMethodOrderedParameters(_methodInfo));
-
-        public OrderedParametersToArray OrderedParameterToArrayDelegate => throw new NotImplementedException();
+        public OrderedParametersToArray OrderedParameterToArrayDelegate =>
+            _orderedParametersToArray ??
+            (_orderedParametersToArray = _orderedDelegateProvider.CreateDelegate(_methodInfo));
 
         public NamedParametersToArray NamedParametersToArrayDelegate =>
             _namedParametersToArray ??
             (_namedParametersToArray = _namedDelegateProvider.CreateDelegate(_methodInfo));
+
+        public InvokeMethodWithArray InvokeMethod =>
+            _invokeMethod ??
+            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(_methodInfo));
     }
 }

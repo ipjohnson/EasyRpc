@@ -7,6 +7,11 @@ namespace EasyRpc.AspNetCore
     public interface ICallExecutionContext
     {
         /// <summary>
+        /// Instance that the execution will happen
+        /// </summary>
+        object Instance { get; }
+
+        /// <summary>
         /// Should the call continue
         /// </summary>
         bool ContinueCall { get; set; }
@@ -24,7 +29,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Call parameters
         /// </summary>
-        object[] Parameters { get; }
+        object[] Parameters { get; set; }
 
         /// <summary>
         /// Request message

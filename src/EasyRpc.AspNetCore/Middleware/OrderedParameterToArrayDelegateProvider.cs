@@ -4,26 +4,22 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
-using System.Threading.Tasks;
-using EasyRpc.AspNetCore.Messages;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    public interface INamedParameterToArrayDelegateProvider
+    public interface IOrderedParameterToArrayDelegateProvider
     {
-        NamedParametersToArray CreateDelegate(MethodInfo method);
+        OrderedParametersToArray CreateDelegate(MethodInfo method);
     }
 
-    public class NamedParameterToArrayDelegateProvider : BaseDelegateProvider<IDictionary<string,object>, NamedParametersToArray>, INamedParameterToArrayDelegateProvider
+    public class OrderedParameterToArrayDelegateProvider : BaseDelegateProvider<object[],OrderedParametersToArray>, IOrderedParameterToArrayDelegateProvider
     {
-        protected override void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator, int parameterIndex)
+        protected override void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator, int index)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
 
-            ilGenerator.Emit(OpCodes.Ldstr, parameter.Name);
+            ilGenerator.EmitInt(index);
 
             if (parameter.HasDefaultValue)
             {
@@ -35,6 +31,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     if (parameter.DefaultValue != null)
                     {
+
                         ilGenerator.Emit(OpCodes.Ldstr, (string)parameter.DefaultValue);
                     }
                     else
@@ -51,25 +48,25 @@ namespace EasyRpc.AspNetCore.Middleware
                     ilGenerator.Emit(OpCodes.Initobj, parameter.ParameterType);
                 }
 
-                ilGenerator.EmitMethodCall(GetValueFromDictionaryOrDefaultMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueOrDefaultFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
             else
             {
-                ilGenerator.EmitMethodCall(GetValueFromDictionaryMethodInfo.MakeGenericMethod(parameter.ParameterType));
+                ilGenerator.EmitMethodCall(GetValueFromArrayMethodInfo.MakeGenericMethod(parameter.ParameterType));
             }
         }
 
-        private static readonly MethodInfo GetValueFromDictionaryMethodInfo =
-            typeof(NamedParameterToArrayDelegateProvider).GetMethod("GetValueFromDictionary");
+        private static readonly MethodInfo GetValueFromArrayMethodInfo =
+            typeof(OrderedParameterToArrayDelegateProvider).GetRuntimeMethod("GetValueFromArray", new[] { typeof(Object[]), typeof(int) });
 
-        public static T GetValueFromDictionary<T>(IDictionary<string, object> values, string valueName)
+        public static T GetValueFromArray<T>(object[] values, int index)
         {
-            object value;
-
-            if (!values.TryGetValue(valueName, out value))
+            if (values.Length <= index)
             {
-                throw new Exception($"Parameter {valueName} is missing");
+                throw new Exception("Not enough parameters provided");
             }
+
+            var value = values[index];
 
             if (value is T)
             {
@@ -84,14 +81,17 @@ namespace EasyRpc.AspNetCore.Middleware
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
-        private static readonly MethodInfo GetValueFromDictionaryOrDefaultMethodInfo =
-            typeof(NamedParameterToArrayDelegateProvider).GetMethod("GetValueFromDictionaryOrDefault");
+        private static readonly MethodInfo GetValueOrDefaultFromArrayMethodInfo =
+            typeof(OrderedParameterToArrayDelegateProvider).GetRuntimeMethods().First(m => m.Name == "GetValueOrDefaultFromArray");
 
-        public static T GetValueFromDictionaryOrDefault<T>(IDictionary<string, object> values, string valueName, T defaultValue)
+        public static T GetValueOrDefaultFromArray<T>(object[] values, int index, T defaultValue)
         {
-            object value;
+            if (values.Length <= index)
+            {
+                return defaultValue;
+            }
 
-            values.TryGetValue(valueName, out value);
+            var value = values[index];
 
             if (value == null)
             {
@@ -110,5 +110,6 @@ namespace EasyRpc.AspNetCore.Middleware
 
             return (T)Convert.ChangeType(value, typeof(T));
         }
+        
     }
 }

@@ -14,11 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.FluentValidation\EasyRpc.AspNetCore.FluentValidation.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="7.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />

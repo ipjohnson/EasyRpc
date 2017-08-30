@@ -28,12 +28,19 @@ namespace EasyRpc.AspNetCore.Middleware
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations =
             ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
 
-        private ImmutableLinkedList<Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>>> _filters =
-            ImmutableLinkedList<Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>>>.Empty;
+        private ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> _filters =
+            ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>>.Empty;
 
         private ImmutableLinkedList<Func<MethodInfo, bool>> _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
 
         private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _prefixes = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
+
+        private NamingConventions _currentNamingConventions;
+
+        public ApiConfigurationProvider(IServiceProvider appServices)
+        {
+            AppServices = appServices;
+        }
 
         /// <summary>
         /// Set default Authorize
@@ -176,11 +183,11 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        public IApiConfiguration ApplyFilter<T>(Func<Type,bool> where = null) where T : ICallFilter
+        public IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null) where T : ICallFilter
         {
-            _filters = _filters.Add(t =>
+            _filters = _filters.Add(m =>
             {
-                if (where?.Invoke(t) ?? true)
+                if (where?.Invoke(m) ?? true)
                 {
                     return CreateFilter<T>;
                 }
@@ -201,7 +208,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        public IApiConfiguration ApplyFilter(Func<Type, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
+        public IApiConfiguration ApplyFilter(Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
         {
             if (filterFunc == null) throw new ArgumentNullException(nameof(filterFunc));
 
@@ -254,6 +261,8 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        public IServiceProvider AppServices { get; }
+
         public IEnumerable<ExposedMethodInformation> GetExposedMethods()
         {
             foreach (var provider in _providers)
@@ -265,7 +274,6 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private NamingConventions _currentNamingConventions;
 
         public ICurrentApiInformation GetCurrentApiInformation()
         {
