@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.DynamicClient;
-using EasyRpc.DynamicClient.Exceptions;
 using EasyRpc.DynamicClient.ProxyGenerator;
 using EasyRpc.Tests.Middleware;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using SimpleFixture.NSubstitute;
 using SimpleFixture.xUnit;
 using Xunit;

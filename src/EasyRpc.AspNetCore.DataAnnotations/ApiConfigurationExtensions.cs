@@ -1,5 +1,4 @@
-﻿using System;
-using EasyRpc.AspNetCore.DataAnnotations.Impl;
+﻿using EasyRpc.AspNetCore.DataAnnotations.Impl;
 
 namespace EasyRpc.AspNetCore.DataAnnotations
 {

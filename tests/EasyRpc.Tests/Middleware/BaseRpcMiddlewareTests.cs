@@ -7,7 +7,6 @@ using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using NSubstitute;
 using SimpleFixture.NSubstitute;
 using Xunit;

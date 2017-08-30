@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EasyRpc.AspNetCore;
+﻿using EasyRpc.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleFixture;
-using SimpleFixture.Attributes;
 using SimpleFixture.xUnit;
 using Xunit;
 
