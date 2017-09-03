@@ -21,6 +21,15 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
                 {
                     filterList.Add(new DataAnnotationFilter(validationAttributes, parameter.Position, parameter.Name));
                 }
+
+                foreach (var property in parameter.ParameterType.GetTypeInfo().DeclaredProperties)
+                {
+                    if (property.GetCustomAttributes<ValidationAttribute>().Any())
+                    {
+                        filterList.Add(new InstanceDataAnnotationFilter(parameter.Position));
+                        break;
+                    }
+                }
             }
 
             if (filterList.Count > 0)

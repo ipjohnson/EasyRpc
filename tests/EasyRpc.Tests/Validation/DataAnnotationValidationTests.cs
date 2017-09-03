@@ -40,5 +40,43 @@ namespace EasyRpc.Tests.Validation
 
             Assert.Equal("Hello World", stringResult);
         }
+
+        public class StringValues
+        {
+            [Required]
+            public string A { get; set; }
+
+            [Required]
+            public string B { get; set; }
+        }
+
+        public class StringValuesService
+        {
+            public string Execute(StringValues values)
+            {
+                return values.A + " " + values.B;
+            }
+        }
+
+
+        [Theory]
+        [AutoData]
+        public void FluentValidationObjectValidation(IApplicationBuilder app, HttpContext context)
+        {
+            Configure(app, "RpcApi", api =>
+            {
+                api.UseDataAnnotations();
+                api.Expose<StringValuesService>().As("SomeService");
+            });
+
+            var result = MakeCall<ErrorResponseMessage>(context, "/RpcApi/SomeService", "Execute", new [] { new StringValues() });
+
+            Assert.NotNull(result);
+            Assert.Equal((int)JsonRpcErrorCode.InvalidRequest, result.Error.Code);
+
+            var stringResult = MakeCall<string>(context, "/RpcApi/SomeService", "Execute", new[] { new StringValues{ A = "Hello", B = "World" } });
+
+            Assert.Equal("Hello World", stringResult);
+        }
     }
 }
