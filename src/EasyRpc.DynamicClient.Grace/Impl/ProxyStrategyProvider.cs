@@ -28,7 +28,7 @@ namespace EasyRpc.DynamicClient.Grace.Impl
         {
             return (request.ActivationType.GetTypeInfo().IsInterface ||
                  request.ActivationType.GetTypeInfo().IsAbstract) &&
-                _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace))
+                _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace));
         }
 
         /// <summary>Provide exports for a missing type</summary>
