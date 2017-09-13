@@ -23,6 +23,13 @@ namespace EasyRpc.DynamicClient.Grace.Impl
             _callByName = callByName;
             _proxyNamespaces = proxyNamespaces ?? throw new ArgumentNullException(nameof(proxyNamespaces));
         }
+        
+        public bool CanLocate(IInjectionScope scope, IActivationExpressionRequest request)
+        {
+            return (request.ActivationType.GetTypeInfo().IsInterface ||
+                 request.ActivationType.GetTypeInfo().IsAbstract) &&
+                _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace))
+        }
 
         /// <summary>Provide exports for a missing type</summary>
         /// <param name="scope">scope to provide value</param>
