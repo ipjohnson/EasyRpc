@@ -26,6 +26,8 @@ namespace EasyRpc.DynamicClient.Grace.Impl
         
         public bool CanLocate(IInjectionScope scope, IActivationExpressionRequest request)
         {
+            var fullName = request.ActivationType.FullName;
+            
             return (request.ActivationType.GetTypeInfo().IsInterface ||
                  request.ActivationType.GetTypeInfo().IsAbstract) &&
                 _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace));
