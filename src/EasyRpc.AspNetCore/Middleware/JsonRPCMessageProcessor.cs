@@ -72,6 +72,8 @@ namespace EasyRpc.AspNetCore.Middleware
                 _logger?.LogInformation(new EventId(10), $"Processing json-rpc request for path {context.Request.Path}");
             }
 
+            context.Response.ContentType = "application/json";
+
             try
             {
                 using (var streamReader = new StreamReader(context.Request.Body))
