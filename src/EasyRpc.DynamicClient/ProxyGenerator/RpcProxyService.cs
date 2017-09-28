@@ -68,6 +68,11 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                         throw new UnauthorizedMethodException(methodName);
                     }
 
+                    if (responseMessage.Error.Code == (int) JsonRpcErrorCode.InvalidRequest)
+                    {
+                        throw new InvalidRequestException(methodName, responseMessage.Error.Message);
+                    }
+
                     throw new InternalServerErrorException(methodName, responseMessage.Error.Message);
                 }
             }

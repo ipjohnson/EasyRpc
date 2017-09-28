@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -70,7 +71,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     authorizations.Add(methodAuthorization);
                 }
             }
-            
+
             foreach (var method in type.GetRuntimeMethods())
             {
                 if (method.IsStatic || !method.IsPublic)
@@ -99,6 +100,24 @@ namespace EasyRpc.AspNetCore.Middleware
                     if (filter != null)
                     {
                         filters.Add(filter);
+                    }
+                }
+
+                var currentAuth = new List<IMethodAuthorization>(authorizations);
+
+                foreach (var attr in method.GetCustomAttributes<AuthorizeAttribute>())
+                {
+                    if (!string.IsNullOrEmpty(attr.Policy))
+                    {
+                        currentAuth.Add(new UserPolicyAuthorization(attr.Policy));
+                    }
+                    else if (!string.IsNullOrEmpty(attr.Roles))
+                    {
+                        currentAuth.Add(new UserRoleAuthorization(attr.Roles));
+                    }
+                    else
+                    {
+                        currentAuth.Add(new UserAuthenticatedAuthorization());
                     }
                 }
 

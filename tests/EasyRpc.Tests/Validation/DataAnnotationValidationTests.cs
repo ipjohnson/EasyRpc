@@ -23,7 +23,7 @@ namespace EasyRpc.Tests.Validation
     {
         [Theory]
         [AutoData]
-        public void FluentValidationSimple(IApplicationBuilder app, HttpContext context)
+        public void DataAnnotationValidationSimple(IApplicationBuilder app, HttpContext context)
         {
             Configure(app, "RpcApi", api =>
             {
@@ -61,7 +61,7 @@ namespace EasyRpc.Tests.Validation
 
         [Theory]
         [AutoData]
-        public void FluentValidationObjectValidation(IApplicationBuilder app, HttpContext context)
+        public void DataAnnotationObjectValidation(IApplicationBuilder app, HttpContext context)
         {
             Configure(app, "RpcApi", api =>
             {
@@ -77,6 +77,44 @@ namespace EasyRpc.Tests.Validation
             var stringResult = MakeCall<string>(context, "/RpcApi/SomeService", "Execute", new[] { new StringValues{ A = "Hello", B = "World" } });
 
             Assert.Equal("Hello World", stringResult);
+        }
+
+
+        public interface IMultipleValidationClass
+        {
+            string Execute([Required] string string1,
+                [Required] [StringLength(25, MinimumLength = 10)] string string2);
+        }
+
+        public class MultipleValidationClass : IMultipleValidationClass
+        {
+            public string Execute([Required] string string1,
+                [Required] [StringLength(25, MinimumLength = 10)] string string2)
+            {
+                return string1 + " " + string2;
+            }
+        }
+
+
+
+        [Theory]
+        [AutoData]
+        public void DataAnnotationParameterValidation(IApplicationBuilder app, HttpContext context)
+        {
+            Configure(app, "RpcApi", api =>
+            {
+                api.UseDataAnnotations();
+                api.Expose(new[] {typeof(MultipleValidationClass)}).Interfaces();
+            });
+
+            var result = MakeCall<ErrorResponseMessage>(context, "/RpcApi/IMultipleValidationClass", "Execute", new[] { "Some", "string" });
+
+            Assert.NotNull(result);
+            Assert.Equal((int)JsonRpcErrorCode.InvalidRequest, result.Error.Code);
+
+            var stringResult = MakeCall<string>(context, "/RpcApi/IMultipleValidationClass", "Execute", new[] {  "Hello", "Long World!"  });
+
+            Assert.Equal("Hello Long World!", stringResult);
         }
     }
 }

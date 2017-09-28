@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using EasyRpc.AspNetCore.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
@@ -164,6 +165,22 @@ namespace EasyRpc.AspNetCore.Middleware
                     foreach (var authorizationFunc in _authorizations)
                     {
                         authorizations.AddRange(authorizationFunc(type));
+                    }
+                    
+                    foreach (var attr in type.GetTypeInfo().GetCustomAttributes<AuthorizeAttribute>())
+                    {
+                        if (!string.IsNullOrEmpty(attr.Policy))
+                        {
+                            authorizations.Add(new UserPolicyAuthorization(attr.Policy));
+                        }
+                        else if (!string.IsNullOrEmpty(attr.Roles))
+                        {
+                            authorizations.Add(new UserRoleAuthorization(attr.Roles));
+                        }
+                        else
+                        {
+                            authorizations.Add(new UserAuthenticatedAuthorization());
+                        }
                     }
 
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
