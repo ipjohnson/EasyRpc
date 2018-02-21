@@ -29,7 +29,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>())
+            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>())
                 .Returns(c =>
                 {
                     bytes = c.Arg<byte[]>();
@@ -70,7 +70,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>())
+            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>())
                 .Returns(c =>
                  {
                      bytes = c.Arg<byte[]>();
@@ -111,7 +111,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<ResultObject>(typeof(IComplexService).Name, nameof(IComplexService.Add), Arg.Any<byte[]>())
+            proxyService.MakeCallWithReturn<ResultObject>(typeof(IComplexService).Namespace, typeof(IComplexService).Name, nameof(IComplexService.Add), Arg.Any<byte[]>())
                 .Returns(c =>
                 {
                     bytes = c.Arg<byte[]>();
@@ -168,7 +168,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             instance.VoidMethod(10, 5);
 
-            proxyService.Received(1).MakeCallNoReturn(typeof(IVoidReturnInterface).Name,nameof(IVoidReturnInterface.VoidMethod),Arg.Any<byte[]>());
+            proxyService.Received(1).MakeCallNoReturn(typeof(IVoidReturnInterface).Namespace, typeof(IVoidReturnInterface).Name,nameof(IVoidReturnInterface.VoidMethod),Arg.Any<byte[]>());
         }
     }
 }

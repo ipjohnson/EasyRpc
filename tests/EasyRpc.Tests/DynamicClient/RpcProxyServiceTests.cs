@@ -29,11 +29,11 @@ namespace EasyRpc.Tests.DynamicClient
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
 
-            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes);
+            proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes);
 
             client.Received().SendAsync(Arg.Is<HttpRequestMessage>(message => ValidateSomeClassSomeMethod(message)));
         }
@@ -51,11 +51,11 @@ namespace EasyRpc.Tests.DynamicClient
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
 
-            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            var intValue = proxyService.MakeCallWithReturn<int>("SomeClass", "SomeMethod", bytes);
+            var intValue = proxyService.MakeCallWithReturn<int>("SomeNamespace", "SomeClass", "SomeMethod", bytes);
 
             Assert.Equal(10, intValue);
 
@@ -70,16 +70,16 @@ namespace EasyRpc.Tests.DynamicClient
         {
             var response = new HttpResponseMessage(HttpStatusCode.Accepted)
             {
-                Content = new StreamContent(new ErrorResponseMessage("2,0","1",JsonRpcErrorCode.MethodNotFound, "Not Found").SerializeToStream())
+                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.MethodNotFound, "Not Found").SerializeToStream())
             };
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
 
-            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes));
         }
 
         [Theory]
@@ -95,11 +95,11 @@ namespace EasyRpc.Tests.DynamicClient
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
 
-            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes));
         }
 
         [Theory]
@@ -115,11 +115,11 @@ namespace EasyRpc.Tests.DynamicClient
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
 
-            clientProvider.GetHttpClient(Arg.Any<string>()).Returns(client);
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace","SomeClass", "SomeMethod", bytes));
         }
 
         private bool ValidateSomeClassSomeMethod(HttpRequestMessage message)

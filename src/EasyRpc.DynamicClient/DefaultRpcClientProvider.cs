@@ -15,12 +15,12 @@ namespace EasyRpc.DynamicClient
             _client = new HttpClient { BaseAddress = new Uri(url) };
         }
 
-        public virtual IRpcHttpClient GetHttpClient(string className)
+        public virtual IRpcHttpClient GetHttpClient(string @namespace, string className)
         {
             return new RpcHttpClient(_client, _timeout);
         }
 
-        public virtual void ReturnHttpClient(string className, IRpcHttpClient client)
+        public virtual void ReturnHttpClient(string @namespace, string className, IRpcHttpClient client)
         {
 
         }

@@ -223,6 +223,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
             ilGenerator.Emit(OpCodes.Ldarg_0);
             ilGenerator.Emit(OpCodes.Ldfld, callService);
+            ilGenerator.Emit(OpCodes.Ldstr, method.DeclaringType.Namespace);
             ilGenerator.Emit(OpCodes.Ldstr, _namingConventionService.GetNameForType(method.DeclaringType));
             ilGenerator.Emit(OpCodes.Ldstr, _namingConventionService.GetMethodName(method));
             ilGenerator.Emit(OpCodes.Ldloc_0);

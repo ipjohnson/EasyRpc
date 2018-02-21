@@ -2,8 +2,8 @@
 {
     public interface IRpcHttpClientProvider
     {
-        IRpcHttpClient GetHttpClient(string className);
+        IRpcHttpClient GetHttpClient(string @namespace, string className);
 
-        void ReturnHttpClient(string className, IRpcHttpClient client);
+        void ReturnHttpClient(string @namespace, string className, IRpcHttpClient client);
     }
 }

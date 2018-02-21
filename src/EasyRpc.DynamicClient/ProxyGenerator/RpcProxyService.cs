@@ -11,13 +11,13 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 {
     public interface IRpcProxyService
     {
-        void MakeCallNoReturn(string className, string methodName, byte[] bytes);
+        void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes);
 
-        Task MaskAsyncCallNoReturn(string className, string methodName, byte[] bytes);
+        Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes);
 
-        Task<T> MakeAsyncCallWithReturn<T>(string className, string methodName, byte[] bytes);
+        Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes);
 
-        T MakeCallWithReturn<T>(string className, string methodName, byte[] bytes);
+        T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes);
     }
 
     public class RpcProxyService : IRpcProxyService
@@ -33,19 +33,19 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             _jsonSerializer = jsonSerializer;
         }
 
-        public virtual void MakeCallNoReturn(string className, string methodName, byte[] bytes)
+        public virtual void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes)
         {
-            var result = MakeAsyncCallWithReturn<object>(className, methodName, bytes).Result;
+            var result = MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes).Result;
         }
 
-        public virtual Task MaskAsyncCallNoReturn(string className, string methodName, byte[] bytes)
+        public virtual Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes)
         {
-            return MakeAsyncCallWithReturn<object>(className, methodName, bytes);
+            return MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes);
         }
 
-        public virtual async Task<T> MakeAsyncCallWithReturn<T>(string className, string methodName, byte[] bytes)
+        public virtual async Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes)
         {
-            var response = await SendByteArray(className, methodName, bytes).ConfigureAwait(false);
+            var response = await SendByteArray(@namespace, className, methodName, bytes).ConfigureAwait(false);
 
             using (var streamReader = new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false)))
             {
@@ -78,12 +78,12 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             }
         }
 
-        public virtual T MakeCallWithReturn<T>(string className, string methodName, byte[] bytes)
+        public virtual T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes)
         {
-            return  MakeAsyncCallWithReturn<T>(className, methodName, bytes).Result;
+            return  MakeAsyncCallWithReturn<T>(@namespace, className, methodName, bytes).Result;
         }
 
-        protected virtual async Task<HttpResponseMessage> SendByteArray(string className, string methodName, byte[] bytes)
+        protected virtual async Task<HttpResponseMessage> SendByteArray(string @namespace, string className, string methodName, byte[] bytes)
         {
             var httpRequest =
                 new HttpRequestMessage(HttpMethod.Post, className)
@@ -98,7 +98,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                 headerProcessorse.ProcessRequestHeader(httpRequest);
             }
 
-            var client = _clientProvider.GetHttpClient(className);
+            var client = _clientProvider.GetHttpClient(@namespace, className);
 
             var response = await client.SendAsync(httpRequest).ConfigureAwait(false);
 

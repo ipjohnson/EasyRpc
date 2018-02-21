@@ -13,7 +13,7 @@ namespace EasyRpc.Tests.Middleware
         {
             using (var provider = new DefaultRpcClientProvider("http://google.com"))
             {
-                var client = provider.GetHttpClient("Test");
+                var client = provider.GetHttpClient("SomeNamespace", "Test");
 
                 var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, ""));
 
