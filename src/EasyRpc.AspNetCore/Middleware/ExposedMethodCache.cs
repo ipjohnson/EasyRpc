@@ -11,6 +11,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         string MethodName { get; }
 
+        MethodInfo Method { get; }
+
         IMethodAuthorization[] Authorizations { get; }
 
         Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
@@ -27,7 +29,6 @@ namespace EasyRpc.AspNetCore.Middleware
         private NamedParametersToArray _namedParametersToArray;
         private OrderedParametersToArray _orderedParametersToArray;
         private InvokeMethodWithArray _invokeMethod;
-        private readonly MethodInfo _methodInfo;
         private readonly INamedParameterToArrayDelegateProvider _namedDelegateProvider;
         private readonly IOrderedParameterToArrayDelegateProvider _orderedDelegateProvider;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
@@ -40,7 +41,7 @@ namespace EasyRpc.AspNetCore.Middleware
                                   IOrderedParameterToArrayDelegateProvider orderedDelegateProvider,
                                   IArrayMethodInvokerBuilder invokerBuilder)
         {
-            _methodInfo = methodInfo;
+            Method = methodInfo;
             Authorizations = authorizations;
             Filters = filters;
             _namedDelegateProvider = namedDelegateProvider;
@@ -54,20 +55,22 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public string MethodName { get; }
 
+        public MethodInfo Method { get; }
+
         public IMethodAuthorization[] Authorizations { get; }
 
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         public OrderedParametersToArray OrderedParameterToArrayDelegate =>
             _orderedParametersToArray ??
-            (_orderedParametersToArray = _orderedDelegateProvider.CreateDelegate(_methodInfo));
+            (_orderedParametersToArray = _orderedDelegateProvider.CreateDelegate(Method));
 
         public NamedParametersToArray NamedParametersToArrayDelegate =>
             _namedParametersToArray ??
-            (_namedParametersToArray = _namedDelegateProvider.CreateDelegate(_methodInfo));
+            (_namedParametersToArray = _namedDelegateProvider.CreateDelegate(Method));
 
         public InvokeMethodWithArray InvokeMethod =>
             _invokeMethod ??
-            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(_methodInfo));
+            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(Method));
     }
 }

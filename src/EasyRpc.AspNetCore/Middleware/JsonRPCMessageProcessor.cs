@@ -300,7 +300,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 if (filters.Count > 0)
                 {
-                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, requestMessage, newInstance);
+                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage, newInstance);
                 }
             }
 

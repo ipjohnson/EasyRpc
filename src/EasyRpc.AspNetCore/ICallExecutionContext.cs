@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using EasyRpc.AspNetCore.Messages;
 using Microsoft.AspNetCore.Http;
 
@@ -25,6 +26,11 @@ namespace EasyRpc.AspNetCore
         /// Class being executed
         /// </summary>
         Type ExecutingClass { get; }
+
+        /// <summary>
+        /// Method being executed
+        /// </summary>
+        MethodInfo ExecutingMethod { get; }
 
         /// <summary>
         /// Call parameters
