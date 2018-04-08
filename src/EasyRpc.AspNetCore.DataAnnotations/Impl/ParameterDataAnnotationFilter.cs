@@ -27,7 +27,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
 
             foreach (var validationAttribute in _attributes)
             {
-                var validationContext = new ValidationContext(context.Instance, context.Context.RequestServices, null);
+                var validationContext = new ValidationContext(context.Instance, context.HttpContext.RequestServices, null);
 
                 var result = validationAttribute.GetValidationResult(validationValue, validationContext);
 

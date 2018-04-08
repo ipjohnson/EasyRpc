@@ -19,7 +19,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
         public void BeforeExecute(ICallExecutionContext context)
         {
             var instance = context.Parameters[_index];
-            var validationContext = new ValidationContext(instance, context.Context.RequestServices, null);
+            var validationContext = new ValidationContext(instance, context.HttpContext.RequestServices, null);
             var validationResults = new List<ValidationResult>();
 
             if (!Validator.TryValidateObject(instance, validationContext, validationResults, true))

@@ -14,11 +14,11 @@ namespace EasyRpc.AspNetCore.Middleware
             _policy = policy;
         }
 
-        public async Task<bool> AsyncAuthorize(HttpContext context)
+        public async Task<bool> AsyncAuthorize(ICallExecutionContext context)
         {
-            var authorizationService = context.RequestServices.GetRequiredService<IAuthorizationService>();
+            var authorizationService = context.HttpContext.RequestServices.GetRequiredService<IAuthorizationService>();
 
-            var returnvalue = await authorizationService.AuthorizeAsync(context.User, _policy);
+            var returnvalue = await authorizationService.AuthorizeAsync(context.HttpContext.User, _policy);
 
             return returnvalue;
         }

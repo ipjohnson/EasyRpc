@@ -5,9 +5,9 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class UserAuthenticatedAuthorization : IMethodAuthorization
     {
-        public Task<bool> AsyncAuthorize(HttpContext context)
+        public Task<bool> AsyncAuthorize(ICallExecutionContext context)
         {
-            return Task.FromResult(context.User?.Identity?.IsAuthenticated ?? false);
+            return Task.FromResult(context.HttpContext.User?.Identity?.IsAuthenticated ?? false);
         }
     }
 }

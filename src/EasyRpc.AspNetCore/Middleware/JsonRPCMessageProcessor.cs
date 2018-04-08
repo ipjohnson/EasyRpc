@@ -251,11 +251,14 @@ namespace EasyRpc.AspNetCore.Middleware
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
             RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
+            CallExecutionContext callExecutionContext = 
+                new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage);
+
             if (exposedMethod.Authorizations.Length > 0)
             {
                 foreach (var authorization in exposedMethod.Authorizations)
                 {
-                    if (!await authorization.AsyncAuthorize(context))
+                    if (!await authorization.AsyncAuthorize(callExecutionContext))
                     {
                         if (_configuration.Value.DebugLogging)
                         {
@@ -272,6 +275,8 @@ namespace EasyRpc.AspNetCore.Middleware
             try
             {
                 newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
+
+                callExecutionContext.Instance = newInstance;
             }
             catch (Exception exp)
             {
@@ -287,7 +292,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             List<ICallFilter> filters = null;
-            ICallExecutionContext callExecutionContext = null;
+            bool runFilters = false;
 
             if (exposedMethod.Filters.Length > 0)
             {
@@ -298,15 +303,11 @@ namespace EasyRpc.AspNetCore.Middleware
                     filters.AddRange(func(context));
                 }
 
-                if (filters.Count > 0)
-                {
-                    callExecutionContext = new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage, newInstance);
-                }
+                runFilters = filters.Count > 0;
             }
 
             try
             {
-
                 object[] parameterValues;
 
                 if (requestMessage.Parameters == null)
@@ -323,7 +324,7 @@ namespace EasyRpc.AspNetCore.Middleware
                         (IDictionary<string, object>)requestMessage.Parameters, context);
                 }
 
-                if (callExecutionContext != null)
+                if (runFilters)
                 {
                     callExecutionContext.Parameters = parameterValues;
 
@@ -341,8 +342,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 ResponseMessage responseMessage;
 
-                if (callExecutionContext == null ||
-                    callExecutionContext.ContinueCall)
+                if (callExecutionContext.ContinueCall)
                 {
                     responseMessage = await exposedMethod.InvokeMethod(newInstance, parameterValues, requestMessage.Version, requestMessage.Id);
                 }
@@ -351,7 +351,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     return callExecutionContext.ResponseMessage;
                 }
 
-                if (callExecutionContext != null &&
+                if (runFilters &&
                     callExecutionContext.ContinueCall)
                 {
                     callExecutionContext.ResponseMessage = responseMessage;
@@ -374,7 +374,7 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 _logger?.LogError(EventIdCode.ExecutionException, exp, $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
-                if (callExecutionContext != null)
+                if (runFilters)
                 {
                     foreach (var callFilter in filters)
                     {

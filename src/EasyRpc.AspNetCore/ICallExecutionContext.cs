@@ -20,7 +20,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// HttpContext for call
         /// </summary>
-        HttpContext Context { get; }
+        HttpContext HttpContext { get; }
 
         /// <summary>
         /// Class being executed

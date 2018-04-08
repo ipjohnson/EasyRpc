@@ -5,6 +5,6 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public interface IMethodAuthorization
     {
-        Task<bool> AsyncAuthorize(HttpContext context);
+        Task<bool> AsyncAuthorize(ICallExecutionContext context);
     }
 }

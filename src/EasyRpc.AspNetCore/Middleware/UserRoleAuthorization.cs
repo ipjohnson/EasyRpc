@@ -12,9 +12,9 @@ namespace EasyRpc.AspNetCore.Middleware
             _role = role;
         }
 
-        public Task<bool> AsyncAuthorize(HttpContext context)
+        public Task<bool> AsyncAuthorize(ICallExecutionContext context)
         {
-            return Task.FromResult(context.User?.IsInRole(_role) ?? false);
+            return Task.FromResult(context.HttpContext.User?.IsInRole(_role) ?? false);
         }
     }
 }
