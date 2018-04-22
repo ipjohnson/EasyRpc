@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
     <AssemblyName>EasyRpc.DynamicClient.Grace</AssemblyName>
     <PackageId>EasyRpc.DynamicClient.Grace</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>

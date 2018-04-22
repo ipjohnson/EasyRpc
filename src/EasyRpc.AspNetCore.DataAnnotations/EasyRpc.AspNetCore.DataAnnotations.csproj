@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.6;net461</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore.DataAnnotations</AssemblyName>
     <PackageId>EasyRpc.AspNetCore.DataAnnotations</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
