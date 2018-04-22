@@ -4,6 +4,6 @@
     {
         public bool ShowErrorMessage { get; set; } = true;
 
-        public bool DebugLogging { get; set; } = true;
+        public bool DebugLogging { get; set; } = false;
     }
 }
