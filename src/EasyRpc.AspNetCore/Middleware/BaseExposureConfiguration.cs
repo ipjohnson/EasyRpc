@@ -74,7 +74,9 @@ namespace EasyRpc.AspNetCore.Middleware
 
             foreach (var method in type.GetRuntimeMethods())
             {
-                if (method.IsStatic || !method.IsPublic)
+                if (method.IsStatic || 
+                   !method.IsPublic ||
+                    method.DeclaringType == typeof(object))
                 {
                     continue;
                 }
