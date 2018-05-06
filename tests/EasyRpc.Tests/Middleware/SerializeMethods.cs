@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using Newtonsoft.Json;
 
 namespace EasyRpc.Tests.Middleware
@@ -36,11 +37,18 @@ namespace EasyRpc.Tests.Middleware
             }
         }
 
-        public static Stream SerializeToStream<T>(this T value)
+        public static Stream SerializeToStream<T>(this T value, bool compress = false)
         {
             MemoryStream returnStream = new MemoryStream();
+            GZipStream gzip = null;
+            Stream stream = returnStream;
 
-            using (var text = new StreamWriter(returnStream))
+            if (compress)
+            {
+                stream = gzip = new GZipStream(returnStream, CompressionMode.Compress);
+            }
+
+            using (var text = new StreamWriter(stream))
             {
                 using (var jsonStream = new JsonTextWriter(text))
                 {
@@ -49,6 +57,8 @@ namespace EasyRpc.Tests.Middleware
                     serializer.Serialize(jsonStream, value);
                 }
             }
+
+            gzip?.Dispose();
 
             return new MemoryStream(returnStream.ToArray());
         }

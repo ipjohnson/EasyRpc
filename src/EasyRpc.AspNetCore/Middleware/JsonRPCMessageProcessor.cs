@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -76,11 +78,28 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                using (var streamReader = new StreamReader(context.Request.Body))
+                if (_configuration.Value.SupportRequestCompression && 
+                    context.Request.Headers["Content-Encoding"].Contains("gzip"))
                 {
-                    using (var jsonReader = new JsonTextReader(streamReader))
+                    using (var gzipStream = new GZipStream(context.Request.Body, CompressionMode.Decompress))
                     {
-                        requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
+                        using (var streamReader = new StreamReader(gzipStream))
+                        {
+                            using (var jsonReader = new JsonTextReader(streamReader))
+                            {
+                                requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (var streamReader = new StreamReader(context.Request.Body))
+                    {
+                        using (var jsonReader = new JsonTextReader(streamReader))
+                        {
+                            requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
+                        }
                     }
                 }
             }
@@ -131,13 +150,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                using (var responseStream = new StreamWriter(context.Response.Body))
-                {
-                    using (var jsonStream = new JsonTextWriter(responseStream))
-                    {
-                        _serializer.Serialize(jsonStream, values);
-                    }
-                }
+                SerializeToResponseBody(context, values);
             }
             catch (Exception exp)
             {
@@ -146,6 +159,36 @@ namespace EasyRpc.AspNetCore.Middleware
                 WriteErrorMessage(context,
                     new ErrorResponseMessage("2.0", "",
                         JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
+            }
+        }
+
+        private void SerializeToResponseBody(HttpContext context, object values)
+        {
+            if (_configuration.Value.SupportResponseCompression &&
+                context.Request.Headers["Accept-Encoding"].Contains("gzip"))
+            {
+                context.Response.Headers["Content-Encoding"] = new StringValues("gzip");
+
+                using (var gzipStream = new GZipStream(context.Response.Body, CompressionLevel.Fastest))
+                {
+                    using (var responseStream = new StreamWriter(gzipStream))
+                    {
+                        using (var jsonStream = new JsonTextWriter(responseStream))
+                        {
+                            _serializer.Serialize(jsonStream, values);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                using (var responseStream = new StreamWriter(context.Response.Body))
+                {
+                    using (var jsonStream = new JsonTextWriter(responseStream))
+                    {
+                        _serializer.Serialize(jsonStream, values);
+                    }
+                }
             }
         }
 
@@ -162,13 +205,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                using (var responseStream = new StreamWriter(context.Response.Body))
-                {
-                    using (var jsonStream = new JsonTextWriter(responseStream))
-                    {
-                        _serializer.Serialize(jsonStream, response);
-                    }
-                }
+                SerializeToResponseBody(context, response);
             }
             catch (Exception exp)
             {
@@ -186,6 +223,8 @@ namespace EasyRpc.AspNetCore.Middleware
                         JsonRpcErrorCode.InternalServerError, errorMessage));
             }
         }
+
+
 
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
