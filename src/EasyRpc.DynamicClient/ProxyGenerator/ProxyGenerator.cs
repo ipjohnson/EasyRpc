@@ -19,10 +19,12 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
         private int _proxyCount = 0;
         private ModuleBuilder _moduleBuilder;
         private readonly INamingConventionService _namingConventionService;
+        private readonly IMethodCompressionPicker _methodCompressionPicker;
 
-        public ProxyGenerator(INamingConventionService namingConventionService)
+        public ProxyGenerator(INamingConventionService namingConventionService, IMethodCompressionPicker methodCompressionPicker = null)
         {
             _namingConventionService = namingConventionService;
+            _methodCompressionPicker = methodCompressionPicker;
 
             SetupDyanmicAssembly();
         }
@@ -90,6 +92,9 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
         private void GenerateMethodProxy(TypeBuilder proxyBuilder, Type type, MethodInfo method, bool callByName, FieldBuilder callService, FieldBuilder serializer, FieldBuilder jsonMethodWriterField)
         {
+            var compressRequest = _methodCompressionPicker.CompressRequest(method);
+            var compressResponse = _methodCompressionPicker.CompressResponse(method);
+
             var methodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.Virtual | MethodAttributes.NewSlot;
 
             var methodBuilder = proxyBuilder.DefineMethod(method.Name, methodAttributes, method.ReturnType, method.GetParameters().Select(x => x.ParameterType).ToArray());
@@ -97,11 +102,18 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             var ilGenerator = methodBuilder.GetILGenerator();
 
             ilGenerator.DeclareLocal(typeof(byte[])); // LdLoc_0
-            ilGenerator.DeclareLocal(typeof(MemoryStream)); // LdLoc_1
+            ilGenerator.DeclareLocal(compressRequest ? typeof(GZipMemoryStream) : typeof(MemoryStream)); // LdLoc_1
             ilGenerator.DeclareLocal(typeof(StreamWriter)); // LdLoc_2
             ilGenerator.DeclareLocal(typeof(JsonTextWriter)); // LdLoc_3
 
-            EmitMemoryStream(ilGenerator);
+            if (compressRequest)
+            {
+                EmitGzipMemoryStream(ilGenerator);
+            }
+            else
+            {
+                EmitMemoryStream(ilGenerator);
+            }
 
             EmitStreamWriter(ilGenerator);
 
@@ -124,11 +136,11 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
             EmitStreamWriterDispose(ilGenerator);
 
-            EmitCreateBytes(ilGenerator);
+            EmitCreateBytes(ilGenerator, compressRequest);
 
             EmitMemoryStreamFinallyDispose(ilGenerator);
 
-            EmitMakeCall(ilGenerator, method, callService);
+            EmitMakeCall(ilGenerator, method, callService, compressRequest, compressResponse);
 
             proxyBuilder.DefineMethodOverride(methodBuilder, method);
         }
@@ -197,7 +209,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Callvirt, typeof(IJsonMethodObjectWriter).GetMethod("CloseMethodObject"));
         }
 
-        private void EmitMakeCall(ILGenerator ilGenerator, MethodInfo method, FieldBuilder callService)
+        private void EmitMakeCall(ILGenerator ilGenerator, MethodInfo method, FieldBuilder callService, bool compressRequest, bool compressResponse)
         {
             MethodInfo methodToCall;
 
@@ -227,6 +239,8 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldstr, _namingConventionService.GetNameForType(method.DeclaringType));
             ilGenerator.Emit(OpCodes.Ldstr, _namingConventionService.GetMethodName(method));
             ilGenerator.Emit(OpCodes.Ldloc_0);
+            ilGenerator.EmitInt(compressRequest ? 1 : 0);
+            ilGenerator.EmitInt(compressResponse ? 1 : 0);
             ilGenerator.Emit(OpCodes.Callvirt, methodToCall);
 
             ilGenerator.Emit(OpCodes.Ret);
@@ -245,11 +259,13 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.EndExceptionBlock();
         }
 
-        private void EmitCreateBytes(ILGenerator ilGenerator)
+        private void EmitCreateBytes(ILGenerator ilGenerator, bool compressRequest)
         {
             ilGenerator.Emit(OpCodes.Ldloc_1);
 
-            var method = typeof(MemoryStream).GetRuntimeMethod("ToArray", new Type[0]);
+            var method = compressRequest ?
+                typeof(GZipMemoryStream).GetRuntimeMethod("ToArray", new Type[0]) :
+                typeof(MemoryStream).GetRuntimeMethod("ToArray", new Type[0]);
 
             ilGenerator.Emit(OpCodes.Callvirt, method);
             ilGenerator.Emit(OpCodes.Stloc_0);
@@ -364,6 +380,13 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
         private void EmitMemoryStream(ILGenerator ilGenerator)
         {
             ilGenerator.Emit(OpCodes.Newobj, typeof(MemoryStream).GetTypeInfo().DeclaredConstructors.First(c => c.GetParameters().Length == 0));
+            ilGenerator.Emit(OpCodes.Stloc_1);
+            ilGenerator.BeginExceptionBlock();
+        }
+
+        private void EmitGzipMemoryStream(ILGenerator ilGenerator)
+        {
+            ilGenerator.Emit(OpCodes.Newobj, typeof(GZipMemoryStream).GetTypeInfo().DeclaredConstructors.First());
             ilGenerator.Emit(OpCodes.Stloc_1);
             ilGenerator.BeginExceptionBlock();
         }

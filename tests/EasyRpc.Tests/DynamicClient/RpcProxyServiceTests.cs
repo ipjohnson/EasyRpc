@@ -33,7 +33,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes);
+            proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false);
 
             client.Received().SendAsync(Arg.Is<HttpRequestMessage>(message => ValidateSomeClassSomeMethod(message)));
         }
@@ -55,7 +55,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            var intValue = proxyService.MakeCallWithReturn<int>("SomeNamespace", "SomeClass", "SomeMethod", bytes);
+            var intValue = proxyService.MakeCallWithReturn<int>("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false);
 
             Assert.Equal(10, intValue);
 
@@ -79,7 +79,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false));
         }
 
         [Theory]
@@ -99,7 +99,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false));
         }
 
         [Theory]
@@ -119,7 +119,34 @@ namespace EasyRpc.Tests.DynamicClient
 
             var bytes = new byte[] { 0, 1, 1, 0 };
 
-            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace","SomeClass", "SomeMethod", bytes));
+            Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false));
+        }
+
+
+        [Theory]
+        [AutoData]
+        public void RpcProxyServiceMakeCallReturnValueCompressResponse(IRpcHttpClient client,
+            IRpcHttpClientProvider clientProvider,
+            RpcProxyService proxyService)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted)
+            {
+                Content = new StreamContent(new ResponseMessage<int>(10, "2.0", "1").SerializeToStream(true))
+            };
+
+            response.Content.Headers.Add("Content-Encoding", "gzip");
+
+            client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
+
+            clientProvider.GetHttpClient(Arg.Any<string>(), Arg.Any<string>()).Returns(client);
+
+            var bytes = new byte[] { 0, 1, 1, 0 };
+
+            var intValue = proxyService.MakeCallWithReturn<int>("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, true);
+
+            Assert.Equal(10, intValue);
+
+            client.Received().SendAsync(Arg.Is<HttpRequestMessage>(message => ValidateSomeClassSomeMethod(message)));
         }
 
         private bool ValidateSomeClassSomeMethod(HttpRequestMessage message)

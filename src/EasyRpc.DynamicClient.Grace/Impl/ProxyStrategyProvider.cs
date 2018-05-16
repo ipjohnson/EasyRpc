@@ -17,8 +17,10 @@ namespace EasyRpc.DynamicClient.Grace.Impl
         /// Default constructor
         /// </summary>
         /// <param name="callByName"></param>
+        /// <param name="compressionPicker"></param>
         /// <param name="proxyNamespaces">provide namespaces that will be proxied</param>
-        public ProxyStrategyProvider(bool callByName, params string[] proxyNamespaces)
+        public ProxyStrategyProvider(bool callByName, DefaultMethodCompressionPicker compressionPicker,
+            params string[] proxyNamespaces)
         {
             _callByName = callByName;
             _proxyNamespaces = proxyNamespaces ?? throw new ArgumentNullException(nameof(proxyNamespaces));

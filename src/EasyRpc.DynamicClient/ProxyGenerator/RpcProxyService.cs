@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,13 +14,13 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 {
     public interface IRpcProxyService
     {
-        void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes);
+        void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse);
 
-        Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes);
+        Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse);
 
-        Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes);
+        Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse);
 
-        T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes);
+        T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse);
     }
 
     public class RpcProxyService : IRpcProxyService
@@ -33,21 +36,45 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             _jsonSerializer = jsonSerializer;
         }
 
-        public virtual void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes)
+        public virtual void MakeCallNoReturn(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse)
         {
-            var result = MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes).Result;
+            var result = MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes, compressRequest, compressResponse).Result;
         }
 
-        public virtual Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes)
+        public virtual Task MaskAsyncCallNoReturn(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse)
         {
-            return MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes);
+            return MakeAsyncCallWithReturn<object>(@namespace, className, methodName, bytes, compressRequest, compressResponse);
         }
 
-        public virtual async Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes)
+        public virtual async Task<T> MakeAsyncCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse)
         {
-            var response = await SendByteArray(@namespace, className, methodName, bytes).ConfigureAwait(false);
+            var response = await SendByteArray(@namespace, className, methodName, bytes, compressRequest, compressResponse).ConfigureAwait(false);
+            var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 
-            using (var streamReader = new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false)))
+            foreach (var headerProcessorse in _headerProcessors)
+            {
+                headerProcessorse.ProcessResponseHeader(response);
+            }
+
+            if (response.Content.Headers.TryGetValues("Content-Encoding", out var encoding) )
+            {
+                if (encoding.Contains("gzip"))
+                {
+                    using (var gzipStream = new GZipStream(stream, CompressionMode.Decompress))
+                    {
+                        return ResponseMessageResult<T>(methodName, gzipStream);
+                    }
+                }
+
+                throw new Exception("Recieved unknown Content-Encoding: " + encoding);
+            }
+
+            return ResponseMessageResult<T>(methodName, stream);
+        }
+
+        private T ResponseMessageResult<T>(string methodName, Stream stream)
+        {
+            using (var streamReader = new StreamReader(stream))
             {
                 using (var jsonReader = new JsonTextReader(streamReader))
                 {
@@ -58,12 +85,12 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                         return responseMessage.Result;
                     }
 
-                    if (responseMessage.Error.Code == (int)JsonRpcErrorCode.MethodNotFound)
+                    if (responseMessage.Error.Code == (int) JsonRpcErrorCode.MethodNotFound)
                     {
                         throw new MethodNotFoundException(methodName);
                     }
 
-                    if (responseMessage.Error.Code == (int)JsonRpcErrorCode.UnauthorizedAccess)
+                    if (responseMessage.Error.Code == (int) JsonRpcErrorCode.UnauthorizedAccess)
                     {
                         throw new UnauthorizedMethodException(methodName);
                     }
@@ -78,12 +105,13 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             }
         }
 
-        public virtual T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes)
+        public virtual T MakeCallWithReturn<T>(string @namespace, string className, string methodName, byte[] bytes, bool compressRequest, bool compressResponse)
         {
-            return  MakeAsyncCallWithReturn<T>(@namespace, className, methodName, bytes).Result;
+            return  MakeAsyncCallWithReturn<T>(@namespace, className, methodName, bytes, compressRequest, compressResponse).Result;
         }
 
-        protected virtual async Task<HttpResponseMessage> SendByteArray(string @namespace, string className, string methodName, byte[] bytes)
+        protected virtual async Task<HttpResponseMessage> SendByteArray(string @namespace, string className,
+            string methodName, byte[] bytes, bool compressRequest, bool compressResponse)
         {
             var httpRequest =
                 new HttpRequestMessage(HttpMethod.Post, className)
@@ -92,6 +120,16 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                 };
 
             httpRequest.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json") { CharSet = "utf-8"};
+
+            if (compressRequest)
+            {
+                httpRequest.Content.Headers.Add("Content-Encoding", "gzip");
+            }
+
+            if (compressResponse)
+            {
+                httpRequest.Headers.Add("Accept-Encoding", "gzip");
+            }
 
             foreach (var headerProcessorse in _headerProcessors)
             {
@@ -104,11 +142,6 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
             if (response.IsSuccessStatusCode)
             {
-                foreach (var headerProcessorse in _headerProcessors)
-                {
-                    headerProcessorse.ProcessResponseHeader(response);
-                }
-
                 return response;
             }
 
