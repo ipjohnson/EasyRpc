@@ -18,10 +18,6 @@ build:
   publish_nuget: true
   publish_nuget_symbols: true
   verbosity: minimal
-after_build:
-- cmd: msbuild /t:pack src/EasyRpc.AspNetCore/EasyRpc.AspNetCore.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
-- cmd: msbuild /t:pack src/EasyRpc.DynamicClient/EasyRpc.DynamicClient.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
-- cmd: msbuild /t:pack src/EasyRpc.DynamicClient.Grace/EasyRpc.DynamicClient.Grace.csproj /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\
 test_script:
 - cmd: cd tests/EasyRpc.Tests/
 - cmd: CodeCoverageAppVeyor.cmd
