@@ -69,9 +69,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             else if (typeof(Task).GetTypeInfo().IsAssignableFrom(returnType.GetTypeInfo()))
             {
-                Type genericType;
-
-                if (IsTaskResultType(returnType, out genericType))
+                if (IsTaskResultType(returnType, out var genericType))
                 {
                     var openMethod =
                         typeof(ArrayMethodInvokerBuilder).GetRuntimeMethods()
@@ -107,9 +105,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public static async Task<ResponseMessage> CreateAsyncResponseGeneric<T>(Task<T> result, string version, string id)
         {
-            var value = await result;
-
-            return new ResponseMessage<T>(value, version, id);
+            return new ResponseMessage<T>(await result, version, id);
         }
 
         private static bool IsTaskResultType(Type type, out Type resultType)

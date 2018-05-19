@@ -25,6 +25,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public class JsonRpcMessageProcessor : IJsonRpcMessageProcessor
     {
+        private static readonly object[] NoParamsArray = new object[0];
+
         private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
         private readonly JsonSerializer _serializer;
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
@@ -83,24 +85,12 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     using (var gzipStream = new GZipStream(context.Request.Body, CompressionMode.Decompress))
                     {
-                        using (var streamReader = new StreamReader(gzipStream))
-                        {
-                            using (var jsonReader = new JsonTextReader(streamReader))
-                            {
-                                requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
-                            }
-                        }
+                        requestPackage = DeserializeStream(gzipStream);
                     }
                 }
                 else
                 {
-                    using (var streamReader = new StreamReader(context.Request.Body))
-                    {
-                        using (var jsonReader = new JsonTextReader(streamReader))
-                        {
-                            requestPackage = _serializer.Deserialize<RequestPackage>(jsonReader);
-                        }
-                    }
+                    requestPackage = DeserializeStream(context.Request.Body);
                 }
             }
             catch (Exception exp)
@@ -128,6 +118,17 @@ namespace EasyRpc.AspNetCore.Middleware
 
             return ProcessRequest(context, requestPackage.Requests.First());
 
+        }
+
+        private RequestPackage DeserializeStream(Stream gzipStream)
+        {
+            using (var streamReader = new StreamReader(gzipStream))
+            {
+                using (var jsonReader = new JsonTextReader(streamReader))
+                {
+                    return _serializer.Deserialize<RequestPackage>(jsonReader);
+                }
+            }
         }
 
         private async Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
@@ -171,23 +172,22 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 using (var gzipStream = new GZipStream(context.Response.Body, CompressionLevel.Fastest))
                 {
-                    using (var responseStream = new StreamWriter(gzipStream))
-                    {
-                        using (var jsonStream = new JsonTextWriter(responseStream))
-                        {
-                            _serializer.Serialize(jsonStream, values);
-                        }
-                    }
+                    SerializeToStream(values, gzipStream);
                 }
             }
             else
             {
-                using (var responseStream = new StreamWriter(context.Response.Body))
+                SerializeToStream(values, context.Response.Body);
+            }
+        }
+
+        private void SerializeToStream(object values, Stream gzipStream)
+        {
+            using (var responseStream = new StreamWriter(gzipStream))
+            {
+                using (var jsonStream = new JsonTextWriter(responseStream))
                 {
-                    using (var jsonStream = new JsonTextWriter(responseStream))
-                    {
-                        _serializer.Serialize(jsonStream, values);
-                    }
+                    _serializer.Serialize(jsonStream, values);
                 }
             }
         }
@@ -229,11 +229,9 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            IExposedMethodCache exposedMethod = null;
-
             var methodKey = $"{path}|{requestMessage.Method}";
 
-            if (!_methodCache.TryGetValue(methodKey, out exposedMethod))
+            if (!_methodCache.TryGetValue(methodKey, out var exposedMethod))
             {
                 exposedMethod = LocateExposedMethod(context, serviceProvider, path, requestMessage);
             }
@@ -351,7 +349,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 if (requestMessage.Parameters == null)
                 {
-                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(new object[0], context);
+                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(NoParamsArray, context);
                 }
                 else if (requestMessage.Parameters is object[])
                 {
