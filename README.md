@@ -44,6 +44,6 @@ public class IntMathService
 An example app can be found [here](https://github.com/ipjohnson/EasyRpc.AspNetCore.Sample).
 
 ### Build
-[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) [![Build Status](https://travis-ci.org/ipjohnson/EasyRpc.svg?branch=master)](https://travis-ci.org/ipjohnson/EasyRpc) [![Coverage Status](https://coveralls.io/repos/github/ipjohnson/EasyRpc/badge.svg?branch=master)](https://coveralls.io/github/ipjohnson/EasyRpc?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) [![Coverage Status](https://coveralls.io/repos/github/ipjohnson/EasyRpc/badge.svg?branch=master)](https://coveralls.io/github/ipjohnson/EasyRpc?branch=master)
 
 
