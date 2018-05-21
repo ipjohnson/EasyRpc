@@ -34,6 +34,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly IOrderedParameterToArrayDelegateProvider _orderedParameterToArrayDelegateProvider;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
+        private readonly bool _debugLogging;
         private readonly ILogger<JsonRpcMessageProcessor> _logger;
         private string _route;
 
@@ -52,6 +53,7 @@ namespace EasyRpc.AspNetCore.Middleware
             _serializer = provider.ProvideSerializer();
             _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
             _exposedMethodInformations = new ConcurrentDictionary<string, ExposedMethodInformation>();
+            _debugLogging = configuration.Value.DebugLogging;
         }
 
         public void Configure(IApiConfigurationProvider configuration, string route)
@@ -71,7 +73,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             RequestPackage requestPackage = null;
 
-            if (_configuration.Value.DebugLogging)
+            if (_debugLogging)
             {
                 _logger?.LogInformation(new EventId(10), $"Processing json-rpc request for path {context.Request.Path}");
             }
@@ -80,7 +82,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                if (_configuration.Value.SupportRequestCompression && 
+                if (_configuration.Value.SupportRequestCompression &&
                     context.Request.Headers["Content-Encoding"].Contains("gzip"))
                 {
                     using (var gzipStream = new GZipStream(context.Request.Body, CompressionMode.Decompress))
@@ -95,29 +97,35 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while deserializing request package: " + exp.Message);
-
-                WriteErrorMessage(context,
-                       new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request: " + exp.Message));
-
-                return Task.CompletedTask;
+                return ProcessRequestSerizliationErrorHandler(context, exp);
             }
 
-            if (requestPackage == null)
+            if (requestPackage != null)
             {
-                WriteErrorMessage(context,
-                     new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+                if (!requestPackage.IsBulk)
+                {
+                    return ProcessRequest(context, requestPackage.Requests.First());
+                }
 
-                return Task.CompletedTask;
-            }
-
-            if (requestPackage.IsBulk)
-            {
                 return ProcessBulkRequest(context, requestPackage);
             }
 
-            return ProcessRequest(context, requestPackage.Requests.First());
+            WriteErrorMessage(context,
+                 new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
 
+            return Task.CompletedTask;
+        }
+
+        private Task ProcessRequestSerizliationErrorHandler(HttpContext context, Exception exp)
+        {
+            _logger?.LogError(EventIdCode.DeserializeException, exp,
+                "Exception thrown while deserializing request package: " + exp.Message);
+
+            WriteErrorMessage(context,
+                new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest,
+                    "Could not parse request: " + exp.Message));
+
+            return Task.CompletedTask;
         }
 
         private RequestPackage DeserializeStream(Stream gzipStream)
@@ -209,21 +217,26 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError(EventIdCode.SerializeException, exp, "Exception thrown while serializing response: " + exp.Message);
-
-                var errorMessage = "Internal Server Error";
-
-                if (_configuration.Value.ShowErrorMessage)
-                {
-                    errorMessage += ": " + exp.Message;
-                }
-
-                WriteErrorMessage(context,
-                    new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
-                        JsonRpcErrorCode.InternalServerError, errorMessage));
+                ProcessRequestErrorHandler(context, requestMessage, exp);
             }
         }
 
+        private void ProcessRequestErrorHandler(HttpContext context, RequestMessage requestMessage, Exception exp)
+        {
+            _logger?.LogError(EventIdCode.SerializeException, exp,
+                "Exception thrown while serializing response: " + exp.Message);
+
+            var errorMessage = "Internal Server Error";
+
+            if (_configuration.Value.ShowErrorMessage)
+            {
+                errorMessage += ": " + exp.Message;
+            }
+
+            WriteErrorMessage(context,
+                new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
+                    JsonRpcErrorCode.InternalServerError, errorMessage));
+        }
 
 
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
@@ -238,7 +251,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (exposedMethod != null)
             {
-                if (_configuration.Value.DebugLogging)
+                if (_debugLogging)
                 {
                     _logger?.LogDebug($"Found method for {path} {requestMessage.Method}");
                 }
@@ -254,11 +267,9 @@ namespace EasyRpc.AspNetCore.Middleware
         private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            ExposedMethodInformation methodInfo;
-
             var key = path + "|" + requestMessage.Method;
 
-            if (_exposedMethodInformations.TryGetValue(key, out methodInfo))
+            if (_exposedMethodInformations.TryGetValue(key, out var methodInfo))
             {
                 var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
                     methodInfo.MethodAuthorizations,
@@ -267,7 +278,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     _orderedParameterToArrayDelegateProvider,
                     _invokerBuilder);
 
-                AddCache(methodInfo.RouteNames, cache);
+                AddMethodCache(methodInfo.RouteNames, cache);
 
                 return cache;
             }
@@ -275,7 +286,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return null;
         }
 
-        private void AddCache(IEnumerable<string> names, IExposedMethodCache cache)
+        private void AddMethodCache(IEnumerable<string> names, IExposedMethodCache cache)
         {
             foreach (var name in names)
             {
@@ -288,16 +299,16 @@ namespace EasyRpc.AspNetCore.Middleware
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
             RequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
-            CallExecutionContext callExecutionContext = 
+            CallExecutionContext callExecutionContext =
                 new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage);
 
             if (exposedMethod.Authorizations.Length > 0)
             {
-                foreach (var authorization in exposedMethod.Authorizations)
+                for (var i = 0; i < exposedMethod.Authorizations.Length; i++)
                 {
-                    if (!await authorization.AsyncAuthorize(callExecutionContext))
+                    if (!await exposedMethod.Authorizations[i].AsyncAuthorize(callExecutionContext))
                     {
-                        if (_configuration.Value.DebugLogging)
+                        if (_debugLogging)
                         {
                             _logger?.LogDebug($"Unauthorized access to {context.Request.Path} {requestMessage.Method}");
                         }
@@ -330,16 +341,17 @@ namespace EasyRpc.AspNetCore.Middleware
 
             List<ICallFilter> filters = null;
             bool runFilters = false;
+            var exposedFilters = exposedMethod.Filters;
 
-            if (exposedMethod.Filters.Length > 0)
+            if (exposedFilters.Length > 0)
             {
                 filters = new List<ICallFilter>();
 
-                foreach (var func in exposedMethod.Filters)
+                for (var i = 0; i < exposedFilters.Length; i++)
                 {
-                    filters.AddRange(func(context));
+                    filters.AddRange(exposedFilters[i](context));
                 }
-
+                
                 runFilters = filters.Count > 0;
             }
 
@@ -351,9 +363,9 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     parameterValues = exposedMethod.OrderedParameterToArrayDelegate(NoParamsArray, context);
                 }
-                else if (requestMessage.Parameters is object[])
+                else if (requestMessage.Parameters is object[] objects)
                 {
-                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate((object[])requestMessage.Parameters, context);
+                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(objects, context);
                 }
                 else
                 {
@@ -365,10 +377,10 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     callExecutionContext.Parameters = parameterValues;
 
-                    foreach (var callFilter in filters)
+                    for (var i = 0; i < filters.Count; i++)
                     {
-                        if (callFilter is ICallExecuteFilter executeFilter &&
-                            callExecutionContext.ContinueCall)
+                        if (callExecutionContext.ContinueCall && 
+                            filters[i] is ICallExecuteFilter executeFilter)
                         {
                             executeFilter.BeforeExecute(callExecutionContext);
                         }
@@ -392,11 +404,11 @@ namespace EasyRpc.AspNetCore.Middleware
                     callExecutionContext.ContinueCall)
                 {
                     callExecutionContext.ResponseMessage = responseMessage;
-
-                    foreach (var callFilter in filters)
+                    
+                    for (var i = 0; i < filters.Count; i++)
                     {
-                        if (callFilter is ICallExecuteFilter executeFilter &&
-                            callExecutionContext.ContinueCall)
+                        if (callExecutionContext.ContinueCall &&
+                            filters[i] is ICallExecuteFilter executeFilter)
                         {
                             executeFilter.AfterExecute(callExecutionContext);
                         }
@@ -409,20 +421,28 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                _logger?.LogError(EventIdCode.ExecutionException, exp, $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
-
-                if (runFilters)
-                {
-                    foreach (var callFilter in filters)
-                    {
-                        ICallExceptionFilter exceptionFilter = callFilter as ICallExceptionFilter;
-
-                        exceptionFilter?.HandleException(callExecutionContext, exp);
-                    }
-                }
-
-                return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
+                return ExecuteMethodErrorHandler(context, requestMessage, exp, runFilters, filters, callExecutionContext);
             }
+        }
+
+        private ResponseMessage ExecuteMethodErrorHandler(HttpContext context, RequestMessage requestMessage, Exception exp,
+            bool runFilters, List<ICallFilter> filters, CallExecutionContext callExecutionContext)
+        {
+            _logger?.LogError(EventIdCode.ExecutionException, exp,
+                $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+
+            if (runFilters)
+            {
+                foreach (var callFilter in filters)
+                {
+                    ICallExceptionFilter exceptionFilter = callFilter as ICallExceptionFilter;
+
+                    exceptionFilter?.HandleException(callExecutionContext, exp);
+                }
+            }
+
+            return ReturnInternalServerError(requestMessage.Version, requestMessage.Id,
+                $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
         }
 
         private void WriteErrorMessage(HttpContext context, ErrorResponseMessage errorResponseMessage)

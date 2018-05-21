@@ -24,28 +24,21 @@ namespace EasyRpc.AspNetCore.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-			switch (reader.TokenType)
-			{
-				case JsonToken.StartObject:
-					try
-					{
-						JObject jObject = JObject.Load(reader);
-                        
-                        return jObject.ToObject<Dictionary<string, object>>();
-					}
-					catch (Exception)
-					{
-						throw new Exception("Request parameters can only be an associative array, list or null.");
-					}
+            switch (reader.TokenType)
+            {
+                case JsonToken.StartObject:
+                    JObject jObject = JObject.Load(reader);
 
-				case JsonToken.StartArray:
-					return JArray.Load(reader).ToObject<object[]>(serializer);
+                    return jObject.ToObject<Dictionary<string, object>>();
 
-				case JsonToken.Null:
-					return Array.Empty<object>();
-			}
+                case JsonToken.StartArray:
+                    return JArray.Load(reader).ToObject<object[]>(serializer);
 
-			throw new Exception("Request parameters can only be an associative array, list or null.");
+                case JsonToken.Null:
+                    return Array.Empty<object>();
+            }
+
+            throw new Exception("Request parameters can only be an associative array, list or null.");
         }
 
         /// <summary>

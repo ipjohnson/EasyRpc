@@ -40,9 +40,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var stringKey = typeof(T).Name + key;
 
-            object value;
-
-            if (currentValues.TryGetValue(stringKey, out value))
+            if (currentValues.TryGetValue(stringKey, out var value))
             {
                 return (T)value;
             }
@@ -110,9 +108,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         protected ConcurrentDictionary<string, object> GetCurrentValues(HttpContext context)
         {
-            var currentValues = context.Items["RpcHeaderValues"] as ConcurrentDictionary<string, object>;
-
-            if (currentValues != null)
+            if (context.Items["RpcHeaderValues"] is ConcurrentDictionary<string, object> currentValues)
             {
                 return currentValues;
             }

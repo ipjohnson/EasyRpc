@@ -27,28 +27,14 @@ namespace EasyRpc.AspNetCore.Converters
             switch (reader.TokenType)
             {
                 case JsonToken.StartObject:
-                    try
-                    {
-                        var request = serializer.Deserialize<RequestMessage>(reader);
+                    var request = serializer.Deserialize<RequestMessage>(reader);
 
-                        return new RequestPackage(request);
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Malformed json");
-                    }
+                    return new RequestPackage(request);
 
                 case JsonToken.StartArray:
-                    try
-                    {
-                        var array = serializer.Deserialize<RequestMessage[]>(reader);
+                    var array = serializer.Deserialize<RequestMessage[]>(reader);
 
-                        return new RequestPackage(array);
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Malformed json");
-                    }
+                    return new RequestPackage(array);
 
                 default:
                     throw new Exception("message is empty");

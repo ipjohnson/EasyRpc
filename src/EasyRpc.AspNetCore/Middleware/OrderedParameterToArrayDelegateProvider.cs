@@ -66,14 +66,14 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var value = values[index];
 
-            if (value is T)
+            if (value is T variable)
             {
-                return (T)value;
+                return variable;
             }
 
-            if (value is JContainer)
+            if (value is JContainer container)
             {
-                return ((JContainer)value).ToObject<T>();
+                return container.ToObject<T>();
             }
 
             return (T)Convert.ChangeType(value, typeof(T));
@@ -96,14 +96,14 @@ namespace EasyRpc.AspNetCore.Middleware
                 return defaultValue;
             }
 
-            if (value is T)
+            if (value is T variable)
             {
-                return (T)value;
+                return variable;
             }
 
-            if (value is JContainer)
+            if (value is JContainer container)
             {
-                return ((JContainer)value).ToObject<T>();
+                return container.ToObject<T>();
             }
 
             return (T)Convert.ChangeType(value, typeof(T));

@@ -64,18 +64,7 @@ namespace EasyRpc.AspNetCore.Middleware
             if (context.Request.ContentType != null &&
                 context.Request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
             {
-                var pathString = path.Value;
-
-                if (string.IsNullOrEmpty(pathString))
-                {
-                    pathString = "/";
-                }
-                else if (pathString[pathString.Length - 1] != '/')
-                {
-                    pathString += '/';
-                }
-
-                if (string.Compare(pathString, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     return _messageProcessor.ProcessRequest(context);
                 }
