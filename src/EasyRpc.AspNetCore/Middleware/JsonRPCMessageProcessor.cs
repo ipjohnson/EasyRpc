@@ -269,7 +269,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            var key = path + "|" + requestMessage.Method;
+            var key = path + "*" + requestMessage.Method;
 
             if (_exposedMethodInformations.TryGetValue(key, out var methodInfo))
             {
