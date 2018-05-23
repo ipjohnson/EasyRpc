@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.DynamicClient.Grace
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.FluentValidation", "src\EasyRpc.AspNetCore.FluentValidation\EasyRpc.AspNetCore.FluentValidation.csproj", "{52358963-7C9B-4DC1-A759-21370877DFD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.AspNetCore.DataAnnotations", "src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj", "{EF958CBB-506D-4E09-9BC5-91DDD5943616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.DataAnnotations", "src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj", "{EF958CBB-506D-4E09-9BC5-91DDD5943616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

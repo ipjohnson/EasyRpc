@@ -5,6 +5,7 @@
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore</AssemblyName>
     <PackageId>EasyRpc.AspNetCore</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -26,6 +27,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Documentation\WebAssets\**" />
+    <EmbeddedResource Remove="Documentation\WebAssets\**" />
+    <None Remove="Documentation\WebAssets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Documentation\web-assets.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Documentation\web-assets.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.0.3" />
   </ItemGroup>
 
@@ -38,5 +53,45 @@
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
+
+  <UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <InputFileNames ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <OutputFileName ParameterType="System.String" Required="true" />
+      <OverwriteExistingFile ParameterType="System.Boolean" Required="false" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression" />
+      <Using Namespace="System.IO.Compression" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[        
+        var fileMode = OverwriteExistingFile ? FileMode.Create : FileMode.CreateNew;
+        using (var archive = new ZipArchive(new FileStream(OutputFileName, fileMode), ZipArchiveMode.Create))
+        {
+            foreach (var inputFileName in InputFileNames.Select(f => f.ItemSpec))
+            {
+                var index = inputFileName.LastIndexOf('\\');
+                index = inputFileName.LastIndexOf('\\', index - 1);
+                var archiveEntry = archive.CreateEntry(inputFileName.Substring(index + 1));
+                using (var fs = new FileStream(inputFileName, FileMode.Open))
+                {
+                    using (var zipStream = archiveEntry.Open())
+                    {
+                        fs.CopyTo(zipStream);
+                    }
+                }
+            }
+        }
+      ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="CreateNightlyZip" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <DocumentationAssets Include="$(ProjectDir)\Documentation\web-assets\**\*" />
+    </ItemGroup>
+    <Zip InputFileNames="@(DocumentationAssets)" OutputFileName="Documentation\web-assets.zip" OverwriteExistingFile="true" />
+  </Target>
 
 </Project>

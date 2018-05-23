@@ -35,17 +35,23 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Current naming conventions
         /// </summary>
         NamingConventions NamingConventions { get; }
+
+        /// <summary>
+        /// Enable documentation
+        /// </summary>
+        bool EnableDocumentation { get; }
     }
 
     public class CurrentApiInformation : ICurrentApiInformation
     {
-        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters)
+        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation)
         {
             Authorizations = authorizations;
             Filters = filters;
             Prefixes = prefixes;
             NamingConventions = namingConventions;
             MethodFilters = methodFilters;
+            EnableDocumentation = enableDocumentation;
         }
 
         /// <summary>
@@ -72,5 +78,10 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Current naming conventions
         /// </summary>
         public NamingConventions NamingConventions { get; }
+
+        /// <summary>
+        /// Enable documentation
+        /// </summary>
+        public bool EnableDocumentation { get; }
     }
 }

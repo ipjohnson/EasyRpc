@@ -114,5 +114,10 @@ namespace EasyRpc.AspNetCore
         /// Application services
         /// </summary>
         IServiceProvider AppServices { get; }
+
+        /// <summary>
+        /// By default documentation is on, this turns it off for this configuration
+        /// </summary>
+        void DisableDocumentation();
     }
 }

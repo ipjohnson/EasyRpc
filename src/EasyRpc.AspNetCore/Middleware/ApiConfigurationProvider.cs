@@ -36,6 +36,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _prefixes = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
 
         private NamingConventions _currentNamingConventions;
+        private bool _enableDocumentation = true;
 
         public ApiConfigurationProvider(IServiceProvider appServices)
         {
@@ -288,7 +289,12 @@ namespace EasyRpc.AspNetCore.Middleware
                 _currentNamingConventions = new NamingConventions { RouteNameGenerator = NamingConventions.RouteNameGenerator, MethodNameGenerator = NamingConventions.MethodNameGenerator };
             }
 
-            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters);
+            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation);
+        }
+
+        public void DisableDocumentation()
+        {
+            _enableDocumentation = false;
         }
     }
 }

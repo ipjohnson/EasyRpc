@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public interface IJsonRpcMessageProcessor
     {
-        void Configure(IApiConfigurationProvider configuration, string route);
+        EndPointConfiguration Configure(IApiConfigurationProvider configuration, string route);
 
         Task ProcessRequest(HttpContext context);
     }
@@ -56,7 +56,7 @@ namespace EasyRpc.AspNetCore.Middleware
             _debugLogging = configuration.Value.DebugLogging;
         }
 
-        public void Configure(IApiConfigurationProvider configuration, string route)
+        public EndPointConfiguration Configure(IApiConfigurationProvider configuration, string route)
         {
             _route = route;
 
@@ -64,9 +64,11 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 foreach (var name in exposedMethod.RouteNames)
                 {
-                    _exposedMethodInformations[name + "|" + exposedMethod.MethodName] = exposedMethod;
+                    _exposedMethodInformations[name + "*" + exposedMethod.MethodName] = exposedMethod;
                 }
             }
+
+            return new EndPointConfiguration(route, _exposedMethodInformations);
         }
 
         public Task ProcessRequest(HttpContext context)
@@ -242,7 +244,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            var methodKey = $"{path}|{requestMessage.Method}";
+            var methodKey = $"{path}*{requestMessage.Method}";
 
             if (!_methodCache.TryGetValue(methodKey, out var exposedMethod))
             {
