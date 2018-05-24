@@ -54,8 +54,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-
-  <Target Name="CreateNightlyZip" BeforeTargets="BeforeBuild">
+  <Target Condition="'$(OS)' == 'Windows_NT'" Name="CreateNightlyZip" BeforeTargets="BeforeBuild">
     <ItemGroup>
       <DocumentationAssets Include="$(ProjectDir)\Documentation\web-assets\**\*" />
     </ItemGroup>
