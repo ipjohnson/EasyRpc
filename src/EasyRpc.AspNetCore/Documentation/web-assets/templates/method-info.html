@@ -1,0 +1,25 @@
+<div id="methodInfoPage">
+    <div class="panel" style="height: auto">
+        <div class="panel-header ">
+            <div class="panel-title alert alert-primary">{ Signature }<br />{ Comments }</div>
+        </div>
+        <div class="panel-nav">
+            <!-- navigation components: tabs, breadcrumbs or pagination -->
+        </div>
+        <div class="panel-body" >
+            <table width="100%">
+                <tr rv-each-parameter="Parameters" style="margin: 4px">
+                    <td class="parameter-name-cell"><span rv-title="parameter.Comment">{ parameter.Name }</span></td>
+                    <td class="parameter-value-cell"><input class="parameter-input" /></td>
+                </tr>
+            </table>
+            <br/>
+            <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod">Execute</button></div>
+            <div><h4>Response:</h4></div>
+            <div id="responseOutput">
+
+            </div>
+        </div>
+    </div>
+
+</div>

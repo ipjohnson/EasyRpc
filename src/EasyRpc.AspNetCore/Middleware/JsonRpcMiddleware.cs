@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Documentation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +10,9 @@ namespace EasyRpc.AspNetCore.Middleware
     public class JsonRpcMiddleware
     {
         private readonly string _route;
+        private readonly bool _documentationEnabled;
         private readonly IJsonRpcMessageProcessor _messageProcessor;
+        private readonly IDocumentationRequestProcessor _documentationRequestProcessor;
 
         public JsonRpcMiddleware(IApplicationBuilder app, string route, Action<IApiConfiguration> configuration)
         {
@@ -26,7 +29,16 @@ namespace EasyRpc.AspNetCore.Middleware
 
             configuration(provider);
 
-            _messageProcessor.Configure(provider, _route);
+            var endPoint = _messageProcessor.Configure(provider, _route);
+
+            _documentationEnabled = endPoint.EnableDocumentation;
+
+            if (_documentationEnabled)
+            {
+                _documentationRequestProcessor = app.ApplicationServices.GetService<IDocumentationRequestProcessor>();
+
+                _documentationRequestProcessor.Configure(endPoint);
+            }
         }
 
         private string PrepareRoute(string route)
@@ -66,8 +78,17 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 if (string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    return _messageProcessor.ProcessRequest(context);
+                    if (context.Request.Method == "POST")
+                    {
+                        return _messageProcessor.ProcessRequest(context);
+
+                    }
                 }
+            }
+            else if (_documentationEnabled &&
+                     string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return _documentationRequestProcessor.ProcessRequest(context);
             }
 
             return next();

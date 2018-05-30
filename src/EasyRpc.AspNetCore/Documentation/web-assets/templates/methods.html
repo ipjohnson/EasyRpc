@@ -1,0 +1,16 @@
+
+<div class="accordion-container" id="accordionPanel">
+    <div class="accordion" rv-each-endpoint="endpoints">
+        <input type="checkbox" rv-id="%endpoint% | uniqueId 'docs-accordion-'" name="docs-accordion-checkbox" hidden/>
+        <label class="accordion-header c-hand" rv-for="%endpoint% | uniqueId 'docs-accordion-'">
+            { endpoint.DisplayName }
+        </label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item" rv-each-method="endpoint.Methods">
+                    <a class="methodLink" href="#" rv-title="method.Signature" rv-on-click="method.activate">{ method.Name }</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

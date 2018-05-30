@@ -52,9 +52,10 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
   </ItemGroup>
 
-  <Target Condition="'$(OS)' == 'Windows_NT'" Name="CreateNightlyZip" BeforeTargets="BeforeBuild">
+  <Target Condition="'$(OS)' == 'Windows_NT' AND '$(TargetFramework)' == 'netstandard1.6' " Name="CreateNightlyZip" BeforeTargets="BeforeBuild">
     <ItemGroup>
       <DocumentationAssets Include="$(ProjectDir)\Documentation\web-assets\**\*" />
     </ItemGroup>

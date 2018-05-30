@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.FluentVa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.DataAnnotations", "src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj", "{EF958CBB-506D-4E09-9BC5-91DDD5943616}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.TestApp", "tests\EasyRpc.TestApp\EasyRpc.TestApp.csproj", "{C821FF58-FDDC-4997-8FD6-7FC1F0532741}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF958CBB-506D-4E09-9BC5-91DDD5943616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C821FF58-FDDC-4997-8FD6-7FC1F0532741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C821FF58-FDDC-4997-8FD6-7FC1F0532741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C821FF58-FDDC-4997-8FD6-7FC1F0532741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C821FF58-FDDC-4997-8FD6-7FC1F0532741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{0CCBFA59-4ACE-4DC6-8799-FA02CC61DA4A} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
 		{52358963-7C9B-4DC1-A759-21370877DFD4} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
 		{EF958CBB-506D-4E09-9BC5-91DDD5943616} = {69810559-DEE2-4EE6-A971-6FFD1C3D149A}
+		{C821FF58-FDDC-4997-8FD6-7FC1F0532741} = {9F8E444D-4A63-4AF4-B995-BBACD6B4AA8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F1F1AF-51E5-4C20-B82C-97C1F2BD9AC9}

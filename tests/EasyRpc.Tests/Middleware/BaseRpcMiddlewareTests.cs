@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Messages;
@@ -44,6 +45,7 @@ namespace EasyRpc.Tests.Middleware
 
             MiddlewareContextInstance = new MiddlewareContext { ExecuteDelegate = executeDelegate };
         }
+        
 
         protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1", bool compress = false)
         {
@@ -52,6 +54,8 @@ namespace EasyRpc.Tests.Middleware
 
             context.Request.Path = new PathString(route);
             context.Request.ContentType = "application/json";
+            context.Request.Method = HttpMethod.Post.Method;
+
             context.Request.Body = requestMessage.SerializeToStream(compress);
 
             if (compress)

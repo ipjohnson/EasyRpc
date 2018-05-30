@@ -4,6 +4,7 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
+
     public class DocumentationHtmlMenuProvidor
     {
     }

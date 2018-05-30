@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +27,11 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             collection.TryAddSingleton(new JsonSerializer());
-            
+
+            collection.TryAddSingleton<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
+            collection.TryAddSingleton<IWebAssetProvider, WebAssetProvider>();
+            collection.TryAddSingleton<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
+
             collection.Configure(configuration ?? (option => { }));
 
             return collection;

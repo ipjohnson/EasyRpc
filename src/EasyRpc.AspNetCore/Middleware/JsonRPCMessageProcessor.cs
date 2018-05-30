@@ -42,7 +42,7 @@ namespace EasyRpc.AspNetCore.Middleware
             IJsonSerializerProvider provider,
             INamedParameterToArrayDelegateProvider namedParameterToArrayDelegateProvider,
             IOrderedParameterToArrayDelegateProvider orderedParameterToArrayDelegateProvider,
-            IArrayMethodInvokerBuilder invokerBuilder,
+            IArrayMethodInvokerBuilder invokerBuilder, 
             ILogger<JsonRpcMessageProcessor> logger = null)
         {
             _namedParameterToArrayDelegateProvider = namedParameterToArrayDelegateProvider;
@@ -68,7 +68,10 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            return new EndPointConfiguration(route, _exposedMethodInformations);
+            var endPoint =
+                new EndPointConfiguration(route, _exposedMethodInformations, configuration.GetCurrentApiInformation().EnableDocumentation);
+            
+            return endPoint;
         }
 
         public Task ProcessRequest(HttpContext context)
@@ -80,6 +83,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 _logger?.LogInformation(new EventId(10), $"Processing json-rpc request for path {context.Request.Path}");
             }
 
+            context.Response.StatusCode = StatusCodes.Status200OK;
             context.Response.ContentType = "application/json";
 
             try

@@ -35,7 +35,7 @@ namespace EasyRpc.AspNetCore.Converters
                     var array = serializer.Deserialize<RequestMessage[]>(reader);
 
                     return new RequestPackage(array);
-
+                    
                 default:
                     throw new Exception("message is empty");
             }
