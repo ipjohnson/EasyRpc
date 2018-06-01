@@ -75,12 +75,13 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 foreach (var directory in Directory.EnumerateDirectories(ExtractedAssetPath))
                 {
-                    Console.WriteLine("Directory: " + directory);
+                    Console.Error.WriteLine("Directory: " + directory);
                     foreach (var file in Directory.EnumerateFiles(directory))
                     {
-                        Console.WriteLine("File: " + file);
+                        Console.Error.WriteLine("File: " + file);
                     }
                 }
+                
             }
 
             var configString = File.ReadAllText(bundleConfigFilePath);
