@@ -35,40 +35,21 @@ namespace EasyRpc.TestApp
 
         public void ConfigureContainer(IInjectionScope scope)
         {
-            var func = new Func<string, LogLevel, bool>((s, level) =>
+            scope.Configure(c =>
             {
-                return false;
+                c.ExcludeTypeFromAutoRegistration("Microsoft.*");
             });
-            scope.Configure(c => c.ExportInstance(func));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                //app.UseBrowserLink();
-                //app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                //app.UseExceptionHandler("/Error");
-            }
-
             app.UseJsonRpc("/service-api/", api =>
             {
                 api.ExposeAssemblyContaining<Startup>().Where(type => type.Namespace.EndsWith(".Services"));
             });
 
-            app.Use((context, next) =>
-            {
-                var response = context.Response;
-
-                response.StatusCode = 301;
-                response.Headers[HeaderNames.Location] = "/service-api/";
-
-                return Task.CompletedTask;
-            });
+            app.RedirectToDocumentation("/service-api/");
         }
     }
 }

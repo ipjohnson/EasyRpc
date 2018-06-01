@@ -88,7 +88,7 @@ namespace EasyRpc.AspNetCore.Middleware
             else if (_documentationEnabled &&
                      string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return _documentationRequestProcessor.ProcessRequest(context);
+                return _documentationRequestProcessor.ProcessRequest(context, next);
             }
 
             return next();

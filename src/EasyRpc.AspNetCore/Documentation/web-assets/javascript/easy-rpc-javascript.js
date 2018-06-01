@@ -32,7 +32,6 @@ function setupData() {
     var templateInstance = u(methodTemplate);
     rivets.bind(templateInstance.nodes[0], window.easyRpc.data);
     u('#endpointNavigationPanel').append(templateInstance);
-
   }
 }
 
@@ -54,64 +53,71 @@ function endpointClass(endpointList) {
 
     var endpointMethodLength = endpoint.Methods.length;
     for (var j = 0; j < endpointMethodLength; j++) {
-      endpoint.Methods[j].activate = activateMethod;
-      endpoint.Methods[j].executeMethod = executeMethod;
+      var method = endpoint.Methods[j];
+      method.activate = activateMethod;
+      method.executeMethod = executeMethod;
+      method.displayText = function () {
+        debugger;
+        return this.Comments + '\n' + this.Signature;
+      }
     }
   }
 }
 
 function executeMethod(event, binding) {
-  var panelBody = u(event.srcElement).closest('div.panel-body');
+  var sourceElement = u(event.srcElement);
+  var panelBody = sourceElement.closest('div.panel-body');
   var inputElements = panelBody.find('.parameter-input');
   var callArrayString = [];
   inputElements.each(function (element) {
-    callArrayString.push(element.value);
+    if (element.value !== "") {
+      if (u(element).data('stringify') === "true") {
+        callArrayString.push(JSON.parse(element.value));
+      } else {
+        callArrayString.push(element.value);
+      }
+    }
   });
 
   var message = { 'jsonrpc': '2.0', 'method': binding.Name, 'params': callArrayString, 'id': 1 };
+  var startTime;
+  try {
+    startTime = performance.now();
+  } catch (e) {
+    // catching
+  }
+  var url = window.easyRpc.url + sourceElement.data('path');
 
-  ajax(window.easyRpc.url + 'IntMath',
+  ajax(url,
     {
       method: "POST",
       body: message,
       headers: { "Content-Type": "application/json" }
     },
     function (error, data) {
-      if (data.result !== undefined) {
-        u('#responseOutput').append('<pre>' + JSON.stringify(data.result, undefined, 2) + '</pre>');
-      } else {
-        u('#responseOutput').append('<pre>' + JSON.stringify(data !== '' ? data : error, undefined, 2) + '</pre>');
+      try {
+        var endTime = performance.now();
+        u('#executionTime').nodes[0].textContent = (endTime - startTime).toFixed(1) + ' ms';
+      } catch (e) {
+        // catch
       }
+      if (data.result !== undefined) {
+        u('#responseOutput').html('<pre>' + JSON.stringify(data.result, undefined, 2) + '</pre>');
+      } else {
+        u('#responseOutput').html('<pre>' + JSON.stringify(data !== '' ? data : error, undefined, 2) + '</pre>');
+      }
+      var status = error === null ? "200 OK" : error;
+      u('#httpStatus').nodes[0].textContent = status;
     });
-
-  //hljs.highlightBlock(u('#responseOutput').nodes[0]);
 }
 
 function activateMethod(event, binding) {
-  var add = true;
   var methodData = binding.method;
-  u('#tabContent').children().each(function (element) {
-    var data = u(element).nodes[0].dataset.methodInfo;
-    if (data === methodData) {
-      add = false;
-      u(element).removeClass('hide-element');
-    } else {
-      u(element).addClass('hide-element');
-    }
-  });
-
-  if (add === true) {
-    var template = window.easyRpc.templates["method-info"];
-    var templateInstance = u(template);
-
-    var tabList = u('#tabList');
-
-    var instanceNumber = tabList.children().length + 1;
-    tabList.append('<li class="tab-item"><label for="tab' + instanceNumber + '"><a>' + methodData.Name + '</a></label></li>');
-    rivets.bind(templateInstance.nodes[0], methodData);
-    templateInstance.nodes[0].dataset.methodInfo = methodData;
-    u('#tabContent').append(templateInstance);
-  }
+  var template = window.easyRpc.templates["method-info"];
+  var templateInstance = u(template);
+  rivets.bind(templateInstance.nodes[0], methodData);
+  templateInstance.nodes[0].dataset.methodInfo = methodData;
+  u('#mainContentContainer').empty().append(templateInstance);
 }
 
 

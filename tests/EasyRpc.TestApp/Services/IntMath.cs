@@ -12,21 +12,14 @@ namespace EasyRpc.TestApp.Services
     /// </summary>
     public class IntMath
     {
-        private IExportLocatorScope _scope;
-
-        public IntMath(IExportLocatorScope scope, IEnumerable<ILoggerProvider> providers)
-        {
-            Console.WriteLine("Count: " + providers.Count());
-            _scope = scope;
-        }
-
+        
         /// <summary>
         /// Add two integers together
         /// </summary>
         /// <param name="x">first integer value</param>
         /// <param name="y">second integer value</param>
         /// <returns>x + y</returns>
-        public int Add(int x, int y)
+        public int Add(int x = 9, int y = 9)
         {
             return x + y;
         }
@@ -34,8 +27,8 @@ namespace EasyRpc.TestApp.Services
         /// <summary>
         /// Subtract two integers
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">first integer value</param>
+        /// <param name="y">second integer value</param>
         /// <returns></returns>
         public int Subtract(int x, int y)
         {
@@ -45,8 +38,8 @@ namespace EasyRpc.TestApp.Services
         /// <summary>
         /// Muliply two integers together
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">first integer value</param>
+        /// <param name="y">second integer value</param>
         /// <returns></returns>
         public int Multiply(int x, int y)
         {

@@ -11,7 +11,7 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         void Configure(EndPointConfiguration configuration);
 
-        Task ProcessRequest(HttpContext context);
+        Task ProcessRequest(HttpContext context, Func<Task> next);
     }
     
     public class DocumentationRequestProcessor : IDocumentationRequestProcessor
@@ -30,14 +30,19 @@ namespace EasyRpc.AspNetCore.Documentation
             _assetProvider.Configure(configuration);
         }
 
-        public Task ProcessRequest(HttpContext context)
+        public Task ProcessRequest(HttpContext context, Func<Task> next)
         {
             if (context.Request.Path.Value.StartsWith(_configuration.Route))
             {
-                return _assetProvider.ProcessRequest(context);
+                var result = _assetProvider.ProcessRequest(context).Result;
+
+                if (result)
+                {
+                    return Task.CompletedTask;
+                }
             }
 
-            return Task.CompletedTask;
+            return next();
         }
     }
 }

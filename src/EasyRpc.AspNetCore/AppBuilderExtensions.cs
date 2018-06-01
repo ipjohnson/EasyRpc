@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore
@@ -28,9 +30,12 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             collection.TryAddSingleton(new JsonSerializer());
 
-            collection.TryAddSingleton<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
-            collection.TryAddSingleton<IWebAssetProvider, WebAssetProvider>();
-            collection.TryAddSingleton<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
+            collection.TryAddTransient<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
+            collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
+            collection.TryAddTransient<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
+            collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
+            collection.TryAddTransient<IVariableReplacementService, VariableReplacementService>();
+            collection.TryAddTransient<IReplacementValueProvider, ReplacementValueProvider>();
 
             collection.Configure(configuration ?? (option => { }));
 
@@ -48,6 +53,36 @@ namespace EasyRpc.AspNetCore
         {
             JsonRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
             
+            return appBuilder;
+        }
+
+        /// <summary>
+        /// Redirects all requests to service api for documentation
+        /// </summary>
+        /// <param name="appBuilder"></param>
+        /// <param name="basePath"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder RedirectToDocumentation(this IApplicationBuilder appBuilder, string basePath)
+        {
+            appBuilder.Use((context, next) =>
+            {
+                var response = context.Response;
+                var redirectPath = context.Request.PathBase.Value + basePath;
+
+                if (context.Request.Path.Value?.EndsWith( "/favicon.ico") ?? false)
+                {
+                    response.Headers[HeaderNames.Location] = redirectPath + "favicon.ico";
+                }
+                else
+                {
+                    response.Headers[HeaderNames.Location] = redirectPath;
+                }
+
+                response.StatusCode = 301;
+
+                return Task.CompletedTask;
+            });
+
             return appBuilder;
         }
     }

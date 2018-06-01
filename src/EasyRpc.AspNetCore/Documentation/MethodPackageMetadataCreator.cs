@@ -19,6 +19,8 @@ namespace EasyRpc.AspNetCore.Documentation
         public List<JsonMethodInfo> Methods { get; set; }
 
         public string DisplayName { get; set; }
+
+        public string Comments { get; set; }
     }
 
     public class JsonMethodInfo
@@ -45,7 +47,22 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public string ParameterType { get; set; }
 
+        public bool Stringify { get; set; }
+
+        public bool Enumeration { get; set; }
+
+        public List<string> EnumerationOptions { get; set; }
+
+        public bool Optional { get; set; }
+
+        public object DefaultValue { get; set; }
+
         public string Comments { get; set; }
+
+        public string HtmlType { get; set; }
+
+        [JsonIgnore]
+        public ParameterInfo ParameterInfo { get; set; }
     }
 
     public interface IMethodPackageMetadataCreator
@@ -61,16 +78,18 @@ namespace EasyRpc.AspNetCore.Documentation
         private JsonSerializer _serializer;
         private List<JsonDataPackage> _dataPackages;
         private bool _hasAuthorization = false;
+        private IXmlDocumentationProvider _xmlDocumentationProvider;
 
-        public MethodPackageMetadataCreator(JsonSerializer serializer)
+        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider)
         {
             _serializer = serializer;
+            _xmlDocumentationProvider = xmlDocumentationProvider;
         }
 
         public void SetConfiguration(EndPointConfiguration endPointConfiguration)
         {
             _configuration = endPointConfiguration;
-            
+
             var routes = new Dictionary<string, List<ExposedMethodInformation>>();
 
             foreach (var information in _configuration.Methods.Values)
@@ -92,11 +111,15 @@ namespace EasyRpc.AspNetCore.Documentation
             }
 
             _dataPackages = new List<JsonDataPackage>();
-            
-            foreach (var route in routes)
+
+            var sortedRoutes = routes.OrderBy(kvp => kvp.Key);
+
+            foreach (var route in sortedRoutes)
             {
                 var methods = new List<JsonMethodInfo>();
 
+                route.Value.Sort((x, y) => string.Compare(x.MethodName, y.MethodName, StringComparison.OrdinalIgnoreCase));
+                
                 foreach (var methodInformation in route.Value)
                 {
                     methods.Add(GenerateInfoForMethod(route.Key, methodInformation));
@@ -112,6 +135,8 @@ namespace EasyRpc.AspNetCore.Documentation
                     });
                 }
             }
+
+            _xmlDocumentationProvider.PopulateMethodDocumentation(_dataPackages);
         }
 
         public async Task CreatePackage(HttpContext context)
@@ -209,7 +234,37 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     parameterString += $"{parameter.ParameterType.Name} {parameter.Name}";
 
-                    parameterList.Add(new JsonParameterInfo { Name = parameter.Name, ParameterType = parameter.ParameterType.Name });
+                    bool stringify = !(parameter.ParameterType == typeof(string) ||
+                        parameter.ParameterType.GetTypeInfo().IsEnum ||
+                        parameter.ParameterType == typeof(DateTime) ||
+                        parameter.ParameterType == typeof(DateTime?));
+
+                    var htmlType = "text";
+
+                    var type = Nullable.GetUnderlyingType(parameter.ParameterType) ?? parameter.ParameterType;
+                    
+                    if (type == typeof(int) || type == typeof(uint) ||
+                        type == typeof(short) || type == typeof(ushort) ||
+                        type == typeof(long) || type == typeof(ulong) ||
+                        type == typeof(double) || type == typeof(float) || type == typeof(decimal) )
+                    {
+                        htmlType = "number";
+                    }
+                    else if (type == typeof(DateTime))
+                    {
+                        htmlType = "datetime-local";
+                    }
+
+                    parameterList.Add(new JsonParameterInfo
+                    {
+                        Name = parameter.Name,
+                        ParameterType = parameter.ParameterType.Name,
+                        ParameterInfo = parameter,
+                        Stringify = stringify,
+                        Optional = parameter.IsOptional,
+                        DefaultValue = parameter.DefaultValue,
+                        HtmlType = htmlType
+                    });
                 }
             }
 

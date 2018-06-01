@@ -34,13 +34,14 @@ namespace EasyRpc.AspNetCore.Documentation
     public class WebAssetProvider : IWebAssetProvider
     {
         private IMethodPackageMetadataCreator _methodPackageMetadataCreator;
-        private Dictionary<string, Tuple<string, byte[]>> _assets = new Dictionary<string, Tuple<string, byte[]>>();
         private int _routeLength;
+        private IVariableReplacementService _variableReplacementService;
         protected string ExtractedAssetPath;
 
-        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator)
+        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator, IVariableReplacementService variableReplacementService)
         {
             _methodPackageMetadataCreator = methodPackageMetadataCreator;
+            _variableReplacementService = variableReplacementService;
             ProcessAssets();
         }
 
@@ -100,7 +101,6 @@ namespace EasyRpc.AspNetCore.Documentation
             }
         }
 
-
         private void SetupExtractAssetPath()
         {
             ExtractedAssetPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -121,11 +121,48 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 var file = Path.Combine(ExtractedAssetPath, assetPath);
 
-                var bytes = File.ReadAllBytes(file);
-                context.Response.StatusCode = StatusCodes.Status200OK;
-                context.Response.Body.Write(bytes, 0, bytes.Length);
+                if (File.Exists(file))
+                {
+                    var bytes = File.ReadAllBytes(file);
+                    context.Response.StatusCode = StatusCodes.Status200OK;
 
-                return true;
+                    var lastPeriod = assetPath.LastIndexOf('.');
+                    if (lastPeriod > 0)
+                    {
+                        var extension = assetPath.Substring(lastPeriod + 1);
+
+                        switch (extension)
+                        {
+                            case "css":
+                                context.Response.ContentType = "text/css";
+                                break;
+                            case "html":
+                                context.Response.ContentType = "text/html";
+                                break;
+                            case "js":
+                                context.Response.ContentType = "text/javascript";
+                                break;
+                            case "ico":
+                                context.Response.ContentType = "image/x-icon";
+                                break;
+                        }
+                    }
+
+                    if (ShouldReplaceVariables(assetPath))
+                    {
+                        using (var streamWriter = new StreamWriter(context.Response.Body))
+                        {
+                            _variableReplacementService.ReplaceVariables(context, streamWriter,
+                                Encoding.UTF8.GetString(bytes));
+                        }
+                    }
+                    else
+                    {
+                        context.Response.Body.Write(bytes, 0, bytes.Length);
+                    }
+
+                    return true;
+                }
             }
             catch (Exception e)
             {
@@ -142,11 +179,12 @@ namespace EasyRpc.AspNetCore.Documentation
             return false;
         }
 
+        protected virtual bool ShouldReplaceVariables(string assetName) => assetName == "templates/main.html";
 
         public void Configure(EndPointConfiguration configuration)
         {
             _methodPackageMetadataCreator.SetConfiguration(configuration);
-
+            _variableReplacementService.Configure(configuration.Route);
             _routeLength = configuration.Route.Length;
         }
     }

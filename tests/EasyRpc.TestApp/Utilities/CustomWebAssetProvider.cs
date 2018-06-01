@@ -8,7 +8,8 @@ namespace EasyRpc.TestApp.Utilities
 {
     public class CustomWebAssetProvider : WebAssetProvider
     {
-        public CustomWebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator) : base(methodPackageMetadataCreator)
+        public CustomWebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator, IVariableReplacementService variableReplacementService) : 
+            base(methodPackageMetadataCreator, variableReplacementService)
         {
             ExtractedAssetPath = @"C:\Users\ian\Source\Repos\EasyRpc\src\EasyRpc.AspNetCore\Documentation\web-assets\";
         }
