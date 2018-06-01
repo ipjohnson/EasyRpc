@@ -71,6 +71,18 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             var bundleConfigFilePath = Path.Combine(ExtractedAssetPath, "bundle", "bundle-config.json");
 
+            if (!File.Exists(bundleConfigFilePath))
+            {
+                foreach (var directory in Directory.EnumerateDirectories(ExtractedAssetPath))
+                {
+                    Console.WriteLine("Directory: " + directory);
+                    foreach (var file in Directory.EnumerateFiles(directory))
+                    {
+                        Console.WriteLine("File: " + file);
+                    }
+                }
+            }
+
             var configString = File.ReadAllText(bundleConfigFilePath);
 
             var bundleConfigFile = JsonConvert.DeserializeObject<BundleConfigFile>(configString);
@@ -111,8 +123,7 @@ namespace EasyRpc.AspNetCore.Documentation
         public async Task<bool> ProcessRequest(HttpContext context)
         {
             var assetPath = context.Request.Path.Value.Substring(_routeLength);
-
-
+            
             Console.WriteLine("Asset path: " + assetPath);
 
             if (assetPath.Length == 0)
