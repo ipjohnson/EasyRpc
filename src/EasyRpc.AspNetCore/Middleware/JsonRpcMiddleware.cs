@@ -37,7 +37,7 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 _documentationRequestProcessor = app.ApplicationServices.GetService<IDocumentationRequestProcessor>();
 
-                _documentationRequestProcessor.Configure(endPoint);
+                _documentationRequestProcessor?.Configure(endPoint);
             }
         }
 

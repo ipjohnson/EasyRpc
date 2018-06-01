@@ -70,6 +70,7 @@ namespace EasyRpc.Tests.Middleware
 
             context.Request.Path = new PathString(route);
             context.Request.ContentType = "application/json";
+            context.Request.Method = "POST";
             context.Request.Body = requests.SerializeToStream();
 
             context.Response.Body = responseStream;
