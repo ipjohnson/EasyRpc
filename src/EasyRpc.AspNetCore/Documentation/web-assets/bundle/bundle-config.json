@@ -4,8 +4,8 @@
       "name": "css/bundle.css",
       "files": [
         "css/spectre.min.css",
+        "css/spectre-exp.min.css",
         "css/docs.min.css",
-        "css/dark.css",
         "css/easy-rpc-styles.css"
       ]
     },

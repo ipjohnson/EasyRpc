@@ -65,7 +65,7 @@ function endpointClass(endpointList) {
 }
 
 function executeMethod(event, binding) {
-  var sourceElement = u(event.srcElement);
+  var sourceElement = u(event.target);
   var panelBody = sourceElement.closest('div.panel-body');
   var inputElements = panelBody.find('.parameter-input');
   var callArrayString = [];

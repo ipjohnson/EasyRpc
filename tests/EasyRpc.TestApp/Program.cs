@@ -20,6 +20,7 @@ namespace EasyRpc.TestApp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseIISIntegration()
                 .UseGrace()
                 .UseStartup<Startup>()
                 .Build();

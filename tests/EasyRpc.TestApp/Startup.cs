@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
@@ -30,7 +31,10 @@ namespace EasyRpc.TestApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddJsonRpc(c => c.DebugLogging = false);
-            services.AddSingleton<IWebAssetProvider, CustomWebAssetProvider>();
+            if (Debugger.IsAttached)
+            {
+                services.AddSingleton<IWebAssetProvider, CustomWebAssetProvider>();
+            }
         }
 
         public void ConfigureContainer(IInjectionScope scope)

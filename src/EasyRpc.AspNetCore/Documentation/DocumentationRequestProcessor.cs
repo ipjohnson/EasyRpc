@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
@@ -18,10 +19,12 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         private EndPointConfiguration _configuration;
         private IWebAssetProvider _assetProvider;
+        private readonly ILogger<IDocumentationRequestProcessor> _logger;
 
-        public DocumentationRequestProcessor(IWebAssetProvider assetProvider)
+        public DocumentationRequestProcessor(IWebAssetProvider assetProvider, ILogger<IDocumentationRequestProcessor> logger)
         {
             _assetProvider = assetProvider;
+            _logger = logger;
         }
 
         public void Configure(EndPointConfiguration configuration)

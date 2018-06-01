@@ -112,6 +112,9 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             var assetPath = context.Request.Path.Value.Substring(_routeLength);
 
+
+            Console.WriteLine("Asset path: " + assetPath);
+
             if (assetPath.Length == 0)
             {
                 assetPath = "templates/main.html";
@@ -121,8 +124,10 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 var file = Path.Combine(ExtractedAssetPath, assetPath);
 
+                Console.WriteLine("File path: " + file);
                 if (File.Exists(file))
                 {
+                    Console.WriteLine("File exists path: " + file);
                     var bytes = File.ReadAllBytes(file);
                     context.Response.StatusCode = StatusCodes.Status200OK;
 
@@ -167,6 +172,7 @@ namespace EasyRpc.AspNetCore.Documentation
             catch (Exception e)
             {
 
+                Console.WriteLine("File path: " + e);
             }
 
             if (assetPath == "interface-definition")
