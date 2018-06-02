@@ -62,7 +62,29 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 using (var zipFile = new ZipArchive(resource))
                 {
-                    zipFile.ExtractToDirectory(ExtractedAssetPath);
+                    foreach (var entry in zipFile.Entries)
+                    {
+                        var fullName = entry.FullName;
+                        var directory = fullName.Substring(0, fullName.Length - entry.Name.Length);
+
+                        directory = directory.Replace('\\', Path.DirectorySeparatorChar);
+                        directory = Path.Combine(ExtractedAssetPath, directory);
+
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+
+                        var filePath = Path.Combine(directory, entry.Name);
+
+                        using (var zipStream = entry.Open())
+                        {
+                            using (var file = File.Open(filePath, FileMode.Create))
+                            {
+                                zipStream.CopyTo(file);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -70,21 +92,7 @@ namespace EasyRpc.AspNetCore.Documentation
         private void CreateBundles()
         {
             var bundleConfigFilePath = Path.Combine(ExtractedAssetPath, "bundle", "bundle-config.json");
-
-            if (!File.Exists(bundleConfigFilePath))
-            {
-                if (!Directory.Exists(ExtractedAssetPath))
-                {
-                    throw new Exception("No directory " + ExtractedAssetPath);
-                }
-
-                var testPath = Path.Combine(ExtractedAssetPath, "bundle");
-                if (!Directory.Exists(testPath))
-                {
-                    throw new Exception("No directory " + testPath);
-                }
-            }
-
+            
             var configString = File.ReadAllText(bundleConfigFilePath);
 
             var bundleConfigFile = JsonConvert.DeserializeObject<BundleConfigFile>(configString);
