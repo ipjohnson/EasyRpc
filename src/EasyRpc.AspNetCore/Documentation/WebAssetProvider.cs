@@ -73,15 +73,16 @@ namespace EasyRpc.AspNetCore.Documentation
 
             if (!File.Exists(bundleConfigFilePath))
             {
-                foreach (var directory in Directory.EnumerateDirectories(ExtractedAssetPath))
+                if (!Directory.Exists(ExtractedAssetPath))
                 {
-                    Console.Error.WriteLine("Directory: " + directory);
-                    foreach (var file in Directory.EnumerateFiles(directory))
-                    {
-                        Console.Error.WriteLine("File: " + file);
-                    }
+                    throw new Exception("No directory " + ExtractedAssetPath);
                 }
-                
+
+                var testPath = Path.Combine(ExtractedAssetPath, "bundle");
+                if (!Directory.Exists(testPath))
+                {
+                    throw new Exception("No directory " + testPath);
+                }
             }
 
             var configString = File.ReadAllText(bundleConfigFilePath);
