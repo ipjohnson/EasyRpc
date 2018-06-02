@@ -57,8 +57,10 @@ function endpointClass(endpointList) {
       method.activate = activateMethod;
       method.executeMethod = executeMethod;
       method.displayText = function () {
-        debugger;
-        return this.Comments + '\n' + this.Signature;
+        if (this.Comments !== null) {
+          return this.Comments + '\n' + this.Signature;
+        }
+        return this.Signature;
       }
     }
   }

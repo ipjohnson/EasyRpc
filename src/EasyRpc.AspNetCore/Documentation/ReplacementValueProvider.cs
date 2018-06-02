@@ -47,7 +47,8 @@ namespace EasyRpc.AspNetCore.Documentation
             if (Debugger.IsAttached)
             {
                 return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-exp.min.css\"/>" + 
+                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-icons.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-exp.min.css\"/>" +
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/docs.min.css\"/>" +
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/easy-rpc-styles.css\"/>";
             }
@@ -65,7 +66,7 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<script src = \"{context.Request.PathBase}{_path}/javascript/easy-rpc-javascript.js\"></script>";
             }
 
-            return $"<script src = \"{context.Request.PathBase}{_path}/javascript/bundle.js\"></script>";
+            return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js\"></script>";
         }
 
         protected string InterfaceTitle(HttpContext context) => "Test API";

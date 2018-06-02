@@ -1,15 +1,16 @@
 <div id="methodInfoPage">
+    <h3 class="s-title">{ Name }</h3>
     <div class="panel" style="height: auto">
         <div class="panel-header ">
-            <div class="panel-title alert alert-primary">{ Signature }<br />{ Comments }</div>
+            <div class="panel-title alert alert-primary">{ Signature }<br/>{ Comments }</div>
         </div>
         <div class="panel-nav">
             <!-- navigation components: tabs, breadcrumbs or pagination -->
         </div>
-        <div class="panel-body" >
+        <div class="panel-body">
             <table width="100%">
                 <tr rv-each-parameter="Parameters" style="margin: 4px">
-                    <td class="parameter-name-cell" ><span rv-title="parameter.Comments">{ parameter.Name }</span></td>
+                    <td class="parameter-name-cell"><span rv-title="parameter.Comments">{ parameter.Name }</span></td>
                     <td class="parameter-value-cell"><input rv-type="parameter.HtmlType" class="parameter-input" rv-placeholder="parameter.Comments" rv-data-stringify="parameter.Stringify"/></td>
                 </tr>
             </table>
@@ -19,7 +20,8 @@
             <div id="responseOutput">
 
             </div>
+            <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
+            
         </div>
     </div>
-    <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
 </div>

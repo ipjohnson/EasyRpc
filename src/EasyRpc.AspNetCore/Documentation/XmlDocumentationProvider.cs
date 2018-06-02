@@ -28,6 +28,11 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     var xdoc = GetDocumentForAssembly(xmlDocs, assembly);
 
+                    if (xdoc == null)
+                    {
+                        continue;
+                    }
+
                     var membersNode = xdoc.Descendants("members");
 
                     foreach (var element in membersNode.Descendants("member"))
@@ -72,7 +77,6 @@ namespace EasyRpc.AspNetCore.Documentation
                                 {
                                     package.Comments = summary.Value?.Trim('\n',' ');
                                 }
-
                             }
                         }
                     }

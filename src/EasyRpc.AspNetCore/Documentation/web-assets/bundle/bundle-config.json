@@ -4,6 +4,7 @@
       "name": "css/bundle.css",
       "files": [
         "css/spectre.min.css",
+        "css/spectre-icons.min.css",
         "css/spectre-exp.min.css",
         "css/docs.min.css",
         "css/easy-rpc-styles.css"

@@ -179,8 +179,10 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private void SerializeToResponseBody(HttpContext context, object values)
         {
+            var header = context.Request.Headers["Accept-Encoding"];
+            
             if (_configuration.Value.SupportResponseCompression &&
-                context.Request.Headers["Accept-Encoding"].Contains("gzip"))
+                header.Any(s => s.Contains("gzip")))
             {
                 context.Response.Headers["Content-Encoding"] = new StringValues("gzip");
 

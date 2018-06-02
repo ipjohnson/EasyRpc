@@ -30,7 +30,11 @@ namespace EasyRpc.TestApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddJsonRpc(c => c.DebugLogging = false);
+            services.AddJsonRpc(c =>
+            {
+                c.DebugLogging = false;
+                c.SupportResponseCompression = true;
+            });
             if (Debugger.IsAttached)
             {
                 services.AddSingleton<IWebAssetProvider, CustomWebAssetProvider>();
