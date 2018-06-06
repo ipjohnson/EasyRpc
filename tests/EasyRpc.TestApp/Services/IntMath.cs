@@ -12,13 +12,6 @@ namespace EasyRpc.TestApp.Services
     /// </summary>
     public class IntMath
     {
-        private IExportLocatorScope _scope;
-
-        public IntMath(IExportLocatorScope scope)
-        {
-            _scope = scope;
-        }
-
         /// <summary>
         /// Add two integers together
         /// </summary>
