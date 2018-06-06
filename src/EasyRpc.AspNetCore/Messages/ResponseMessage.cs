@@ -4,13 +4,19 @@ namespace EasyRpc.AspNetCore.Messages
 {
     public class ResponseMessage
     {
+        /// <summary>
+        /// Return this response if you want the framework to not write anything to the resposne stream
+        /// this is intended if you want to write something other than application/json to the Response stream
+        /// </summary>
+        public static ResponseMessage NoResponse = new ResponseMessage();
+        
         [JsonConstructor]
         protected ResponseMessage()
         {
 
         }
 
-        public ResponseMessage(string version, string id)
+        public ResponseMessage(string version = "2.0", string id = "")
         {
             Version = version;
             Id = id;
@@ -20,13 +26,19 @@ namespace EasyRpc.AspNetCore.Messages
         /// json rpc version
         /// </summary>
         [JsonProperty("jsonrpc", Required = Required.Always, Order = 1)]
-        public string Version { get; private set; }
+        public string Version { get; set; }
 
         /// <summary>
         /// message id
         /// </summary>
         [JsonProperty("id", Order = 3)]
-        public string Id { get; private set; }
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Should this response be compressed
+        /// </summary>
+        [JsonIgnore]
+        public bool CanCompress { get; set; }
     }
 
     /// <summary>
@@ -39,7 +51,7 @@ namespace EasyRpc.AspNetCore.Messages
         [JsonConstructor]
         private EmptyResponseMessage() { }
             
-        public EmptyResponseMessage(string version, string id) : base(EmptyObject, version, id)
+        public EmptyResponseMessage(string version = "2.0", string id = "") : base(EmptyObject, version, id)
         {
         }
     }
@@ -62,7 +74,7 @@ namespace EasyRpc.AspNetCore.Messages
         /// <param name="result"></param>
         /// <param name="version"></param>
         /// <param name="id"></param>
-        public ResponseMessage(T result, string version, string id) : base(version, id)
+        public ResponseMessage(T result, string version = "2.0", string id = "") : base(version, id)
         {
             Result = result;
         }
@@ -70,7 +82,7 @@ namespace EasyRpc.AspNetCore.Messages
         /// <summary>
         /// Response result
         /// </summary>
-        [JsonProperty("result", Required = Required.Always, Order = 2)]
+        [JsonProperty("result", Order = 2)]
         public T Result { get; private set; }
     }
 
@@ -110,7 +122,7 @@ namespace EasyRpc.AspNetCore.Messages
         [JsonConstructor]
         private ErrorResponseMessage() { }
 
-        public ErrorResponseMessage(string version, string id, JsonRpcErrorCode errorCode, string errorMessage) : base(version, id)
+        public ErrorResponseMessage(JsonRpcErrorCode errorCode, string errorMessage, string version = "2.0", string id = "") : base(version, id)
         {
             Error = new ErrorClass { Code = (int)errorCode, Message = errorMessage };
         }

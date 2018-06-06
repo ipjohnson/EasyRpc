@@ -85,10 +85,8 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
                 errorMessage = currentError.Error + errorMessage;
             }
 
-            context.ResponseMessage = new ErrorResponseMessage(context.RequestMessage.Version,
-                context.RequestMessage.Id,
-                JsonRpcErrorCode.InvalidRequest,
-                errorMessage);
+            context.ResponseMessage = new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, errorMessage, 
+                context.RequestMessage.Version, context.RequestMessage.Id);
         }
     }
 }

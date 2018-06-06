@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Grace" Version="6.3.4" />
     <PackageReference Include="Grace.AspNetCore.Hosting" Version="6.3.1" />
+    <PackageReference Include="Grace.Dynamic" Version="6.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
   </ItemGroup>
   <ItemGroup>

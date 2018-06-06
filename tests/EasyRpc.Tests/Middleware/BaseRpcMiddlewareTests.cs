@@ -36,7 +36,8 @@ namespace EasyRpc.Tests.Middleware
                     new JsonSerializerProvider(),
                     new NamedParameterToArrayDelegateProvider(), 
                     new OrderedParameterToArrayDelegateProvider(),
-                    new ArrayMethodInvokerBuilder()
+                    new ArrayMethodInvokerBuilder(),
+                    new InstanceActivator()
                     ));
 
             app.Use(Arg.Do<Func<RequestDelegate, RequestDelegate>>(func => executeDelegate = func));

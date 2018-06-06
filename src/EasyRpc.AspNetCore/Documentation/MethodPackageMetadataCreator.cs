@@ -60,6 +60,8 @@ namespace EasyRpc.AspNetCore.Documentation
         public string Comments { get; set; }
 
         public string HtmlType { get; set; }
+        
+        public bool Array { get; set; }
 
         [JsonIgnore]
         public ParameterInfo ParameterInfo { get; set; }
@@ -174,7 +176,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                                 var callContext =
                                     new CallExecutionContext(context, methodInformation.Type,
-                                        methodInformation.Method,
+                                        methodInformation.MethodInfo,
                                         new RequestMessage());
                                 var add = true;
 
@@ -214,7 +216,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private JsonMethodInfo GenerateInfoForMethod(string route, ExposedMethodInformation methodInformation)
         {
-            var method = methodInformation.Method;
+            var method = methodInformation.MethodInfo;
 
             string displayString;
             string parameterString = " ";
@@ -232,7 +234,9 @@ namespace EasyRpc.AspNetCore.Documentation
                         parameterString += ", ";
                     }
 
-                    parameterString += $"{parameter.ParameterType.Name} {parameter.Name}";
+                    var friendlyName = GetFriendlyTypeName(parameter.ParameterType, out var isArray);
+
+                    parameterString += $"{friendlyName} {parameter.Name}";
 
                     bool stringify = !(parameter.ParameterType == typeof(string) ||
                         parameter.ParameterType.GetTypeInfo().IsEnum ||
@@ -258,8 +262,9 @@ namespace EasyRpc.AspNetCore.Documentation
                     parameterList.Add(new JsonParameterInfo
                     {
                         Name = parameter.Name,
-                        ParameterType = parameter.ParameterType.Name,
+                        ParameterType = parameter.ParameterType.FullName,
                         ParameterInfo = parameter,
+                        Array = isArray,
                         Stringify = stringify,
                         Optional = parameter.IsOptional,
                         DefaultValue = parameter.DefaultValue,
@@ -274,17 +279,49 @@ namespace EasyRpc.AspNetCore.Documentation
                 _hasAuthorization = true;
             }
 
-            displayString = $"{method.ReturnType.Name} {method.Name}({parameterString})";
+            displayString = $"{GetFriendlyTypeName(method.ReturnType, out var unused)} {method.Name}({parameterString})";
 
             return new JsonMethodInfo
             {
                 Path = route,
                 Name = methodInformation.MethodName,
                 Signature = displayString,
-                ReturnType = methodInformation.Method.ReturnType.Name,
+                ReturnType = methodInformation.MethodInfo.ReturnType.Name,
                 Parameters = parameterList,
                 Method = methodInformation
             };
+        }
+
+        private string GetFriendlyTypeName(Type parameterParameterType, out bool isArray)
+        {
+            isArray = false;
+
+            if (parameterParameterType == typeof(string) ||
+                parameterParameterType.GetTypeInfo().IsPrimitive)
+            {
+                return parameterParameterType.Name;
+            }
+
+            if (parameterParameterType.IsConstructedGenericType &&
+                parameterParameterType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+            {
+                isArray = true;
+
+                return "Array[" + GetFriendlyTypeName(parameterParameterType.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
+            }
+
+            foreach (var @interface in parameterParameterType.GetTypeInfo().ImplementedInterfaces)
+            {
+                if (@interface.IsConstructedGenericType &&
+                    @interface.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                {
+                    isArray = true;
+
+                    return "Array[" + GetFriendlyTypeName(@interface.GetTypeInfo().GetGenericArguments()[0], out var unused);
+                }
+            }
+
+            return parameterParameterType.Name;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             var response = new HttpResponseMessage(HttpStatusCode.Accepted)
             {
-                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.MethodNotFound, "Not Found").SerializeToStream())
+                Content = new StreamContent(new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound, "Not Found").SerializeToStream())
             };
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
@@ -90,7 +90,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             var response = new HttpResponseMessage(HttpStatusCode.Accepted)
             {
-                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.UnauthorizedAccess, "Not Authorized").SerializeToStream())
+                Content = new StreamContent(new ErrorResponseMessage( JsonRpcErrorCode.UnauthorizedAccess, "Not Authorized").SerializeToStream())
             };
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);
@@ -110,7 +110,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             var response = new HttpResponseMessage(HttpStatusCode.Accepted)
             {
-                Content = new StreamContent(new ErrorResponseMessage("2,0", "1", JsonRpcErrorCode.InternalServerError, "Internal Server Error").SerializeToStream())
+                Content = new StreamContent(new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, "Internal Server Error").SerializeToStream())
             };
 
             client.SendAsync(Arg.Any<HttpRequestMessage>()).Returns(response);

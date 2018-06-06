@@ -1,5 +1,5 @@
 <div id="methodInfoPage">
-    <h3 class="s-title">{ Name }</h3>
+    <h3 class="s-title">{ endpoint.DisplayName }.{ Name }</h3>
     <div class="panel" style="height: auto">
         <div class="panel-header ">
             <div class="panel-title alert alert-primary">{ Signature }<br/>{ Comments }</div>
@@ -17,11 +17,8 @@
             <br/>
             <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod" rv-data-path="Path">Execute</button></div>
             <div><h4>Response:</h4></div>
-            <div id="responseOutput">
-
-            </div>
+            <div id="responseOutput"></div>
             <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
-            
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Documentation;
+using EasyRpc.TestApp.Repositories;
 using EasyRpc.TestApp.Services;
 using EasyRpc.TestApp.Utilities;
 using Grace.DependencyInjection;
@@ -33,8 +34,11 @@ namespace EasyRpc.TestApp
             services.AddJsonRpc(c =>
             {
                 c.DebugLogging = false;
-                c.SupportResponseCompression = true;
+                c.SupportResponseCompression = false;
             });
+
+            services.AddSingleton<IPersonRepository, PersonRepository>();
+
             if (Debugger.IsAttached)
             {
                 services.AddSingleton<IWebAssetProvider, CustomWebAssetProvider>();

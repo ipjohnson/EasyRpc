@@ -23,7 +23,7 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 foreach (var method in package.Methods)
                 {
-                    var methodInfo = method.Method.Method;
+                    var methodInfo = method.Method.MethodInfo;
                     var assembly = methodInfo.DeclaringType.GetTypeInfo().Assembly;
 
                     var xdoc = GetDocumentForAssembly(xmlDocs, assembly);

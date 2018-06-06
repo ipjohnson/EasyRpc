@@ -25,17 +25,19 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<INamedParameterToArrayDelegateProvider,NamedParameterToArrayDelegateProvider>();
             collection.TryAddSingleton<IOrderedParameterToArrayDelegateProvider, OrderedParameterToArrayDelegateProvider>();
             collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
+            collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
 
             collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
             collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             collection.TryAddSingleton(new JsonSerializer());
 
+            collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
             collection.TryAddTransient<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
             collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
             collection.TryAddTransient<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
-            collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
             collection.TryAddTransient<IVariableReplacementService, VariableReplacementService>();
             collection.TryAddTransient<IReplacementValueProvider, ReplacementValueProvider>();
+            collection.TryAddTransient<ITypeDefinitionPackageProvider, TypeDefinitionPackageProvider>();
 
             collection.Configure(configuration ?? (option => { }));
 

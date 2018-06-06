@@ -33,6 +33,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly INamedParameterToArrayDelegateProvider _namedParameterToArrayDelegateProvider;
         private readonly IOrderedParameterToArrayDelegateProvider _orderedParameterToArrayDelegateProvider;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
+        private readonly IInstanceActivator _activator;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
         private readonly bool _debugLogging;
         private readonly ILogger<JsonRpcMessageProcessor> _logger;
@@ -42,13 +43,15 @@ namespace EasyRpc.AspNetCore.Middleware
             IJsonSerializerProvider provider,
             INamedParameterToArrayDelegateProvider namedParameterToArrayDelegateProvider,
             IOrderedParameterToArrayDelegateProvider orderedParameterToArrayDelegateProvider,
-            IArrayMethodInvokerBuilder invokerBuilder, 
+            IArrayMethodInvokerBuilder invokerBuilder,
+            IInstanceActivator activator, 
             ILogger<JsonRpcMessageProcessor> logger = null)
         {
             _namedParameterToArrayDelegateProvider = namedParameterToArrayDelegateProvider;
             _configuration = configuration;
             _orderedParameterToArrayDelegateProvider = orderedParameterToArrayDelegateProvider;
             _invokerBuilder = invokerBuilder;
+            _activator = activator;
             _logger = logger;
             _serializer = provider.ProvideSerializer();
             _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
@@ -117,7 +120,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             WriteErrorMessage(context,
-                 new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+                 new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
 
             return Task.CompletedTask;
         }
@@ -128,7 +131,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 "Exception thrown while deserializing request package: " + exp.Message);
 
             WriteErrorMessage(context,
-                new ErrorResponseMessage("2.0", "", JsonRpcErrorCode.InvalidRequest,
+                new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest,
                     "Could not parse request: " + exp.Message));
 
             return Task.CompletedTask;
@@ -165,23 +168,22 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                SerializeToResponseBody(context, values);
+                SerializeToResponseBody(context, values, _configuration.Value.SupportResponseCompression);
             }
             catch (Exception exp)
             {
                 _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while serializing bulk output: " + exp.Message);
 
                 WriteErrorMessage(context,
-                    new ErrorResponseMessage("2.0", "",
-                        JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
+                    new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
         }
 
-        private void SerializeToResponseBody(HttpContext context, object values)
+        private void SerializeToResponseBody(HttpContext context, object values, bool canSerialize)
         {
             var header = context.Request.Headers["Accept-Encoding"];
             
-            if (_configuration.Value.SupportResponseCompression &&
+            if (canSerialize &&
                 header.Any(s => s.Contains("gzip")))
             {
                 context.Response.Headers["Content-Encoding"] = new StringValues("gzip");
@@ -221,7 +223,10 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                SerializeToResponseBody(context, response);
+                if (!ReferenceEquals(response, ResponseMessage.NoResponse))
+                {
+                    SerializeToResponseBody(context, response, response.CanCompress);
+                }
             }
             catch (Exception exp)
             {
@@ -242,8 +247,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             WriteErrorMessage(context,
-                new ErrorResponseMessage(requestMessage.Version, requestMessage.Id,
-                    JsonRpcErrorCode.InternalServerError, errorMessage));
+                new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, errorMessage, requestMessage.Version, requestMessage.Id));
         }
 
 
@@ -279,12 +283,13 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (_exposedMethodInformations.TryGetValue(key, out var methodInfo))
             {
-                var cache = new ExposedMethodCache(methodInfo.Method, methodInfo.MethodName,
+                var cache = new ExposedMethodCache(methodInfo.MethodInfo, methodInfo.MethodName,
                     methodInfo.MethodAuthorizations,
                     methodInfo.Filters,
                     _namedParameterToArrayDelegateProvider,
                     _orderedParameterToArrayDelegateProvider,
-                    _invokerBuilder);
+                    _invokerBuilder,
+                    _configuration.Value.SupportResponseCompression);
 
                 AddMethodCache(methodInfo.RouteNames, cache);
 
@@ -330,7 +335,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                newInstance = ActivatorUtilities.GetServiceOrCreateInstance(serviceProvider, exposedMethod.InstanceType);
+                newInstance = _activator.ActivateInstance(context, serviceProvider, exposedMethod.InstanceType);
 
                 callExecutionContext.Instance = newInstance;
             }
@@ -467,8 +472,8 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)
         {
             return
-                Task.FromResult<ResponseMessage>(new ErrorResponseMessage(version, id, JsonRpcErrorCode.MethodNotFound,
-                    "Method not found"));
+                Task.FromResult<ResponseMessage>(new ErrorResponseMessage( JsonRpcErrorCode.MethodNotFound,
+                    "Method not found", version, id));
         }
 
         private ResponseMessage ReturnInternalServerError(string version, string id, string expMessage)
@@ -480,14 +485,14 @@ namespace EasyRpc.AspNetCore.Middleware
                 errorMessage += " " + expMessage;
             }
 
-            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.InternalServerError, errorMessage);
+            return new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, errorMessage, version, id);
         }
 
         private ResponseMessage ReturnUnauthorizedAccess(HttpContext context, string version, string id)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
 
-            return new ErrorResponseMessage(version, id, JsonRpcErrorCode.UnauthorizedAccess, "No access to this method");
+            return new ErrorResponseMessage( JsonRpcErrorCode.UnauthorizedAccess, "No access to this method", version );
         }
     }
 }

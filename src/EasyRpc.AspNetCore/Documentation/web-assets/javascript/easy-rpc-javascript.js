@@ -54,6 +54,7 @@ function endpointClass(endpointList) {
     var endpointMethodLength = endpoint.Methods.length;
     for (var j = 0; j < endpointMethodLength; j++) {
       var method = endpoint.Methods[j];
+      method.endpoint = endpoint;
       method.activate = activateMethod;
       method.executeMethod = executeMethod;
       method.displayText = function () {

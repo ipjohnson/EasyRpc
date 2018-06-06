@@ -32,6 +32,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly INamedParameterToArrayDelegateProvider _namedDelegateProvider;
         private readonly IOrderedParameterToArrayDelegateProvider _orderedDelegateProvider;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
+        private readonly bool _allowCompression;
 
         public ExposedMethodCache(MethodInfo methodInfo,
                                   string methodName,
@@ -39,7 +40,8 @@ namespace EasyRpc.AspNetCore.Middleware
                                   Func<HttpContext, IEnumerable<ICallFilter>>[] filters,
                                   INamedParameterToArrayDelegateProvider namedDelegateProvider,
                                   IOrderedParameterToArrayDelegateProvider orderedDelegateProvider,
-                                  IArrayMethodInvokerBuilder invokerBuilder)
+                                  IArrayMethodInvokerBuilder invokerBuilder,
+                                  bool allowCompression)
         {
             Method = methodInfo;
             Authorizations = authorizations;
@@ -47,6 +49,7 @@ namespace EasyRpc.AspNetCore.Middleware
             _namedDelegateProvider = namedDelegateProvider;
             _orderedDelegateProvider = orderedDelegateProvider;
             _invokerBuilder = invokerBuilder;
+            _allowCompression = allowCompression;
             MethodName = methodName;
             InstanceType = methodInfo.DeclaringType;
         }
@@ -71,6 +74,6 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public InvokeMethodWithArray InvokeMethod =>
             _invokeMethod ??
-            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(Method));
+            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(Method, _allowCompression));
     }
 }

@@ -36,12 +36,14 @@ namespace EasyRpc.AspNetCore.Documentation
         private IMethodPackageMetadataCreator _methodPackageMetadataCreator;
         private int _routeLength;
         private IVariableReplacementService _variableReplacementService;
+        private ITypeDefinitionPackageProvider _definitionPackageProvider;
         protected string ExtractedAssetPath;
 
-        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator, IVariableReplacementService variableReplacementService)
+        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator, IVariableReplacementService variableReplacementService, ITypeDefinitionPackageProvider definitionPackageProvider)
         {
             _methodPackageMetadataCreator = methodPackageMetadataCreator;
             _variableReplacementService = variableReplacementService;
+            _definitionPackageProvider = definitionPackageProvider;
             ProcessAssets();
         }
 
@@ -212,6 +214,7 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             _methodPackageMetadataCreator.SetConfiguration(configuration);
             _variableReplacementService.Configure(configuration.Route);
+            _definitionPackageProvider.SetupTypeDefinitions(configuration.Methods.Values);
             _routeLength = configuration.Route.Length;
         }
     }

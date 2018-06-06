@@ -48,7 +48,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
                     errorMessage += currentResponse.Error;
                 }
 
-                context.ResponseMessage = new ErrorResponseMessage(context.RequestMessage.Version, context.RequestMessage.Id, JsonRpcErrorCode.InvalidRequest, errorMessage);
+                context.ResponseMessage = new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, errorMessage, context.RequestMessage.Version, context.RequestMessage.Id);
             }
         }
 

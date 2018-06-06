@@ -12,7 +12,7 @@ namespace EasyRpc.AspNetCore.Middleware
             Type = type;
             RouteNames = routeNames;
             MethodName = methodName;
-            Method = method;
+            MethodInfo = method;
             MethodAuthorizations = methodAuthorizations;
             Filters = filters;
         }
@@ -23,7 +23,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public string MethodName { get; }
 
-        public MethodInfo Method { get; }
+        public MethodInfo MethodInfo { get; }
 
         public IMethodAuthorization[] MethodAuthorizations { get; }
 
