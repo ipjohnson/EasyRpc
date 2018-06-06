@@ -152,23 +152,16 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
 
-            var returnListTask = new List<Task<ResponseMessage>>();
+            var returnList = new List<ResponseMessage>();
 
             foreach (var request in requestPackage.Requests)
             {
-                var requestMessage = request;
-
-                var newTask = Task.Run(
-                    () => ProcessRequestMultiThreaded(context, path, requestMessage));
-
-                returnListTask.Add(newTask);
+                returnList.Add(await ProcessIndividualRequest(context, context.RequestServices, path, request));
             }
-
-            var values = await Task.WhenAll(returnListTask);
-
+            
             try
             {
-                SerializeToResponseBody(context, values, _configuration.Value.SupportResponseCompression);
+                SerializeToResponseBody(context, returnList, _configuration.Value.SupportResponseCompression);
             }
             catch (Exception exp)
             {
