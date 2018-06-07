@@ -292,9 +292,11 @@ namespace EasyRpc.AspNetCore.Middleware
             return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation);
         }
 
-        public void DisableDocumentation()
+        public IApiConfiguration DisableDocumentation()
         {
             _enableDocumentation = false;
+
+            return this;
         }
     }
 }
