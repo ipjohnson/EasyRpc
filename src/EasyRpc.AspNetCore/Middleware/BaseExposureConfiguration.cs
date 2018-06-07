@@ -123,7 +123,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, authorizations.ToArray(), filters.ToArray());
+                yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, currentAuth.ToArray(), filters.ToArray());
             }
         }
     }
