@@ -434,9 +434,6 @@ namespace EasyRpc.AspNetCore.Middleware
         private ResponseMessage ExecuteMethodErrorHandler(HttpContext context, RequestMessage requestMessage, Exception exp,
             bool runFilters, List<ICallFilter> filters, CallExecutionContext callExecutionContext)
         {
-            _logger?.LogError(EventIdCode.ExecutionException, exp,
-                $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
-
             if (runFilters)
             {
                 foreach (var callFilter in filters)
@@ -446,6 +443,9 @@ namespace EasyRpc.AspNetCore.Middleware
                     exceptionFilter?.HandleException(callExecutionContext, exp);
                 }
             }
+
+            _logger?.LogError(EventIdCode.ExecutionException, exp,
+                $"Exception thrown while processing {context.Request.Path} {requestMessage.Method} - " + exp.Message);
 
             return ReturnInternalServerError(requestMessage.Version, requestMessage.Id,
                 $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
