@@ -11,5 +11,7 @@ namespace EasyRpc.AspNetCore
         public static EventId ActivationException = 53000;
 
         public static EventId ExecutionException = 54000;
+
+        public static EventId ExecutionFilterException = 55000;
     }
 }
