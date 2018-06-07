@@ -60,10 +60,10 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             if (Debugger.IsAttached)
             {
-                return $"<script src = \"{context.Request.PathBase}{_path}/javascript/umbrella.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}/javascript/rivets.bundled.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}/javascript/highlight.pack.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}/javascript/easy-rpc-javascript.js\"></script>";
+                return $"<script src = \"{context.Request.PathBase}{_path}javascript/umbrella.min.js\"></script>" +
+                       $"<script src = \"{context.Request.PathBase}{_path}javascript/rivets.bundled.min.js\"></script>" +
+                       $"<script src = \"{context.Request.PathBase}{_path}javascript/highlight.pack.js\"></script>" +
+                       $"<script src = \"{context.Request.PathBase}{_path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
             return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js\"></script>";
