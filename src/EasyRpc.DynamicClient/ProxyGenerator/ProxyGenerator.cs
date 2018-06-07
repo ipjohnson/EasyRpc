@@ -92,8 +92,8 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
 
         private void GenerateMethodProxy(TypeBuilder proxyBuilder, Type type, MethodInfo method, bool callByName, FieldBuilder callService, FieldBuilder serializer, FieldBuilder jsonMethodWriterField)
         {
-            var compressRequest = _methodCompressionPicker.CompressRequest(method);
-            var compressResponse = _methodCompressionPicker.CompressResponse(method);
+            var compressRequest = _methodCompressionPicker?.CompressRequest(method) ?? false;
+            var compressResponse = _methodCompressionPicker?.CompressResponse(method) ?? false;
 
             var methodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.Virtual | MethodAttributes.NewSlot;
 
