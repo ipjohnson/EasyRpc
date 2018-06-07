@@ -440,7 +440,14 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     ICallExceptionFilter exceptionFilter = callFilter as ICallExceptionFilter;
 
-                    exceptionFilter?.HandleException(callExecutionContext, exp);
+                    try
+                    {
+                        exceptionFilter?.HandleException(callExecutionContext, exp);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger?.LogError(EventIdCode.ExecutionFilterException, e, "Exception thrown while invoking ICallExceptionFilter");
+                    }
                 }
             }
 
