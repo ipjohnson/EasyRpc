@@ -292,36 +292,45 @@ namespace EasyRpc.AspNetCore.Documentation
             };
         }
 
-        private string GetFriendlyTypeName(Type parameterParameterType, out bool isArray)
+        private string GetFriendlyTypeName(Type type, out bool isArray)
         {
             isArray = false;
 
-            if (parameterParameterType == typeof(string) ||
-                parameterParameterType.GetTypeInfo().IsPrimitive)
+            if (type == typeof(string) ||
+                type.GetTypeInfo().IsPrimitive)
             {
-                return parameterParameterType.Name;
+                return type.Name;
             }
 
-            if (parameterParameterType.IsConstructedGenericType &&
-                parameterParameterType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+            if (type.IsConstructedGenericType)
             {
-                isArray = true;
+                var genericTypeDefinition = type.GetGenericTypeDefinition();
 
-                return "Array[" + GetFriendlyTypeName(parameterParameterType.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
+                if (genericTypeDefinition == typeof(IEnumerable<>))
+                {
+                    isArray = true;
+
+                    return "Array[" + GetFriendlyTypeName(type.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
+                }
+
+                if (genericTypeDefinition == typeof(ResponseMessage<>))
+                {
+                    return GetFriendlyTypeName(type.GetTypeInfo().GetGenericArguments()[0], out isArray);
+                }
             }
 
-            foreach (var @interface in parameterParameterType.GetTypeInfo().ImplementedInterfaces)
+            foreach (var @interface in type.GetTypeInfo().ImplementedInterfaces)
             {
                 if (@interface.IsConstructedGenericType &&
                     @interface.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 {
                     isArray = true;
 
-                    return "Array[" + GetFriendlyTypeName(@interface.GetTypeInfo().GetGenericArguments()[0], out var unused);
+                    return "Array[" + GetFriendlyTypeName(@interface.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
                 }
             }
 
-            return parameterParameterType.Name;
+            return type.Name;
         }
     }
 }
