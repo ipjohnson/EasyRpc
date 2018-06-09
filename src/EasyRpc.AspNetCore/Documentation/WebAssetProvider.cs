@@ -134,7 +134,7 @@ namespace EasyRpc.AspNetCore.Documentation
                         bundleFile.Write(bytes, 0, bytes.Length);
                     }
 
-                    if (_configuration.Value.SupportResponseCompression)
+                    if (_configuration.Value?.SupportResponseCompression ?? false)
                     {
                         using (var bundleFile = File.Open(bundleFilePath + ".gz", FileMode.Create))
                         {
@@ -173,7 +173,8 @@ namespace EasyRpc.AspNetCore.Documentation
                 
                 if (File.Exists(file))
                 {
-                    if (_configuration.Value.SupportResponseCompression &&
+                    if (_configuration.Value != null && 
+                        _configuration.Value.SupportResponseCompression &&
                         !shouldReplaceVar &&
                         context.SupportsGzipCompression())
                     {
