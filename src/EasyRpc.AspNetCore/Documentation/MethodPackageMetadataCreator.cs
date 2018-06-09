@@ -23,6 +23,18 @@ namespace EasyRpc.AspNetCore.Documentation
         public string Comments { get; set; }
     }
 
+    public class TypeRef
+    {
+        public string FullName { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public bool Array { get; set; }
+
+        [JsonIgnore]
+        public Type Type { get; set; }
+    }
+
     public class JsonMethodInfo
     {
         public string Path { get; set; }
@@ -35,7 +47,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public List<JsonParameterInfo> Parameters { get; set; }
 
-        public string ReturnType { get; set; }
+        public TypeRef ReturnType { get; set; }
 
         [JsonIgnore]
         public ExposedMethodInformation Method { get; set; }
@@ -45,13 +57,11 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         public string Name { get; set; }
 
-        public string ParameterType { get; set; }
+        public TypeRef ParameterType { get; set; }
 
         public bool Stringify { get; set; }
 
         public bool Enumeration { get; set; }
-
-        public List<string> EnumerationOptions { get; set; }
 
         public bool Optional { get; set; }
 
@@ -60,7 +70,7 @@ namespace EasyRpc.AspNetCore.Documentation
         public string Comments { get; set; }
 
         public string HtmlType { get; set; }
-        
+
         public bool Array { get; set; }
 
         [JsonIgnore]
@@ -81,11 +91,14 @@ namespace EasyRpc.AspNetCore.Documentation
         private List<JsonDataPackage> _dataPackages;
         private bool _hasAuthorization = false;
         private IXmlDocumentationProvider _xmlDocumentationProvider;
+        private ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
+        private List<TypeDefinition> _typeDefinitions;
 
-        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider)
+        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider)
         {
             _serializer = serializer;
             _xmlDocumentationProvider = xmlDocumentationProvider;
+            _typeDefinitionPackageProvider = typeDefinitionPackageProvider;
         }
 
         public void SetConfiguration(EndPointConfiguration endPointConfiguration)
@@ -121,7 +134,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 var methods = new List<JsonMethodInfo>();
 
                 route.Value.Sort((x, y) => string.Compare(x.MethodName, y.MethodName, StringComparison.OrdinalIgnoreCase));
-                
+
                 foreach (var methodInformation in route.Value)
                 {
                     methods.Add(GenerateInfoForMethod(route.Key, methodInformation));
@@ -138,7 +151,8 @@ namespace EasyRpc.AspNetCore.Documentation
                 }
             }
 
-            _xmlDocumentationProvider.PopulateMethodDocumentation(_dataPackages);
+            _typeDefinitions = _typeDefinitionPackageProvider.GetTypeDefinitions(_dataPackages).ToList();
+            _xmlDocumentationProvider.PopulateMethodDocumentation(_dataPackages, _typeDefinitions);
         }
 
         public async Task CreatePackage(HttpContext context)
@@ -151,7 +165,7 @@ namespace EasyRpc.AspNetCore.Documentation
                     {
                         context.Response.ContentType = "application/json; charset=utf-8";
 
-                        _serializer.Serialize(jsonStream, new { endpoints = _dataPackages });
+                        _serializer.Serialize(jsonStream, new { endpoints = _dataPackages, dataTypes = _typeDefinitions });
 
                         return;
                     }
@@ -209,7 +223,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     context.Response.ContentType = "application/json; charset=utf-8";
 
-                    _serializer.Serialize(jsonStream, new { endpoints = returnList });
+                    _serializer.Serialize(jsonStream, new { endpoints = returnList, dataTypes = _typeDefinitions });
                 }
             }
         }
@@ -234,23 +248,23 @@ namespace EasyRpc.AspNetCore.Documentation
                         parameterString += ", ";
                     }
 
-                    var friendlyName = GetFriendlyTypeName(parameter.ParameterType, out var isArray);
+                    var friendlyName = TypeUtilities.GetFriendlyTypeName(parameter.ParameterType, out var currentType, out var isArray);
 
                     parameterString += $"{friendlyName} {parameter.Name}";
 
-                    bool stringify = !(parameter.ParameterType == typeof(string) ||
-                        parameter.ParameterType.GetTypeInfo().IsEnum ||
-                        parameter.ParameterType == typeof(DateTime) ||
-                        parameter.ParameterType == typeof(DateTime?));
+                    bool stringify = !(currentType == typeof(string) ||
+                                       currentType.GetTypeInfo().IsEnum ||
+                                       currentType == typeof(DateTime) ||
+                                       currentType == typeof(DateTime?));
 
                     var htmlType = "text";
 
                     var type = Nullable.GetUnderlyingType(parameter.ParameterType) ?? parameter.ParameterType;
-                    
+
                     if (type == typeof(int) || type == typeof(uint) ||
                         type == typeof(short) || type == typeof(ushort) ||
                         type == typeof(long) || type == typeof(ulong) ||
-                        type == typeof(double) || type == typeof(float) || type == typeof(decimal) )
+                        type == typeof(double) || type == typeof(float) || type == typeof(decimal))
                     {
                         htmlType = "number";
                     }
@@ -262,12 +276,12 @@ namespace EasyRpc.AspNetCore.Documentation
                     parameterList.Add(new JsonParameterInfo
                     {
                         Name = parameter.Name,
-                        ParameterType = parameter.ParameterType.FullName,
+                        ParameterType = TypeUtilities.CreateTypeRef(parameter.ParameterType),
                         ParameterInfo = parameter,
                         Array = isArray,
                         Stringify = stringify,
                         Optional = parameter.IsOptional,
-                        DefaultValue = parameter.DefaultValue,
+                        DefaultValue = parameter.IsOptional ? parameter.DefaultValue : null,
                         HtmlType = htmlType
                     });
                 }
@@ -279,59 +293,19 @@ namespace EasyRpc.AspNetCore.Documentation
                 _hasAuthorization = true;
             }
 
-            displayString = $"{GetFriendlyTypeName(method.ReturnType, out var unused)} {method.Name}({parameterString})";
+            displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {method.Name}({parameterString})";
 
             return new JsonMethodInfo
             {
                 Path = route,
                 Name = methodInformation.MethodName,
                 Signature = displayString,
-                ReturnType = methodInformation.MethodInfo.ReturnType.Name,
+                ReturnType = TypeUtilities.CreateTypeRef( methodInformation.MethodInfo.ReturnType),
                 Parameters = parameterList,
                 Method = methodInformation
             };
         }
 
-        private string GetFriendlyTypeName(Type type, out bool isArray)
-        {
-            isArray = false;
-
-            if (type == typeof(string) ||
-                type.GetTypeInfo().IsPrimitive)
-            {
-                return type.Name;
-            }
-
-            if (type.IsConstructedGenericType)
-            {
-                var genericTypeDefinition = type.GetGenericTypeDefinition();
-
-                if (genericTypeDefinition == typeof(IEnumerable<>))
-                {
-                    isArray = true;
-
-                    return "Array[" + GetFriendlyTypeName(type.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
-                }
-
-                if (genericTypeDefinition == typeof(ResponseMessage<>))
-                {
-                    return GetFriendlyTypeName(type.GetTypeInfo().GetGenericArguments()[0], out isArray);
-                }
-            }
-
-            foreach (var @interface in type.GetTypeInfo().ImplementedInterfaces)
-            {
-                if (@interface.IsConstructedGenericType &&
-                    @interface.GetGenericTypeDefinition() == typeof(IEnumerable<>))
-                {
-                    isArray = true;
-
-                    return "Array[" + GetFriendlyTypeName(@interface.GetTypeInfo().GetGenericArguments()[0], out var unused) + "]";
-                }
-            }
-
-            return type.Name;
-        }
     }
 }
 

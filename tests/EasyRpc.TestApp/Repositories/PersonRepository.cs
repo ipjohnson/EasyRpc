@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EasyRpc.TestApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasyRpc.TestApp.Repositories
 {
@@ -29,6 +30,7 @@ namespace EasyRpc.TestApp.Repositories
         public PersonRepository()
         {
             _personModels = new ConcurrentDictionary<int, PersonModel>();
+
             _personModels.TryAdd(1, new PersonModel
             {
                 PersonId = 1,

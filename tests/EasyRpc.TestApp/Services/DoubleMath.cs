@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasyRpc.TestApp.Services
 {
@@ -18,6 +19,11 @@ namespace EasyRpc.TestApp.Services
         public double Subtract(double x, double y)
         {
             return x - y;
+        }
+
+        public DateTime Test(DateTime input)
+        {
+            return input;
         }
 
     }

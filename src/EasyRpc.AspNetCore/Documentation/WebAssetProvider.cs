@@ -6,7 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
+using EasyRpc.AspNetCore.Utilities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Documentation
@@ -36,14 +38,17 @@ namespace EasyRpc.AspNetCore.Documentation
         private IMethodPackageMetadataCreator _methodPackageMetadataCreator;
         private int _routeLength;
         private IVariableReplacementService _variableReplacementService;
-        private ITypeDefinitionPackageProvider _definitionPackageProvider;
+        private IOptions<RpcServiceConfiguration> _configuration;
         protected string ExtractedAssetPath;
 
-        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator, IVariableReplacementService variableReplacementService, ITypeDefinitionPackageProvider definitionPackageProvider)
+
+        public WebAssetProvider(IMethodPackageMetadataCreator methodPackageMetadataCreator,
+            IVariableReplacementService variableReplacementService,
+            IOptions<RpcServiceConfiguration> configuration)
         {
             _methodPackageMetadataCreator = methodPackageMetadataCreator;
             _variableReplacementService = variableReplacementService;
-            _definitionPackageProvider = definitionPackageProvider;
+            _configuration = configuration;
             ProcessAssets();
         }
 
@@ -94,7 +99,7 @@ namespace EasyRpc.AspNetCore.Documentation
         private void CreateBundles()
         {
             var bundleConfigFilePath = Path.Combine(ExtractedAssetPath, "bundle", "bundle-config.json");
-            
+
             var configString = File.ReadAllText(bundleConfigFilePath);
 
             var bundleConfigFile = JsonConvert.DeserializeObject<BundleConfigFile>(configString);
@@ -103,9 +108,9 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 var bundleFilePath = Path.Combine(ExtractedAssetPath, bundle.Name);
 
-                using (var bundleFile = File.Open(bundleFilePath, FileMode.Create))
+                using (var memoryStream = new MemoryStream())
                 {
-                    using (var stream = new StreamWriter(bundleFile))
+                    using (var stream = new StreamWriter(memoryStream))
                     {
                         foreach (var file in bundle.Files)
                         {
@@ -118,6 +123,24 @@ namespace EasyRpc.AspNetCore.Documentation
                             if (!fileString.EndsWith("\n"))
                             {
                                 stream.Write('\n');
+                            }
+                        }
+                    }
+
+                    var bytes = memoryStream.ToArray();
+
+                    using (var bundleFile = File.Open(bundleFilePath, FileMode.Create))
+                    {
+                        bundleFile.Write(bytes, 0, bytes.Length);
+                    }
+
+                    if (_configuration.Value.SupportResponseCompression)
+                    {
+                        using (var bundleFile = File.Open(bundleFilePath + ".gz", FileMode.Create))
+                        {
+                            using (var gzipStream = new GZipStream(bundleFile, CompressionLevel.Optimal))
+                            {
+                                gzipStream.Write(bytes, 0, bytes.Length);
                             }
                         }
                     }
@@ -135,7 +158,7 @@ namespace EasyRpc.AspNetCore.Documentation
         public async Task<bool> ProcessRequest(HttpContext context)
         {
             var assetPath = context.Request.Path.Value.Substring(_routeLength);
-            
+
             Console.WriteLine("Asset path: " + assetPath);
 
             if (assetPath.Length == 0)
@@ -145,12 +168,22 @@ namespace EasyRpc.AspNetCore.Documentation
 
             try
             {
+                var shouldReplaceVar = ShouldReplaceVariables(assetPath);
                 var file = Path.Combine(ExtractedAssetPath, assetPath);
-
-                Console.WriteLine("File path: " + file);
+                
                 if (File.Exists(file))
                 {
-                    Console.WriteLine("File exists path: " + file);
+                    if (_configuration.Value.SupportResponseCompression &&
+                        !shouldReplaceVar &&
+                        context.SupportsGzipCompression())
+                    {
+                        if (File.Exists(file + ".gz"))
+                        {
+                            file = file + ".gz";
+                            context.Response.Headers.Add("Content-Encoding", "gzip");
+                        }
+                    }
+
                     var bytes = File.ReadAllBytes(file);
                     context.Response.StatusCode = StatusCodes.Status200OK;
 
@@ -194,7 +227,6 @@ namespace EasyRpc.AspNetCore.Documentation
             }
             catch (Exception e)
             {
-
                 Console.WriteLine("File path: " + e);
             }
 
@@ -214,7 +246,6 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             _methodPackageMetadataCreator.SetConfiguration(configuration);
             _variableReplacementService.Configure(configuration.Route);
-            _definitionPackageProvider.SetupTypeDefinitions(configuration.Methods.Values);
             _routeLength = configuration.Route.Length;
         }
     }

@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
+using EasyRpc.AspNetCore.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -174,10 +175,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private void SerializeToResponseBody(HttpContext context, object values, bool canSerialize)
         {
-            var header = context.Request.Headers["Accept-Encoding"];
-            
             if (canSerialize &&
-                header.Any(s => s.Contains("gzip")))
+                context.SupportsGzipCompression())
             {
                 context.Response.Headers["Content-Encoding"] = new StringValues("gzip");
 

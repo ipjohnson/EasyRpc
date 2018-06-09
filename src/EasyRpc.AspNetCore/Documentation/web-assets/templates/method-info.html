@@ -1,24 +1,50 @@
 <div id="methodInfoPage">
     <h3 class="s-title">{ endpoint.DisplayName }.{ Name }</h3>
-    <div class="panel" style="height: auto">
-        <div class="panel-header ">
-            <div class="panel-title alert alert-primary">{ Signature }<br/>{ Comments }</div>
+    <div class="panel-title alert alert-primary">{ Signature }<br />{ Comments }</div>
+    <table id="parameterTable" width="100%">
+        <tr rv-each-parameter="Parameters" style="margin: 4px">
+            <td class="parameter-name-cell"><span rv-title="parameter.Comments" rv-class="parameter.parameterNameClass | call">{ parameter.Name }</span></td>
+            <td class="parameter-value-cell"><input rv-type="parameter.HtmlType" class="parameter-input" rv-placeholder="parameter.Comments" rv-data-stringify="parameter.Stringify" /></td>
+            <td>{ parameter.defaultDisplay | call }</td>
+        </tr>
+    </table>
+    <br />
+    <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod" rv-data-path="Path">Execute</button></div>
+    <div id="responseDiv" class="hide-element">
+        <br />
+        <div class="accordion">
+            <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden checked="">
+            <label class="accordion-header" for="accordion-1">
+                <i class="icon icon-arrow-right mr-1"></i>
+                Response
+            </label>
+            <div class="accordion-body">
+                <div id="responseOutput"></div>
+                <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
+            </div>
         </div>
-        <div class="panel-nav">
-            <!-- navigation components: tabs, breadcrumbs or pagination -->
-        </div>
-        <div class="panel-body">
-            <table width="100%">
-                <tr rv-each-parameter="Parameters" style="margin: 4px">
-                    <td class="parameter-name-cell"><span rv-title="parameter.Comments">{ parameter.Name }</span></td>
-                    <td class="parameter-value-cell"><input rv-type="parameter.HtmlType" class="parameter-input" rv-placeholder="parameter.Comments" rv-data-stringify="parameter.Stringify"/></td>
-                </tr>
-            </table>
-            <br/>
-            <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod" rv-data-path="Path">Execute</button></div>
-            <div><h4>Response:</h4></div>
-            <div id="responseOutput"></div>
-            <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
+    </div>
+    <div rv-if="hasModels | call">
+        <br />
+        <h3>Models</h3>
+        <div class="panel-title alert alert-primary" rv-each-typedef="models | call">
+            <details class="accordion">
+                <summary class="accordion-header">
+                    <i class="icon icon-arrow-right mr-1"></i>
+                    <span>{ typedef.Name }</span><span class="pad-left">{ typedef.displayComment | call }</span>
+                </summary>
+                <div class="accordion-body">
+                    <table class="model-table">
+                        <tbody>
+                            <tr class="model-table-row" rv-each-property="typedef.Properties">
+                                <td><span rv-class="property.propertyNameClass | call">{ property.Name }</span></td>
+                                <td class="pad-left">{ property.PropertyType.DisplayName }</td>
+                                <td class="pad-left">{ property.displayComment | call }</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
         </div>
     </div>
 </div>

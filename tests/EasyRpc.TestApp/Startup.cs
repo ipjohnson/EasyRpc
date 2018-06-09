@@ -34,7 +34,7 @@ namespace EasyRpc.TestApp
             services.AddJsonRpc(c =>
             {
                 c.DebugLogging = false;
-                c.SupportResponseCompression = false;
+                c.SupportResponseCompression = true;
             });
 
             services.AddSingleton<IPersonRepository, PersonRepository>();

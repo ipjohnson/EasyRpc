@@ -1,7 +1,7 @@
 
 <div class="accordion-container" id="accordionPanel">
     <div class="accordion" rv-each-endpoint="endpoints">
-        <input type="checkbox" rv-id="%endpoint% | uniqueId 'docs-accordion-'" name="docs-accordion-checkbox" hidden/>
+        <input type="checkbox" rv-id="%endpoint% | uniqueId 'docs-accordion-'" name="docs-accordion-checkbox" hidden />
         <label class="accordion-header c-hand" rv-for="%endpoint% | uniqueId 'docs-accordion-'" rv-title="endpoint.Comments">
             { endpoint.DisplayName }
         </label>
@@ -9,6 +9,19 @@
             <ul class="menu menu-nav">
                 <li class="menu-item" rv-each-method="endpoint.Methods">
                     <a class="methodLink" href="#" rv-title="method.displayText | call" rv-on-click="method.activate">{ method.Name }</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input type="checkbox" id="modelsInput" name="docs-accordion-checkbox" hidden />
+        <label class="accordion-header c-hand" for="modelsInput" title="Models">
+            Models
+        </label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item" rv-each-model="dataTypes">
+                    <a class="typeLink" href="#" rv-title="model.Name" rv-on-click="model.activate">{ model.Name }</a>
                 </li>
             </ul>
         </div>

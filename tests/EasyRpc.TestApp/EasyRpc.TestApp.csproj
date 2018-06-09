@@ -21,7 +21,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
 </Project>

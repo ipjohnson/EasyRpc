@@ -10,12 +10,13 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public interface IXmlDocumentationProvider
     {
-        void PopulateMethodDocumentation(List<JsonDataPackage> packages);
+        void PopulateMethodDocumentation(List<JsonDataPackage> packages, List<TypeDefinition> typeDefinitions);
+
     }
 
     public class XmlDocumentationProvider : IXmlDocumentationProvider
     {
-        public void PopulateMethodDocumentation(List<JsonDataPackage> packages)
+        public void PopulateMethodDocumentation(List<JsonDataPackage> packages, List<TypeDefinition> typeDefinitions)
         {
             var xmlDocs = new Dictionary<Assembly, XDocument>();
 
@@ -47,7 +48,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                                 if (summary != null)
                                 {
-                                    method.Comments = summary.Value?.Trim('\n',' ');
+                                    method.Comments = summary.Value?.Trim('\n', ' ');
                                 }
 
                                 var parameters = element.Descendants("param");
@@ -63,19 +64,67 @@ namespace EasyRpc.AspNetCore.Documentation
 
                                         if (paramDocNode != null)
                                         {
-                                            paramDocNode.Comments = parameterElement.Value?.Trim('\n',' ');
+                                            paramDocNode.Comments = parameterElement.Value?.Trim('\n', ' ');
                                         }
                                     }
                                 }
                             }
-                            else if (name.Value.StartsWith("T:" + methodInfo.DeclaringType.FullName) && 
+                            else if (name.Value.StartsWith("T:" + methodInfo.DeclaringType.FullName) &&
                                      package.Comments == null)
                             {
                                 var summary = element.Descendants("summary").FirstOrDefault();
 
                                 if (summary != null)
                                 {
-                                    package.Comments = summary.Value?.Trim('\n',' ');
+                                    package.Comments = summary.Value?.Trim('\n', ' ');
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            foreach (var typeDefinition in typeDefinitions)
+            {
+                var xdoc = GetDocumentForAssembly(xmlDocs, typeDefinition.Type.GetTypeInfo().Assembly);
+
+                if (xdoc == null)
+                {
+                    continue;
+                }
+
+                var membersNode = xdoc.Descendants("members");
+
+                foreach (var element in membersNode.Descendants("member"))
+                {
+                    var name = element.Attribute("name");
+
+                    if (name != null)
+                    {
+                        if (name.Value == "T:" + typeDefinition.FullName)
+                        {
+                            var summary = element.Descendants("summary").FirstOrDefault();
+
+                            typeDefinition.Comment = summary?.Value?.Replace('\n', ' ').Trim(' ');
+                        }
+                        else
+                        {
+                            var propertyStart = "P:" + typeDefinition.FullName + ".";
+
+                            if (name.Value.StartsWith(propertyStart))
+                            {
+                                var summary = element.Descendants("summary").FirstOrDefault();
+
+                                if (summary?.Value != null)
+                                {
+                                    foreach (var typeDefinitionProperty in typeDefinition.Properties)
+                                    {
+                                        if (name.Value.Substring(propertyStart.Length) == typeDefinitionProperty.Name)
+                                        {
+                                            typeDefinitionProperty.Comment = summary.Value.Replace('\n',' ').Trim(' ');
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -103,6 +152,10 @@ namespace EasyRpc.AspNetCore.Documentation
                             xdoc = XDocument.Load(file);
                             xmlDocs[assembly] = xdoc;
                         }
+                    }
+                    else
+                    {
+                        xmlDocs[assembly] = null;
                     }
                 }
                 catch (Exception e)
