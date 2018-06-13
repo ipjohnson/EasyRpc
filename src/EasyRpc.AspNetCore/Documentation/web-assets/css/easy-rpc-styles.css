@@ -47,10 +47,22 @@
     border: 1px solid #ced4da;
 }
 
+.json-textarea {
+    width: 95%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    padding: .375rem .75rem;
+    height: 10rem;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    resize: vertical
+}
+
 .alert {
     position: relative;
     padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     border: 1px solid transparent;
     border-radius: 0.25rem;
 }
@@ -95,4 +107,12 @@
 
 .alert-success .alert-link {
     color: #0b2e13;
+}
+
+.clickable {
+    cursor: pointer
+}
+
+.response-area {
+    overflow: auto
 }

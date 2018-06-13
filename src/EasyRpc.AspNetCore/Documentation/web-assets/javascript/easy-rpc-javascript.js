@@ -1,5 +1,7 @@
 function setupApp(path) {
-  window.easyRpc = { url: path, templates: {}, id: 1 };
+  window.easyRpc = {
+    url: path, templates: {}, id: 1, headers: [{ key: "Content-Type", value: "application/json" }, { key: "", value: "" }]
+  };
 
   ajax(path + 'interface-definition',
     {},
@@ -18,11 +20,11 @@ function processJsonResponse(error, data) {
     endpointClass(data);
     window.easyRpc.data = data;
     window.easyRpc.setup = true;
-    setupData();
+    setupData('');
   }
 }
 
-function setupData() {
+function setupData(template) {
   var methodTemplate = window.easyRpc.templates['methods'];
   if (window.easyRpc.data !== null &&
     methodTemplate !== undefined &&
@@ -32,21 +34,24 @@ function setupData() {
     var templateInstance = u(methodTemplate);
     rivets.bind(templateInstance.nodes[0], window.easyRpc.data);
     u('#endpointNavigationPanel').append(templateInstance);
+    u('#endpointNavigationPanel label.c-hand').nodes[0].click();
+    u('#endpointNavigationPanel a.methodLink').nodes[0].click();
   }
 }
 
 function fetchTemplate(name, templateFinished) {
-  if (easyRpc.templates[name] === undefined) {
+  var template = easyRpc.templates[name];
+  if (template === undefined) {
     ajax(window.easyRpc.url + 'templates/' + name + '.html',
       {},
-      function(error, data) {
+      function (error, data) {
         if (data !== null) {
           window.easyRpc.templates[name] = data;
         }
-        templateFinished();
+        templateFinished(data);
       });
   } else {
-    templateFinished();
+    templateFinished(template);
   }
 }
 
@@ -63,6 +68,7 @@ function endpointClass(endpointList) {
       method.executeMethod = executeMethod;
       method.models = associatedModels;
       method.hasModels = hasModels;
+      method.tabActivatedHandler = tabActivatedHandler;
       method.displayText = function () {
         if (this.Comments !== null) {
           return this.Comments + '\n' + this.Signature;
@@ -71,13 +77,99 @@ function endpointClass(endpointList) {
       }
       var parameterLength = method.Parameters.length;
       for (var k = 0; k < parameterLength; k++) {
-        method.Parameters[k].parameterNameClass = parameterNameClass;
-        method.Parameters[k].defaultDisplay = defaultDisplay;
+        var parameter = method.Parameters[k];
+        parameter.parameterNameClass = parameterNameClass;
+        parameter.defaultDisplay = defaultDisplay;
+        parameter.currentValue = "";
       }
     }
   }
   processTypeDefinitions(endpointList.dataTypes);
 }
+
+function tabActivatedHandler(event, binding) {
+  var tabType = u(event.target).data('tab-type');
+  var activeTabType = u('#parametersTabDiv li.active a').data('tab-type');
+  if (tabType === 'raw') {
+    setupRawTextArea(binding);
+    u('#parameterDiv').addClass('hide-element');
+    u('#headersDiv').addClass('hide-element');
+    u('#rawMessageDiv').removeClass('hide-element');
+    u('#rawMessageArea').nodes[0].focus();
+  } else if (tabType === 'headers') {
+    if (activeTabType === 'raw') {
+      saveDataToParameters(event, binding);
+    }
+    setupHeaders();
+    u('#parameterDiv').addClass('hide-element');
+    u('#rawMessageDiv').addClass('hide-element');
+    u('#headersDiv').removeClass('hide-element');
+    var headerNodes = u('#headerTable .parameter-input').nodes;
+    if (headerNodes.length >= 2) {
+      headerNodes[headerNodes.length - 2].focus();
+    }
+  } else if (tabType === 'parameters') {
+    if (activeTabType === 'raw') {
+      saveDataToParameters(event, binding);
+    }
+    u('#rawMessageDiv').addClass('hide-element');
+    u('#headersDiv').addClass('hide-element');
+    u('#parameterDiv').removeClass('hide-element');
+    var paramNodes = u('#parameterTable .parameter-input').nodes;
+    if (paramNodes.length > 0) {
+      paramNodes[0].focus();
+    }
+  }
+  u('li.tab-item').removeClass('active');
+  u(event.target).closest('li').addClass('active');
+}
+
+function setupHeaders() {
+  fetchTemplate('header-editor',
+    function (template) {
+      var templateInstance = u(template);
+      rivets.bind(templateInstance.nodes[0], easyRpc);
+      u('#headersDiv').empty().append(templateInstance);
+      u('#addHeader').on('click', function () {
+        easyRpc.headers.push({ key: "", value: "" });
+      });
+      u('#headerTable').on('click', '.header-delete-button', function () {
+        var index = Number(u(this).data('header-index'));
+        if (index !== 0) {
+          easyRpc.headers.splice(index, 1);
+        }
+      });
+    });
+}
+
+function saveDataToParameters(event, binding) {
+  var stringValues = u('#rawMessageArea').nodes[0].value;
+  var arrayValue = JSON.parse(stringValues);
+  var arrayValueLength = arrayValue.length;
+  var parameterLength = easyRpc.currentMethod.Parameters.length;
+  for (var i = 0; i < arrayValueLength && i < parameterLength; i++) {
+    easyRpc.currentMethod.Parameters[i].currentValue = JSON.stringify(arrayValue[i]);
+  }
+}
+
+function setupRawTextArea(binding) {
+  var parameterLength = binding.Parameters.length;
+  var parameterArray = [];
+  for (var k = 0; k < parameterLength; k++) {
+    var currentValue = binding.Parameters[k].currentValue;
+    if (currentValue === '') {
+      parameterArray.push(currentValue);
+    } else {
+      if (binding.Parameters[k].Stringify === true) {
+        parameterArray.push(JSON.parse(currentValue));
+      } else {
+        parameterArray.push(currentValue);
+      }
+    }
+  }
+  u('#rawMessageArea').nodes[0].value = JSON.stringify(parameterArray, undefined, 2);
+}
+
 function defaultDisplay() {
   if (this.DefaultValue !== undefined && this.DefaultValue !== null) {
     return 'Default: ' + this.DefaultValue;
@@ -97,7 +189,7 @@ function hasModels() {
 }
 
 function associatedModels() {
- if (this.modelList !== undefined) {
+  if (this.modelList !== undefined) {
     return this.modelList;
   }
   var models = [];
@@ -112,7 +204,7 @@ function associatedModels() {
 
 function getModelsForType(models, name) {
   var returnTypeModel = easyRpc.dataTypes[name];
-  if (returnTypeModel !== undefined && 
+  if (returnTypeModel !== undefined &&
     models.indexOf(returnTypeModel) === -1) {
     models.push(returnTypeModel);
     var arrayLength = returnTypeModel.Properties.length;
@@ -154,33 +246,52 @@ function displayComment() {
 }
 
 function executeMethod(event, binding) {
+  debugger;
   var sourceElement = u(event.target);
-  var inputElements = u('#parameterTable .parameter-input');
+  var activeTab = u('#parametersTabDiv li.active a').data('tab-type');
   var callArrayString = [];
-  inputElements.each(function (element) {
-    if (element.value !== "") {
-      if (u(element).data('stringify') === "true") {
-        callArrayString.push(JSON.parse(element.value));
-      } else {
-        callArrayString.push(element.value);
+  if (activeTab === 'raw') {
+    callArrayString = JSON.parse(u('#rawMessageArea').nodes[0].value);
+  } else {
+    var inputElements = u('#parameterTable .parameter-input');
+
+    inputElements.each(function(element) {
+      if (element.value !== "") {
+        if (u(element).data('stringify') === "true") {
+          callArrayString.push(JSON.parse(element.value));
+        } else {
+          callArrayString.push(element.value);
+        }
       }
+    });
+  }
+
+  var headers = {};
+
+  var headerArrayLength = easyRpc.headers.length;
+  for (var i = 0; i < headerArrayLength; i++) {
+    var entry = easyRpc.headers[i];
+    if (entry.key !== "") {
+      headers[entry.key] = entry.value;
     }
-  });
+  }
 
   var message = { 'jsonrpc': '2.0', 'method': binding.Name, 'params': callArrayString, 'id': easyRpc.id++ };
+
+  var url = window.easyRpc.url + sourceElement.data('path');
+
   var startTime;
   try {
     startTime = performance.now();
   } catch (e) {
     // catching
   }
-  var url = window.easyRpc.url + sourceElement.data('path');
 
   ajax(url,
     {
       method: "POST",
       body: message,
-      headers: { "Content-Type": "application/json" }
+      headers: headers
     },
     function (error, data) {
       try {
@@ -202,16 +313,20 @@ function executeMethod(event, binding) {
 
 function activateMethod(event, binding) {
   var methodData = binding.method;
+  easyRpc.currentMethod = methodData;
   var template = window.easyRpc.templates["method-info"];
   var templateInstance = u(template);
   rivets.bind(templateInstance.nodes[0], methodData);
-  templateInstance.nodes[0].dataset.methodInfo = methodData;
   u('#mainContentContainer').empty().append(templateInstance);
+  fetchTemplate('header-editor', function (template) { });// pre-load template
+  var paramNodes = u('#parameterTable .parameter-input').nodes;
+  if (paramNodes.length > 0) {
+    paramNodes[0].focus();
+  }
 }
 
 function activateType(event, binding) {
- fetchTemplate('type-definitions-list', function() {
-    var template = window.easyRpc.templates["type-definitions-list"];
+  fetchTemplate('type-definitions-list', function (template) {
     var templateInstance = u(template);
     rivets.bind(templateInstance.nodes[0], easyRpc.data);
     u('#mainContentContainer').empty().append(templateInstance);

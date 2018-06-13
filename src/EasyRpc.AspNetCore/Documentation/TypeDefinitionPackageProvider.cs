@@ -45,6 +45,8 @@ namespace EasyRpc.AspNetCore.Documentation
 
             if (type == typeof(string) ||
                 type == typeof(DateTime) ||
+                type == typeof(decimal) ||
+                type == typeof(Guid) ||
                 type == typeof(void) ||
                 typeInfo.IsPrimitive)
             {

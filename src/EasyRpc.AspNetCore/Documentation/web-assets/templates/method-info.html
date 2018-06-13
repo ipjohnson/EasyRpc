@@ -1,13 +1,32 @@
 <div id="methodInfoPage">
     <h3 class="s-title">{ endpoint.DisplayName }.{ Name }</h3>
     <div class="panel-title alert alert-primary">{ Signature }<br />{ Comments }</div>
-    <table id="parameterTable" width="100%">
-        <tr rv-each-parameter="Parameters" style="margin: 4px">
-            <td class="parameter-name-cell"><span rv-title="parameter.Comments" rv-class="parameter.parameterNameClass | call">{ parameter.Name }</span></td>
-            <td class="parameter-value-cell"><input rv-type="parameter.HtmlType" class="parameter-input" rv-placeholder="parameter.Comments" rv-data-stringify="parameter.Stringify" /></td>
-            <td>{ parameter.defaultDisplay | call }</td>
-        </tr>
-    </table>
+    <ul id="parametersTabDiv" class="tab tab-block">
+        <li class="tab-item active">
+            <a href="#" rv-on-click="tabActivatedHandler" data-tab-type="parameters">Parameters</a>
+        </li>
+        <li class="tab-item">
+            <a href="#" rv-on-click="tabActivatedHandler" data-tab-type="raw">Raw Message</a>
+        </li>
+        <li class="tab-item">
+            <a href="#" rv-on-click="tabActivatedHandler" data-tab-type="headers">Headers</a>
+        </li>
+    </ul>
+    <div id="parameterDiv">
+        <table id="parameterTable" width="100%">
+            <tr rv-each-parameter="Parameters" style="margin: 4px">
+                <td class="parameter-name-cell"><span rv-title="parameter.Comments" rv-class="parameter.parameterNameClass | call">{ parameter.Name }</span></td>
+                <td class="parameter-value-cell"><input rv-type="parameter.HtmlType" class="parameter-input" rv-placeholder="parameter.Comments" rv-data-stringify="parameter.Stringify" rv-value="parameter.currentValue" /></td>
+                <td>{ parameter.defaultDisplay | call }</td>
+            </tr>
+        </table>
+    </div>
+    <div class="hide-element" id="rawMessageDiv">
+        <textarea id="rawMessageArea" class="json-textarea"></textarea>
+    </div>
+    <div class="hide-element" id="headersDiv">
+
+    </div>
     <br />
     <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod" rv-data-path="Path">Execute</button></div>
     <div id="responseDiv" class="hide-element">
