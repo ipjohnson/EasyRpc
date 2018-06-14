@@ -1,6 +1,6 @@
 <div id="methodInfoPage">
     <h3 class="s-title">{ endpoint.DisplayName }.{ Name }</h3>
-    <div class="panel-title alert alert-primary">{ Signature }<br />{ Comments }</div>
+    <div class="alert alert-primary">{ Signature }<br />{ Comments }</div>
     <ul id="parametersTabDiv" class="tab tab-block">
         <li class="tab-item active">
             <a href="#" rv-on-click="tabActivatedHandler" data-tab-type="parameters">Parameters</a>
@@ -33,12 +33,9 @@
         <br />
         <div class="accordion">
             <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden checked="">
-            <label class="accordion-header" for="accordion-1">
-                <i class="icon icon-arrow-right mr-1"></i>
-                Response
-            </label>
+            <label class="accordion-header" for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Response</label>
             <div class="accordion-body">
-                <div id="responseOutput"></div>
+                <div id="responseOutput" style="overflow: auto"></div>
                 <span id="httpStatus"></span><span id="executionTime" style="float: right"></span>
             </div>
         </div>
@@ -46,7 +43,7 @@
     <div rv-if="hasModels | call">
         <br />
         <h3>Models</h3>
-        <div class="panel-title alert alert-primary" rv-each-typedef="models | call">
+        <div class="alert alert-primary" rv-each-typedef="models | call">
             <details class="accordion">
                 <summary class="accordion-header">
                     <i class="icon icon-arrow-right mr-1"></i>
