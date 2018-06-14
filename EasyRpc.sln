@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.FluentVa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.DataAnnotations", "src\EasyRpc.AspNetCore.DataAnnotations\EasyRpc.AspNetCore.DataAnnotations.csproj", "{EF958CBB-506D-4E09-9BC5-91DDD5943616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.TestApp", "tests\EasyRpc.TestApp\EasyRpc.TestApp.csproj", "{C821FF58-FDDC-4997-8FD6-7FC1F0532741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.TestApp", "tests\EasyRpc.TestApp\EasyRpc.TestApp.csproj", "{C821FF58-FDDC-4997-8FD6-7FC1F0532741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

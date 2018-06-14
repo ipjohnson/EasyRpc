@@ -166,7 +166,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     {
                         authorizations.AddRange(authorizationFunc(type));
                     }
-                    
+
                     foreach (var attr in type.GetTypeInfo().GetCustomAttributes<AuthorizeAttribute>())
                     {
                         if (!string.IsNullOrEmpty(attr.Policy))

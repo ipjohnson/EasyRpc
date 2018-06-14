@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Application builder extensions
+    /// </summary>
     public static class AppBuilderExtensions
     {
         /// <summary>
@@ -26,9 +28,7 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<IOrderedParameterToArrayDelegateProvider, OrderedParameterToArrayDelegateProvider>();
             collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
             collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
-
-            collection.TryAddSingleton<IRpcHeaderContext, RpcHeaderContext>();
-            collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
             collection.TryAddSingleton(new JsonSerializer());
 
             collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
@@ -73,11 +73,11 @@ namespace EasyRpc.AspNetCore
 
                 if (context.Request.Path.Value?.EndsWith( "/favicon.ico") ?? false)
                 {
-                    response.Headers[HeaderNames.Location] = redirectPath + "favicon.ico";
+                    response.Headers["Location"] = redirectPath + "favicon.ico";
                 }
                 else
                 {
-                    response.Headers[HeaderNames.Location] = redirectPath;
+                    response.Headers["Location"] = redirectPath;
                 }
 
                 response.StatusCode = 301;

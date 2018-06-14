@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Reflection.Emit;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -41,9 +40,9 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 index++;
 
-                var fromServices = parameter.GetCustomAttributes<FromServicesAttribute>();
+                var fromServices = parameter.GetCustomAttributes().Any(a => a.GetType().Name == "FromServicesAttribute");
 
-                if (fromServices.Any())
+                if (fromServices)
                 {
                     GenerateIlForFromServices(parameter, ilGenerator);
                 }

@@ -13,7 +13,8 @@
     <PackageReference Include="Grace" Version="6.3.4" />
     <PackageReference Include="Grace.AspNetCore.Hosting" Version="6.3.1" />
     <PackageReference Include="Grace.Dynamic" Version="6.3.4" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
