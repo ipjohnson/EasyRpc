@@ -1,7 +1,7 @@
 
 <div class="accordion-container" id="accordionPanel">
     <div class="accordion" rv-each-endpoint="endpoints">
-        <input type="checkbox" rv-id="%endpoint% | uniqueId 'docs-accordion-'" name="docs-accordion-checkbox" hidden />
+        <input type="checkbox" rv-checked="endpoint.expanded" rv-id="%endpoint% | uniqueId 'docs-accordion-'" name="docs-accordion-checkbox" hidden />
         <label class="accordion-header c-hand" rv-for="%endpoint% | uniqueId 'docs-accordion-'" rv-title="endpoint.Comments">
             { endpoint.DisplayName }
         </label>

@@ -61,10 +61,10 @@
 
 .alert {
     position: relative;
-    padding: 0.75rem 1.25rem;
+    padding: 0.35rem 0.35rem;
     margin-bottom: .5rem;
     border: 1px solid transparent;
-    border-radius: 0.25rem;
+    border-radius: 0.1rem;
 }
 
 .alert-primary {
@@ -109,10 +109,26 @@
     color: #0b2e13;
 }
 
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
 .clickable {
     cursor: pointer
 }
 
 .response-area {
     overflow: auto
+}
+
+@media (min-width: 1280px) {
+    .docs-content.off-canvas-content {
+        padding: 1rem;
+    }
+}
+
+.docs-content > .container {
+    max-width: unset;
 }
