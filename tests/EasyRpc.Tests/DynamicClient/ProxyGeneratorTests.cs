@@ -139,7 +139,7 @@ namespace EasyRpc.Tests.DynamicClient
             var objectDictionary = request.Parameters as Dictionary<string, object>;
 
             Assert.NotNull(objectDictionary);
-            Assert.Equal(1, objectDictionary.Count);
+            Assert.Single(objectDictionary);
 
             var complex = objectDictionary["complex"] as JObject;
 

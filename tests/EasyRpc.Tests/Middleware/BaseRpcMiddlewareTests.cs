@@ -81,7 +81,6 @@ namespace EasyRpc.Tests.Middleware
             {
                 var response = responseStream.DeserializeFromMemoryStream<T>();
 
-                Assert.NotNull(response);
                 Assert.NotNull((response as ErrorResponseMessage)?.Error);
 
                 return response;

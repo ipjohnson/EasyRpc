@@ -71,9 +71,7 @@ namespace EasyRpc.Tests.Middleware
             headerContext.SetValue(new HeaderClass { IntValue = 5, StringValue = "Hello" });
 
             var encodedHeaderValue = context.Response.Headers["RpcContext-HeaderClass"];
-
-            Assert.NotNull(encodedHeaderValue);
-
+            
             var deserializedObject =
                 JsonConvert.DeserializeObject<HeaderClass>(Encoding.UTF8.GetString(Convert.FromBase64String(encodedHeaderValue)));
 
@@ -91,9 +89,7 @@ namespace EasyRpc.Tests.Middleware
             headerContext.SetValue(new HeaderClass { IntValue = 5, StringValue = "Hello" }, "Key");
 
             var encodedHeaderValue = context.Response.Headers["RpcContext-HeaderClassKey"];
-
-            Assert.NotNull(encodedHeaderValue);
-
+            
             var deserializedObject =
                 JsonConvert.DeserializeObject<HeaderClass>(Encoding.UTF8.GetString(Convert.FromBase64String(encodedHeaderValue)));
 
