@@ -16,7 +16,7 @@ namespace EasyRpc.AspNetCore
     public static class AppBuilderExtensions
     {
         /// <summary>
-        /// Add Easy RPC dependency injection configuration, this is usually only needed if you want to override
+        /// Add Easy RPC dependency injection configuration, this is required
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="configuration"></param>
