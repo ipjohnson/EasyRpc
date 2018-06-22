@@ -201,12 +201,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
         }
-
-        private async Task<ResponseMessage> ProcessRequestMultiThreaded(HttpContext context, string path, RequestMessage requestMessage)
-        {
-            return await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);
-        }
-
+        
         private async Task ProcessRequest(HttpContext context, RequestMessage requestMessage)
         {
             var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
