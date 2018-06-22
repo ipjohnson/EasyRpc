@@ -356,7 +356,6 @@ function activityRecord(method, path, message, error, data, timeLabel) {
     method: method,
     parameters: parameters,
     clickHandler: function () {
-      debugger;
       method.endpoint.expanded = true;
       activateMethodTemplate(method);
       for (var i = 0; i < method.Parameters.length; i++) {
@@ -368,7 +367,6 @@ function activityRecord(method, path, message, error, data, timeLabel) {
 
 
 function activateMethod(event, binding) {
-  debugger;
   activateMethodTemplate(binding.method);
 }
 
