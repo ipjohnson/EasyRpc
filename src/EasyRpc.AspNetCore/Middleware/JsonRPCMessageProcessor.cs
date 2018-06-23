@@ -349,11 +349,20 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 filters = new List<ICallFilter>();
 
-                for (var i = 0; i < exposedFilters.Length; i++)
+                try
                 {
-                    filters.AddRange(exposedFilters[i](context));
+                    for (var i = 0; i < exposedFilters.Length; i++)
+                    {
+                        filters.AddRange(exposedFilters[i](context));
+                    }
                 }
-                
+                catch (Exception exp)
+                {
+                    _logger?.LogError(EventIdCode.ActivationException, exp, $"Exception thrown while activating filters for {exposedMethod.InstanceType.Name} {context.Request.Path} {requestMessage.Method} - " + exp.Message);
+
+                    return ReturnInternalServerError(requestMessage.Version, requestMessage.Id, "Could not activate filters");
+                }
+
                 runFilters = filters.Count > 0;
             }
 
