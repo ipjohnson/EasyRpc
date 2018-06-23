@@ -81,7 +81,6 @@ namespace EasyRpc.AspNetCore.Middleware
                     if (context.Request.Method == "POST")
                     {
                         return _messageProcessor.ProcessRequest(context);
-
                     }
                 }
             }

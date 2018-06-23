@@ -72,8 +72,10 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
+            var currentApiInfo = configuration.GetCurrentApiInformation();
+
             var endPoint =
-                new EndPointConfiguration(route, _exposedMethodInformations, configuration.GetCurrentApiInformation().EnableDocumentation);
+                new EndPointConfiguration(route, _exposedMethodInformations, currentApiInfo.EnableDocumentation, currentApiInfo.DocumentationConfiguration);
             
             return endPoint;
         }

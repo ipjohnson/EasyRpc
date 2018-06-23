@@ -40,11 +40,13 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Enable documentation
         /// </summary>
         bool EnableDocumentation { get; }
+
+        DocumentationConfiguration DocumentationConfiguration { get; }
     }
 
     public class CurrentApiInformation : ICurrentApiInformation
     {
-        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation)
+        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation, DocumentationConfiguration documentationConfiguration)
         {
             Authorizations = authorizations;
             Filters = filters;
@@ -52,6 +54,7 @@ namespace EasyRpc.AspNetCore.Middleware
             NamingConventions = namingConventions;
             MethodFilters = methodFilters;
             EnableDocumentation = enableDocumentation;
+            DocumentationConfiguration = documentationConfiguration;
         }
 
         /// <summary>
@@ -83,5 +86,10 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Enable documentation
         /// </summary>
         public bool EnableDocumentation { get; }
+
+        /// <summary>
+        /// Documentation configuration
+        /// </summary>
+        public DocumentationConfiguration DocumentationConfiguration { get; }
     }
 }

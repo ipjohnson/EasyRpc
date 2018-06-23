@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
-
     public class BundleConfigFile
     {
         public List<BundleConfig> Bundles { get; set; }
@@ -49,16 +48,132 @@ namespace EasyRpc.AspNetCore.Documentation
             _methodPackageMetadataCreator = methodPackageMetadataCreator;
             _variableReplacementService = variableReplacementService;
             _configuration = configuration;
-            ProcessAssets();
         }
 
-        private void ProcessAssets()
+        public async Task<bool> ProcessRequest(HttpContext context)
+        {
+            var assetPath = context.Request.Path.Value.Substring(_routeLength);
+            
+            if (assetPath.Length == 0)
+            {
+                assetPath = "templates/main.html";
+            }
+            
+            try
+            {
+                var shouldReplaceVar = ShouldReplaceVariables(assetPath);
+                var file = Path.Combine(ExtractedAssetPath, assetPath);
+                
+                if (File.Exists(file))
+                {
+                    if (_configuration.Value != null && 
+                        _configuration.Value.SupportResponseCompression &&
+                        !shouldReplaceVar &&
+                        context.SupportsGzipCompression())
+                    {
+                        if (File.Exists(file + ".gz"))
+                        {
+                            file = file + ".gz";
+                            context.Response.Headers.Add("Content-Encoding", "gzip");
+                        }
+                    }
+
+                    var bytes = File.ReadAllBytes(file);
+                    context.Response.StatusCode = StatusCodes.Status200OK;
+
+                    var lastPeriod = assetPath.LastIndexOf('.');
+                    if (lastPeriod > 0)
+                    {
+                        var extension = assetPath.Substring(lastPeriod + 1);
+
+                        switch (extension)
+                        {
+                            case "css":
+                                context.Response.ContentType = "text/css";
+                                break;
+                            case "html":
+                                context.Response.ContentType = "text/html";
+                                break;
+                            case "js":
+                                context.Response.ContentType = "text/javascript";
+                                break;
+                            case "ico":
+                                context.Response.ContentType = "image/x-icon";
+                                break;
+                        }
+                    }
+
+                    if (ShouldReplaceVariables(assetPath))
+                    {
+                        using (var streamWriter = new StreamWriter(context.Response.Body))
+                        {
+                            _variableReplacementService.ReplaceVariables(context, streamWriter,
+                                Encoding.UTF8.GetString(bytes));
+                        }
+                    }
+                    else
+                    {
+                        context.Response.Body.Write(bytes, 0, bytes.Length);
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("File path: " + e);
+            }
+
+            if (assetPath == "interface-definition")
+            {
+                await _methodPackageMetadataCreator.CreatePackage(context);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        protected virtual bool ShouldReplaceVariables(string assetName) => assetName == "templates/main.html";
+
+        public void Configure(EndPointConfiguration configuration)
+        {
+            _methodPackageMetadataCreator.SetConfiguration(configuration);
+            _variableReplacementService.Configure(configuration);
+            _routeLength = configuration.Route.Length;
+            ProcessAssets(configuration);
+        }
+
+        private void ProcessAssets(EndPointConfiguration configuration)
         {
             SetupExtractAssetPath();
 
             ExtractZipFile();
 
+            WriteCustomCss(configuration);
+
             CreateBundles();
+        }
+
+        private void WriteCustomCss(EndPointConfiguration configuration)
+        {
+            var cssPath = Path.Combine(ExtractedAssetPath, "css", "custom.css");
+
+            using (var customCssFile = File.Open(cssPath, FileMode.Create))
+            {
+                using (var streamWriter = new StreamWriter(customCssFile))
+                {
+                    var width = configuration.DocumentationConfiguration.MenuWidth;
+
+                    if (width.HasValue)
+                    {
+                        streamWriter.WriteLine($".docs-sidebar .docs-nav{{width:{width}rem}}");
+                        streamWriter.WriteLine($".off-canvas .off-canvas-sidebar{{width:{width}rem}}");
+                    }
+
+                    streamWriter.Write(configuration.DocumentationConfiguration.CustomCss);
+                }
+            }
         }
 
         private void ExtractZipFile()
@@ -155,99 +270,5 @@ namespace EasyRpc.AspNetCore.Documentation
             Directory.CreateDirectory(ExtractedAssetPath);
         }
 
-        public async Task<bool> ProcessRequest(HttpContext context)
-        {
-            var assetPath = context.Request.Path.Value.Substring(_routeLength);
-
-            Console.WriteLine("Asset path: " + assetPath);
-
-            if (assetPath.Length == 0)
-            {
-                assetPath = "templates/main.html";
-            }
-
-            try
-            {
-                var shouldReplaceVar = ShouldReplaceVariables(assetPath);
-                var file = Path.Combine(ExtractedAssetPath, assetPath);
-                
-                if (File.Exists(file))
-                {
-                    if (_configuration.Value != null && 
-                        _configuration.Value.SupportResponseCompression &&
-                        !shouldReplaceVar &&
-                        context.SupportsGzipCompression())
-                    {
-                        if (File.Exists(file + ".gz"))
-                        {
-                            file = file + ".gz";
-                            context.Response.Headers.Add("Content-Encoding", "gzip");
-                        }
-                    }
-
-                    var bytes = File.ReadAllBytes(file);
-                    context.Response.StatusCode = StatusCodes.Status200OK;
-
-                    var lastPeriod = assetPath.LastIndexOf('.');
-                    if (lastPeriod > 0)
-                    {
-                        var extension = assetPath.Substring(lastPeriod + 1);
-
-                        switch (extension)
-                        {
-                            case "css":
-                                context.Response.ContentType = "text/css";
-                                break;
-                            case "html":
-                                context.Response.ContentType = "text/html";
-                                break;
-                            case "js":
-                                context.Response.ContentType = "text/javascript";
-                                break;
-                            case "ico":
-                                context.Response.ContentType = "image/x-icon";
-                                break;
-                        }
-                    }
-
-                    if (ShouldReplaceVariables(assetPath))
-                    {
-                        using (var streamWriter = new StreamWriter(context.Response.Body))
-                        {
-                            _variableReplacementService.ReplaceVariables(context, streamWriter,
-                                Encoding.UTF8.GetString(bytes));
-                        }
-                    }
-                    else
-                    {
-                        context.Response.Body.Write(bytes, 0, bytes.Length);
-                    }
-
-                    return true;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("File path: " + e);
-            }
-
-            if (assetPath == "interface-definition")
-            {
-                await _methodPackageMetadataCreator.CreatePackage(context);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        protected virtual bool ShouldReplaceVariables(string assetName) => assetName == "templates/main.html";
-
-        public void Configure(EndPointConfiguration configuration)
-        {
-            _methodPackageMetadataCreator.SetConfiguration(configuration);
-            _variableReplacementService.Configure(configuration.Route);
-            _routeLength = configuration.Route.Length;
-        }
     }
 }

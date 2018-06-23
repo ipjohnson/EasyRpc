@@ -37,6 +37,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private NamingConventions _currentNamingConventions;
         private bool _enableDocumentation = true;
+        private DocumentationConfiguration _configuration = new DocumentationConfiguration();
 
         public ApiConfigurationProvider(IServiceProvider appServices)
         {
@@ -93,6 +94,18 @@ namespace EasyRpc.AspNetCore.Middleware
         public IApiConfiguration ClearAuthorize()
         {
             _authorizations = ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
+
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configurationAction"></param>
+        /// <returns></returns>
+        public IApiConfiguration Documentation(Action<DocumentationConfiguration> configurationAction)
+        {
+            configurationAction?.Invoke(_configuration);
 
             return this;
         }
@@ -274,8 +287,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
         }
-
-
+        
         public ICurrentApiInformation GetCurrentApiInformation()
         {
             //need to make a copy of naming convention so that if it changes current api information stays the same
@@ -289,7 +301,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 _currentNamingConventions = new NamingConventions { RouteNameGenerator = NamingConventions.RouteNameGenerator, MethodNameGenerator = NamingConventions.MethodNameGenerator };
             }
 
-            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation);
+            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation, _configuration);
         }
 
         public IApiConfiguration DisableDocumentation()

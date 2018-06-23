@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
     public interface IVariableReplacementService
     {
-        void Configure(string path);
+        void Configure(EndPointConfiguration path);
 
         void ReplaceVariables(HttpContext context, StreamWriter outputStream, string tokenString);
     }
@@ -25,9 +26,9 @@ namespace EasyRpc.AspNetCore.Documentation
             _replacementValueProvider = replacementValueProvider;
         }
 
-        public void Configure(string path)
+        public void Configure(EndPointConfiguration configuration)
         {
-            _replacementValueProvider.ServicePath(path);
+            _replacementValueProvider.ServicePath(configuration);
         }
 
         public void ReplaceVariables(HttpContext context,StreamWriter outputStream, string tokenString)

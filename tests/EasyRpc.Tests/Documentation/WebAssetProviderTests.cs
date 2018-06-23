@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace EasyRpc.Tests.Documentation
             context.Request.Path = path;
             context.Response.Body = responseBody;
 
-            provider.Configure(new EndPointConfiguration("/service-api/", new ConcurrentDictionary<string, ExposedMethodInformation>(), true));
+            provider.Configure(new EndPointConfiguration("/service-api/", new ConcurrentDictionary<string, ExposedMethodInformation>(), true, new DocumentationConfiguration()));
 
             if (!provider.ProcessRequest(context).Result)
             {

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
     public interface IReplacementValueProvider
     {
-        void ServicePath(string path);
+        void ServicePath(EndPointConfiguration path);
 
         string GetReplacementValue(HttpContext context,string valueName);
     }
@@ -16,10 +18,30 @@ namespace EasyRpc.AspNetCore.Documentation
     public class ReplacementValueProvider : IReplacementValueProvider
     {
         private string _path;
+        private string _title;
 
-        public void ServicePath(string path)
+        public void ServicePath(EndPointConfiguration configuration)
         {
-            _path = path;
+            _path = configuration.Route;
+            _title = configuration.DocumentationConfiguration.Title ?? GenerateTitle(configuration);
+        }
+
+        protected virtual string GenerateTitle(EndPointConfiguration configuration)
+        {
+            var method = configuration.Methods.Values.FirstOrDefault()?.MethodInfo;
+
+            if (method != null)
+            {
+                var title = method.DeclaringType.FullName;
+                var index = title.IndexOf('.');
+
+                if (index > 0)
+                {
+                    return title.Substring(0, index);
+                }
+            }
+
+            return "Api";
         }
 
         public virtual string GetReplacementValue(HttpContext context, string valueName)
@@ -50,7 +72,8 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-icons.min.css\"/>" +
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-exp.min.css\"/>" +
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/docs.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/easy-rpc-styles.css\"/>";
+                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/easy-rpc-styles.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/custom.css\"/>";
             }
 
             return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/bundle.css\"/>";
@@ -62,13 +85,12 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 return $"<script src = \"{context.Request.PathBase}{_path}javascript/umbrella.min.js\"></script>" +
                        $"<script src = \"{context.Request.PathBase}{_path}javascript/rivets.bundled.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}javascript/highlight.pack.js\"></script>" +
                        $"<script src = \"{context.Request.PathBase}{_path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
             return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js\"></script>";
         }
 
-        protected string InterfaceTitle(HttpContext context) => "Test API";
+        protected string InterfaceTitle(HttpContext context) => _title;
     }
 }

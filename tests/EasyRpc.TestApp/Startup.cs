@@ -57,6 +57,7 @@ namespace EasyRpc.TestApp
         {
             app.UseJsonRpc("/service-api/", api =>
             {
+                api.Documentation(c => c.MenuWidth = 15);
                 api.ExposeAssemblyContaining<Startup>().Where(type => type.Namespace.EndsWith(".Services"));
             });
 

@@ -291,13 +291,7 @@ function executeMethod(event, binding) {
   var path = sourceElement.data('path');
   var url = window.easyRpc.url + path;
 
-  var startTime;
-  try {
-    startTime = performance.now();
-  } catch (e) {
-    // catching
-  }
-
+  var startTime = performance.now();
   ajax(url,
     {
       method: "POST",
@@ -306,28 +300,27 @@ function executeMethod(event, binding) {
     },
     function (error, data) {
       var timeLabel = '';
-      try {
-        var endTime = performance.now();
+      var endTime = performance.now();
+       var setResponseFunc = function() {
+        if (data !== null && data !== undefined && data.result !== undefined) {
+          u('#responseOutput').html('<pre>' + JSON.stringify(data.result, undefined, 2) + '</pre>');
+        } else {
+          u('#responseOutput').html('<pre>' + JSON.stringify(data !== '' ? data : error, undefined, 2) + '</pre>');
+        }
+        var status = error === null ? "200 OK" : error;
+        u('#httpStatus').nodes[0].textContent = status;
         u('#executionTime').nodes[0].textContent = timeLabel = (endTime - startTime).toFixed(1) + ' ms';
-      } catch (e) {
-        // catch
+        u('#responseDiv').removeClass('hide-element');
       }
-      if (data !== null && data !== undefined && data.result !== undefined) {
-        u('#responseOutput').html('<pre>' + JSON.stringify(data.result, undefined, 2) + '</pre>');
-      } else {
-        u('#responseOutput').html('<pre>' + JSON.stringify(data !== '' ? data : error, undefined, 2) + '</pre>');
-      }
-      var status = error === null ? "200 OK" : error;
-      u('#httpStatus').nodes[0].textContent = status;
-      u('#responseDiv').removeClass('hide-element');
-      easyRpc.activities.unshift(activityRecord(binding, path, message, error, data, timeLabel));
+      setResponseFunc();
+      easyRpc.activities.unshift(activityRecord(binding, path, message, error, data, timeLabel, setResponseFunc));
       if (easyRpc.activities.length > 15) {
         easyRpc.activities.pop();
       }
     });
 }
 
-function activityRecord(method, path, message, error, data, timeLabel) {
+function activityRecord(method, path, message, error, data, timeLabel, setResponseFunc) {
   var statusMessage;
   var alertClass;
   if (error !== null) {
@@ -357,10 +350,14 @@ function activityRecord(method, path, message, error, data, timeLabel) {
     parameters: parameters,
     clickHandler: function () {
       method.endpoint.expanded = true;
-      activateMethodTemplate(method);
+      if (easyRpc.currentMethod !== method) {
+        activateMethodTemplate(method);
+      }
       for (var i = 0; i < method.Parameters.length; i++) {
         method.Parameters[i].currentValue = message.params[i];
       }
+      u('#rawMessageArea').nodes[0].value = JSON.stringify(message.params, undefined, 2);
+      setResponseFunc();
     }
   };
 }

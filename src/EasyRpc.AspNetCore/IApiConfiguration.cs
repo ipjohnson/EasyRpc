@@ -33,6 +33,13 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration ClearAuthorize();
 
         /// <summary>
+        /// Configur
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        IApiConfiguration Documentation(Action<DocumentationConfiguration> configuration);
+
+        /// <summary>
         /// Apply prefix 
         /// </summary>
         /// <param name="prefix"></param>

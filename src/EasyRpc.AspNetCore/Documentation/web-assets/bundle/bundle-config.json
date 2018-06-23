@@ -7,7 +7,8 @@
         "css/spectre-icons.min.css",
         "css/spectre-exp.min.css",
         "css/docs.min.css",
-        "css/easy-rpc-styles.css"
+        "css/easy-rpc-styles.css",
+        "css/custom.css"
       ]
     },
     {
@@ -15,7 +16,6 @@
       "files": [
         "javascript/umbrella.min.js",
         "javascript/rivets.bundled.min.js",
-        "javascript/highlight.pack.js",
         "javascript/easy-rpc-javascript.js"
       ]
     }
