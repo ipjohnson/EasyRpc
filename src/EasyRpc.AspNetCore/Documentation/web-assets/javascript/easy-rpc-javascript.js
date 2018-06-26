@@ -1,13 +1,14 @@
-function setupApp(path) {
+function setupApp(path, versionString) {
   window.easyRpc = {
     url: path,
+    versionString: versionString,
     templates: {},
     id: 1,
     headers: [{ key: "Content-Type", value: "application/json" }, { key: "", value: "" }],
     activities: []
   };
 
-  ajax(path + 'interface-definition',
+  ajax(path + 'interface-definition?' + versionString,
     {},
     processJsonResponse);
 
@@ -54,7 +55,7 @@ function setupData(template) {
 function fetchTemplate(name, templateFinished) {
   var template = easyRpc.templates[name];
   if (template === undefined) {
-    ajax(window.easyRpc.url + 'templates/' + name + '.html',
+    ajax(window.easyRpc.url + 'templates/' + name + '.html?' + easyRpc.versionString,
       {},
       function (error, data) {
         if (data !== null) {

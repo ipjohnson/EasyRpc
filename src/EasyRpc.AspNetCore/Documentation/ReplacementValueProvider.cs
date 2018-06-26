@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
@@ -19,11 +20,33 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         private string _path;
         private string _title;
+        private string _versionString;
 
         public void ServicePath(EndPointConfiguration configuration)
         {
             _path = configuration.Route;
             _title = configuration.DocumentationConfiguration.Title ?? GenerateTitle(configuration);
+            _versionString = configuration.DocumentationConfiguration.VersionString ??
+                             GenerateVersionString(configuration);
+        }
+
+        private string GenerateVersionString(EndPointConfiguration configuration)
+        {
+            var method = configuration.Methods.Values.FirstOrDefault()?.MethodInfo;
+
+            if (method != null)
+            {
+                var assemblyVersionAttr = 
+                    method.DeclaringType?.GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>() ??
+                    GetType().GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+
+                if (assemblyVersionAttr != null)
+                {
+                    return assemblyVersionAttr.InformationalVersion?.Replace('.','-');
+                }
+            }
+
+            return "";
         }
 
         protected virtual string GenerateTitle(EndPointConfiguration configuration)
@@ -59,6 +82,9 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 case "ServiceUrl":
                     return context.Request.PathBase.Value + _path;
+
+                case "VersionString":
+                    return _versionString;
             }
 
             throw new Exception("Unkown replacement string " + valueName);
@@ -76,7 +102,7 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/custom.css\"/>";
             }
 
-            return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/bundle.css\"/>";
+            return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/bundle.css?{_versionString}\"/>";
         }
 
         protected string JavaScriptUrls(HttpContext context)
@@ -88,7 +114,7 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<script src = \"{context.Request.PathBase}{_path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
-            return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js\"></script>";
+            return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js?{_versionString}\"></script>";
         }
 
         protected string InterfaceTitle(HttpContext context) => _title;
