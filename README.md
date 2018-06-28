@@ -39,6 +39,7 @@ public class IntMathService
 * Filter support similar to Asp.Net filter (not exactly the same as no controller is ever created)
 * Validation support using DataAnnotations and/or FluentValidation
 * Support for request/response gzip compression
+* Built in documentation/execution UI
 
 ### Example App
 An example app can be found [here](https://github.com/ipjohnson/EasyRpc.AspNetCore.Sample).
