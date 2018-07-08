@@ -243,7 +243,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RequestMessage requestMessage)
         {
-            var methodKey = $"{path}*{requestMessage.Method}";
+            var methodKey = string.Concat(path,'*',requestMessage.Method);
 
             if (!_methodCache.TryGetValue(methodKey, out var exposedMethod))
             {
@@ -292,7 +292,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             foreach (var name in names)
             {
-                var methodKey = $"{name}|{cache.MethodName}";
+                var methodKey = string.Concat(name, '*', cache.MethodName);
 
                 _methodCache.TryAdd(methodKey, cache);
             }
