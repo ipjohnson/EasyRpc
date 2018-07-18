@@ -64,18 +64,27 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 foreach (var fieldInfo in type.GetFields())
                 {
-                    enumValues.Add(new EnumValueDefinition
+                    try
                     {
-                        Name = fieldInfo.Name,
-                        Value = fieldInfo.GetRawConstantValue()
-                    });
+                        enumValues.Add(new EnumValueDefinition
+                        {
+                            Name = fieldInfo.Name,
+                            Value = fieldInfo.GetRawConstantValue()
+                        });
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
 
                 var enumDefinition = new TypeDefinition
                 {
                     Name = type.Name,
                     FullName = type.FullName,
-                    EnumValues = enumValues
+                    EnumValues = enumValues,
+                    Type = type,
+                    Properties = new List<PropertyDefinition>()
                 };
 
                 typeDefinitions[type] = enumDefinition;
@@ -91,7 +100,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 GenerateTypeDefinitionFor(typeDefinitions, enumerableInterface.GenericTypeArguments[0]);
                 return;
             }
-            
+
             if (type.IsConstructedGenericType)
             {
                 var genericType = type.GetGenericTypeDefinition();
@@ -104,7 +113,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 if (genericType == typeof(Nullable<>))
                 {
-                    GenerateTypeDefinitionFor(typeDefinitions,typeInfo.GenericTypeArguments[0]);
+                    GenerateTypeDefinitionFor(typeDefinitions, typeInfo.GenericTypeArguments[0]);
                     return;
                 }
 
@@ -120,7 +129,7 @@ namespace EasyRpc.AspNetCore.Documentation
                     return;
                 }
             }
-            
+
             var properties = new List<PropertyDefinition>();
 
             var typeDefinition = new TypeDefinition
