@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Content;
+using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
@@ -22,15 +24,16 @@ namespace EasyRpc.AspNetCore
         /// <param name="configuration"></param>
         public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null )
         {
-            collection.TryAddTransient<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
-            collection.TryAddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
-            collection.TryAddSingleton<INamedParameterToArrayDelegateProvider,NamedParameterToArrayDelegateProvider>();
-            collection.TryAddSingleton<IOrderedParameterToArrayDelegateProvider, OrderedParameterToArrayDelegateProvider>();
+            collection.TryAddTransient<IRpcMessageProcessor, RpcMessageProcessor>();
+            collection.TryAddTransient<IContentSerializer, DefaultJsonContentSerializer>();
+            collection.TryAddTransient<IContentSerializerProvider, ContentSerializerProvider>();
+            collection.TryAddTransient<IContentEncodingProvider, ContentEncodingProvider>();
+            collection.TryAddSingleton<IParameterArrayDeserializerBuilder, ParameterArrayDeserializerBuilder>();
+            collection.TryAddSingleton<INamedParameterDeserializerBuilder, NamedParameterDeserializerBuilder>();
             collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
             collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
-            
-            collection.TryAddSingleton(new JsonSerializer());
 
+            // documentation
             collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
             collection.TryAddTransient<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
             collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
@@ -53,7 +56,7 @@ namespace EasyRpc.AspNetCore
         public static IApplicationBuilder UseJsonRpc(this IApplicationBuilder appBuilder, string basePath,
             Action<IApiConfiguration> configure)
         {
-            JsonRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
+            EasyRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
             
             return appBuilder;
         }

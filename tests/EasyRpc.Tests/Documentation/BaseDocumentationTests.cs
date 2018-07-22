@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyRpc.AspNetCore;
+using EasyRpc.AspNetCore.Content;
+using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -25,11 +27,10 @@ namespace EasyRpc.Tests.Documentation
         {
             Func<RequestDelegate, RequestDelegate> executeDelegate = null;
 
-            app.ApplicationServices.GetService(typeof(IJsonRpcMessageProcessor))
-                .Returns(new JsonRpcMessageProcessor(Options.Create(configuration ?? new RpcServiceConfiguration()),
-                    new JsonSerializerProvider(),
-                    new NamedParameterToArrayDelegateProvider(),
-                    new OrderedParameterToArrayDelegateProvider(),
+            app.ApplicationServices.GetService(typeof(IRpcMessageProcessor))
+                .Returns(new RpcMessageProcessor(Options.Create(configuration ?? new RpcServiceConfiguration()),
+                    new ContentEncodingProvider(new IContentEncoder[0]),
+                    new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(), new NamedParameterDeserializerBuilder()) }),
                     new ArrayMethodInvokerBuilder(),
                     new InstanceActivator()
                 ));

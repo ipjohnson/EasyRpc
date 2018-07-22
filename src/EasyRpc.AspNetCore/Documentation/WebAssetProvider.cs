@@ -68,8 +68,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 {
                     if (_configuration.Value != null && 
                         _configuration.Value.SupportResponseCompression &&
-                        !shouldReplaceVar &&
-                        context.SupportsGzipCompression())
+                        !shouldReplaceVar)
                     {
                         if (File.Exists(file + ".gz"))
                         {

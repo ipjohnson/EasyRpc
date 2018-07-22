@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SimpleFixture.xUnit;
 using Xunit;
+using RpcRequestMessage = EasyRpc.DynamicClient.Messages.RpcRequestMessage;
 
 namespace EasyRpc.Tests.Middleware
 {
@@ -48,9 +49,9 @@ namespace EasyRpc.Tests.Middleware
             });
 
             var response = SendBulkMessages(context, "/RpcApi/IntMath",
-                new RequestMessage { Version = "2.0", Id = "1", Method = "Add", Parameters = new { a = 5, b = 10 } },
-                new RequestMessage { Version = "2.0", Id = "2", Method = "Add", Parameters = new { a = 10, b = 10 } },
-                new RequestMessage { Version = "2.0", Id = "3", Method = "Add", Parameters = new { a = 15, b = 10 } });
+                new RpcRequestMessage { Version = "2.0", Id = "1", Method = "Add", Parameters = new { a = 5, b = 10 } },
+                new RpcRequestMessage { Version = "2.0", Id = "2", Method = "Add", Parameters = new { a = 10, b = 10 } },
+                new RpcRequestMessage { Version = "2.0", Id = "3", Method = "Add", Parameters = new { a = 15, b = 10 } });
 
             Assert.NotNull(response);
             Assert.Equal(3, response.Length);
@@ -64,7 +65,7 @@ namespace EasyRpc.Tests.Middleware
             Assert.Equal(25, response[2].Result.ToObject<int>());
         }
 
-        public RpcResponseMessage[] SendBulkMessages(HttpContext context, string route, params RequestMessage[] requests)
+        public RpcResponseMessage[] SendBulkMessages(HttpContext context, string route, params RpcRequestMessage[] requests)
         {
             var responseStream = new MemoryStream();
 

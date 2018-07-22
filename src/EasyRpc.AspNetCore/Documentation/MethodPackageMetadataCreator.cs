@@ -191,7 +191,7 @@ namespace EasyRpc.AspNetCore.Documentation
                                 var callContext =
                                     new CallExecutionContext(context, methodInformation.Type,
                                         methodInformation.MethodInfo,
-                                        new RequestMessage());
+                                        new RpcRequestMessage());
                                 var add = true;
 
                                 foreach (var authorization in methodInformation.MethodAuthorizations)

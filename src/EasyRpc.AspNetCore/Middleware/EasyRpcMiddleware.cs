@@ -7,18 +7,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    public class JsonRpcMiddleware
+    public class EasyRpcMiddleware
     {
         private readonly string _route;
         private readonly bool _documentationEnabled;
-        private readonly IJsonRpcMessageProcessor _messageProcessor;
+        private readonly IRpcMessageProcessor _messageProcessor;
         private readonly IDocumentationRequestProcessor _documentationRequestProcessor;
 
-        public JsonRpcMiddleware(IApplicationBuilder app, string route, Action<IApiConfiguration> configuration)
+        public EasyRpcMiddleware(IApplicationBuilder app, string route, Action<IApiConfiguration> configuration)
         {
             _route = PrepareRoute(route);
 
-            _messageProcessor = app.ApplicationServices.GetService<IJsonRpcMessageProcessor>();
+            _messageProcessor = app.ApplicationServices.GetService<IRpcMessageProcessor>();
 
             if (_messageProcessor == null)
             {
@@ -64,7 +64,7 @@ namespace EasyRpc.AspNetCore.Middleware
         public static void AttachMiddleware(IApplicationBuilder app, string route,
             Action<IApiConfiguration> configuration)
         {
-            var middleware = new JsonRpcMiddleware(app, route, configuration);
+            var middleware = new EasyRpcMiddleware(app, route, configuration);
 
             app.Use(middleware.Execute);
         }
@@ -73,21 +73,17 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             var path = context.Request.Path;
 
-            if (context.Request.ContentType != null &&
-                context.Request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+            if (string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                if (string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
+                if (context.Request.Method == "POST")
                 {
-                    if (context.Request.Method == "POST")
-                    {
-                        return _messageProcessor.ProcessRequest(context);
-                    }
+                    return _messageProcessor.ProcessRequest(context);
                 }
-            }
-            else if (_documentationEnabled &&
-                     string.Compare(path.Value, 0, _route, 0, _route.Length, StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                return _documentationRequestProcessor.ProcessRequest(context, next);
+
+                if (_documentationEnabled)
+                {
+                    return _documentationRequestProcessor.ProcessRequest(context, next);
+                }
             }
 
             return next();

@@ -40,7 +40,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Request message
         /// </summary>
-        RequestMessage RequestMessage { get; }
+        RpcRequestMessage RequestMessage { get; }
 
         /// <summary>
         /// Response message

@@ -25,7 +25,7 @@ namespace EasyRpc.AspNetCore.Messages
         /// <summary>
         /// json rpc version
         /// </summary>
-        [JsonProperty("jsonrpc", Required = Required.Always, Order = 1)]
+        [JsonProperty("jsonrpc", Order = 1)]
         public string Version { get; set; }
 
         /// <summary>

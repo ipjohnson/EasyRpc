@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Utilities;
 using Microsoft.AspNetCore.Http;
@@ -17,47 +18,46 @@ using Newtonsoft.Json;
 namespace EasyRpc.AspNetCore.Middleware
 {
 
-    public interface IJsonRpcMessageProcessor
+    public interface IRpcMessageProcessor
     {
         EndPointConfiguration Configure(IApiConfigurationProvider configuration, string route);
 
         Task ProcessRequest(HttpContext context);
     }
 
-    public class JsonRpcMessageProcessor : IJsonRpcMessageProcessor
+    public class RpcMessageProcessor : IRpcMessageProcessor
     {
         private static readonly object[] NoParamsArray = new object[0];
 
         private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
-        private readonly JsonSerializer _serializer;
         private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
-        private readonly INamedParameterToArrayDelegateProvider _namedParameterToArrayDelegateProvider;
-        private readonly IOrderedParameterToArrayDelegateProvider _orderedParameterToArrayDelegateProvider;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private readonly IInstanceActivator _activator;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
+        private readonly IContentEncodingProvider _contentEncodingProvider;
+        private readonly IContentSerializerProvider _contentSerializerProvider;
         private readonly bool _debugLogging;
-        private readonly ILogger<JsonRpcMessageProcessor> _logger;
+        private readonly ILogger<RpcMessageProcessor> _logger;
         private string _route;
+        private IContentSerializer _defaultSerializer;
 
-        public JsonRpcMessageProcessor(IOptions<RpcServiceConfiguration> configuration,
-            IJsonSerializerProvider provider,
-            INamedParameterToArrayDelegateProvider namedParameterToArrayDelegateProvider,
-            IOrderedParameterToArrayDelegateProvider orderedParameterToArrayDelegateProvider,
+        public RpcMessageProcessor(IOptions<RpcServiceConfiguration> configuration,
+            IContentEncodingProvider contentEncodingProvider,
+            IContentSerializerProvider contentSerializerProvider,
             IArrayMethodInvokerBuilder invokerBuilder,
-            IInstanceActivator activator, 
-            ILogger<JsonRpcMessageProcessor> logger = null)
+            IInstanceActivator activator,
+            ILogger<RpcMessageProcessor> logger = null)
         {
-            _namedParameterToArrayDelegateProvider = namedParameterToArrayDelegateProvider;
             _configuration = configuration;
-            _orderedParameterToArrayDelegateProvider = orderedParameterToArrayDelegateProvider;
+            _contentEncodingProvider = contentEncodingProvider;
+            _contentSerializerProvider = contentSerializerProvider;
             _invokerBuilder = invokerBuilder;
             _activator = activator;
             _logger = logger;
-            _serializer = provider.ProvideSerializer();
             _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
             _exposedMethodInformations = new ConcurrentDictionary<string, ExposedMethodInformation>();
             _debugLogging = configuration.Value.DebugLogging;
+            _defaultSerializer = _contentSerializerProvider.DefaultSerializer;
         }
 
         public EndPointConfiguration Configure(IApiConfigurationProvider configuration, string route)
@@ -76,13 +76,15 @@ namespace EasyRpc.AspNetCore.Middleware
 
             var endPoint =
                 new EndPointConfiguration(route, _exposedMethodInformations, currentApiInfo.EnableDocumentation, currentApiInfo.DocumentationConfiguration);
-            
+
+            _contentSerializerProvider.Configure(endPoint);
+
             return endPoint;
         }
 
         public Task ProcessRequest(HttpContext context)
         {
-            RequestPackage requestPackage = null;
+            RpcRequestPackage requestPackage = null;
 
             if (_debugLogging)
             {
@@ -90,68 +92,92 @@ namespace EasyRpc.AspNetCore.Middleware
             }
 
             context.Response.StatusCode = StatusCodes.Status200OK;
-            context.Response.ContentType = "application/json";
+
+            var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
+            Stream body = context.Request.Body;
 
             try
             {
                 if (_configuration.Value.SupportRequestCompression &&
-                    context.Request.Headers["Content-Encoding"].Contains("gzip"))
+                    context.Request.Headers.TryGetValue("Content-Encoding", out var encoding))
                 {
-                    using (var gzipStream = new GZipStream(context.Request.Body, CompressionMode.Decompress))
+                    var encoder = _contentEncodingProvider.GetContentEncoder(encoding.ToString());
+
+                    if (encoder == null)
                     {
-                        requestPackage = DeserializeStream(gzipStream);
+                        // write error
+                    }
+                    else
+                    {
+                        body = encoder.DecodeStream(body);
                     }
                 }
-                else
-                {
-                    requestPackage = DeserializeStream(context.Request.Body);
-                }
+
+                requestPackage = DeserializeStream(context, body, path);
             }
             catch (Exception exp)
             {
-                return ProcessRequestSerizliationErrorHandler(context, exp);
+                return ProcessRequestSerizliationErrorHandler(context, _defaultSerializer, exp);
+            }
+            finally
+            {
+                if (body != context.Request.Body)
+                {
+                    body.Dispose();
+                }
             }
 
             if (requestPackage != null)
             {
-                if (!requestPackage.IsBulk)
+                if (requestPackage.IsBulk)
                 {
-                    return ProcessRequest(context, requestPackage.Requests.First());
+                    return ProcessBulkRequest(context, requestPackage, path);
                 }
 
-                return ProcessBulkRequest(context, requestPackage);
+                var message = requestPackage.Requests.First();
+
+                if (message.Parameters != null)
+                {
+                    return ProcessRequest(context, requestPackage.Serializer, requestPackage.Requests.First(), path);
+                }
+
+                WriteErrorMessage(context, _defaultSerializer,
+                    new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound,
+                        "Count not find method " + message.Method));
+
+                return Task.CompletedTask;
             }
 
-            WriteErrorMessage(context,
+            WriteErrorMessage(context, _defaultSerializer,
                  new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
 
             return Task.CompletedTask;
         }
 
-        private Task ProcessRequestSerizliationErrorHandler(HttpContext context, Exception exp)
+        private Task ProcessRequestSerizliationErrorHandler(HttpContext context, IContentSerializer serializer, Exception exp)
         {
             _logger?.LogError(EventIdCode.DeserializeException, exp,
                 "Exception thrown while deserializing request package: " + exp.Message);
 
-            WriteErrorMessage(context,
+            WriteErrorMessage(context, serializer,
                 new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest,
                     "Could not parse request: " + exp.Message));
 
             return Task.CompletedTask;
         }
 
-        private RequestPackage DeserializeStream(Stream gzipStream)
+        private RpcRequestPackage DeserializeStream(HttpContext context, Stream stream, string path)
         {
-            using (var streamReader = new StreamReader(gzipStream))
-            {
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    return _serializer.Deserialize<RequestPackage>(jsonReader);
-                }
-            }
+            var serializer = _contentSerializerProvider.GetSerializer(context);
+
+            var package = serializer.DeserializeRequestPackage(stream, path);
+
+            package.Serializer = serializer;
+
+            return package;
         }
 
-        private async Task ProcessBulkRequest(HttpContext context, RequestPackage requestPackage)
+        private async Task ProcessBulkRequest(HttpContext context, RpcRequestPackage requestPackage, string s)
         {
             var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
 
@@ -161,69 +187,73 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 returnList.Add(await ProcessIndividualRequest(context, context.RequestServices, path, request));
             }
-            
+
             try
             {
-                SerializeToResponseBody(context, returnList, _configuration.Value.SupportResponseCompression);
+                SerializeToResponseBody(context, requestPackage.Serializer, returnList, _configuration.Value.SupportResponseCompression);
             }
             catch (Exception exp)
             {
                 _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while serializing bulk output: " + exp.Message);
 
-                WriteErrorMessage(context,
+                WriteErrorMessage(context, requestPackage.Serializer,
                     new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
         }
 
-        private void SerializeToResponseBody(HttpContext context, object values, bool canSerialize)
+        private void SerializeToResponseBody(HttpContext context, IContentSerializer serializer, object values,
+            bool canCompress)
         {
-            if (canSerialize &&
-                context.SupportsGzipCompression())
-            {
-                context.Response.Headers["Content-Encoding"] = new StringValues("gzip");
+            Stream responseStream = context.Response.Body;
 
-                using (var gzipStream = new GZipStream(context.Response.Body, CompressionLevel.Fastest))
+            if (canCompress)
+            {
+                if (context.Request.Headers.TryGetValue("Accept-Encoding", out var encoding))
                 {
-                    SerializeToStream(values, gzipStream);
+                    var encoder = _contentEncodingProvider.GetContentEncoder(encoding.ToString());
+
+                    if (encoder != null)
+                    {
+                        context.Response.Headers["Content-Encoding"] = encoder.ContentEncoding;
+
+                        responseStream = encoder.EncodeStream(responseStream);
+                    }
                 }
             }
-            else
+
+            SerializeToStream(context, serializer, values, responseStream);
+
+            if (responseStream != context.Response.Body)
             {
-                SerializeToStream(values, context.Response.Body);
+                responseStream.Dispose();
             }
         }
 
-        private void SerializeToStream(object values, Stream gzipStream)
+        private void SerializeToStream(HttpContext context, IContentSerializer serializer, object values, Stream stream)
         {
-            using (var responseStream = new StreamWriter(gzipStream))
-            {
-                using (var jsonStream = new JsonTextWriter(responseStream))
-                {
-                    _serializer.Serialize(jsonStream, values);
-                }
-            }
-        }
-        
-        private async Task ProcessRequest(HttpContext context, RequestMessage requestMessage)
-        {
-            var path = context.Request.Path.Value.Substring(_route.Length).TrimEnd('/');
+            context.Response.ContentType = serializer.ContentType;
 
+            serializer.SerializeResponse(stream, values);
+        }
+
+        private async Task ProcessRequest(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, string path)
+        {
             var response = await ProcessIndividualRequest(context, context.RequestServices, path, requestMessage);
 
             try
             {
                 if (!ReferenceEquals(response, ResponseMessage.NoResponse))
                 {
-                    SerializeToResponseBody(context, response, response.CanCompress);
+                    SerializeToResponseBody(context, serializer, response, response.CanCompress);
                 }
             }
             catch (Exception exp)
             {
-                ProcessRequestErrorHandler(context, requestMessage, exp);
+                ProcessRequestErrorHandler(context, serializer, requestMessage, exp);
             }
         }
 
-        private void ProcessRequestErrorHandler(HttpContext context, RequestMessage requestMessage, Exception exp)
+        private void ProcessRequestErrorHandler(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, Exception exp)
         {
             _logger?.LogError(EventIdCode.SerializeException, exp,
                 "Exception thrown while serializing response: " + exp.Message);
@@ -235,13 +265,13 @@ namespace EasyRpc.AspNetCore.Middleware
                 errorMessage += ": " + exp.Message;
             }
 
-            WriteErrorMessage(context,
+            WriteErrorMessage(context, serializer,
                 new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, errorMessage, requestMessage.Version, requestMessage.Id));
         }
 
 
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
-            string path, RequestMessage requestMessage)
+            string path, RpcRequestMessage requestMessage)
         {
             var methodKey = $"{path}*{requestMessage.Method}";
 
@@ -266,7 +296,7 @@ namespace EasyRpc.AspNetCore.Middleware
         }
 
         private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider,
-            string path, RequestMessage requestMessage)
+            string path, RpcRequestMessage requestMessage)
         {
             var key = path + "*" + requestMessage.Method;
 
@@ -275,8 +305,6 @@ namespace EasyRpc.AspNetCore.Middleware
                 var cache = new ExposedMethodCache(methodInfo.MethodInfo, methodInfo.MethodName,
                     methodInfo.MethodAuthorizations,
                     methodInfo.Filters,
-                    _namedParameterToArrayDelegateProvider,
-                    _orderedParameterToArrayDelegateProvider,
                     _invokerBuilder,
                     _configuration.Value.SupportResponseCompression);
 
@@ -292,14 +320,14 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             foreach (var name in names)
             {
-                var methodKey = $"{name}|{cache.MethodName}";
+                var methodKey = $"{name}*{cache.MethodName}";
 
                 _methodCache.TryAdd(methodKey, cache);
             }
         }
 
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
-            RequestMessage requestMessage, IExposedMethodCache exposedMethod)
+            RpcRequestMessage requestMessage, IExposedMethodCache exposedMethod)
         {
             CallExecutionContext callExecutionContext =
                 new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage);
@@ -368,21 +396,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                object[] parameterValues;
-
-                if (requestMessage.Parameters == null)
-                {
-                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(NoParamsArray, context);
-                }
-                else if (requestMessage.Parameters is object[] objects)
-                {
-                    parameterValues = exposedMethod.OrderedParameterToArrayDelegate(objects, context);
-                }
-                else
-                {
-                    parameterValues = exposedMethod.NamedParametersToArrayDelegate(
-                        (IDictionary<string, object>)requestMessage.Parameters, context);
-                }
+                object[] parameterValues = requestMessage.Parameters ?? NoParamsArray;
 
                 if (runFilters)
                 {
@@ -390,7 +404,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                     for (var i = 0; i < filters.Count; i++)
                     {
-                        if (callExecutionContext.ContinueCall && 
+                        if (callExecutionContext.ContinueCall &&
                             filters[i] is ICallExecuteFilter executeFilter)
                         {
                             executeFilter.BeforeExecute(callExecutionContext);
@@ -415,7 +429,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     callExecutionContext.ContinueCall)
                 {
                     callExecutionContext.ResponseMessage = responseMessage;
-                    
+
                     for (var i = 0; i < filters.Count; i++)
                     {
                         if (callExecutionContext.ContinueCall &&
@@ -436,7 +450,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private ResponseMessage ExecuteMethodErrorHandler(HttpContext context, RequestMessage requestMessage, Exception exp,
+        private ResponseMessage ExecuteMethodErrorHandler(HttpContext context, RpcRequestMessage requestMessage, Exception exp,
             bool runFilters, List<ICallFilter> filters, CallExecutionContext callExecutionContext)
         {
             if (runFilters)
@@ -463,21 +477,16 @@ namespace EasyRpc.AspNetCore.Middleware
                 $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
         }
 
-        private void WriteErrorMessage(HttpContext context, ErrorResponseMessage errorResponseMessage)
+        private void WriteErrorMessage(HttpContext context, IContentSerializer serializer, ErrorResponseMessage errorResponseMessage)
         {
-            using (var responseStream = new StreamWriter(context.Response.Body))
-            {
-                using (var jsonStream = new JsonTextWriter(responseStream))
-                {
-                    _serializer.Serialize(jsonStream, errorResponseMessage);
-                }
-            }
+            context.Response.ContentType = serializer.ContentType;
+            serializer.SerializeResponse(context.Response.Body, errorResponseMessage);
         }
 
         private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)
         {
             return
-                Task.FromResult<ResponseMessage>(new ErrorResponseMessage( JsonRpcErrorCode.MethodNotFound,
+                Task.FromResult<ResponseMessage>(new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound,
                     "Method not found", version, id));
         }
 
@@ -497,7 +506,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
 
-            return new ErrorResponseMessage( JsonRpcErrorCode.UnauthorizedAccess, "No access to this method", version );
+            return new ErrorResponseMessage(JsonRpcErrorCode.UnauthorizedAccess, "No access to this method", version);
         }
     }
 }
