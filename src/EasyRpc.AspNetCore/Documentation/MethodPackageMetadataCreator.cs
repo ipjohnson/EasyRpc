@@ -50,7 +50,7 @@ namespace EasyRpc.AspNetCore.Documentation
         public TypeRef ReturnType { get; set; }
 
         [JsonIgnore]
-        public ExposedMethodInformation Method { get; set; }
+        public IExposedMethodInformation Method { get; set; }
     }
 
     public class JsonParameterInfo
@@ -105,7 +105,7 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             _configuration = endPointConfiguration;
 
-            var routes = new Dictionary<string, List<ExposedMethodInformation>>();
+            var routes = new Dictionary<string, List<IExposedMethodInformation>>();
 
             foreach (var information in _configuration.Methods.Values)
             {
@@ -113,7 +113,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 {
                     if (!routes.TryGetValue(routeName, out var methodList))
                     {
-                        methodList = new List<ExposedMethodInformation>();
+                        methodList = new List<IExposedMethodInformation>();
 
                         routes[routeName] = methodList;
                     }
@@ -228,7 +228,7 @@ namespace EasyRpc.AspNetCore.Documentation
             }
         }
 
-        private JsonMethodInfo GenerateInfoForMethod(string route, ExposedMethodInformation methodInformation)
+        private JsonMethodInfo GenerateInfoForMethod(string route, IExposedMethodInformation methodInformation)
         {
             var method = methodInformation.MethodInfo;
 
@@ -293,7 +293,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 _hasAuthorization = true;
             }
 
-            displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {method.Name}({parameterString})";
+            displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {methodInformation.MethodName}({parameterString})";
 
             return new JsonMethodInfo
             {

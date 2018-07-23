@@ -6,25 +6,34 @@ using System.Reflection.Emit;
 using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Converters
 {
-    public delegate object[] ParamsDeserializer(RpcJsonReader reader, JsonSerializer serializer);
+    public delegate object[] ParamsDeserializer(HttpContext context, RpcJsonReader reader, JsonSerializer serializer);
 
 
     public interface IParameterArrayDeserializerBuilder
     {
-        ParamsDeserializer BuildDeserializer(ExposedMethodInformation exposedMethod);
+        ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod);
     }
 
     public class ParameterArrayDeserializerBuilder : IParameterArrayDeserializerBuilder
     {
-        public ParamsDeserializer BuildDeserializer(ExposedMethodInformation exposedMethod)
+        private IFromServicesManager _fromServicesManager;
+
+        public ParameterArrayDeserializerBuilder(IFromServicesManager fromServicesManager)
+        {
+            _fromServicesManager = fromServicesManager;
+        }
+
+
+        public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
         {
             DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
                 typeof(object[]),
-                new[] { typeof(RpcJsonReader), typeof(JsonSerializer) },
+                new[] { typeof(HttpContext), typeof(RpcJsonReader), typeof(JsonSerializer) },
                 GetType().GetTypeInfo().Module);
 
             var ilGenerator = dynamicMethod.GetILGenerator();
@@ -34,7 +43,7 @@ namespace EasyRpc.AspNetCore.Converters
             return dynamicMethod.CreateDelegate(typeof(ParamsDeserializer)) as ParamsDeserializer;
         }
 
-        protected virtual void GenerateMethod(ExposedMethodInformation exposedMethod, ILGenerator ilGenerator)
+        protected virtual void GenerateMethod(IExposedMethodInformation exposedMethod, ILGenerator ilGenerator)
         {
             var parameters = exposedMethod.MethodInfo.GetParameters();
 
@@ -50,12 +59,18 @@ namespace EasyRpc.AspNetCore.Converters
 
                 ilGenerator.Emit(OpCodes.Dup);
                 ilGenerator.EmitInt(index);
-
-                var fromServices = parameter.GetCustomAttributes().Any(a => a.GetType().Name == "FromServicesAttribute");
-
-                if (fromServices)
+                
+                if (_fromServicesManager.ParameterIsFromServices(parameter))
                 {
                     GenerateIlForFromServices(parameter, ilGenerator);
+                }
+                else if (parameter.ParameterType == typeof(HttpContext))
+                {
+                    GenerateIlForHttpContext(parameter, ilGenerator);
+                }
+                else if (parameter.ParameterType == typeof(IServiceProvider))
+                {
+                    GenerateIlForServiceProvider(parameter, ilGenerator);
                 }
                 else
                 {
@@ -74,11 +89,21 @@ namespace EasyRpc.AspNetCore.Converters
             ilGenerator.Emit(OpCodes.Ret);
         }
 
+        private void GenerateIlForHttpContext(ParameterInfo parameter, ILGenerator ilGenerator)
+        {
+
+        }
+
+        private void GenerateIlForServiceProvider(ParameterInfo parameter, ILGenerator ilGenerator)
+        {
+
+        }
+
         private void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator, int parameterIndex)
         {
             if (parameter.ParameterType == typeof(int))
             {
-                ilGenerator.Emit(OpCodes.Ldarg_0);
+                ilGenerator.Emit(OpCodes.Ldarg_1);
 
                 if (parameter.HasDefaultValue)
                 {
@@ -99,7 +124,7 @@ namespace EasyRpc.AspNetCore.Converters
             }
             else if (parameter.ParameterType == typeof(string))
             {
-                ilGenerator.Emit(OpCodes.Ldarg_0);
+                ilGenerator.Emit(OpCodes.Ldarg_1);
                 ilGenerator.EmitInt(parameterIndex);
 
                 if (parameter.DefaultValue is string defaultParam)
@@ -117,8 +142,8 @@ namespace EasyRpc.AspNetCore.Converters
             }
             else
             {
-                ilGenerator.Emit(OpCodes.Ldarg_0);
                 ilGenerator.Emit(OpCodes.Ldarg_1);
+                ilGenerator.Emit(OpCodes.Ldarg_2);
 
                 var generic = GetType().GetTypeInfo().DeclaredMethods.First(m => m.Name == "GetInstance");
 

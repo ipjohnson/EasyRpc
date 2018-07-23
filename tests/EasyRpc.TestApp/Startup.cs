@@ -59,6 +59,16 @@ namespace EasyRpc.TestApp
             {
                 api.Documentation(c => c.MenuWidth = 15);
                 api.ExposeAssemblyContaining<Startup>().Where(type => type.Namespace.EndsWith(".Services"));
+
+                api.Expose("TestMethods").Methods(add =>
+                {
+                    add.Func("Test1", (int x, int y) =>
+                    {
+                        return x + y;
+                    });
+                    add.Func("Test2", (int x, int y) => x + y);
+                    add.Func("Test3", (int x, int y) => x + y);
+                });
             });
 
             app.RedirectToDocumentation("/service-api/");

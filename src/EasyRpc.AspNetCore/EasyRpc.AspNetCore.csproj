@@ -15,6 +15,15 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License.md</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <!-- Nuget source link -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

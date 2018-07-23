@@ -22,7 +22,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="configuration"></param>
-        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null )
+        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null)
         {
             collection.TryAddTransient<IRpcMessageProcessor, RpcMessageProcessor>();
             collection.TryAddTransient<IContentSerializer, DefaultJsonContentSerializer>();
@@ -32,10 +32,11 @@ namespace EasyRpc.AspNetCore
             collection.TryAddSingleton<INamedParameterDeserializerBuilder, NamedParameterDeserializerBuilder>();
             collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
             collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
+            collection.TryAddSingleton<IFromServicesManager, FromServicesManager>();
 
             // documentation
             collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
-            collection.TryAddTransient<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
+            collection.TryAddTransient<IDocumentationRequestProcessor, DocumentationRequestProcessor>();
             collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
             collection.TryAddTransient<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
             collection.TryAddTransient<IVariableReplacementService, VariableReplacementService>();
@@ -57,7 +58,7 @@ namespace EasyRpc.AspNetCore
             Action<IApiConfiguration> configure)
         {
             EasyRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
-            
+
             return appBuilder;
         }
 
@@ -74,7 +75,7 @@ namespace EasyRpc.AspNetCore
                 var response = context.Response;
                 var redirectPath = context.Request.PathBase.Value + basePath;
 
-                if (context.Request.Path.Value?.EndsWith( "/favicon.ico") ?? false)
+                if (context.Request.Path.Value?.EndsWith("/favicon.ico") ?? false)
                 {
                     response.Headers["Location"] = redirectPath + "favicon.ico";
                 }

@@ -90,7 +90,7 @@ namespace EasyRpc.AspNetCore.Converters
 
                         var deserializer = GetArrayDeserializer(reader.UrlPath, method);
                         
-                        return deserializer?.Invoke(reader, serializer);
+                        return deserializer?.Invoke(reader.Context, reader, serializer);
                     }
 
                     if (reader.TokenType == JsonToken.StartObject)
@@ -99,7 +99,7 @@ namespace EasyRpc.AspNetCore.Converters
 
                         var deserializer = GetNamedParameterDeserializer(reader.UrlPath, method);
 
-                        return deserializer?.Invoke(reader, serializer);
+                        return deserializer?.Invoke(reader.Context, reader, serializer);
                     }
 
                     if (reader.TokenType == JsonToken.Null)

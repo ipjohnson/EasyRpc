@@ -4,6 +4,7 @@ using EasyRpc.AspNetCore.Documentation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
@@ -25,7 +26,10 @@ namespace EasyRpc.AspNetCore.Middleware
                 throw new Exception("Please call services.AddJsonRpc()");
             }
 
-            var provider = new ApiConfigurationProvider(app.ApplicationServices);
+            var provider = new ApiConfigurationProvider(app.ApplicationServices,
+                app.ApplicationServices.GetService<IInstanceActivator>(),
+                app.ApplicationServices.GetService<IArrayMethodInvokerBuilder>(), 
+                app.ApplicationServices.GetService<IOptions<RpcServiceConfiguration>>());
 
             configuration(provider);
 

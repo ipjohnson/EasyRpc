@@ -26,11 +26,17 @@ namespace EasyRpc.Tests.Documentation
         protected void Configure(IApplicationBuilder app, string route, Action<IApiConfiguration> api, RpcServiceConfiguration configuration = null)
         {
             Func<RequestDelegate, RequestDelegate> executeDelegate = null;
+            var options = Options.Create(configuration ?? new RpcServiceConfiguration());
+            var fromService = new FromServicesManager(options);
 
             app.ApplicationServices.GetService(typeof(IRpcMessageProcessor))
-                .Returns(new RpcMessageProcessor(Options.Create(configuration ?? new RpcServiceConfiguration()),
+                .Returns(new RpcMessageProcessor(options,
                     new ContentEncodingProvider(new IContentEncoder[0]),
-                    new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(), new NamedParameterDeserializerBuilder()) }),
+                    new ContentSerializerProvider(new IContentSerializer[]
+                    {
+                        new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), 
+                            new NamedParameterDeserializerBuilder(fromService))
+                    }),
                     new ArrayMethodInvokerBuilder(),
                     new InstanceActivator()
                 ));

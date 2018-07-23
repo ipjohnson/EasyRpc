@@ -30,7 +30,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private static readonly object[] NoParamsArray = new object[0];
 
         private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
-        private readonly ConcurrentDictionary<string, ExposedMethodInformation> _exposedMethodInformations;
+        private readonly ConcurrentDictionary<string, IExposedMethodInformation> _exposedMethodInformations;
         private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private readonly IInstanceActivator _activator;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
@@ -55,7 +55,7 @@ namespace EasyRpc.AspNetCore.Middleware
             _activator = activator;
             _logger = logger;
             _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
-            _exposedMethodInformations = new ConcurrentDictionary<string, ExposedMethodInformation>();
+            _exposedMethodInformations = new ConcurrentDictionary<string, IExposedMethodInformation>();
             _debugLogging = configuration.Value.DebugLogging;
             _defaultSerializer = _contentSerializerProvider.DefaultSerializer;
         }
@@ -170,7 +170,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             var serializer = _contentSerializerProvider.GetSerializer(context);
 
-            var package = serializer.DeserializeRequestPackage(stream, path);
+            var package = serializer.DeserializeRequestPackage(stream, path, context);
 
             package.Serializer = serializer;
 
@@ -233,7 +233,7 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             context.Response.ContentType = serializer.ContentType;
 
-            serializer.SerializeResponse(stream, values);
+            serializer.SerializeResponse(stream, values, context);
         }
 
         private async Task ProcessRequest(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, string path)
@@ -305,8 +305,8 @@ namespace EasyRpc.AspNetCore.Middleware
                 var cache = new ExposedMethodCache(methodInfo.MethodInfo, methodInfo.MethodName,
                     methodInfo.MethodAuthorizations,
                     methodInfo.Filters,
-                    _invokerBuilder,
-                    _configuration.Value.SupportResponseCompression);
+                    methodInfo.InstanceProvider,
+                    methodInfo.InvokeMethod);
 
                 AddMethodCache(methodInfo.RouteNames, cache);
 
@@ -348,7 +348,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            object newInstance;
+            object newInstance = null;
 
             try
             {
@@ -480,7 +480,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private void WriteErrorMessage(HttpContext context, IContentSerializer serializer, ErrorResponseMessage errorResponseMessage)
         {
             context.Response.ContentType = serializer.ContentType;
-            serializer.SerializeResponse(context.Response.Body, errorResponseMessage);
+            serializer.SerializeResponse(context.Response.Body, errorResponseMessage, context);
         }
 
         private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)

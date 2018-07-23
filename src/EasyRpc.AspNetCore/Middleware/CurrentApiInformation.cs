@@ -42,11 +42,13 @@ namespace EasyRpc.AspNetCore.Middleware
         bool EnableDocumentation { get; }
 
         DocumentationConfiguration DocumentationConfiguration { get; }
+
+        bool SupportResponseCompression { get; }
     }
 
     public class CurrentApiInformation : ICurrentApiInformation
     {
-        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation, DocumentationConfiguration documentationConfiguration)
+        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation, DocumentationConfiguration documentationConfiguration, bool supportResponseCompression)
         {
             Authorizations = authorizations;
             Filters = filters;
@@ -55,6 +57,7 @@ namespace EasyRpc.AspNetCore.Middleware
             MethodFilters = methodFilters;
             EnableDocumentation = enableDocumentation;
             DocumentationConfiguration = documentationConfiguration;
+            SupportResponseCompression = supportResponseCompression;
         }
 
         /// <summary>
@@ -91,5 +94,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// Documentation configuration
         /// </summary>
         public DocumentationConfiguration DocumentationConfiguration { get; }
+
+        public bool SupportResponseCompression { get; }
     }
 }

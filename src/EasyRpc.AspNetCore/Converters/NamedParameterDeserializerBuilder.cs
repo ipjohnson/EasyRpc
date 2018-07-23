@@ -4,17 +4,25 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Middleware;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Converters
 {
     public interface INamedParameterDeserializerBuilder
     {
-        ParamsDeserializer BuildDeserializer(ExposedMethodInformation exposedMethod);
+        ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod);
     }
 
     public class NamedParameterDeserializerBuilder : INamedParameterDeserializerBuilder
     {
+        private readonly FromServicesManager _fromService;
+
+        public NamedParameterDeserializerBuilder(FromServicesManager fromService)
+        {
+            _fromService = fromService;
+        }
+
         public class RpcParameterInfo
         {
             public int ParameterIndex { get; set; }
@@ -26,26 +34,37 @@ namespace EasyRpc.AspNetCore.Converters
             public bool HasDefaultValue { get; set; }
 
             public object DefaultValue { get; set; }
+
+            public bool FromServices { get; set; }
+
+            public bool HttpContext { get; set; }
+
+            public bool ServiceProvider { get; set; }
         }
 
 
-        public ParamsDeserializer BuildDeserializer(ExposedMethodInformation exposedMethod)
+        public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
         {
             var signatureInfo = GetSignatureInfo(exposedMethod.MethodInfo);
 
-            return (reader,serializer) => DeserializeParameters(reader, serializer, signatureInfo);
+            return (context, reader,serializer) => DeserializeParameters(context, reader, serializer, signatureInfo);
         }
 
-        private object[] DeserializeParameters(RpcJsonReader reader, JsonSerializer serializer,
+        private object[] DeserializeParameters(HttpContext context, RpcJsonReader reader, JsonSerializer serializer,
             RpcParameterInfo[] parameters)
         {
             var returnParameters = new object[parameters.Length];
 
             for (var i = 0; i < parameters.Length; i++)
             {
-                if (returnParameters[i] == null && parameters[i].HasDefaultValue)
+                if (parameters[i].HasDefaultValue)
                 {
                     returnParameters[i] = parameters[i].DefaultValue;
+                }
+
+                if (parameters[i].FromServices)
+                {
+                    
                 }
             }
 

@@ -10,6 +10,8 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private readonly IEnumerable<Type> _types;
         private readonly ICurrentApiInformation _apiInformation;
+        private readonly IInstanceActivator _activator;
+        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private Func<Type, IEnumerable<string>> _names;
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations = ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
         private Func<Type, bool> _typeFilter;
@@ -22,10 +24,13 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="types"></param>
         /// <param name="apiInformation"></param>
-        public TypeSetExposureConfiguration(IEnumerable<Type> types, ICurrentApiInformation apiInformation)
+        /// <param name="activator"></param>
+        public TypeSetExposureConfiguration(IEnumerable<Type> types, ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder)
         {
             _types = types;
             _apiInformation = apiInformation;
+            _activator = activator;
+            _invokerBuilder = invokerBuilder;
         }
 
         /// <summary>
@@ -130,7 +135,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        public IEnumerable<ExposedMethodInformation> GetExposedMethods()
+        public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             if (_interfacesFilter == null && _typeFilter == null)
             {
@@ -184,7 +189,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
 
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
-                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter))
+                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter,_activator, _invokerBuilder))
                     {
                         yield return exposedMethodInformation;
                     }

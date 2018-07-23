@@ -9,7 +9,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly Type _type;
         private Func<MethodInfo, bool> _methods;
 
-        public ExposureConfiguration(Type type, ICurrentApiInformation apiInformation) : base(apiInformation)
+        public ExposureConfiguration(Type type, ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder) : base(apiInformation, activator, invokerBuilder)
         {
             _type = type;
         }
@@ -46,7 +46,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        public IEnumerable<ExposedMethodInformation> GetExposedMethods()
+        public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             return GetExposedMethods(_type,_methods);
         }
@@ -56,7 +56,7 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private Func<MethodInfo, bool> _methods;
 
-        public ExposureConfiguration(ICurrentApiInformation apiInformation) : base(apiInformation)
+        public ExposureConfiguration(ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder) : base(apiInformation, activator, invokerBuilder)
         {
         }
 
@@ -92,7 +92,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        public IEnumerable<ExposedMethodInformation> GetExposedMethods()
+        public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             return GetExposedMethods(typeof(T), _methods);
         }

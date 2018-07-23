@@ -10,12 +10,16 @@ namespace EasyRpc.AspNetCore.Middleware
     public abstract class BaseExposureConfiguration
     {
         protected readonly ICurrentApiInformation ApiInformation;
+        private readonly IInstanceActivator _activator;
+        private readonly IArrayMethodInvokerBuilder _arrayMethodInvokerBuilder;
         protected readonly List<string> Names = new List<string>();
         protected readonly List<IMethodAuthorization> Authorizations = new List<IMethodAuthorization>();
 
-        protected BaseExposureConfiguration(ICurrentApiInformation apiInformation)
+        protected BaseExposureConfiguration(ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder arrayMethodInvokerBuilder)
         {
             ApiInformation = apiInformation;
+            _activator = activator;
+            _arrayMethodInvokerBuilder = arrayMethodInvokerBuilder;
         }
 
         protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
@@ -29,14 +33,16 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter);
+            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter, _activator, _arrayMethodInvokerBuilder);
         }
 
         public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
-                                                                              ICurrentApiInformation currentApi,
-                                                                              Func<Type, IEnumerable<string>> namesFunc,
-                                                                              List<IMethodAuthorization> authorizations,
-                                                                              Func<MethodInfo, bool> methodFilter)
+            ICurrentApiInformation currentApi,
+            Func<Type, IEnumerable<string>> namesFunc,
+            List<IMethodAuthorization> authorizations,
+            Func<MethodInfo, bool> methodFilter, 
+            IInstanceActivator activator,
+            IArrayMethodInvokerBuilder invokerBuilder)
         {
             var names = namesFunc(type).ToArray();
 
@@ -123,7 +129,15 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, currentAuth.ToArray(), filters.ToArray());
+                yield return new ExposedMethodInformation(type,
+                    finalNames, 
+                    currentApi.NamingConventions.MethodNameGenerator(method), 
+                    method, 
+                    currentAuth.ToArray(), 
+                    filters.ToArray(), 
+                    activator,
+                    invokerBuilder,
+                    currentApi.SupportResponseCompression);
             }
         }
     }

@@ -36,14 +36,20 @@ namespace EasyRpc.Tests.Middleware
         protected void Configure(IApplicationBuilder app, string route, Action<IApiConfiguration> api, RpcServiceConfiguration configuration = null)
         {
             Func<RequestDelegate, RequestDelegate> executeDelegate = null;
-
+            var options = Options.Create(configuration ?? new RpcServiceConfiguration());
+            var fromService = new FromServicesManager(options);
+            app.ApplicationServices.GetService(typeof(IOptions<RpcServiceConfiguration>)).Returns(options);
             app.ApplicationServices.GetService(typeof(IRpcMessageProcessor))
-                .Returns(new RpcMessageProcessor(Options.Create(configuration ?? new RpcServiceConfiguration()),
+                .Returns(new RpcMessageProcessor(options,
                     new ContentEncodingProvider(new IContentEncoder[]{ new GzipContentEncoder(), new BrotliContentEncoder() }),
-                    new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(), new NamedParameterDeserializerBuilder()) }),
+                    new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), new NamedParameterDeserializerBuilder(fromService)) }),
                     new ArrayMethodInvokerBuilder(),
                     new InstanceActivator()
                     ));
+
+            app.ApplicationServices.GetService(typeof(IInstanceActivator)).Returns(new InstanceActivator());
+            app.ApplicationServices.GetService(typeof(IArrayMethodInvokerBuilder))
+                .Returns(new ArrayMethodInvokerBuilder());
 
             app.Use(Arg.Do<Func<RequestDelegate, RequestDelegate>>(func => executeDelegate = func));
 

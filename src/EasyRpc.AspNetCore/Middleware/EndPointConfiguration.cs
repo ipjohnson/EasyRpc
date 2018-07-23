@@ -8,7 +8,7 @@ namespace EasyRpc.AspNetCore.Middleware
     public class EndPointConfiguration
     {
         public EndPointConfiguration(string route, 
-            ConcurrentDictionary<string, ExposedMethodInformation> methods,
+            ConcurrentDictionary<string, IExposedMethodInformation> methods,
             bool enableDocumentation, 
             DocumentationConfiguration documentationConfiguration)
         {
@@ -20,7 +20,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public string Route { get; }
 
-        public ConcurrentDictionary<string, ExposedMethodInformation> Methods { get; }
+        public ConcurrentDictionary<string, IExposedMethodInformation> Methods { get; }
 
         public bool EnableDocumentation { get; }
 

@@ -56,8 +56,8 @@ namespace EasyRpc.AspNetCore.Middleware
                     methodInfo.MethodName,
                     methodInfo.MethodAuthorizations,
                     methodInfo.Filters,
-                    _invokerBuilder,
-                    _configuration.Value.SupportResponseCompression);
+                    methodInfo.InstanceProvider,
+                    methodInfo.InvokeMethod);
 
                 AddMethodCache(methodInfo.RouteNames, cache);
 

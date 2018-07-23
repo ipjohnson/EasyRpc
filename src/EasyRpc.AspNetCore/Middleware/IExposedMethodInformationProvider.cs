@@ -4,6 +4,6 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public interface IExposedMethodInformationProvider
     {
-        IEnumerable<ExposedMethodInformation> GetExposedMethods();
+        IEnumerable<IExposedMethodInformation> GetExposedMethods();
     }
 }

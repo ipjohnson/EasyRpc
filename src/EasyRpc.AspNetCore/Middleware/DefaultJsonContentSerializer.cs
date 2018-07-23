@@ -5,6 +5,7 @@ using System.Text;
 using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Messages;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -42,7 +43,8 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="outputStream"></param>
         /// <param name="response"></param>
-        public void SerializeResponse(Stream outputStream, object response)
+        /// <param name="context"></param>
+        public void SerializeResponse(Stream outputStream, object response, HttpContext context)
         {
             using (var textStream = new StreamWriter(outputStream))
             {
@@ -58,12 +60,13 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="inputStream">input stream</param>
         /// <param name="path"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        public RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path)
+        public RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path, HttpContext context)
         {
             using (var textStream = new StreamReader(inputStream))
             {
-                using (var rpcJsonReader = new RpcJsonReader(textStream,path))
+                using (var rpcJsonReader = new RpcJsonReader(textStream, path, context))
                 {
                     return _serializer.Deserialize<RpcRequestPackage>(rpcJsonReader);
                 }

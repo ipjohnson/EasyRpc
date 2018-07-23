@@ -81,6 +81,13 @@ namespace EasyRpc.AspNetCore
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
 
         /// <summary>
+        /// Expose factory
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        IFactoryExposureConfiguration Expose(string path);
+
+        /// <summary>
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
@@ -126,5 +133,11 @@ namespace EasyRpc.AspNetCore
         /// By default documentation is on, this turns it off for this configuration
         /// </summary>
         IApiConfiguration DisableDocumentation();
+
+        /// <summary>
+        /// Current api configuration
+        /// </summary>
+        /// <returns></returns>
+        ICurrentApiInformation GetCurrentApiInformation();
     }
 }

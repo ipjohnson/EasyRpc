@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
+using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Content
 {
@@ -28,14 +29,16 @@ namespace EasyRpc.AspNetCore.Content
         /// </summary>
         /// <param name="outputStream"></param>
         /// <param name="response"></param>
-        void SerializeResponse(Stream outputStream, object response);
+        /// <param name="context"></param>
+        void SerializeResponse(Stream outputStream, object response, HttpContext context);
 
         /// <summary>
         /// Deserialize the input stream to a request package
         /// </summary>
         /// <param name="inputStream">input stream</param>
         /// <param name="path"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path);
+        RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path, HttpContext context);
     }
 }

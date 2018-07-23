@@ -9,6 +9,8 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         Type InstanceType { get; }
 
+        Func<HttpContext, IServiceProvider, object> CreateInstance { get; }
+
         string MethodName { get; }
 
         MethodInfo Method { get; }
@@ -16,32 +18,29 @@ namespace EasyRpc.AspNetCore.Middleware
         IMethodAuthorization[] Authorizations { get; }
 
         Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
-        
+
         InvokeMethodWithArray InvokeMethod { get; }
     }
 
     public class ExposedMethodCache : IExposedMethodCache
     {
-        private NamedParametersToArray _namedParametersToArray;
-        private OrderedParametersToArray _orderedParametersToArray;
         private InvokeMethodWithArray _invokeMethod;
-        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
-        private readonly bool _allowCompression;
+        private readonly IInstanceActivator _instanceActivator;
 
         public ExposedMethodCache(MethodInfo methodInfo,
                                   string methodName,
                                   IMethodAuthorization[] authorizations,
                                   Func<HttpContext, IEnumerable<ICallFilter>>[] filters,
-                                  IArrayMethodInvokerBuilder invokerBuilder,
-                                  bool allowCompression)
+                                  Func<HttpContext, IServiceProvider, object> activator, 
+                                  InvokeMethodWithArray invokeMethod)
         {
             Method = methodInfo;
             Authorizations = authorizations;
             Filters = filters;
-            _invokerBuilder = invokerBuilder;
-            _allowCompression = allowCompression;
             MethodName = methodName;
             InstanceType = methodInfo.DeclaringType;
+            CreateInstance = activator;
+            InvokeMethod = invokeMethod;
         }
 
         public Type InstanceType { get; }
@@ -53,9 +52,9 @@ namespace EasyRpc.AspNetCore.Middleware
         public IMethodAuthorization[] Authorizations { get; }
 
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
-        
-        public InvokeMethodWithArray InvokeMethod =>
-            _invokeMethod ??
-            (_invokeMethod = _invokerBuilder.CreateMethodInvoker(Method, _allowCompression));
+
+        public InvokeMethodWithArray InvokeMethod { get; }
+
+        public Func<HttpContext, IServiceProvider, object> CreateInstance { get; }
     }
 }
