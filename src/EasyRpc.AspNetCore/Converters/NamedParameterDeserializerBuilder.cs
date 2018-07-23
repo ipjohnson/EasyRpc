@@ -16,9 +16,9 @@ namespace EasyRpc.AspNetCore.Converters
 
     public class NamedParameterDeserializerBuilder : INamedParameterDeserializerBuilder
     {
-        private readonly FromServicesManager _fromService;
+        private readonly IFromServicesManager _fromService;
 
-        public NamedParameterDeserializerBuilder(FromServicesManager fromService)
+        public NamedParameterDeserializerBuilder(IFromServicesManager fromService)
         {
             _fromService = fromService;
         }
