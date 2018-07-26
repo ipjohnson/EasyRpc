@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Description>Dynamic client configuration for Grace DI</Description>
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
     <AssemblyName>EasyRpc.DynamicClient.Grace</AssemblyName>
@@ -13,6 +14,15 @@
     <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
     <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">

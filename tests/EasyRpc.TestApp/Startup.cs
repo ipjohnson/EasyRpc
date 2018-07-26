@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Documentation;
+using EasyRpc.AspNetCore.Middleware;
 using EasyRpc.TestApp.Repositories;
 using EasyRpc.TestApp.Services;
 using EasyRpc.TestApp.Utilities;
@@ -66,7 +67,7 @@ namespace EasyRpc.TestApp
                     {
                         return x + y;
                     });
-                    add.Func("Test2", (int x, int y) => x + y);
+                    add.Func("Test2", (int x, int y) => x + y, new ExposedMethodParameter{ Name = "a", Position = 0}, new ExposedMethodParameter{ Name = "b", Position = 1});
                     add.Func("Test3", (int x, int y) => x + y);
                 });
             });

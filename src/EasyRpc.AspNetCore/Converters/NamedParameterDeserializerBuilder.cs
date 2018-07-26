@@ -45,7 +45,7 @@ namespace EasyRpc.AspNetCore.Converters
 
         public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
         {
-            var signatureInfo = GetSignatureInfo(exposedMethod.MethodInfo);
+            var signatureInfo = GetSignatureInfo(exposedMethod);
 
             return (context, reader,serializer) => DeserializeParameters(context, reader, serializer, signatureInfo);
         }
@@ -64,7 +64,7 @@ namespace EasyRpc.AspNetCore.Converters
 
                 if (parameters[i].FromServices)
                 {
-                    
+                    returnParameters[i] = context.RequestServices.GetService(parameters[i].ParameterType);
                 }
             }
 
@@ -104,13 +104,12 @@ namespace EasyRpc.AspNetCore.Converters
             return returnParameters;
         }
 
-        private RpcParameterInfo[] GetSignatureInfo(MethodInfo exposedMethodMethodInfo)
+        private RpcParameterInfo[] GetSignatureInfo(IExposedMethodInformation exposedMethodInformation)
         {
-            var index = 0;
-            return exposedMethodMethodInfo.GetParameters().Select(parameterInfo => 
+            return exposedMethodInformation.Parameters.Select(parameterInfo => 
                 new RpcParameterInfo
                 {
-                    ParameterIndex = index++,
+                    ParameterIndex = parameterInfo.Position,
                     ParameterName = parameterInfo.Name,
                     ParameterType = parameterInfo.ParameterType,
                     DefaultValue = parameterInfo.DefaultValue,

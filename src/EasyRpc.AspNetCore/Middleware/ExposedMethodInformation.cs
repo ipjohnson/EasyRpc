@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
+
     public interface IExposedMethodInformation
     {
         Type Type { get; }
@@ -17,11 +19,17 @@ namespace EasyRpc.AspNetCore.Middleware
 
         MethodInfo MethodInfo { get; }
 
+        string DocumentationMethodName { get; }
+
+        string DocumentationTypeName { get; }
+
         IMethodAuthorization[] MethodAuthorizations { get; }
 
         Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         InvokeMethodWithArray InvokeMethod { get; }
+
+        IEnumerable<IExposedMethodParameter> Parameters { get; }
     }
 
     public class ExposedMethodInformation : IExposedMethodInformation
@@ -66,5 +74,20 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public InvokeMethodWithArray InvokeMethod =>
             _invokeMethodBuilder.CreateMethodInvoker(MethodInfo, _allowCompression);
+
+        public string DocumentationMethodName => MethodInfo.Name;
+        
+        public string DocumentationTypeName => MethodInfo.DeclaringType?.FullName;
+
+        public IEnumerable<IExposedMethodParameter> Parameters => MethodInfo.GetParameters().Select(p =>
+            new ExposedMethodParameter
+            {
+                Name = p.Name,
+                Position = p.Position,
+                HasDefaultValue = p.HasDefaultValue,
+                DefaultValue = p.HasDefaultValue ? p.DefaultValue : null,
+                ParameterType = p.ParameterType,
+                Attributes = p.GetCustomAttributes<Attribute>()
+            });
     }
 }

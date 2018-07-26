@@ -12,7 +12,7 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private string _path;
         private ICurrentApiInformation _currentApiInformation;
-        private List<Tuple<string, Delegate, InvokeMethodWithArray>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray>>();
+        private List<Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>>();
 
         public FactoryExposureConfiguration(string path, ICurrentApiInformation currentApiInformation)
         {
@@ -22,7 +22,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public IFactoryExposureConfiguration Methods(Action<IFactoryMethodConfiguration> method)
         {
-            method(new FactoryMethodConfiguration((name, del, action) => _methods.Add(new Tuple<string, Delegate, InvokeMethodWithArray>(name, del, action))));
+            method(new FactoryMethodConfiguration((name, del, action, parameters) => _methods.Add(new Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>(name, del, action, parameters))));
 
             return this;
         }
@@ -101,7 +101,8 @@ namespace EasyRpc.AspNetCore.Middleware
                     methodInfo, 
                     authorizations.ToArray(), 
                     filters.ToArray(), 
-                    methodTuple.Item3);
+                    methodTuple.Item3,
+                    methodTuple.Item4);
             }
         }
     }

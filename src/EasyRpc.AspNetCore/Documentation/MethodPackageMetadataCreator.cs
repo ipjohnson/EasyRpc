@@ -234,7 +234,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
             string displayString;
             string parameterString = " ";
-            var parameters = method.GetParameters();
+            var parameters = methodInformation.Parameters.ToArray();
             var parameterList = new List<JsonParameterInfo>();
 
             if (parameters.Length > 0)
@@ -277,11 +277,10 @@ namespace EasyRpc.AspNetCore.Documentation
                     {
                         Name = parameter.Name,
                         ParameterType = TypeUtilities.CreateTypeRef(parameter.ParameterType),
-                        ParameterInfo = parameter,
                         Array = isArray,
                         Stringify = stringify,
-                        Optional = parameter.IsOptional,
-                        DefaultValue = parameter.IsOptional ? parameter.DefaultValue : null,
+                        Optional = parameter.HasDefaultValue,
+                        DefaultValue = parameter.HasDefaultValue ? parameter.DefaultValue : null,
                         HtmlType = htmlType
                     });
                 }
