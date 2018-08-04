@@ -16,7 +16,13 @@ namespace EasyRpc.AspNetCore.Middleware
         private IParameterArrayDeserializerBuilder _parameterArrayDeserializer;
         private INamedParameterDeserializerBuilder _namedParameterDeserializer;
 
-        public DefaultJsonContentSerializer(IParameterArrayDeserializerBuilder parameterArrayDeserializer, INamedParameterDeserializerBuilder namedParameterDeserializer)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="parameterArrayDeserializer"></param>
+        /// <param name="namedParameterDeserializer"></param>
+        public DefaultJsonContentSerializer(IParameterArrayDeserializerBuilder parameterArrayDeserializer, 
+            INamedParameterDeserializerBuilder namedParameterDeserializer)
         {
             _parameterArrayDeserializer = parameterArrayDeserializer;
             _namedParameterDeserializer = namedParameterDeserializer;
@@ -28,13 +34,18 @@ namespace EasyRpc.AspNetCore.Middleware
         public virtual string ContentType => "application/json";
 
         /// <summary>
+        /// Serializer id assigned by framework
+        /// </summary>
+        public int SerializerId { get; set; }
+
+        /// <summary>
         /// Configure content serializer
         /// </summary>
         /// <param name="configuration"></param>
-        public void Configure(EndPointConfiguration configuration)
+        public void Configure(IExposeMethodInformationCacheManager configuration)
         {
             _serializer = new JsonSerializer();
-            _serializer.Converters.Add(new RpcRequestMessageConverter(configuration, _parameterArrayDeserializer, _namedParameterDeserializer));
+            _serializer.Converters.Add(new StrictRpcRequestMessageConverter(_parameterArrayDeserializer, _namedParameterDeserializer, configuration, SerializerId));
             _serializer.Converters.Add(new RpcRequestPackageConverter());
         }
 
@@ -71,6 +82,17 @@ namespace EasyRpc.AspNetCore.Middleware
                     return _serializer.Deserialize<RpcRequestPackage>(rpcJsonReader);
                 }
             }
+        }
+
+        /// <summary>
+        /// Can serialize 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public bool CanSerialize(HttpContext context)
+        {
+            return context.Request.ContentType.StartsWith("application/json",
+                StringComparison.CurrentCultureIgnoreCase);
         }
     }
 }

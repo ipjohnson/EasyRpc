@@ -14,15 +14,26 @@ namespace EasyRpc.AspNetCore.Content
     public interface IContentSerializer
     {
         /// <summary>
-        /// ContentType to encode/decode
+        /// Id assigned by framework to serializer
+        /// </summary>
+        int SerializerId { get; set; }
+
+        /// <summary>
+        /// Content type for serializer
         /// </summary>
         string ContentType { get; }
 
         /// <summary>
+        /// Can serialize
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        bool CanSerialize(HttpContext context);
+
+        /// <summary>
         /// Configure content serializer
         /// </summary>
-        /// <param name="configuration"></param>
-        void Configure(EndPointConfiguration configuration);
+        void Configure(IExposeMethodInformationCacheManager cacheManager);
 
         /// <summary>
         /// Seriaize the response to the outputStream

@@ -45,17 +45,19 @@ namespace EasyRpc.TestApp
             }
         }
 
-        public void ConfigureContainer(IInjectionScope scope)
-        {
-            scope.Configure(c =>
-            {
-                c.ExcludeTypeFromAutoRegistration("Microsoft.*");
-            });
-        }
+        //public void ConfigureContainer(IInjectionScope scope)
+        //{
+        //    scope.Configure(c =>
+        //    {
+        //        c.ExcludeTypeFromAutoRegistration("Microsoft.*");
+        //    });
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
+            factory.AddConsole(Configuration.GetSection("Logging"));
+
             app.UseJsonRpc("/service-api/", api =>
             {
                 api.Documentation(c => c.MenuWidth = 15);
@@ -63,11 +65,8 @@ namespace EasyRpc.TestApp
 
                 api.Expose("TestMethods").Methods(add =>
                 {
-                    add.Func("Test1", (int x, int y) =>
-                    {
-                        return x + y;
-                    });
-                    add.Func("Test2", (int x, int y) => x + y, new ExposedMethodParameter{ Name = "a", Position = 0}, new ExposedMethodParameter{ Name = "b", Position = 1});
+                    add.Func("Test1", (int x, int y) => x + y);
+                    add.Func("Test2", (int x, int y) => x + y);
                     add.Func("Test3", (int x, int y) => x + y);
                 });
             });

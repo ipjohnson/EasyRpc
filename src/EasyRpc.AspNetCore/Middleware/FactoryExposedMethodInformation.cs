@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
-    public class FactoryExposedMethodInformation : IExposedMethodInformation
+    public class FactoryExposedMethodInformation : BaseExposedMethodInformation, IExposedMethodInformation
     {
+        private static object _nullInstance = new object();
+
         public FactoryExposedMethodInformation(Type type, IEnumerable<string> routeNames, string methodName, MethodInfo methodInfo, IMethodAuthorization[] methodAuthorizations, Func<HttpContext, IEnumerable<ICallFilter>>[] filters, InvokeMethodWithArray invokeMethod, IEnumerable<IExposedMethodParameter> parameters)
         {
             Type = type;
@@ -53,7 +55,8 @@ namespace EasyRpc.AspNetCore.Middleware
                         Position = parameter.Position,
                         ParameterType = parameter.ParameterType,
                         DefaultValue = parameter.HasDefaultValue ? parameter.DefaultValue : null,
-                        Attributes = parameter.GetCustomAttributes<Attribute>()
+                        Attributes = parameter.GetCustomAttributes<Attribute>(),
+                        ParameterInfo = parameter
                     };
                 }
                 else if (calculatedParameters[i].ParameterType == null)
@@ -67,7 +70,10 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Type Type { get; }
 
-        public Func<HttpContext, IServiceProvider, object> InstanceProvider => (context, service) => null;
+        private static Func<HttpContext, IServiceProvider, object>
+            _staticInstanceProvider = (context, provider) => _nullInstance;
+
+        public Func<HttpContext, IServiceProvider, object> InstanceProvider => _staticInstanceProvider;
 
         public IEnumerable<string> RouteNames { get; }
 
@@ -80,11 +86,9 @@ namespace EasyRpc.AspNetCore.Middleware
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         public InvokeMethodWithArray InvokeMethod { get; }
-
-        public string DocumentationMethodName => throw new NotImplementedException();
-
-        public string DocumentationTypeName => throw new NotImplementedException();
-
+        
         public IEnumerable<IExposedMethodParameter> Parameters { get; }
+
+        public Type InstanceType => null;
     }
 }

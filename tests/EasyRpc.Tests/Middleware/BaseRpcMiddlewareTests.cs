@@ -43,7 +43,7 @@ namespace EasyRpc.Tests.Middleware
                 .Returns(new RpcMessageProcessor(options,
                     new ContentEncodingProvider(new IContentEncoder[]{ new GzipContentEncoder(), new BrotliContentEncoder() }),
                     new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), new NamedParameterDeserializerBuilder(fromService)) }),
-                    new ArrayMethodInvokerBuilder(),
+                    new ExposeMethodInformationCacheManager(), 
                     new InstanceActivator()
                     ));
 

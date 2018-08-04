@@ -24,40 +24,52 @@ namespace EasyRpc.AspNetCore.Content
         /// <summary>
         /// Configure serializers
         /// </summary>
-        /// <param name="configuration"></param>
-        void Configure(EndPointConfiguration configuration);
+        void Configure(IExposeMethodInformationCacheManager cacheManager);
     }
 
+    /// <summary>
+    /// Provides content serializers
+    /// </summary>
     public class ContentSerializerProvider : IContentSerializerProvider
     {
         private IContentSerializer _onlySerializer;
         private IContentSerializer[] _serializers;
 
+        /// <summary>
+        /// DEfault constructor
+        /// </summary>
+        /// <param name="serializers"></param>
         public ContentSerializerProvider(IEnumerable<IContentSerializer> serializers)
         {
             // process last serializers first
             _serializers = serializers.Reverse().ToArray();
-
+            
             if (_serializers.Length == 1)
             {
                 _onlySerializer = _serializers[0];
             }
         }
 
+        /// <summary>
+        /// Gets the default serializer
+        /// </summary>
         public IContentSerializer DefaultSerializer => _serializers.First();
 
+        /// <summary>
+        /// Get serializer based on context
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public IContentSerializer GetSerializer(HttpContext context)
         {
             if (_onlySerializer != null)
             {
-                return context.Request.ContentType.StartsWith(_onlySerializer.ContentType) ? _onlySerializer : null;
+                return _onlySerializer.CanSerialize(context) ? _onlySerializer : null;
             }
-
-            var contentType = context.Request.ContentType;
 
             for (var i = 0; i < _serializers.Length; i++)
             {
-                if (contentType.StartsWith(_serializers[i].ContentType))
+                if (_serializers[i].CanSerialize(context))
                 {
                     return _serializers[i];
                 }
@@ -69,12 +81,15 @@ namespace EasyRpc.AspNetCore.Content
         /// <summary>
         /// Configure serializers
         /// </summary>
-        /// <param name="configuration"></param>
-        public void Configure(EndPointConfiguration configuration)
+        public void Configure(IExposeMethodInformationCacheManager cacheManager)
         {
+            var id = 1;
+
             foreach (var serializer in _serializers)
             {
-                serializer.Configure(configuration);
+                serializer.SerializerId = id++;
+
+                serializer.Configure(cacheManager);
             }
         }
     }

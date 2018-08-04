@@ -19,9 +19,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         MethodInfo MethodInfo { get; }
 
-        string DocumentationMethodName { get; }
-
-        string DocumentationTypeName { get; }
+        Type InstanceType { get; }
 
         IMethodAuthorization[] MethodAuthorizations { get; }
 
@@ -30,12 +28,17 @@ namespace EasyRpc.AspNetCore.Middleware
         InvokeMethodWithArray InvokeMethod { get; }
 
         IEnumerable<IExposedMethodParameter> Parameters { get; }
+
+        object GetSerializerData(int serializerId);
+
+        void SetSerializerData(int serializerId, object serializerData);
     }
 
-    public class ExposedMethodInformation : IExposedMethodInformation
+    public class ExposedMethodInformation : BaseExposedMethodInformation, IExposedMethodInformation
     {
         private readonly IArrayMethodInvokerBuilder _invokeMethodBuilder;
         private readonly bool _allowCompression;
+        private InvokeMethodWithArray _invokeMethod;
 
         public ExposedMethodInformation(Type type,
             IEnumerable<string> routeNames,
@@ -55,6 +58,7 @@ namespace EasyRpc.AspNetCore.Middleware
             MethodInfo = method;
             MethodAuthorizations = methodAuthorizations;
             Filters = filters;
+            InstanceType = MethodInfo.DeclaringType;
             InstanceProvider = (context, provider) => instanceActivator.ActivateInstance(context, provider, Type);
         }
 
@@ -68,17 +72,15 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public MethodInfo MethodInfo { get; }
 
+        public Type InstanceType { get; }
+
         public IMethodAuthorization[] MethodAuthorizations { get; }
 
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
-        public InvokeMethodWithArray InvokeMethod =>
-            _invokeMethodBuilder.CreateMethodInvoker(MethodInfo, _allowCompression);
-
-        public string DocumentationMethodName => MethodInfo.Name;
+        public InvokeMethodWithArray InvokeMethod => _invokeMethod ??
+            (_invokeMethod = _invokeMethodBuilder.CreateMethodInvoker(MethodInfo, _allowCompression));
         
-        public string DocumentationTypeName => MethodInfo.DeclaringType?.FullName;
-
         public IEnumerable<IExposedMethodParameter> Parameters => MethodInfo.GetParameters().Select(p =>
             new ExposedMethodParameter
             {
@@ -87,7 +89,9 @@ namespace EasyRpc.AspNetCore.Middleware
                 HasDefaultValue = p.HasDefaultValue,
                 DefaultValue = p.HasDefaultValue ? p.DefaultValue : null,
                 ParameterType = p.ParameterType,
-                Attributes = p.GetCustomAttributes<Attribute>()
+                Attributes = p.GetCustomAttributes<Attribute>(),
+                ParameterInfo = p
             });
+
     }
 }

@@ -12,7 +12,7 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private string _path;
         private ICurrentApiInformation _currentApiInformation;
-        private List<Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>>();
+        private List<Tuple<string, Delegate, InvokeMethodWithArray>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray>>();
 
         public FactoryExposureConfiguration(string path, ICurrentApiInformation currentApiInformation)
         {
@@ -22,7 +22,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public IFactoryExposureConfiguration Methods(Action<IFactoryMethodConfiguration> method)
         {
-            method(new FactoryMethodConfiguration((name, del, action, parameters) => _methods.Add(new Tuple<string, Delegate, InvokeMethodWithArray, IExposedMethodParameter[]>(name, del, action, parameters))));
+            method(new FactoryMethodConfiguration(
+                (name, del, action) => _methods.Add(new Tuple<string, Delegate, InvokeMethodWithArray>(name, del, action))));
 
             return this;
         }
@@ -95,14 +96,22 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
+                var authArray = authorizations.Count > 0 ?
+                    authorizations.ToArray() :
+                    Array.Empty<IMethodAuthorization>();
+
+                var filterArray = filters.Count > 0 ?
+                    filters.ToArray() :
+                    Array.Empty<Func<HttpContext, IEnumerable<ICallFilter>>>();
+
                 yield return new FactoryExposedMethodInformation(typeof(object), 
                     finalNames, 
                     methodTuple.Item1, 
                     methodInfo, 
-                    authorizations.ToArray(), 
-                    filters.ToArray(), 
-                    methodTuple.Item3,
-                    methodTuple.Item4);
+                    authArray, 
+                    filterArray, 
+                    methodTuple.Item3, 
+                    null);
             }
         }
     }

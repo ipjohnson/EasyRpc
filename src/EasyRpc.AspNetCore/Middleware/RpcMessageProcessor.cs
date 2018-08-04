@@ -29,13 +29,11 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private static readonly object[] NoParamsArray = new object[0];
 
-        private readonly ConcurrentDictionary<string, IExposedMethodCache> _methodCache;
-        private readonly ConcurrentDictionary<string, IExposedMethodInformation> _exposedMethodInformations;
-        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private readonly IInstanceActivator _activator;
         private readonly IOptions<RpcServiceConfiguration> _configuration;
         private readonly IContentEncodingProvider _contentEncodingProvider;
         private readonly IContentSerializerProvider _contentSerializerProvider;
+        private readonly IExposeMethodInformationCacheManager _cacheManager;
         private readonly bool _debugLogging;
         private readonly ILogger<RpcMessageProcessor> _logger;
         private string _route;
@@ -44,18 +42,16 @@ namespace EasyRpc.AspNetCore.Middleware
         public RpcMessageProcessor(IOptions<RpcServiceConfiguration> configuration,
             IContentEncodingProvider contentEncodingProvider,
             IContentSerializerProvider contentSerializerProvider,
-            IArrayMethodInvokerBuilder invokerBuilder,
+            IExposeMethodInformationCacheManager cacheManager,
             IInstanceActivator activator,
             ILogger<RpcMessageProcessor> logger = null)
         {
             _configuration = configuration;
             _contentEncodingProvider = contentEncodingProvider;
             _contentSerializerProvider = contentSerializerProvider;
-            _invokerBuilder = invokerBuilder;
+            _cacheManager = cacheManager;
             _activator = activator;
             _logger = logger;
-            _methodCache = new ConcurrentDictionary<string, IExposedMethodCache>();
-            _exposedMethodInformations = new ConcurrentDictionary<string, IExposedMethodInformation>();
             _debugLogging = configuration.Value.DebugLogging;
             _defaultSerializer = _contentSerializerProvider.DefaultSerializer;
         }
@@ -63,21 +59,23 @@ namespace EasyRpc.AspNetCore.Middleware
         public EndPointConfiguration Configure(IApiConfigurationProvider configuration, string route)
         {
             _route = route;
-
+            var exposedMethodInformations = new Dictionary<string, IExposedMethodInformation>();
             foreach (var exposedMethod in configuration.GetExposedMethods())
             {
                 foreach (var name in exposedMethod.RouteNames)
                 {
-                    _exposedMethodInformations[name + "*" + exposedMethod.MethodName] = exposedMethod;
+                    exposedMethodInformations[name + "*" + exposedMethod.MethodName] = exposedMethod;
                 }
             }
 
             var currentApiInfo = configuration.GetCurrentApiInformation();
 
             var endPoint =
-                new EndPointConfiguration(route, _exposedMethodInformations, currentApiInfo.EnableDocumentation, currentApiInfo.DocumentationConfiguration);
+                new EndPointConfiguration(route, exposedMethodInformations, currentApiInfo.EnableDocumentation, currentApiInfo.DocumentationConfiguration);
 
-            _contentSerializerProvider.Configure(endPoint);
+            _cacheManager.Configure(endPoint);
+
+            _contentSerializerProvider.Configure(_cacheManager);
 
             return endPoint;
         }
@@ -273,21 +271,14 @@ namespace EasyRpc.AspNetCore.Middleware
         private Task<ResponseMessage> ProcessIndividualRequest(HttpContext context, IServiceProvider serviceProvider,
             string path, RpcRequestMessage requestMessage)
         {
-            var methodKey = $"{path}*{requestMessage.Method}";
-
-            if (!_methodCache.TryGetValue(methodKey, out var exposedMethod))
-            {
-                exposedMethod = LocateExposedMethod(context, serviceProvider, path, requestMessage);
-            }
-
-            if (exposedMethod != null)
+            if (requestMessage.MethodInformation != null)
             {
                 if (_debugLogging)
                 {
                     _logger?.LogDebug($"Found method for {path} {requestMessage.Method}");
                 }
 
-                return ExecuteMethod(context, serviceProvider, requestMessage, exposedMethod);
+                return ExecuteMethod(context, serviceProvider, requestMessage, requestMessage.MethodInformation);
             }
 
             _logger?.LogError($"No method {requestMessage.Method} found at {path}");
@@ -295,48 +286,17 @@ namespace EasyRpc.AspNetCore.Middleware
             return ReturnMethodNotFound(requestMessage.Version, requestMessage.Id);
         }
 
-        private IExposedMethodCache LocateExposedMethod(HttpContext context, IServiceProvider serviceProvider,
-            string path, RpcRequestMessage requestMessage)
-        {
-            var key = path + "*" + requestMessage.Method;
-
-            if (_exposedMethodInformations.TryGetValue(key, out var methodInfo))
-            {
-                var cache = new ExposedMethodCache(methodInfo.MethodInfo, methodInfo.MethodName,
-                    methodInfo.MethodAuthorizations,
-                    methodInfo.Filters,
-                    methodInfo.InstanceProvider,
-                    methodInfo.InvokeMethod);
-
-                AddMethodCache(methodInfo.RouteNames, cache);
-
-                return cache;
-            }
-
-            return null;
-        }
-
-        private void AddMethodCache(IEnumerable<string> names, IExposedMethodCache cache)
-        {
-            foreach (var name in names)
-            {
-                var methodKey = $"{name}*{cache.MethodName}";
-
-                _methodCache.TryAdd(methodKey, cache);
-            }
-        }
-
         private async Task<ResponseMessage> ExecuteMethod(HttpContext context, IServiceProvider serviceProvider,
-            RpcRequestMessage requestMessage, IExposedMethodCache exposedMethod)
+            RpcRequestMessage requestMessage, IExposedMethodInformation exposedMethod)
         {
             CallExecutionContext callExecutionContext =
-                new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.Method, requestMessage);
+                new CallExecutionContext(context, exposedMethod.InstanceType, exposedMethod.MethodInfo, requestMessage);
 
-            if (exposedMethod.Authorizations.Length > 0)
+            if (exposedMethod.MethodAuthorizations.Length > 0)
             {
-                for (var i = 0; i < exposedMethod.Authorizations.Length; i++)
+                for (var i = 0; i < exposedMethod.MethodAuthorizations.Length; i++)
                 {
-                    if (!await exposedMethod.Authorizations[i].AsyncAuthorize(callExecutionContext))
+                    if (!await exposedMethod.MethodAuthorizations[i].AsyncAuthorize(callExecutionContext))
                     {
                         if (_debugLogging)
                         {
@@ -352,7 +312,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                newInstance = _activator.ActivateInstance(context, serviceProvider, exposedMethod.InstanceType);
+                newInstance = exposedMethod.InstanceProvider(context, serviceProvider);
 
                 callExecutionContext.Instance = newInstance;
             }

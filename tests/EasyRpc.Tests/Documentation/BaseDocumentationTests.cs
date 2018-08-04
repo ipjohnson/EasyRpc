@@ -37,7 +37,7 @@ namespace EasyRpc.Tests.Documentation
                         new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), 
                             new NamedParameterDeserializerBuilder(fromService))
                     }),
-                    new ArrayMethodInvokerBuilder(),
+                    new ExposeMethodInformationCacheManager(), 
                     new InstanceActivator()
                 ));
 

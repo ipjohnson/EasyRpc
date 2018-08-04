@@ -26,7 +26,7 @@ namespace EasyRpc.Tests.Documentation
             context.Request.Path = path;
             context.Response.Body = responseBody;
 
-            provider.Configure(new EndPointConfiguration("/service-api/", new ConcurrentDictionary<string, IExposedMethodInformation>(), true, new DocumentationConfiguration()));
+            provider.Configure(new EndPointConfiguration("/service-api/", new Dictionary<string, IExposedMethodInformation>(), true, new DocumentationConfiguration()));
 
             if (!provider.ProcessRequest(context).Result)
             {

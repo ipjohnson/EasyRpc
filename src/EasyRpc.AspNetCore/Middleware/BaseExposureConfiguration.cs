@@ -129,12 +129,20 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
+                var authArray = currentAuth.Count > 0 ? 
+                    currentAuth.ToArray() : 
+                    Array.Empty<IMethodAuthorization>();
+
+                var filterArray = filters.Count > 0 ? 
+                    filters.ToArray() : 
+                    Array.Empty<Func<HttpContext, IEnumerable<ICallFilter>>>();
+
                 yield return new ExposedMethodInformation(type,
                     finalNames, 
                     currentApi.NamingConventions.MethodNameGenerator(method), 
                     method, 
-                    currentAuth.ToArray(), 
-                    filters.ToArray(), 
+                    authArray, 
+                    filterArray, 
                     activator,
                     invokerBuilder,
                     currentApi.SupportResponseCompression);

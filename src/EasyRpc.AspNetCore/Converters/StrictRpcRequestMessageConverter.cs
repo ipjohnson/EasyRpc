@@ -8,26 +8,37 @@ using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Converters
 {
-    public class RpcRequestMessageConverter : JsonConverter
+    /// <summary>
+    /// Json converter for RpcRequestMessage, it will only process messages that are in the order of jsonrpc, method, params, id
+    /// </summary>
+    public class StrictRpcRequestMessageConverter : JsonConverter
     {
         protected class ConverterInfo
         {
             public ParamsDeserializer ParameterArrayDeserializer { get; set; }
 
             public ParamsDeserializer NamedParamsDeserializer { get; set; }
+
+            public IExposedMethodInformation ExposedMethod { get; set; }
         }
-        
-        private EndPointConfiguration _endPointConfiguration;
+
         private IParameterArrayDeserializerBuilder _parameterArrayDeserializerBuilder;
         private INamedParameterDeserializerBuilder _namedParameterDeserializerBuilder;
+        private IExposeMethodInformationCacheManager _cacheManager;
+        private readonly int _serializerId;
 
         private ConcurrentDictionary<string, ConverterInfo> _exposedMethodInformations;
 
-        public RpcRequestMessageConverter(EndPointConfiguration configuration, IParameterArrayDeserializerBuilder parameterArrayDeserializerBuilder, INamedParameterDeserializerBuilder namedParameterDeserializerBuilder)
+        public StrictRpcRequestMessageConverter(
+            IParameterArrayDeserializerBuilder parameterArrayDeserializerBuilder,
+            INamedParameterDeserializerBuilder namedParameterDeserializerBuilder,
+            IExposeMethodInformationCacheManager cacheManager,
+            int serializerId)
         {
-            _endPointConfiguration = configuration;
             _parameterArrayDeserializerBuilder = parameterArrayDeserializerBuilder;
             _namedParameterDeserializerBuilder = namedParameterDeserializerBuilder;
+            _cacheManager = cacheManager;
+            _serializerId = serializerId;
             _exposedMethodInformations = new ConcurrentDictionary<string, ConverterInfo>();
         }
 
@@ -52,13 +63,93 @@ namespace EasyRpc.AspNetCore.Converters
 
             var method = ReadMethod(reader);
 
-            var parameters = ReadParameters((RpcJsonReader)reader, method, serializer);
+            var path = ((RpcJsonReader)reader).UrlPath;
+
+            var converter = GetConverter(path, method);
+
+            if (converter == null)
+            {
+                return new RpcRequestMessage { Version = version, ErrorMessage = $"Method not found {method} at {path}" };
+            }
+
+            var parameters = GetParameters((RpcJsonReader)reader, converter, serializer);
 
             var id = ReadId(reader);
 
             reader.Read();
 
-            return new RpcRequestMessage { Version = version, Id = id, Method = method, Parameters = parameters };
+            return new RpcRequestMessage
+            {
+                Version = version,
+                Id = id,
+                Method = method,
+                Parameters = parameters,
+                MethodInformation = converter.ExposedMethod
+            };
+        }
+
+        private object[] GetParameters(RpcJsonReader reader, ConverterInfo converter, JsonSerializer serializer)
+        {
+            if (reader.Read())
+            {
+                if (reader.TokenType == JsonToken.PropertyName && string.Compare("params", reader.Value as string,
+                        StringComparison.CurrentCultureIgnoreCase) == 0)
+                {
+                    reader.Read();
+
+                    if (reader.TokenType == JsonToken.StartArray)
+                    {
+                        reader.Read();
+
+                        var deserializer = converter.ParameterArrayDeserializer ??
+                            (converter.ParameterArrayDeserializer =
+                                _parameterArrayDeserializerBuilder.BuildDeserializer(converter.ExposedMethod));
+
+                        return deserializer(reader.Context, reader, serializer);
+                    }
+
+                    if (reader.TokenType == JsonToken.StartObject)
+                    {
+                        reader.Read();
+
+                        var deserializer = converter.NamedParamsDeserializer ??
+                            (converter.NamedParamsDeserializer =
+                                _namedParameterDeserializerBuilder.BuildDeserializer(converter.ExposedMethod));
+
+                        return deserializer(reader.Context, reader, serializer);
+                    }
+
+                    if (reader.TokenType == JsonToken.Null)
+                    {
+                        return new object[0];
+                    }
+                }
+            }
+
+            throw new Exception("Could not read parameters");
+        }
+
+        private ConverterInfo GetConverter(string urlPath, string method)
+        {
+            var exposedMethod = _cacheManager.GetExposedMethodInformation(urlPath, method);
+
+            if (exposedMethod == null)
+            {
+                return null;
+            }
+
+            var converter = (ConverterInfo)exposedMethod.GetSerializerData(_serializerId);
+
+            if (converter != null)
+            {
+                return converter;
+            }
+
+            converter = new ConverterInfo { ExposedMethod = exposedMethod };
+
+            exposedMethod.SetSerializerData(_serializerId, converter);
+
+            return converter;
         }
 
         private string ReadId(JsonReader reader)
@@ -73,107 +164,6 @@ namespace EasyRpc.AspNetCore.Converters
             }
 
             return "";
-        }
-
-        private object[] ReadParameters(RpcJsonReader reader, string method, JsonSerializer serializer)
-        {
-            if (reader.Read())
-            {
-                if (reader.TokenType == JsonToken.PropertyName && string.Compare("params", reader.Value as string,
-                        StringComparison.CurrentCultureIgnoreCase) == 0)
-                {
-                    reader.Read();
-
-                    if (reader.TokenType == JsonToken.StartArray)
-                    {
-                        reader.Read();
-
-                        var deserializer = GetArrayDeserializer(reader.UrlPath, method);
-                        
-                        return deserializer?.Invoke(reader.Context, reader, serializer);
-                    }
-
-                    if (reader.TokenType == JsonToken.StartObject)
-                    {
-                        reader.Read();
-
-                        var deserializer = GetNamedParameterDeserializer(reader.UrlPath, method);
-
-                        return deserializer?.Invoke(reader.Context, reader, serializer);
-                    }
-
-                    if (reader.TokenType == JsonToken.Null)
-                    {
-                        return new object[0];
-                    }
-                }
-            }
-
-            throw new Exception("Could not read parameters");
-        }
-
-        private ParamsDeserializer GetNamedParameterDeserializer(string urlPath, string method)
-        {
-            var key = string.Concat(urlPath, '*', method);
-
-            if (_exposedMethodInformations.TryGetValue(key, out var converter))
-            {
-                if (converter.NamedParamsDeserializer != null)
-                {
-                    return converter.NamedParamsDeserializer;
-                }
-            }
-
-            if (_endPointConfiguration.Methods.TryGetValue(key, out var exposedMethod))
-            {
-                var paramsDeserializer = _namedParameterDeserializerBuilder.BuildDeserializer(exposedMethod);
-
-                if (converter == null)
-                {
-                    _exposedMethodInformations.TryAdd(key,
-                        new ConverterInfo { NamedParamsDeserializer = paramsDeserializer });
-                }
-                else
-                {
-                    converter.NamedParamsDeserializer = paramsDeserializer;
-                }
-
-                return paramsDeserializer;
-            }
-
-            return null;
-        }
-
-        private ParamsDeserializer GetArrayDeserializer(string url, string method)
-        {
-            var key = string.Concat(url, '*', method);
-
-            if (_exposedMethodInformations.TryGetValue(key, out var converter))
-            {
-                if (converter.ParameterArrayDeserializer != null)
-                {
-                    return converter.ParameterArrayDeserializer;
-                }
-            }
-
-            if (_endPointConfiguration.Methods.TryGetValue(key, out var exposedMethod))
-            {
-                var paramsDeserializer = _parameterArrayDeserializerBuilder.BuildDeserializer(exposedMethod);
-
-                if (converter == null)
-                {
-                    _exposedMethodInformations.TryAdd(key,
-                        new ConverterInfo {ParameterArrayDeserializer = paramsDeserializer});
-                }
-                else
-                {
-                    converter.ParameterArrayDeserializer = paramsDeserializer;
-                }
-
-                return paramsDeserializer;
-            }
-
-            return null;
         }
 
         private string ReadMethod(JsonReader reader)

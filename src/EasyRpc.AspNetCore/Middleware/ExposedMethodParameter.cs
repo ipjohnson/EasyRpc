@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -17,6 +18,8 @@ namespace EasyRpc.AspNetCore.Middleware
         object DefaultValue { get; }
 
         IEnumerable<Attribute> Attributes { get; }
+
+        ParameterInfo ParameterInfo { get; }
     }
 
     public class ExposedMethodParameter : IExposedMethodParameter
@@ -32,5 +35,7 @@ namespace EasyRpc.AspNetCore.Middleware
         public object DefaultValue { get; set; }
 
         public IEnumerable<Attribute> Attributes { get; set; }
+
+        public ParameterInfo ParameterInfo { get; set; }
     }
 }

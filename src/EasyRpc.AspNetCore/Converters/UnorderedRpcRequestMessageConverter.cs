@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EasyRpc.AspNetCore.Messages;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Converters
 {
     /// <summary>
-    /// Json converter for RpcRequestPackage
+    /// JsonConverter for RpcRequestMessage that will process message with parameters in any order not just jsonrpc, method, params, id
     /// </summary>
-    public class RpcRequestPackageConverter : JsonConverter
+    public class UnorderedRpcRequestMessageConverter : JsonConverter
     {
         /// <summary>Writes the JSON representation of the object.</summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
@@ -26,24 +25,9 @@ namespace EasyRpc.AspNetCore.Converters
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            switch (reader.TokenType)
-            {
-                case JsonToken.StartObject:
-                    var request = serializer.Deserialize<RpcRequestMessage>(reader);
-
-                    return new RpcRequestPackage(request);
-
-                case JsonToken.StartArray:
-                    var array = serializer.Deserialize<RpcRequestMessage[]>(reader);
-
-                    return new RpcRequestPackage(array);
-
-                default:
-                    throw new Exception("message is empty");
-            }
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -55,7 +39,7 @@ namespace EasyRpc.AspNetCore.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(RpcRequestPackage);
+            throw new NotImplementedException();
         }
     }
 }

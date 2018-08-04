@@ -14,7 +14,7 @@ namespace EasyRpc.AspNetCore.Brotli
         /// </summary>
         /// <param name="serviceCollection"></param>
         /// <returns></returns>
-        public static IServiceCollection AddBrotliRcpSupport(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddBrotliRpcSupport(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IContentEncoder, BrotliContentEncoder>();
 

@@ -93,12 +93,14 @@ namespace EasyRpc.AspNetCore.Documentation
         private IXmlDocumentationProvider _xmlDocumentationProvider;
         private ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
         private List<TypeDefinition> _typeDefinitions;
+        private IFromServicesManager _fromServicesManager;
 
-        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider)
+        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider, IFromServicesManager fromServicesManager)
         {
             _serializer = serializer;
             _xmlDocumentationProvider = xmlDocumentationProvider;
             _typeDefinitionPackageProvider = typeDefinitionPackageProvider;
+            _fromServicesManager = fromServicesManager;
         }
 
         public void SetConfiguration(EndPointConfiguration endPointConfiguration)
@@ -243,6 +245,13 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 foreach (var parameter in parameters)
                 {
+                    if (parameter.ParameterType == typeof(IServiceProvider) ||
+                        parameter.ParameterType == typeof(HttpContext) ||
+                        _fromServicesManager.ParameterIsFromServices(parameter.ParameterInfo))
+                    {
+                        continue;
+                    }
+                    
                     if (parameterString.Length > 0)
                     {
                         parameterString += ", ";

@@ -41,8 +41,7 @@ namespace EasyRpc.AspNetCore.Converters
 
             public bool ServiceProvider { get; set; }
         }
-
-
+        
         public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
         {
             var signatureInfo = GetSignatureInfo(exposedMethod);
@@ -57,14 +56,23 @@ namespace EasyRpc.AspNetCore.Converters
 
             for (var i = 0; i < parameters.Length; i++)
             {
-                if (parameters[i].HasDefaultValue)
-                {
-                    returnParameters[i] = parameters[i].DefaultValue;
-                }
+                var parameter = parameters[i];
 
-                if (parameters[i].FromServices)
+                if (parameter.HasDefaultValue)
                 {
-                    returnParameters[i] = context.RequestServices.GetService(parameters[i].ParameterType);
+                    returnParameters[i] = parameter.DefaultValue;
+                }
+                else if(parameter.HttpContext)
+                {
+                    returnParameters[i] = context;
+                }
+                else if(parameter.ServiceProvider)
+                {
+                    returnParameters[i] = context.RequestServices;
+                }
+                else if (parameter.FromServices)
+                {
+                    returnParameters[i] = context.RequestServices.GetService(parameter.ParameterType);
                 }
             }
 
@@ -105,16 +113,30 @@ namespace EasyRpc.AspNetCore.Converters
         }
 
         private RpcParameterInfo[] GetSignatureInfo(IExposedMethodInformation exposedMethodInformation)
-        {
-            return exposedMethodInformation.Parameters.Select(parameterInfo => 
-                new RpcParameterInfo
+        { 
+            return exposedMethodInformation.Parameters.Select(parameterInfo =>
+            {
+                var fromServices = false;
+                var httpContext = parameterInfo.ParameterType == typeof(HttpContext);
+                var serviceProvider = parameterInfo.ParameterType == typeof(IServiceProvider);
+
+                if (!httpContext && !serviceProvider)
+                {
+                    fromServices = _fromService.ParameterIsFromServices(parameterInfo.ParameterInfo);
+                }
+
+                return new RpcParameterInfo
                 {
                     ParameterIndex = parameterInfo.Position,
                     ParameterName = parameterInfo.Name,
                     ParameterType = parameterInfo.ParameterType,
                     DefaultValue = parameterInfo.DefaultValue,
-                    HasDefaultValue = parameterInfo.HasDefaultValue
-                }).ToArray();
+                    HasDefaultValue = parameterInfo.HasDefaultValue,
+                    FromServices = fromServices,
+                    HttpContext = httpContext,
+                    ServiceProvider = serviceProvider
+                };
+            }).ToArray();
         }
     }
 }

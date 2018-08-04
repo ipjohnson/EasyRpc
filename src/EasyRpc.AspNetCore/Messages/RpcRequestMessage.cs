@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyRpc.AspNetCore.Converters;
+using EasyRpc.AspNetCore.Middleware;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Messages
 {
-    
+    /// <summary>
+    /// Represents an incoming rpc message
+    /// </summary>
     public class RpcRequestMessage
     {
         /// <summary>
@@ -28,5 +31,15 @@ namespace EasyRpc.AspNetCore.Messages
         /// method parameters
         /// </summary>
         public object[] Parameters { get; set; }
+        
+        /// <summary>
+        /// Error message
+        /// </summary>
+        public string ErrorMessage { get; set; } 
+
+        /// <summary>
+        /// Exposed method
+        /// </summary>
+        public IExposedMethodInformation MethodInformation { get; set; }
     }
 }

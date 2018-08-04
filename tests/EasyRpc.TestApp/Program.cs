@@ -21,7 +21,8 @@ namespace EasyRpc.TestApp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseGrace()
+                .ConfigureAppConfiguration(config => { config.AddJsonFile("appsettings.json"); })
+                //.UseGrace()
                 .UseStartup<Startup>()
                 .Build();
     }

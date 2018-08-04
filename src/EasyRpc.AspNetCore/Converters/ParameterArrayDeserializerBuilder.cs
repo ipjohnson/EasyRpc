@@ -13,7 +13,6 @@ namespace EasyRpc.AspNetCore.Converters
 {
     public delegate object[] ParamsDeserializer(HttpContext context, RpcJsonReader reader, JsonSerializer serializer);
 
-
     public interface IParameterArrayDeserializerBuilder
     {
         ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod);
@@ -27,7 +26,6 @@ namespace EasyRpc.AspNetCore.Converters
         {
             _fromServicesManager = fromServicesManager;
         }
-
 
         public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
         {
@@ -45,7 +43,7 @@ namespace EasyRpc.AspNetCore.Converters
 
         protected virtual void GenerateMethod(IExposedMethodInformation exposedMethod, ILGenerator ilGenerator)
         {
-            var parameters = exposedMethod.MethodInfo.GetParameters();
+            var parameters = exposedMethod.Parameters.ToArray();
 
             ilGenerator.EmitInt(parameters.Length);
 
@@ -59,22 +57,22 @@ namespace EasyRpc.AspNetCore.Converters
 
                 ilGenerator.Emit(OpCodes.Dup);
                 ilGenerator.EmitInt(index);
-                
-                if (_fromServicesManager.ParameterIsFromServices(parameter))
+
+                if (_fromServicesManager.ParameterIsFromServices(parameter.ParameterInfo))
                 {
-                    GenerateIlForFromServices(parameter, ilGenerator);
+                    GenerateIlForFromServices(parameter.ParameterInfo, ilGenerator);
                 }
                 else if (parameter.ParameterType == typeof(HttpContext))
                 {
-                    GenerateIlForHttpContext(parameter, ilGenerator);
+                    GenerateIlForHttpContext(parameter.ParameterInfo, ilGenerator);
                 }
                 else if (parameter.ParameterType == typeof(IServiceProvider))
                 {
-                    GenerateIlForServiceProvider(parameter, ilGenerator);
+                    GenerateIlForServiceProvider(parameter.ParameterInfo, ilGenerator);
                 }
                 else
                 {
-                    GenerateIlForParameter(parameter, ilGenerator, parameterIndex);
+                    GenerateIlForParameter(parameter.ParameterInfo, ilGenerator, parameterIndex);
                     parameterIndex++;
                 }
 
@@ -91,12 +89,16 @@ namespace EasyRpc.AspNetCore.Converters
 
         private void GenerateIlForHttpContext(ParameterInfo parameter, ILGenerator ilGenerator)
         {
-
+            ilGenerator.Emit(OpCodes.Ldarg_0);
         }
 
         private void GenerateIlForServiceProvider(ParameterInfo parameter, ILGenerator ilGenerator)
         {
+            ilGenerator.Emit(OpCodes.Ldarg_0);
 
+            var requestService = typeof(HttpContext).GetTypeInfo().GetProperty("RequestServices");
+
+            ilGenerator.EmitMethodCall(requestService.GetMethod);
         }
 
         private void GenerateIlForParameter(ParameterInfo parameter, ILGenerator ilGenerator, int parameterIndex)
@@ -155,7 +157,18 @@ namespace EasyRpc.AspNetCore.Converters
 
         private void GenerateIlForFromServices(ParameterInfo parameter, ILGenerator ilGenerator)
         {
-            // todo
+            ilGenerator.Emit(OpCodes.Ldarg_0);
+
+            var method = GetType().GetMethod("GetService");
+
+            var closedMethod = method.MakeGenericMethod(parameter.ParameterType);
+
+            ilGenerator.EmitMethodCall(closedMethod);
+        }
+
+        public static T GetService<T>(HttpContext context)
+        {
+            return (T)context.RequestServices.GetService(typeof(T));
         }
 
         public static int GetIntValue(RpcJsonReader reader, int index)
