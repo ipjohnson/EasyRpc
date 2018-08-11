@@ -45,7 +45,7 @@ namespace EasyRpc.AspNetCore.Middleware
         public void Configure(IExposeMethodInformationCacheManager configuration)
         {
             _serializer = new JsonSerializer();
-            _serializer.Converters.Add(new StrictRpcRequestMessageConverter(_parameterArrayDeserializer, _namedParameterDeserializer, configuration, SerializerId));
+            _serializer.Converters.Add(new UnorderedRpcRequestMessageConverter(_parameterArrayDeserializer, _namedParameterDeserializer, configuration,SerializerId));
             _serializer.Converters.Add(new RpcRequestPackageConverter());
         }
 

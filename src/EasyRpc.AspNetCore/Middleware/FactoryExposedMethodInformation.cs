@@ -26,6 +26,12 @@ namespace EasyRpc.AspNetCore.Middleware
         private IEnumerable<IExposedMethodParameter> CalculateParameterInfo(MethodInfo methodInfo, IEnumerable<IExposedMethodParameter> parameters)
         {
             var methodParameters = methodInfo.GetParameters();
+
+            if (methodParameters.Length == 0)
+            {
+                return Array.Empty<IExposedMethodParameter>();
+            }
+
             var calculatedParameters = new IExposedMethodParameter[methodParameters.Length];
 
             if (parameters != null)

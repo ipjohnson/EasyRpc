@@ -30,5 +30,10 @@ namespace EasyRpc.AspNetCore.Converters
         /// HttpContext for the call
         /// </summary>
         public HttpContext Context { get; }
+
+        /// <summary>
+        /// storage space for serializer
+        /// </summary>
+        public object SerializerData { get; set; }
     }
 }

@@ -60,6 +60,7 @@ namespace EasyRpc.AspNetCore.Middleware
             Filters = filters;
             InstanceType = MethodInfo.DeclaringType;
             InstanceProvider = (context, provider) => instanceActivator.ActivateInstance(context, provider, Type);
+            Parameters = GenerateParameters();
         }
 
         public Type Type { get; }
@@ -81,17 +82,23 @@ namespace EasyRpc.AspNetCore.Middleware
         public InvokeMethodWithArray InvokeMethod => _invokeMethod ??
             (_invokeMethod = _invokeMethodBuilder.CreateMethodInvoker(MethodInfo, _allowCompression));
         
-        public IEnumerable<IExposedMethodParameter> Parameters => MethodInfo.GetParameters().Select(p =>
-            new ExposedMethodParameter
-            {
-                Name = p.Name,
-                Position = p.Position,
-                HasDefaultValue = p.HasDefaultValue,
-                DefaultValue = p.HasDefaultValue ? p.DefaultValue : null,
-                ParameterType = p.ParameterType,
-                Attributes = p.GetCustomAttributes<Attribute>(),
-                ParameterInfo = p
-            });
+        public IEnumerable<IExposedMethodParameter> Parameters { get; }
 
+        private IExposedMethodParameter[] GenerateParameters()
+        {
+            var parameters = MethodInfo.GetParameters().Select(p =>
+                (IExposedMethodParameter)new ExposedMethodParameter
+                {
+                    Name = p.Name,
+                    Position = p.Position,
+                    HasDefaultValue = p.HasDefaultValue,
+                    DefaultValue = p.HasDefaultValue ? p.DefaultValue : null,
+                    ParameterType = p.ParameterType,
+                    Attributes = p.GetCustomAttributes<Attribute>(),
+                    ParameterInfo = p
+                }).ToArray();
+
+            return parameters.Length > 0 ? parameters : Array.Empty<IExposedMethodParameter>();
+        }
     }
 }
