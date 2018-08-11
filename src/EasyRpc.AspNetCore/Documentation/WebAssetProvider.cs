@@ -57,6 +57,7 @@ namespace EasyRpc.AspNetCore.Documentation
             if (assetPath.Length == 0)
             {
                 assetPath = "templates/main.html";
+                context.Response.Headers.Add("Cache-Control", "no-cache");
             }
             
             try
@@ -79,7 +80,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     var bytes = File.ReadAllBytes(file);
                     context.Response.StatusCode = StatusCodes.Status200OK;
-
+                    
                     var lastPeriod = assetPath.LastIndexOf('.');
                     if (lastPeriod > 0)
                     {
