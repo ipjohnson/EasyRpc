@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using EasyRpc.AspNetCore.Messages;
 
 namespace EasyRpc.AspNetCore.DataAnnotations.Impl

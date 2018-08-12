@@ -5,7 +5,6 @@ using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;

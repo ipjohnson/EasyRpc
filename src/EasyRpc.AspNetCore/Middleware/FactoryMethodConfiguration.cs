@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 
@@ -8,7 +6,7 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class FactoryMethodConfiguration : IFactoryMethodConfiguration
     {
-        private Action<string, Delegate, InvokeMethodWithArray> _addMethod;
+        private readonly Action<string, Delegate, InvokeMethodWithArray> _addMethod;
 
         public FactoryMethodConfiguration(Action<string, Delegate, InvokeMethodWithArray> addMethod)
         {

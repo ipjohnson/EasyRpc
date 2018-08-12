@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace EasyRpc.TestApp.Models
+﻿namespace EasyRpc.TestApp.Models
 {
     /// <summary>
     /// Represents a mailing address

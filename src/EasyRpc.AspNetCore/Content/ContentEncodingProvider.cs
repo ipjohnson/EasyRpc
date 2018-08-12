@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using EasyRpc.AspNetCore.Middleware;
 
 namespace EasyRpc.AspNetCore.Content
 {
@@ -13,8 +10,8 @@ namespace EasyRpc.AspNetCore.Content
     
     public class ContentEncodingProvider : IContentEncodingProvider
     {
-        private IContentEncoder _onlyContentEncoder;
-        private IContentEncoder[] _contentEncoders;
+        private readonly IContentEncoder _onlyContentEncoder;
+        private readonly IContentEncoder[] _contentEncoders;
 
         public ContentEncodingProvider(IEnumerable<IContentEncoder> contentEncoders)
         {

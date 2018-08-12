@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Microsoft.Extensions.Options;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -14,7 +13,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public class FromServicesManager : IFromServicesManager
     {
-        private IOptions<RpcServiceConfiguration> _configuration;
+        private readonly IOptions<RpcServiceConfiguration> _configuration;
 
         public FromServicesManager(IOptions<RpcServiceConfiguration> configuration)
         {

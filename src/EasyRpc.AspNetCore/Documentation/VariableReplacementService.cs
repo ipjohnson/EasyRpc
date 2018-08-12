@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
@@ -16,7 +14,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
     public class VariableReplacementService : IVariableReplacementService
     {
-        private IReplacementValueProvider _replacementValueProvider;
+        private readonly IReplacementValueProvider _replacementValueProvider;
 
         public const string StartReplacement = "^*";
         public const string EndReplacement = "*^";

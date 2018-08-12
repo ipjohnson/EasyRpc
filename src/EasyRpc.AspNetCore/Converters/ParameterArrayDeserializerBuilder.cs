@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Converters
@@ -20,7 +17,7 @@ namespace EasyRpc.AspNetCore.Converters
 
     public class ParameterArrayDeserializerBuilder : IParameterArrayDeserializerBuilder
     {
-        private IFromServicesManager _fromServicesManager;
+        private readonly IFromServicesManager _fromServicesManager;
 
         public ParameterArrayDeserializerBuilder(IFromServicesManager fromServicesManager)
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -15,7 +14,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
 using NSubstitute;
 using SimpleFixture.NSubstitute;
 using Xunit;
@@ -59,7 +57,7 @@ namespace EasyRpc.Tests.Middleware
         }
 
         
-        protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1", bool compressRequest = false, bool compressResponse = false)
+        protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1", string compressRequest = null, string compressResponse = null)
         {
             var requestMessage = new RpcRequestMessage { Version = version, Id = id, Method = method, Parameters = values };
             var responseStream = new MemoryStream();
@@ -71,14 +69,14 @@ namespace EasyRpc.Tests.Middleware
 
             context.Request.Body = requestMessage.SerializeToStream(compressRequest);
 
-            if (compressRequest)
+            if (compressRequest != null)
             {
-                context.Request.Headers["Content-Encoding"] = new StringValues("gzip");
+                context.Request.Headers["Content-Encoding"] = new StringValues(compressRequest);
             }
 
-            if (compressResponse)
+            if (compressResponse != null)
             {
-                context.Request.Headers["Accept-Encoding"] = new StringValues("gzip");
+                context.Request.Headers["Accept-Encoding"] = new StringValues(compressResponse);
             }
 
             context.Response.Headers.Returns(new HeaderDictionary());
@@ -107,11 +105,19 @@ namespace EasyRpc.Tests.Middleware
             {
                 if (context.Response.Headers["Content-Encoding"].Contains("gzip"))
                 {
-                    var gzipStream = new GZipStream(new MemoryStream(responseStream.ToArray()), CompressionMode.Decompress);
+                    var compressStream = new GZipStream(new MemoryStream(responseStream.ToArray()), CompressionMode.Decompress);
 
                     responseStream = new MemoryStream();
 
-                    gzipStream.CopyTo(responseStream);
+                    compressStream.CopyTo(responseStream);
+                }
+                else if(context.Response.Headers["Content-Encoding"].Contains("br"))
+                {
+                    var compressStream = new BrotliStream(new MemoryStream(responseStream.ToArray()), CompressionMode.Decompress);
+
+                    responseStream = new MemoryStream();
+
+                    compressStream.CopyTo(responseStream);
                 }
 
                 var response = responseStream.DeserializeFromMemoryStream<ResponseMessage<T>>();

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Messages;
@@ -13,8 +11,8 @@ namespace EasyRpc.AspNetCore.Middleware
     public class DefaultJsonContentSerializer : IContentSerializer
     {
         private JsonSerializer _serializer;
-        private IParameterArrayDeserializerBuilder _parameterArrayDeserializer;
-        private INamedParameterDeserializerBuilder _namedParameterDeserializer;
+        private readonly IParameterArrayDeserializerBuilder _parameterArrayDeserializer;
+        private readonly INamedParameterDeserializerBuilder _namedParameterDeserializer;
 
         /// <summary>
         /// Default constructor

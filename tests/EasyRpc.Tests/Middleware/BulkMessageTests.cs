@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using EasyRpc.AspNetCore.Messages;
 using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

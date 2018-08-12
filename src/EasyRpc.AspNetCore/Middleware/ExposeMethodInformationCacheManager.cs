@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EasyRpc.AspNetCore.Data;
+﻿using EasyRpc.AspNetCore.Data;
 
 namespace EasyRpc.AspNetCore.Middleware
 {

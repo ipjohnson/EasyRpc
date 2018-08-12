@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
@@ -32,8 +30,8 @@ namespace EasyRpc.AspNetCore.Content
     /// </summary>
     public class ContentSerializerProvider : IContentSerializerProvider
     {
-        private IContentSerializer _onlySerializer;
-        private IContentSerializer[] _serializers;
+        private readonly IContentSerializer _onlySerializer;
+        private readonly IContentSerializer[] _serializers;
 
         /// <summary>
         /// DEfault constructor

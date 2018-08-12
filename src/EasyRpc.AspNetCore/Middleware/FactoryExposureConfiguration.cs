@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
@@ -10,9 +9,9 @@ namespace EasyRpc.AspNetCore.Middleware
 {
     public class FactoryExposureConfiguration : IFactoryExposureConfiguration, IExposedMethodInformationProvider
     {
-        private string _path;
-        private ICurrentApiInformation _currentApiInformation;
-        private List<Tuple<string, Delegate, InvokeMethodWithArray>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray>>();
+        private readonly string _path;
+        private readonly ICurrentApiInformation _currentApiInformation;
+        private readonly List<Tuple<string, Delegate, InvokeMethodWithArray>> _methods = new List<Tuple<string, Delegate, InvokeMethodWithArray>>();
 
         public FactoryExposureConfiguration(string path, ICurrentApiInformation currentApiInformation)
         {

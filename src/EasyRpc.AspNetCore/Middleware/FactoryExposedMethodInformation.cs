@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
     public class FactoryExposedMethodInformation : BaseExposedMethodInformation, IExposedMethodInformation
     {
-        private static object _nullInstance = new object();
+        private static readonly object _nullInstance = new object();
 
         public FactoryExposedMethodInformation(Type type, IEnumerable<string> routeNames, string methodName, MethodInfo methodInfo, IMethodAuthorization[] methodAuthorizations, Func<HttpContext, IEnumerable<ICallFilter>>[] filters, InvokeMethodWithArray invokeMethod, IEnumerable<IExposedMethodParameter> parameters)
         {
@@ -76,7 +75,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Type Type { get; }
 
-        private static Func<HttpContext, IServiceProvider, object>
+        private static readonly Func<HttpContext, IServiceProvider, object>
             _staticInstanceProvider = (context, provider) => _nullInstance;
 
         public Func<HttpContext, IServiceProvider, object> InstanceProvider => _staticInstanceProvider;

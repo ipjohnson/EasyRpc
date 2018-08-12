@@ -1,21 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Documentation;
-using EasyRpc.AspNetCore.Middleware;
 using EasyRpc.TestApp.Repositories;
-using EasyRpc.TestApp.Services;
 using EasyRpc.TestApp.Utilities;
-using Grace.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Net.Http.Headers;
 
 namespace EasyRpc.TestApp
 {
@@ -45,11 +37,20 @@ namespace EasyRpc.TestApp
             }
         }
 
+        //public class ActivatorInstance : EasyRpc.AspNetCore.Middleware.IInstanceActivator
+        //{
+        //    public object ActivateInstance(HttpContext context, IServiceProvider serviceProvider, Type instanceType)
+        //    {
+        //        return serviceProvider.GetService(instanceType);
+        //    }
+        //}
+
         //public void ConfigureContainer(IInjectionScope scope)
         //{
         //    scope.Configure(c =>
         //    {
         //        c.ExcludeTypeFromAutoRegistration("Microsoft.*");
+        //        c.Export<ActivatorInstance>().As<IInstanceActivator>();
         //    });
         //}
 

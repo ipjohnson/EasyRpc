@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +16,7 @@ namespace EasyRpc.AspNetCore.Documentation
     public class DocumentationRequestProcessor : IDocumentationRequestProcessor
     {
         private EndPointConfiguration _configuration;
-        private IWebAssetProvider _assetProvider;
+        private readonly IWebAssetProvider _assetProvider;
         private readonly ILogger<IDocumentationRequestProcessor> _logger;
 
         public DocumentationRequestProcessor(IWebAssetProvider assetProvider, ILogger<IDocumentationRequestProcessor> logger)

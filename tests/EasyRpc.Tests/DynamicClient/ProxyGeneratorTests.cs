@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using EasyRpc.AspNetCore.Messages;
 using EasyRpc.DynamicClient;
 using EasyRpc.DynamicClient.ProxyGenerator;
 using EasyRpc.Tests.Classes;
@@ -137,17 +135,7 @@ namespace EasyRpc.Tests.DynamicClient
             Assert.Equal("2.0", request.Version);
             Assert.Equal("Add", request.Method);
             Assert.False(string.IsNullOrEmpty(request.Id));
-
-            //var objectDictionary = request.Parameters as Dictionary<string, object>;
-
-            //Assert.NotNull(objectDictionary);
-            //Assert.Single(objectDictionary);
-
-            //var complex = objectDictionary["complex"] as JObject;
-
-            //Assert.NotNull(complex);
-            //Assert.Equal(5, complex["A"].ToObject(typeof(int)));
-            //Assert.Equal(10, complex["B"].ToObject(typeof(int)));
+            
         }
 
         public interface IVoidReturnInterface

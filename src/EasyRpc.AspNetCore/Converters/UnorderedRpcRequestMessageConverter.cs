@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
 using Newtonsoft.Json;
@@ -24,9 +22,9 @@ namespace EasyRpc.AspNetCore.Converters
             public IExposedMethodInformation ExposedMethod { get; set; }
         }
 
-        private IParameterArrayDeserializerBuilder _parameterArrayDeserializerBuilder;
-        private INamedParameterDeserializerBuilder _namedParameterDeserializerBuilder;
-        private IExposeMethodInformationCacheManager _cacheManager;
+        private readonly IParameterArrayDeserializerBuilder _parameterArrayDeserializerBuilder;
+        private readonly INamedParameterDeserializerBuilder _namedParameterDeserializerBuilder;
+        private readonly IExposeMethodInformationCacheManager _cacheManager;
         private readonly int _serializerId;
 
         public UnorderedRpcRequestMessageConverter(IParameterArrayDeserializerBuilder parameterArrayDeserializerBuilder, 

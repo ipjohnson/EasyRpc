@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using EasyRpc.AspNetCore.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -135,6 +136,10 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        /// <summary>
+        /// Get exposed methods for set
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             if (_interfacesFilter == null && _typeFilter == null)
@@ -172,7 +177,7 @@ namespace EasyRpc.AspNetCore.Middleware
                         authorizations.AddRange(authorizationFunc(type));
                     }
 
-                    foreach (var attr in type.GetTypeInfo().GetCustomAttributes<AuthorizeAttribute>())
+                    foreach (IAuthorizeData attr in type.GetTypeInfo().GetCustomAttributes(true).Where(a => a is IAuthorizeData))
                     {
                         if (!string.IsNullOrEmpty(attr.Policy))
                         {

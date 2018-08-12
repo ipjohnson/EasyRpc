@@ -7,14 +7,35 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
+    /// <summary>
+    /// Base class for expouse configurations
+    /// </summary>
     public abstract class BaseExposureConfiguration
     {
-        protected readonly ICurrentApiInformation ApiInformation;
         private readonly IInstanceActivator _activator;
         private readonly IArrayMethodInvokerBuilder _arrayMethodInvokerBuilder;
+
+        /// <summary>
+        /// Current api information
+        /// </summary>
+        protected readonly ICurrentApiInformation ApiInformation;
+
+        /// <summary>
+        /// Exposure names
+        /// </summary>
         protected readonly List<string> Names = new List<string>();
+
+        /// <summary>
+        /// Authorizations
+        /// </summary>
         protected readonly List<IMethodAuthorization> Authorizations = new List<IMethodAuthorization>();
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="apiInformation"></param>
+        /// <param name="activator"></param>
+        /// <param name="arrayMethodInvokerBuilder"></param>
         protected BaseExposureConfiguration(ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder arrayMethodInvokerBuilder)
         {
             ApiInformation = apiInformation;
@@ -22,6 +43,12 @@ namespace EasyRpc.AspNetCore.Middleware
             _arrayMethodInvokerBuilder = arrayMethodInvokerBuilder;
         }
 
+        /// <summary>
+        /// Get exposed methods
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="methodFilter"></param>
+        /// <returns></returns>
         protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
             Func<MethodInfo, bool> methodFilter = null)
         {
@@ -36,6 +63,17 @@ namespace EasyRpc.AspNetCore.Middleware
             return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter, _activator, _arrayMethodInvokerBuilder);
         }
 
+        /// <summary>
+        /// Get all exposed methods from a type given a current state
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="currentApi"></param>
+        /// <param name="namesFunc"></param>
+        /// <param name="authorizations"></param>
+        /// <param name="methodFilter"></param>
+        /// <param name="activator"></param>
+        /// <param name="invokerBuilder"></param>
+        /// <returns></returns>
         public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
             ICurrentApiInformation currentApi,
             Func<Type, IEnumerable<string>> namesFunc,
@@ -113,7 +151,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 var currentAuth = new List<IMethodAuthorization>(authorizations);
 
-                foreach (var attr in method.GetCustomAttributes<AuthorizeAttribute>())
+                foreach (IAuthorizeData attr in method.GetCustomAttributes(true).Where(a => a is IAuthorizeData))
                 {
                     if (!string.IsNullOrEmpty(attr.Policy))
                     {

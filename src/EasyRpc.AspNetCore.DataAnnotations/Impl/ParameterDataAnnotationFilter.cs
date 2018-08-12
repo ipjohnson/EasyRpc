@@ -9,9 +9,9 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
 {
     public class DataAnnotationFilter : ICallExecuteFilter
     {
-        private List<ValidationAttribute> _attributes;
-        private int _index;
-        private string _fieldName;
+        private readonly List<ValidationAttribute> _attributes;
+        private readonly int _index;
+        private readonly string _fieldName;
 
         public DataAnnotationFilter(List<ValidationAttribute> attributes, int index, string fieldName)
         {

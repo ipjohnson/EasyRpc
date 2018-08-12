@@ -3,7 +3,6 @@ using EasyRpc.Tests.Classes;
 using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using SimpleFixture.Impl;
 using SimpleFixture.xUnit;
 using Xunit;
 

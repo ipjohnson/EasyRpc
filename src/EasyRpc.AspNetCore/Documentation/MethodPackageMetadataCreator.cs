@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
@@ -87,13 +86,13 @@ namespace EasyRpc.AspNetCore.Documentation
     public class MethodPackageMetadataCreator : IMethodPackageMetadataCreator
     {
         private EndPointConfiguration _configuration;
-        private JsonSerializer _serializer;
+        private readonly JsonSerializer _serializer;
         private List<JsonDataPackage> _dataPackages;
         private bool _hasAuthorization = false;
-        private IXmlDocumentationProvider _xmlDocumentationProvider;
-        private ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
+        private readonly IXmlDocumentationProvider _xmlDocumentationProvider;
+        private readonly ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
         private List<TypeDefinition> _typeDefinitions;
-        private IFromServicesManager _fromServicesManager;
+        private readonly IFromServicesManager _fromServicesManager;
 
         public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider, IFromServicesManager fromServicesManager)
         {

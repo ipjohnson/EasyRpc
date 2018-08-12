@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EasyRpc.AspNetCore.Content;
+﻿using EasyRpc.AspNetCore.Content;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EasyRpc.AspNetCore.Brotli
 {

@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Messages;
-using EasyRpc.AspNetCore.Utilities;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
@@ -37,7 +31,7 @@ namespace EasyRpc.AspNetCore.Middleware
         private readonly bool _debugLogging;
         private readonly ILogger<RpcMessageProcessor> _logger;
         private string _route;
-        private IContentSerializer _defaultSerializer;
+        private readonly IContentSerializer _defaultSerializer;
 
         public RpcMessageProcessor(IOptions<RpcServiceConfiguration> configuration,
             IContentEncodingProvider contentEncodingProvider,

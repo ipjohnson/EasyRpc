@@ -41,8 +41,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private NamingConventions _currentNamingConventions;
         private bool _enableDocumentation = true;
-        private DocumentationConfiguration _configuration = new DocumentationConfiguration();
-        private IOptions<RpcServiceConfiguration> _rpcConfiguration;
+        private readonly DocumentationConfiguration _configuration = new DocumentationConfiguration();
+        private readonly IOptions<RpcServiceConfiguration> _rpcConfiguration;
 
         public ApiConfigurationProvider(IServiceProvider appServices, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder, IOptions<RpcServiceConfiguration> rpcConfiguration)
         {
