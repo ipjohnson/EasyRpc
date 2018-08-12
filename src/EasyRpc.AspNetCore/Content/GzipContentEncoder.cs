@@ -3,6 +3,9 @@ using System.IO.Compression;
 
 namespace EasyRpc.AspNetCore.Content
 {
+    /// <summary>
+    /// Gzip content encoder
+    /// </summary>
     public class GzipContentEncoder : IContentEncoder
     {
         /// <summary>

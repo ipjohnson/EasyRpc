@@ -10,6 +10,9 @@ namespace EasyRpc.AspNetCore.Content
     /// </summary>
     public interface IContentSerializerProvider
     {
+        /// <summary>
+        /// Default serializer
+        /// </summary>
         IContentSerializer DefaultSerializer { get; }
 
         /// <summary>

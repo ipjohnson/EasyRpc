@@ -7,6 +7,9 @@ using EasyRpc.AspNetCore.Messages;
 
 namespace EasyRpc.AspNetCore.DataAnnotations.Impl
 {
+    /// <summary>
+    /// Validates parameter using validation attributes
+    /// </summary>
     public class DataAnnotationFilter : ICallExecuteFilter
     {
         private readonly List<ValidationAttribute> _attributes;

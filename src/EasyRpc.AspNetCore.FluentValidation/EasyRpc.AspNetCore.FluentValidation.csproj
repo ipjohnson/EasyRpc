@@ -6,6 +6,7 @@
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore.FluentValidation</AssemblyName>
     <PackageId>EasyRpc.AspNetCore.FluentValidation</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

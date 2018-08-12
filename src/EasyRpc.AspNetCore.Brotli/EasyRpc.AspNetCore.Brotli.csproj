@@ -4,6 +4,7 @@
     <Description>Brotli compression library for EasyRpc.AspNetCore</Description>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <SignAssembly>True</SignAssembly>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
     <DebugType>full</DebugType>

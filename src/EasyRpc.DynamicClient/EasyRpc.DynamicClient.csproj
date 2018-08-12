@@ -6,6 +6,7 @@
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
     <AssemblyName>EasyRpc.DynamicClient</AssemblyName>
     <PackageId>EasyRpc.DynamicClient</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
