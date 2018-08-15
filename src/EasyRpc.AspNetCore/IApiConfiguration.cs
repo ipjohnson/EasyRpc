@@ -20,7 +20,7 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration Authorize(string role = null, string policy = null);
 
         /// <summary>
-        /// Apply authorize to types
+        /// Apply authorize to types 
         /// </summary>
         /// <param name="authorizations"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration ClearAuthorize();
 
         /// <summary>
-        /// Configur
+        /// Configure documentation
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration Prefix(string prefix);
 
         /// <summary>
-        /// List of 
+        /// Prefix function returns list of prefixes based on type
         /// </summary>
         /// <param name="prefixFunc"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace EasyRpc.AspNetCore
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
 
         /// <summary>
-        /// Expose factory
+        /// Expose factories under a specific path
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
