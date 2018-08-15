@@ -125,7 +125,7 @@ namespace EasyRpc.AspNetCore.Converters
             {
                 ilGenerator.Emit(OpCodes.Ldarg_1);
                 ilGenerator.EmitInt(parameterIndex);
-
+                
                 if (parameter.DefaultValue is string defaultParam)
                 {
                     ilGenerator.Emit(OpCodes.Ldstr, defaultParam);
@@ -134,6 +134,8 @@ namespace EasyRpc.AspNetCore.Converters
                 {
                     ilGenerator.Emit(OpCodes.Ldnull);
                 }
+
+                ilGenerator.EmitInt(parameter.HasDefaultValue ? 1 : 0);
 
                 var stringValueMethod = GetType().GetMethod("GetStringValue");
 
@@ -196,11 +198,11 @@ namespace EasyRpc.AspNetCore.Converters
             return returnValue;
         }
 
-        public static string GetStringValue(RpcJsonReader reader, int index, string defaultValue)
+        public static string GetStringValue(RpcJsonReader reader, int index, string defaultValue, bool hasDefaultValue)
         {
             if (reader.TokenType != JsonToken.String)
             {
-                if (defaultValue != null)
+                if (hasDefaultValue)
                 {
                     return defaultValue;
                 }
