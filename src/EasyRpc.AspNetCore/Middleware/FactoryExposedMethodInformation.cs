@@ -95,5 +95,7 @@ namespace EasyRpc.AspNetCore.Middleware
         public IEnumerable<IExposedMethodParameter> Parameters { get; }
 
         public Type InstanceType => null;
+
+        public string ObsoleteMessage => throw new NotImplementedException();
     }
 }

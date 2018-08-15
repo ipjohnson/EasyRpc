@@ -17,11 +17,13 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         private string _path;
         private string _title;
+        private string _urlBase;
 
         public void ServicePath(EndPointConfiguration configuration)
         {
             _path = configuration.Route;
             _title = configuration.DocumentationConfiguration.Title ?? GenerateTitle(configuration);
+            _urlBase = configuration.DocumentationConfiguration.CustomBaseUrl;
         }
 
         protected virtual string GenerateTitle(EndPointConfiguration configuration)
@@ -56,7 +58,7 @@ namespace EasyRpc.AspNetCore.Documentation
                     return InterfaceTitle(context);
 
                 case "ServiceUrl":
-                    return context.Request.PathBase.Value + _path;
+                    return _urlBase ?? (context.Request.PathBase.Value + _path);
             }
 
             throw new Exception("Unkown replacement string " + valueName);
@@ -64,29 +66,33 @@ namespace EasyRpc.AspNetCore.Documentation
 
         protected string CssUrls(HttpContext context)
         {
+            var path = _urlBase ?? (context.Request.PathBase + _path);
+
             if (Debugger.IsAttached)
-            {
-                return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-icons.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-exp.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/docs.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/easy-rpc-styles.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/custom.css\"/>";
+            {                
+                return $"<link rel=\"stylesheet\" href=\"{path}css/spectre.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/spectre-icons.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/spectre-exp.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/docs.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/easy-rpc-styles.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/custom.css\"/>";
             }
 
-            return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/bundle.css\"/>";
+            return $"<link rel=\"stylesheet\" href=\"{path}css/bundle.css\"/>";
         }
 
         protected string JavaScriptUrls(HttpContext context)
         {
+            var path = _urlBase ?? (context.Request.PathBase + _path);
+
             if (Debugger.IsAttached)
             {
-                return $"<script src = \"{context.Request.PathBase}{_path}javascript/umbrella.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}javascript/rivets.bundled.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}javascript/easy-rpc-javascript.js\"></script>";
+                return $"<script src = \"{path}javascript/umbrella.min.js\"></script>" +
+                       $"<script src = \"{path}javascript/rivets.bundled.min.js\"></script>" +
+                       $"<script src = \"{path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
-            return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js\"></script>";
+            return $"<script src = \"{path}javascript/bundle.js\"></script>";
         }
 
         protected string InterfaceTitle(HttpContext context) => _title;

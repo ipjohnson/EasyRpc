@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
@@ -78,7 +79,7 @@ namespace EasyRpc.AspNetCore.Middleware
             ICurrentApiInformation currentApi,
             Func<Type, IEnumerable<string>> namesFunc,
             List<IMethodAuthorization> authorizations,
-            Func<MethodInfo, bool> methodFilter, 
+            Func<MethodInfo, bool> methodFilter,
             IInstanceActivator activator,
             IArrayMethodInvokerBuilder invokerBuilder)
         {
@@ -118,7 +119,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             foreach (var method in type.GetRuntimeMethods())
             {
-                if (method.IsStatic || 
+                if (method.IsStatic ||
                    !method.IsPublic ||
                     method.DeclaringType == typeof(object))
                 {
@@ -150,40 +151,54 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
 
                 var currentAuth = new List<IMethodAuthorization>(authorizations);
+                var methodNames = new List<Tuple<string, string>>();
+                var obsoleteMessage = (string)null;
 
-                foreach (IAuthorizeData attr in method.GetCustomAttributes(true).Where(a => a is IAuthorizeData))
+                foreach (var attribute in method.GetCustomAttributes(true))
                 {
-                    if (!string.IsNullOrEmpty(attr.Policy))
+                    if (attribute is IAuthorizeData authorizeData)
                     {
-                        currentAuth.Add(new UserPolicyAuthorization(attr.Policy));
+                        if (!string.IsNullOrEmpty(authorizeData.Policy))
+                        {
+                            currentAuth.Add(new UserPolicyAuthorization(authorizeData.Policy));
+                        }
+                        else if (!string.IsNullOrEmpty(authorizeData.Roles))
+                        {
+                            currentAuth.Add(new UserRoleAuthorization(authorizeData.Roles));
+                        }
+                        else
+                        {
+                            currentAuth.Add(new UserAuthenticatedAuthorization());
+                        }
                     }
-                    else if (!string.IsNullOrEmpty(attr.Roles))
+                    else if (attribute is ObsoleteAttribute obsoleteAttribute)
                     {
-                        currentAuth.Add(new UserRoleAuthorization(attr.Roles));
+                        obsoleteMessage = obsoleteAttribute.Message ?? "This method is obsolete";
                     }
-                    else
+                    else if (attribute is DisplayNameAttribute displayName)
                     {
-                        currentAuth.Add(new UserAuthenticatedAuthorization());
+                        methodNames.Add(new Tuple<string, string>(displayName.DisplayName, null));
                     }
                 }
 
-                var authArray = currentAuth.Count > 0 ? 
-                    currentAuth.ToArray() : 
+                var authArray = currentAuth.Count > 0 ?
+                    currentAuth.ToArray() :
                     Array.Empty<IMethodAuthorization>();
 
-                var filterArray = filters.Count > 0 ? 
-                    filters.ToArray() : 
+                var filterArray = filters.Count > 0 ?
+                    filters.ToArray() :
                     Array.Empty<Func<HttpContext, IEnumerable<ICallFilter>>>();
 
                 yield return new ExposedMethodInformation(type,
-                    finalNames, 
-                    currentApi.NamingConventions.MethodNameGenerator(method), 
-                    method, 
-                    authArray, 
-                    filterArray, 
+                    finalNames,
+                    currentApi.NamingConventions.MethodNameGenerator(method),
+                    method,
+                    authArray,
+                    filterArray,
                     activator,
                     invokerBuilder,
-                    currentApi.SupportResponseCompression);
+                    currentApi.SupportResponseCompression,
+                    obsoleteMessage);
             }
         }
     }

@@ -29,6 +29,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
         IEnumerable<IExposedMethodParameter> Parameters { get; }
 
+        string ObsoleteMessage { get; }
+
         object GetSerializerData(int serializerId);
 
         void SetSerializerData(int serializerId, object serializerData);
@@ -48,7 +50,8 @@ namespace EasyRpc.AspNetCore.Middleware
             Func<HttpContext, IEnumerable<ICallFilter>>[] filters,
             IInstanceActivator instanceActivator,
             IArrayMethodInvokerBuilder invokeMethodBuilder,
-            bool allowCompression)
+            bool allowCompression,
+            string obsoleteMessage)
         {
             _invokeMethodBuilder = invokeMethodBuilder;
             _allowCompression = allowCompression;
@@ -58,6 +61,7 @@ namespace EasyRpc.AspNetCore.Middleware
             MethodInfo = method;
             MethodAuthorizations = methodAuthorizations;
             Filters = filters;
+            ObsoleteMessage = obsoleteMessage;
             InstanceType = MethodInfo.DeclaringType;
             InstanceProvider = (context, provider) => instanceActivator.ActivateInstance(context, provider, Type);
             Parameters = GenerateParameters();
@@ -78,6 +82,8 @@ namespace EasyRpc.AspNetCore.Middleware
         public IMethodAuthorization[] MethodAuthorizations { get; }
 
         public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
+
+        public string ObsoleteMessage { get; }
 
         public InvokeMethodWithArray InvokeMethod => _invokeMethod ??
             (_invokeMethod = _invokeMethodBuilder.CreateMethodInvoker(MethodInfo, _allowCompression));

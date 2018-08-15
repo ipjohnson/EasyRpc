@@ -302,7 +302,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets an immutable representation of what the current configuration values are
+        /// </summary>
+        /// <returns></returns>
         public ICurrentApiInformation GetCurrentApiInformation()
         {
             //need to make a copy of naming convention so that if it changes current api information stays the same
@@ -319,6 +323,9 @@ namespace EasyRpc.AspNetCore.Middleware
             return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation, _configuration, _rpcConfiguration.Value.SupportResponseCompression);
         }
 
+        /// <summary>
+        /// By default documentation is on, this turns it off for this configuration
+        /// </summary>
         public IApiConfiguration DisableDocumentation()
         {
             _enableDocumentation = false;
@@ -326,6 +333,11 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        /// <summary>
+        /// Expose factories under a specific path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public IFactoryExposureConfiguration Expose(string path)
         {
             var configuration = new FactoryExposureConfiguration(path, GetCurrentApiInformation());

@@ -22,6 +22,12 @@ namespace EasyRpc.AspNetCore
             return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes);
         }
 
+        /// <summary>
+        /// Expose namespace containing a specific type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IApiConfiguration configuration)
         {
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
