@@ -262,6 +262,9 @@ function displayComment() {
 }
 
 function executeMethod(event, binding) {
+  u('#responseDiv').addClass('hide-element');
+  u('#loadingDiv').removeClass('hide-element');
+
   var sourceElement = u(event.target);
   var activeTab = u('#parametersTabDiv li.active a').data('tab-type');
   var callArrayString = [];
@@ -314,6 +317,7 @@ function executeMethod(event, binding) {
         var status = error === null ? "200 OK" : error;
         u('#httpStatus').nodes[0].textContent = status;
         u('#executionTime').nodes[0].textContent = timeLabel = (endTime - startTime).toFixed(1) + ' ms';
+        u('#loadingDiv').addClass('hide-element');
         u('#responseDiv').removeClass('hide-element');
       }
       setResponseFunc();
