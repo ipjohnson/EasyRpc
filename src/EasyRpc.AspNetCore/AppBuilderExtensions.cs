@@ -27,6 +27,7 @@ namespace EasyRpc.AspNetCore
             collection.TryAddTransient<IContentSerializer, DefaultJsonContentSerializer>();
             collection.TryAddTransient<IContentSerializerProvider, ContentSerializerProvider>();
             collection.TryAddTransient<IContentEncodingProvider, ContentEncodingProvider>();
+            collection.TryAddTransient<IContentEncoder, GzipContentEncoder>();
             collection.TryAddTransient<IExposeMethodInformationCacheManager, ExposeMethodInformationCacheManager>();
             collection.TryAddSingleton<IParameterArrayDeserializerBuilder, ParameterArrayDeserializerBuilder>();
             collection.TryAddSingleton<INamedParameterDeserializerBuilder, NamedParameterDeserializerBuilder>();
