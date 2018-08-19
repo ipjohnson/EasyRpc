@@ -26,6 +26,13 @@ namespace EasyRpc.AspNetCore
         /// <param name="methods"></param>
         /// <returns></returns>
         IExposureConfiguration Methods(Func<MethodInfo, bool> methods);
+
+        /// <summary>
+        /// Mark services as obselete
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        IExposureConfiguration Obsolete(string message);
     }
 
     public interface IExposureConfiguration<T>
@@ -51,5 +58,12 @@ namespace EasyRpc.AspNetCore
         /// <param name="methods"></param>
         /// <returns></returns>
         IExposureConfiguration<T> Methods(Func<MethodInfo, bool> methods);
+
+        /// <summary>
+        /// Mark service as obsolete
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        IExposureConfiguration<T> Obsolete(string message);
     }
 }

@@ -15,7 +15,7 @@ namespace EasyRpc.TestApp.Utilities
 
             if (Directory.Exists(personalPath))
             {
-                ExtractedAssetPath =personalPath;
+                ExtractedAssetPath = personalPath;
             }
         }
     }

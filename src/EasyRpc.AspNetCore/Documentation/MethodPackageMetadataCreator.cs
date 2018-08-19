@@ -48,6 +48,8 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public TypeRef ReturnType { get; set; }
 
+        public string ObsoleteMessage { get; set; }
+
         [JsonIgnore]
         public IExposedMethodInformation Method { get; set; }
     }
@@ -309,7 +311,8 @@ namespace EasyRpc.AspNetCore.Documentation
                 Signature = displayString,
                 ReturnType = TypeUtilities.CreateTypeRef( methodInformation.MethodInfo.ReturnType),
                 Parameters = parameterList,
-                Method = methodInformation
+                Method = methodInformation,
+                ObsoleteMessage = methodInformation.ObsoleteMessage
             };
         }
 

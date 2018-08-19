@@ -194,7 +194,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
 
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
-                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter,_activator, _invokerBuilder))
+                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter,_activator, _invokerBuilder, null))
                     {
                         yield return exposedMethodInformation;
                     }

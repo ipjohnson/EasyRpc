@@ -49,9 +49,10 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="type"></param>
         /// <param name="methodFilter"></param>
+        /// <param name="obsoleteMessage"></param>
         /// <returns></returns>
         protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
-            Func<MethodInfo, bool> methodFilter = null)
+            Func<MethodInfo, bool> methodFilter = null, string obsoleteMessage = null)
         {
             if (Names.Count == 0)
             {
@@ -61,7 +62,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter, _activator, _arrayMethodInvokerBuilder);
+            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter, _activator, _arrayMethodInvokerBuilder, obsoleteMessage);
         }
 
         /// <summary>
@@ -74,6 +75,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <param name="methodFilter"></param>
         /// <param name="activator"></param>
         /// <param name="invokerBuilder"></param>
+        /// <param name="obsoleteMessage"></param>
         /// <returns></returns>
         public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
             ICurrentApiInformation currentApi,
@@ -81,7 +83,8 @@ namespace EasyRpc.AspNetCore.Middleware
             List<IMethodAuthorization> authorizations,
             Func<MethodInfo, bool> methodFilter,
             IInstanceActivator activator,
-            IArrayMethodInvokerBuilder invokerBuilder)
+            IArrayMethodInvokerBuilder invokerBuilder,
+            string obsoleteMessage)
         {
             var names = namesFunc(type).ToArray();
 
@@ -152,7 +155,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 var currentAuth = new List<IMethodAuthorization>(authorizations);
                 var methodNames = new List<Tuple<string, string>>();
-                var obsoleteMessage = (string)null;
+                var obsolete = obsoleteMessage;
 
                 foreach (var attribute in method.GetCustomAttributes(true))
                 {
@@ -173,7 +176,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                     else if (attribute is ObsoleteAttribute obsoleteAttribute)
                     {
-                        obsoleteMessage = obsoleteAttribute.Message ?? "This method is obsolete";
+                        obsolete = obsoleteAttribute.Message ?? "This method is obsolete";
                     }
                     else if (attribute is DisplayNameAttribute displayName)
                     {
@@ -198,7 +201,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     activator,
                     invokerBuilder,
                     currentApi.SupportResponseCompression,
-                    obsoleteMessage);
+                    obsolete);
             }
         }
     }

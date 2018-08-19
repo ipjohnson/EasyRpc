@@ -87,6 +87,12 @@ function endpointClass(endpointList) {
         }
         return this.Signature;
       }
+      method.obsoleteClass = function() {
+        if (this.ObsoleteMessage !== null) {
+          return 'alert alert-danger';
+        }
+        return 'hide-element';
+      }
       var parameterLength = method.Parameters.length;
       for (var k = 0; k < parameterLength; k++) {
         var parameter = method.Parameters[k];

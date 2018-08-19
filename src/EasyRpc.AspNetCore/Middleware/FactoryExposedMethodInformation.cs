@@ -96,6 +96,6 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public Type InstanceType => null;
 
-        public string ObsoleteMessage => throw new NotImplementedException();
+        public string ObsoleteMessage => null;
     }
 }
