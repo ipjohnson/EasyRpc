@@ -166,9 +166,9 @@ function saveDataToParameters(event, binding) {
   var arrayValueLength = arrayValue.length;
   var parameterLength = easyRpc.currentMethod.Parameters.length;
   for (var i = 0; i < arrayValueLength && i < parameterLength; i++) {
-    var stringValue = JSON.stringify(arrayValue[i]);
-    if (stringValue === '""') {
-      stringValue = '';
+    var stringValue = arrayValue[i];
+    if (easyRpc.currentMethod.Parameters[i].Stringify === true) {
+      stringValue = JSON.stringify(arrayValue[i]);
     }
     easyRpc.currentMethod.Parameters[i].currentValue = stringValue;
   }
