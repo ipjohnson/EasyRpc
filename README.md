@@ -7,17 +7,13 @@ public void ConfigureServices(IServiceCollection services)
   services.AddJsonRpc();
 }
 
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+public void Configure(IApplicationBuilder app)
 {
-  ~
-  app.UseJsonRPC("RpcApi", api =>
+  app.UseJsonRPC("/", api =>
   {
-     // Expose methods at /RpcApi/IntMath
+     // Expose methods at /IntMath
      api.Expose<IntMathService>().As("IntMath");
   });
-  
-  app.UseMvc(routes => 
-  ~
 }
 
 public class IntMathService
