@@ -31,7 +31,7 @@ function processInterfaceDefinition(error, data) {
   if (error === null) {
     endpointClass(data);
     window.easyRpc.data = data;
-    window.easyRpc.setup = true;
+    window.easyRpc.needsSetup = true;
     setupData('');
   }
 }
@@ -41,8 +41,8 @@ function setupData(template) {
   if (window.easyRpc.data !== null &&
     methodTemplate !== undefined &&
     window.easyRpc.templates['method-info'] !== undefined &&
-    window.easyRpc.setup === true) {
-    window.easyRpc.setup = false;
+    window.easyRpc.needsSetup === true) {
+    window.easyRpc.needsSetup = false;
     var templateInstance = u(methodTemplate);
     rivets.bind(templateInstance.nodes[0], window.easyRpc.data);
     u('#endpointNavigationPanel').append(templateInstance);
