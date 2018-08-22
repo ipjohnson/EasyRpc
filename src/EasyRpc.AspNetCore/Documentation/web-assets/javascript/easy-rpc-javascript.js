@@ -9,7 +9,7 @@ function setupApp(path) {
 
   ajax(path + 'interface-definition',
     {},
-    processJsonResponse);
+    processInterfaceDefinition);
 
   fetchTemplate('methods', setupData);
   fetchTemplate('method-info', setupData);
@@ -27,7 +27,7 @@ function attachActivityLog(template) {
   u('#activityLogDiv').append(templateInstance);
 }
 
-function processJsonResponse(error, data) {
+function processInterfaceDefinition(error, data) {
   if (error === null) {
     endpointClass(data);
     window.easyRpc.data = data;
