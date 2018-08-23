@@ -19,7 +19,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <summary>
         /// Filters to apply
         /// </summary>
-        ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> Filters { get; }
+        ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>> Filters { get; }
 
         /// <summary>
         /// Prefixes to apply
@@ -48,7 +48,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
     public class CurrentApiInformation : ICurrentApiInformation
     {
-        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation, DocumentationConfiguration documentationConfiguration, bool supportResponseCompression)
+        public CurrentApiInformation(ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> authorizations, ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>> filters, ImmutableLinkedList<Func<Type, IEnumerable<string>>> prefixes, NamingConventions namingConventions, ImmutableLinkedList<Func<MethodInfo, bool>> methodFilters, bool enableDocumentation, DocumentationConfiguration documentationConfiguration, bool supportResponseCompression)
         {
             Authorizations = authorizations;
             Filters = filters;
@@ -68,7 +68,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <summary>
         /// Filters to apply
         /// </summary>
-        public ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> Filters { get; }
+        public ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>> Filters { get; }
 
         /// <summary>
         /// Prefixes to apply

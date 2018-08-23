@@ -23,7 +23,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         IMethodAuthorization[] MethodAuthorizations { get; }
 
-        Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
+        Func<ICallExecutionContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         InvokeMethodWithArray InvokeMethod { get; }
 
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.Middleware
             string methodName,
             MethodInfo method,
             IMethodAuthorization[] methodAuthorizations,
-            Func<HttpContext, IEnumerable<ICallFilter>>[] filters,
+            Func<ICallExecutionContext, IEnumerable<ICallFilter>>[] filters,
             IInstanceActivator instanceActivator,
             IArrayMethodInvokerBuilder invokeMethodBuilder,
             bool allowCompression,
@@ -81,7 +81,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public IMethodAuthorization[] MethodAuthorizations { get; }
 
-        public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
+        public Func<ICallExecutionContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         public string ObsoleteMessage { get; }
 

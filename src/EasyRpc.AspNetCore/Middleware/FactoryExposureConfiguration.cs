@@ -67,7 +67,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
+                var filters = new List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
 
                 foreach (var func in _currentApiInformation.Filters)
                 {
@@ -101,7 +101,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
                 var filterArray = filters.Count > 0 ?
                     filters.ToArray() :
-                    Array.Empty<Func<HttpContext, IEnumerable<ICallFilter>>>();
+                    Array.Empty<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
 
                 yield return new FactoryExposedMethodInformation(typeof(object), 
                     finalNames, 

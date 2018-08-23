@@ -32,8 +32,8 @@ namespace EasyRpc.AspNetCore.Middleware
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations =
             ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
 
-        private ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> _filters =
-            ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>>.Empty;
+        private ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>> _filters =
+            ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>>.Empty;
 
         private ImmutableLinkedList<Func<MethodInfo, bool>> _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
 
@@ -220,9 +220,9 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        private static IEnumerable<ICallFilter> CreateFilter<T>(HttpContext context) where T : ICallFilter
+        private static IEnumerable<ICallFilter> CreateFilter<T>(ICallExecutionContext context) where T : ICallFilter
         {
-            yield return ActivatorUtilities.GetServiceOrCreateInstance<T>(context.RequestServices);
+            yield return ActivatorUtilities.GetServiceOrCreateInstance<T>(context.HttpContext.RequestServices);
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        public IApiConfiguration ApplyFilter(Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
+        public IApiConfiguration ApplyFilter(Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filterFunc)
         {
             if (filterFunc == null) throw new ArgumentNullException(nameof(filterFunc));
 

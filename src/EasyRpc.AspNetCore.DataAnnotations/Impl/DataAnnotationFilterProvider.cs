@@ -9,7 +9,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
 {
     public class DataAnnotationFilterProvider
     {
-        public Func<HttpContext, IEnumerable<ICallFilter>> ProvideFilters(MethodInfo method)
+        public Func<ICallExecutionContext, IEnumerable<ICallFilter>> ProvideFilters(MethodInfo method)
         {
             var filterList = new List<ICallFilter>();
 

@@ -335,7 +335,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     for (var i = 0; i < exposedFilters.Length; i++)
                     {
-                        filters.AddRange(exposedFilters[i](context));
+                        filters.AddRange(exposedFilters[i](callExecutionContext));
                     }
                 }
                 catch (Exception exp)

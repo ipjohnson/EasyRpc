@@ -1,5 +1,8 @@
 ﻿namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Rpc Service Configuration options
+    /// </summary>
     public class RpcServiceConfiguration
     {
         /// <summary>

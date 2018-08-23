@@ -10,7 +10,7 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private static readonly object _nullInstance = new object();
 
-        public FactoryExposedMethodInformation(Type type, IEnumerable<string> routeNames, string methodName, MethodInfo methodInfo, IMethodAuthorization[] methodAuthorizations, Func<HttpContext, IEnumerable<ICallFilter>>[] filters, InvokeMethodWithArray invokeMethod, IEnumerable<IExposedMethodParameter> parameters)
+        public FactoryExposedMethodInformation(Type type, IEnumerable<string> routeNames, string methodName, MethodInfo methodInfo, IMethodAuthorization[] methodAuthorizations, Func<ICallExecutionContext, IEnumerable<ICallFilter>>[] filters, InvokeMethodWithArray invokeMethod, IEnumerable<IExposedMethodParameter> parameters)
         {
             Type = type;
             RouteNames = routeNames;
@@ -88,7 +88,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public IMethodAuthorization[] MethodAuthorizations { get; }
 
-        public Func<HttpContext, IEnumerable<ICallFilter>>[] Filters { get; }
+        public Func<ICallExecutionContext, IEnumerable<ICallFilter>>[] Filters { get; }
 
         public InvokeMethodWithArray InvokeMethod { get; }
         

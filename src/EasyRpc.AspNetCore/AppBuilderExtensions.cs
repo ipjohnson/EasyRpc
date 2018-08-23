@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Attributes;
 using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Documentation;
@@ -51,7 +54,7 @@ namespace EasyRpc.AspNetCore
         }
 
         /// <summary>
-        /// Adds JSON-RPC 2.0 support
+        /// Configure json-rpc service
         /// </summary>
         /// <param name="appBuilder">app builder</param>
         /// <param name="basePath">base path for api</param>
@@ -63,7 +66,7 @@ namespace EasyRpc.AspNetCore
 
             return appBuilder;
         }
-
+        
         /// <summary>
         /// Redirects all requests to service api for documentation
         /// </summary>

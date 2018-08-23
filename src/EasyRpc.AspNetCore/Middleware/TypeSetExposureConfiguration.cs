@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using EasyRpc.AspNetCore.Attributes;
 using EasyRpc.AspNetCore.Data;
 using Microsoft.AspNetCore.Authorization;
 
@@ -177,20 +178,30 @@ namespace EasyRpc.AspNetCore.Middleware
                         authorizations.AddRange(authorizationFunc(type));
                     }
 
-                    foreach (IAuthorizeData attr in type.GetTypeInfo().GetCustomAttributes(true).Where(a => a is IAuthorizeData))
+                    var nameList = new List<string>();
+
+                    foreach (var customAttribute in type.GetTypeInfo().GetCustomAttributes(true))
                     {
-                        if (!string.IsNullOrEmpty(attr.Policy))
+                        if (customAttribute is IAuthorizeData authorizeData)
                         {
-                            authorizations.Add(new UserPolicyAuthorization(attr.Policy));
+                            if (!string.IsNullOrEmpty(authorizeData.Policy))
+                            {
+                                authorizations.Add(new UserPolicyAuthorization(authorizeData.Policy));
+                            }
+                            else if (!string.IsNullOrEmpty(authorizeData.Roles))
+                            {
+                                authorizations.Add(new UserRoleAuthorization(authorizeData.Roles));
+                            }
+                            else
+                            {
+                                authorizations.Add(new UserAuthenticatedAuthorization());
+                            }
                         }
-                        else if (!string.IsNullOrEmpty(attr.Roles))
-                        {
-                            authorizations.Add(new UserRoleAuthorization(attr.Roles));
-                        }
-                        else
-                        {
-                            authorizations.Add(new UserAuthenticatedAuthorization());
-                        }
+                    }
+
+                    if (nameList.Count > 0)
+                    {
+                        _names = nameType => nameList;
                     }
 
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,

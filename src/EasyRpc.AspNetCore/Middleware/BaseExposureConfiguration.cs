@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using EasyRpc.AspNetCore.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
@@ -86,9 +87,9 @@ namespace EasyRpc.AspNetCore.Middleware
             IArrayMethodInvokerBuilder invokerBuilder,
             string obsoleteMessage)
         {
-            var names = namesFunc(type).ToArray();
+            var names = namesFunc(type).ToList();
 
-            IEnumerable<string> finalNames;
+            List<string> finalNames;
 
             if (currentApi.Prefixes.Count > 0)
             {
@@ -123,7 +124,7 @@ namespace EasyRpc.AspNetCore.Middleware
             foreach (var method in type.GetRuntimeMethods())
             {
                 if (method.IsStatic ||
-                   !method.IsPublic ||
+                    !method.IsPublic ||
                     method.DeclaringType == typeof(object))
                 {
                     continue;
@@ -141,7 +142,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     continue;
                 }
 
-                var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
+                var filters = new List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
 
                 foreach (var func in currentApi.Filters)
                 {
@@ -178,19 +179,17 @@ namespace EasyRpc.AspNetCore.Middleware
                     {
                         obsolete = obsoleteAttribute.Message ?? "This method is obsolete";
                     }
-                    else if (attribute is DisplayNameAttribute displayName)
+                    else if (attribute is IRpcFilterProviderAttribute filterAttribute && filterAttribute.Filter != null)
                     {
-                        methodNames.Add(new Tuple<string, string>(displayName.DisplayName, null));
+                        filters.Add(filterAttribute.Filter);
                     }
                 }
 
-                var authArray = currentAuth.Count > 0 ?
-                    currentAuth.ToArray() :
-                    Array.Empty<IMethodAuthorization>();
+                var authArray = currentAuth.Count > 0 ? currentAuth.ToArray() : Array.Empty<IMethodAuthorization>();
 
-                var filterArray = filters.Count > 0 ?
-                    filters.ToArray() :
-                    Array.Empty<Func<HttpContext, IEnumerable<ICallFilter>>>();
+                var filterArray = filters.Count > 0
+                    ? filters.ToArray()
+                    : Array.Empty<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
 
                 yield return new ExposedMethodInformation(type,
                     finalNames,

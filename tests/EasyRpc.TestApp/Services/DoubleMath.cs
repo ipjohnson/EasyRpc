@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyRpc.TestApp.Filter;
 
 namespace EasyRpc.TestApp.Services
 {
@@ -12,6 +13,7 @@ namespace EasyRpc.TestApp.Services
             return x + y;
         }
 
+        [ExecuteFilter]
         public double Subtract(double x, double y)
         {
             return x - y;
