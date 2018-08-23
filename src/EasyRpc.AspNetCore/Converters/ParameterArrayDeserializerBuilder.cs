@@ -219,7 +219,11 @@ namespace EasyRpc.AspNetCore.Converters
 
         public static T GetInstance<T>(RpcJsonReader reader, JsonSerializer serializer)
         {
-            return serializer.Deserialize<T>(reader);
+            var instance = serializer.Deserialize<T>(reader);
+
+            reader.Read();
+
+            return instance;
         }
 
         private T GetInstanceWithDefault<T>(RpcJsonReader reader, JsonSerializer serializer, T defaultValue)
@@ -231,7 +235,7 @@ namespace EasyRpc.AspNetCore.Converters
                 return defaultValue;
             }
 
-            return serializer.Deserialize<T>(reader);
+            return GetInstance<T>(reader, serializer);
         }
     }
 }
