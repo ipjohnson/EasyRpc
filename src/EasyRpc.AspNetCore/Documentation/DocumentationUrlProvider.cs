@@ -7,6 +7,5 @@ namespace EasyRpc.AspNetCore.Documentation
         public virtual IEnumerable<string> CssUrls { get; set; }
 
         public virtual IEnumerable<string> JavascriptUrls { get; set; }
-        
     }
 }

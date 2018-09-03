@@ -69,7 +69,7 @@ namespace EasyRpc.AspNetCore.Documentation
                         name += ',';
                     }
 
-                    name += GetFriendlyTypeName(typeArgument,out var unusedType, out var genericArray) + (genericArray ? "[]" : "");
+                    name += GetFriendlyTypeName(typeArgument,out _, out var genericArray) + (genericArray ? "[]" : "");
                 }
 
                 return name + ">";

@@ -19,6 +19,10 @@ function setupApp(path) {
   rivets.formatters.uniqueId = function (uniqueId, prefix) {
     return prefix + uniqueId;
   };
+  rivets.formatters.emptyString = function (value, arg) {
+    debugger;
+    return value === null || value === undefined || value.length === 0;
+  }
 }
 
 function attachActivityLog(template) {

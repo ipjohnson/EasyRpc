@@ -15,7 +15,7 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         public string Route { get; set; }
 
-        public List<JsonMethodInfo> Methods { get; set; }
+        public List<RpcMethodInfo> Methods { get; set; }
 
         public string DisplayName { get; set; }
 
@@ -34,11 +34,13 @@ namespace EasyRpc.AspNetCore.Documentation
         public Type Type { get; set; }
     }
 
-    public class JsonMethodInfo
+    public class RpcMethodInfo
     {
         public string Path { get; set; }
 
         public string Comments { get; set; }
+
+        public string ReturnComment { get; set; }
 
         public string Name { get; set; }
 
@@ -134,7 +136,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
             foreach (var route in sortedRoutes)
             {
-                var methods = new List<JsonMethodInfo>();
+                var methods = new List<RpcMethodInfo>();
 
                 route.Value.Sort((x, y) => string.Compare(x.MethodName, y.MethodName, StringComparison.OrdinalIgnoreCase));
 
@@ -177,7 +179,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     foreach (var dataPackage in _dataPackages)
                     {
-                        var authorizedMethods = new List<JsonMethodInfo>();
+                        var authorizedMethods = new List<RpcMethodInfo>();
 
                         foreach (var method in dataPackage.Methods)
                         {
@@ -231,7 +233,7 @@ namespace EasyRpc.AspNetCore.Documentation
             }
         }
 
-        private JsonMethodInfo GenerateInfoForMethod(string route, IExposedMethodInformation methodInformation)
+        private RpcMethodInfo GenerateInfoForMethod(string route, IExposedMethodInformation methodInformation)
         {
             var method = methodInformation.MethodInfo;
 
@@ -304,7 +306,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
             displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {methodInformation.MethodName}({parameterString})";
 
-            return new JsonMethodInfo
+            return new RpcMethodInfo
             {
                 Path = route,
                 Name = methodInformation.MethodName,

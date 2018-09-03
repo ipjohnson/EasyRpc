@@ -10,7 +10,6 @@ namespace EasyRpc.AspNetCore.Documentation
     public interface ITypeDefinitionPackageProvider
     {
         IEnumerable<TypeDefinition> GetTypeDefinitions(List<JsonDataPackage> packages);
-
     }
 
     public class TypeDefinitionPackageProvider : ITypeDefinitionPackageProvider
