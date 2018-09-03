@@ -121,12 +121,10 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private void ProcessInheritedDocumentation(Dictionary<Assembly, XDocument> xmlDocs, RpcMethodInfo rpcMethodInfo)
         {
-            var currentType = rpcMethodInfo.Method.MethodInfo.DeclaringType;
+            var currentType = rpcMethodInfo.Method.MethodInfo.DeclaringType.GetTypeInfo().BaseType;
             var processed = false;
 
-            while (processed == false &&
-                   currentType != typeof(object))
-
+            while (processed == false && currentType != typeof(object))
             {
                 currentType = currentType.GetTypeInfo().BaseType;
                 processed = ProcessMethodOnType(xmlDocs, rpcMethodInfo, currentType);
