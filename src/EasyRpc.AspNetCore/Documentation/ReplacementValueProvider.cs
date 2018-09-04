@@ -18,12 +18,19 @@ namespace EasyRpc.AspNetCore.Documentation
         private string _path;
         private string _title;
         private string _urlBase;
+        private string _versionString;
 
         public void ServicePath(EndPointConfiguration configuration)
         {
             _path = configuration.Route;
             _title = configuration.DocumentationConfiguration.Title ?? GenerateTitle(configuration);
+            _versionString = configuration.DocumentationConfiguration.VersionString ?? GenerateVersionString();
             _urlBase = configuration.DocumentationConfiguration.CustomBaseUrl;
+        }
+
+        private string GenerateVersionString()
+        {
+            return "1.0.0";
         }
 
         protected virtual string GenerateTitle(EndPointConfiguration configuration)
@@ -57,6 +64,9 @@ namespace EasyRpc.AspNetCore.Documentation
                 case nameof(InterfaceTitle):
                     return InterfaceTitle(context);
 
+                case "VersionString":
+                    return _versionString;
+
                 case "ServiceUrl":
                     return _urlBase ?? (context.Request.PathBase.Value + _path);
             }
@@ -78,7 +88,7 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<link rel=\"stylesheet\" href=\"{path}css/custom.css\"/>";
             }
 
-            return $"<link rel=\"stylesheet\" href=\"{path}css/bundle.css\"/>";
+            return $"<link rel=\"stylesheet\" href=\"{path}css/bundle.css?version={_versionString}\"/>";
         }
 
         protected string JavaScriptUrls(HttpContext context)
@@ -92,7 +102,7 @@ namespace EasyRpc.AspNetCore.Documentation
                        $"<script src = \"{path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
-            return $"<script src = \"{path}javascript/bundle.js\"></script>";
+            return $"<script src = \"{path}javascript/bundle.js?version={_versionString}\"></script>";
         }
 
         protected string InterfaceTitle(HttpContext context) => _title;

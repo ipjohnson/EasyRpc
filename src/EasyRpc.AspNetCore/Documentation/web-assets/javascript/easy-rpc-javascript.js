@@ -21,7 +21,6 @@ function setupApp(path, versionString) {
     return prefix + uniqueId;
   };
   rivets.formatters.emptyString = function (value, arg) {
-    debugger;
     return value === null || value === undefined || value.length === 0;
   }
 }
