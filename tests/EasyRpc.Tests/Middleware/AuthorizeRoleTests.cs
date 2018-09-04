@@ -1,11 +1,11 @@
 ﻿using System.Net;
 using EasyRpc.AspNetCore.Messages;
-using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.xUnit;
 using Xunit;
 using NSubstitute;
+using EasyRpc.Tests.Classes;
 
 namespace EasyRpc.Tests.Middleware
 {

@@ -24,5 +24,10 @@
         /// Custom url for all documentation resources.
         /// </summary>
         public string CustomBaseUrl { get; set; }
+
+        /// <summary>
+        /// version string appended to resource urls. defaults to assembly verison
+        /// </summary>
+        public string VersionString { get; set; }
     }
 }

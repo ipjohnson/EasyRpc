@@ -1,4 +1,4 @@
-﻿using EasyRPC.AspNetCore.Tests.Classes;
+﻿using EasyRpc.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.NSubstitute;

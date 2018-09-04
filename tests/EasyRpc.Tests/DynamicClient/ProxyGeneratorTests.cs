@@ -4,7 +4,6 @@ using EasyRpc.DynamicClient;
 using EasyRpc.DynamicClient.ProxyGenerator;
 using EasyRpc.Tests.Classes;
 using EasyRpc.Tests.Middleware;
-using EasyRPC.AspNetCore.Tests.Classes;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
 using SimpleFixture;

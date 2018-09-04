@@ -1,6 +1,5 @@
 ﻿using EasyRpc.AspNetCore.Messages;
 using EasyRpc.Tests.Classes;
-using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.xUnit;

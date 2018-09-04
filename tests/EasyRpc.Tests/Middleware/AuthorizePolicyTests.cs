@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
-using EasyRPC.AspNetCore.Tests.Classes;
+using EasyRpc.Tests.Classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

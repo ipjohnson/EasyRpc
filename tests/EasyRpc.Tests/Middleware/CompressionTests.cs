@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Classes;
-using EasyRPC.AspNetCore.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
