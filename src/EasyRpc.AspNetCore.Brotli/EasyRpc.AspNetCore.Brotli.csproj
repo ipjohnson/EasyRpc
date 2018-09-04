@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Brotli compression library for EasyRpc.AspNetCore</Description>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <SignAssembly>True</SignAssembly>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <!-- Nuget source link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62909-01" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>

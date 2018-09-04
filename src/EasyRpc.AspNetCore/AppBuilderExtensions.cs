@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Attributes;
+using EasyRpc.AspNetCore.Content;
+using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;
@@ -20,19 +24,24 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="configuration"></param>
-        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null )
+        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null)
         {
-            collection.TryAddTransient<IJsonRpcMessageProcessor, JsonRpcMessageProcessor>();
-            collection.TryAddSingleton<IJsonSerializerProvider, JsonSerializerProvider>();
-            collection.TryAddSingleton<INamedParameterToArrayDelegateProvider,NamedParameterToArrayDelegateProvider>();
-            collection.TryAddSingleton<IOrderedParameterToArrayDelegateProvider, OrderedParameterToArrayDelegateProvider>();
+            collection.TryAddTransient<IRpcMessageProcessor, RpcMessageProcessor>();
+            collection.TryAddTransient<IContentSerializer, DefaultJsonContentSerializer>();
+            collection.TryAddTransient<IContentSerializerProvider, ContentSerializerProvider>();
+            collection.TryAddTransient<IContentEncodingProvider, ContentEncodingProvider>();
+            collection.TryAddTransient<IContentEncoder, GzipContentEncoder>();
+            collection.TryAddTransient<IExposeMethodInformationCacheManager, ExposeMethodInformationCacheManager>();
+            collection.TryAddSingleton<IParameterArrayDeserializerBuilder, ParameterArrayDeserializerBuilder>();
+            collection.TryAddSingleton<INamedParameterDeserializerBuilder, NamedParameterDeserializerBuilder>();
             collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
             collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
-            
-            collection.TryAddSingleton(new JsonSerializer());
+            collection.TryAddSingleton<IFromServicesManager, FromServicesManager>();
+            collection.TryAddSingleton<JsonSerializer>();
 
+            // documentation
             collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
-            collection.TryAddTransient<IDocumentationRequestProcessor,DocumentationRequestProcessor>();
+            collection.TryAddTransient<IDocumentationRequestProcessor, DocumentationRequestProcessor>();
             collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
             collection.TryAddTransient<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
             collection.TryAddTransient<IVariableReplacementService, VariableReplacementService>();
@@ -45,7 +54,7 @@ namespace EasyRpc.AspNetCore
         }
 
         /// <summary>
-        /// Adds JSON-RPC 2.0 support
+        /// Configure json-rpc service
         /// </summary>
         /// <param name="appBuilder">app builder</param>
         /// <param name="basePath">base path for api</param>
@@ -53,11 +62,11 @@ namespace EasyRpc.AspNetCore
         public static IApplicationBuilder UseJsonRpc(this IApplicationBuilder appBuilder, string basePath,
             Action<IApiConfiguration> configure)
         {
-            JsonRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
-            
+            EasyRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
+
             return appBuilder;
         }
-
+        
         /// <summary>
         /// Redirects all requests to service api for documentation
         /// </summary>
@@ -71,7 +80,7 @@ namespace EasyRpc.AspNetCore
                 var response = context.Response;
                 var redirectPath = context.Request.PathBase.Value + basePath;
 
-                if (context.Request.Path.Value?.EndsWith( "/favicon.ico") ?? false)
+                if (context.Request.Path.Value?.EndsWith("/favicon.ico") ?? false)
                 {
                     response.Headers["Location"] = redirectPath + "favicon.ico";
                 }

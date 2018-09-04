@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EasyRpc.AspNetCore
+﻿namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Documentation configuration
+    /// </summary>
     public class DocumentationConfiguration
     {
         /// <summary>
-        /// Left menu width in rem
+        /// Menu width in rem
         /// </summary>
         public double? MenuWidth { get; set; }
 
         /// <summary>
-        /// Menu title
+        /// Title for documentation
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Custom css
+        /// Custom Css url
         /// </summary>
         public string CustomCss { get; set; }
+
+        /// <summary>
+        /// Custom url for all documentation resources.
+        /// </summary>
+        public string CustomBaseUrl { get; set; }
 
         /// <summary>
         /// version string appended to resource urls. defaults to assembly verison

@@ -10,7 +10,7 @@ function setupApp(path, versionString) {
 
   ajax(path + 'interface-definition?' + versionString,
     {},
-    processJsonResponse);
+    processInterfaceDefinition);
 
   fetchTemplate('methods', setupData);
   fetchTemplate('method-info', setupData);
@@ -20,6 +20,10 @@ function setupApp(path, versionString) {
   rivets.formatters.uniqueId = function (uniqueId, prefix) {
     return prefix + uniqueId;
   };
+  rivets.formatters.emptyString = function (value, arg) {
+    debugger;
+    return value === null || value === undefined || value.length === 0;
+  }
 }
 
 function attachActivityLog(template) {
@@ -28,11 +32,11 @@ function attachActivityLog(template) {
   u('#activityLogDiv').append(templateInstance);
 }
 
-function processJsonResponse(error, data) {
+function processInterfaceDefinition(error, data) {
   if (error === null) {
     endpointClass(data);
     window.easyRpc.data = data;
-    window.easyRpc.setup = true;
+    window.easyRpc.needsSetup = true;
     setupData('');
   }
 }
@@ -42,8 +46,8 @@ function setupData(template) {
   if (window.easyRpc.data !== null &&
     methodTemplate !== undefined &&
     window.easyRpc.templates['method-info'] !== undefined &&
-    window.easyRpc.setup === true) {
-    window.easyRpc.setup = false;
+    window.easyRpc.needsSetup === true) {
+    window.easyRpc.needsSetup = false;
     var templateInstance = u(methodTemplate);
     rivets.bind(templateInstance.nodes[0], window.easyRpc.data);
     u('#endpointNavigationPanel').append(templateInstance);
@@ -87,6 +91,12 @@ function endpointClass(endpointList) {
           return this.Comments + '\n' + this.Signature;
         }
         return this.Signature;
+      }
+      method.obsoleteClass = function() {
+        if (this.ObsoleteMessage !== null) {
+          return 'alert alert-danger';
+        }
+        return 'hide-element';
       }
       var parameterLength = method.Parameters.length;
       for (var k = 0; k < parameterLength; k++) {
@@ -161,7 +171,11 @@ function saveDataToParameters(event, binding) {
   var arrayValueLength = arrayValue.length;
   var parameterLength = easyRpc.currentMethod.Parameters.length;
   for (var i = 0; i < arrayValueLength && i < parameterLength; i++) {
-    easyRpc.currentMethod.Parameters[i].currentValue = JSON.stringify(arrayValue[i]);
+    var stringValue = arrayValue[i];
+    if (easyRpc.currentMethod.Parameters[i].Stringify === true) {
+      stringValue = JSON.stringify(arrayValue[i]);
+    }
+    easyRpc.currentMethod.Parameters[i].currentValue = stringValue;
   }
 }
 
@@ -259,6 +273,9 @@ function displayComment() {
 }
 
 function executeMethod(event, binding) {
+  u('#responseDiv').addClass('hide-element');
+  u('#loadingDiv').removeClass('hide-element');
+
   var sourceElement = u(event.target);
   var activeTab = u('#parametersTabDiv li.active a').data('tab-type');
   var callArrayString = [];
@@ -311,6 +328,7 @@ function executeMethod(event, binding) {
         var status = error === null ? "200 OK" : error;
         u('#httpStatus').nodes[0].textContent = status;
         u('#executionTime').nodes[0].textContent = timeLabel = (endTime - startTime).toFixed(1) + ' ms';
+        u('#loadingDiv').addClass('hide-element');
         u('#responseDiv').removeClass('hide-element');
       }
       setResponseFunc();

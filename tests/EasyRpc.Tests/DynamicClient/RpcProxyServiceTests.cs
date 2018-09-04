@@ -122,7 +122,6 @@ namespace EasyRpc.Tests.DynamicClient
             Assert.Throws<AggregateException>(() => proxyService.MakeCallNoReturn("SomeNamespace", "SomeClass", "SomeMethod", bytes, false, false));
         }
 
-
         [Theory]
         [AutoData]
         public void RpcProxyServiceMakeCallReturnValueCompressResponse(IRpcHttpClient client,
@@ -131,7 +130,7 @@ namespace EasyRpc.Tests.DynamicClient
         {
             var response = new HttpResponseMessage(HttpStatusCode.Accepted)
             {
-                Content = new StreamContent(new ResponseMessage<int>(10, "2.0", "1").SerializeToStream(true))
+                Content = new StreamContent(new ResponseMessage<int>(10, "2.0", "1").SerializeToStream("gzip"))
             };
 
             response.Content.Headers.Add("Content-Encoding", "gzip");

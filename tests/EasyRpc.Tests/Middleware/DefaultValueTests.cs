@@ -43,5 +43,23 @@ namespace EasyRpc.Tests.Middleware
 
             Assert.Equal("SomeString-OtherValue", result);
         }
+
+        [Theory]
+        [AutoData]
+        public void DefaultValue_OrderParameter_String_NullValue(IApplicationBuilder app, HttpContext context)
+        {
+            Configure(app, "RpcApi", api =>
+            {
+                api.Expose<DefaultValueService>().As("DefaultValue");
+            });
+
+            var result = MakeCall<string>(context, "/RpcApi/DefaultValue", "NullDefaultValue", new[] { "SomeString" });
+
+            Assert.Equal("SomeString", result);
+
+            result = MakeCall<string>(context, "/RpcApi/DefaultValue", "NullDefaultValue", new[] { "SomeString", "-OtherValue" });
+
+            Assert.Equal("SomeString-OtherValue", result);
+        }
     }
 }

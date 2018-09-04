@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Grace.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-namespace EasyRpc.TestApp.Services
+﻿namespace EasyRpc.TestApp.Services
 {
     /// <summary>
     /// Integer math service
@@ -18,7 +11,7 @@ namespace EasyRpc.TestApp.Services
         /// <param name="x">first integer value</param>
         /// <param name="y">second integer value</param>
         /// <returns>x + y</returns>
-        public int Add(int x = 9, int y = 9)
+        public int Add(int x, int y)
         {
             return x + y;
         }

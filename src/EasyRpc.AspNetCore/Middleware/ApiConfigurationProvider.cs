@@ -4,6 +4,7 @@ using System.Reflection;
 using EasyRpc.AspNetCore.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
@@ -22,14 +23,17 @@ namespace EasyRpc.AspNetCore.Middleware
     /// </summary>
     public class ApiConfigurationProvider : IApiConfigurationProvider, IApiConfiguration
     {
+        private readonly IInstanceActivator _activator;
+        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
+
         private readonly List<IExposedMethodInformationProvider> _providers =
             new List<IExposedMethodInformationProvider>();
 
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations =
             ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
 
-        private ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>> _filters =
-            ImmutableLinkedList<Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>>>.Empty;
+        private ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>> _filters =
+            ImmutableLinkedList<Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>>>.Empty;
 
         private ImmutableLinkedList<Func<MethodInfo, bool>> _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
 
@@ -37,10 +41,14 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private NamingConventions _currentNamingConventions;
         private bool _enableDocumentation = true;
-        private DocumentationConfiguration _configuration = new DocumentationConfiguration();
+        private readonly DocumentationConfiguration _configuration = new DocumentationConfiguration();
+        private readonly IOptions<RpcServiceConfiguration> _rpcConfiguration;
 
-        public ApiConfigurationProvider(IServiceProvider appServices)
+        public ApiConfigurationProvider(IServiceProvider appServices, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder, IOptions<RpcServiceConfiguration> rpcConfiguration)
         {
+            _activator = activator;
+            _invokerBuilder = invokerBuilder;
+            _rpcConfiguration = rpcConfiguration;
             AppServices = appServices;
         }
 
@@ -158,7 +166,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public IExposureConfiguration Expose(Type type)
         {
-            var config = new ExposureConfiguration(type, GetCurrentApiInformation());
+            var config = new ExposureConfiguration(type, GetCurrentApiInformation(), _activator, _invokerBuilder);
 
             _providers.Add(config);
 
@@ -172,7 +180,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public IExposureConfiguration<T> Expose<T>()
         {
-            var config = new ExposureConfiguration<T>(GetCurrentApiInformation());
+            var config = new ExposureConfiguration<T>(GetCurrentApiInformation(), _activator, _invokerBuilder);
 
             _providers.Add(config);
 
@@ -186,7 +194,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <returns></returns>
         public ITypeSetExposureConfiguration Expose(IEnumerable<Type> types)
         {
-            var typeSetConfiguration = new TypeSetExposureConfiguration(types, GetCurrentApiInformation());
+            var typeSetConfiguration = new TypeSetExposureConfiguration(types, GetCurrentApiInformation(), _activator, _invokerBuilder);
 
             _providers.Add(typeSetConfiguration);
 
@@ -212,9 +220,9 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        private static IEnumerable<ICallFilter> CreateFilter<T>(HttpContext context) where T : ICallFilter
+        private static IEnumerable<ICallFilter> CreateFilter<T>(ICallExecutionContext context) where T : ICallFilter
         {
-            yield return ActivatorUtilities.GetServiceOrCreateInstance<T>(context.RequestServices);
+            yield return ActivatorUtilities.GetServiceOrCreateInstance<T>(context.HttpContext.RequestServices);
         }
 
         /// <summary>
@@ -222,7 +230,7 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        public IApiConfiguration ApplyFilter(Func<MethodInfo, Func<HttpContext, IEnumerable<ICallFilter>>> filterFunc)
+        public IApiConfiguration ApplyFilter(Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filterFunc)
         {
             if (filterFunc == null) throw new ArgumentNullException(nameof(filterFunc));
 
@@ -275,9 +283,16 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
+        /// <summary>
+        /// App services
+        /// </summary>
         public IServiceProvider AppServices { get; }
 
-        public IEnumerable<ExposedMethodInformation> GetExposedMethods()
+        /// <summary>
+        /// Get exposed methods
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             foreach (var provider in _providers)
             {
@@ -287,7 +302,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets an immutable representation of what the current configuration values are
+        /// </summary>
+        /// <returns></returns>
         public ICurrentApiInformation GetCurrentApiInformation()
         {
             //need to make a copy of naming convention so that if it changes current api information stays the same
@@ -301,14 +320,31 @@ namespace EasyRpc.AspNetCore.Middleware
                 _currentNamingConventions = new NamingConventions { RouteNameGenerator = NamingConventions.RouteNameGenerator, MethodNameGenerator = NamingConventions.MethodNameGenerator };
             }
 
-            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation, _configuration);
+            return new CurrentApiInformation(_authorizations, _filters, _prefixes, _currentNamingConventions, _methodFilters, _enableDocumentation, _configuration, _rpcConfiguration.Value.SupportResponseCompression);
         }
 
+        /// <summary>
+        /// By default documentation is on, this turns it off for this configuration
+        /// </summary>
         public IApiConfiguration DisableDocumentation()
         {
             _enableDocumentation = false;
 
             return this;
+        }
+
+        /// <summary>
+        /// Expose factories under a specific path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public IFactoryExposureConfiguration Expose(string path)
+        {
+            var configuration = new FactoryExposureConfiguration(path, GetCurrentApiInformation());
+
+            _providers.Add(configuration);
+
+            return configuration;
         }
     }
 }

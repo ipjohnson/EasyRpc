@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
-using EasyRpc.AspNetCore.Middleware;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
     public interface ITypeDefinitionPackageProvider
     {
         IEnumerable<TypeDefinition> GetTypeDefinitions(List<JsonDataPackage> packages);
-
     }
 
     public class TypeDefinitionPackageProvider : ITypeDefinitionPackageProvider

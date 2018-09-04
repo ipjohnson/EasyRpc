@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
@@ -16,7 +15,7 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         public string Route { get; set; }
 
-        public List<JsonMethodInfo> Methods { get; set; }
+        public List<RpcMethodInfo> Methods { get; set; }
 
         public string DisplayName { get; set; }
 
@@ -35,11 +34,13 @@ namespace EasyRpc.AspNetCore.Documentation
         public Type Type { get; set; }
     }
 
-    public class JsonMethodInfo
+    public class RpcMethodInfo
     {
         public string Path { get; set; }
 
         public string Comments { get; set; }
+
+        public string ReturnComment { get; set; }
 
         public string Name { get; set; }
 
@@ -49,8 +50,10 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public TypeRef ReturnType { get; set; }
 
+        public string ObsoleteMessage { get; set; }
+
         [JsonIgnore]
-        public ExposedMethodInformation Method { get; set; }
+        public IExposedMethodInformation Method { get; set; }
     }
 
     public class JsonParameterInfo
@@ -87,25 +90,27 @@ namespace EasyRpc.AspNetCore.Documentation
     public class MethodPackageMetadataCreator : IMethodPackageMetadataCreator
     {
         private EndPointConfiguration _configuration;
-        private JsonSerializer _serializer;
+        private readonly JsonSerializer _serializer;
         private List<JsonDataPackage> _dataPackages;
         private bool _hasAuthorization = false;
-        private IXmlDocumentationProvider _xmlDocumentationProvider;
-        private ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
+        private readonly IXmlDocumentationProvider _xmlDocumentationProvider;
+        private readonly ITypeDefinitionPackageProvider _typeDefinitionPackageProvider;
         private List<TypeDefinition> _typeDefinitions;
+        private readonly IFromServicesManager _fromServicesManager;
 
-        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider)
+        public MethodPackageMetadataCreator(JsonSerializer serializer, IXmlDocumentationProvider xmlDocumentationProvider, ITypeDefinitionPackageProvider typeDefinitionPackageProvider, IFromServicesManager fromServicesManager)
         {
             _serializer = serializer;
             _xmlDocumentationProvider = xmlDocumentationProvider;
             _typeDefinitionPackageProvider = typeDefinitionPackageProvider;
+            _fromServicesManager = fromServicesManager;
         }
 
         public void SetConfiguration(EndPointConfiguration endPointConfiguration)
         {
             _configuration = endPointConfiguration;
 
-            var routes = new Dictionary<string, List<ExposedMethodInformation>>();
+            var routes = new Dictionary<string, List<IExposedMethodInformation>>();
 
             foreach (var information in _configuration.Methods.Values)
             {
@@ -113,7 +118,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 {
                     if (!routes.TryGetValue(routeName, out var methodList))
                     {
-                        methodList = new List<ExposedMethodInformation>();
+                        methodList = new List<IExposedMethodInformation>();
 
                         routes[routeName] = methodList;
                     }
@@ -131,7 +136,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
             foreach (var route in sortedRoutes)
             {
-                var methods = new List<JsonMethodInfo>();
+                var methods = new List<RpcMethodInfo>();
 
                 route.Value.Sort((x, y) => string.Compare(x.MethodName, y.MethodName, StringComparison.OrdinalIgnoreCase));
 
@@ -174,7 +179,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     foreach (var dataPackage in _dataPackages)
                     {
-                        var authorizedMethods = new List<JsonMethodInfo>();
+                        var authorizedMethods = new List<RpcMethodInfo>();
 
                         foreach (var method in dataPackage.Methods)
                         {
@@ -191,7 +196,7 @@ namespace EasyRpc.AspNetCore.Documentation
                                 var callContext =
                                     new CallExecutionContext(context, methodInformation.Type,
                                         methodInformation.MethodInfo,
-                                        new RequestMessage());
+                                        new RpcRequestMessage());
                                 var add = true;
 
                                 foreach (var authorization in methodInformation.MethodAuthorizations)
@@ -228,13 +233,13 @@ namespace EasyRpc.AspNetCore.Documentation
             }
         }
 
-        private JsonMethodInfo GenerateInfoForMethod(string route, ExposedMethodInformation methodInformation)
+        private RpcMethodInfo GenerateInfoForMethod(string route, IExposedMethodInformation methodInformation)
         {
             var method = methodInformation.MethodInfo;
 
             string displayString;
             string parameterString = " ";
-            var parameters = method.GetParameters();
+            var parameters = methodInformation.Parameters.ToArray();
             var parameterList = new List<JsonParameterInfo>();
 
             if (parameters.Length > 0)
@@ -243,6 +248,13 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 foreach (var parameter in parameters)
                 {
+                    if (parameter.ParameterType == typeof(IServiceProvider) ||
+                        parameter.ParameterType == typeof(HttpContext) ||
+                        _fromServicesManager.ParameterIsFromServices(parameter.ParameterInfo))
+                    {
+                        continue;
+                    }
+                    
                     if (parameterString.Length > 0)
                     {
                         parameterString += ", ";
@@ -277,11 +289,10 @@ namespace EasyRpc.AspNetCore.Documentation
                     {
                         Name = parameter.Name,
                         ParameterType = TypeUtilities.CreateTypeRef(parameter.ParameterType),
-                        ParameterInfo = parameter,
                         Array = isArray,
                         Stringify = stringify,
-                        Optional = parameter.IsOptional,
-                        DefaultValue = parameter.IsOptional ? parameter.DefaultValue : null,
+                        Optional = parameter.HasDefaultValue,
+                        DefaultValue = parameter.HasDefaultValue ? parameter.DefaultValue : null,
                         HtmlType = htmlType
                     });
                 }
@@ -293,16 +304,17 @@ namespace EasyRpc.AspNetCore.Documentation
                 _hasAuthorization = true;
             }
 
-            displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {method.Name}({parameterString})";
+            displayString = $"{TypeUtilities.GetFriendlyTypeName(method.ReturnType,out var unusedType, out var unused)} {methodInformation.MethodName}({parameterString})";
 
-            return new JsonMethodInfo
+            return new RpcMethodInfo
             {
                 Path = route,
                 Name = methodInformation.MethodName,
                 Signature = displayString,
                 ReturnType = TypeUtilities.CreateTypeRef( methodInformation.MethodInfo.ReturnType),
                 Parameters = parameterList,
-                Method = methodInformation
+                Method = methodInformation,
+                ObsoleteMessage = methodInformation.ObsoleteMessage
             };
         }
 

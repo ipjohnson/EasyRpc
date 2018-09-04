@@ -37,15 +37,19 @@ namespace EasyRpc.Tests.Middleware
             }
         }
 
-        public static Stream SerializeToStream<T>(this T value, bool compress = false)
+        public static Stream SerializeToStream<T>(this T value, string compression = null)
         {
             MemoryStream returnStream = new MemoryStream();
-            GZipStream gzip = null;
+            Stream compressed = null;
             Stream stream = returnStream;
 
-            if (compress)
+            if (compression == "gzip")
             {
-                stream = gzip = new GZipStream(returnStream, CompressionMode.Compress);
+                stream = compressed = new GZipStream(returnStream, CompressionMode.Compress);
+            }
+            else if (compression == "br")
+            {
+                stream = compressed = new BrotliStream(returnStream, CompressionLevel.Fastest);
             }
 
             using (var text = new StreamWriter(stream))
@@ -58,7 +62,7 @@ namespace EasyRpc.Tests.Middleware
                 }
             }
 
-            gzip?.Dispose();
+            compressed?.Dispose();
 
             return new MemoryStream(returnStream.ToArray());
         }

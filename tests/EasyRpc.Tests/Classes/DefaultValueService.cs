@@ -8,5 +8,10 @@
         {
             return baseString + endString;
         }
+
+        public string NullDefaultValue(string stringValue, string defaultValue = null)
+        {
+            return stringValue + defaultValue;
+        }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using EasyRpc.TestApp.Models;
 using EasyRpc.TestApp.Repositories;
 
@@ -12,7 +9,7 @@ namespace EasyRpc.TestApp.Services
     /// </summary>
     public class PersonService
     {
-        private IPersonRepository _personRepository;
+        private readonly IPersonRepository _personRepository;
 
         /// <summary>
         /// Default constructor

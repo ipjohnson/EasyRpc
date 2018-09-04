@@ -19,7 +19,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
             _getValidatorFilterMethod = GetType().GetTypeInfo().GetMethod("GetValidatorFilter", BindingFlags.Instance | BindingFlags.NonPublic);
         }
 
-        public Func<HttpContext, IEnumerable<ICallFilter>> GetFilters(MethodInfo method)
+        public Func<ICallExecutionContext, IEnumerable<ICallFilter>> GetFilters(MethodInfo method)
         {
             List<ICallFilter> callFilters = new List<ICallFilter>();
 

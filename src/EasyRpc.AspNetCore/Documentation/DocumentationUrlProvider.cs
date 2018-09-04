@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
@@ -9,6 +7,5 @@ namespace EasyRpc.AspNetCore.Documentation
         public virtual IEnumerable<string> CssUrls { get; set; }
 
         public virtual IEnumerable<string> JavascriptUrls { get; set; }
-        
     }
 }

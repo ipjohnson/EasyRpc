@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
@@ -20,33 +17,13 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         private string _path;
         private string _title;
-        private string _versionString;
+        private string _urlBase;
 
         public void ServicePath(EndPointConfiguration configuration)
         {
             _path = configuration.Route;
             _title = configuration.DocumentationConfiguration.Title ?? GenerateTitle(configuration);
-            _versionString = configuration.DocumentationConfiguration.VersionString ??
-                             GenerateVersionString(configuration);
-        }
-
-        private string GenerateVersionString(EndPointConfiguration configuration)
-        {
-            var method = configuration.Methods.Values.FirstOrDefault()?.MethodInfo;
-
-            if (method != null)
-            {
-                var assemblyVersionAttr = 
-                    method.DeclaringType?.GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>() ??
-                    GetType().GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-
-                if (assemblyVersionAttr != null)
-                {
-                    return assemblyVersionAttr.InformationalVersion?.Replace('.','-');
-                }
-            }
-
-            return "";
+            _urlBase = configuration.DocumentationConfiguration.CustomBaseUrl;
         }
 
         protected virtual string GenerateTitle(EndPointConfiguration configuration)
@@ -81,10 +58,7 @@ namespace EasyRpc.AspNetCore.Documentation
                     return InterfaceTitle(context);
 
                 case "ServiceUrl":
-                    return context.Request.PathBase.Value + _path;
-
-                case "VersionString":
-                    return _versionString;
+                    return _urlBase ?? (context.Request.PathBase.Value + _path);
             }
 
             throw new Exception("Unkown replacement string " + valueName);
@@ -92,29 +66,33 @@ namespace EasyRpc.AspNetCore.Documentation
 
         protected string CssUrls(HttpContext context)
         {
+            var path = _urlBase ?? (context.Request.PathBase + _path);
+
             if (Debugger.IsAttached)
-            {
-                return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-icons.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/spectre-exp.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/docs.min.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/easy-rpc-styles.css\"/>" +
-                       $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/custom.css\"/>";
+            {                
+                return $"<link rel=\"stylesheet\" href=\"{path}css/spectre.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/spectre-icons.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/spectre-exp.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/docs.min.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/easy-rpc-styles.css\"/>" +
+                       $"<link rel=\"stylesheet\" href=\"{path}css/custom.css\"/>";
             }
 
-            return $"<link rel=\"stylesheet\" href=\"{context.Request.PathBase}{_path}css/bundle.css?{_versionString}\"/>";
+            return $"<link rel=\"stylesheet\" href=\"{path}css/bundle.css\"/>";
         }
 
         protected string JavaScriptUrls(HttpContext context)
         {
+            var path = _urlBase ?? (context.Request.PathBase + _path);
+
             if (Debugger.IsAttached)
             {
-                return $"<script src = \"{context.Request.PathBase}{_path}javascript/umbrella.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}javascript/rivets.bundled.min.js\"></script>" +
-                       $"<script src = \"{context.Request.PathBase}{_path}javascript/easy-rpc-javascript.js\"></script>";
+                return $"<script src = \"{path}javascript/umbrella.min.js\"></script>" +
+                       $"<script src = \"{path}javascript/rivets.bundled.min.js\"></script>" +
+                       $"<script src = \"{path}javascript/easy-rpc-javascript.js\"></script>";
             }
 
-            return $"<script src = \"{context.Request.PathBase}{_path}javascript/bundle.js?{_versionString}\"></script>";
+            return $"<script src = \"{path}javascript/bundle.js\"></script>";
         }
 
         protected string InterfaceTitle(HttpContext context) => _title;

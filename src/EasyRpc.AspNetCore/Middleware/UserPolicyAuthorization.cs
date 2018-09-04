@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Middleware
@@ -14,13 +13,10 @@ namespace EasyRpc.AspNetCore.Middleware
             _policy = policy;
         }
 
-        public async Task<bool> AsyncAuthorize(ICallExecutionContext context)
+        public Task<bool> AsyncAuthorize(ICallExecutionContext context)
         {
-            var authorizationService = context.HttpContext.RequestServices.GetRequiredService<IAuthorizationService>();
-
-            var returnvalue = await authorizationService.AuthorizeAsync(context.HttpContext.User, _policy);
-
-            return returnvalue;
+            return context.HttpContext.RequestServices.GetRequiredService<IAuthorizationService>().
+                AuthorizeAsync(context.HttpContext.User, _policy);
         }
     }
 }

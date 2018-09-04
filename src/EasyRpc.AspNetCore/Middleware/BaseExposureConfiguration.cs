@@ -1,25 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using EasyRpc.AspNetCore.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
+    /// <summary>
+    /// Base class for expouse configurations
+    /// </summary>
     public abstract class BaseExposureConfiguration
     {
+        private readonly IInstanceActivator _activator;
+        private readonly IArrayMethodInvokerBuilder _arrayMethodInvokerBuilder;
+
+        /// <summary>
+        /// Current api information
+        /// </summary>
         protected readonly ICurrentApiInformation ApiInformation;
+
+        /// <summary>
+        /// Exposure names
+        /// </summary>
         protected readonly List<string> Names = new List<string>();
+
+        /// <summary>
+        /// Authorizations
+        /// </summary>
         protected readonly List<IMethodAuthorization> Authorizations = new List<IMethodAuthorization>();
 
-        protected BaseExposureConfiguration(ICurrentApiInformation apiInformation)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="apiInformation"></param>
+        /// <param name="activator"></param>
+        /// <param name="arrayMethodInvokerBuilder"></param>
+        protected BaseExposureConfiguration(ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder arrayMethodInvokerBuilder)
         {
             ApiInformation = apiInformation;
+            _activator = activator;
+            _arrayMethodInvokerBuilder = arrayMethodInvokerBuilder;
         }
 
+        /// <summary>
+        /// Get exposed methods
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="methodFilter"></param>
+        /// <param name="obsoleteMessage"></param>
+        /// <returns></returns>
         protected IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
-            Func<MethodInfo, bool> methodFilter = null)
+            Func<MethodInfo, bool> methodFilter = null, string obsoleteMessage = null)
         {
             if (Names.Count == 0)
             {
@@ -29,18 +63,33 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter);
+            return GetExposedMethods(type, ApiInformation, t => Names, Authorizations, methodFilter, _activator, _arrayMethodInvokerBuilder, obsoleteMessage);
         }
 
+        /// <summary>
+        /// Get all exposed methods from a type given a current state
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="currentApi"></param>
+        /// <param name="namesFunc"></param>
+        /// <param name="authorizations"></param>
+        /// <param name="methodFilter"></param>
+        /// <param name="activator"></param>
+        /// <param name="invokerBuilder"></param>
+        /// <param name="obsoleteMessage"></param>
+        /// <returns></returns>
         public static IEnumerable<ExposedMethodInformation> GetExposedMethods(Type type,
-                                                                              ICurrentApiInformation currentApi,
-                                                                              Func<Type, IEnumerable<string>> namesFunc,
-                                                                              List<IMethodAuthorization> authorizations,
-                                                                              Func<MethodInfo, bool> methodFilter)
+            ICurrentApiInformation currentApi,
+            Func<Type, IEnumerable<string>> namesFunc,
+            List<IMethodAuthorization> authorizations,
+            Func<MethodInfo, bool> methodFilter,
+            IInstanceActivator activator,
+            IArrayMethodInvokerBuilder invokerBuilder,
+            string obsoleteMessage)
         {
-            var names = namesFunc(type).ToArray();
+            var names = namesFunc(type).ToList();
 
-            IEnumerable<string> finalNames;
+            List<string> finalNames;
 
             if (currentApi.Prefixes.Count > 0)
             {
@@ -74,8 +123,8 @@ namespace EasyRpc.AspNetCore.Middleware
 
             foreach (var method in type.GetRuntimeMethods())
             {
-                if (method.IsStatic || 
-                   !method.IsPublic ||
+                if (method.IsStatic ||
+                    !method.IsPublic ||
                     method.DeclaringType == typeof(object))
                 {
                     continue;
@@ -93,7 +142,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     continue;
                 }
 
-                var filters = new List<Func<HttpContext, IEnumerable<ICallFilter>>>();
+                var filters = new List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
 
                 foreach (var func in currentApi.Filters)
                 {
@@ -106,24 +155,52 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
 
                 var currentAuth = new List<IMethodAuthorization>(authorizations);
+                var methodNames = new List<Tuple<string, string>>();
+                var obsolete = obsoleteMessage;
 
-                foreach (var attr in method.GetCustomAttributes<AuthorizeAttribute>())
+                foreach (var attribute in method.GetCustomAttributes(true))
                 {
-                    if (!string.IsNullOrEmpty(attr.Policy))
+                    if (attribute is IAuthorizeData authorizeData)
                     {
-                        currentAuth.Add(new UserPolicyAuthorization(attr.Policy));
+                        if (!string.IsNullOrEmpty(authorizeData.Policy))
+                        {
+                            currentAuth.Add(new UserPolicyAuthorization(authorizeData.Policy));
+                        }
+                        else if (!string.IsNullOrEmpty(authorizeData.Roles))
+                        {
+                            currentAuth.Add(new UserRoleAuthorization(authorizeData.Roles));
+                        }
+                        else
+                        {
+                            currentAuth.Add(new UserAuthenticatedAuthorization());
+                        }
                     }
-                    else if (!string.IsNullOrEmpty(attr.Roles))
+                    else if (attribute is ObsoleteAttribute obsoleteAttribute)
                     {
-                        currentAuth.Add(new UserRoleAuthorization(attr.Roles));
+                        obsolete = obsoleteAttribute.Message ?? "This method is obsolete";
                     }
-                    else
+                    else if (attribute is IRpcFilterProviderAttribute filterAttribute && filterAttribute.Filter != null)
                     {
-                        currentAuth.Add(new UserAuthenticatedAuthorization());
+                        filters.Add(filterAttribute.Filter);
                     }
                 }
 
-                yield return new ExposedMethodInformation(type, finalNames, currentApi.NamingConventions.MethodNameGenerator(method), method, currentAuth.ToArray(), filters.ToArray());
+                var authArray = currentAuth.Count > 0 ? currentAuth.ToArray() : Array.Empty<IMethodAuthorization>();
+
+                var filterArray = filters.Count > 0
+                    ? filters.ToArray()
+                    : Array.Empty<Func<ICallExecutionContext, IEnumerable<ICallFilter>>>();
+
+                yield return new ExposedMethodInformation(type,
+                    finalNames,
+                    currentApi.NamingConventions.MethodNameGenerator(method),
+                    method,
+                    authArray,
+                    filterArray,
+                    activator,
+                    invokerBuilder,
+                    currentApi.SupportResponseCompression,
+                    obsolete);
             }
         }
     }

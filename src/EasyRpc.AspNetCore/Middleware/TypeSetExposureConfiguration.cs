@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using EasyRpc.AspNetCore.Attributes;
 using EasyRpc.AspNetCore.Data;
 using Microsoft.AspNetCore.Authorization;
 
@@ -10,6 +12,8 @@ namespace EasyRpc.AspNetCore.Middleware
     {
         private readonly IEnumerable<Type> _types;
         private readonly ICurrentApiInformation _apiInformation;
+        private readonly IInstanceActivator _activator;
+        private readonly IArrayMethodInvokerBuilder _invokerBuilder;
         private Func<Type, IEnumerable<string>> _names;
         private ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>> _authorizations = ImmutableLinkedList<Func<Type, IEnumerable<IMethodAuthorization>>>.Empty;
         private Func<Type, bool> _typeFilter;
@@ -22,10 +26,13 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="types"></param>
         /// <param name="apiInformation"></param>
-        public TypeSetExposureConfiguration(IEnumerable<Type> types, ICurrentApiInformation apiInformation)
+        /// <param name="activator"></param>
+        public TypeSetExposureConfiguration(IEnumerable<Type> types, ICurrentApiInformation apiInformation, IInstanceActivator activator, IArrayMethodInvokerBuilder invokerBuilder)
         {
             _types = types;
             _apiInformation = apiInformation;
+            _activator = activator;
+            _invokerBuilder = invokerBuilder;
         }
 
         /// <summary>
@@ -130,7 +137,11 @@ namespace EasyRpc.AspNetCore.Middleware
             return this;
         }
 
-        public IEnumerable<ExposedMethodInformation> GetExposedMethods()
+        /// <summary>
+        /// Get exposed methods for set
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IExposedMethodInformation> GetExposedMethods()
         {
             if (_interfacesFilter == null && _typeFilter == null)
             {
@@ -167,24 +178,34 @@ namespace EasyRpc.AspNetCore.Middleware
                         authorizations.AddRange(authorizationFunc(type));
                     }
 
-                    foreach (var attr in type.GetTypeInfo().GetCustomAttributes<AuthorizeAttribute>())
+                    var nameList = new List<string>();
+
+                    foreach (var customAttribute in type.GetTypeInfo().GetCustomAttributes(true))
                     {
-                        if (!string.IsNullOrEmpty(attr.Policy))
+                        if (customAttribute is IAuthorizeData authorizeData)
                         {
-                            authorizations.Add(new UserPolicyAuthorization(attr.Policy));
-                        }
-                        else if (!string.IsNullOrEmpty(attr.Roles))
-                        {
-                            authorizations.Add(new UserRoleAuthorization(attr.Roles));
-                        }
-                        else
-                        {
-                            authorizations.Add(new UserAuthenticatedAuthorization());
+                            if (!string.IsNullOrEmpty(authorizeData.Policy))
+                            {
+                                authorizations.Add(new UserPolicyAuthorization(authorizeData.Policy));
+                            }
+                            else if (!string.IsNullOrEmpty(authorizeData.Roles))
+                            {
+                                authorizations.Add(new UserRoleAuthorization(authorizeData.Roles));
+                            }
+                            else
+                            {
+                                authorizations.Add(new UserAuthenticatedAuthorization());
+                            }
                         }
                     }
 
+                    if (nameList.Count > 0)
+                    {
+                        _names = nameType => nameList;
+                    }
+
                     foreach (var exposedMethodInformation in BaseExposureConfiguration.GetExposedMethods(type, _apiInformation,
-                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter))
+                            _names ?? _apiInformation.NamingConventions.RouteNameGenerator, authorizations, _methodFilter,_activator, _invokerBuilder, null))
                     {
                         yield return exposedMethodInformation;
                     }

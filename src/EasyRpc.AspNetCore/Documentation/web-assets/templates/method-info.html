@@ -1,6 +1,7 @@
 <div id="methodInfoPage">
-    <h3 class="s-title">{ endpoint.DisplayName }.{ Name }</h3>
-    <div class="alert alert-primary">{ Signature }<br />{ Comments }</div>
+    <h3 class="s-title">{ endpoint.DisplayName } { Name }</h3>
+    <div rv-class="obsoleteClass | call">Obsolete: { ObsoleteMessage }</div>
+    <div class="alert alert-primary">{ Signature }<br />{ Comments }<div rv-hide="ReturnComment | emptyString">Returns: { ReturnComment }</div></div>
     <ul id="parametersTabDiv" class="tab tab-block">
         <li class="tab-item active">
             <a href="#" rv-on-click="tabActivatedHandler" data-tab-type="parameters">Parameters</a>
@@ -24,11 +25,10 @@
     <div class="hide-element" id="rawMessageDiv">
         <textarea id="rawMessageArea" class="json-textarea"></textarea>
     </div>
-    <div class="hide-element" id="headersDiv">
-
-    </div>
+    <div class="hide-element" id="headersDiv"></div>
     <br />
     <div><button class="btn btn-primary btn-block" rv-on-click="executeMethod" rv-data-path="Path">Execute</button></div>
+    <div id="loadingDiv" class="loading loading-lg hide-element"></div>
     <div id="responseDiv" class="hide-element">
         <br />
         <div class="accordion">

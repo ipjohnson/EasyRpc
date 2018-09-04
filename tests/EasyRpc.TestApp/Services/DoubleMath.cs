@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using EasyRpc.TestApp.Filter;
 
 namespace EasyRpc.TestApp.Services
 {
@@ -16,6 +13,7 @@ namespace EasyRpc.TestApp.Services
             return x + y;
         }
 
+        [ExecuteFilter]
         public double Subtract(double x, double y)
         {
             return x - y;

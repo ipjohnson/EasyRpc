@@ -3,9 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using EasyRpc.TestApp.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EasyRpc.TestApp.Repositories
 {
@@ -25,7 +23,7 @@ namespace EasyRpc.TestApp.Repositories
     public class PersonRepository : IPersonRepository
     {
         private int _modelId = 1;
-        private ConcurrentDictionary<int, PersonModel> _personModels;
+        private readonly ConcurrentDictionary<int, PersonModel> _personModels;
 
         public PersonRepository()
         {

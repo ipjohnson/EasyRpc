@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using EasyRpc.AspNetCore;
-using EasyRPC.AspNetCore.Tests.Classes;
+using EasyRpc.Tests.Classes;
 using Xunit;
 
 namespace EasyRpc.Tests.Middleware

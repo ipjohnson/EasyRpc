@@ -1,5 +1,8 @@
 ﻿namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Rpc Service Configuration options
+    /// </summary>
     public class RpcServiceConfiguration
     {
         /// <summary>
@@ -21,5 +24,10 @@
         /// Support Content-Encoding: gzip for request
         /// </summary>
         public bool SupportRequestCompression { get; set; } = false;
+
+        /// <summary>
+        /// Interface parameters that are not IEnumerable will be automatically resolved from request services
+        /// </summary>
+        public bool AutoResolveInterfaces { get; set; } = true;
     }
 }

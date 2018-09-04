@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
-using EasyRpc.AspNetCore.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -34,10 +33,10 @@ namespace EasyRpc.AspNetCore.Documentation
 
     public class WebAssetProvider : IWebAssetProvider
     {
-        private IMethodPackageMetadataCreator _methodPackageMetadataCreator;
+        private readonly IMethodPackageMetadataCreator _methodPackageMetadataCreator;
         private int _routeLength;
-        private IVariableReplacementService _variableReplacementService;
-        private IOptions<RpcServiceConfiguration> _configuration;
+        private readonly IVariableReplacementService _variableReplacementService;
+        private readonly IOptions<RpcServiceConfiguration> _configuration;
         protected string ExtractedAssetPath;
 
 
@@ -57,6 +56,7 @@ namespace EasyRpc.AspNetCore.Documentation
             if (assetPath.Length == 0)
             {
                 assetPath = "templates/main.html";
+                context.Response.Headers.Add("Cache-Control", "no-cache");
             }
             
             try
@@ -68,8 +68,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 {
                     if (_configuration.Value != null && 
                         _configuration.Value.SupportResponseCompression &&
-                        !shouldReplaceVar &&
-                        context.SupportsGzipCompression())
+                        !shouldReplaceVar)
                     {
                         if (File.Exists(file + ".gz"))
                         {
@@ -80,7 +79,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     var bytes = File.ReadAllBytes(file);
                     context.Response.StatusCode = StatusCodes.Status200OK;
-
+                    
                     var lastPeriod = assetPath.LastIndexOf('.');
                     if (lastPeriod > 0)
                     {

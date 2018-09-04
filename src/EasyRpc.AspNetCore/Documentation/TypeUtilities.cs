@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 
@@ -70,7 +69,7 @@ namespace EasyRpc.AspNetCore.Documentation
                         name += ',';
                     }
 
-                    name += GetFriendlyTypeName(typeArgument,out var unusedType, out var genericArray) + (genericArray ? "[]" : "");
+                    name += GetFriendlyTypeName(typeArgument,out _, out var genericArray) + (genericArray ? "[]" : "");
                 }
 
                 return name + ">";

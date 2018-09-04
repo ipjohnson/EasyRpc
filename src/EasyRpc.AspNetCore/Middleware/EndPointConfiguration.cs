@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
     public class EndPointConfiguration
     {
         public EndPointConfiguration(string route, 
-            ConcurrentDictionary<string, ExposedMethodInformation> methods,
+            Dictionary<string, IExposedMethodInformation> methods,
             bool enableDocumentation, 
             DocumentationConfiguration documentationConfiguration)
         {
@@ -20,7 +17,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         public string Route { get; }
 
-        public ConcurrentDictionary<string, ExposedMethodInformation> Methods { get; }
+        public Dictionary<string, IExposedMethodInformation> Methods { get; }
 
         public bool EnableDocumentation { get; }
 

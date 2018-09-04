@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using EasyRpc.AspNetCore.Messages;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace EasyRpc.AspNetCore.Converters
 {
-    public class RpcParameterConverter : JsonConverter
+    /// <summary>
+    /// Json converter for RpcRequestPackage
+    /// </summary>
+    public class RpcRequestPackageConverter : JsonConverter
     {
         /// <summary>Writes the JSON representation of the object.</summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
@@ -13,7 +15,7 @@ namespace EasyRpc.AspNetCore.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, value);
+            throw new NotImplementedException();
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -22,23 +24,24 @@ namespace EasyRpc.AspNetCore.Converters
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+            JsonSerializer serializer)
         {
             switch (reader.TokenType)
             {
                 case JsonToken.StartObject:
-                    JObject jObject = JObject.Load(reader);
+                    var request = serializer.Deserialize<RpcRequestMessage>(reader);
 
-                    return jObject.ToObject<Dictionary<string, object>>();
+                    return new RpcRequestPackage(request);
 
                 case JsonToken.StartArray:
-                    return JArray.Load(reader).ToObject<object[]>(serializer);
+                    var array = serializer.Deserialize<RpcRequestMessage[]>(reader);
 
-                case JsonToken.Null:
-                    return Array.Empty<object>();
+                    return new RpcRequestPackage(array);
+
+                default:
+                    throw new Exception("message is empty");
             }
-
-            throw new Exception("Request parameters can only be an associative array, list or null.");
         }
 
         /// <summary>
@@ -50,7 +53,7 @@ namespace EasyRpc.AspNetCore.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return true;
+            return objectType == typeof(RpcRequestPackage);
         }
     }
 }

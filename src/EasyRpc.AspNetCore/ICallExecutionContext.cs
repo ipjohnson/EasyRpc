@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Execution context for the call
+    /// </summary>
     public interface ICallExecutionContext
     {
         /// <summary>
@@ -40,7 +43,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Request message
         /// </summary>
-        RequestMessage RequestMessage { get; }
+        RpcRequestMessage RequestMessage { get; }
 
         /// <summary>
         /// Response message

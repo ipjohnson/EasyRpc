@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Documentation;
 using Microsoft.Extensions.Options;
@@ -15,11 +11,11 @@ namespace EasyRpc.TestApp.Utilities
             base(methodPackageMetadataCreator, variableReplacementService, configuration)
         {
             var personalPath =
-                @"C:\Users\ian\Source\Repos\EasyRpc\src\EasyRpc.AspNetCore\Documentation\web-assets\";
+                @"C:\Users\ian\Source\Repos\EasyRpc-3.0\src\EasyRpc.AspNetCore\Documentation\web-assets\";
 
             if (Directory.Exists(personalPath))
             {
-                ExtractedAssetPath =personalPath;
+                ExtractedAssetPath = personalPath;
             }
         }
     }

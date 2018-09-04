@@ -1,5 +1,5 @@
 ﻿using EasyRpc.AspNetCore.Messages;
-using EasyRPC.AspNetCore.Tests.Classes;
+using EasyRpc.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using SimpleFixture.xUnit;
@@ -48,6 +48,11 @@ namespace EasyRpc.Tests.Middleware
             {
                 return a - b;
             }
+
+            public int Test(ComplexObject model)
+            {
+                return model.A + model.B;
+            }
         }
 
         [Theory]
@@ -56,14 +61,10 @@ namespace EasyRpc.Tests.Middleware
         {
             Configure(app, "RpcApi", api =>
             {
-                api.Expose(typeof(MultipleMethodClass)).As("IntMath").Methods(m => m.Name == "Add");
+                api.Expose(typeof(MultipleMethodClass)).As("IntMath");
             });
-
-            var errorValue = MakeCall<ErrorResponseMessage>(context, "/RpcApi/IntMath", nameof(MultipleMethodClass.Subtract), new[] { 5, 10 });
-
-            Assert.Equal((int)JsonRpcErrorCode.MethodNotFound, errorValue.Error.Code);
-
-            var value = MakeCall<int>(context, "/RpcApi/IntMath", "Add", new[] { 5, 10 });
+            
+            var value = MakeCall<int>(context, "/RpcApi/IntMath", "Test", new[] { new ComplexObject{ A = 5, B = 10} });
 
             Assert.Equal(15, value);
         }

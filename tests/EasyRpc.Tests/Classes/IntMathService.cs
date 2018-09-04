@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EasyRPC.AspNetCore.Tests.Classes
+namespace EasyRpc.Tests.Classes
 {
     public interface IIntMathService
     {

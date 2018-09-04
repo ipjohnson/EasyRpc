@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Xml.Linq;
 
 namespace EasyRpc.AspNetCore.Documentation
@@ -42,31 +41,19 @@ namespace EasyRpc.AspNetCore.Documentation
 
                         if (name != null)
                         {
+                            if (name.Value == "M:EasyRpc.TestApp.Services.TestService.TestMethod(System.Int32)")
+                            {
+                                this.ToString();
+                            }
                             if (name.Value.StartsWith("M:" + methodInfo.DeclaringType.FullName + "." + methodInfo.Name))
                             {
-                                var summary = element.Descendants("summary").FirstOrDefault();
-
-                                if (summary != null)
+                                if (element.Descendants("inheritdoc").Any())
                                 {
-                                    method.Comments = summary.Value?.Trim('\n', ' ');
+                                    ProcessInheritedDocumentation(xmlDocs, method);
                                 }
-
-                                var parameters = element.Descendants("param");
-
-                                foreach (var parameterElement in parameters)
+                                else
                                 {
-                                    var paramName = parameterElement.Attribute("name");
-
-                                    if (paramName != null)
-                                    {
-                                        var paramDocNode =
-                                            method.Parameters.FirstOrDefault(p => p.Name == paramName.Value);
-
-                                        if (paramDocNode != null)
-                                        {
-                                            paramDocNode.Comments = parameterElement.Value?.Trim('\n', ' ');
-                                        }
-                                    }
+                                    ExtractMethodDocumentation(element, method);
                                 }
                             }
                             else if (name.Value.StartsWith("T:" + methodInfo.DeclaringType.FullName) &&
@@ -82,7 +69,6 @@ namespace EasyRpc.AspNetCore.Documentation
                         }
                     }
                 }
-
             }
 
             foreach (var typeDefinition in typeDefinitions)
@@ -122,7 +108,7 @@ namespace EasyRpc.AspNetCore.Documentation
                                     {
                                         if (name.Value.Substring(propertyStart.Length) == typeDefinitionProperty.Name)
                                         {
-                                            typeDefinitionProperty.Comment = summary.Value.Replace('\n',' ').Trim(' ');
+                                            typeDefinitionProperty.Comment = summary.Value.Replace('\n', ' ').Trim(' ');
                                         }
                                     }
                                 }
@@ -131,6 +117,93 @@ namespace EasyRpc.AspNetCore.Documentation
                     }
                 }
             }
+        }
+
+        private void ProcessInheritedDocumentation(Dictionary<Assembly, XDocument> xmlDocs, RpcMethodInfo rpcMethodInfo)
+        {
+            var currentType = rpcMethodInfo.Method.MethodInfo.DeclaringType.GetTypeInfo().BaseType;
+            var processed = false;
+
+            while (processed == false && currentType != typeof(object))
+            {
+                currentType = currentType.GetTypeInfo().BaseType;
+                processed = ProcessMethodOnType(xmlDocs, rpcMethodInfo, currentType);
+            }
+
+            if (!processed)
+            {
+                foreach (var implementedInterface in 
+                    rpcMethodInfo.Method.MethodInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces)
+                {
+                    if (ProcessMethodOnType(xmlDocs, rpcMethodInfo, implementedInterface))
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private bool ProcessMethodOnType(Dictionary<Assembly, XDocument> xmlDocs, RpcMethodInfo rpcMethodInfo, Type type)
+        {
+            var method = type.GetMethod(rpcMethodInfo.Method.MethodName);
+
+            if (method != null)
+            {
+                var methodFullName = "M:" + method.DeclaringType.FullName + "." + method.Name;
+
+                var xdoc = GetDocumentForAssembly(xmlDocs, method.DeclaringType.GetTypeInfo().Assembly);
+
+                if (xdoc != null)
+                {
+                    var membersNode = xdoc.Descendants("members");
+
+                    foreach (var element in membersNode.Descendants("member"))
+                    {
+                        var name = element.Attribute("name");
+
+                        if (name != null && name.Value.StartsWith(methodFullName))
+                        {
+                            return ExtractMethodDocumentation(element, rpcMethodInfo);
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool ExtractMethodDocumentation(XElement element, RpcMethodInfo method)
+        {
+            var summary = element.Descendants("summary").FirstOrDefault();
+
+            if (summary == null)
+            {
+                return false;
+            }
+
+            method.Comments = summary.Value?.Trim('\n', ' ');
+
+            var parameters = element.Descendants("param");
+
+            foreach (var parameterElement in parameters)
+            {
+                var paramName = parameterElement.Attribute("name");
+
+                if (paramName != null)
+                {
+                    var paramDocNode =
+                        method.Parameters.FirstOrDefault(p => p.Name == paramName.Value);
+
+                    if (paramDocNode != null)
+                    {
+                        paramDocNode.Comments = parameterElement.Value?.Trim('\n', ' ');
+                    }
+                }
+            }
+
+            method.ReturnComment = element.Descendants("returns").FirstOrDefault()?.Value;
+
+            return true;
         }
 
         private static XDocument GetDocumentForAssembly(Dictionary<Assembly, XDocument> xmlDocs, Assembly assembly)
@@ -167,3 +240,4 @@ namespace EasyRpc.AspNetCore.Documentation
         }
     }
 }
+

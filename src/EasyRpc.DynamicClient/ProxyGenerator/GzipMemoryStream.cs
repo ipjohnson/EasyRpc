@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Text;
 
 namespace EasyRpc.DynamicClient.ProxyGenerator
 {
     public class GZipMemoryStream : Stream
     {
-        private MemoryStream _memoryStream;
-        private GZipStream _gZipStream;
+        private readonly MemoryStream _memoryStream;
+        private readonly GZipStream _gZipStream;
 
         public GZipMemoryStream()
         {
