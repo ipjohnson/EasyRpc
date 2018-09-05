@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
@@ -30,7 +31,8 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private string GenerateVersionString()
         {
-            return "1.0.0";
+            return Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? 
+                Assembly.GetEntryAssembly().GetName().Version.ToString();
         }
 
         protected virtual string GenerateTitle(EndPointConfiguration configuration)
