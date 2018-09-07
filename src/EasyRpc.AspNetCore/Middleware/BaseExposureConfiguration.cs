@@ -155,35 +155,9 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
 
                 var currentAuth = new List<IMethodAuthorization>(authorizations);
-                var methodNames = new List<Tuple<string, string>>();
-                var obsolete = obsoleteMessage;
+                var obsolete = ProcessAttributesOnMethod(method, currentAuth, filters);
 
-                foreach (var attribute in method.GetCustomAttributes(true))
-                {
-                    if (attribute is IAuthorizeData authorizeData)
-                    {
-                        if (!string.IsNullOrEmpty(authorizeData.Policy))
-                        {
-                            currentAuth.Add(new UserPolicyAuthorization(authorizeData.Policy));
-                        }
-                        else if (!string.IsNullOrEmpty(authorizeData.Roles))
-                        {
-                            currentAuth.Add(new UserRoleAuthorization(authorizeData.Roles));
-                        }
-                        else
-                        {
-                            currentAuth.Add(new UserAuthenticatedAuthorization());
-                        }
-                    }
-                    else if (attribute is ObsoleteAttribute obsoleteAttribute)
-                    {
-                        obsolete = obsoleteAttribute.Message ?? "This method is obsolete";
-                    }
-                    else if (attribute is IRpcFilterProviderAttribute filterAttribute && filterAttribute.Filter != null)
-                    {
-                        filters.Add(filterAttribute.Filter);
-                    }
-                }
+                obsoleteMessage = obsoleteMessage ?? obsolete;
 
                 var authArray = currentAuth.Count > 0 ? currentAuth.ToArray() : Array.Empty<IMethodAuthorization>();
 
@@ -200,8 +174,53 @@ namespace EasyRpc.AspNetCore.Middleware
                     activator,
                     invokerBuilder,
                     currentApi.SupportResponseCompression,
-                    obsolete);
+                    obsoleteMessage);
             }
+        }
+
+        private static string ProcessAttributesOnMethod(MethodInfo method, List<IMethodAuthorization> currentAuth, List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filters)
+        {
+            var obsoleteMethod = ProcessAttributeArray(method.GetCustomAttributes(true).Cast<Attribute>(), currentAuth, filters);
+            
+            var obsoleteClass = ProcessAttributeArray(method.DeclaringType.GetTypeInfo().GetCustomAttributes(true).Cast<Attribute>(), currentAuth, filters);
+            
+            var obsoleteAssembly =ProcessAttributeArray(method.DeclaringType.GetTypeInfo().Assembly.GetCustomAttributes(), currentAuth, filters);
+
+            return obsoleteMethod ?? obsoleteClass ?? obsoleteAssembly;
+        }
+
+        private static string ProcessAttributeArray(IEnumerable<Attribute> methodAttributes, List<IMethodAuthorization> currentAuth,  List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filters)
+        {
+            string obsolete = null;
+
+            foreach (var attribute in methodAttributes)
+            {
+                if (attribute is IAuthorizeData authorizeData)
+                {
+                    if (!string.IsNullOrEmpty(authorizeData.Policy))
+                    {
+                        currentAuth.Add(new UserPolicyAuthorization(authorizeData.Policy));
+                    }
+                    else if (!string.IsNullOrEmpty(authorizeData.Roles))
+                    {
+                        currentAuth.Add(new UserRoleAuthorization(authorizeData.Roles));
+                    }
+                    else
+                    {
+                        currentAuth.Add(new UserAuthenticatedAuthorization());
+                    }
+                }
+                else if (attribute is ObsoleteAttribute obsoleteAttribute)
+                {
+                    obsolete = obsoleteAttribute.Message ?? "This method is obsolete";
+                }
+                else if (attribute is IRpcFilterProviderAttribute filterAttribute && filterAttribute.Filter != null)
+                {
+                    filters.Add(filterAttribute.Filter);
+                }
+            }
+
+            return obsolete;
         }
     }
 }
