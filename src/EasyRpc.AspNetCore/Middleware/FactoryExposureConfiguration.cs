@@ -79,21 +79,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                foreach (var attr in methodInfo.GetCustomAttributes<AuthorizeAttribute>())
-                {
-                    if (!string.IsNullOrEmpty(attr.Policy))
-                    {
-                        authorizations.Add(new UserPolicyAuthorization(attr.Policy));
-                    }
-                    else if (!string.IsNullOrEmpty(attr.Roles))
-                    {
-                        authorizations.Add(new UserRoleAuthorization(attr.Roles));
-                    }
-                    else
-                    {
-                        authorizations.Add(new UserAuthenticatedAuthorization());
-                    }
-                }
+                BaseExposureConfiguration.ProcessAttributesOnMethod(methodInfo, authorizations, filters);
 
                 var authArray = authorizations.Count > 0 ?
                     authorizations.ToArray() :

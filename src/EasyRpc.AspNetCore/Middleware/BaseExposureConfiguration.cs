@@ -178,7 +178,14 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private static string ProcessAttributesOnMethod(MethodInfo method, List<IMethodAuthorization> currentAuth, List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filters)
+        /// <summary>
+        /// Process the attributes on a method/class/assembly
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="currentAuth"></param>
+        /// <param name="filters"></param>
+        /// <returns></returns>
+        public static string ProcessAttributesOnMethod(MethodInfo method, List<IMethodAuthorization> currentAuth, List<Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filters)
         {
             var obsoleteMethod = ProcessAttributeArray(method.GetCustomAttributes(true).Cast<Attribute>(), currentAuth, filters);
             

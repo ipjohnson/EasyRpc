@@ -179,26 +179,7 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
 
                     var nameList = new List<string>();
-
-                    foreach (var customAttribute in type.GetTypeInfo().GetCustomAttributes(true))
-                    {
-                        if (customAttribute is IAuthorizeData authorizeData)
-                        {
-                            if (!string.IsNullOrEmpty(authorizeData.Policy))
-                            {
-                                authorizations.Add(new UserPolicyAuthorization(authorizeData.Policy));
-                            }
-                            else if (!string.IsNullOrEmpty(authorizeData.Roles))
-                            {
-                                authorizations.Add(new UserRoleAuthorization(authorizeData.Roles));
-                            }
-                            else
-                            {
-                                authorizations.Add(new UserAuthenticatedAuthorization());
-                            }
-                        }
-                    }
-
+                    
                     if (nameList.Count > 0)
                     {
                         _names = nameType => nameList;
