@@ -60,7 +60,7 @@ namespace EasyRpc.Tests.Middleware
             string id = "1", string compressRequest = null, string compressResponse = null)
         {
             return MakeCall<T>(context, route,
-                new RpcRequestMessage {Version = version, Method = method, Parameters = values, Id = id});
+                new RpcRequestMessage {Version = version, Method = method, Parameters = values, Id = id}, compressRequest, compressResponse);
         }
 
         protected T MakeCall<T>(HttpContext context, string route, object requestMessage, string compressRequest = null, string compressResponse = null)
