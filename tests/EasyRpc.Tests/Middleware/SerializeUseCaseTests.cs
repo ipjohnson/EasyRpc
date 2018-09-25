@@ -33,9 +33,37 @@ namespace EasyRpc.Tests.Middleware
             public int id { get; set; }
         }
 
+
         [Theory]
         [AutoData]
-        public void SerializeListTest(IApplicationBuilder app, HttpContext context)
+        public void SerializeListInOrderTest(IApplicationBuilder app, HttpContext context)
+        {
+            Configure(app, "/", api => { api.Expose<Service>().As("Service"); });
+
+            var results = MakeCall<List<ResponseStrings>>(context, "/Service", "ServiceMethod", new
+            {
+                updates = new[]
+                {
+                    new TestMessage
+                    {
+                        QRN = "90E-2U-54",
+                        FT = "89-TU",
+                        ID = 9238718,
+                        Approved = true,
+                        NTR = "990231703",
+                        Date = new DateTime(2018, 9, 25)
+                    }
+                }
+            });
+
+            Assert.NotNull(results);
+            Assert.Single(results);
+
+        }
+
+        [Theory]
+        [AutoData]
+        public void SerializeListOutOfOrderTest(IApplicationBuilder app, HttpContext context)
         {
             var outOfOrder = new OutOfOrderRequest
             {
