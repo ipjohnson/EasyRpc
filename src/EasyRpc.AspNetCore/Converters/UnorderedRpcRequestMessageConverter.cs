@@ -243,6 +243,10 @@ namespace EasyRpc.AspNetCore.Converters
                         {
                             parameterValues[i] = jObject.ToObject(paramInfo.ParameterType);
                         }
+                        else if (paramValue is JArray jArray)
+                        {
+                            parameterValues[i] = jArray.ToObject(paramInfo.ParameterType);
+                        }
                         else if(paramValue.GetType() == paramInfo.ParameterType)
                         {
                             parameterValues[i] = paramValue;

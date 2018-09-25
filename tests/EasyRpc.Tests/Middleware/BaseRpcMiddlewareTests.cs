@@ -56,10 +56,15 @@ namespace EasyRpc.Tests.Middleware
             MiddlewareContextInstance = new MiddlewareContext { ExecuteDelegate = executeDelegate };
         }
 
-        
-        protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0", string id = "1", string compressRequest = null, string compressResponse = null)
+        protected T MakeCall<T>(HttpContext context, string route, string method, object values, string version = "2.0",
+            string id = "1", string compressRequest = null, string compressResponse = null)
         {
-            var requestMessage = new RpcRequestMessage { Version = version, Id = id, Method = method, Parameters = values };
+            return MakeCall<T>(context, route,
+                new RpcRequestMessage {Version = version, Method = method, Parameters = values, Id = id});
+        }
+
+        protected T MakeCall<T>(HttpContext context, string route, object requestMessage, string compressRequest = null, string compressResponse = null)
+        {
             var responseStream = new MemoryStream();
 
             context.Request.Headers.Returns(new HeaderDictionary());
