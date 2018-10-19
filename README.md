@@ -34,7 +34,7 @@ public class IntMathService
 * Built in data context idea that can be used to fetch and save data into header
 * Filter support similar to Asp.Net filter (not exactly the same as no controller is ever created)
 * Validation support using DataAnnotations and/or FluentValidation
-* Support for request/response gzip compression
+* Support for request/response gzip compression, br compression for asp.net core 2.1
 * Built in documentation/execution UI
 
 ### Example App
