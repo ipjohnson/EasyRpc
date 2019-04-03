@@ -9,7 +9,7 @@ public void ConfigureServices(IServiceCollection services)
 
 public void Configure(IApplicationBuilder app)
 {
-  app.UseJsonRPC("/", api =>
+  app.UseJsonRpc("/", api =>
   {
      // Expose methods at /IntMath
      api.Expose<IntMathService>().As("IntMath");
