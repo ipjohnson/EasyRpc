@@ -318,6 +318,12 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             ilGenerator.Emit(OpCodes.Ldfld, serializer);
             ilGenerator.Emit(OpCodes.Ldloc_3);
             ilGenerator.EmitLoadArg(parameterIndex + 1);
+
+            if (parameter.ParameterType.GetTypeInfo().IsValueType)
+            {
+                ilGenerator.Emit(OpCodes.Box, parameter.ParameterType);
+            }
+
             ilGenerator.Emit(OpCodes.Callvirt, SerializeMethod);
         }
 

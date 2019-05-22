@@ -23,12 +23,13 @@ namespace EasyRpc.Tests.DynamicClient
         [Export(typeof(JsonMethodObjectWriter))]
         [Export(typeof(DefaultNamingConventionService))]
         public void ProxyGenerator_Create_Interface_Proxy_ByOrder(IRpcProxyService proxyService,
-                                                          ProxyGenerator proxyGenerator,
-                                                          Fixture fixture)
+            ProxyGenerator proxyGenerator,
+            Fixture fixture)
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>(), false, false)
+            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name,
+                    nameof(IIntMathService.Add), Arg.Any<byte[]>(), false, false)
                 .Returns(c =>
                 {
                     bytes = c.Arg<byte[]>();
@@ -64,18 +65,19 @@ namespace EasyRpc.Tests.DynamicClient
         [Export(typeof(JsonMethodObjectWriter))]
         [Export(typeof(DefaultNamingConventionService))]
         public void ProxyGenerator_Create_Interface_Proxy_ByName(IRpcProxyService proxyService,
-                                                          ProxyGenerator proxyGenerator,
-                                                          Fixture fixture)
+            ProxyGenerator proxyGenerator,
+            Fixture fixture)
         {
             byte[] bytes = new byte[0];
 
-            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name, nameof(IIntMathService.Add), Arg.Any<byte[]>(), false, false)
+            proxyService.MakeCallWithReturn<int>(typeof(IIntMathService).Namespace, typeof(IIntMathService).Name,
+                    nameof(IIntMathService.Add), Arg.Any<byte[]>(), false, false)
                 .Returns(c =>
-                 {
-                     bytes = c.Arg<byte[]>();
+                {
+                    bytes = c.Arg<byte[]>();
 
-                     return 15;
-                 });
+                    return 15;
+                });
 
             var proxyType = proxyGenerator.GenerateProxyType(typeof(IIntMathService), true);
 
@@ -105,9 +107,43 @@ namespace EasyRpc.Tests.DynamicClient
         [AutoData]
         [Export(typeof(JsonMethodObjectWriter))]
         [Export(typeof(DefaultNamingConventionService))]
+        public void ProxyGenerator_Create_Interface_Proxy_ByName_Enum(IRpcProxyService proxyService,
+            ProxyGenerator proxyGenerator,
+            Fixture fixture)
+        {
+            byte[] bytes = new byte[0];
+
+            proxyService.MakeCallWithReturn<TestEnum>(typeof(IEnumValueService).Namespace, typeof(IEnumValueService).Name, nameof(IEnumValueService.GetTestEnum), Arg.Any<byte[]>(), false, false)
+                .Returns(c =>
+                {
+                    bytes = c.Arg<byte[]>();
+
+                    return TestEnum.Value2;
+                });
+
+            var proxyType = proxyGenerator.GenerateProxyType(typeof(IEnumValueService), true);
+
+            var instance = (IEnumValueService)fixture.Locate(proxyType);
+
+            var value = instance.GetTestEnum(TestEnum.Value1);
+
+            Assert.Equal(TestEnum.Value2, value);
+
+            var request = bytes.Deserialize<RpcRequestMessage>();
+
+            Assert.NotNull(request);
+            Assert.Equal("2.0", request.Version);
+            Assert.Equal("GetTestEnum", request.Method);
+            Assert.False(string.IsNullOrEmpty(request.Id));
+        }
+
+        [Theory]
+        [AutoData]
+        [Export(typeof(JsonMethodObjectWriter))]
+        [Export(typeof(DefaultNamingConventionService))]
         public void ProxyGenerator_ComplexObject(IRpcProxyService proxyService,
-                                                 ProxyGenerator proxyGenerator,
-                                                 Fixture fixture)
+                                                     ProxyGenerator proxyGenerator,
+                                                     Fixture fixture)
         {
             byte[] bytes = new byte[0];
 
@@ -134,7 +170,7 @@ namespace EasyRpc.Tests.DynamicClient
             Assert.Equal("2.0", request.Version);
             Assert.Equal("Add", request.Method);
             Assert.False(string.IsNullOrEmpty(request.Id));
-            
+
         }
 
         public interface IVoidReturnInterface
@@ -158,7 +194,7 @@ namespace EasyRpc.Tests.DynamicClient
 
             instance.VoidMethod(10, 5);
 
-            proxyService.Received(1).MakeCallNoReturn(typeof(IVoidReturnInterface).Namespace, typeof(IVoidReturnInterface).Name,nameof(IVoidReturnInterface.VoidMethod),Arg.Any<byte[]>(), false, false);
+            proxyService.Received(1).MakeCallNoReturn(typeof(IVoidReturnInterface).Namespace, typeof(IVoidReturnInterface).Name, nameof(IVoidReturnInterface.VoidMethod), Arg.Any<byte[]>(), false, false);
         }
 
         [Theory]
