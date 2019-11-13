@@ -74,7 +74,7 @@ namespace EasyRpc.AspNetCore.Middleware
             return endPoint;
         }
 
-        public Task ProcessRequest(HttpContext context)
+        public async Task ProcessRequest(HttpContext context)
         {
             RpcRequestPackage requestPackage = null;
 
@@ -105,11 +105,11 @@ namespace EasyRpc.AspNetCore.Middleware
                     }
                 }
 
-                requestPackage = DeserializeStream(context, body, path);
+                requestPackage = await DeserializeStream(context, body, path);
             }
             catch (Exception exp)
             {
-                return ProcessRequestSerizliationErrorHandler(context, _defaultSerializer, exp);
+                await ProcessRequestSerizliationErrorHandler(context, _defaultSerializer, exp);
             }
             finally
             {
@@ -123,27 +123,27 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 if (requestPackage.IsBulk)
                 {
-                    return ProcessBulkRequest(context, requestPackage, path);
+                    await ProcessBulkRequest(context, requestPackage, path);
                 }
 
                 var message = requestPackage.Requests.First();
 
                 if (message.Parameters != null)
                 {
-                    return ProcessRequest(context, requestPackage.Serializer, requestPackage.Requests.First(), path);
+                    await ProcessRequest(context, requestPackage.Serializer, requestPackage.Requests.First(), path);
                 }
 
-                WriteErrorMessage(context, _defaultSerializer,
+                await WriteErrorMessage(context, _defaultSerializer,
                     new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound,
                         "Count not find method " + message.Method));
 
-                return Task.CompletedTask;
+                await Task.CompletedTask;
             }
 
-            WriteErrorMessage(context, _defaultSerializer,
+            await WriteErrorMessage(context, _defaultSerializer,
                  new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         private Task ProcessRequestSerizliationErrorHandler(HttpContext context, IContentSerializer serializer, Exception exp)
@@ -151,18 +151,16 @@ namespace EasyRpc.AspNetCore.Middleware
             _logger?.LogError(EventIdCode.DeserializeException, exp,
                 "Exception thrown while deserializing request package: " + exp.Message);
 
-            WriteErrorMessage(context, serializer,
+            return WriteErrorMessage(context, serializer,
                 new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest,
                     "Could not parse request: " + exp.Message));
-
-            return Task.CompletedTask;
         }
 
-        private RpcRequestPackage DeserializeStream(HttpContext context, Stream stream, string path)
+        private async Task<RpcRequestPackage> DeserializeStream(HttpContext context, Stream stream, string path)
         {
-            var serializer = _contentSerializerProvider.GetSerializer(context);
+            var serializer =  _contentSerializerProvider.GetSerializer(context);
 
-            var package = serializer.DeserializeRequestPackage(stream, path, context);
+            var package = await serializer.DeserializeRequestPackage(stream, path, context);
 
             package.Serializer = serializer;
 
@@ -193,7 +191,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private void SerializeToResponseBody(HttpContext context, IContentSerializer serializer, object values,
+        private async Task SerializeToResponseBody(HttpContext context, IContentSerializer serializer, object values,
             bool canCompress)
         {
             Stream responseStream = context.Response.Body;
@@ -213,7 +211,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 }
             }
 
-            SerializeToStream(context, serializer, values, responseStream);
+            await SerializeToStream(context, serializer, values, responseStream);
 
             if (responseStream != context.Response.Body)
             {
@@ -221,11 +219,11 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        private void SerializeToStream(HttpContext context, IContentSerializer serializer, object values, Stream stream)
+        private Task SerializeToStream(HttpContext context, IContentSerializer serializer, object values, Stream stream)
         {
             context.Response.ContentType = serializer.ContentType;
 
-            serializer.SerializeResponse(stream, values, context);
+            return serializer.SerializeResponse(stream, values, context);
         }
 
         private async Task ProcessRequest(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, string path)
@@ -236,16 +234,16 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 if (!ReferenceEquals(response, ResponseMessage.NoResponse))
                 {
-                    SerializeToResponseBody(context, serializer, response, response.CanCompress);
+                    await SerializeToResponseBody(context, serializer, response, response.CanCompress);
                 }
             }
             catch (Exception exp)
             {
-                ProcessRequestErrorHandler(context, serializer, requestMessage, exp);
+                await ProcessRequestErrorHandler(context, serializer, requestMessage, exp);
             }
         }
 
-        private void ProcessRequestErrorHandler(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, Exception exp)
+        private Task ProcessRequestErrorHandler(HttpContext context, IContentSerializer serializer, RpcRequestMessage requestMessage, Exception exp)
         {
             _logger?.LogError(EventIdCode.SerializeException, exp,
                 "Exception thrown while serializing response: " + exp.Message);
@@ -257,7 +255,7 @@ namespace EasyRpc.AspNetCore.Middleware
                 errorMessage += ": " + exp.Message;
             }
 
-            WriteErrorMessage(context, serializer,
+            return WriteErrorMessage(context, serializer,
                 new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, errorMessage, requestMessage.Version, requestMessage.Id));
         }
 
@@ -431,10 +429,11 @@ namespace EasyRpc.AspNetCore.Middleware
                 $"Executing {context.Request.Path} {requestMessage.Method} {exp.Message}");
         }
 
-        private void WriteErrorMessage(HttpContext context, IContentSerializer serializer, ErrorResponseMessage errorResponseMessage)
+        private Task WriteErrorMessage(HttpContext context, IContentSerializer serializer, ErrorResponseMessage errorResponseMessage)
         {
             context.Response.ContentType = serializer.ContentType;
-            serializer.SerializeResponse(context.Response.Body, errorResponseMessage, context);
+
+            return serializer.SerializeResponse(context.Response.Body, errorResponseMessage, context);
         }
 
         private Task<ResponseMessage> ReturnMethodNotFound(string version, string id)

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
@@ -33,12 +34,12 @@ namespace EasyRpc.AspNetCore.Content
         void Configure(IExposeMethodInformationCacheManager cacheManager);
 
         /// <summary>
-        /// Seriaize the response to the outputStream
+        /// Serialize the response to the outputStream
         /// </summary>
         /// <param name="outputStream"></param>
         /// <param name="response"></param>
         /// <param name="context"></param>
-        void SerializeResponse(Stream outputStream, object response, HttpContext context);
+        Task SerializeResponse(Stream outputStream, object response, HttpContext context);
 
         /// <summary>
         /// Deserialize the input stream to a request package
@@ -47,6 +48,6 @@ namespace EasyRpc.AspNetCore.Content
         /// <param name="path"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path, HttpContext context);
+        Task<RpcRequestPackage> DeserializeRequestPackage(Stream inputStream, string path, HttpContext context);
     }
 }

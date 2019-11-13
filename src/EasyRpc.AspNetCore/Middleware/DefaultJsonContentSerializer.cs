@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Content;
 using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Messages;
@@ -53,13 +54,18 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <param name="outputStream"></param>
         /// <param name="response"></param>
         /// <param name="context"></param>
-        public void SerializeResponse(Stream outputStream, object response, HttpContext context)
+        public async Task SerializeResponse(Stream outputStream, object response, HttpContext context)
         {
-            using (var textStream = new StreamWriter(outputStream))
+            using (var memoryStream = new MemoryStream())
             {
-                using (var jsonWriter = new JsonTextWriter(textStream))
+                await outputStream.CopyToAsync(memoryStream);
+
+                using (var textStream = new StreamWriter(memoryStream))
                 {
-                    _serializer.Serialize(jsonWriter, response);
+                    using (var jsonWriter = new JsonTextWriter(textStream))
+                    {
+                        _serializer.Serialize(jsonWriter, response);
+                    }
                 }
             }
         }
@@ -71,13 +77,18 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <param name="path"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path, HttpContext context)
+        public async Task<RpcRequestPackage> DeserializeRequestPackage(Stream inputStream, string path, HttpContext context)
         {
-            using (var textStream = new StreamReader(inputStream))
+            using (var memoryStream = new MemoryStream())
             {
-                using (var rpcJsonReader = new RpcJsonReader(textStream, path, context))
+                await inputStream.CopyToAsync(memoryStream);
+
+                using (var textStream = new StreamReader(memoryStream))
                 {
-                    return _serializer.Deserialize<RpcRequestPackage>(rpcJsonReader);
+                    using (var rpcJsonReader = new RpcJsonReader(textStream, path, context))
+                    {
+                        return _serializer.Deserialize<RpcRequestPackage>(rpcJsonReader);
+                    }
                 }
             }
         }
