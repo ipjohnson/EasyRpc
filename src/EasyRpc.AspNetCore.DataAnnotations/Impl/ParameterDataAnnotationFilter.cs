@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.Messages;
 
@@ -23,7 +24,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
             _fieldName = fieldName;
         }
 
-        public void BeforeExecute(ICallExecutionContext context)
+        public Task BeforeExecute(ICallExecutionContext context)
         {
             var validationValue = context.Parameters[_index];
             var validationErrorMessage = ImmutableLinkedList<string>.Empty;
@@ -53,11 +54,13 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
 
                 context.ResponseMessage = new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, errorMessage, context.RequestMessage.Version, context.RequestMessage.Id);
             }
+
+            return Task.CompletedTask;
         }
 
-        public void AfterExecute(ICallExecutionContext context)
+        public Task AfterExecute(ICallExecutionContext context)
         {
-
+            return Task.CompletedTask;
         }
     }
 }

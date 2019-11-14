@@ -13,18 +13,18 @@ namespace EasyRpc.TestApp.Filter
         /// Called before the execution happens. 
         /// </summary>
         /// <param name="context"></param>
-        public void BeforeExecute(ICallExecutionContext context)
+        public Task BeforeExecute(ICallExecutionContext context)
         {
-
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Called after the execution
         /// </summary>
         /// <param name="context"></param>
-        public void AfterExecute(ICallExecutionContext context)
+        public Task AfterExecute(ICallExecutionContext context)
         {
-
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace EasyRpc.TestApp.Filter
         /// </summary>
         /// <param name="context"></param>
         /// <param name="exception"></param>
-        public void HandleException(ICallExecutionContext context, Exception exception)
+        public Task HandleException(ICallExecutionContext context, Exception exception)
         {
-            
+            return Task.CompletedTask;
         }
     }
 

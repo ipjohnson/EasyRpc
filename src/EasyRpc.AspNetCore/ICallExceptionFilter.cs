@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace EasyRpc.AspNetCore
 {
@@ -12,6 +13,6 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="context"></param>
         /// <param name="exception"></param>
-        void HandleException(ICallExecutionContext context, Exception exception);
+        Task HandleException(ICallExecutionContext context, Exception exception);
     }
 }

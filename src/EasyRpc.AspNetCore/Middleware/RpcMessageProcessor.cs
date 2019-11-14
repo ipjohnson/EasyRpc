@@ -359,7 +359,7 @@ namespace EasyRpc.AspNetCore.Middleware
                         if (callExecutionContext.ContinueCall &&
                             filters[i] is ICallExecuteFilter executeFilter)
                         {
-                            executeFilter.BeforeExecute(callExecutionContext);
+                            await executeFilter.BeforeExecute(callExecutionContext);
                         }
                     }
 
@@ -387,7 +387,7 @@ namespace EasyRpc.AspNetCore.Middleware
                         if (callExecutionContext.ContinueCall &&
                             filters[i] is ICallExecuteFilter executeFilter)
                         {
-                            executeFilter.AfterExecute(callExecutionContext);
+                            await executeFilter.AfterExecute(callExecutionContext);
                         }
                     }
 
@@ -398,26 +398,28 @@ namespace EasyRpc.AspNetCore.Middleware
             }
             catch (Exception exp)
             {
-                return ExecuteMethodErrorHandler(context, requestMessage, exp, runFilters, filters, callExecutionContext);
+                return await ExecuteMethodErrorHandler(context, requestMessage, exp, runFilters, filters, callExecutionContext);
             }
         }
 
-        private ResponseMessage ExecuteMethodErrorHandler(HttpContext context, RpcRequestMessage requestMessage, Exception exp,
+        private async Task<ResponseMessage> ExecuteMethodErrorHandler(HttpContext context, RpcRequestMessage requestMessage, Exception exp,
             bool runFilters, List<ICallFilter> filters, CallExecutionContext callExecutionContext)
         {
             if (runFilters)
             {
                 foreach (var callFilter in filters)
                 {
-                    ICallExceptionFilter exceptionFilter = callFilter as ICallExceptionFilter;
-
-                    try
+                    if (callFilter is ICallExceptionFilter exceptionFilter)
                     {
-                        exceptionFilter?.HandleException(callExecutionContext, exp);
-                    }
-                    catch (Exception e)
-                    {
-                        _logger?.LogError(EventIdCode.ExecutionFilterException, e, "Exception thrown while invoking ICallExceptionFilter");
+                        try
+                        {
+                            await exceptionFilter.HandleException(callExecutionContext, exp);
+                        }
+                        catch (Exception e)
+                        {
+                            _logger?.LogError(EventIdCode.ExecutionFilterException, e,
+                                "Exception thrown while invoking ICallExceptionFilter");
+                        }
                     }
                 }
             }

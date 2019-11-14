@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.Messages;
 using FluentValidation;
@@ -21,7 +22,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
             _required = required;
         }
 
-        public void BeforeExecute(ICallExecutionContext context)
+        public Task BeforeExecute(ICallExecutionContext context)
         {
             var objectValue = context.Parameters[_parameterIndex];
 
@@ -32,7 +33,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
                     SetErrorResponse(context, $"{_parameterName} is required");
                 }
 
-                return;
+                return Task.CompletedTask;
             }
 
             var validationErrors = ImmutableLinkedList<ValidationFailure>.Empty;
@@ -49,7 +50,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
                 }
             }
 
-            if (validationErrors == ImmutableLinkedList<ValidationFailure>.Empty) return;
+            if (validationErrors == ImmutableLinkedList<ValidationFailure>.Empty) return Task.CompletedTask;
 
             var errorMessage = $"Validation Errors {_parameterName}" + Environment.NewLine;
 
@@ -69,11 +70,13 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
             {
                 SetErrorResponse(context, errorMessage);
             }
+
+            return Task.CompletedTask;
         }
         
-        public void AfterExecute(ICallExecutionContext context)
+        public Task AfterExecute(ICallExecutionContext context)
         {
-
+            return Task.CompletedTask;
         }
 
         private static void SetErrorResponse(ICallExecutionContext context, string errorMessage)

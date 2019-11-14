@@ -1,4 +1,5 @@
-﻿using EasyRpc.AspNetCore;
+﻿using System.Threading.Tasks;
+using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Classes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -13,12 +14,12 @@ namespace EasyRpc.Tests.Middleware
         {
             public static int ExecuteCount = 0;
 
-            public void AfterExecute(ICallExecutionContext context)
+            public async Task AfterExecute(ICallExecutionContext context)
             {
                 ExecuteCount++;
             }
 
-            public void BeforeExecute(ICallExecutionContext context)
+            public async Task BeforeExecute(ICallExecutionContext context)
             {
                 ExecuteCount++;
             }

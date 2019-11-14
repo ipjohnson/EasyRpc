@@ -1,4 +1,6 @@
-﻿namespace EasyRpc.AspNetCore
+﻿using System.Threading.Tasks;
+
+namespace EasyRpc.AspNetCore
 {
     /// <summary>
     /// Execute filter
@@ -9,12 +11,12 @@
         /// Called before the execution happens. 
         /// </summary>
         /// <param name="context"></param>
-        void BeforeExecute(ICallExecutionContext context);
+        Task BeforeExecute(ICallExecutionContext context);
 
         /// <summary>
         /// Called after the execution
         /// </summary>
         /// <param name="context"></param>
-        void AfterExecute(ICallExecutionContext context);
+        Task AfterExecute(ICallExecutionContext context);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Messages;
 
 namespace EasyRpc.AspNetCore.DataAnnotations.Impl
@@ -15,7 +16,7 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
             _index = index;
         }
 
-        public void BeforeExecute(ICallExecutionContext context)
+        public Task BeforeExecute(ICallExecutionContext context)
         {
             var instance = context.Parameters[_index];
             var validationContext = new ValidationContext(instance, context.HttpContext.RequestServices, null);
@@ -41,11 +42,13 @@ namespace EasyRpc.AspNetCore.DataAnnotations.Impl
                 context.ContinueCall = false;
                 context.ResponseMessage = new ErrorResponseMessage( JsonRpcErrorCode.InvalidRequest, errorMessage, context.RequestMessage.Version, context.RequestMessage.Id);
             }
+
+            return Task.CompletedTask;
         }
 
-        public void AfterExecute(ICallExecutionContext context)
+        public Task AfterExecute(ICallExecutionContext context)
         {
-
+            return Task.CompletedTask;
         }
     }
 }
