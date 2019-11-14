@@ -36,6 +36,7 @@ public class IntMathService
 * Validation support using DataAnnotations and/or FluentValidation
 * Support for request/response gzip compression, br compression for asp.net core 2.1
 * Built in documentation/execution UI
+* Note: for asp.net core 3.0 support please use the 4.0.0 pre-release version
 
 ### Example App
 An example app can be found [here](https://github.com/ipjohnson/EasyRpc.AspNetCore.Sample).
