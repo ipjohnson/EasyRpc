@@ -132,18 +132,18 @@ namespace EasyRpc.AspNetCore.Middleware
                 {
                     await ProcessRequest(context, requestPackage.Serializer, requestPackage.Requests.First(), path);
                 }
-
-                await WriteErrorMessage(context, _defaultSerializer,
-                    new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound,
-                        "Count not find method " + message.Method));
-
-                await Task.CompletedTask;
+                else
+                {
+                    await WriteErrorMessage(context, _defaultSerializer,
+                        new ErrorResponseMessage(JsonRpcErrorCode.MethodNotFound,
+                            "Count not find method " + message.Method));
+                }
             }
-
-            await WriteErrorMessage(context, _defaultSerializer,
-                 new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
-
-            await Task.CompletedTask;
+            else
+            {
+                await WriteErrorMessage(context, _defaultSerializer,
+                    new ErrorResponseMessage(JsonRpcErrorCode.InvalidRequest, "Could not parse request"));
+            }
         }
 
         private Task ProcessRequestSerizliationErrorHandler(HttpContext context, IContentSerializer serializer, Exception exp)
@@ -158,7 +158,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private async Task<RpcRequestPackage> DeserializeStream(HttpContext context, Stream stream, string path)
         {
-            var serializer =  _contentSerializerProvider.GetSerializer(context);
+            var serializer = _contentSerializerProvider.GetSerializer(context);
 
             var package = await serializer.DeserializeRequestPackage(stream, path, context);
 
@@ -180,13 +180,13 @@ namespace EasyRpc.AspNetCore.Middleware
 
             try
             {
-                SerializeToResponseBody(context, requestPackage.Serializer, returnList, _configuration.Value.SupportResponseCompression);
+                await SerializeToResponseBody(context, requestPackage.Serializer, returnList, _configuration.Value.SupportResponseCompression);
             }
             catch (Exception exp)
             {
                 _logger?.LogError(EventIdCode.DeserializeException, exp, "Exception thrown while serializing bulk output: " + exp.Message);
 
-                WriteErrorMessage(context, requestPackage.Serializer,
+                await WriteErrorMessage(context, requestPackage.Serializer,
                     new ErrorResponseMessage(JsonRpcErrorCode.InternalServerError, "Internal Server Error"));
             }
         }

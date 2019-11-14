@@ -58,15 +58,21 @@ namespace EasyRpc.AspNetCore.Middleware
         {
             using (var memoryStream = new MemoryStream())
             {
-                await outputStream.CopyToAsync(memoryStream);
-
                 using (var textStream = new StreamWriter(memoryStream))
                 {
                     using (var jsonWriter = new JsonTextWriter(textStream))
                     {
                         _serializer.Serialize(jsonWriter, response);
+
+                        await jsonWriter.FlushAsync();
+                        await textStream.FlushAsync();
+
+                        memoryStream.Position = 0;
+
+                        await memoryStream.CopyToAsync(outputStream);
                     }
                 }
+
             }
         }
 
@@ -82,6 +88,8 @@ namespace EasyRpc.AspNetCore.Middleware
             using (var memoryStream = new MemoryStream())
             {
                 await inputStream.CopyToAsync(memoryStream);
+
+                memoryStream.Position = 0;
 
                 using (var textStream = new StreamReader(memoryStream))
                 {
