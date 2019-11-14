@@ -162,73 +162,92 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public async Task CreatePackage(HttpContext context)
         {
-            using (var outputStream = new StreamWriter(context.Response.Body))
+            using (var memoryStream = new MemoryStream())
             {
-                using (var jsonStream = new JsonTextWriter(outputStream))
+                using (var outputStream = new StreamWriter(memoryStream))
                 {
-                    if (!_hasAuthorization)
+                    using (var jsonStream = new JsonTextWriter(outputStream))
                     {
-                        context.Response.ContentType = "application/json; charset=utf-8";
-
-                        _serializer.Serialize(jsonStream, new { endpoints = _dataPackages, dataTypes = _typeDefinitions });
-
-                        return;
-                    }
-
-                    var returnList = new List<JsonDataPackage>();
-
-                    foreach (var dataPackage in _dataPackages)
-                    {
-                        var authorizedMethods = new List<RpcMethodInfo>();
-
-                        foreach (var method in dataPackage.Methods)
+                        if (!_hasAuthorization)
                         {
-                            var authorizations = method.Method.MethodAuthorizations;
+                            context.Response.ContentType = "application/json; charset=utf-8";
 
-                            if (authorizations == null || authorizations.Length == 0)
+                            _serializer.Serialize(jsonStream,
+                                new {endpoints = _dataPackages, dataTypes = _typeDefinitions});
+
+                            await jsonStream.FlushAsync();
+                            await outputStream.FlushAsync();
+
+                            memoryStream.Position = 0;
+
+                            await memoryStream.CopyToAsync(context.Response.Body);
+
+                            return;
+                        }
+
+                        var returnList = new List<JsonDataPackage>();
+
+                        foreach (var dataPackage in _dataPackages)
+                        {
+                            var authorizedMethods = new List<RpcMethodInfo>();
+
+                            foreach (var method in dataPackage.Methods)
                             {
-                                authorizedMethods.Add(method);
-                            }
-                            else
-                            {
-                                var methodInformation = method.Method;
+                                var authorizations = method.Method.MethodAuthorizations;
 
-                                var callContext =
-                                    new CallExecutionContext(context, methodInformation.Type,
-                                        methodInformation.MethodInfo,
-                                        new RpcRequestMessage());
-                                var add = true;
-
-                                foreach (var authorization in methodInformation.MethodAuthorizations)
-                                {
-                                    if (!await authorization.AsyncAuthorize(callContext))
-                                    {
-                                        add = false;
-                                        break;
-                                    }
-                                }
-
-                                if (add)
+                                if (authorizations == null || authorizations.Length == 0)
                                 {
                                     authorizedMethods.Add(method);
                                 }
+                                else
+                                {
+                                    var methodInformation = method.Method;
+
+                                    var callContext =
+                                        new CallExecutionContext(context, methodInformation.Type,
+                                            methodInformation.MethodInfo,
+                                            new RpcRequestMessage());
+                                    var add = true;
+
+                                    foreach (var authorization in methodInformation.MethodAuthorizations)
+                                    {
+                                        if (!await authorization.AsyncAuthorize(callContext))
+                                        {
+                                            add = false;
+                                            break;
+                                        }
+                                    }
+
+                                    if (add)
+                                    {
+                                        authorizedMethods.Add(method);
+                                    }
+                                }
+                            }
+
+                            if (authorizedMethods.Count > 0)
+                            {
+                                returnList.Add(new JsonDataPackage
+                                {
+                                    DisplayName = dataPackage.DisplayName,
+                                    Methods = authorizedMethods,
+                                    Route = dataPackage.Route
+                                });
                             }
                         }
 
-                        if (authorizedMethods.Count > 0)
-                        {
-                            returnList.Add(new JsonDataPackage
-                            {
-                                DisplayName = dataPackage.DisplayName,
-                                Methods = authorizedMethods,
-                                Route = dataPackage.Route
-                            });
-                        }
+                        context.Response.ContentType = "application/json; charset=utf-8";
+
+                        _serializer.Serialize(jsonStream, new {endpoints = returnList, dataTypes = _typeDefinitions});
+
+                        await jsonStream.FlushAsync();
+                        await outputStream.FlushAsync();
+
+                        memoryStream.Position = 0;
+
+                        await memoryStream.CopyToAsync(context.Response.Body);
+
                     }
-
-                    context.Response.ContentType = "application/json; charset=utf-8";
-
-                    _serializer.Serialize(jsonStream, new { endpoints = returnList, dataTypes = _typeDefinitions });
                 }
             }
         }

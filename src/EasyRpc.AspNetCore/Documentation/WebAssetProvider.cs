@@ -56,7 +56,6 @@ namespace EasyRpc.AspNetCore.Documentation
             if (assetPath.Length == 0)
             {
                 assetPath = "templates/main.html";
-                context.Response.Headers.Add("Cache-Control", "no-cache");
             }
             
             try
@@ -66,6 +65,8 @@ namespace EasyRpc.AspNetCore.Documentation
                 
                 if (File.Exists(file))
                 {
+                    context.Response.StatusCode = StatusCodes.Status200OK;
+
                     if (_configuration.Value != null && 
                         _configuration.Value.SupportResponseCompression &&
                         !shouldReplaceVar)
@@ -78,7 +79,11 @@ namespace EasyRpc.AspNetCore.Documentation
                     }
 
                     var bytes = File.ReadAllBytes(file);
-                    context.Response.StatusCode = StatusCodes.Status200OK;
+
+                    if (assetPath == "templates/main.html")
+                    {
+                        context.Response.Headers.Add("Cache-Control", "no-cache");
+                    }
                     
                     var lastPeriod = assetPath.LastIndexOf('.');
                     if (lastPeriod > 0)
@@ -108,6 +113,8 @@ namespace EasyRpc.AspNetCore.Documentation
                         {
                             await _variableReplacementService.ReplaceVariables(context, streamWriter,
                                 Encoding.UTF8.GetString(bytes));
+
+                            await streamWriter.FlushAsync();
                         }
                     }
                     else
