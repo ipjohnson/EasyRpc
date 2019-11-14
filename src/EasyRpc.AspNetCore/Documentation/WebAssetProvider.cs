@@ -106,13 +106,13 @@ namespace EasyRpc.AspNetCore.Documentation
                     {
                         using (var streamWriter = new StreamWriter(context.Response.Body))
                         {
-                            _variableReplacementService.ReplaceVariables(context, streamWriter,
+                            await _variableReplacementService.ReplaceVariables(context, streamWriter,
                                 Encoding.UTF8.GetString(bytes));
                         }
                     }
                     else
                     {
-                        context.Response.Body.Write(bytes, 0, bytes.Length);
+                        await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
                     }
 
                     return true;

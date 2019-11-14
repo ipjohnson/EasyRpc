@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 
@@ -9,7 +10,7 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         void Configure(EndPointConfiguration path);
 
-        void ReplaceVariables(HttpContext context, StreamWriter outputStream, string tokenString);
+        Task ReplaceVariables(HttpContext context, StreamWriter outputStream, string tokenString);
     }
 
     public class VariableReplacementService : IVariableReplacementService
@@ -29,7 +30,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _replacementValueProvider.ServicePath(configuration);
         }
 
-        public void ReplaceVariables(HttpContext context,StreamWriter outputStream, string tokenString)
+        public async Task ReplaceVariables(HttpContext context,StreamWriter outputStream, string tokenString)
         {
             int index = 0;
             int previousIndex = 0;
@@ -46,9 +47,9 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     if (lastIndex > 0)
                     {
-                        outputStream.Write(tokenString.Substring(previousIndex, index - previousIndex));
+                        await outputStream.WriteAsync(tokenString.Substring(previousIndex, index - previousIndex));
                         var token = tokenString.Substring(index + 2, lastIndex - (index + 2));
-                        outputStream.Write(_replacementValueProvider.GetReplacementValue(context, token));
+                        await outputStream.WriteAsync(_replacementValueProvider.GetReplacementValue(context, token));
 
                         previousIndex = lastIndex + 2;
                         index = lastIndex;
@@ -60,7 +61,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 }
             }
 
-            outputStream.Write(tokenString.Substring(previousIndex));
+            await outputStream.WriteAsync(tokenString.Substring(previousIndex));
         }
     }
 }
