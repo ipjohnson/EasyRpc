@@ -109,12 +109,19 @@ namespace EasyRpc.AspNetCore.Documentation
 
                     if (ShouldReplaceVariables(assetPath))
                     {
-                        using (var streamWriter = new StreamWriter(context.Response.Body))
+                        using (var memoryStream = new MemoryStream())
                         {
-                            await _variableReplacementService.ReplaceVariables(context, streamWriter,
-                                Encoding.UTF8.GetString(bytes));
+                            using (var streamWriter = new StreamWriter(memoryStream))
+                            {
+                                await _variableReplacementService.ReplaceVariables(context, streamWriter,
+                                    Encoding.UTF8.GetString(bytes));
 
-                            await streamWriter.FlushAsync();
+                                await streamWriter.FlushAsync();
+
+                                memoryStream.Position = 0;
+
+                                await memoryStream.CopyToAsync(context.Response.Body);
+                            }
                         }
                     }
                     else
