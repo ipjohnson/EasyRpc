@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Converters;
 using EasyRpc.AspNetCore.Messages;
@@ -63,7 +64,7 @@ namespace EasyRpc.Tests.Middleware
 
         [Theory]
         [AutoData]
-        public void SerializeListOutOfOrderTest(IApplicationBuilder app, HttpContext context)
+        public async Task SerializeListOutOfOrderTest(IApplicationBuilder app, HttpContext context)
         {
             var outOfOrder = new OutOfOrderRequest
             {
@@ -88,7 +89,7 @@ namespace EasyRpc.Tests.Middleware
 
             Configure(app, "/", api => { api.Expose<Service>().As("Service"); });
 
-            var results = MakeCall<List<ResponseStrings>>(context, "/Service", outOfOrder);
+            var results = await MakeCall<List<ResponseStrings>>(context, "/Service", outOfOrder);
 
             Assert.NotNull(results);
             Assert.Single(results);

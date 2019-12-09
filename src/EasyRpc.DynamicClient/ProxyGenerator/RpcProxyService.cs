@@ -66,7 +66,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
                     }
                 }
 
-                throw new Exception("Recieved unknown Content-Encoding: " + encoding);
+                throw new Exception("Received unknown Content-Encoding: " + encoding);
             }
 
             return ResponseMessageResult<T>(methodName, stream);
@@ -137,7 +137,7 @@ namespace EasyRpc.DynamicClient.ProxyGenerator
             }
 
             var client = _clientProvider.GetHttpClient(@namespace, className);
-
+            
             var response = await client.SendAsync(httpRequest).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)

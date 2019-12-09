@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -37,6 +38,8 @@ namespace EasyRpc.AspNetCore.Converters
             public bool HttpContext { get; set; }
 
             public bool ServiceProvider { get; set; }
+
+            public bool CancellationToken { get; set; }
         }
         
         public ParamsDeserializer BuildDeserializer(IExposedMethodInformation exposedMethod)
@@ -70,6 +73,10 @@ namespace EasyRpc.AspNetCore.Converters
                 else if (parameter.FromServices)
                 {
                     returnParameters[i] = context.RequestServices.GetService(parameter.ParameterType);
+                }
+                else if (parameter.CancellationToken)
+                {
+                    returnParameters[i] = context.RequestAborted;
                 }
             }
 
@@ -131,7 +138,8 @@ namespace EasyRpc.AspNetCore.Converters
                     HasDefaultValue = parameterInfo.HasDefaultValue,
                     FromServices = fromServices,
                     HttpContext = httpContext,
-                    ServiceProvider = serviceProvider
+                    ServiceProvider = serviceProvider,
+                    CancellationToken = parameterInfo.ParameterType == typeof(CancellationToken)
                 };
             }).ToArray();
         }

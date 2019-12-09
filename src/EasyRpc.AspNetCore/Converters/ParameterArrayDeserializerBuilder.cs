@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Threading;
 using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -67,6 +68,10 @@ namespace EasyRpc.AspNetCore.Converters
                 {
                     GenerateIlForServiceProvider(parameter.ParameterInfo, ilGenerator);
                 }
+                else if(parameter.ParameterType == typeof(CancellationToken))
+                {
+                    GenerateIlForCancellationToken(parameter.ParameterInfo, ilGenerator);
+                }
                 else
                 {
                     GenerateIlForParameter(parameter.ParameterInfo, ilGenerator, parameterIndex);
@@ -82,6 +87,15 @@ namespace EasyRpc.AspNetCore.Converters
             }
 
             ilGenerator.Emit(OpCodes.Ret);
+        }
+
+        private void GenerateIlForCancellationToken(ParameterInfo parameterParameterInfo, ILGenerator ilGenerator)
+        {
+            ilGenerator.Emit(OpCodes.Ldarg_0);
+            
+            var requestAborted = typeof(HttpContext).GetTypeInfo().GetProperty("RequestAborted");
+
+            ilGenerator.EmitMethodCall(requestAborted.GetMethod);
         }
 
         private void GenerateIlForHttpContext(ParameterInfo parameter, ILGenerator ilGenerator)

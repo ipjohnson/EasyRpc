@@ -60,10 +60,18 @@ namespace EasyRpc.Tests.Middleware
             string id = "1", string compressRequest = null, string compressResponse = null)
         {
             return MakeCall<T>(context, route,
-                new RpcRequestMessage {Version = version, Method = method, Parameters = values, Id = id}, compressRequest, compressResponse);
+                new RpcRequestMessage {Version = version, Method = method, Parameters = values, Id = id}, compressRequest, compressResponse).Result;
         }
 
-        protected T MakeCall<T>(HttpContext context, string route, object requestMessage, string compressRequest = null, string compressResponse = null)
+
+        protected Task<T> MakeCallAsync<T>(HttpContext context, string route, string method, object values, string version = "2.0",
+            string id = "1", string compressRequest = null, string compressResponse = null)
+        {
+            return MakeCall<T>(context, route,
+                new RpcRequestMessage { Version = version, Method = method, Parameters = values, Id = id }, compressRequest, compressResponse);
+        }
+
+        protected async Task<T> MakeCall<T>(HttpContext context, string route, object requestMessage, string compressRequest = null, string compressResponse = null)
         {
             var responseStream = new MemoryStream();
 
@@ -89,15 +97,8 @@ namespace EasyRpc.Tests.Middleware
 
             var result = MiddlewareContextInstance.ExecuteDelegate(httpContext => Task.CompletedTask);
 
-            var taskResult = result(context);
-
-            taskResult.Wait(1000);
-
-            if (!taskResult.IsCompleted)
-            {
-                throw new Exception("Task never completed");
-            }
-
+            await result(context);
+            
             if (typeof(T) == typeof(ErrorResponseMessage))
             {
                 var response = responseStream.DeserializeFromMemoryStream<T>();
