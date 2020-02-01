@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using NSubstitute;
 using SimpleFixture.NSubstitute;
 using Xunit;
@@ -40,7 +41,14 @@ namespace EasyRpc.Tests.Middleware
             app.ApplicationServices.GetService(typeof(IRpcMessageProcessor))
                 .Returns(new RpcMessageProcessor(options,
                     new ContentEncodingProvider(new IContentEncoder[]{ new GzipContentEncoder(), new BrotliContentEncoder() }),
-                    new ContentSerializerProvider(new IContentSerializer[] { new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), new NamedParameterDeserializerBuilder(fromService)) }),
+                    new ContentSerializerProvider(
+                        new IContentSerializer[]
+                        {
+                            new DefaultJsonContentSerializer(
+                                new ParameterArrayDeserializerBuilder(fromService),
+                                new NamedParameterDeserializerBuilder(fromService), 
+                                JsonSerializer.CreateDefault())
+                        }),
                     new ExposeMethodInformationCacheManager(), 
                     new InstanceActivator()
                     ));

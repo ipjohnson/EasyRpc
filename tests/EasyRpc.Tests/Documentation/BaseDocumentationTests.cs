@@ -6,6 +6,7 @@ using EasyRpc.AspNetCore.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using NSubstitute;
 using SimpleFixture.NSubstitute;
 
@@ -33,7 +34,7 @@ namespace EasyRpc.Tests.Documentation
                     new ContentSerializerProvider(new IContentSerializer[]
                     {
                         new DefaultJsonContentSerializer(new ParameterArrayDeserializerBuilder(fromService), 
-                            new NamedParameterDeserializerBuilder(fromService))
+                            new NamedParameterDeserializerBuilder(fromService), JsonSerializer.CreateDefault())
                     }),
                     new ExposeMethodInformationCacheManager(), 
                     new InstanceActivator()
