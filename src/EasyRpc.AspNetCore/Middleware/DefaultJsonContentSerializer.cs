@@ -20,11 +20,13 @@ namespace EasyRpc.AspNetCore.Middleware
         /// </summary>
         /// <param name="parameterArrayDeserializer"></param>
         /// <param name="namedParameterDeserializer"></param>
+        /// <param name="serializer"></param>
         public DefaultJsonContentSerializer(IParameterArrayDeserializerBuilder parameterArrayDeserializer, 
-            INamedParameterDeserializerBuilder namedParameterDeserializer)
+            INamedParameterDeserializerBuilder namedParameterDeserializer, JsonSerializer serializer)
         {
             _parameterArrayDeserializer = parameterArrayDeserializer;
             _namedParameterDeserializer = namedParameterDeserializer;
+            _serializer = serializer;
         }
 
         /// <summary>
@@ -43,7 +45,6 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <param name="configuration"></param>
         public void Configure(IExposeMethodInformationCacheManager configuration)
         {
-            _serializer = new JsonSerializer();
             _serializer.Converters.Add(new UnorderedRpcRequestMessageConverter(_parameterArrayDeserializer, _namedParameterDeserializer, configuration,SerializerId));
             _serializer.Converters.Add(new RpcRequestPackageConverter());
         }
