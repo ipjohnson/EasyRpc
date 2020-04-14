@@ -25,5 +25,4 @@ artifacts:
 - path: EasyRpc*.nupkg
   name: EasyRpc
 image:
-- Visual Studio 2017
-- Ubuntu
+- Visual Studio 2019
