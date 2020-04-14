@@ -1,79 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>json-rpc server built on top of Asp.Net Core</Description>
-    <TargetFrameworks>netstandard1.6;net461</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
-    <AssemblyName>EasyRpc.AspNetCore</AssemblyName>
-    <PackageId>EasyRpc.AspNetCore</PackageId>
+    <Description>An easy to use web services library built on top of Asp.Net Core 3.1</Description>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
-    <DebugType>full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageTags>json-rpc;rpc</PackageTags>
-    <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <!-- Nuget source link -->
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62909-01" PrivateAssets="All" />
+  <ItemGroup>
+    <None Remove="Documentation\swagger-ui.zip" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Documentation\WebAssets\**" />
-    <EmbeddedResource Remove="Documentation\WebAssets\**" />
-    <None Remove="Documentation\WebAssets\**" />
+    <EmbeddedResource Include="Documentation\swagger-ui.zip" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\web-assets.zip" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Documentation\web-assets.zip" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="1.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <ProjectReference Include="..\EasyRpc.Abstractions\EasyRpc.Abstractions.csproj" />
   </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.IO.Compression" />
-  </ItemGroup>
-
-  <Target Condition="'$(OS)' == 'Windows_NT' AND '$(TargetFramework)' == 'netstandard1.6' " Name="CreateZip" BeforeTargets="BeforeBuild">
-    <PropertyGroup>
-      <WebAssetPath>$(ProjectDir)Documentation\web-assets\</WebAssetPath>
-      <WebAssetZip>$(ProjectDir)Documentation\web-assets.zip</WebAssetZip>
-    </PropertyGroup>
-    <Exec Command="dotnet ..\..\tools\ZipFilesTask\ZipFilesTask.dll WebAssetPath=$(WebAssetPath) OutputFileName=$(WebAssetZip)" />
-  </Target>
 
 </Project>

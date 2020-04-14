@@ -1,51 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using EasyRpc.AspNetCore.Content;
-using EasyRpc.AspNetCore.Messages;
-using EasyRpc.AspNetCore.Middleware;
-using FastJson = Utf8Json;
+using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.Serializers;
+using Utf8 = Utf8Json;
 
 namespace EasyRpc.AspNetCore.Utf8Json
 {
-    public class Utf8JsonContentSerializer : IContentSerializer
+    public class Utf8JsonContentSerializer : BaseSerializer
     {
-        /// <summary>
-        /// ContentType to encode/decode
-        /// </summary>
-        public string ContentType => "application/json";
-
-        /// <summary>
-        /// Configure content serializer
-        /// </summary>
-        /// <param name="configuration"></param>
-        public void Configure(EndPointConfiguration configuration)
+        public Utf8JsonContentSerializer(IErrorHandler errorHandler) : base(errorHandler)
         {
-
         }
 
-        /// <summary>
-        /// Seriaize the response to the outputStream
-        /// </summary>
-        /// <param name="outputStream"></param>
-        /// <param name="response"></param>
-        public void SerializeResponse(Stream outputStream, object response)
-        {
+        public override IEnumerable<string> SupportedContentTypes => new[] { "application/json" };
 
+        public override bool IsDefault => true;
+
+        public override bool CanDeserialize(RequestExecutionContext context, string contentType)
+        {
+            return contentType.StartsWith("application/json", StringComparison.CurrentCultureIgnoreCase);
         }
 
-        /// <summary>
-        /// Deserialize the input stream to a request package
-        /// </summary>
-        /// <param name="inputStream">input stream</param>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path)
+        public override bool CanSerialize(RequestExecutionContext context, string accepts)
         {
-            FastJson.JsonSerializer.Deserialize<RpcRequestPackage>(inputStream, )
+            return accepts.Contains("application/json", StringComparison.CurrentCultureIgnoreCase);
+        }
 
-            return null;
+        public override Task SerializeToResponse(RequestExecutionContext context)
+        {
+            var serializedBytes = Utf8.JsonSerializer.NonGeneric.Serialize(context.Result);
+
+            var response = context.HttpContext.Response;
+
+            response.ContentType = "application/json";
+            response.StatusCode = context.HttpStatusCode;
+            response.ContentLength = serializedBytes.Length;
+
+            return response.Body.WriteAsync(serializedBytes, 0, serializedBytes.Length, context.HttpContext.RequestAborted);
+        }
+
+        public override async ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
+        {
+            return await Utf8.JsonSerializer.DeserializeAsync<T>(context.HttpContext.Request.Body);
         }
     }
 }

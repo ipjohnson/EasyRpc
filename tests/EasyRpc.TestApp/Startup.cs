@@ -1,78 +1,44 @@
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
-using EasyRpc.AspNetCore.Documentation;
-using EasyRpc.TestApp.Repositories;
-using EasyRpc.TestApp.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace EasyRpc.TestApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddJsonRpc(c =>
-            {
-                c.DebugLogging = false;
-                c.SupportResponseCompression = true;
-            });
-
-            services.AddSingleton<IPersonRepository, PersonRepository>();
-
-            if (Debugger.IsAttached)
-            {
-                services.AddSingleton<IWebAssetProvider, CustomWebAssetProvider>();
-            }
+            services.AddRpcServices();
         }
-
-        //public class ActivatorInstance : EasyRpc.AspNetCore.Middleware.IInstanceActivator
-        //{
-        //    public object ActivateInstance(HttpContext context, IServiceProvider serviceProvider, Type instanceType)
-        //    {
-        //        return serviceProvider.GetService(instanceType);
-        //    }
-        //}
-
-        //public void ConfigureContainer(IInjectionScope scope)
-        //{
-        //    scope.Configure(c =>
-        //    {
-        //        c.ExcludeTypeFromAutoRegistration("Microsoft.*");
-        //        c.Export<ActivatorInstance>().As<IInstanceActivator>();
-        //    });
-        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            factory.AddConsole(Configuration.GetSection("Logging"));
-
-            app.UseJsonRpc("/service-api/", api =>
+            app.UseRpcServices(api =>
             {
-                api.Documentation(c => c.MenuWidth = 15);
-                api.ExposeAssemblyContaining<Startup>().Where(type => type.Namespace.EndsWith(".Services"));
+                api.GetMethod("/test/{id}", (int id) => new { value = id });
+                api.PostMethod("/test/{id}", (int id, BodyTest body) => id + body.Value);
+                api.PostMethod("/another/{id}", (int id, int id2, int id3) => id + id2 + id3);
+                api.GetMethod("/test2/{id}/{id2}", (int id, int id2) => new { value = id, value2 = id });
+                api.GetMethod("/StringTest/{stringValue}", (string stringValue) => stringValue + " Hello world!");
 
-                api.Expose("TestMethods").Methods(add =>
-                {
-                    add.Func("Test1", (int x, int y) => x + y);
-                    add.Func("Test2", (int x, int y) => x + y);
-                    add.Func("Test3", (int x, int y) => x + y);
-                });
             });
+        }
 
-            app.RedirectToDocumentation("/service-api/");
+        public class BodyTest
+        {
+            public int Value { get; set; }
         }
     }
+
+
 }
