@@ -100,6 +100,8 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 configuration.Parameters.AddRange(parameters);
 
+                configuration.RawContentType = instanceConfiguration.RawContentType;
+
                 ApplyAuthorizations(currentApi,null, configuration);
 
                 yield return configuration;

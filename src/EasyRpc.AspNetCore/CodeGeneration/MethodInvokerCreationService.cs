@@ -95,7 +95,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             var methodBodyStatements = new List<Expression> { assignExpression };
 
-            WrapExpression(invokeDelegate.Method, methodBodyStatements, requestParameter, callExpression);
+            WrapExpression(endPointMethodConfiguration, invokeDelegate.Method, methodBodyStatements, requestParameter, callExpression);
 
             var compiledInvokeDelegate =
                 Expression.Lambda<MethodEndPointDelegate>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
@@ -119,7 +119,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             var methodBodyStatements = new List<Expression> { assignExpression };
 
-            WrapExpression(invokeMethod, methodBodyStatements, requestParameter, invokeExpression);
+            WrapExpression(endPointMethodConfiguration, invokeMethod, methodBodyStatements, requestParameter, invokeExpression);
 
             var compiledInvokeDelegate =
                 Expression.Lambda<MethodEndPointDelegate>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
@@ -127,7 +127,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, compiledInvokeDelegate);
         }
 
-        protected virtual void WrapExpression(MethodInfo invokeMethod,
+        protected virtual void WrapExpression(EndPointMethodConfiguration endPointMethodConfiguration,
+            MethodInfo invokeMethod,
             List<Expression> methodBodyStatements,
             ParameterExpression requestParameter,
             Expression invokeExpression)
@@ -155,7 +156,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 {
                     var closeType = invokeMethod.ReturnType.GenericTypeArguments[0];
 
-                    var shouldWrap = _exposeOptions.TypeWrapSelector(closeType);
+                    var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
+                        _exposeOptions.TypeWrapSelector(closeType);
 
                     Expression callExpression;
 
@@ -180,7 +182,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 {
                     var closeType = invokeMethod.ReturnType.GenericTypeArguments[0];
 
-                    var shouldWrap = _exposeOptions.TypeWrapSelector(closeType);
+                    var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
+                                     _exposeOptions.TypeWrapSelector(closeType);
 
                     Expression callExpression;
 
@@ -212,7 +215,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
             else
             {
-                var shouldWrap = _exposeOptions.TypeWrapSelector(invokeMethod.ReturnType);
+                var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
+                                 _exposeOptions.TypeWrapSelector(invokeMethod.ReturnType);
 
                 if (shouldWrap)
                 {
