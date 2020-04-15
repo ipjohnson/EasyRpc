@@ -246,7 +246,8 @@ namespace EasyRpc.AspNetCore.Documentation
             var response = new OpenApiResponse { Content = contentDictionary, Description = "Success" };
             OpenApiSchema responseSchema = null;
 
-            if (_exposeConfiguration.TypeWrapSelector(endPointMethodHandler.Configuration.ReturnType))
+            if (string.IsNullOrEmpty(endPointMethodHandler.Configuration.RawContentType) &&
+                _exposeConfiguration.TypeWrapSelector(endPointMethodHandler.Configuration.ReturnType))
             {
                 responseSchema = new OpenApiSchema
                 {
@@ -270,6 +271,10 @@ namespace EasyRpc.AspNetCore.Documentation
                         Schema = responseSchema
                     };
                 }
+            }
+            else
+            {
+                contentDictionary[endPointMethodHandler.Configuration.RawContentType] = new OpenApiMediaType();
             }
 
             responses.Add(successStatusCode, response);
