@@ -68,6 +68,12 @@ namespace EasyRpc.AspNetCore.Routing
         {
             var longMatch = PathMatchCount(pathList, currentStringIndex, pathListStart, pathListEnd);
 
+            // this is to handle the case where the path ends with a / and it should still match
+            if (pathListEnd - pathListStart == 1 && pathList[pathListStart].Key.EndsWith("/"))
+            {
+                longMatch--;
+            }
+
             var comparisonStatement =
                 GenerateStringComparisonStatements(pathList[pathListStart].Key, currentStringIndex, longMatch);
 
@@ -197,7 +203,15 @@ namespace EasyRpc.AspNetCore.Routing
                 }
                 else
                 {
-                    comparison = GenerateStringComparisonStatements(path, currentStringIndex, path.Length - currentStringIndex);
+                    var length = path.Length - currentStringIndex;
+
+                    // this is to handle the case where the path ends with a / and it should still match
+                    if (path.EndsWith("/"))
+                    {
+                        length--;
+                    }
+
+                    comparison = GenerateStringComparisonStatements(path, currentStringIndex, length);
                 }
 
                 currentExpression = Expression.Condition(comparison, Expression.Constant(value, typeof(IEndPointHandler)), currentExpression);
