@@ -25,6 +25,8 @@ public class IntMathService
 }
 ```
 
+[Version 5](https://github.com/ipjohnson/EasyRpc/tree/vNext)
+
 ### Features
 
 * Full implementation of [JSON-RPC 2.0](http://www.jsonrpc.org/specification) (parameters can be passed in by order or by name)
