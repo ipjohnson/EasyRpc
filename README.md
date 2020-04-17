@@ -1,16 +1,19 @@
 # EasyRpc
-Adds JSON-RPC support to AspNetCore
+Adds rpc service support to AspNetCore
 
 ```
 public void ConfigureServices(IServiceCollection services)
 {
-  services.AddJsonRpc();
+  services.AddRpcServices();
 }
 
 public void Configure(IApplicationBuilder app)
 {
-  app.UseJsonRpc("/", api =>
+  app.UseRpcServices(api =>
   {
+     // simple web method at /Status
+     api.GetMethod("/Status", () => new { status = "Ok"});
+
      // Expose methods at /IntMath
      api.Expose<IntMathService>().As("IntMath");
   });
@@ -18,6 +21,7 @@ public void Configure(IApplicationBuilder app)
 
 public class IntMathService
 {
+  // expose web api POST /IntMath/Add expecting {"a":int,"b":int}
   public int Add(int a, int b)
   {
     return a + b;
@@ -27,16 +31,17 @@ public class IntMathService
 
 ### Features
 
-* Full implementation of [JSON-RPC 2.0](http://www.jsonrpc.org/specification) (parameters can be passed in by order or by name)
+EasyRpc allow developers to write business related classes and host them as remote procedure calls.
+In essence developers focus on writing services that fullfil requirements vs. writing RESTful services 
+that require the developer to think about which verbs they want to use. 
+
 * Very fast performance as it takes advantage of System.Reflection.Emit to execute methods (faster than MVC)
 * Services participate in Asp.Net Core dependency injection framework
 * Integrates with Asp.Net Core authorization schemes including Roles & Polices
 * Built in data context idea that can be used to fetch and save data into header
 * Filter support similar to Asp.Net filter (not exactly the same as no controller is ever created)
-* Validation support using DataAnnotations and/or FluentValidation
-* Support for request/response gzip compression, br compression for asp.net core 2.1
-* Built in documentation/execution UI
-* Note: for asp.net core 3.0 support please use the 4.0.0 pre-release version
+* Support for request/response gzip compression, br compression
+* Built in Swagger UI
 
 ### Example App
 An example app can be found [here](https://github.com/ipjohnson/EasyRpc.AspNetCore.Sample).

@@ -12,6 +12,9 @@ using EasyRpc.AspNetCore.Filters;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Api configuration interface
+    /// </summary>
     public partial interface IApiConfiguration
     {
         /// <summary>
@@ -79,15 +82,8 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        //ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
-
-        /// <summary>
-        /// Expose factories under a specific path
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        //IFactoryExposureConfiguration Expose(string path);
-
+        ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
+        
         /// <summary>
         /// Apply call filter
         /// </summary>
@@ -98,9 +94,9 @@ namespace EasyRpc.AspNetCore
         /// 
         /// </summary>
         /// <param name="filterFunc"></param>
-        /// <param name="shared"></param>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter(Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc);
+        IApiConfiguration ApplyFilter(
+            Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc);
         
         /// <summary>
         /// Add method filter
@@ -116,12 +112,6 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration ClearMethodFilters();
 
         /// <summary>
-        /// Add exposures to 
-        /// </summary>
-        /// <param name="provider"></param>
-        //IApiConfiguration AddExposures(IExposedMethodInformationProvider provider);
-
-        /// <summary>
         /// Application services
         /// </summary>
         IServiceProvider AppServices { get; }
@@ -134,6 +124,9 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
     }
 
+    /// <summary>
+    /// Http method to use when exposing methods
+    /// </summary>
     public enum ExposeDefaultMethod
     {
         /// <summary>

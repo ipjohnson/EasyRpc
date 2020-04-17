@@ -47,12 +47,14 @@ namespace EasyRpc.AspNetCore.EndPoints
 
         public Task HandleRequest(HttpContext context, RequestDelegate next)
         {
-            if (context.Request.Method == HttpMethods.Post)
+            if (context.Request.Method == HttpMethods.Post && 
+                _postHandler != null)
             {
                 return _postHandler.HandleRequest(context);
             }
 
-            if (context.Request.Method == HttpMethods.Get)
+            if (context.Request.Method == HttpMethods.Get && 
+                _getHandler != null)
             {
                 return _getHandler.HandleRequest(context);
             }

@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
-    /// 
+    /// parameter sources
     /// </summary>
     public enum EndPointMethodParameterSource
     {
@@ -97,43 +97,91 @@ namespace EasyRpc.AspNetCore
         EndPointMethodParameterSource ParameterSource { get; }
     }
 
+    /// <summary>
+    /// Rpc parameter object
+    /// </summary>
     public class RpcParameterInfo : IRpcParameterInfo
     {
+        /// <inheritdoc />
         public string Name { get; set; }
-
+        
+        /// <inheritdoc />
         [JsonIgnore]
         public Type ParamType { get; set; }
-
+        
+        /// <summary>
+        /// Type name of property
+        /// </summary>
         public string TypeName
         {
             get => ParamType?.FullName;
             set { }
         }
 
+
+        /// <inheritdoc />
         public object DefaultValue { get; set; }
 
+
+        /// <inheritdoc />
         public bool HasDefaultValue { get; set; }
 
+        /// <inheritdoc />
         public int Position { get; set; }
 
+        /// <inheritdoc />
         public EndPointMethodParameterSource ParameterSource { get; set; }
     }
 
-
+    /// <summary>
+    /// parameters for request 
+    /// </summary>
     public interface IRequestParameters
     {
+        /// <summary>
+        /// Try getting parameter by name
+        /// </summary>
+        /// <param name="parameterName"></param>
+        /// <param name="parameterValue"></param>
+        /// <returns></returns>
         bool TryGetParameter(string parameterName, out object parameterValue);
 
+        /// <summary>
+        /// Try setting parameter value by name
+        /// </summary>
+        /// <param name="parameterName"></param>
+        /// <param name="parameterValue"></param>
+        /// <returns></returns>
         bool TrySetParameter(string parameterName, object parameterValue);
 
+        /// <summary>
+        /// List of parameter info object for the call
+        /// </summary>
         IReadOnlyList<IRpcParameterInfo> ParameterInfos { get; }
 
+        /// <summary>
+        /// Access parameters based on index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         object this[int index] { get; set; }
 
+        /// <summary>
+        /// Count of parameters
+        /// </summary>
         int ParameterCount { get; }
 
+        /// <summary>
+        /// Clone parameters
+        /// </summary>
+        /// <returns></returns>
         IRequestParameters Clone();
 
+        /// <summary>
+        /// Access parameters by name
+        /// </summary>
+        /// <param name="parameterName"></param>
+        /// <returns></returns>
         object this[string parameterName] 
         {
             get

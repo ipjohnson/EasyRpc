@@ -63,6 +63,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
         protected override void ApiRegistration(IApiConfiguration api)
         {
+            api.DefaultHttpMethod(ExposeDefaultMethod.PostAndGetInt);
             api.Expose<Service>();
         }
 

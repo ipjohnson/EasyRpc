@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// configuration object for exposure expression
+    /// </summary>
     public interface IExposureExpressionConfiguration
     {
         /// <summary>
