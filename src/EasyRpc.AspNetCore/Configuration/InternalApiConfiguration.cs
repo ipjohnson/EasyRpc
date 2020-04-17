@@ -107,6 +107,11 @@ namespace EasyRpc.AspNetCore.Configuration
             return config;
         }
 
+        public ITypeSetExposureConfiguration Expose(IEnumerable<Type> types)
+        {
+            throw new NotImplementedException();
+        }
+
         public IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter
         {
             if (where == null)
