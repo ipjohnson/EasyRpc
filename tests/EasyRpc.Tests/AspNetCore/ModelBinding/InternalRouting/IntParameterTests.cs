@@ -82,6 +82,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         #region Registration
         protected override void ApiRegistration(IApiConfiguration api)
         {
+            api.DefaultHttpMethod(ExposeDefaultMethod.PostAndGetInt);
             api.Expose<Service>();
         }
         #endregion
