@@ -27,8 +27,14 @@ namespace EasyRpc.Abstractions.Services
         SharedServiceContainer
     }
 
+    /// <summary>
+    /// attribute interface to say how a service should be activated
+    /// </summary>
     public interface IServiceActivationAttribute
     {
+        /// <summary>
+        /// Activation method
+        /// </summary>
         ServiceActivationMethod ActivationMethod { get; }
     }
 }
