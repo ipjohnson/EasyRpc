@@ -80,6 +80,11 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
             }
         }
 
+        private static int TestValue()
+        {
+            return _defaultValue;
+        }
+
         #endregion
     }
 }

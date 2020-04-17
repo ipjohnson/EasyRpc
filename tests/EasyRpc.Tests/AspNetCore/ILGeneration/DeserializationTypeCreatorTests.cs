@@ -14,7 +14,7 @@ namespace EasyRpc.Tests.AspNetCore.ILGeneration
 {
     public class DeserializationTypeCreatorTests
     {
-        //[Fact]
+        [Fact]
         public void CreateRequestParameter_ParameterNames()
         {
             var methodDefinition = CreateSimpleMethodDefinition(out var serializedInstance);

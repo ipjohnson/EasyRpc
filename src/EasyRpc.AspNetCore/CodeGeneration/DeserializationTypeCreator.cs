@@ -92,6 +92,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                         GenerateStringDefault(typeBuilder, methodConfiguration, creationContext, ilGenerator,
                             rpcParameterInfo, backingField);
                     }
+                    else
+                    {
+                        GenerateComplexDefault(typeBuilder, methodConfiguration, creationContext, ilGenerator,
+                            rpcParameterInfo, backingField);
+                    }
                 }
             }
 
@@ -127,9 +132,31 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             ilGenerator.EmitBoolean((bool)rpcParameterInfo.DefaultValue);
             ilGenerator.Emit(OpCodes.Stfld, backingField);
         }
-        
 
-        
+        protected virtual void GenerateComplexDefault(TypeBuilder typeBuilder,
+            EndPointMethodConfiguration methodConfiguration, 
+            TypeCreationContext creationContext,
+            ILGenerator ilGenerator, 
+            RpcParameterInfo rpcParameterInfo, 
+            FieldBuilder backingField)
+        {
+            var defaultFieldName = "_internal_default_" + rpcParameterInfo.Name;
+
+            var staticField = typeBuilder.DefineField(defaultFieldName,
+                rpcParameterInfo.ParamType, FieldAttributes.Private | FieldAttributes.Static);
+
+            ilGenerator.Emit(OpCodes.Ldarg_0);
+            ilGenerator.Emit(OpCodes.Ldsfld, staticField);
+            ilGenerator.Emit(OpCodes.Stfld, backingField);
+
+            creationContext.InitActions.Add(type =>
+            {
+                var internalField = type.GetTypeInfo().GetField(defaultFieldName, BindingFlags.Static | BindingFlags.NonPublic);
+
+                internalField.SetValue(null, rpcParameterInfo.DefaultValue);
+            });
+        }
+
         #region Constructor and fields
         protected virtual TypeBuilder CreateTypeBuilder(EndPointMethodConfiguration methodConfiguration,
             TypeCreationContext creationContext)
