@@ -24,7 +24,7 @@ namespace EasyRpc.AspNetCore.Serializers
 
             if (contentEncoding != null)
             {
-                response.Headers.TryAdd("ContentEncoding", contentEncoding);
+                response.Headers.TryAdd("Content-Encoding", contentEncoding);
             }
 
             if (requestContext.Result is byte[] bytes)
