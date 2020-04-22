@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
+    /// <summary>
+    /// Interface for content serializer
+    /// </summary>
     public interface IContentSerializer
     {
         /// <summary>

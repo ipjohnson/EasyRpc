@@ -14,6 +14,7 @@ using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.EndPoints.MethodHandlers;
 using EasyRpc.AspNetCore.Filters;
 using EasyRpc.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,13 +26,17 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly List<object> _configurationObjects = new List<object>();
         private readonly BaseEndPointServices _services;
         private readonly IConfigurationManager _configurationManager;
+        private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private ExposeConfigurations _exposeConfigurations;
         private string _basePath;
 
-        public ApplicationConfigurationService(BaseEndPointServices services, IConfigurationManager configurationManager)
+        public ApplicationConfigurationService(BaseEndPointServices services, 
+            IConfigurationManager configurationManager, 
+            IAuthorizationImplementationProvider authorizationImplementationProvider)
         {
             _services = services;
             _configurationManager = configurationManager;
+            _authorizationImplementationProvider = authorizationImplementationProvider;
         }
 
         public void AddConfigurationObject(object configurationObject)
@@ -105,25 +110,25 @@ namespace EasyRpc.AspNetCore.Configuration
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
             Type type, List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage,
-            MethodInfo methodInfo, List<Attribute> attributes, IPathAttribute pathAttribute)
+            MethodInfo methodInfo, List<Attribute> methodAttributes, IPathAttribute pathAttribute)
         {
             string methodPath;
             string methodVerb;
             bool methodHasBody;
 
-            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, attributes, pathAttribute);
+            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, methodAttributes, pathAttribute);
 
-            var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, attributes);
+            var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
 
-            foreach (var routeInformation in GenerateRouteInformationList(methodPath, methodVerb, methodHasBody, currentApi, type, name, methodInfo, attributes))
+            foreach (var routeInformation in GenerateRouteInformationList(methodPath, methodVerb, methodHasBody, currentApi, type, name, methodInfo, methodAttributes))
             {
                 var configuration = new EndPointMethodConfiguration(routeInformation, activationMethod, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType, false);
 
-                var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, attributes, routeInformation);
+                var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, methodAttributes, routeInformation);
 
                 configuration.Parameters.AddRange(methodParameters);
 
-                var rawAttribute = (RawContentAttribute)attributes.FirstOrDefault(a => a is RawContentAttribute);
+                var rawAttribute = (RawContentAttribute)methodAttributes.FirstOrDefault(a => a is RawContentAttribute);
 
                 if (rawAttribute != null)
                 {
@@ -131,7 +136,7 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
                 }
 
-                ApplyAuthorizations(currentApi, null, configuration);
+                ApplyAuthorizations(currentApi, null, configuration, classAttributes, methodAttributes);
                 ApplyFilters(currentApi, null, configuration);
 
                 yield return configuration;
@@ -357,9 +362,18 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         protected virtual void ApplyAuthorizations(ICurrentApiInformation currentApi,
-            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>> authorizationFuncList,
-            EndPointMethodConfiguration configuration)
+            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>>
+                authorizationFuncList,
+            EndPointMethodConfiguration configuration, List<Attribute> classAttributes,
+            List<Attribute> methodAttributes)
         {
+            // anything marked as anonymous we want to allow
+            if (classAttributes.Any(a => a is AllowAnonymousAttribute) ||
+                methodAttributes.Any(a => a is AllowAnonymousAttribute))
+            {
+                return;
+            }
+            
             var authorizationList = new List<IEndPointMethodAuthorization>();
 
             foreach (var authorizationFunc in currentApi.Authorizations)
@@ -385,15 +399,40 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
             }
 
+            ProcessAuthorizeAttributes(classAttributes, authorizationList);
+            ProcessAuthorizeAttributes(methodAttributes, authorizationList);
+            
             if (authorizationList.Count > 0)
             {
                 configuration.Authorizations = authorizationList;
             }
         }
 
-
+        private void ProcessAuthorizeAttributes(List<Attribute> methodAttributes, List<IEndPointMethodAuthorization> authorizationList)
+        {
+            foreach (var methodAttribute in methodAttributes)
+            {
+                if (methodAttribute is AuthorizeAttribute authorizeAttribute)
+                {
+                    if (!string.IsNullOrEmpty(authorizeAttribute.Policy))
+                    {
+                        authorizationList.Add(_authorizationImplementationProvider.UserHasPolicy(authorizeAttribute.Policy));
+                    }
+                    else if (!string.IsNullOrEmpty(authorizeAttribute.Roles))
+                    {
+                        authorizationList.Add(_authorizationImplementationProvider.UserHasRole(authorizeAttribute.Roles));
+                    }
+                    else
+                    {
+                        authorizationList.Add(_authorizationImplementationProvider.Authorized());
+                    }
+                }
+            }
+        }
+        
         private void ApplyFilters(ICurrentApiInformation currentApi,
-            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> filters,
+            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly,
+                IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> filters,
             EndPointMethodConfiguration configuration)
         {
             var filterList = new List<Func<RequestExecutionContext, IRequestFilter>>();

@@ -9,17 +9,29 @@ using EasyRpc.AspNetCore.EndPoints;
 
 namespace EasyRpc.AspNetCore.Routing
 {
+    /// <summary>
+    /// Service that provides an internal routing method path => IEndPointHandler
+    /// </summary>
     public interface IEndPointRouteBuilder
     {
+        /// <summary>
+        /// Builds routing function given a dictionary of handlers
+        /// </summary>
+        /// <param name="handlers"></param>
+        /// <returns></returns>
         Func<string, IEndPointHandler> BuildRouteFunc(IDictionary<string, IEndPointHandler> handlers);
     }
 
+    /// <summary>
+    /// Internal route building service
+    /// </summary>
     public class EndPointRouteBuilder : IEndPointRouteBuilder
     {
         private readonly ParameterExpression _pathParameter = Expression.Parameter(typeof(string), "path");
         private readonly PropertyInfo _charsProperty = typeof(string).GetProperty("Chars");
         private readonly PropertyInfo _lengthProperty = typeof(string).GetProperty("Length");
 
+        /// <inheritdoc />
         public Func<string, IEndPointHandler> BuildRouteFunc(IDictionary<string, IEndPointHandler> handlers)
         {
             if (handlers.Count == 0)
@@ -268,12 +280,6 @@ namespace EasyRpc.AspNetCore.Routing
             {
                 return Expression.SwitchCase(callExpression, Expression.Constant(upperCase), Expression.Constant(lowerCase));
             }
-        }
-
-
-        private Expression GeneratePrefixTest(string routePrefix, Expression searchMethod)
-        {
-            return null;
         }
 
         private int PathMatchCount(List<KeyValuePair<string, IEndPointHandler>> pathList, int currentStringIndex, int pathListStart,

@@ -14,6 +14,7 @@ namespace EasyRpc.AspNetCore.Configuration
 {
     public partial class ApplicationConfigurationService
     {
+        protected List<Attribute> EmptyList = new List<Attribute>();
 
         public void ExposeExpression<TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration, Expression<Func<TResult>> expression)
         {
@@ -102,7 +103,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 configuration.RawContentType = instanceConfiguration.RawContentType;
 
-                ApplyAuthorizations(currentApi,null, configuration);
+                ApplyAuthorizations(currentApi,null, configuration, EmptyList, EmptyList);
 
                 yield return configuration;
             }

@@ -30,6 +30,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 {
                     if (!await Services.AuthorizationService.AuthorizeRequest(requestContext, Configuration.Authorizations))
                     {
+                        await Services.ErrorHandler.HandleUnauthorized(requestContext);
+
                         return;
                     }
                 }

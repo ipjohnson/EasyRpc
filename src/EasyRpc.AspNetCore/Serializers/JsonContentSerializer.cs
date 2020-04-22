@@ -12,33 +12,46 @@ using Microsoft.Extensions.Primitives;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
+    /// <summary>
+    /// Default json content serializer based on System.Text.Json
+    /// </summary>
     public class JsonContentSerializer : BaseSerializer, IApiConfigurationCompleteAware
     {
         protected readonly IConfigurationManager ConfigurationManager;
         protected JsonSerializerOptions SerializerOptions;
         private const string _contentType = "application/json";
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="errorHandler"></param>
+        /// <param name="configurationManager"></param>
         public JsonContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(errorHandler)
         {
             ConfigurationManager = configurationManager;
 
             ConfigurationManager.CreationMethod(DefaultJsonSerializerOptions());
         }
-        
+
+        /// <inheritdoc />
         public override IEnumerable<string> SupportedContentTypes => new[] {_contentType};
 
+        /// <inheritdoc />
         public override bool IsDefault => true;
 
+        /// <inheritdoc />
         public override bool CanDeserialize(RequestExecutionContext context, string contentType)
         {
             return string.Compare(contentType, 0, "application/json", 0, _contentType.Length, StringComparison.InvariantCultureIgnoreCase) == 0;
         }
 
+        /// <inheritdoc />
         public override bool CanSerialize(RequestExecutionContext context, string accepts)
         {
             return accepts.IndexOf("application/json", StringComparison.CurrentCultureIgnoreCase) >= 0;
         }
 
+        /// <inheritdoc />
         public override async Task SerializeToResponse(RequestExecutionContext context)
         {
             SetSuccess(context, _contentType);
@@ -55,6 +68,7 @@ namespace EasyRpc.AspNetCore.Serializers
             }
         }
 
+        /// <inheritdoc />
         public override ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
         {
             if (!context.HttpContext.Request.Headers.TryGetValue("Content-Encoding", out var encoding))
@@ -120,11 +134,16 @@ namespace EasyRpc.AspNetCore.Serializers
             public Type DeserializeType { get; set; }
         }
 
+        /// <inheritdoc />
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             SerializerOptions = ConfigurationManager.GetConfiguration<JsonSerializerOptions>();
         }
 
+        /// <summary>
+        /// Method that provides default json settings
+        /// </summary>
+        /// <returns></returns>
         public static Func<JsonSerializerOptions> DefaultJsonSerializerOptions()
         {
             return () => new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };

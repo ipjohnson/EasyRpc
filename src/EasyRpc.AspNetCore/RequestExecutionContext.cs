@@ -40,8 +40,14 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         public object ServiceInstance { get; set; }
 
+        /// <summary>
+        ///  HttpContext associated with request
+        /// </summary>
         public HttpContext HttpContext { get; }
 
+        /// <summary>
+        /// Parameters for rpc call
+        /// </summary>
         public IRequestParameters Parameters { get; set; }
 
         /// <summary>

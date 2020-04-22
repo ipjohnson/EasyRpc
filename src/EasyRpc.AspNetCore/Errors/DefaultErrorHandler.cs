@@ -29,10 +29,10 @@ namespace EasyRpc.AspNetCore.Errors
         {
             if (context.HttpContext.User?.Identity?.IsAuthenticated ?? false)
             {
-                return Return401(context);
+                return Return403(context);
             }
 
-            return Return403(context);
+            return Return401(context);
         }
 
         public virtual Task DefaultErrorHandlerError(RequestExecutionContext context, Exception e)

@@ -7,13 +7,27 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
+    /// <summary>
+    /// Interface for service that writes raw content to response stream
+    /// </summary>
     public interface IRawContentWriter
     {
+        /// <summary>
+        /// Write result from requestContext to response stream as raw bytes without serialization
+        /// </summary>
+        /// <param name="requestContext"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentEncoding"></param>
+        /// <returns></returns>
         Task WriteRawContent(RequestExecutionContext requestContext, string contentType, string contentEncoding);
     }
 
+    /// <summary>
+    /// Raw content writing service
+    /// </summary>
     public class RawContentWriter : IRawContentWriter
     {
+        /// <inheritdoc />
         public Task WriteRawContent(RequestExecutionContext requestContext, string contentType, string contentEncoding)
         {
             var response = requestContext.HttpContext.Response;

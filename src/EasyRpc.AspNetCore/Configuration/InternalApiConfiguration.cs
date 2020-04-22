@@ -31,20 +31,38 @@ namespace EasyRpc.AspNetCore.Configuration
         private ExposeDefaultMethod _defaultMethod = ExposeDefaultMethod.PostOnly;
 
         private readonly IApplicationConfigurationService _applicationConfigurationService;
+        private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private readonly IServiceProvider _applicationServiceProvider;
         
-        public InternalApiConfiguration(IServiceProvider applicationServiceProvider)
+        public InternalApiConfiguration(IServiceProvider applicationServiceProvider, 
+            IAuthorizationImplementationProvider authorizationImplementationProvider)
         {
             _applicationConfigurationService = applicationServiceProvider.GetRequiredService<IApplicationConfigurationService>();
             Configure = applicationServiceProvider.GetRequiredService<IEnvironmentConfiguration>();
             _applicationServiceProvider = applicationServiceProvider;
+            _authorizationImplementationProvider = authorizationImplementationProvider;
             _configurationMethodRepository =
                 applicationServiceProvider.GetRequiredService<IConfigurationManager>();
         }
 
         public IApiConfiguration Authorize(string role = null, string policy = null)
         {
-            throw new NotImplementedException();
+            IEndPointMethodAuthorization authorization;
+
+            if (!string.IsNullOrEmpty(role))
+            {
+                authorization = _authorizationImplementationProvider.UserHasRole(role);
+            }
+            else if (!string.IsNullOrEmpty(policy))
+            {
+                authorization = _authorizationImplementationProvider.UserHasPolicy(policy);
+            }
+            else
+            {
+                authorization = _authorizationImplementationProvider.Authorized();
+            }
+
+            return Authorize(endPoint => new[] {authorization});
         }
 
         public IApiConfiguration Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations)
@@ -64,8 +82,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         public IEnvironmentConfiguration Configure { get; }
-
-
+        
         public IApiConfiguration Prefix(string prefix)
         {
             var prefixArray = new [] {prefix};

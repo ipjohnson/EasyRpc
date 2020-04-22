@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
+    /// <summary>
+    /// Content serialization service
+    /// </summary>
     public class ContentSerializationService : IContentSerializationService, IApiConfigurationCompleteAware
     {
         private readonly IContentSerializer _serializer = null;
@@ -22,6 +25,12 @@ namespace EasyRpc.AspNetCore.Serializers
         private readonly IErrorHandler _errorHandler;
         private List<string> _supportedContentTypes;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="actionResultExecutor"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="contentSerializers"></param>
         public ContentSerializationService(ICustomActionResultExecutor actionResultExecutor, IErrorHandler errorHandler, IEnumerable<IContentSerializer> contentSerializers)
         {
             _actionResultExecutor = actionResultExecutor;
@@ -40,10 +49,11 @@ namespace EasyRpc.AspNetCore.Serializers
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<string> SupportedContentTypes =>
             _supportedContentTypes ??= GenerateSupportedContentTypesList();
 
-
+        /// <inheritdoc />
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             foreach (var contentSerializer in _contentSerializers)
@@ -55,6 +65,7 @@ namespace EasyRpc.AspNetCore.Serializers
             }
         }
 
+        /// <inheritdoc />
         public Task SerializeToResponse(RequestExecutionContext context)
         {
             if (context.Result is IActionResult actionResult)
@@ -80,7 +91,8 @@ namespace EasyRpc.AspNetCore.Serializers
 
             return NegotiateSerialization(context);
         }
-        
+
+        /// <inheritdoc />
         public ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
         {
             var contentType = context.HttpContext.Request.ContentType;

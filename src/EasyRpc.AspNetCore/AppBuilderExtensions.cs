@@ -52,6 +52,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IInternalRoutingHandler, InternalRoutingHandler>();
             serviceCollection.TryAddScoped<IAspNetRoutingHandler, AspNetRoutingHandler>();
             serviceCollection.TryAddScoped<IConfigurationManager, ConfigurationManager>();
+            serviceCollection.TryAddScoped<IAuthorizationImplementationProvider, AuthorizationImplementationProvider>();
             serviceCollection.TryAddScoped<IRegisteredEndPoints, RegisteredEndPoints>();
             serviceCollection.TryAddScoped<IDocumentationService, DocumentationService>();
             serviceCollection.TryAddScoped<IOpenApiGenerationService, OpenApiGenerationService>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyRpc.AspNetCore.EndPoints;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
@@ -14,7 +15,7 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         public IInternalApiConfiguration CreateApiConfiguration(IServiceProvider serviceProvider)
         {
-            return new InternalApiConfiguration(serviceProvider);
+            return new InternalApiConfiguration(serviceProvider, serviceProvider.GetRequiredService<IAuthorizationImplementationProvider>());
         }
     }
 }

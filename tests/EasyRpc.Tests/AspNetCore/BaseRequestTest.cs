@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Services.SimpleServices;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -39,12 +40,17 @@ namespace EasyRpc.Tests.AspNetCore
                     // Add TestServer
                     webHost.UseTestServer();
                     webHost.ConfigureServices(ConfigureServices);
-                    webHost.Configure(app => app.UseRpcServices(ApiRegistration));
+                    webHost.Configure(ConfigureAspNetPipeline);
                 });
 
             _host = await hostBuilder.StartAsync();
 
             return _host.GetTestClient();
+        }
+
+        protected virtual void ConfigureAspNetPipeline(IApplicationBuilder app)
+        {
+            app.UseRpcServices(ApiRegistration);
         }
 
         protected virtual string BasePath => "/";
