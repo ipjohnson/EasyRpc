@@ -10,7 +10,7 @@ namespace EasyRpc.AspNetCore.Authorization
     /// </summary>
     public class UserHasRole : IEndPointMethodAuthorization
     {
-        private string _role;
+        private readonly string _role;
 
         /// <summary>
         /// Default constructor

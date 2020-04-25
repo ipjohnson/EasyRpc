@@ -7,15 +7,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Authorization
 {
-    public class UserHasPolicy :IEndPointMethodAuthorization
+    /// <summary>
+    /// End point method authorization
+    /// </summary>
+    public class UserHasPolicy : IEndPointMethodAuthorization
     {
-        private string _policy;
+        private readonly string _policy;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="policy"></param>
         public UserHasPolicy(string policy)
         {
             _policy = policy;
         }
 
+        /// <inheritdoc />
         public async Task<bool> AsyncAuthorize(RequestExecutionContext context)
         {
             var authService = context.HttpContext.RequestServices.GetRequiredService<IAuthorizationService>();

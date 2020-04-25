@@ -8,17 +8,28 @@ using EasyRpc.AspNetCore.Errors;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// Creates Error result types that are serialized to client
+    /// </summary>
     public interface IErrorResultTypeCreator
     {
+        /// <summary>
+        /// Generate a new error type
+        /// </summary>
+        /// <returns></returns>
         Type GenerateErrorType();
     }
 
+    /// <inheritdoc />
     public class ErrorResultTypeCreator : IErrorResultTypeCreator
     {
         private ModuleBuilder _moduleBuilder;
         private Type _errorType;
         private object _lock = new object();
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public ErrorResultTypeCreator()
         {
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
@@ -26,6 +37,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("ErrorType");
         }
 
+        /// <inheritdoc />
         public Type GenerateErrorType() => _errorType ??= InternalGenerateErrorType();
 
         protected virtual Type InternalGenerateErrorType()

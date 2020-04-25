@@ -3,7 +3,7 @@
 namespace EasyRpc.AspNetCore.Authorization
 {
     /// <summary>
-    /// 
+    /// Interface representing an end point authorization
     /// </summary>
     public interface IEndPointMethodAuthorization
     {
