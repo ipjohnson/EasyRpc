@@ -13,19 +13,43 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.ModelBinding
 {
+    /// <summary>
+    /// Abstract base class for parameter binding builders
+    /// </summary>
     public abstract class BaseParameterBinderDelegateBuilder
     {
         private MethodInfo _bindParametersMethod;
+
+        /// <summary>
+        /// Url parameter binder
+        /// </summary>
         protected IUrlParameterBinder UrlParameterBinder;
+
+        /// <summary>
+        /// Special parameter binder (CancellationToken, HttpContext, etc)
+        /// </summary>
         protected ISpecialParameterBinder SpecialParameterBinder;
+
+        /// <summary>
+        /// String value binder
+        /// </summary>
         protected IStringValueModelBinder _stringValueModelBinder;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="specialParameterBinder"></param>
+        /// <param name="stringValueModelBinder"></param>
         protected BaseParameterBinderDelegateBuilder(ISpecialParameterBinder specialParameterBinder, IStringValueModelBinder stringValueModelBinder)
         {
             SpecialParameterBinder = specialParameterBinder;
             _stringValueModelBinder = stringValueModelBinder;
         }
 
+        /// <summary>
+        /// Api configuration has completed
+        /// </summary>
+        /// <param name="serviceScope"></param>
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             var routingConfiguration = serviceScope.GetRequiredService<IConfigurationManager>().GetConfiguration<RoutingConfiguration>();
@@ -40,6 +64,15 @@ namespace EasyRpc.AspNetCore.ModelBinding
             }
         }
 
+        /// <summary>
+        /// Bind non body parameters (url, query string, etc)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="configuration"></param>
+        /// <param name="parameters"></param>
+        /// <param name="parameterContext"></param>
+        /// <returns></returns>
         protected virtual Task BindNonBodyParameters<T>(RequestExecutionContext context, 
             EndPointMethodConfiguration configuration,
             IReadOnlyList<RpcParameterInfo> parameters, 
@@ -85,7 +118,9 @@ namespace EasyRpc.AspNetCore.ModelBinding
             return Task.CompletedTask;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual MethodInfo BindParametersMethod
         {
             get { return _bindParametersMethod ??= GetType().GetMethod("BindParameters", BindingFlags.NonPublic | BindingFlags.Instance); }
@@ -95,7 +130,9 @@ namespace EasyRpc.AspNetCore.ModelBinding
         {
             if (context.HttpContext.Request.Query.TryGetValue(parameter.Name, out var value))
             {
+                var boundValue = _stringValueModelBinder.ConvertString(parameter, value);
 
+                context.Parameters[parameter.Position] = boundValue;
             }
         }
 
