@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EasyRpc.Abstractions.Services
 {
+    /// <summary>
+    /// Activation options for a service
+    /// </summary>
     public enum ServiceActivationMethod
     {
         /// <summary>

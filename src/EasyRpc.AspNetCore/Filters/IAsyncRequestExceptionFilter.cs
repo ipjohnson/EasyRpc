@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace EasyRpc.AspNetCore.Filters
 {
+    /// <summary>
+    /// Async filter for handling exceptions
+    /// </summary>
     public interface IAsyncRequestExceptionFilter : IRequestFilter
     {
         /// <summary>

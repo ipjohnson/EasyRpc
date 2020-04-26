@@ -7,8 +7,18 @@ using EasyRpc.AspNetCore.Filters;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// static class used to invoke method delegates
+    /// </summary>
     public static class InvokeHelpers
     {
+        /// <summary>
+        /// Apply filters to delegate and invoke
+        /// </summary>
+        /// <param name="requestContext">request context</param>
+        /// <param name="filters">filter function list</param>
+        /// <param name="invoke">invoke delegate</param>
+        /// <returns></returns>
         public static async Task ApplyFiltersAndInvoke(RequestExecutionContext requestContext, IReadOnlyList<Func<RequestExecutionContext, IRequestFilter>> filters, MethodEndPointDelegate invoke)
         {
             var filterList = new List<IRequestFilter> { Capacity = filters.Count };
@@ -71,6 +81,13 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
 
+        /// <summary>
+        /// Set result value based on result task
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="result"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static Task SetResultTaskAsync<TResult>(Task<TResult> result, RequestExecutionContext context)
         {
             if (result.IsCompletedSuccessfully)
@@ -86,8 +103,15 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 c.Result = await r;
             }
-        }
+        } 
 
+        /// <summary>
+        /// Set result with given ValueTask
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="result"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static Task SetResultValueTaskAsync<TResult>(ValueTask<TResult> result, RequestExecutionContext context)
         {
             if (result.IsCompletedSuccessfully)
@@ -105,6 +129,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
         
+        /// <summary>
+        /// Wrap result in IResultWrapper
+        /// </summary>
+        /// <typeparam name="TWrapper"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="result"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static Task WrapResult<TWrapper, TResult>(TResult result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
         {
             context.Result = new TWrapper { Result = result };
@@ -112,6 +144,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Wrap result from task in IResultWrapper
+        /// </summary>
+        /// <typeparam name="TWrapper"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="result"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static Task WrapResultTaskAsync<TWrapper, TResult>(Task<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult> , new()
         {
             if (result.IsCompletedSuccessfully)
@@ -129,6 +169,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
 
+        /// <summary>
+        /// Wrap result using ValueTask
+        /// </summary>
+        /// <typeparam name="TWrapper"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="result"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static Task WrapResultValueTaskAsync<TWrapper, TResult>(ValueTask<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
         {
             if (result.IsCompletedSuccessfully)

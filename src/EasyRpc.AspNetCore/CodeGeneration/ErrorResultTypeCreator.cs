@@ -40,6 +40,10 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <inheritdoc />
         public Type GenerateErrorType() => _errorType ??= InternalGenerateErrorType();
 
+        /// <summary>
+        /// Creates type used to serialize error
+        /// </summary>
+        /// <returns></returns>
         protected virtual Type InternalGenerateErrorType()
         {
             lock (_lock)

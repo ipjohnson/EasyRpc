@@ -8,11 +8,21 @@ using EasyRpc.AspNetCore.EndPoints;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// Interface used to create a type that represent parameters for method
+    /// </summary>
     public interface IDeserializationTypeCreator
     {
+        /// <summary>
+        /// Create parameter type
+        /// </summary>
+        /// <param name="methodConfiguration">method configuration</param>
+        /// <returns>newly created type</returns>
         Type CreateTypeForMethod(EndPointMethodConfiguration methodConfiguration);
     }
 
+
+    /// <inheritdoc />
     public class DeserializationTypeCreator : IDeserializationTypeCreator
     {
         private readonly object _lock = new object();
@@ -20,6 +30,9 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private int _proxyCount = 0;
         private readonly MethodInfo _stringEqual = typeof(string).GetMethod("Equals", new[] { typeof(string), typeof(string) });
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public DeserializationTypeCreator()
         {
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
@@ -27,6 +40,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("DeserializeTypes");
         }
 
+
+        /// <inheritdoc />
         public Type CreateTypeForMethod(EndPointMethodConfiguration methodConfiguration)
         {
             lock (_lock)

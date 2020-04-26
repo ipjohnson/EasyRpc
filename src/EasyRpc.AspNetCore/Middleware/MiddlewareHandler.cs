@@ -13,13 +13,24 @@ using Microsoft.Extensions.Hosting;
 
 namespace EasyRpc.AspNetCore.Middleware
 {
+    /// <summary>
+    /// Middleware handler interface
+    /// </summary>
     public interface IMiddlewareHandler
     {
+        /// <summary>
+        /// Attach api to application pipeline
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         IApplicationBuilder Attach(IApplicationBuilder builder, Action<IApiConfiguration> configuration);
     }
 
+    /// <inheritdoc />
     public class MiddlewareHandler : IMiddlewareHandler
     {
+        /// <inheritdoc />
         public IApplicationBuilder Attach(IApplicationBuilder builder,  Action<IApiConfiguration> configuration)
         {
             ConfigureEndPoints(builder, configuration);

@@ -9,9 +9,5 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// </summary>
     public interface ISerializationTypeAttributor
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        void AttributeProperty();
     }
 }

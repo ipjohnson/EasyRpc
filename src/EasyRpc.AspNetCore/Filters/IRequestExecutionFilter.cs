@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace EasyRpc.AspNetCore.Filters
-{
+{    /// <summary>
+    /// Synchronous execution filter
+    /// </summary>
     public interface IRequestExecutionFilter : IRequestFilter
     {
         /// <summary>

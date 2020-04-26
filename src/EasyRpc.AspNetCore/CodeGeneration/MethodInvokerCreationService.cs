@@ -10,11 +10,21 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// Interface for building MethodEndPointDelegate
+    /// </summary>
     public interface IMethodInvokerCreationService
     {
+        /// <summary>
+        /// Build method invoker delegate given an endpoint configuration and parameter type
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="parametersType"></param>
+        /// <returns></returns>
         MethodEndPointDelegate BuildMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType);
     }
 
+    /// <inheritdoc cref="IMethodInvokeInformation"/>
     public class MethodInvokerCreationService : IMethodInvokerCreationService, IApiConfigurationCompleteAware
     {
         private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
@@ -30,6 +40,10 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private readonly MethodInfo _applyFiltersAndInvoke;
         private ExposeConfigurations _exposeOptions;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="wrappedResultTypeCreator"></param>
         public MethodInvokerCreationService(IWrappedResultTypeCreator wrappedResultTypeCreator)
         {
             _wrappedResultTypeCreator = wrappedResultTypeCreator;
@@ -45,6 +59,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             _applyFiltersAndInvoke = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.ApplyFiltersAndInvoke));
         }
 
+        /// <inheritdoc />
         public MethodEndPointDelegate BuildMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
         {
             if (endPointMethodConfiguration.InvokeInformation.MethodToInvoke != null)

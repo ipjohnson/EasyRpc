@@ -134,6 +134,10 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
                 context.Parameters[parameter.Position] = boundValue;
             }
+            else if(parameter.HasDefaultValue)
+            {
+                context.Parameters[parameter.Position] = parameter.DefaultValue;
+            }
         }
 
         protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedParameterList(EndPointMethodConfiguration configuration)
