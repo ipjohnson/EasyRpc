@@ -12,13 +12,23 @@ using EasyRpc.AspNetCore.Serializers;
 
 namespace EasyRpc.AspNetCore.ModelBinding
 {
-
+    /// <summary>
+    /// Interface for building a delegate that can be used to create a bound request parameter object
+    /// </summary>
     public interface IParameterBinderDelegateBuilder
     {
-
+        /// <summary>
+        /// Create delegate that instantiates a request parameter object using values found in the request url and body
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="parametersType"></param>
+        /// <returns></returns>
         MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, out Type parametersType);
     }
 
+    /// <summary>
+    /// Builds a delegate that can be used to bind a request parameter object
+    /// </summary>
     public class ParameterBinderDelegateBuilder : IParameterBinderDelegateBuilder, IApiConfigurationCompleteAware
     {
         private readonly IContentSerializationService _serializationService;
@@ -33,6 +43,14 @@ namespace EasyRpc.AspNetCore.ModelBinding
         private static readonly MethodInfo _defaultBodyDeserialize =
             typeof(ParameterBinderDelegateBuilder).GetMethod("DefaultBodyDeserialize", BindingFlags.NonPublic | BindingFlags.Instance);
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="serializationService"></param>
+        /// <param name="deserializationTypeCreator"></param>
+        /// <param name="noBodyParameterBinder"></param>
+        /// <param name="bodyParameterBinder"></param>
+        /// <param name="bodySingleParameterBinder"></param>
         public ParameterBinderDelegateBuilder(IContentSerializationService serializationService,
             IDeserializationTypeCreator deserializationTypeCreator,
             INoBodyParameterBinderDelegateBuilder noBodyParameterBinder, 
@@ -46,6 +64,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
             _bodySingleParameterBinder = bodySingleParameterBinder;
         }
         
+        /// <inheritdoc />
         public MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, out Type parametersType)
         {
             if (configuration.Parameters.Count == 0)

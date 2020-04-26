@@ -27,28 +27,28 @@ namespace EasyRpc.AspNetCore.ModelBinding
             parameterContext[parameter.Position] = context.HttpContext.RequestServices.GetService(parameter.ParamType);
         }
 
-        public void BindHttpContextParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
+        public virtual void BindHttpContextParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
         {
             parameterContext[parameter.Position] = context.HttpContext;
         }
 
-        public void BindRequestExecutionContextParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
+        public virtual void BindRequestExecutionContextParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
         {
             parameterContext[parameter.Position] = context;
         }
 
-        public void BindHttpRequestParameter(RequestExecutionContext context, RpcParameterInfo parameter,
+        public virtual void BindHttpRequestParameter(RequestExecutionContext context, RpcParameterInfo parameter,
             IRequestParameters parameterContext)
         {
             parameterContext[parameter.Position] = context.HttpContext.Request;
         }
 
-        public void BindHttpResponseParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
+        public virtual void BindHttpResponseParameter(RequestExecutionContext context, RpcParameterInfo parameter, IRequestParameters parameterContext)
         {
             parameterContext[parameter.Position] = context.HttpContext.Response;
         }
 
-        public void BindHttpCancellationTokenParameter(RequestExecutionContext context, RpcParameterInfo parameter,
+        public virtual void BindHttpCancellationTokenParameter(RequestExecutionContext context, RpcParameterInfo parameter,
             IRequestParameters parameterContext)
         {
             parameterContext[parameter.Position] = context.HttpContext.RequestAborted;
