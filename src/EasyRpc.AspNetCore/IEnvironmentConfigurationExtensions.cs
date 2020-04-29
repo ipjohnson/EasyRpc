@@ -34,6 +34,17 @@ namespace EasyRpc.AspNetCore
         }
 
         /// <summary>
+        /// Disable documentation for api
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IEnvironmentConfiguration DisableDocumentation(this IEnvironmentConfiguration configuration)
+        {
+            return configuration.Documentation(c => c.Enabled = false);
+        }
+
+
+        /// <summary>
         /// Configure System.Text.Json serializer
         /// </summary>
         /// <param name="configuration"></param>

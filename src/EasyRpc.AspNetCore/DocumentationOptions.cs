@@ -10,6 +10,11 @@ namespace EasyRpc.AspNetCore
     public class DocumentationOptions
     {
         /// <summary>
+        /// Documentation enabled, true by default
+        /// </summary>
+        public bool Enabled { get; set; } = true;
+
+        /// <summary>
         /// Redirection calls to documentation
         /// </summary>
         public bool RedirectRootToDocumentation { get; set; } = true;

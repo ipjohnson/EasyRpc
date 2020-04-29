@@ -21,8 +21,9 @@ namespace EasyRpc.AspNetCore.Documentation
         private readonly IOpenApiGenerationService _openApiGenerationService;
         private readonly ISwaggerAssetProvider _swaggerAssetProvider;
         private readonly IConfigurationManager _configurationManager;
-        private string _pathBase = "/swagger/";
-        private string _jsonDataPath = "/swagger/api.json";
+        private bool _enabled;
+        private string _pathBase;
+        private string _jsonDataPath;
         private bool _redirect;
 
         public DocumentationService(IOpenApiGenerationService openApiGenerationService, ISwaggerAssetProvider swaggerAssetProvider, IConfigurationManager configurationManager)
@@ -34,6 +35,11 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public Task Execute(HttpContext httpContext, RequestDelegate next)
         {
+            if (!_enabled)
+            {
+                return next(httpContext);
+            }
+
             if (httpContext.Request.Method == HttpMethods.Get &&
                 string.Compare(httpContext.Request.Path, 0, _pathBase, 0, _pathBase.Length,
                 StringComparison.CurrentCultureIgnoreCase) == 0)
@@ -75,13 +81,18 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             var documentationOptions = _configurationManager.GetConfiguration<DocumentationOptions>();
 
-            _redirect = documentationOptions.RedirectRootToDocumentation;
-            _jsonDataPath = documentationOptions.SwaggerBasePath + documentationOptions.OpenApiJsonUrl;
-            _pathBase = documentationOptions.SwaggerBasePath;
+            _enabled = documentationOptions.Enabled;
 
-            _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
+            if (_enabled)
+            {
+                _redirect = documentationOptions.RedirectRootToDocumentation;
+                _jsonDataPath = documentationOptions.SwaggerBasePath + documentationOptions.OpenApiJsonUrl;
+                _pathBase = documentationOptions.SwaggerBasePath;
 
-            _swaggerAssetProvider.Configure();
+                _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
+
+                _swaggerAssetProvider.Configure();
+            }
         }
     }
 }

@@ -134,8 +134,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
                 }
 
-                var headerAttributes = methodAttributes.Where(a => a is ResponseHeaderAttribute).ToList();
-                headerAttributes.AddRange(classAttributes.Where(a => a is ResponseHeaderAttribute));
+                var headerAttributes = classAttributes.Where(a => a is ResponseHeaderAttribute).ToList();
+                headerAttributes.AddRange(methodAttributes.Where(a => a is ResponseHeaderAttribute));
 
                 if (headerAttributes.Count > 0 || 
                     currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
@@ -159,11 +159,11 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
-        private
-            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly,
-                IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> GetFilterList(
-                ICurrentApiInformation currentApi, EndPointMethodConfiguration configuration,
-                List<Attribute> classAttributes, List<Attribute> methodAttributes)
+        private IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> GetFilterList(
+                ICurrentApiInformation currentApi, 
+                EndPointMethodConfiguration configuration,
+                List<Attribute> classAttributes, 
+                List<Attribute> methodAttributes)
         {
             var returnList =
                 new List<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>>();
@@ -456,9 +456,9 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
-        private void ProcessAuthorizeAttributes(List<Attribute> methodAttributes, List<IEndPointMethodAuthorization> authorizationList)
+        private void ProcessAuthorizeAttributes(List<Attribute> attributes, List<IEndPointMethodAuthorization> authorizationList)
         {
-            foreach (var methodAttribute in methodAttributes)
+            foreach (var methodAttribute in attributes)
             {
                 if (methodAttribute is AuthorizeAttribute authorizeAttribute)
                 {

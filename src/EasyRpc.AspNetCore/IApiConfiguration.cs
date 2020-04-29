@@ -86,7 +86,6 @@ namespace EasyRpc.AspNetCore
         /// <returns></returns>
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
 
-
         /// <summary>
         /// Add header to all responses
         /// </summary>
