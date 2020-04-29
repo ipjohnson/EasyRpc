@@ -35,6 +35,26 @@ namespace EasyRpc.AspNetCore
         public string Title { get; set; }
 
         /// <summary>
+        /// Documentation version, defaults to assembly version if not provided
+        /// </summary>
+        public string Version { get; set; }
+
+        /// <summary>
+        /// Func used to set version string in Documentation
+        /// </summary>
+        public Func<Version, string> VersionFormat { get; set; } = DefaultVersionFormat;
+
+        /// <summary>
+        /// Default version format 1.0.0
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static string DefaultVersionFormat(Version version)
+        {
+            return $"{version.Major}.{version.Minor}.{version.Build}";
+        }
+
+        /// <summary>
         /// Api description
         /// </summary>
         public string ApiDescription { get; set; }

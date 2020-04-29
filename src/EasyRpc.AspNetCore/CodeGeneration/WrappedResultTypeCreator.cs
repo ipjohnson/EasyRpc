@@ -9,11 +9,20 @@ using EasyRpc.AspNetCore.EndPoints;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// Creates a wrapper type for simple types like int, string, double etc.
+    /// </summary>
     public interface IWrappedResultTypeCreator
     {
+        /// <summary>
+        /// Gets a type wrapper for the provided type
+        /// </summary>
+        /// <param name="typeToWrap"></param>
+        /// <returns></returns>
         Type GetTypeWrapper(Type typeToWrap);
     }
 
+    /// <inheritdoc />
     public class WrappedResultTypeCreator : IWrappedResultTypeCreator
     {
         private readonly object _lock = new object();
@@ -21,6 +30,9 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private int _proxyCount = 0;
         private readonly ConcurrentDictionary<Type,Type> _wrappers = new ConcurrentDictionary<Type, Type>();
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public WrappedResultTypeCreator()
         {
 
@@ -29,6 +41,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("TypeWrapper");
         }
 
+        /// <inheritdoc />
         public Type GetTypeWrapper(Type typeToWrap)
         {
             if (_wrappers.TryGetValue(typeToWrap, out var wrappedType))

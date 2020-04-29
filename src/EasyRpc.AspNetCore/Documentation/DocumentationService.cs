@@ -79,7 +79,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _jsonDataPath = documentationOptions.SwaggerBasePath + documentationOptions.OpenApiJsonUrl;
             _pathBase = documentationOptions.SwaggerBasePath;
 
-            _openApiGenerationService.Configure(apiInformation, endPointMethodHandlersList);
+            _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
 
             _swaggerAssetProvider.Configure();
         }

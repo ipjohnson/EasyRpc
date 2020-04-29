@@ -79,6 +79,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             throw new Exception("Invoke information is blank");
         }
 
+        /// <summary>
+        /// build delegate method invoker
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="parametersType"></param>
+        /// <returns></returns>
         protected virtual MethodEndPointDelegate BuildDelegateMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
@@ -118,6 +124,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, compiledInvokeDelegate);
         }
 
+        /// <summary>
+        /// build instance method invoker
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="parametersType"></param>
+        /// <returns></returns>
         protected virtual MethodEndPointDelegate BuildInstanceMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
@@ -142,6 +154,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, compiledInvokeDelegate);
         }
 
+        /// <summary>
+        /// Wrap result expression
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="invokeMethod"></param>
+        /// <param name="methodBodyStatements"></param>
+        /// <param name="requestParameter"></param>
+        /// <param name="invokeExpression"></param>
         protected virtual void WrapExpression(EndPointMethodConfiguration endPointMethodConfiguration,
             MethodInfo invokeMethod,
             List<Expression> methodBodyStatements,
@@ -254,13 +274,27 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
 
-        private Expression BuildParameterAssign(Type parametersType, ParameterExpression typedParameterVariable, ParameterExpression requestParameter)
+        /// <summary>
+        /// Build parameter assignment statement
+        /// </summary>
+        /// <param name="parametersType"></param>
+        /// <param name="typedParameterVariable"></param>
+        /// <param name="requestParameter"></param>
+        /// <returns></returns>
+        protected virtual Expression BuildParameterAssign(Type parametersType, ParameterExpression typedParameterVariable, ParameterExpression requestParameter)
         {
             return Expression.Assign(typedParameterVariable,
                 Expression.Convert(Expression.Property(requestParameter, _contextParameters), parametersType));
         }
 
-        private List<Expression> BuildParameterList(EndPointMethodConfiguration endPointMethodConfiguration,
+        /// <summary>
+        /// Build parameter list expressions 
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="parametersType"></param>
+        /// <param name="typedParameterVariable"></param>
+        /// <returns></returns>
+        protected virtual List<Expression> BuildParameterList(EndPointMethodConfiguration endPointMethodConfiguration,
             Type parametersType, ParameterExpression typedParameterVariable)
         {
             var parameterList = new List<Expression>();
@@ -275,6 +309,13 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return parameterList;
         }
 
+        /// <summary>
+        /// Apply filters to method end point delegate
+        /// </summary>
+        /// <param name="endPointMethodConfiguration"></param>
+        /// <param name="parametersType"></param>
+        /// <param name="endPointDelegate"></param>
+        /// <returns></returns>
         protected virtual MethodEndPointDelegate ApplyFiltersToMethodEndPointDelegate(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType, MethodEndPointDelegate endPointDelegate)
         {
             if (endPointMethodConfiguration.Filters == null || endPointMethodConfiguration.Filters.Count == 0)
@@ -292,7 +333,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return lambdaExpression.Compile();
         }
 
-        public void ApiConfigurationComplete(IServiceProvider serviceScope)
+        /// <inheritdoc />
+        public virtual void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             _exposeOptions = serviceScope.GetRequiredService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
         }

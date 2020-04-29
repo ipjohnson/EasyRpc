@@ -6,13 +6,21 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 {
+    /// <summary>
+    /// End point with authentication requirements 
+    /// </summary>
     public class AuthenticationEndPointMethodHandler : BaseContentEndPointMethodHandler
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="services"></param>
         public AuthenticationEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
         {
         }
 
-
+        /// <inheritdoc />
         public override async Task HandleRequest(HttpContext httpContext)
         {
             var requestContext = new RequestExecutionContext(httpContext, this, Configuration.SuccessStatusCode);

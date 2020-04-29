@@ -21,7 +21,8 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public interface IOpenApiGenerationService
     {
-        void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
+        void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
+            IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
 
         Task Execute(HttpContext httpContext, RequestDelegate next);
     }
@@ -34,6 +35,7 @@ namespace EasyRpc.AspNetCore.Documentation
         private IContentSerializationService _contentSerializationService;
         private IErrorResultTypeCreator _errorResultTypeCreator;
         private ExposeConfigurations _exposeConfiguration;
+        private DocumentationOptions _documentationOptions;
 
         public OpenApiGenerationService(IOpenApiSchemaGenerator apiSchemaGenerator,
             IConfigurationManager configurationManager,
@@ -45,11 +47,13 @@ namespace EasyRpc.AspNetCore.Documentation
             _errorResultTypeCreator = errorResultTypeCreator;
         }
 
-        public void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
+        public void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
+            IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
             _apiInformation = apiInformation;
             _endPointMethodHandlersList = endPointMethodHandlersList;
             _exposeConfiguration = apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
+            _documentationOptions = documentationOptions;
         }
 
         public async Task Execute(HttpContext httpContext, RequestDelegate next)
@@ -69,7 +73,7 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 Info = new OpenApiInfo
                 {
-                    Version = "v1",
+                    Version = GetVersion(),
                     Title = GetTitle()
                 }
             };
@@ -81,9 +85,26 @@ namespace EasyRpc.AspNetCore.Documentation
             return document;
         }
 
+        private string GetVersion()
+        {
+            var versionString = _documentationOptions.Version;
+
+            if (string.IsNullOrEmpty(versionString))
+            {
+                var assemblyName = Assembly.GetEntryAssembly()?.GetName();
+
+                if (assemblyName != null)
+                {
+                    versionString = _documentationOptions.VersionFormat(assemblyName.Version);
+                }
+            }
+
+            return versionString;
+        }
+
         private string GetTitle()
         {
-            return Assembly.GetEntryAssembly().GetName().Name;
+            return _documentationOptions.Title ?? Assembly.GetEntryAssembly()?.GetName().Name;
         }
 
         private void ProcessEndPoints(OpenApiDocument document, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
