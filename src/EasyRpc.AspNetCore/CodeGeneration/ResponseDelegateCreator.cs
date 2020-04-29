@@ -8,8 +8,16 @@ using EasyRpc.AspNetCore.Serializers;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
+    /// <summary>
+    /// Response delegate creator
+    /// </summary>
     public interface IResponseDelegateCreator
     {
+        /// <summary>
+        /// Create delegate that writes result to the response stream
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         MethodEndPointDelegate CreateResponseDelegate(EndPointMethodConfiguration configuration);
     }
 
@@ -18,24 +26,47 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// </summary>
     public class ResponseDelegateCreator : IResponseDelegateCreator
     {
-        private readonly IRawContentWriter _rawContentWriter;
+        /// <summary>
+        /// No operation method
+        /// </summary>
+        protected static readonly MethodEndPointDelegate Noop = context => Task.CompletedTask;
 
-        private readonly MethodEndPointDelegate _defaultContentSerializer;
+        /// <summary>
+        /// Content serializer
+        /// </summary>
+        protected readonly IContentSerializationService ContentSerializer;
+
+        /// <summary>
+        /// Raw Content Writer
+        /// </summary>
+        protected readonly IRawContentWriter RawContentWriter;
+
+        /// <summary>
+        /// Default content serializer method
+        /// </summary>
+        protected readonly MethodEndPointDelegate DefaultContentSerializer;
         
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="contentSerializer"></param>
+        /// <param name="rawContentWriter"></param>
         public ResponseDelegateCreator(IContentSerializationService contentSerializer, IRawContentWriter rawContentWriter)
         {
-            _rawContentWriter = rawContentWriter;
+            ContentSerializer = contentSerializer;
+            RawContentWriter = rawContentWriter;
 
-            _defaultContentSerializer = contentSerializer.SerializeToResponse;
+            DefaultContentSerializer = contentSerializer.SerializeToResponse;
         }
 
-        public MethodEndPointDelegate CreateResponseDelegate(EndPointMethodConfiguration configuration)
+        /// <inheritdoc />
+        public virtual MethodEndPointDelegate CreateResponseDelegate(EndPointMethodConfiguration configuration)
         {
             if (string.IsNullOrEmpty(configuration.RawContentType))
             {
                 if ((configuration.ResponseHeaders?.Count ?? 0) == 0)
                 {
-                    return _defaultContentSerializer;
+                    return DefaultContentSerializer;
                 }
 
                 return context => SerializeHeaderResponseWriter(context, configuration.ResponseHeaders);
@@ -46,7 +77,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             if ((configuration.ResponseHeaders?.Count ?? 0) == 0)
             {
-                var writer = _rawContentWriter;
+                var writer = RawContentWriter;
 
                 return context => writer.WriteRawContent(context, contentType, encoding);
             }
@@ -54,7 +85,13 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             return context => RawHeaderResponseWriter(context, contentType, encoding, configuration.ResponseHeaders);
         }
 
-        private Task SerializeHeaderResponseWriter(RequestExecutionContext context,
+        /// <summary>
+        /// Serialize response as well as process headers
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="responseHeaders"></param>
+        /// <returns></returns>
+        protected virtual Task SerializeHeaderResponseWriter(RequestExecutionContext context,
             IReadOnlyList<IResponseHeader> responseHeaders)
         {
             var headers = context.HttpContext.Response.Headers;
@@ -64,10 +101,18 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 responseHeader.ApplyHeader(context, headers);
             }
 
-            return _defaultContentSerializer(context);
+            return DefaultContentSerializer(context);
         }
-        
-        private Task RawHeaderResponseWriter(RequestExecutionContext context, string contentType, string encodingType, IReadOnlyList<IResponseHeader> responseHeaders)
+
+        /// <summary>
+        /// Write raw response with headers
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="contentType"></param>
+        /// <param name="encodingType"></param>
+        /// <param name="responseHeaders"></param>
+        /// <returns></returns>
+        protected virtual Task RawHeaderResponseWriter(RequestExecutionContext context, string contentType, string encodingType, IReadOnlyList<IResponseHeader> responseHeaders)
         {
             var headers = context.HttpContext.Response.Headers;
 
@@ -76,7 +121,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 responseHeader.ApplyHeader(context, headers);
             }
 
-            return _rawContentWriter.WriteRawContent(context, contentType, encodingType);
+            return RawContentWriter.WriteRawContent(context, contentType, encodingType);
         }
     }
 }

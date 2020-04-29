@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using EasyRpc.AspNetCore.Configuration;
 
 namespace EasyRpc.AspNetCore.Filters
 {
@@ -13,6 +14,6 @@ namespace EasyRpc.AspNetCore.Filters
         /// Provide a list of filters
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IRequestFilter> ProvideFilters();
+        IEnumerable<Func<RequestExecutionContext,IRequestFilter>> ProvideFilters(ICurrentApiInformation currentApi, IEndPointMethodConfigurationReadOnly configurationReadOnly);
     }
 }

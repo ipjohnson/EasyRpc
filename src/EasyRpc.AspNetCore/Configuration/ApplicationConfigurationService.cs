@@ -153,10 +153,42 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 ApplyAuthorizations(currentApi, null, configuration, classAttributes, methodAttributes);
-                ApplyFilters(currentApi, null, configuration);
+                ApplyFilters(currentApi, GetFilterList(currentApi, configuration, classAttributes, methodAttributes), configuration);
 
                 yield return configuration;
             }
+        }
+
+        private
+            IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly,
+                IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> GetFilterList(
+                ICurrentApiInformation currentApi, EndPointMethodConfiguration configuration,
+                List<Attribute> classAttributes, List<Attribute> methodAttributes)
+        {
+            var returnList =
+                new List<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>>();
+
+            foreach (var classAttribute in classAttributes)
+            {
+                if (classAttribute is IRequestFilterAttribute requestFilterAttribute)
+                {
+                    var filters = requestFilterAttribute.ProvideFilters(currentApi, configuration);
+
+                    returnList.Add(configReadOnly => filters);
+                }
+            }
+
+            foreach (var classAttribute in methodAttributes)
+            {
+                if (classAttribute is IRequestFilterAttribute requestFilterAttribute)
+                {
+                    var filters = requestFilterAttribute.ProvideFilters(currentApi, configuration);
+
+                    returnList.Add(configReadOnly => filters);
+                }
+            }
+
+            return returnList;
         }
 
         private IEnumerable<RpcRouteInformation> GenerateRouteInformationList(string path, string method, bool hasBody, ICurrentApiInformation currentApi, Type type, string name, MethodInfo methodInfo, List<Attribute> attributes)
