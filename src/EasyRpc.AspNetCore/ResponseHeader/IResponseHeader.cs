@@ -11,6 +11,11 @@ namespace EasyRpc.AspNetCore.ResponseHeader
     public interface IResponseHeader
     {
         /// <summary>
+        /// Example header used for documentation purposes
+        /// </summary>
+        KeyValuePair<string,string> DocumentationHeader { get; }
+
+        /// <summary>
         /// Apply header to HttpResponse 
         /// </summary>
         /// <param name="context">request context</param>

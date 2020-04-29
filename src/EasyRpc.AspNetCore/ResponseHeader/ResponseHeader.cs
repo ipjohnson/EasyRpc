@@ -23,6 +23,9 @@ namespace EasyRpc.AspNetCore.ResponseHeader
         }
 
         /// <inheritdoc />
+        public KeyValuePair<string, string> DocumentationHeader => new KeyValuePair<string, string>(_headerName, _headerValue);
+
+        /// <inheritdoc />
         public void ApplyHeader(RequestExecutionContext context, IHeaderDictionary headers)
         {
             headers[_headerName] = _headerValue;
