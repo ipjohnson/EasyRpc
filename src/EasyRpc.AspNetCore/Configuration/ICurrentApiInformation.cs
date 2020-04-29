@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.Filters;
+using EasyRpc.AspNetCore.ResponseHeader;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
@@ -31,6 +33,11 @@ namespace EasyRpc.AspNetCore.Configuration
         /// List of method filters
         /// </summary>
         ImmutableLinkedList<Func<MethodInfo, bool>> MethodFilters { get; }
+
+        /// <summary>
+        /// List of response headers to apply
+        /// </summary>
+        ImmutableLinkedList<IResponseHeader> Headers { get; }
 
         bool SupportResponseCompression { get; }
 

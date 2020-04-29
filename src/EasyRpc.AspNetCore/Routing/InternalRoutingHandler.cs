@@ -11,17 +11,28 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Routing
 {
+    /// <summary>
+    /// Internal routing handler 
+    /// </summary>
     public interface IInternalRoutingHandler
     {
+        /// <summary>
+        /// Attaches routing handler to asp.net pipeline
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="apiConfig"></param>
+        /// <param name="scopedProvider"></param>
         void Attach(IApplicationBuilder builder, IInternalApiConfiguration apiConfig, IServiceProvider scopedProvider);
     }
 
+    /// <inheritdoc />
     public class InternalRoutingHandler : IInternalRoutingHandler
     {
         protected RequestDelegate _requestDelegate;
         protected Func<string, IEndPointHandler> _endPointHandlers;
         protected IUnmappedEndPointHandler _unmappedEndPointHandler;
-
+        
+        /// <inheritdoc />
         public virtual void Attach(IApplicationBuilder builder, IInternalApiConfiguration apiConfig, IServiceProvider scopedProvider)
         {
             _unmappedEndPointHandler = scopedProvider.GetService<IUnmappedEndPointHandler>();
@@ -42,7 +53,6 @@ namespace EasyRpc.AspNetCore.Routing
         
         protected virtual Task Execute(HttpContext context)
         {
-            
             var endpointHandler = _endPointHandlers(context.Request.Path);
 
             if (endpointHandler != null)

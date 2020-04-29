@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Filters;
 using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore.EndPoints
@@ -132,5 +133,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <inheritdoc />
         public string RawContentEncoding { get; set; }
 
+        /// <inheritdoc />
+        public IReadOnlyList<IResponseHeader> ResponseHeaders { get; set; }
     }
 }

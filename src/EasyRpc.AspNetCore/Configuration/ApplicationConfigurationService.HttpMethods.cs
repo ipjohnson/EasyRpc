@@ -6,7 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
+using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
+using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
 
@@ -102,6 +104,17 @@ namespace EasyRpc.AspNetCore.Configuration
                 configuration.Parameters.AddRange(parameters);
 
                 configuration.RawContentType = instanceConfiguration.RawContentType;
+
+                if (currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty ||
+                    instanceConfiguration.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
+                {
+                    var responseHeaders = new List<IResponseHeader>();
+
+                    responseHeaders.AddRange(currentApi.Headers);
+                    responseHeaders.AddRange(instanceConfiguration.Headers);
+
+                    configuration.ResponseHeaders = responseHeaders;
+                }
 
                 ApplyAuthorizations(currentApi,null, configuration, EmptyList, EmptyList);
 

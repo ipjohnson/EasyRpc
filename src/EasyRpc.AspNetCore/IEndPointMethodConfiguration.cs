@@ -4,6 +4,7 @@ using System.Text;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.Filters;
+using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore
@@ -66,6 +67,11 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Sets content encoding header if set
         /// </summary>
-        string RawContentEncoding { get; set; }
+        string RawContentEncoding { get; }
+
+        /// <summary>
+        /// List of response headers to be applied to end point
+        /// </summary>
+        IReadOnlyList<IResponseHeader> ResponseHeaders { get; }
     }
 }

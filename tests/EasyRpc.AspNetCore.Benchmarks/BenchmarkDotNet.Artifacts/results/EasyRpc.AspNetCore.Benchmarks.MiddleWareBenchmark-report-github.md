@@ -10,11 +10,11 @@ Job=InProcess  Server=True  Toolchain=InProcessEmitToolchain
 ```
 |              Method |     Mean |    Error |   StdDev | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |-------------------- |---------:|---------:|---------:|------:|------:|------:|----------:|
-|     ConcatBenchmark | 89.90 us | 1.870 us | 5.455 us |     - |     - |     - |  12.54 KB |
-|     CarterPlainText | 77.19 us | 1.527 us | 3.119 us |     - |     - |     - |  12.53 KB |
-|           PlainText | 70.18 us | 1.394 us | 3.031 us |     - |     - |     - |  10.48 KB |
-|            NoParams | 69.88 us | 1.395 us | 3.206 us |     - |     - |     - |  10.68 KB |
-|         GetOneParam | 71.64 us | 1.413 us | 3.518 us |     - |     - |     - |  10.69 KB |
-| PlainTextAspRouting | 70.42 us | 1.399 us | 3.781 us |     - |     - |     - |  10.48 KB |
-|  NoParamsAspRouting | 70.33 us | 1.401 us | 3.565 us |     - |     - |     - |  10.53 KB |
-|      BlankBenchmark | 61.24 us | 1.217 us | 2.771 us |     - |     - |     - |    9.7 KB |
+|     ConcatBenchmark | 83.49 us | 1.898 us | 2.660 us |     - |     - |     - |   12.6 KB |
+|     CarterPlainText | 72.16 us | 0.833 us | 0.739 us |     - |     - |     - |  12.59 KB |
+|           PlainText | 66.45 us | 1.230 us | 1.150 us |     - |     - |     - |   10.5 KB |
+|            NoParams | 67.49 us | 0.513 us | 0.429 us |     - |     - |     - |  10.71 KB |
+|         GetOneParam | 69.46 us | 1.043 us | 0.924 us |     - |     - |     - |  10.72 KB |
+| PlainTextAspRouting | 66.49 us | 1.315 us | 1.350 us |     - |     - |     - |  10.47 KB |
+|  NoParamsAspRouting | 67.86 us | 0.963 us | 0.853 us |     - |     - |     - |  10.56 KB |
+|      BlankBenchmark | 61.69 us | 1.214 us | 1.535 us |     - |     - |     - |   9.76 KB |

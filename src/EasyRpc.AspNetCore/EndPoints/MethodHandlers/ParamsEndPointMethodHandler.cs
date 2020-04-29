@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using EasyRpc.AspNetCore.Errors;
-using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 {
-    public class RawNoFeaturesEndPointMethodHandler : BaseContentEndPointMethodHandler
+    public class ParamsEndPointMethodHandler : BaseContentEndPointMethodHandler
     {
-        private readonly string _contentType;
-
-        public RawNoFeaturesEndPointMethodHandler(EndPointMethodConfiguration configuration, string contentType, BaseEndPointServices services) : base(configuration, services)
+        public ParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
         {
-            _contentType = contentType;
+
         }
 
         public override async Task HandleRequest(HttpContext context)
@@ -26,7 +19,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 
             try
             {
-                if (BindParametersDelegate == null)
+                if (InvokeMethodDelegate == null)
                 {
                     SetupMethod();
                 }
@@ -43,7 +36,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 if (!requestContext.ResponseHasStarted &&
                     requestContext.ContinueRequest)
                 {
-                    await Services.RawContentWriter.WriteRawContent(requestContext, _contentType, null);
+                    await ResponseDelegate(requestContext);
                 }
             }
             catch (Exception e)

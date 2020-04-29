@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Services.Models;
 using EasyRpc.Tests.Services.SimpleServices;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -88,11 +89,17 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
             Assert.NotNull(result);
             Assert.NotEqual(0, result.Result);
         }
-
+        
         protected override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
             services.AddRouting();
+        }
+
+        protected override void ConfigureAspNetPipeline(IApplicationBuilder app)
+        {
+            app.UseRouting();
+            base.ConfigureAspNetPipeline(app);
         }
 
         protected override void ApiRegistration(IApiConfiguration api)

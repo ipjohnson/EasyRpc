@@ -23,7 +23,13 @@ namespace EasyRpc.AspNetCore
         /// <param name="contentType">Content-Type header value (i.e. text/plain, etc.)</param>
         /// <returns></returns>
         IExposureExpressionConfiguration Raw(string contentType);
-
-
+        
+        /// <summary>
+        /// Adds response header
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        IExposureExpressionConfiguration Header(string header, string value);
     }
 }

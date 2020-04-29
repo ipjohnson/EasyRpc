@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasyRpc.Abstractions.Response
 {
-    class CacheResponseAttribute
+    class SuccessStatusCodeAttribute
     {
     }
 }

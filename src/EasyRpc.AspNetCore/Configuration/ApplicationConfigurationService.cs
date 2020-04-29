@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Headers;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Response;
 using EasyRpc.Abstractions.Services;
@@ -13,6 +14,7 @@ using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.EndPoints.MethodHandlers;
 using EasyRpc.AspNetCore.Filters;
+using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -89,22 +91,18 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private IEndPointMethodHandler CreateEndPointMethodHandler(ICurrentApiInformation currentApi, EndPointMethodConfiguration configuration)
         {
-            if (configuration.RawContentType != null)
+            if (configuration.Authorizations == null ||
+                configuration.Authorizations.Count == 0)
             {
-                if (configuration.Authorizations == null && configuration.Filters == null)
+                if (configuration.Parameters.Count == 0)
                 {
-                    return new RawNoFeaturesEndPointMethodHandler(configuration, configuration.RawContentType, _services);
+                    return new NoParamsEndPointMethodHandler(configuration, _services);
                 }
 
-                return new RawFullFeatureEndPointMethodHandler(configuration, configuration.RawContentType, _services);
+                return new ParamsEndPointMethodHandler(configuration, _services);
             }
 
-            if (configuration.Authorizations == null && configuration.Filters == null)
-            {
-                return new NoFeaturesEndPointMethodHandler(configuration,  _services);
-            }
-
-            return new FullFeatureEndPointMethodHandler(configuration, _services);
+            return new AuthenticationEndPointMethodHandler(configuration, _services);
         }
         
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
@@ -134,6 +132,24 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     configuration.RawContentType = rawAttribute.ContentType;
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
+                }
+
+                var headerAttributes = methodAttributes.Where(a => a is ResponseHeaderAttribute).ToList();
+                headerAttributes.AddRange(classAttributes.Where(a => a is ResponseHeaderAttribute));
+
+                if (headerAttributes.Count > 0 || 
+                    currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
+                {
+                    var headers = new List<IResponseHeader>();
+
+                    headers.AddRange(currentApi.Headers);
+
+                    foreach (ResponseHeaderAttribute headerAttribute in headerAttributes)
+                    {
+                        headers.Add(new ResponseHeader.ResponseHeader(headerAttribute.Name, headerAttribute.Value));
+                    }
+
+                    configuration.ResponseHeaders = headers;
                 }
 
                 ApplyAuthorizations(currentApi, null, configuration, classAttributes, methodAttributes);

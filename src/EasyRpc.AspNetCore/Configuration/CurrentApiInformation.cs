@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.Filters;
+using EasyRpc.AspNetCore.ResponseHeader;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
@@ -21,7 +23,8 @@ namespace EasyRpc.AspNetCore.Configuration
             ExposeDefaultMethod defaultMethod, 
             ServiceActivationMethod serviceActivationMethod, 
             IServiceProvider serviceProvider, 
-            IConfigurationManager configurationMethods)
+            IConfigurationManager configurationMethods, 
+            ImmutableLinkedList<IResponseHeader> headers)
 
         {
             Authorizations = authorizations;
@@ -33,6 +36,7 @@ namespace EasyRpc.AspNetCore.Configuration
             ServiceActivationMethod = serviceActivationMethod;
             ServiceProvider = serviceProvider;
             ConfigurationMethods = configurationMethods;
+            Headers = headers;
         }
 
         public string BasePath { get; }
@@ -44,6 +48,8 @@ namespace EasyRpc.AspNetCore.Configuration
         public ImmutableLinkedList<Func<Type, IEnumerable<string>>> Prefixes { get; }
 
         public ImmutableLinkedList<Func<MethodInfo, bool>> MethodFilters { get; }
+
+        public ImmutableLinkedList<IResponseHeader> Headers { get; }
 
         public bool SupportResponseCompression { get; }
 

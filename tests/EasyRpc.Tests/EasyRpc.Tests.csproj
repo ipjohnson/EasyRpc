@@ -25,7 +25,6 @@
     <Folder Include="AspNetCore\Serialization\msgpack\" />
     <Folder Include="AspNetCore\Serialization\Newtonsoft\" />
     <Folder Include="AspNetCore\Serialization\utf8json\" />
-    <Folder Include="AspNetCore\Serialization\SystemTextJson\" />
   </ItemGroup>
 
 </Project>

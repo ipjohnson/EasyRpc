@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Services.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -32,6 +33,12 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
         {
             base.ConfigureServices(services);
             services.AddRouting();
+        }
+
+        protected override void ConfigureAspNetPipeline(IApplicationBuilder app)
+        {
+            app.UseRouting();
+            base.ConfigureAspNetPipeline(app);
         }
 
         protected override void ApiRegistration(IApiConfiguration api)

@@ -6,37 +6,35 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 {
-    public class NoFeaturesEndPointMethodHandler : BaseContentEndPointMethodHandler
+    public class NoParamsEndPointMethodHandler : BaseContentEndPointMethodHandler
     {
-        public NoFeaturesEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
+        public NoParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
         {
+
         }
 
-
-        public override async Task HandleRequest(HttpContext httpContext)
+        public override async Task HandleRequest(HttpContext context)
         {
-            var requestContext = new RequestExecutionContext(httpContext, this, Configuration.SuccessStatusCode);
+            var requestContext = new RequestExecutionContext(context, this, Configuration.SuccessStatusCode);
 
             try
             {
-                if (BindParametersDelegate == null)
+                if (InvokeMethodDelegate == null)
                 {
                     SetupMethod();
                 }
-                
-                await BindParametersDelegate(requestContext);
 
+                requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+                
                 if (requestContext.ContinueRequest)
                 {
-                    requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
-
                     await InvokeMethodDelegate(requestContext);
                 }
 
                 if (!requestContext.ResponseHasStarted &&
                     requestContext.ContinueRequest)
                 {
-                    await Services.SerializationService.SerializeToResponse(requestContext);
+                    await ResponseDelegate(requestContext);
                 }
             }
             catch (Exception e)

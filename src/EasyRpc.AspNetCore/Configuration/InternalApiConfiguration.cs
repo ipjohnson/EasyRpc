@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.Filters;
+using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.IIS.Core;
@@ -24,6 +26,7 @@ namespace EasyRpc.AspNetCore.Configuration
             ImmutableLinkedList<Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>>>.Empty;
         private readonly ImmutableLinkedList<Func<MethodInfo, bool>> _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
         private ImmutableLinkedList<Func<Type, IEnumerable<string>>> _prefixes = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
+        private ImmutableLinkedList<IResponseHeader> _responseHeaders = ImmutableLinkedList<IResponseHeader>.Empty;
 
         private readonly IConfigurationManager _configurationMethodRepository;
 
@@ -129,6 +132,20 @@ namespace EasyRpc.AspNetCore.Configuration
             throw new NotImplementedException();
         }
 
+        public IApiConfiguration Header(string header, string value)
+        {
+            _responseHeaders = _responseHeaders.Add(new ResponseHeader.ResponseHeader(header, value));
+
+            return this;
+        }
+
+        public IApiConfiguration ClearHeaders()
+        {
+            _responseHeaders = ImmutableLinkedList<IResponseHeader>.Empty;
+            
+            return this;
+        }
+
         public IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter
         {
             if (where == null)
@@ -188,7 +205,8 @@ namespace EasyRpc.AspNetCore.Configuration
                 _defaultMethod, 
                 ServiceActivationMethod.ActivationUtility, 
                 _applicationServiceProvider, 
-                _configurationMethodRepository);
+                _configurationMethodRepository,
+                _responseHeaders);
 
             return _currentApiInformation;
         }

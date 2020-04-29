@@ -16,7 +16,9 @@ namespace EasyRpc.AspNetCore.EndPoints
             IContentSerializationService serializationService, 
             IParameterBinderDelegateBuilder parameterBinderDelegateBuilder, 
             IMethodInvokerCreationService methodInvokerCreationService, 
-            IErrorHandler errorHandler, IRawContentWriter rawContentWriter)
+            IErrorHandler errorHandler, 
+            IRawContentWriter rawContentWriter,
+            IResponseDelegateCreator responseDelegateCreator)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;
@@ -24,6 +26,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             MethodInvokerCreationService = methodInvokerCreationService;
             ErrorHandler = errorHandler;
             RawContentWriter = rawContentWriter;
+            ResponseDelegateCreator = responseDelegateCreator;
         }
 
         public IEndPointAuthorizationService AuthorizationService { get; }
@@ -37,6 +40,8 @@ namespace EasyRpc.AspNetCore.EndPoints
         public IErrorHandler ErrorHandler { get; }
 
         public IRawContentWriter RawContentWriter { get; }
+
+        public IResponseDelegateCreator ResponseDelegateCreator { get; }
 
         public void ConfigurationComplete(IServiceProvider serviceScope)
         {
@@ -68,6 +73,11 @@ namespace EasyRpc.AspNetCore.EndPoints
             if (RawContentWriter is IApiConfigurationCompleteAware rawContentWriterAware)
             {
                 rawContentWriterAware.ApiConfigurationComplete(serviceScope);
+            }
+
+            if (ResponseDelegateCreator is IApiConfigurationCompleteAware responseDelegateAware)
+            {
+                responseDelegateAware.ApiConfigurationComplete(serviceScope);
             }
         }
     }

@@ -18,6 +18,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         protected readonly BaseEndPointServices Services;
         protected MethodEndPointDelegate BindParametersDelegate;
         protected MethodEndPointDelegate InvokeMethodDelegate;
+        protected MethodEndPointDelegate ResponseDelegate;
 
         protected BaseContentEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
         {
@@ -74,6 +75,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                     {
                         InvokeMethodDelegate = Configuration.InvokeInformation.MethodInvokeDelegate;
                     }
+
+                    ResponseDelegate = Services.ResponseDelegateCreator.CreateResponseDelegate(Configuration);
                 }
             }
         }

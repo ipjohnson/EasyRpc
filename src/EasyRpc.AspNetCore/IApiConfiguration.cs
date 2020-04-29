@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration;
@@ -31,7 +33,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="authorizations"></param>
         /// <returns></returns>
         IApiConfiguration Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations);
-
+        
         /// <summary>
         /// Clear authorize flags
         /// </summary>
@@ -83,7 +85,22 @@ namespace EasyRpc.AspNetCore
         /// <param name="types"></param>
         /// <returns></returns>
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
-        
+
+
+        /// <summary>
+        /// Add header to all responses
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        IApiConfiguration Header(string header, string value);
+
+        /// <summary>
+        /// Clear all global headers
+        /// </summary>
+        /// <returns></returns>
+        IApiConfiguration ClearHeaders();
+
         /// <summary>
         /// Apply call filter
         /// </summary>
@@ -124,29 +141,4 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
     }
 
-    /// <summary>
-    /// Http method to use when exposing methods
-    /// </summary>
-    public enum ExposeDefaultMethod
-    {
-        /// <summary>
-        /// Always use post when no method configured through Attribute or Fluent
-        /// </summary>
-        PostOnly,
-
-        /// <summary>
-        /// Post when there are parameters, Get when no parameters
-        /// </summary>
-        PostAndGet,
-
-        /// <summary>
-        /// Post when more than int parameters, Get when no parameters and int
-        /// </summary>
-        PostAndGetInt,
-
-        /// <summary>
-        /// Get Only methods
-        /// </summary>
-        GetOnly
-    }
 }

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using EasyRpc.AspNetCore.Errors;
-using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 {
-    public class FullFeatureEndPointMethodHandler : BaseContentEndPointMethodHandler
+    public class AuthenticationEndPointMethodHandler : BaseContentEndPointMethodHandler
     {
-        public FullFeatureEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration,services)
+        public AuthenticationEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
         {
         }
 
@@ -18,7 +16,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         public override async Task HandleRequest(HttpContext httpContext)
         {
             var requestContext = new RequestExecutionContext(httpContext, this, Configuration.SuccessStatusCode);
-            
+
             try
             {
                 if (BindParametersDelegate == null)
@@ -48,7 +46,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 if (!requestContext.ResponseHasStarted &&
                     requestContext.ContinueRequest)
                 {
-                    await Services.SerializationService.SerializeToResponse(requestContext);
+                    await ResponseDelegate(requestContext);
                 }
             }
             catch (Exception e)

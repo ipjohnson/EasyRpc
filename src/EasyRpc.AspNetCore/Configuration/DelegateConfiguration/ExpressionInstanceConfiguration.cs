@@ -18,6 +18,8 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 
         public string RawContentType { get; set; }
 
+        public ImmutableLinkedList<IResponseHeader> Headers { get; set; } = ImmutableLinkedList<IResponseHeader>.Empty;
+
         public ImmutableLinkedList<Func<RequestExecutionContext, IRequestFilter>> Filters { get; set; } = 
             ImmutableLinkedList<Func<RequestExecutionContext, IRequestFilter>>.Empty;
 
@@ -32,6 +34,13 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
         public IExposureExpressionConfiguration Raw(string contentType)
         {
             RawContentType = contentType;
+
+            return this;
+        }
+
+        public IExposureExpressionConfiguration Header(string header, string value)
+        {
+            Headers = Headers.Add(new ResponseHeader.ResponseHeader(header, value));
 
             return this;
         }
