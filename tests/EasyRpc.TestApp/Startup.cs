@@ -32,13 +32,26 @@ namespace EasyRpc.TestApp
                 //api.GetMethod("/StringTest/{stringValue}", (string stringValue) => stringValue + " Hello world!");
                 api.GetMethod("/plaintext", () => "Hello, World!").Raw("text/plain");
                 //api.GetMethod("/json", () => new { message = "Hello, World!" });
-
+                api.PostMethod("/lists", (TestClass value) => Task.FromResult(value));
             });
         }
 
         public class BodyTest
         {
             public int Value { get; set; }
+        }
+
+        public enum SomeEnum
+        {
+            Red,
+            Black,
+            Blue
+        }
+
+        public class TestClass
+        {
+            public SomeEnum Enum { get; set; }
+            public List<int> IntValues { get; set; }
         }
     }
 

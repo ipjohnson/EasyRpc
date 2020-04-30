@@ -212,13 +212,31 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             var responses = new OpenApiResponses();
 
-            GenerateSuccessResponse(endPointMethodHandler, responses);
+            if (endPointMethodHandler.Configuration.ReturnType == typeof(void) ||
+                endPointMethodHandler.Configuration.ReturnType == typeof(Task) ||
+                endPointMethodHandler.Configuration.ReturnType == typeof(ValueTask))
+            {
+                GenerateEmptySuccessResponse(endPointMethodHandler, responses);
+            }
+            else
+            {
+                GenerateSuccessResponse(endPointMethodHandler, responses);
+            }
 
             GenerateNoContentResponse(endPointMethodHandler, responses);
 
             GenerateErrorResponse(endPointMethodHandler, responses);
 
             return responses;
+        }
+
+        private void GenerateEmptySuccessResponse(IEndPointMethodHandler endPointMethodHandler, OpenApiResponses responses)
+        {
+            var successStatusCode = endPointMethodHandler.Configuration.SuccessStatusCode.ToString();
+            var contentDictionary = new Dictionary<string, OpenApiMediaType>();
+            var response = new OpenApiResponse { Content = contentDictionary, Description = "Success" };
+
+            responses.Add(successStatusCode, response);
         }
 
         private void GenerateErrorResponse(IEndPointMethodHandler endPointMethodHandler, OpenApiResponses responses)
@@ -267,20 +285,29 @@ namespace EasyRpc.AspNetCore.Documentation
             var response = new OpenApiResponse { Content = contentDictionary, Description = "Success" };
             OpenApiSchema responseSchema = null;
 
+            var returnType = endPointMethodHandler.Configuration.ReturnType;
+
+            if (returnType.IsConstructedGenericType && 
+                (returnType.GetGenericTypeDefinition() == typeof(Task<>) || 
+                 returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
+            {
+                returnType = returnType.GenericTypeArguments[0];
+            }
+            
             if (string.IsNullOrEmpty(endPointMethodHandler.Configuration.RawContentType) &&
-                _exposeConfiguration.TypeWrapSelector(endPointMethodHandler.Configuration.ReturnType))
+                _exposeConfiguration.TypeWrapSelector(returnType))
             {
                 responseSchema = new OpenApiSchema
                 {
                     Properties = new Dictionary<string, OpenApiSchema>
                     {
-                        { "result", _apiSchemaGenerator.GetSchemaType(endPointMethodHandler.Configuration.ReturnType) }
+                        { "result", _apiSchemaGenerator.GetSchemaType(returnType) }
                     }
                 };
             }
             else
             {
-                responseSchema = _apiSchemaGenerator.GetSchemaType(endPointMethodHandler.Configuration.ReturnType);
+                responseSchema = _apiSchemaGenerator.GetSchemaType(returnType);
             }
 
             if (string.IsNullOrEmpty(endPointMethodHandler.Configuration.RawContentType))

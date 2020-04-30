@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.AspNetCore.Documentation
@@ -35,6 +37,37 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public OpenApiSchema GetSchemaType(Type objectType)
         {
+            if (objectType.IsArray)
+            {
+                var elementSchema = GetSchemaType(objectType.GetElementType());
+                
+                return new OpenApiSchema
+                {
+                    Type = "array",
+                    Items = elementSchema
+                };
+            }
+
+            if (objectType != typeof(string) &&
+                typeof(IEnumerable).IsAssignableFrom(objectType))
+            {
+                var interfaces = objectType.GetInterfaces();
+
+                var enumerableInterface = interfaces.FirstOrDefault(i =>
+                    i.IsConstructedGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+                if (enumerableInterface != null)
+                {
+                    var elementSchema = GetSchemaType(enumerableInterface.GenericTypeArguments[0]);
+                    
+                    return new OpenApiSchema
+                    {
+                        Type = "array",
+                        Items = elementSchema
+                    };
+                }
+            }
+
             var schema = _simpleOpenApiTypeMapper.MapSimpleType(objectType);
 
             if (schema != null)
@@ -49,10 +82,28 @@ namespace EasyRpc.AspNetCore.Documentation
 
             referenceName = GenerateReferenceName(objectType);
 
-            ProcessTypeForComponent(referenceName, objectType);
-
+            if (objectType.IsEnum)
+            {
+                ProcessEnumTypeForComponent(referenceName, objectType);
+            }
+            else
+            {
+                ProcessTypeForComponent(referenceName, objectType);
+            }
 
             return new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = referenceName } };
+        }
+
+        private void ProcessEnumTypeForComponent(string referenceName, Type objectType)
+        {
+            var schemaInstance = new OpenApiSchema { Type = "integer" };
+
+            foreach (var value in Enum.GetValues(objectType))
+            {
+                schemaInstance.Enum.Add(new OpenApiInteger((int)value));
+            }
+
+            _knownComponents[referenceName] = schemaInstance;
         }
 
         private void ProcessTypeForComponent(string referenceName, Type objectType)
