@@ -16,8 +16,12 @@ namespace EasyRpc.AspNetCore.Configuration
 {
     public partial class ApplicationConfigurationService
     {
-        protected List<Attribute> EmptyList = new List<Attribute>();
+        /// <summary>
+        /// Empty list of attributes
+        /// </summary>
+        protected readonly List<Attribute> EmptyList = new List<Attribute>();
 
+        /// <inheritdoc />
         public void ExposeExpression<TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration, Expression<Func<TResult>> expression)
         {
             var func = expression.Compile();
@@ -32,6 +36,7 @@ namespace EasyRpc.AspNetCore.Configuration
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
 
+        /// <inheritdoc />
         public void ExposeExpression<TArg1, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TResult>> expression)
         {
@@ -47,6 +52,7 @@ namespace EasyRpc.AspNetCore.Configuration
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
 
+        /// <inheritdoc />
         public void ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TArg2, TResult>> expression)
         {
@@ -62,6 +68,7 @@ namespace EasyRpc.AspNetCore.Configuration
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
 
+        /// <inheritdoc />
         public void ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TArg2, TArg3, TResult>> expression)
         {
@@ -77,7 +84,14 @@ namespace EasyRpc.AspNetCore.Configuration
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
 
-
+        /// <summary>
+        /// Register expression end point
+        /// </summary>
+        /// <typeparam name="TDelegate"></typeparam>
+        /// <param name="currentApi"></param>
+        /// <param name="instanceConfiguration"></param>
+        /// <param name="expression"></param>
+        /// <param name="finalDelegate"></param>
         protected virtual void RegisterExpression<TDelegate>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
             Expression<TDelegate> expression, Delegate finalDelegate)
         {
@@ -89,6 +103,15 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
+        /// <summary>
+        /// Create end point configuration for func delegate
+        /// </summary>
+        /// <typeparam name="TDelegate"></typeparam>
+        /// <param name="currentApi"></param>
+        /// <param name="instanceConfiguration"></param>
+        /// <param name="func"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         protected virtual IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfigurationForFunc<TDelegate>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration, Delegate func, Expression<TDelegate> expression)
         {
             var fullPath = instanceConfiguration.Path;
@@ -122,6 +145,14 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
+        /// <summary>
+        /// Generate method parameter for expression
+        /// </summary>
+        /// <typeparam name="TDelegate"></typeparam>
+        /// <param name="currentApi"></param>
+        /// <param name="routeInformation"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         protected virtual IEnumerable<RpcParameterInfo> GenerateMethodParametersForExpression<TDelegate>(ICurrentApiInformation currentApi, IRpcRouteInformation routeInformation, Expression<TDelegate> expression)
         {
             var parameterList = new List<RpcParameterInfo>();
@@ -163,7 +194,13 @@ namespace EasyRpc.AspNetCore.Configuration
             return parameterList;
         }
 
-        private void SetParameterSource(IRpcRouteInformation routeInformation, Type parameterType, RpcParameterInfo rpcParameter)
+        /// <summary>
+        /// Set parameter source based on type
+        /// </summary>
+        /// <param name="routeInformation"></param>
+        /// <param name="parameterType"></param>
+        /// <param name="rpcParameter"></param>
+        protected virtual void SetParameterSource(IRpcRouteInformation routeInformation, Type parameterType, RpcParameterInfo rpcParameter)
         {
             if (_exposeConfigurations.ResolveFromContainer(parameterType))
             {

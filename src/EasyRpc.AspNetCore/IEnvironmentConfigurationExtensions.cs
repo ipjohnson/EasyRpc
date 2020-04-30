@@ -15,11 +15,11 @@ namespace EasyRpc.AspNetCore
         /// Configure api base path
         /// </summary>
         /// <param name="configuration"></param>
-        /// <param name="options"></param>
+        /// <param name="path"></param>
         /// <returns></returns>
-        public static IEnvironmentConfiguration BasePath(this IEnvironmentConfiguration configuration, Action<BasePathOptions> options)
+        public static IEnvironmentConfiguration BasePath(this IEnvironmentConfiguration configuration, string path)
         {
-            return configuration.Action(options);
+            return configuration.Action((BasePathOptions option) => option.Path = path);
         }
 
         /// <summary>
