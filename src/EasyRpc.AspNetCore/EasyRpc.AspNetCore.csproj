@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageTags>rpc services</PackageTags>
     <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
