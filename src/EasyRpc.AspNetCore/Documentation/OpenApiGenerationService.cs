@@ -211,19 +211,18 @@ namespace EasyRpc.AspNetCore.Documentation
         private OpenApiResponses GenerateResponses(IEndPointMethodHandler endPointMethodHandler)
         {
             var responses = new OpenApiResponses();
+            var hasContent = false;
 
-            if (endPointMethodHandler.Configuration.ReturnType == typeof(void) ||
-                endPointMethodHandler.Configuration.ReturnType == typeof(Task) ||
-                endPointMethodHandler.Configuration.ReturnType == typeof(ValueTask))
+            if (endPointMethodHandler.Configuration.ReturnType != typeof(void) &&
+                endPointMethodHandler.Configuration.ReturnType != typeof(Task) &&
+                endPointMethodHandler.Configuration.ReturnType != typeof(ValueTask))
             {
-                GenerateEmptySuccessResponse(endPointMethodHandler, responses);
-            }
-            else
-            {
+                hasContent = true;
+
                 GenerateSuccessResponse(endPointMethodHandler, responses);
             }
 
-            GenerateNoContentResponse(endPointMethodHandler, responses);
+            GenerateNoContentResponse(endPointMethodHandler, responses, !hasContent);
 
             GenerateErrorResponse(endPointMethodHandler, responses);
 
@@ -260,13 +259,20 @@ namespace EasyRpc.AspNetCore.Documentation
             }
         }
 
-        private void GenerateNoContentResponse(IEndPointMethodHandler endPointMethodHandler, OpenApiResponses responses)
+        private void GenerateNoContentResponse(IEndPointMethodHandler endPointMethodHandler, OpenApiResponses responses, bool success)
         {
             if (endPointMethodHandler.RouteInformation.HasBody)
             {
                 if (!responses.ContainsKey("204"))
                 {
-                    responses.Add("204", new OpenApiResponse { Description = "No content" });
+                    var response = new OpenApiResponse {Description = "No content"};
+
+                    if (success)
+                    {
+                        response.Description += " - successful";
+                    }
+
+                    responses.Add("204", response);
                 }
             }
             else
