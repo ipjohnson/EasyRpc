@@ -59,7 +59,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             }
             catch (Exception e)
             {
-                await Services.ErrorHandler.DefaultErrorHandlerError(requestContext, e);
+                await Services.ErrorHandler.HandleException(requestContext, e);
             }
         }
     }

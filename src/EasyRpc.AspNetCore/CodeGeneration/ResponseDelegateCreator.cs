@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        MethodEndPointDelegate CreateResponseDelegate(EndPointMethodConfiguration configuration);
+        MethodEndPointDelegate CreateResponseDelegate(IEndPointMethodConfigurationReadOnly configuration);
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         /// <inheritdoc />
-        public virtual MethodEndPointDelegate CreateResponseDelegate(EndPointMethodConfiguration configuration)
+        public virtual MethodEndPointDelegate CreateResponseDelegate(IEndPointMethodConfigurationReadOnly configuration)
         {
             if (string.IsNullOrEmpty(configuration.RawContentType))
             {

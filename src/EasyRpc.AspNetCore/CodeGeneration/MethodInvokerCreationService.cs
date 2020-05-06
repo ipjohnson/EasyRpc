@@ -21,7 +21,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        MethodEndPointDelegate BuildMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType);
+        MethodEndPointDelegate BuildMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType);
     }
 
     /// <inheritdoc cref="IMethodInvokeInformation"/>
@@ -60,7 +60,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         /// <inheritdoc />
-        public MethodEndPointDelegate BuildMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
+        public MethodEndPointDelegate BuildMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             if (endPointMethodConfiguration.InvokeInformation.MethodToInvoke != null)
             {
@@ -85,7 +85,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        protected virtual MethodEndPointDelegate BuildDelegateMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
+        protected virtual MethodEndPointDelegate BuildDelegateMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
             var typedParameterVariable = Expression.Variable(parametersType, "localParameters");
@@ -130,7 +130,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        protected virtual MethodEndPointDelegate BuildInstanceMethodInvoker(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType)
+        protected virtual MethodEndPointDelegate BuildInstanceMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
             var typedParameterVariable = Expression.Variable(parametersType, "localParameters");
@@ -162,7 +162,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="methodBodyStatements"></param>
         /// <param name="requestParameter"></param>
         /// <param name="invokeExpression"></param>
-        protected virtual void WrapExpression(EndPointMethodConfiguration endPointMethodConfiguration,
+        protected virtual void WrapExpression(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration,
             MethodInfo invokeMethod,
             List<Expression> methodBodyStatements,
             ParameterExpression requestParameter,
@@ -294,7 +294,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="parametersType"></param>
         /// <param name="typedParameterVariable"></param>
         /// <returns></returns>
-        protected virtual List<Expression> BuildParameterList(EndPointMethodConfiguration endPointMethodConfiguration,
+        protected virtual List<Expression> BuildParameterList(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration,
             Type parametersType, ParameterExpression typedParameterVariable)
         {
             var parameterList = new List<Expression>();
@@ -316,7 +316,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="parametersType"></param>
         /// <param name="endPointDelegate"></param>
         /// <returns></returns>
-        protected virtual MethodEndPointDelegate ApplyFiltersToMethodEndPointDelegate(EndPointMethodConfiguration endPointMethodConfiguration, Type parametersType, MethodEndPointDelegate endPointDelegate)
+        protected virtual MethodEndPointDelegate ApplyFiltersToMethodEndPointDelegate(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType, MethodEndPointDelegate endPointDelegate)
         {
             if (endPointMethodConfiguration.Filters == null || endPointMethodConfiguration.Filters.Count == 0)
             {

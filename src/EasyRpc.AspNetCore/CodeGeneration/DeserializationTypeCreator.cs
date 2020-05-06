@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// </summary>
         /// <param name="methodConfiguration">method configuration</param>
         /// <returns>newly created type</returns>
-        Type CreateTypeForMethod(EndPointMethodConfiguration methodConfiguration);
+        Type CreateTypeForMethod(IEndPointMethodConfigurationReadOnly methodConfiguration);
     }
 
 
@@ -42,7 +42,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
 
         /// <inheritdoc />
-        public Type CreateTypeForMethod(EndPointMethodConfiguration methodConfiguration)
+        public Type CreateTypeForMethod(IEndPointMethodConfigurationReadOnly methodConfiguration)
         {
             lock (_lock)
             {
@@ -74,7 +74,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
 
-        protected virtual void GenerateConstructorWithDefaults(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateConstructorWithDefaults(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var constructorBuilder = typeBuilder.DefineConstructor(MethodAttributes.Public,
                 CallingConventions.Standard, new Type[0]);
@@ -119,7 +119,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         protected virtual void GenerateIntDefault(TypeBuilder typeBuilder,
-            EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext,
+            IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext,
             ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
@@ -127,21 +127,21 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             ilGenerator.Emit(OpCodes.Stfld, backingField);
         }
 
-        protected virtual void GenerateStringDefault(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
+        protected virtual void GenerateStringDefault(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
             ilGenerator.EmitInt((int)rpcParameterInfo.DefaultValue);
             ilGenerator.Emit(OpCodes.Stfld, backingField);
         }
         
-        protected virtual void GenerateDoubleDefault(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
+        protected virtual void GenerateDoubleDefault(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
             ilGenerator.Emit(OpCodes.Ldc_R8, (double)rpcParameterInfo.DefaultValue);
             ilGenerator.Emit(OpCodes.Stfld, backingField);
         }
 
-        protected virtual void GenerateBooleanDefault(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
+        protected virtual void GenerateBooleanDefault(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext, ILGenerator ilGenerator, RpcParameterInfo rpcParameterInfo, FieldBuilder backingField)
         {
             ilGenerator.Emit(OpCodes.Ldarg_0);
             ilGenerator.EmitBoolean((bool)rpcParameterInfo.DefaultValue);
@@ -149,7 +149,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         protected virtual void GenerateComplexDefault(TypeBuilder typeBuilder,
-            EndPointMethodConfiguration methodConfiguration, 
+            IEndPointMethodConfigurationReadOnly methodConfiguration, 
             TypeCreationContext creationContext,
             ILGenerator ilGenerator, 
             RpcParameterInfo rpcParameterInfo, 
@@ -173,14 +173,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         #region Constructor and fields
-        protected virtual TypeBuilder CreateTypeBuilder(EndPointMethodConfiguration methodConfiguration,
+        protected virtual TypeBuilder CreateTypeBuilder(IEndPointMethodConfigurationReadOnly methodConfiguration,
             TypeCreationContext creationContext)
         {
             return _moduleBuilder.DefineType("DeserializeType" + _proxyCount, TypeAttributes.Public);
         }
 
         protected virtual void CreateBackingFields(TypeBuilder typeBuilder,
-            EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+            IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             foreach (var parameter in methodConfiguration.Parameters)
             {
@@ -205,14 +205,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         #region interface generation
 
         protected virtual void AddInterfaceImplementations(TypeBuilder typeBuilder,
-            EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+            IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var closedInterface = typeof(IRequestParametersImplementations<>).MakeGenericType(typeBuilder);
 
             typeBuilder.AddInterfaceImplementation(closedInterface);
         }
 
-        protected virtual void ImplementRequestParametersInterface(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void ImplementRequestParametersInterface(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             GenerateTryGetParameter(typeBuilder, methodConfiguration, creationContext);
 
@@ -225,7 +225,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             GenerateNumberOfParameters(typeBuilder, methodConfiguration, creationContext);
         }
 
-        protected virtual void GenerateNumberOfParameters(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateNumberOfParameters(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var methodAttr = MethodAttributes.Private | MethodAttributes.HideBySig |
                              MethodAttributes.NewSlot | MethodAttributes.Virtual |
@@ -246,14 +246,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             typeBuilder.DefineMethodOverride(numberOfParameters, parameterCount);
         }
 
-        protected virtual void GenerateArrayAccess(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateArrayAccess(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             GenerateGetItemMethod(typeBuilder, methodConfiguration, creationContext);
 
             GenerateSetItemMethod(typeBuilder, methodConfiguration, creationContext);
         }
 
-        private void GenerateSetItemMethod(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        private void GenerateSetItemMethod(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var setMethod = typeBuilder.DefineMethod("set_Item", MethodAttributes.Virtual | MethodAttributes.Private,
                 null, new[] { typeof(int), typeof(object) });
@@ -302,7 +302,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             typeBuilder.DefineMethodOverride(setMethod, baseMethod);
         }
 
-        protected virtual void GenerateGetItemMethod(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateGetItemMethod(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var getMethod = typeBuilder.DefineMethod("get_Item", MethodAttributes.Virtual | MethodAttributes.Private,
                 typeof(object), new[] { typeof(int) });
@@ -347,7 +347,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             typeBuilder.DefineMethodOverride(getMethod, baseMethod);
         }
 
-        protected virtual void GenerateParameterNames(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateParameterNames(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var methodAttr = MethodAttributes.Private | MethodAttributes.HideBySig |
                              MethodAttributes.NewSlot | MethodAttributes.Virtual |
@@ -369,7 +369,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             typeBuilder.DefineMethodOverride(getParameterNames, getMethod);
         }
         
-        protected virtual void GenerateTrySetParameter(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateTrySetParameter(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var methodAttr = MethodAttributes.Private | MethodAttributes.HideBySig |
                              MethodAttributes.NewSlot | MethodAttributes.Virtual |
@@ -386,7 +386,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             typeBuilder.DefineMethodOverride(trySetParameter, typeof(IRequestParameters).GetMethod(nameof(IRequestParameters.TrySetParameter)));
         }
 
-        protected virtual void GenerateTrySetParameterIL(MethodBuilder tryGetParameter, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateTrySetParameterIL(MethodBuilder tryGetParameter, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             ILGenerator methodIL = tryGetParameter.GetILGenerator();
 
@@ -447,7 +447,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             methodIL.Emit(OpCodes.Ret);
         }
 
-        protected virtual void GenerateTryGetParameter(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GenerateTryGetParameter(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             var methodAttr = MethodAttributes.Private | MethodAttributes.HideBySig |
                              MethodAttributes.NewSlot | MethodAttributes.Virtual |
@@ -466,7 +466,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         }
 
         protected virtual void GenerateTryGetParameterIL(MethodBuilder tryGetParameter,
-            EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+            IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             ILGenerator methodIL = tryGetParameter.GetILGenerator();
 
@@ -534,7 +534,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
         #region Property implementation
 
-        protected virtual void ImplementProperties(TypeBuilder typeBuilder, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void ImplementProperties(TypeBuilder typeBuilder, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             foreach (var parameterInfo in creationContext.ParameterInfos)
             {
@@ -549,7 +549,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
         }
 
-        protected virtual void GeneratePropertySet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder, InternalParameterInfo parameterInfo, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GeneratePropertySet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder, InternalParameterInfo parameterInfo, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             // The property set and property get methods require a special
             // set of attributes.
@@ -569,7 +569,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             propertyBuilder.SetSetMethod(setMethodBuilder);
         }
 
-        protected virtual void GeneratePropertySetIL(TypeBuilder typeBuilder, MethodBuilder setMethodBuilder, InternalParameterInfo parameterInfo, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GeneratePropertySetIL(TypeBuilder typeBuilder, MethodBuilder setMethodBuilder, InternalParameterInfo parameterInfo, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             ILGenerator setIL = setMethodBuilder.GetILGenerator();
 
@@ -579,7 +579,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             setIL.Emit(OpCodes.Ret);
         }
 
-        protected virtual void GeneratePropertyGet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder, InternalParameterInfo parameterInfo, EndPointMethodConfiguration methodConfiguration, TypeCreationContext creationContext)
+        protected virtual void GeneratePropertyGet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder, InternalParameterInfo parameterInfo, IEndPointMethodConfigurationReadOnly methodConfiguration, TypeCreationContext creationContext)
         {
             // The property set and property get methods require a special
             // set of attributes.
@@ -602,7 +602,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         protected virtual void GeneratePropertyGetIL(TypeBuilder typeBuilder,
             MethodBuilder getMethodBuilder,
             InternalParameterInfo parameterInfo,
-            EndPointMethodConfiguration methodConfiguration,
+            IEndPointMethodConfigurationReadOnly methodConfiguration,
             TypeCreationContext creationContext)
         {
             ILGenerator getIL = getMethodBuilder.GetILGenerator();

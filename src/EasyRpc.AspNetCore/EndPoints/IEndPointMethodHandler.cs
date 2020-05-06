@@ -7,9 +7,15 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IEndPointMethodHandler
     {
-        EndPointMethodConfiguration Configuration { get; }
+        /// <summary>
+        /// Configuration
+        /// </summary>
+        IEndPointMethodConfigurationReadOnly Configuration { get; }
 
         IRpcRouteInformation RouteInformation { get; }
   

@@ -53,7 +53,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         public IRpcRouteInformation RouteInformation => Configuration.RouteInformation;
 
         /// <inheritdoc />
-        public virtual EndPointMethodConfiguration Configuration { get; }
+        public virtual IEndPointMethodConfigurationReadOnly Configuration { get; }
 
         /// <inheritdoc />
         public virtual string HttpMethod => RouteInformation.Method;

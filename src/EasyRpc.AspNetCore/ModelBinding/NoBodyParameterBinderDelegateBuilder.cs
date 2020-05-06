@@ -16,7 +16,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
 {
     public interface INoBodyParameterBinderDelegateBuilder : IApiConfigurationCompleteAware
     {
-        MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, Type parametersType);
+        MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, Type parametersType);
     }
 
     public class NoBodyParameterBinderDelegateBuilder : BaseParameterBinderDelegateBuilder, INoBodyParameterBinderDelegateBuilder
@@ -28,14 +28,14 @@ namespace EasyRpc.AspNetCore.ModelBinding
             
         }
         
-        public virtual MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, Type parametersType)
+        public virtual MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             var methodExpression = CreateMethodExpression(configuration, parametersType);
 
             return methodExpression.Compile();
         }
 
-        protected virtual Expression<MethodEndPointDelegate> CreateMethodExpression(EndPointMethodConfiguration configuration, Type parametersType)
+        protected virtual Expression<MethodEndPointDelegate> CreateMethodExpression(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             var closedMethod = BindParametersMethod.MakeGenericMethod(parametersType);
 

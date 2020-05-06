@@ -5,6 +5,9 @@ using System.Text;
 
 namespace EasyRpc.Abstractions.Path
 {
+    /// <summary>
+    /// OPTIONS Method
+    /// </summary>
     public class OptionsMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

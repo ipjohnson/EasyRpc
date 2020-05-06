@@ -16,7 +16,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
     /// </summary>
     public interface IBodySingleParameterBinderDelegateBuilder : IApiConfigurationCompleteAware
     {
-        MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, Type parametersType);
+        MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, Type parametersType);
     }
 
 
@@ -32,13 +32,13 @@ namespace EasyRpc.AspNetCore.ModelBinding
             _contentSerializationService = contentSerializationService;
         }
 
-        public MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, Type parametersType)
+        public MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             var methodExpression = CreateMethodExpression(configuration, parametersType);
 
             return methodExpression.Compile();
         }
-        protected virtual Expression<MethodEndPointDelegate> CreateMethodExpression(EndPointMethodConfiguration configuration, Type parametersType)
+        protected virtual Expression<MethodEndPointDelegate> CreateMethodExpression(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext));
 

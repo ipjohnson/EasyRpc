@@ -23,7 +23,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
         /// <param name="configuration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, out Type parametersType);
+        MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, out Type parametersType);
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
         private static readonly MethodEndPointDelegate _emptyParameterDelegate = EmptyParameterFunc;
 
         private static readonly MethodInfo _defaultBodyDeserialize =
-            typeof(ParameterBinderDelegateBuilder).GetMethod("DefaultBodyDeserialize", BindingFlags.NonPublic | BindingFlags.Instance);
+            typeof(ParameterBinderDelegateBuilder).GetMethod(nameof(DefaultBodyDeserialize), BindingFlags.NonPublic | BindingFlags.Instance);
 
         /// <summary>
         /// Default constructor
@@ -65,7 +65,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
         }
         
         /// <inheritdoc />
-        public MethodEndPointDelegate CreateParameterBindingMethod(EndPointMethodConfiguration configuration, out Type parametersType)
+        public MethodEndPointDelegate CreateParameterBindingMethod(IEndPointMethodConfigurationReadOnly configuration, out Type parametersType)
         {
             if (configuration.Parameters.Count == 0)
             {
@@ -74,7 +74,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
             parametersType = _deserializationTypeCreator.CreateTypeForMethod(configuration);
 
-            if (configuration.Parameters.TrueForAll(p =>
+            if (configuration.Parameters.All(p =>
                 p.ParameterSource == EndPointMethodParameterSource.PostParameter))
             {
                 return CreateDefaultBodyBinding(configuration, parametersType);
@@ -97,29 +97,29 @@ namespace EasyRpc.AspNetCore.ModelBinding
             return CreateNoBodyParameterBinding(configuration, parametersType);
         }
 
-        protected virtual MethodEndPointDelegate CreateNoBodyParameterBinding(EndPointMethodConfiguration configuration, Type parametersType)
+        protected virtual MethodEndPointDelegate CreateNoBodyParameterBinding(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             return _noBodyParameterBinder.CreateParameterBindingMethod(configuration, parametersType);
         }
 
-        private MethodEndPointDelegate CreateBodySingleParameterBinding(EndPointMethodConfiguration configuration, Type parametersType)
+        private MethodEndPointDelegate CreateBodySingleParameterBinding(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             return _bodySingleParameterBinder.CreateParameterBindingMethod(configuration, parametersType);
         }
 
-        private MethodEndPointDelegate CreateBodyParameterBinding(EndPointMethodConfiguration configuration, Type parametersType)
+        private MethodEndPointDelegate CreateBodyParameterBinding(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             return _bodyParameterBinder.CreateParameterBindingMethod(configuration, parametersType);
         }
 
-        protected virtual MethodEndPointDelegate CreateDefaultBodyBinding(EndPointMethodConfiguration configuration, Type parametersType)
+        protected virtual MethodEndPointDelegate CreateDefaultBodyBinding(IEndPointMethodConfigurationReadOnly configuration, Type parametersType)
         {
             var closedMethod = _defaultBodyDeserialize.MakeGenericMethod(parametersType);
 
             return (MethodEndPointDelegate)closedMethod.CreateDelegate(typeof(MethodEndPointDelegate), this);
         }
 
-        protected virtual MethodEndPointDelegate EmptyParameterBinding(EndPointMethodConfiguration configuration, out Type parametersType)
+        protected virtual MethodEndPointDelegate EmptyParameterBinding(IEndPointMethodConfigurationReadOnly configuration, out Type parametersType)
         {
             parametersType = typeof(EmptyParameters);
 

@@ -140,7 +140,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
             }
         }
 
-        protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedParameterList(EndPointMethodConfiguration configuration)
+        protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedParameterList(IEndPointMethodConfigurationReadOnly configuration)
         {
             if (configuration.Parameters.All(parameter => parameter.ParameterSource != EndPointMethodParameterSource.PathParameter))
             {
