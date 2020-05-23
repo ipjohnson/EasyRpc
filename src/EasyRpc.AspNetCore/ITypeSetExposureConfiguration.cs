@@ -55,6 +55,12 @@ namespace EasyRpc.AspNetCore
         ITypeSetExposureConfiguration Types(Func<Type, bool> filter = null);
 
         /// <summary>
+        /// Only export attributed types
+        /// </summary>
+        /// <returns></returns>
+        ITypeSetExposureConfiguration OnlyAttributed();
+
+        /// <summary>
         /// Expose types that match filter
         /// </summary>
         /// <param name="filter"></param>
