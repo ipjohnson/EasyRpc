@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration;
@@ -87,7 +88,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="configure">api configuration</param>
         /// <returns></returns>
         public static IApplicationBuilder UseRpcServices(this IApplicationBuilder appBuilder,
-            Action<IApiConfiguration> configure)
+            Action<IApiConfiguration> configure = null)
         {
             var middlewareHandler = appBuilder.ApplicationServices.GetService<IMiddlewareHandler>();
 
@@ -96,7 +97,18 @@ namespace EasyRpc.AspNetCore
                 throw new Exception("Please add services.AddRpcServices(); in the ConfigureServices method of your Startup.cs file.");
             }
 
+            if (configure == null)
+            {
+                configure = DefaultAction;
+            }
+
             return middlewareHandler.Attach(appBuilder, configure);
         }
+
+        /// <summary>
+        /// Default action when calling UseRpcServices
+        /// </summary>
+        public static Action<IApiConfiguration> DefaultAction { get; set; } =
+            api => api.Expose(Assembly.GetEntryAssembly().ExportedTypes).OnlyAttributed();
     }
 }
