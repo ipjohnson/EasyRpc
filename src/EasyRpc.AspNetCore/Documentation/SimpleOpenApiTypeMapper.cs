@@ -83,7 +83,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         private OpenApiSchema GenerateDateTimeSchema()
         {
-            return new OpenApiSchema{ Type = "string", Format = "date-time"};
+            return new OpenApiSchema{ Type = "string", Format = "date-time", Nullable = false };
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         private OpenApiSchema GenerateGuidSchema()
         {
-            return new OpenApiSchema { Type = "string", Format = "uuid" };
+            return new OpenApiSchema { Type = "string", Format = "uuid", Nullable = false };
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateFloatSchema()
         {
-            return new OpenApiSchema {Type = "number", Format = "float"};
+            return new OpenApiSchema {Type = "number", Format = "float", Nullable = false };
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateDoubleSchema()
         {
-            return new OpenApiSchema { Type = "number", Format = "double" };
+            return new OpenApiSchema { Type = "number", Format = "double", Nullable = false };
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateDecimalSchema()
         {
-            return new OpenApiSchema { Type = "number", Format = "double" };
+            return new OpenApiSchema { Type = "number", Format = "double", Nullable = false };
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateByteSchema()
         {
-            return new OpenApiSchema {Type = "integer" };
+            return new OpenApiSchema {Type = "integer", Nullable = false };
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateBoolSchema()
         {
-            return new OpenApiSchema { Type = "boolean" };
+            return new OpenApiSchema { Type = "boolean", Nullable = false };
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateLongSchema()
         {
-            return new OpenApiSchema { Type = "integer", Format = "int64" };
+            return new OpenApiSchema { Type = "integer", Format = "int64", Nullable = false };
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <returns></returns>
         protected virtual OpenApiSchema GenerateIntSchema()
         {
-            return new OpenApiSchema { Type = "integer", Format = "int32" };
+            return new OpenApiSchema { Type = "integer", Format = "int32", Nullable = false};
         }
 
         /// <summary>
