@@ -62,9 +62,20 @@ namespace EasyRpc.AspNetCore.Documentation
 
             var document = await GenerateDocument();
 
-            var output = document.SerializeAsJson(OpenApiSpecVersion.OpenApi3_0);
+            string outputString;
 
-            await httpContext.Response.WriteAsync(output);
+            if (httpContext.Request.Query.TryGetValue("OpenApi", out var openApiVersion) && 
+                int.TryParse(openApiVersion, out var versionNumber) && 
+                versionNumber == 2)
+            {
+                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi2_0);
+            }
+            else
+            {
+                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi3_0);
+            }
+            
+            await httpContext.Response.WriteAsync(outputString);
         }
 
         protected virtual async Task<OpenApiDocument> GenerateDocument()
@@ -195,7 +206,8 @@ namespace EasyRpc.AspNetCore.Documentation
             var operation = new OpenApiOperation
             {
                 Description = "test",
-                Parameters = GenerateParameters(endPointMethodHandler)
+                Parameters = GenerateParameters(endPointMethodHandler),
+                OperationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/","") 
             };
 
             if (endPointMethodHandler.RouteInformation.HasBody)
@@ -328,7 +340,10 @@ namespace EasyRpc.AspNetCore.Documentation
             }
             else
             {
-                contentDictionary[endPointMethodHandler.Configuration.RawContentType] = new OpenApiMediaType();
+                contentDictionary[endPointMethodHandler.Configuration.RawContentType] = new OpenApiMediaType
+                {
+                    Schema = responseSchema
+                };
             }
 
             responses.Add(successStatusCode, response);
