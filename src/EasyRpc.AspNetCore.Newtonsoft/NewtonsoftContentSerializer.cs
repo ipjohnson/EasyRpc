@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.Serializers;
 using Microsoft.Extensions.Primitives;
+using Json = Newtonsoft.Json;
 
-namespace EasyRpc.AspNetCore.Serializers
+namespace EasyRpc.AspNetCore.Newtonsoft
 {
-    /// <summary>
-    /// Default json content serializer based on System.Text.Json
-    /// </summary>
-    public class JsonContentSerializer : BaseSerializer, IApiConfigurationCompleteAware
+    public class NewtonsoftContentSerializer : BaseSerializer
     {
         protected readonly IConfigurationManager ConfigurationManager;
-        protected JsonSerializerOptions SerializerOptions;
+        protected readonly Json.JsonSerializer JsonSerializer;
         private const string _contentType = "application/json";
 
         /// <summary>
@@ -26,15 +23,16 @@ namespace EasyRpc.AspNetCore.Serializers
         /// </summary>
         /// <param name="errorHandler"></param>
         /// <param name="configurationManager"></param>
-        public JsonContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(errorHandler)
+        public NewtonsoftContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(errorHandler)
         {
             ConfigurationManager = configurationManager;
+            
 
-            ConfigurationManager.CreationMethod(DefaultJsonSerializerOptions());
+            ConfigurationManager.CreationMethod(CreateJsonSerializer);
         }
 
         /// <inheritdoc />
-        public override IEnumerable<string> SupportedContentTypes => new[] {_contentType};
+        public override IEnumerable<string> SupportedContentTypes => new[] { _contentType };
 
         /// <inheritdoc />
         public override bool IsDefault => true;
@@ -58,7 +56,13 @@ namespace EasyRpc.AspNetCore.Serializers
 
             var outputStream = GetOutputStream(context);
 
-            await JsonSerializer.SerializeAsync(outputStream, context.Result, context.Result.GetType(), SerializerOptions, context.HttpContext.RequestAborted);
+            await using var memoryStream = new MemoryStream();
+
+            await using var textStream = new StreamWriter(memoryStream);
+
+            JsonSerializer.Serialize(textStream, context.Result);
+
+            await memoryStream.CopyToAsync(outputStream, context.HttpContext.RequestAborted);
 
             if (outputStream != context.HttpContext.Response.Body)
             {
@@ -69,15 +73,29 @@ namespace EasyRpc.AspNetCore.Serializers
         }
 
         /// <inheritdoc />
-        public override ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
+        public override async ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
         {
             if (!context.HttpContext.Request.Headers.TryGetValue("Content-Encoding", out var encoding))
             {
-                return JsonSerializer.DeserializeAsync<T>(context.HttpContext.Request.Body, SerializerOptions,
-                    context.HttpContext.RequestAborted);
+                return await DeserializeStream<T>(context, context.HttpContext.Request.Body);
             }
 
-            return HandleContentEncoding<T>(context, encoding);
+            return await HandleContentEncoding<T>(context, encoding);
+        }
+
+        private async Task<T> DeserializeStream<T>(RequestExecutionContext context, Stream stream)
+        {
+            await using var memoryStream = new MemoryStream();
+
+            await stream.CopyToAsync(memoryStream, context.HttpContext.RequestAborted);
+
+            memoryStream.Position = 0;
+
+            using var streamReader = new StreamReader(memoryStream);
+
+            using var jsonReader = new Json.JsonTextReader(streamReader);
+
+            return JsonSerializer.Deserialize<T>(jsonReader);
         }
 
         protected async ValueTask<T> HandleContentEncoding<T>(RequestExecutionContext context, string encoding)
@@ -86,16 +104,16 @@ namespace EasyRpc.AspNetCore.Serializers
             {
                 await using var brStream = new BrotliStream(context.HttpContext.Response.Body, CompressionMode.Decompress);
 
-                return await JsonSerializer.DeserializeAsync<T>(brStream, null, context.HttpContext.RequestAborted);
+                return await DeserializeStream<T>(context, brStream);
             }
-            
-            if(encoding.Contains("gzip"))
+
+            if (encoding.Contains("gzip"))
             {
                 await using var gzipStream = new GZipStream(context.HttpContext.Response.Body, CompressionMode.Decompress);
 
-                return await JsonSerializer.DeserializeAsync<T>(gzipStream, null, context.HttpContext.RequestAborted);
+                return await DeserializeStream<T>(context, gzipStream);
             }
-            
+
             // fix this
             return await ErrorHandler.HandleDeserializeUnknownContentType<T>(context);
         }
@@ -132,16 +150,14 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <inheritdoc />
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
-            SerializerOptions = ConfigurationManager.GetConfiguration<JsonSerializerOptions>();
+
         }
 
-        /// <summary>
-        /// Method that provides default json settings
-        /// </summary>
-        /// <returns></returns>
-        public static Func<JsonSerializerOptions> DefaultJsonSerializerOptions()
+
+        private Json.JsonSerializer CreateJsonSerializer()
         {
-            return () => new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            return new Json.JsonSerializer();
         }
+
     }
 }

@@ -16,11 +16,15 @@ namespace EasyRpc.DynamicClient.Serializers
 
     public class JsonClientSerializer : IClientSerializer
     {
-        public virtual string ContentType => "application/json";
+        public static readonly JsonClientSerializer DefaultSerializer = new JsonClientSerializer();
 
-        public virtual void SerializeToRequest(object body, HttpRequestMessage request, bool compressBody)
+        public JsonSerializerOptions DefaultJsonSerializerOptions { get; set; } = new JsonSerializerOptions();
+
+        public virtual string ContentType { get; set; } = "application/json";
+
+        public virtual Task SerializeToRequest(object body, HttpRequestMessage request, bool compressBody)
         {
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(body, body.GetType());
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(body, body.GetType(), DefaultJsonSerializerOptions);
 
             if (compressBody && bytes.Length > 1200)
             {
@@ -31,7 +35,7 @@ namespace EasyRpc.DynamicClient.Serializers
 
                 request.Content = new ByteArrayContent(memoryStream.ToArray());
 
-                request.Headers.Add("Content-Encoding","br");
+                request.Headers.Add("Content-Encoding", "br");
             }
             else
             {
@@ -39,28 +43,33 @@ namespace EasyRpc.DynamicClient.Serializers
             }
 
             request.Content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            request.Headers.Add("Accept-Encoding", "br");
+
+            return Task.CompletedTask;
         }
 
         public virtual async Task<T> DeserializeFromResponse<T>(HttpResponseMessage responseMessage)
         {
             await using var readStream = await responseMessage.Content.ReadAsStreamAsync();
-            
+
             var responseStream = readStream;
-            
+
             if (responseMessage.Headers.TryGetValues("Content-Encoding", out var contentEncoding))
             {
                 var contentEncodingList = contentEncoding.ToList();
-                if (contentEncodingList.Contains("gzip"))
-                {
-                    await using var gzipStream = new GZipStream(readStream, CompressionMode.Decompress);
 
-                    responseStream = gzipStream;
-                }
-                else if(contentEncodingList.Contains("br"))
+                if (contentEncodingList.Contains("br"))
                 {
                     await using var brStream = new BrotliStream(readStream, CompressionMode.Decompress);
 
                     responseStream = brStream;
+                }
+                else if (contentEncodingList.Contains("gzip"))
+                {
+                    await using var gzipStream = new GZipStream(readStream, CompressionMode.Decompress);
+
+                    responseStream = gzipStream;
                 }
                 else
                 {
@@ -68,7 +77,21 @@ namespace EasyRpc.DynamicClient.Serializers
                 }
             }
 
-            return await JsonSerializer.DeserializeAsync<T>(responseStream);
+            var stringResult = await responseMessage.Content.ReadAsStringAsync();
+
+            return await JsonSerializer.DeserializeAsync<T>(responseStream, DefaultJsonSerializerOptions);
+        }
+
+        /// <inheritdoc />
+        public async Task<byte[]> Serialize(object value)
+        {
+            return JsonSerializer.SerializeToUtf8Bytes(value, DefaultJsonSerializerOptions);
+        }
+
+        /// <inheritdoc />
+        public async Task<T> Deserialize<T>(byte[] bytes)
+        {
+            return JsonSerializer.Deserialize<T>(bytes, DefaultJsonSerializerOptions);
         }
     }
 

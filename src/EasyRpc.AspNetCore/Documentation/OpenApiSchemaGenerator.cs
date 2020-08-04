@@ -11,10 +11,22 @@ using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
+    /// <summary>
+    /// Service that generates OpenApiSchema objects based on Type
+    /// </summary>
     public interface IOpenApiSchemaGenerator
     {
+        /// <summary>
+        /// Get OpenApiSchema for type
+        /// </summary>
+        /// <param name="objectType"></param>
+        /// <returns></returns>
         OpenApiSchema GetSchemaType(Type objectType);
 
+        /// <summary>
+        /// Populate component 
+        /// </summary>
+        /// <param name="document"></param>
         void PopulateSchemaComponent(OpenApiDocument document);
     }
 

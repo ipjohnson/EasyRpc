@@ -5,6 +5,9 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
+    /// <summary>
+    /// Default configuration delegates
+    /// </summary>
     public static class DefaultExposeDelegates
     {
         /// <summary>
@@ -27,7 +30,22 @@ namespace EasyRpc.AspNetCore.Configuration
             return method.Name;
         }
 
+        /// <summary>
+        /// By default don't wrap anything
+        /// </summary>
+        /// <param name="wrapType"></param>
+        /// <returns></returns>
         public static bool DefaultTypeWrapSelector(Type wrapType)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Wrap simple types with class
+        /// </summary>
+        /// <param name="wrapType"></param>
+        /// <returns></returns>
+        public static bool SimpleTypeWrapSelector(Type wrapType)
         {
             if (wrapType == typeof(bool) ||
                 wrapType == typeof(byte) ||
@@ -48,6 +66,11 @@ namespace EasyRpc.AspNetCore.Configuration
             return false;
         }
 
+        /// <summary>
+        /// Resolve interface types from container
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
         public static bool ResolveFromContainer(Type arg)
         {
             if (arg.IsInterface)

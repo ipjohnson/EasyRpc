@@ -14,6 +14,11 @@ namespace EasyRpc.AspNetCore.Utf8Json
     public class Utf8JsonContentSerializer : BaseSerializer
     {
         /// <summary>
+        /// Content type for content type
+        /// </summary>
+        protected string ContentType = "application/json";
+        
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="errorHandler"></param>
@@ -24,7 +29,7 @@ namespace EasyRpc.AspNetCore.Utf8Json
         /// <summary>
         /// Supports application/json
         /// </summary>
-        public override IEnumerable<string> SupportedContentTypes => new[] { "application/json" };
+        public override IEnumerable<string> SupportedContentTypes => new[] { ContentType };
 
         /// <summary>
         /// This is a default serializer
@@ -34,13 +39,13 @@ namespace EasyRpc.AspNetCore.Utf8Json
         /// <inheritdoc />
         public override bool CanDeserialize(RequestExecutionContext context, string contentType)
         {
-            return contentType.StartsWith("application/json", StringComparison.CurrentCultureIgnoreCase);
+            return contentType.StartsWith(ContentType, StringComparison.CurrentCultureIgnoreCase);
         }
 
         /// <inheritdoc />
         public override bool CanSerialize(RequestExecutionContext context, string accepts)
         {
-            return accepts.Contains("application/json", StringComparison.CurrentCultureIgnoreCase);
+            return accepts.Contains(ContentType, StringComparison.CurrentCultureIgnoreCase);
         }
 
         /// <inheritdoc />
@@ -50,7 +55,7 @@ namespace EasyRpc.AspNetCore.Utf8Json
 
             var response = context.HttpContext.Response;
 
-            response.ContentType = "application/json";
+            response.ContentType = ContentType;
             response.StatusCode = context.HttpStatusCode;
             response.ContentLength = serializedBytes.Length;
 

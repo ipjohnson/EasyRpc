@@ -48,13 +48,6 @@ namespace EasyRpc.AspNetCore
         ITypeSetExposureConfiguration Methods(Func<MethodInfo, bool> methodFilter);
 
         /// <summary>
-        /// Expose types, this is the default
-        /// </summary>
-        /// <param name="filter">filter out types to be exported</param>
-        /// <returns></returns>
-        ITypeSetExposureConfiguration Types(Func<Type, bool> filter = null);
-
-        /// <summary>
         /// Only export attributed types
         /// </summary>
         /// <returns></returns>

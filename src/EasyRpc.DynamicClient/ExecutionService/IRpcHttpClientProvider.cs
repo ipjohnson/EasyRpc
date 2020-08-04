@@ -6,6 +6,6 @@ namespace EasyRpc.DynamicClient.ExecutionService
 {
     public interface IRpcHttpClientProvider
     {
-        IRpcHttpClient ProvideClient(string hostKey);
+        IRpcHttpClient ProvideClient();
     }
 }

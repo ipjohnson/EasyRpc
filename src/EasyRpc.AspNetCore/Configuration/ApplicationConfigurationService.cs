@@ -369,7 +369,12 @@ namespace EasyRpc.AspNetCore.Configuration
                 return (pathAttribute.Path, pathAttribute.Method, pathAttribute.HasBody);
             }
 
-            var methodPath = $"/{_exposeConfigurations.RouteNameGenerator(type)}/{_exposeConfigurations.MethodNameGenerator(methodInfo)}";
+            if (string.IsNullOrEmpty(name))
+            {
+                name = _exposeConfigurations.RouteNameGenerator(type);
+            }
+
+            var methodPath = $"/{name}/{_exposeConfigurations.MethodNameGenerator(methodInfo)}";
             
             var parameters = methodInfo.GetParameters();
             

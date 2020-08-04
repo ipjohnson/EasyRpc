@@ -7,21 +7,20 @@ using System.Threading.Tasks;
 
 namespace EasyRpc.DynamicClient.ExecutionService
 {
-    public interface IRpcHttpClient
-    {
-        Task<HttpResponseMessage> SendAsync(HttpRequestMessage message,
-            CancellationToken? cancellationToken);
-    }
-
     public class RpcHttpClient : IRpcHttpClient
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
+
+        public RpcHttpClient(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
 
         public Task<HttpResponseMessage> SendAsync(HttpRequestMessage message,
-            CancellationToken? cancellationToken)
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _httpClient.SendAsync(message, cancellationToken);
         }
     }
 }

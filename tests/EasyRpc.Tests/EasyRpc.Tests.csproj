@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grace" Version="7.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="SimpleFixture.NSubstitute" Version="3.0.6" />
+    <PackageReference Include="SimpleFixture.xUnit" Version="3.0.6" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
@@ -19,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace EasyRpc.DynamicClient.ExecutionService
 {
     public class RpcExecuteInformation
     {
-        public string HostKey { get; set; }
+        public IRpcHttpClientProvider ClientProvider { get; set; }
 
         public IClientSerializer Serializer { get; set; }
 
@@ -22,7 +22,7 @@ namespace EasyRpc.DynamicClient.ExecutionService
 
     public interface IRpcExecutionService
     {
-        Task<T> ExecuteMethod<T>(RpcExecuteInformation executeInformation,
+        Task<T> ExecuteMethodWithValue<T>(RpcExecuteInformation executeInformation,
             string path,
             object bodyParameters,
             CancellationToken? cancellationToken);

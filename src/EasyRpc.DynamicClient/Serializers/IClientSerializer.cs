@@ -22,7 +22,7 @@ namespace EasyRpc.DynamicClient.Serializers
         /// <param name="body"></param>
         /// <param name="request"></param>
         /// <param name="compressBody"></param>
-        void SerializeToRequest(object body, HttpRequestMessage request, bool compressBody);
+        Task SerializeToRequest(object body, HttpRequestMessage request, bool compressBody);
 
         /// <summary>
         /// Deserialize response body
@@ -31,5 +31,20 @@ namespace EasyRpc.DynamicClient.Serializers
         /// <param name="responseMessage"></param>
         /// <returns></returns>
         Task<T> DeserializeFromResponse<T>(HttpResponseMessage responseMessage);
+
+        /// <summary>
+        /// Serialize object
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        Task<byte[]> Serialize(object value);
+
+        /// <summary>
+        /// Deserialize from bytes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        Task<T> Deserialize<T>(byte[] bytes);
     }
 }
