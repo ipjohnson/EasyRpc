@@ -21,10 +21,10 @@ namespace EasyRpc.Tests.AspNetCore.Filters
 
             var response = await Post("/Service/Add", new {a, b});
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
             Assert.NotNull(value);
-            Assert.Equal((a + 10) + (b + 10), value.Result);
+            Assert.Equal((a + 10) + (b + 10), value);
         }
 
         #endregion

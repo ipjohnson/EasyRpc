@@ -42,10 +42,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
             var response = await Get($"/{nameof(Service)}/{nameof(Service.OneParam)}/{arg1}");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1, value.Result);
+            Assert.Equal(arg1, value);
         }
         
         [Fact]
@@ -56,10 +55,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
             var response = await Get($"/{nameof(Service)}/{nameof(Service.TwoParam)}/{arg1}/{arg2}");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1 + arg2, value.Result);
+            Assert.Equal(arg1 + arg2, value);
         }
         
         [Fact]
@@ -71,10 +69,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
             var response = await Get($"/{nameof(Service)}/{nameof(Service.ThreeParam)}/{arg1}/{arg2}/{arg3}");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1 + arg2 + arg3, value.Result);
+            Assert.Equal(arg1 + arg2 + arg3, value);
         }
 
         #endregion

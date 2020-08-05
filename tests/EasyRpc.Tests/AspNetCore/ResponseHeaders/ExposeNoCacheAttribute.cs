@@ -24,10 +24,9 @@ namespace EasyRpc.Tests.AspNetCore.ResponseHeaders
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            var value = await Deserialize<GenericResult<DateTime>>(response);
+            var value = await Deserialize<DateTime>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(DateTime.Today, value.Result.Date);
+            Assert.Equal(DateTime.Today, value.Date);
 
             var headerFound = response.Headers.TryGetValues("Cache-Control", out var values);
 

@@ -265,6 +265,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 }
                 else
                 {
+                    if (invokeExpression.Type.IsValueType)
+                    {
+                        invokeExpression = Expression.Convert(invokeExpression, typeof(object));
+                    }
+
                     var assignValue = Expression.Assign(Expression.Property(requestParameter, _resultProperty),
                         invokeExpression);
 

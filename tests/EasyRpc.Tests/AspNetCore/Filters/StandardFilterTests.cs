@@ -22,10 +22,10 @@ namespace EasyRpc.Tests.AspNetCore.Filters
 
             var response = await Get($"/ConcatStrings/{stringA}/{stringB}");
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<string>(response);
 
             Assert.NotNull(value);
-            Assert.Equal(stringA + stringB, value.Result);
+            Assert.Equal(stringA + stringB, value);
 
             var parameters = Shared.Items["Parameters"] as IRequestParameters;
 
@@ -33,10 +33,10 @@ namespace EasyRpc.Tests.AspNetCore.Filters
             Assert.Equal(stringA, parameters[nameof(stringA)]);
             Assert.Equal(stringB, parameters[nameof(stringB)]);
 
-            var filterResult = Shared.Items["Result"] as IResultWrapper<string>;
+            var filterResult = Shared.Items["Result"] as string;
 
             Assert.NotNull(filterResult);
-            Assert.Equal(stringA + stringB, filterResult.Result);
+            Assert.Equal(stringA + stringB, filterResult);
         }
 
         #endregion

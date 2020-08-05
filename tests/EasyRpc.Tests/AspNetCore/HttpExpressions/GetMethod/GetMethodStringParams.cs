@@ -21,10 +21,9 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
 
             var response = await Get($"/OneString/{arg1}");
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<string>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1 + _postFix, value.Result);
+            Assert.Equal(arg1 + _postFix, value);
         }
 
         [Fact]
@@ -35,10 +34,9 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
 
             var response = await Get($"/TwoString/{arg1}/{arg2}");
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<string>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1 + arg2 + _postFix, value.Result);
+            Assert.Equal(arg1 + arg2 + _postFix, value);
         }
 
         [Fact]
@@ -50,10 +48,9 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
 
             var response = await Get($"/ThreeString/{arg1}/{arg2}/{arg3}");
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<string>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(arg1 + arg2 + arg3 + _postFix, value.Result);
+            Assert.Equal(arg1 + arg2 + arg3 + _postFix, value);
         }
 
         #endregion

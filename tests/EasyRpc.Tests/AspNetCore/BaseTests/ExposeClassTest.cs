@@ -20,7 +20,7 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
         {
             var response = await Get("/stringtest/Yeah");
 
-            var result = await Deserialize<GenericResult<string>>(response);
+            var result = await Deserialize<string>(response);
 
             Assert.NotNull(result);
         }

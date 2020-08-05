@@ -25,9 +25,9 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
             {
                 var response = await Get(route);
 
-                var stringValue = await Deserialize<GenericResult<string>>(response);
+                var stringValue = await Deserialize<string>(response);
 
-                Assert.Equal(route, stringValue.Result);
+                Assert.Equal(route, stringValue);
             }
         }
 

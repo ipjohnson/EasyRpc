@@ -19,10 +19,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         {
             var response = await Get("/Service/IntValue");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(_defaultValue, value.Result);
+            Assert.Equal(_defaultValue, value);
         }
 
         [Fact]
@@ -30,10 +29,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         {
             var response = await Get("/Service/IntValue/");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(_defaultValue, value.Result);
+            Assert.Equal(_defaultValue, value);
         }
         
         [Fact]
@@ -41,10 +39,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         {
             var response = await Get("/Service/IntValue/BlahBlah");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(_defaultValue, value.Result);
+            Assert.Equal(_defaultValue, value);
         }
         
         [Fact]
@@ -52,10 +49,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         {
             var response = await Get("/Service/IntValue/15");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(15, value.Result);
+            Assert.Equal(15, value);
         }
 
         #endregion

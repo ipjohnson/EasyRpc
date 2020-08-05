@@ -20,10 +20,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
         {
             var response = await Get("/TestPath/123.456");
 
-            var value = await Deserialize<GenericResult<decimal>>(response);
+            var value = await Deserialize<decimal>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(123.456m, value.Result);
+            Assert.Equal(123.456m, value);
         }
 
         #endregion

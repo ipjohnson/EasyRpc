@@ -18,10 +18,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.QueryString
             var count = 12345;
             var response = await Get($"/test?count={count}");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(count, value.Result);
+            Assert.Equal(count, value);
         }
 
         #endregion

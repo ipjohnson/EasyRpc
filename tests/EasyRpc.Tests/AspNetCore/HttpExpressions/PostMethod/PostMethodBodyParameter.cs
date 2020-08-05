@@ -22,10 +22,9 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.PostMethod
 
             var response = await Post(_simpleBodyPath, new { valueA, valueB });
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(valueA + valueB, value.Result);
+            Assert.Equal(valueA + valueB, value);
         }
 
         #endregion

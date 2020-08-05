@@ -18,10 +18,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.DefaultValues
         {
             var response = await Post("/Service/AddValues", new { });
 
-            var value = await Deserialize<GenericResult<decimal>>(response);
+            var value = await Deserialize<decimal>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(15, value.Result);
+            Assert.Equal(15, value);
         }
 
         #endregion

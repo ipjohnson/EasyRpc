@@ -39,7 +39,7 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
 
             var response = await Post("/teststring", new { id });
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<StringResult>(response);
 
             Assert.NotNull(value);
             Assert.Equal(id, value.Result);
@@ -53,11 +53,9 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
 
             var response = await Post("/WrappedTestString", new { id });
 
-            var value = await Deserialize<GenericResult<string>>(response);
+            var value = await Deserialize<string>(response);
 
-
-            Assert.NotNull(value);
-            Assert.Equal(id, value.Result);
+            Assert.Equal(id, value);
         }
 
         #endregion

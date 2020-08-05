@@ -352,7 +352,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 var parameter = parameterList.First(rpc =>
                     rpc.ParameterSource == EndPointMethodParameterSource.PostParameter);
 
-                if (!_exposeConfigurations.TypeWrapSelector(parameter.ParamType))
+                if (!DefaultExposeDelegates.SimpleTypeWrapSelector(parameter.ParamType))
                 {
                     parameter.ParameterSource = EndPointMethodParameterSource.PostBody;
                 }

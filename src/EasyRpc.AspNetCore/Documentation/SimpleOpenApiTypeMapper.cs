@@ -6,8 +6,16 @@ using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
+    /// <summary>
+    /// Maps a simple type to an OpenApiSchema element
+    /// </summary>
     public interface ISimpleOpenApiTypeMapper
     {
+        /// <summary>
+        /// Map a type to an open api schema
+        /// </summary>
+        /// <param name="type">simple type</param>
+        /// <returns>open api schema element</returns>
         OpenApiSchema MapSimpleType(Type type);
     }
 

@@ -19,10 +19,9 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
         {
             var response = await Get("/TestPath/123");
 
-            var value = await Deserialize<GenericResult<int>>(response);
+            var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
-            Assert.Equal(123, value.Result);
+            Assert.Equal(123, value);
         }
 
         #endregion
