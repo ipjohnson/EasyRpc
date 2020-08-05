@@ -41,13 +41,13 @@ namespace EasyRpc.AspNetCore.Utilities
         }
 
         /// <summary>
-        /// Automatically convert from TypefilterGroup to Func(Type,bool)
+        /// Automatically convert from GenericFilterGroup to Func(T,bool)
         /// </summary>
         /// <param name="group"></param>
         /// <returns></returns>
         public static implicit operator Func<T, bool>(GenericFilterGroup<T> group)
         {
-            return group.InternalFilter;
+            return group.Execute;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace EasyRpc.AspNetCore.Utilities
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected virtual bool InternalFilter(T type)
+        public bool Execute(T type)
         {
             if (UseOr)
             {

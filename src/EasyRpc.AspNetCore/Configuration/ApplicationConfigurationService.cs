@@ -364,35 +364,56 @@ namespace EasyRpc.AspNetCore.Configuration
         private (string,string,bool) GenerateMethodPath(ICurrentApiInformation currentApi, Type type, string name,
             MethodInfo methodInfo, List<Attribute> attributes, IPathAttribute pathAttribute)
         {
-            if (pathAttribute != null)
-            {
-                return (pathAttribute.Path, pathAttribute.Method, pathAttribute.HasBody);
-            }
-
             if (string.IsNullOrEmpty(name))
             {
                 name = _exposeConfigurations.RouteNameGenerator(type);
             }
 
-            var methodPath = $"/{name}/{_exposeConfigurations.MethodNameGenerator(methodInfo)}";
-            
+            string fullPathString = null;
+
             var parameters = methodInfo.GetParameters();
+
+            if (pathAttribute != null)
+            {
+                fullPathString = pathAttribute.Path;
+
+                if (string.IsNullOrEmpty(fullPathString))
+                {
+                    fullPathString = GeneratePath(name, methodInfo, parameters, pathAttribute.HasBody);
+                }
+
+                return (fullPathString, pathAttribute.Method, pathAttribute.HasBody);
+            }
             
             if (currentApi.DefaultMethod == ExposeDefaultMethod.PostOnly ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGet && parameters.Length > 0) ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGetInt && parameters.Any(p => p.ParameterType != typeof(int))))
             {
-                return (methodPath, HttpMethods.Post, true);
+
+                fullPathString = GeneratePath(name, methodInfo, parameters, true);
+
+                return (fullPathString, HttpMethods.Post, true);
             }
 
-            foreach (var parameterInfo in parameters)
-            {
-                methodPath += "/{" + parameterInfo.Name + "}";
-            }
+            fullPathString = GeneratePath(name, methodInfo, parameters, false);
 
-            return (methodPath, HttpMethods.Get, false);
+            return (fullPathString, HttpMethods.Get, false);
         }
 
+        private string GeneratePath(string name,MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
+        {
+            var methodPath = $"/{name}/{_exposeConfigurations.MethodNameGenerator(methodInfo)}";
+
+            if (!hasBody)
+            {
+                foreach (var parameterInfo in parameters)
+                {
+                    methodPath += "/{" + parameterInfo.Name + "}";
+                }
+            }
+
+            return methodPath;
+        }
 
         public IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers()
         {
