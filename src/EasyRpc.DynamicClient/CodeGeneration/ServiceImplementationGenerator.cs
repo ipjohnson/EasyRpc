@@ -26,6 +26,8 @@ namespace EasyRpc.DynamicClient.CodeGeneration
 
         public IClientSerializer DefaultSerializer { get; set; }
 
+        public INamingConventionService NamingConventionService { get; set; }
+
         public bool SingleParameterToBody { get; set; }
     }
 
@@ -130,7 +132,16 @@ namespace EasyRpc.DynamicClient.CodeGeneration
 
             if (request.ExposeDefaultMethod == ExposeDefaultMethod.PostOnly)
             {
-                generationContext.PathTemplate = request.BasePath + methodInfo.DeclaringType?.Name + "/" + methodInfo.Name;
+                var classNameString = methodInfo.DeclaringType?.Name;
+                var methodNameString = methodInfo.Name;
+
+                if (request.NamingConventionService != null)
+                {
+                    classNameString = request.NamingConventionService.GetNameForType(methodInfo.DeclaringType);
+                    methodNameString = request.NamingConventionService.GetMethodName(methodInfo);
+                }
+
+                generationContext.PathTemplate = request.BasePath + classNameString + "/" + methodNameString;
 
                 generationContext.BodyParameters = new List<ParameterInfo>();
 

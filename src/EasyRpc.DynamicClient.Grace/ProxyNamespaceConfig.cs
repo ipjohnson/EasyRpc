@@ -17,6 +17,8 @@ namespace EasyRpc.DynamicClient.Grace
 
         public IClientSerializer Serializer { get; set; }
 
+        public INamingConventionService NamingConvention { get; set; }
+
         public Func<string, HttpClient> CreateClient { get; set; }
 
         public Func<MethodInfo, bool> CompressRequest { get; set; }

@@ -71,7 +71,8 @@ namespace EasyRpc.DynamicClient.Grace.Impl
                     DefaultSerializer = _namespaceConfig.Serializer,
                     ExposeDefaultMethod = ExposeDefaultMethod.PostOnly,
                     ClientProvider = _clientProvider,
-                    InterfaceType = request.ActivationType
+                    InterfaceType = request.ActivationType,
+                    NamingConventionService = _namespaceConfig.NamingConvention
                 };
 
                 var implementationType =
