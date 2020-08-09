@@ -15,7 +15,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
 
         #region Tests
 
-        [Fact]
+        //[Fact]
         public async Task Routing_Internal_UserProvidedRoutingTest()
         {
             _routes = GenerateRouteList();
