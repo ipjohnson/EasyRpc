@@ -24,6 +24,13 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
             {
                 var response = await Get(route);
 
+                if (!response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    throw new Exception($"Failed on route {route} response {content}");
+                }
+
                 var stringValue = await Deserialize<string>(response);
 
                 Assert.Equal(route, stringValue);
