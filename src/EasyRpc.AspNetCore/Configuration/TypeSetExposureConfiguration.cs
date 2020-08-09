@@ -83,8 +83,12 @@ namespace EasyRpc.AspNetCore.Configuration
 
             WhereFilters.Add(filter);
 
-            bool methodFilter(MethodInfo method) =>
-                (method.DeclaringType?.IsInterface ?? false) && filter(method.DeclaringType);
+            bool methodFilter(MethodInfo method)
+            {
+                // TODO: this needs to be tweaked to only export methods that are interfaces
+                // this is just a close approximation
+                return method.IsPublic && method.IsVirtual && filter(method.DeclaringType);
+            }
 
             MethodFilterGroup.Add(methodFilter);
 
@@ -121,20 +125,20 @@ namespace EasyRpc.AspNetCore.Configuration
             if (OnlyAttributedFlag)
             {
                 MethodFilterGroup.Add(m => m.GetCustomAttributes().Any(a => a is IPathAttribute));
+                WhereFilters.Add(type => type.GetMembers(BindingFlags.Public | BindingFlags.Instance).Any(member => member.GetCustomAttributes().Any(attr => attr is IPathAttribute)));
             }
 
             foreach (var type in Types)
             {
-                if (WhereFilters.Execute(type))
+                if (!WhereFilters.Execute(type))
                 {
                     continue;
                 }
 
                 var authorizationList = AuthorizeFuncs.SelectMany(func => func(type)).ToList();
 
-                if (AsFuncs == ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty)
+                if (AsFuncs != ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty)
                 {
-
                     foreach (var asFunc in AsFuncs)
                     {
                         foreach (var nameString in asFunc(type))

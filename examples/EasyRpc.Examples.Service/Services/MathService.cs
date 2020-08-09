@@ -9,9 +9,9 @@ namespace EasyRpc.Examples.Service.Services
     public class MathService : IMathService
     {
         /// <inheritdoc />
-        public async Task<IntResult> Add(int a, int b)
+        public async Task<int> Add(int a, int b)
         {
-            return new IntResult { result = a + b };
+            return  a + b;
         }
     }
 }

@@ -29,10 +29,7 @@ namespace EasyRpc.Examples.Service
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRpcServices(api =>
-            {
-                api.Expose<MathService>().As("IMathService");
-            });
+            app.UseRpcServices(api => { api.ExposeNamespaceContaining<MathService>().Interfaces(); });
         }
     }
 }

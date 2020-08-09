@@ -12,6 +12,6 @@ namespace EasyRpc.Examples.SharedDefinitions
 
     public interface IMathService
     {
-        Task<IntResult> Add(int a, int b);
+        Task<int> Add(int a, int b);
     }
 }
