@@ -16,7 +16,17 @@ namespace EasyRpc.DynamicClient.Newtonsoft
     {
         public static readonly NewtonsoftClientSerializer DefaultSerializer = new NewtonsoftClientSerializer();
 
-        public JsonSerializer JsonSerializer { get; set; } = new JsonSerializer();
+        public NewtonsoftClientSerializer()
+        {
+            JsonSerializer = new JsonSerializer();
+        }
+
+        public NewtonsoftClientSerializer(JsonSerializer serializer)
+        {
+            JsonSerializer = serializer;
+        }
+
+        public JsonSerializer JsonSerializer { get; set; }
 
         /// <inheritdoc />
         public string ContentType { get; set; } = "application/json";
