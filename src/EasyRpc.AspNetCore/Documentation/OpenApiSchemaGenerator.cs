@@ -112,7 +112,16 @@ namespace EasyRpc.AspNetCore.Documentation
 
             foreach (var value in Enum.GetValues(objectType))
             {
-                schemaInstance.Enum.Add(new OpenApiInteger((int)value));
+                if (value is int intValue)
+                {
+                    schemaInstance.Enum.Add(new OpenApiInteger(intValue));
+                }
+                else
+                {
+                    intValue = (int)Convert.ChangeType(value, typeof(int));
+
+                    schemaInstance.Enum.Add(new OpenApiInteger(intValue));
+                }
             }
 
             _knownComponents[referenceName] = schemaInstance;
