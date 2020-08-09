@@ -37,33 +37,16 @@ namespace EasyRpc.AspNetCore.Routing
         {
             List<KeyValuePair<string, IEndPointHandler>> pathList = null;
 
-            try
+            if (handlers.Count == 0)
             {
-                if (handlers.Count == 0)
-                {
-                    return s => null;
-                }
-
-                pathList = handlers.ToList();
-
-                pathList.Sort((x, y) => Comparer<string>.Default.Compare(x.Key, y.Key));
-
-                return GenerateStartingMethod(pathList);
+                return s => null;
             }
-            catch (Exception e)
-            {
-                if (pathList != null)
-                {
-                    StringBuilder listBuilder = new StringBuilder();
-                    foreach (var keyValuePair in pathList)
-                    {
-                        listBuilder.AppendLine(keyValuePair.Key);
-                    }
-                    File.AppendAllText(@"C:\temp\error.txt", listBuilder.ToString());
-                }
 
-                throw;
-            }
+            pathList = handlers.ToList();
+
+            pathList.Sort((x, y) => Comparer<string>.Default.Compare(x.Key, y.Key));
+
+            return GenerateStartingMethod(pathList);
         }
 
         private Func<string, IEndPointHandler> GenerateStartingMethod(List<KeyValuePair<string, IEndPointHandler>> pathList)
