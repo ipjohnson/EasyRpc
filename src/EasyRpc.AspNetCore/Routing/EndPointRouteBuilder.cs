@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -34,22 +35,41 @@ namespace EasyRpc.AspNetCore.Routing
         /// <inheritdoc />
         public Func<string, IEndPointHandler> BuildRouteFunc(IDictionary<string, IEndPointHandler> handlers)
         {
-            if (handlers.Count == 0)
+            List<KeyValuePair<string, IEndPointHandler>> pathList = null;
+
+            try
             {
-                return s => null;
+                if (handlers.Count == 0)
+                {
+                    return s => null;
+                }
+
+                pathList = handlers.ToList();
+
+                pathList.Sort((x, y) => Comparer<string>.Default.Compare(x.Key, y.Key));
+
+                return GenerateStartingMethod(pathList);
             }
+            catch (Exception e)
+            {
+                if (pathList != null)
+                {
+                    StringBuilder listBuilder = new StringBuilder();
+                    foreach (var keyValuePair in pathList)
+                    {
+                        listBuilder.AppendLine(keyValuePair.Key);
+                    }
+                    File.AppendAllText(@"C:\temp\error.txt", listBuilder.ToString());
+                }
 
-            var pathList = handlers.ToList();
-
-            pathList.Sort((x, y) => Comparer<string>.Default.Compare(x.Key, y.Key));
-
-            return GenerateStartingMethod(pathList);
+                throw;
+            }
         }
 
         private Func<string, IEndPointHandler> GenerateStartingMethod(List<KeyValuePair<string, IEndPointHandler>> pathList)
         {
             var searchMethod = GenerateSearchMethod(pathList, 0, 0, pathList.Count);
-            
+
             return GenerateDelegate(searchMethod);
         }
 
@@ -90,8 +110,8 @@ namespace EasyRpc.AspNetCore.Routing
                 GenerateStringComparisonStatements(pathList[pathListStart].Key, currentStringIndex, longMatch);
 
             Expression matchLogic = null;
-            
-            if(pathListEnd - pathListStart > 1)
+
+            if (pathListEnd - pathListStart > 1)
             {
                 matchLogic = GenerateSearchMethod(pathList, currentStringIndex + longMatch, pathListStart, pathListEnd, level);
             }
