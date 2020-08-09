@@ -16,7 +16,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly ICurrentApiInformation _currentApiInformation;
         private readonly Type _exposeType;
         private string _name;
-        private GenericFilterGroup<MethodInfo> _methodFilterGroup = new GenericFilterGroup<MethodInfo>();
+        private GenericFilterGroup<MethodInfo> _methodFilterGroup;
         private string _obsoleteMessage;
 
         public TypeExposureConfiguration(ICurrentApiInformation currentApiInformation, Type exposeType)
@@ -24,6 +24,7 @@ namespace EasyRpc.AspNetCore.Configuration
             
             _currentApiInformation = currentApiInformation;
             _exposeType = exposeType;
+            _methodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
         }
 
         public IExposureConfiguration As(string name)
@@ -80,6 +81,11 @@ namespace EasyRpc.AspNetCore.Configuration
 
             service.ExposeType(_currentApiInformation, _exposeType, _name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
+
+        private bool FilterObjectMethods(MethodInfo method)
+        {
+            return method.DeclaringType != typeof(object);
+        }
     }
 
     public class TypeExposureConfiguration<T> : IExposureConfiguration<T>, IConfigurationInformationProvider
@@ -88,12 +94,14 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly ICurrentApiInformation _currentApiInformation;
         private readonly Type _exposeType;
         private string _name;
-        private GenericFilterGroup<MethodInfo> _methodFilterGroup = new GenericFilterGroup<MethodInfo>();
+        private GenericFilterGroup<MethodInfo> _methodFilterGroup;
         private string _obsoleteMessage;
 
         public TypeExposureConfiguration(ICurrentApiInformation currentApiInformation)
         {
             _currentApiInformation = currentApiInformation;
+
+            _methodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
         }
 
         public IExposureConfiguration<T> As(string name)
@@ -156,6 +164,11 @@ namespace EasyRpc.AspNetCore.Configuration
             }
 
             service.ExposeType(_currentApiInformation, typeof(T), name, authorizations, _methodFilterGroup, _obsoleteMessage);
+        }
+
+        private bool FilterObjectMethods(MethodInfo method)
+        {
+            return method.DeclaringType != typeof(object);
         }
     }
 }

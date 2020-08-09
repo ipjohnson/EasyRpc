@@ -23,7 +23,7 @@ namespace EasyRpc.AspNetCore.Configuration
         protected ImmutableLinkedList<Func<Type, IEnumerable<IEndPointMethodAuthorization>>> AuthorizeFuncs =
             ImmutableLinkedList<Func<Type, IEnumerable<IEndPointMethodAuthorization>>>.Empty;
         protected GenericFilterGroup<Type> WhereFilters = new GenericFilterGroup<Type>();
-        protected GenericFilterGroup<MethodInfo> MethodFilterGroup = new GenericFilterGroup<MethodInfo>();
+        protected GenericFilterGroup<MethodInfo> MethodFilterGroup;
 
         /// <summary>
         /// Default constructor
@@ -34,6 +34,8 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             Types = types;
             _currentApiInformation = currentApiInformation;
+
+            MethodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
         }
 
         /// <inheritdoc />
@@ -155,6 +157,11 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 }
             }
+        }
+
+        private bool FilterObjectMethods(MethodInfo method)
+        {
+            return method.DeclaringType != typeof(object);
         }
     }
 }
