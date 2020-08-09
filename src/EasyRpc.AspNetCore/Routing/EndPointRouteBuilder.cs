@@ -179,7 +179,7 @@ namespace EasyRpc.AspNetCore.Routing
 
             for (var i = pathListStart; i < pathListEnd; i++)
             {
-                var path = pathList[pathListStart + i].Key;
+                var path = pathList[i].Key;
                 var newChar = char.ToLowerInvariant(path[currentStringIndex]);
 
                 if (newChar == currentChar)
@@ -187,14 +187,13 @@ namespace EasyRpc.AspNetCore.Routing
                     continue;
                 }
 
-                var newExpression = GenerateSearchMethod(pathList, currentStringIndex + 1, currentStart,
-                    currentStart + i, level);
+                var newExpression = GenerateSearchMethod(pathList, currentStringIndex + 1, currentStart, i, level);
 
                 var comparison = GenerateStringComparisonStatements(pathList[currentStart].Key, currentStringIndex, 1);
 
                 currentExpression = Expression.Condition(comparison, newExpression, currentExpression);
 
-                currentStart = pathListStart + i;
+                currentStart = i;
                 currentChar = newChar;
             }
 
