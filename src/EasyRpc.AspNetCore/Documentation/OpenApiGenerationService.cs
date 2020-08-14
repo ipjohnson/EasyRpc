@@ -54,6 +54,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _endPointMethodHandlersList = endPointMethodHandlersList;
             _exposeConfiguration = apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
             _documentationOptions = documentationOptions;
+            _apiSchemaGenerator.Configure(documentationOptions);
         }
 
         public async Task Execute(HttpContext httpContext, RequestDelegate next)

@@ -35,8 +35,6 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <inheritdoc />
         public void Configure(DocumentationOptions options)
         {
-            var mappings = Mappings;
-
             foreach (var typeMapping in options.TypeMappings)
             {
                 Mappings[typeMapping.Key] = typeMapping.Value;
@@ -77,7 +75,6 @@ namespace EasyRpc.AspNetCore.Documentation
                 {typeof(Guid), GenerateGuidSchema },
                 {typeof(DateTime), GenerateDateTimeSchema },
                 {typeof(DateTimeOffset), GenerateDateTimeSchema },
-                
                 {typeof(bool?), GenerateNullableBoolSchema },
                 {typeof(byte?), GenerateNullableByteSchema },
                 {typeof(sbyte?), GenerateNullableByteSchema },

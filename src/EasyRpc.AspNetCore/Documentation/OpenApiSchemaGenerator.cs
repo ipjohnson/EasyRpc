@@ -28,6 +28,8 @@ namespace EasyRpc.AspNetCore.Documentation
         /// </summary>
         /// <param name="document"></param>
         void PopulateSchemaComponent(OpenApiDocument document);
+
+        void Configure(DocumentationOptions documentationOptions);
     }
 
     /// <inheritdoc />
@@ -135,6 +137,15 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 return new OpenApiSchema{ Type = "array", Items = GetSchemaType(enumerableType)};
             }
+            
+            if (objectType.IsConstructedGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                var schema = GetSchemaType(objectType.GetGenericArguments()[0]);
+
+                schema.Nullable = true;
+
+                return schema;
+            }
 
             return null;
         }
@@ -189,7 +200,13 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             document.Components = new OpenApiComponents { Schemas = new Dictionary<string, OpenApiSchema>(_knownComponents) };
         }
-        
+
+        /// <inheritdoc />
+        public void Configure(DocumentationOptions documentationOptions)
+        {
+            _simpleOpenApiTypeMapper.Configure(documentationOptions);
+        }
+
         private string GenerateReferenceName(Type objectType)
         {
             if (IsAnonymousType(objectType))
