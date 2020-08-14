@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.AspNetCore
 {
@@ -9,6 +10,8 @@ namespace EasyRpc.AspNetCore
     /// </summary>
     public class DocumentationOptions
     {
+        private Dictionary<Type,Func<OpenApiSchema>> _knownTypes = new Dictionary<Type, Func<OpenApiSchema>>();
+
         /// <summary>
         /// Documentation enabled, true by default
         /// </summary>
@@ -18,7 +21,7 @@ namespace EasyRpc.AspNetCore
         /// Redirection calls to documentation
         /// </summary>
         public bool RedirectRootToDocumentation { get; set; } = true;
-        
+
         /// <summary>
         /// url to redirect to
         /// </summary>
@@ -63,5 +66,34 @@ namespace EasyRpc.AspNetCore
         /// Api description
         /// </summary>
         public string ApiDescription { get; set; }
+
+        /// <summary>
+        /// Define how a type is represented in swagger document
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="schemaFunc"></param>
+        /// <returns></returns>
+        public DocumentationOptions MapType<T>(Func<OpenApiSchema> schemaFunc)
+        {
+            return MapType(typeof(T), schemaFunc);
+        }
+
+        /// <summary>
+        /// Define how a type is represented in swagger document
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="schemaFunc"></param>
+        /// <returns></returns>
+        public DocumentationOptions MapType(Type type, Func<OpenApiSchema> schemaFunc)
+        {
+            _knownTypes[type] = schemaFunc;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Dictionary of know type mappings
+        /// </summary>
+        public IReadOnlyDictionary<Type, Func<OpenApiSchema>> TypeMappings => _knownTypes;
     }
 }

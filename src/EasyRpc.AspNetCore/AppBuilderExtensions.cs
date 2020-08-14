@@ -59,7 +59,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IDocumentationService, DocumentationService>();
             serviceCollection.TryAddScoped<IOpenApiGenerationService, OpenApiGenerationService>();
             serviceCollection.TryAddScoped<IOpenApiSchemaGenerator, OpenApiSchemaGenerator>();
-            serviceCollection.TryAddScoped<ISimpleOpenApiTypeMapper, SimpleOpenApiTypeMapper>();
+            serviceCollection.TryAddScoped<IKnownOpenApiTypeMapper, KnownOpenApiTypeMapper>();
             serviceCollection.TryAddScoped<ISwaggerAssetProvider, SwaggerAssetProvider>();
             serviceCollection.TryAddScoped<INoBodyParameterBinderDelegateBuilder, NoBodyParameterBinderDelegateBuilder>();
             serviceCollection.TryAddScoped<IBodyParameterBinderDelegateBuilder, BodyParameterBinderDelegateBuilder>();

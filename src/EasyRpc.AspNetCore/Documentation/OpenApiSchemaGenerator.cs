@@ -30,15 +30,16 @@ namespace EasyRpc.AspNetCore.Documentation
         void PopulateSchemaComponent(OpenApiDocument document);
     }
 
+    /// <inheritdoc />
     public class OpenApiSchemaGenerator : IOpenApiSchemaGenerator
     {
         private int _unknownCount;
         private ConcurrentDictionary<string, OpenApiSchema> _knownComponents;
         private ConcurrentDictionary<Type, string> _referenceNames;
         private ConcurrentDictionary<string, Type> _nameMap;
-        private ISimpleOpenApiTypeMapper _simpleOpenApiTypeMapper;
+        private IKnownOpenApiTypeMapper _simpleOpenApiTypeMapper;
 
-        public OpenApiSchemaGenerator(ISimpleOpenApiTypeMapper simpleOpenApiTypeMapper)
+        public OpenApiSchemaGenerator(IKnownOpenApiTypeMapper simpleOpenApiTypeMapper)
         {
             _simpleOpenApiTypeMapper = simpleOpenApiTypeMapper;
 
@@ -80,7 +81,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 }
             }
 
-            var schema = _simpleOpenApiTypeMapper.MapSimpleType(objectType);
+            var schema = _simpleOpenApiTypeMapper.GetMapping(objectType);
 
             if (schema != null)
             {

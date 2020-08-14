@@ -9,33 +9,48 @@ namespace EasyRpc.AspNetCore.Documentation
     /// <summary>
     /// Maps a simple type to an OpenApiSchema element
     /// </summary>
-    public interface ISimpleOpenApiTypeMapper
+    public interface IKnownOpenApiTypeMapper
     {
         /// <summary>
-        /// Map a type to an open api schema
+        /// Configure documentation
+        /// </summary>
+        /// <param name="options"></param>
+        void Configure(DocumentationOptions options);
+
+        /// <summary>
+        /// Get type mapping
         /// </summary>
         /// <param name="type">simple type</param>
         /// <returns>open api schema element</returns>
-        OpenApiSchema MapSimpleType(Type type);
+        OpenApiSchema GetMapping(Type type);
+
+        
     }
 
     /// <summary>
     /// Maps simple types to OpenApiSchema objects 
     /// </summary>
-    public class SimpleOpenApiTypeMapper : ISimpleOpenApiTypeMapper
+    public class KnownOpenApiTypeMapper : IKnownOpenApiTypeMapper
     {
         private Dictionary<Type, Func<OpenApiSchema>> _mappings;
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public OpenApiSchema MapSimpleType(Type type)
+        /// <inheritdoc />
+        public void Configure(DocumentationOptions options)
+        {
+            var mappings = Mappings;
+
+            foreach (var typeMapping in options.TypeMappings)
+            {
+                Mappings[typeMapping.Key] = typeMapping.Value;
+            }
+        }
+
+        /// <inheritdoc />
+        public OpenApiSchema GetMapping(Type type)
         {
             return Mappings.GetValueOrDefault(type)?.Invoke();
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
