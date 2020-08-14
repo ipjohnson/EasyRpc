@@ -23,8 +23,6 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <param name="type">simple type</param>
         /// <returns>open api schema element</returns>
         OpenApiSchema GetMapping(Type type);
-
-        
     }
 
     /// <summary>

@@ -93,6 +93,13 @@ namespace EasyRpc.AspNetCore.Documentation
                 return new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = referenceName } };
             }
 
+            schema = SpecialTypeReference(objectType);
+
+            if (schema != null)
+            {
+                return schema;
+            }
+
             referenceName = GenerateReferenceName(objectType);
 
             if (objectType.IsEnum)
@@ -105,6 +112,31 @@ namespace EasyRpc.AspNetCore.Documentation
             }
 
             return new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = referenceName } };
+        }
+
+        private OpenApiSchema SpecialTypeReference(Type objectType)
+        {
+            Type interfaceType = null;
+
+            if (objectType.IsConstructedGenericType && objectType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+            {
+                interfaceType = objectType;
+            }
+
+            if (interfaceType == null)
+            {
+                interfaceType = objectType.GetTypeInfo().ImplementedInterfaces.FirstOrDefault(type => type.IsConstructedGenericType &&
+                                                                                                      type.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+            }
+
+            if (interfaceType != null)
+            {
+                var enumerableType = interfaceType.GetGenericArguments()[0];
+
+                return new OpenApiSchema{ Type = "array", Items = GetSchemaType(enumerableType)};
+            }
+
+            return null;
         }
 
         private void ProcessEnumTypeForComponent(string referenceName, Type objectType)
