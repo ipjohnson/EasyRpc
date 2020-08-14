@@ -1,23 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Dynamic client configuration for Grace DI</Description>
-    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
-    <AssemblyName>EasyRpc.DynamicClient.Grace</AssemblyName>
-    <PackageId>EasyRpc.DynamicClient.Grace</PackageId>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
     <DebugType>full</DebugType>
   </PropertyGroup>
 
+
   <PropertyGroup>
-    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageTags>rpc services</PackageTags>
     <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
@@ -25,23 +18,16 @@
     <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <!-- Nuget source link -->
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62909-01" PrivateAssets="All" />
+  <ItemGroup>
+    <PackageReference Include="Grace" Version="7.1.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Grace" Version="6.3.0" />
   </ItemGroup>
 
 </Project>

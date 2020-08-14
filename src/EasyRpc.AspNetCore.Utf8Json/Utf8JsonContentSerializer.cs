@@ -1,51 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using EasyRpc.AspNetCore.Content;
-using EasyRpc.AspNetCore.Messages;
-using EasyRpc.AspNetCore.Middleware;
-using FastJson = Utf8Json;
+using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.Serializers;
+using Utf8 = Utf8Json;
 
 namespace EasyRpc.AspNetCore.Utf8Json
 {
-    public class Utf8JsonContentSerializer : IContentSerializer
+    /// <summary>
+    /// Utf8Json serializer
+    /// </summary>
+    public class Utf8JsonContentSerializer : BaseSerializer
     {
         /// <summary>
-        /// ContentType to encode/decode
+        /// Content type for content type
         /// </summary>
-        public string ContentType => "application/json";
-
+        protected string ContentType = "application/json";
+        
         /// <summary>
-        /// Configure content serializer
+        /// Default constructor
         /// </summary>
-        /// <param name="configuration"></param>
-        public void Configure(EndPointConfiguration configuration)
+        /// <param name="errorHandler"></param>
+        public Utf8JsonContentSerializer(IErrorHandler errorHandler) : base(errorHandler)
         {
-
         }
 
         /// <summary>
-        /// Seriaize the response to the outputStream
+        /// Supports application/json
         /// </summary>
-        /// <param name="outputStream"></param>
-        /// <param name="response"></param>
-        public void SerializeResponse(Stream outputStream, object response)
-        {
-
-        }
+        public override IEnumerable<string> SupportedContentTypes => new[] { ContentType };
 
         /// <summary>
-        /// Deserialize the input stream to a request package
+        /// This is a default serializer
         /// </summary>
-        /// <param name="inputStream">input stream</param>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public RpcRequestPackage DeserializeRequestPackage(Stream inputStream, string path)
-        {
-            FastJson.JsonSerializer.Deserialize<RpcRequestPackage>(inputStream, )
+        public override bool IsDefault => true;
 
-            return null;
+        /// <inheritdoc />
+        public override bool CanDeserialize(RequestExecutionContext context, string contentType)
+        {
+            return contentType.StartsWith(ContentType, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        /// <inheritdoc />
+        public override bool CanSerialize(RequestExecutionContext context, string accepts)
+        {
+            return accepts.Contains(ContentType, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        /// <inheritdoc />
+        public override Task SerializeToResponse(RequestExecutionContext context)
+        {
+            var serializedBytes = Utf8.JsonSerializer.NonGeneric.Serialize(context.Result);
+
+            var response = context.HttpContext.Response;
+
+            response.ContentType = ContentType;
+            response.StatusCode = context.HttpStatusCode;
+            response.ContentLength = serializedBytes.Length;
+
+            return response.Body.WriteAsync(serializedBytes, 0, serializedBytes.Length, context.HttpContext.RequestAborted);
+        }
+
+        /// <inheritdoc />
+        public override async ValueTask<T> DeserializeFromRequest<T>(RequestExecutionContext context)
+        {
+            return await Utf8.JsonSerializer.DeserializeAsync<T>(context.HttpContext.Request.Body);
         }
     }
 }

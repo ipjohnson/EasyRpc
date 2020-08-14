@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Net;
 using System.Reflection;
-using EasyRpc.AspNetCore.Middleware;
-using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
+using System.Text;
+using EasyRpc.Abstractions.Path;
+using EasyRpc.Abstractions.Services;
+using EasyRpc.AspNetCore.Authorization;
+using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.EndPoints;
+using EasyRpc.AspNetCore.Filters;
 
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
-    /// Configure api 
+    /// Api configuration interface
     /// </summary>
-    public interface IApiConfiguration
+    public partial interface IApiConfiguration
     {
         /// <summary>
         /// Set default Authorize
@@ -24,8 +32,8 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="authorizations"></param>
         /// <returns></returns>
-        IApiConfiguration Authorize(Func<Type, IEnumerable<IMethodAuthorization>> authorizations);
-
+        IApiConfiguration Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations);
+        
         /// <summary>
         /// Clear authorize flags
         /// </summary>
@@ -33,12 +41,10 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration ClearAuthorize();
 
         /// <summary>
-        /// Configure documentation
+        /// Configuration options that apply for all end points
         /// </summary>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        IApiConfiguration Documentation(Action<DocumentationConfiguration> configuration);
-
+        IEnvironmentConfiguration Configure { get; }
+        
         /// <summary>
         /// Apply prefix 
         /// </summary>
@@ -52,7 +58,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="prefixFunc"></param>
         /// <returns></returns>
         IApiConfiguration Prefix(Func<Type, IEnumerable<string>> prefixFunc);
-        
+
         /// <summary>
         /// Clear prefixes
         /// </summary>
@@ -79,32 +85,35 @@ namespace EasyRpc.AspNetCore
         /// <param name="types"></param>
         /// <returns></returns>
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
+        
+        /// <summary>
+        /// Add header to all responses
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        IApiConfiguration Header(string header, string value);
 
         /// <summary>
-        /// Expose factories under a specific path
+        /// Clear all global headers
         /// </summary>
-        /// <param name="path"></param>
         /// <returns></returns>
-        IFactoryExposureConfiguration Expose(string path);
+        IApiConfiguration ClearHeaders();
 
         /// <summary>
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter<T>(Func<MethodInfo,bool> where = null) where T : ICallFilter;
+        IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter(Func<MethodInfo, Func<ICallExecutionContext, IEnumerable<ICallFilter>>> filterFunc);
-
-        /// <summary>
-        /// Naming conventions for api
-        /// </summary>
-        NamingConventions NamingConventions { get; }
-
+        IApiConfiguration ApplyFilter(
+            Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc);
+        
         /// <summary>
         /// Add method filter
         /// </summary>
@@ -119,25 +128,16 @@ namespace EasyRpc.AspNetCore
         IApiConfiguration ClearMethodFilters();
 
         /// <summary>
-        /// Add exposures to 
-        /// </summary>
-        /// <param name="provider"></param>
-        IApiConfiguration AddExposures(IExposedMethodInformationProvider provider);
-
-        /// <summary>
         /// Application services
         /// </summary>
         IServiceProvider AppServices { get; }
-
+        
         /// <summary>
-        /// By default documentation is on, this turns it off for this configuration
+        /// Set the default http method to be used when exposing method
         /// </summary>
-        IApiConfiguration DisableDocumentation();
-
-        /// <summary>
-        /// Current api configuration
-        /// </summary>
+        /// <param name="defaultMethod"></param>
         /// <returns></returns>
-        ICurrentApiInformation GetCurrentApiInformation();
+        IApiConfiguration DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
     }
+
 }

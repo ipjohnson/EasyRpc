@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using EasyRpc.AspNetCore.Middleware;
+using System.Text;
+using EasyRpc.AspNetCore.Authorization;
 
 namespace EasyRpc.AspNetCore
 {
@@ -30,7 +31,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="authorizationFunc"></param>
         /// <returns></returns>
-        ITypeSetExposureConfiguration Authorize(Func<Type, IEnumerable<IMethodAuthorization>> authorizationFunc);
+        ITypeSetExposureConfiguration Authorize(Func<Type, IEnumerable<IEndPointMethodAuthorization>> authorizationFunc);
 
         /// <summary>
         /// Expose interfaces from type set
@@ -47,11 +48,10 @@ namespace EasyRpc.AspNetCore
         ITypeSetExposureConfiguration Methods(Func<MethodInfo, bool> methodFilter);
 
         /// <summary>
-        /// Expose types, this is the default
+        /// Only export attributed types
         /// </summary>
-        /// <param name="filter">filter out types to be exported</param>
         /// <returns></returns>
-        ITypeSetExposureConfiguration Types(Func<Type, bool> filter = null);
+        ITypeSetExposureConfiguration OnlyAttributed();
 
         /// <summary>
         /// Expose types that match filter

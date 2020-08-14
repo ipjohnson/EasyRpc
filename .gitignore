@@ -251,3 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 /output/TestApp
+/tests/EasyRpc.AspNetCore.Benchmarks/BenchmarkDotNet.Artifacts/results

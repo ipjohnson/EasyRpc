@@ -1,63 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Text;
+using EasyRpc.Abstractions.Path;
+using EasyRpc.DynamicClient.CodeGeneration;
+using EasyRpc.DynamicClient.ExecutionService;
+using EasyRpc.DynamicClient.Serializers;
 using Grace.DependencyInjection;
 using Grace.DependencyInjection.Impl.CompiledStrategies;
-using System.Reflection;
-using EasyRpc.DynamicClient.ProxyGenerator;
 
 namespace EasyRpc.DynamicClient.Grace.Impl
 {
     public class ProxyStrategyProvider : IMissingExportStrategyProvider
     {
-        private readonly bool _callByName;
-        private readonly string[] _proxyNamespaces;
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="callByName"></param>
-        /// <param name="compressionPicker"></param>
-        /// <param name="proxyNamespaces">provide namespaces that will be proxied</param>
-        public ProxyStrategyProvider(bool callByName, DefaultMethodCompressionPicker compressionPicker,
-            params string[] proxyNamespaces)
+        private ProxyNamespaceConfig _namespaceConfig;
+        private IRpcHttpClientProvider _clientProvider;
+        private IClientSerializer _clientSerializer;
+        
+        public ProxyStrategyProvider(ProxyNamespaceConfig namespaceConfig)
         {
-            _callByName = callByName;
-            _proxyNamespaces = proxyNamespaces ?? throw new ArgumentNullException(nameof(proxyNamespaces));
+            _namespaceConfig = namespaceConfig;
+
+            var client = namespaceConfig.CreateClient?.Invoke("") ?? new HttpClient();
+
+            client.BaseAddress = new Uri(_namespaceConfig.Url);
+
+            _clientProvider = new RpcHttpClientProvider(client);
         }
         
+        /// <inheritdoc />
         public bool CanLocate(IInjectionScope scope, IActivationExpressionRequest request)
         {
             var fullName = request.ActivationType.FullName;
-            
+
             return (request.ActivationType.GetTypeInfo().IsInterface ||
-                 request.ActivationType.GetTypeInfo().IsAbstract) &&
-                _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace));
+                    request.ActivationType.GetTypeInfo().IsAbstract) &&
+                   fullName != null &&
+                   _namespaceConfig.Namespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace));
         }
 
-        /// <summary>Provide exports for a missing type</summary>
-        /// <param name="scope">scope to provide value</param>
-        /// <param name="request">request</param>
-        /// <returns>set of activation strategies</returns>
+        /// <inheritdoc />
         public IEnumerable<IActivationStrategy> ProvideExports(IInjectionScope scope, IActivationExpressionRequest request)
         {
             var fullName = request.ActivationType.FullName;
 
             if ((request.ActivationType.GetTypeInfo().IsInterface ||
                  request.ActivationType.GetTypeInfo().IsAbstract) &&
-                _proxyNamespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace)))
+                _namespaceConfig.Namespaces.Any(proxyNamespace => fullName.StartsWith(proxyNamespace)))
             {
-                var proxyGenerator = scope.Locate<IProxyGenerator>();
+                if (_namespaceConfig.Serializer == null)
+                {
+                    _namespaceConfig.Serializer = scope.LocateOrDefault<IClientSerializer>();
 
-                var proxyType = proxyGenerator.GenerateProxyType(request.ActivationType, _callByName);
+#if NETCOREAPP3_1
+                    _namespaceConfig.Serializer = new JsonClientSerializer();
+#endif
 
-                var strategy =
-                    new CompiledExportStrategy(proxyType, scope, request.Services.LifestyleExpressionBuilder);
-                
+                    if (_namespaceConfig.Serializer == null)
+                    {
+                        throw new Exception("IClientSerializer implementation is not exported");
+                    }
+                }
+
+                var implementationGenerator = scope.Locate<IServiceImplementationGenerator>();
+
+                var implementationRequest = new ImplementationRequest
+                {
+                    DefaultSerializer = _namespaceConfig.Serializer,
+                    ExposeDefaultMethod = ExposeDefaultMethod.PostOnly,
+                    ClientProvider = _clientProvider,
+                    InterfaceType = request.ActivationType,
+                    NamingConventionService = _namespaceConfig.NamingConvention
+                };
+
+                var implementationType =
+                    implementationGenerator.GenerateImplementationForInterface(implementationRequest);
+
+                var strategy = new CompiledExportStrategy(implementationType, scope,
+                    request.Services.LifestyleExpressionBuilder);
+
                 strategy.AddExportAs(request.ActivationType);
 
-                yield return strategy;
+                return new IActivationStrategy[]{ strategy };
             }
+
+            return Array.Empty<IActivationStrategy>();
         }
+
     }
 }

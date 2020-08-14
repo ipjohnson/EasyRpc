@@ -1,15 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>json-rpc client that generates implementations of interfaces</Description>
-    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
-    <AssemblyName>EasyRpc.DynamicClient</AssemblyName>
-    <PackageId>EasyRpc.DynamicClient</PackageId>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Description>Client library for EasyRpc.AspNetCore</Description>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' AND '$(APPVEYOR)' != 'True'">true</PublicSign>
@@ -17,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTags>json-rpc;rpc</PackageTags>
+    <PackageTags>rpc services</PackageTags>
     <PackageReleaseNotes>https://github.com/ipjohnson/EasyRpc/wiki/Release-Notes</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ipjohnson/EasyRpc</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
@@ -25,32 +18,16 @@
     <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <!-- Nuget source link -->
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62909-01" PrivateAssets="All" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.Net.Http" Version="4.3.1" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Reflection.Emit" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
+    <ProjectReference Include="..\EasyRpc.Abstractions\EasyRpc.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

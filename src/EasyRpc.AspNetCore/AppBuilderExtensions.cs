@@ -1,100 +1,114 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Reflection;
-using System.Threading.Tasks;
-using EasyRpc.AspNetCore.Attributes;
-using EasyRpc.AspNetCore.Content;
-using EasyRpc.AspNetCore.Converters;
+using System.Text;
+using EasyRpc.AspNetCore.Authorization;
+using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Documentation;
+using EasyRpc.AspNetCore.EndPoints;
+using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.CodeGeneration;
 using EasyRpc.AspNetCore.Middleware;
+using EasyRpc.AspNetCore.ModelBinding;
+using EasyRpc.AspNetCore.ModelBinding.AspNetRouting;
+using EasyRpc.AspNetCore.ModelBinding.InternalRouting;
+using EasyRpc.AspNetCore.Routing;
+using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
-    /// Application builder extensions
+    /// C# extension methods for app building
     /// </summary>
     public static class AppBuilderExtensions
     {
         /// <summary>
-        /// Add Easy RPC dependency injection configuration, this is required
+        /// Add rpc services to service collection
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="configuration"></param>
-        public static IServiceCollection AddJsonRpc(this IServiceCollection collection, Action<RpcServiceConfiguration> configuration = null)
-        {
-            collection.TryAddTransient<IRpcMessageProcessor, RpcMessageProcessor>();
-            collection.TryAddTransient<IContentSerializer, DefaultJsonContentSerializer>();
-            collection.TryAddTransient<IContentSerializerProvider, ContentSerializerProvider>();
-            collection.TryAddTransient<IContentEncodingProvider, ContentEncodingProvider>();
-            collection.TryAddTransient<IContentEncoder, GzipContentEncoder>();
-            collection.TryAddTransient<IExposeMethodInformationCacheManager, ExposeMethodInformationCacheManager>();
-            collection.TryAddSingleton<IParameterArrayDeserializerBuilder, ParameterArrayDeserializerBuilder>();
-            collection.TryAddSingleton<INamedParameterDeserializerBuilder, NamedParameterDeserializerBuilder>();
-            collection.TryAddSingleton<IArrayMethodInvokerBuilder, ArrayMethodInvokerBuilder>();
-            collection.TryAddSingleton<IInstanceActivator, InstanceActivator>();
-            collection.TryAddSingleton<IFromServicesManager, FromServicesManager>();
-            collection.TryAddSingleton<JsonSerializer>();
-
-            // documentation
-            collection.TryAddSingleton<IXmlDocumentationProvider, XmlDocumentationProvider>();
-            collection.TryAddTransient<IDocumentationRequestProcessor, DocumentationRequestProcessor>();
-            collection.TryAddTransient<IWebAssetProvider, WebAssetProvider>();
-            collection.TryAddTransient<IMethodPackageMetadataCreator, MethodPackageMetadataCreator>();
-            collection.TryAddTransient<IVariableReplacementService, VariableReplacementService>();
-            collection.TryAddTransient<IReplacementValueProvider, ReplacementValueProvider>();
-            collection.TryAddTransient<ITypeDefinitionPackageProvider, TypeDefinitionPackageProvider>();
-
-            collection.Configure(configuration ?? (option => { }));
-
-            return collection;
-        }
-
-        /// <summary>
-        /// Configure json-rpc service
-        /// </summary>
-        /// <param name="appBuilder">app builder</param>
-        /// <param name="basePath">base path for api</param>
-        /// <param name="configure">configure api</param>
-        public static IApplicationBuilder UseJsonRpc(this IApplicationBuilder appBuilder, string basePath,
-            Action<IApiConfiguration> configure)
-        {
-            EasyRpcMiddleware.AttachMiddleware(appBuilder, basePath, configure);
-
-            return appBuilder;
-        }
-        
-        /// <summary>
-        /// Redirects all requests to service api for documentation
-        /// </summary>
-        /// <param name="appBuilder"></param>
-        /// <param name="basePath"></param>
+        /// <param name="serviceCollection"></param>
+        /// <param name="registerJsonSerializer"></param>
         /// <returns></returns>
-        public static IApplicationBuilder RedirectToDocumentation(this IApplicationBuilder appBuilder, string basePath)
+        public static IServiceCollection AddRpcServices(this IServiceCollection serviceCollection, bool registerJsonSerializer = true)
         {
-            appBuilder.Use((context, next) =>
+            serviceCollection.TryAddTransient<IMiddlewareHandler, MiddlewareHandler>();
+
+            serviceCollection.TryAddScoped<ICustomActionResultExecutor, CustomActionResultExecutor>();
+            serviceCollection.TryAddScoped<IApiConfigurationFactory, ApiConfigurationFactory>();
+            serviceCollection.TryAddScoped<IEndPointRouteBuilder, EndPointRouteBuilder>();
+            serviceCollection.TryAddScoped<IContentSerializationService, ContentSerializationService>();
+            serviceCollection.TryAddScoped<IResponseDelegateCreator, ResponseDelegateCreator>();
+            serviceCollection.TryAddScoped<IUnmappedEndPointHandler, UnmappedEndPointHandler>();
+            serviceCollection.TryAddScoped<IEndPointAuthorizationService, EndPointAuthorizationService>();
+            serviceCollection.TryAddScoped<IParameterBinderDelegateBuilder, ParameterBinderDelegateBuilder>();
+            serviceCollection.TryAddScoped<IDeserializationTypeCreator, DeserializationTypeCreator>();
+            serviceCollection.TryAddScoped<IMethodInvokerCreationService, MethodInvokerCreationService>();
+            serviceCollection.TryAddScoped<IErrorHandler, DefaultErrorHandler>();
+            serviceCollection.TryAddScoped<IErrorWrappingService, ErrorWrappingService>();
+            serviceCollection.TryAddScoped<IErrorResultTypeCreator, ErrorResultTypeCreator>();
+            serviceCollection.TryAddScoped<IRawContentWriter, RawContentWriter>();
+            serviceCollection.TryAddScoped<IApiConfigurationFactory, ApiConfigurationFactory>();
+            serviceCollection.TryAddScoped<IApplicationConfigurationService, ApplicationConfigurationService>();
+            serviceCollection.TryAddScoped<IInternalRoutingHandler, InternalRoutingHandler>();
+            serviceCollection.TryAddScoped<IAspNetRoutingHandler, AspNetRoutingHandler>();
+            serviceCollection.TryAddScoped<IConfigurationManager, ConfigurationManager>();
+            serviceCollection.TryAddScoped<IAuthorizationImplementationProvider, AuthorizationImplementationProvider>();
+            serviceCollection.TryAddScoped<IRegisteredEndPoints, RegisteredEndPoints>();
+            serviceCollection.TryAddScoped<IDocumentationService, DocumentationService>();
+            serviceCollection.TryAddScoped<IOpenApiGenerationService, OpenApiGenerationService>();
+            serviceCollection.TryAddScoped<IOpenApiSchemaGenerator, OpenApiSchemaGenerator>();
+            serviceCollection.TryAddScoped<IKnownOpenApiTypeMapper, KnownOpenApiTypeMapper>();
+            serviceCollection.TryAddScoped<ISwaggerAssetProvider, SwaggerAssetProvider>();
+            serviceCollection.TryAddScoped<INoBodyParameterBinderDelegateBuilder, NoBodyParameterBinderDelegateBuilder>();
+            serviceCollection.TryAddScoped<IBodyParameterBinderDelegateBuilder, BodyParameterBinderDelegateBuilder>();
+            serviceCollection.TryAddScoped<IBodySingleParameterBinderDelegateBuilder, BodySingleParameterBinderDelegateBuilder>();
+            serviceCollection.TryAddScoped<IStringValueModelBinder, StringValueModelBinder>();
+            serviceCollection.TryAddScoped<IInternalRoutingParameterBinder, InternalRoutingParameterBinder>();
+            serviceCollection.TryAddScoped<IAspNetRoutingParameterBinder, AspNetRoutingParameterBinder>();
+            serviceCollection.TryAddScoped<ISpecialParameterBinder, SpecialParameterBinder>();
+            serviceCollection.TryAddScoped<IEnvironmentConfiguration, EnvironmentConfiguration>();
+            serviceCollection.TryAddScoped<IWrappedResultTypeCreator, WrappedResultTypeCreator>();
+
+            serviceCollection.TryAddScoped<BaseEndPointServices>();
+
+            if (registerJsonSerializer)
             {
-                var response = context.Response;
-                var redirectPath = context.Request.PathBase.Value + basePath;
+                serviceCollection.TryAddScoped<IContentSerializer, JsonContentSerializer>();
+            }
 
-                if (context.Request.Path.Value?.EndsWith("/favicon.ico") ?? false)
-                {
-                    response.Headers["Location"] = redirectPath + "favicon.ico";
-                }
-                else
-                {
-                    response.Headers["Location"] = redirectPath;
-                }
-
-                response.StatusCode = 301;
-
-                return Task.CompletedTask;
-            });
-
-            return appBuilder;
+            return serviceCollection;
         }
+
+        /// <summary>
+        /// Add rpc services to asp.net pipeline
+        /// </summary>
+        /// <param name="appBuilder">application builder</param>
+        /// <param name="configure">api configuration</param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseRpcServices(this IApplicationBuilder appBuilder,
+            Action<IApiConfiguration> configure = null)
+        {
+            var middlewareHandler = appBuilder.ApplicationServices.GetService<IMiddlewareHandler>();
+
+            if (middlewareHandler == null)
+            {
+                throw new Exception("Please add services.AddRpcServices(); in the ConfigureServices method of your Startup.cs file.");
+            }
+
+            if (configure == null)
+            {
+                configure = DefaultAction;
+            }
+
+            return middlewareHandler.Attach(appBuilder, configure);
+        }
+
+        /// <summary>
+        /// Default action when calling UseRpcServices
+        /// </summary>
+        public static Action<IApiConfiguration> DefaultAction { get; set; } =
+            api => api.Expose(Assembly.GetEntryAssembly().ExportedTypes).OnlyAttributed();
     }
 }

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Exposure configuration
+    /// </summary>
     public interface IExposureConfiguration
     {
         /// <summary>
@@ -28,13 +33,17 @@ namespace EasyRpc.AspNetCore
         IExposureConfiguration Methods(Func<MethodInfo, bool> methods);
 
         /// <summary>
-        /// Mark services as obselete
+        /// Mark services as obsolete
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         IExposureConfiguration Obsolete(string message);
     }
 
+    /// <summary>
+    /// Typed Exposure configuration
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IExposureConfiguration<T>
     {
         /// <summary>

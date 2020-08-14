@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.OpenApi.Models;
+
+namespace EasyRpc.AspNetCore
+{
+    /// <summary>
+    /// Documentation options
+    /// </summary>
+    public class DocumentationOptions
+    {
+        private Dictionary<Type,Func<OpenApiSchema>> _knownTypes = new Dictionary<Type, Func<OpenApiSchema>>();
+
+        /// <summary>
+        /// Documentation enabled, true by default
+        /// </summary>
+        public bool Enabled { get; set; } = true;
+
+        /// <summary>
+        /// Redirection calls to documentation
+        /// </summary>
+        public bool RedirectRootToDocumentation { get; set; } = true;
+
+        /// <summary>
+        /// url to redirect to
+        /// </summary>
+        public string RedirectUrl { get; set; }
+
+        /// <summary>
+        /// open api json file name
+        /// </summary>
+        public string OpenApiJsonUrl { get; set; } = "api.json";
+
+        /// <summary>
+        /// swagger documentation base path
+        /// </summary>
+        public string SwaggerBasePath { get; set; } = "/swagger/";
+
+        /// <summary>
+        /// Title for documentation
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Documentation version, defaults to assembly version if not provided
+        /// </summary>
+        public string Version { get; set; }
+
+        /// <summary>
+        /// Func used to set version string in Documentation
+        /// </summary>
+        public Func<Version, string> VersionFormat { get; set; } = DefaultVersionFormat;
+
+        /// <summary>
+        /// Default version format 1.0.0
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static string DefaultVersionFormat(Version version)
+        {
+            return $"{version.Major}.{version.Minor}.{version.Build}";
+        }
+
+        /// <summary>
+        /// Api description
+        /// </summary>
+        public string ApiDescription { get; set; }
+
+        /// <summary>
+        /// Define how a type is represented in swagger document
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="schemaFunc"></param>
+        /// <returns></returns>
+        public DocumentationOptions MapType<T>(Func<OpenApiSchema> schemaFunc)
+        {
+            return MapType(typeof(T), schemaFunc);
+        }
+
+        /// <summary>
+        /// Define how a type is represented in swagger document
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="schemaFunc"></param>
+        /// <returns></returns>
+        public DocumentationOptions MapType(Type type, Func<OpenApiSchema> schemaFunc)
+        {
+            _knownTypes[type] = schemaFunc;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Dictionary of know type mappings
+        /// </summary>
+        public IReadOnlyDictionary<Type, Func<OpenApiSchema>> TypeMappings => _knownTypes;
+    }
+}
