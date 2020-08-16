@@ -23,6 +23,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         protected virtual ActionContext GenerateActionContext(RequestExecutionContext context, IActionResult actionResult)
         {
             var routeData = GenerateRouteData(context, actionResult);
+
             var actionDescription = GenerateActionDescriptor(context, actionResult);
 
             return new ActionContext(context.HttpContext, routeData, actionDescription);

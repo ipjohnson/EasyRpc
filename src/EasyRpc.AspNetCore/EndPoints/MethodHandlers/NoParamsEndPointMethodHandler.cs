@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.ModelBinding;
 using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
@@ -35,6 +36,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 
                 requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
                 
+                requestContext.Parameters = EmptyParameters.Instance;
+
                 if (requestContext.ContinueRequest)
                 {
                     await InvokeMethodDelegate(requestContext);

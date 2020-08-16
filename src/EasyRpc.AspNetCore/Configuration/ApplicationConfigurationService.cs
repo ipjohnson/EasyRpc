@@ -126,7 +126,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 configuration.Parameters.AddRange(methodParameters);
 
-                var rawAttribute = (RawContentAttribute)methodAttributes.FirstOrDefault(a => a is RawContentAttribute);
+                var rawAttribute = (IRawContentAttribute)methodAttributes.FirstOrDefault(a => a is IRawContentAttribute);
 
                 if (rawAttribute != null)
                 {
