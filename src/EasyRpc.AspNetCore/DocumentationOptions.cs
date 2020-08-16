@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.AspNetCore
@@ -76,6 +77,18 @@ namespace EasyRpc.AspNetCore
         public DocumentationOptions MapType<T>(Func<OpenApiSchema> schemaFunc)
         {
             return MapType(typeof(T), schemaFunc);
+        }
+
+        /// <summary>
+        /// Map a string type with a format
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="format"></param>
+        /// <param name="example"></param>
+        /// <returns></returns>
+        public DocumentationOptions MapStringType<T>(string format = null, string example = "")
+        {
+            return MapType(typeof(T), () => new OpenApiSchema {Type = "string", Format = format, Example = new OpenApiString(example)});
         }
 
         /// <summary>

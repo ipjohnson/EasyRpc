@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace EasyRpc.Examples.Service
 {
@@ -19,6 +20,7 @@ namespace EasyRpc.Examples.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRpcServices();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,7 +31,12 @@ namespace EasyRpc.Examples.Service
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRpcServices(api => { api.ExposeNamespaceContaining<MathService>().Interfaces(); });
+            app.UseRpcServices(api =>
+            {
+                api.Configure.Documentation(docs =>
+                    docs.MapType<TestStruct>(() => new OpenApiSchema {Type = "string", Format = "test"}));
+                api.ExposeNamespaceContaining<MathService>();
+            });
         }
     }
 }
