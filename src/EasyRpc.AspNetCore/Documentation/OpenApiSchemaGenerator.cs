@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -82,7 +83,7 @@ namespace EasyRpc.AspNetCore.Documentation
                     };
                 }
             }
-
+            
             var schema = _simpleOpenApiTypeMapper.GetMapping(objectType);
 
             if (schema != null)
