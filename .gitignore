@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 /output/TestApp
 /tests/EasyRpc.AspNetCore.Benchmarks/BenchmarkDotNet.Artifacts/results
+/tests/EasyRpc.Tests/AspNetCore/Data/ObjectPoolTests.cs

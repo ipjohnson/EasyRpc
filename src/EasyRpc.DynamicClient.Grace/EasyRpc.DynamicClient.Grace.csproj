@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Description>Client library that for EasyRpc.AspNetCore and Grace</Description>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\EasyRpc.snk</AssemblyOriginatorKeyFile>
