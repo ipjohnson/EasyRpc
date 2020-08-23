@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.Abstractions.Path;
-using EasyRpc.Examples.Service.Views;
+using EasyRpc.AspNetCore.Views;
 using EasyRpc.Examples.SharedDefinitions;
 
 namespace EasyRpc.Examples.Service.Services

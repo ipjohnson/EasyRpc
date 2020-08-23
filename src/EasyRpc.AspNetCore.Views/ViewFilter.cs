@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Filters;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Routing;
 
-namespace EasyRpc.Examples.Service.Views
+namespace EasyRpc.AspNetCore.Views
 {
+    /// <summary>
+    /// Rpc method filter
+    /// </summary>
     public class ViewFilter : IAsyncRequestExecutionFilter
     {
         private readonly string _viewName;
@@ -23,11 +20,20 @@ namespace EasyRpc.Examples.Service.Views
         private readonly ITempDataProvider _tempDataProvider;
         private readonly string _contentType;
 
-        public ViewFilter(string viewName, 
-            bool isMainPage, 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="isMainPage"></param>
+        /// <param name="executor"></param>
+        /// <param name="modelMetadataProvider"></param>
+        /// <param name="tempDataProvider"></param>
+        /// <param name="contentType"></param>
+        public ViewFilter(string viewName,
+            bool isMainPage,
             ViewExecutor executor,
-            IModelMetadataProvider modelMetadataProvider, 
-            ITempDataProvider tempDataProvider, 
+            IModelMetadataProvider modelMetadataProvider,
+            ITempDataProvider tempDataProvider,
             string contentType)
         {
             _viewName = viewName;

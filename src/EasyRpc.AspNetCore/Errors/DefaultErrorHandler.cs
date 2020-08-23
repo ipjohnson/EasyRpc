@@ -43,6 +43,11 @@ namespace EasyRpc.AspNetCore.Errors
         /// <inheritdoc />
         public virtual Task HandleUnauthorized(RequestExecutionContext context)
         {
+            if (context.ResponseHasStarted)
+            {
+                return Task.CompletedTask;
+            }
+
             if (context.HttpContext.User?.Identity?.IsAuthenticated ?? false)
             {
                 return Return403(context);
@@ -54,6 +59,11 @@ namespace EasyRpc.AspNetCore.Errors
         /// <inheritdoc />
         public virtual Task HandleException(RequestExecutionContext context, Exception e)
         {
+            if (context.ResponseHasStarted)
+            {
+                return Task.CompletedTask;
+            }
+
             context.HttpStatusCode = (int)HttpStatusCode.InternalServerError;
 
             context.Result = ErrorWrappingService.WrapError(context, e);

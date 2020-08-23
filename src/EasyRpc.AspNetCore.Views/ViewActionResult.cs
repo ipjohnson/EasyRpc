@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 
-namespace EasyRpc.Examples.Service.Views
+namespace EasyRpc.AspNetCore.Views
 {
+
     /// <summary>
     /// Action result for views
     /// </summary>
@@ -37,12 +37,12 @@ namespace EasyRpc.Examples.Service.Views
         /// <param name="contentType"></param>
         /// <param name="result"></param>
         /// <param name="httpResult"></param>
-        public ViewActionResult(ViewExecutor executor, 
-            IModelMetadataProvider modelMetadataProvider, 
-            ITempDataProvider tempDataProvider, 
-            string viewName, 
-            bool isMainPage, 
-            string contentType, 
+        public ViewActionResult(ViewExecutor executor,
+            IModelMetadataProvider modelMetadataProvider,
+            ITempDataProvider tempDataProvider,
+            string viewName,
+            bool isMainPage,
+            string contentType,
             object result,
             int httpResult)
         {
@@ -65,11 +65,10 @@ namespace EasyRpc.Examples.Service.Views
             {
                 throw new Exception("Could not find ICompositeViewEngine");
             }
-            
 
             var viewEngineResult = viewEngine.GetView(null, _viewName, _isMainPage);
 
-            var viewContext = new ActionContext(context.HttpContext, new RouteData(), new ActionDescriptor());
+            var viewContext = new ActionContext(context.HttpContext, context.RouteData, new ActionDescriptor());
 
             return _executor.ExecuteAsync(viewContext,
                 viewEngineResult.View,

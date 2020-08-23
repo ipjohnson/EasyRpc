@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.Views\EasyRpc.AspNetCore.Views.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
     <ProjectReference Include="..\EasyRpc.Examples.SharedDefinitions\EasyRpc.Examples.SharedDefinitions.csproj" />
   </ItemGroup>

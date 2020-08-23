@@ -1,36 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Mime;
+using System.Text;
 using EasyRpc.Abstractions.Response;
-using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Filters;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EasyRpc.Examples.Service.Views
+namespace EasyRpc.AspNetCore.Views
 {
+    /// <summary>
+    /// Methods marked with this will return a view instead of serialized data
+    /// </summary>
     public class ReturnViewAttribute : Attribute, IRequestFilterAttribute, IRawContentAttribute
     {
-        public string ViewName { get; set; }
+        /// <summary>
+        /// Is view a partial
+        /// </summary>
+        public bool IsPartial { get; set; } = true;
 
-        public bool IsPartial { get; set; } = false;
+        /// <summary>
+        /// View name to return
+        /// </summary>
+        public string ViewName { get; set; }
+        
+        /// <inheritdoc />
+        public string ContentType { get; set; } = "text/html";
+
+        /// <inheritdoc />
+        public string ContentEncoding { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<Func<RequestExecutionContext, IRequestFilter>> ProvideFilters(ICurrentApiInformation currentApi,
             IEndPointMethodConfigurationReadOnly configurationReadOnly)
         {
-            var viewEngine = currentApi.ServiceProvider.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
-
             var viewName = GetViewName(currentApi, configurationReadOnly);
-
 
             var executor = ActivatorUtilities.CreateInstance<ViewExecutor>(currentApi.ServiceProvider);
 
@@ -48,6 +55,11 @@ namespace EasyRpc.Examples.Service.Views
         private string GetViewName(ICurrentApiInformation currentApi,
             IEndPointMethodConfigurationReadOnly configurationReadOnly)
         {
+            if (currentApi.ServiceProvider.GetService(typeof(IViewNameGenerator)) is IViewNameGenerator nameGenerator)
+            {
+                return nameGenerator.GenerateName(currentApi, configurationReadOnly);
+            }
+
             if (string.IsNullOrEmpty(ViewName))
             {
                 var path = configurationReadOnly.RouteInformation.RouteBasePath;
@@ -59,11 +71,5 @@ namespace EasyRpc.Examples.Service.Views
 
             return ViewName;
         }
-
-        /// <inheritdoc />
-        public string ContentType { get; }
-
-        /// <inheritdoc />
-        public string ContentEncoding { get; }
     }
 }
