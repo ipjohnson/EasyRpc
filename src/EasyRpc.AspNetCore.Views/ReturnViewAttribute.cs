@@ -28,7 +28,7 @@ namespace EasyRpc.AspNetCore.Views
         public string ViewName { get; set; }
         
         /// <inheritdoc />
-        public string ContentType { get; set; } = "text/html";
+        public string ContentType { get; set; } = "text/html; charset=utf-8";
 
         /// <inheritdoc />
         public string ContentEncoding { get; set; }
