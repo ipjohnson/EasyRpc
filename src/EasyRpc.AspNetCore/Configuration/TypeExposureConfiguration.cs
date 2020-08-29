@@ -92,7 +92,6 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         private ImmutableLinkedList<IEndPointMethodAuthorization> _authorizations = ImmutableLinkedList<IEndPointMethodAuthorization>.Empty;
         private readonly ICurrentApiInformation _currentApiInformation;
-        private readonly Type _exposeType;
         private string _name;
         private GenericFilterGroup<MethodInfo> _methodFilterGroup;
         private string _obsoleteMessage;
