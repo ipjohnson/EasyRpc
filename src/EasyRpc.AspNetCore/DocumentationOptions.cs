@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using EasyRpc.AspNetCore.Documentation;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -36,7 +37,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// swagger documentation base path
         /// </summary>
-        public string SwaggerBasePath { get; set; } = "/swagger/";
+        public string UIBasePath { get; set; } = "/swagger/";
 
         /// <summary>
         /// Title for documentation
@@ -67,6 +68,11 @@ namespace EasyRpc.AspNetCore
         /// Api description
         /// </summary>
         public string ApiDescription { get; set; }
+
+        /// <summary>
+        /// Path for providing content in addition or overriding the standard documentation assets
+        /// </summary>
+        public string ContentPath { get; set; } = "wwwroot/swagger-ui/";
 
         /// <summary>
         /// Define how a type is represented in swagger document
@@ -108,5 +114,20 @@ namespace EasyRpc.AspNetCore
         /// Dictionary of know type mappings
         /// </summary>
         public IReadOnlyDictionary<Type, Func<OpenApiSchema>> TypeMappings => _knownTypes;
+
+        /// <summary>
+        /// Document filters
+        /// </summary>
+        public IList<IDocumentFilter> DocumentFilters { get; } = new List<IDocumentFilter>();
+
+        /// <summary>
+        /// Operation filters
+        /// </summary>
+        public IList<IOperationFilter> OperationFilters { get; } = new List<IOperationFilter>();
+
+        /// <summary>
+        /// Auto tag methods if there is no tag.
+        /// </summary>
+        public bool AutoTag { get; set; } = true;
     }
 }
