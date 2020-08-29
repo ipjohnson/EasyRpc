@@ -9,13 +9,28 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
+    /// <summary>
+    /// Service for serving up documentation assets
+    /// </summary>
     public interface IDocumentationService
     {
+        /// <summary>
+        /// Execute documentation handler
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
         Task Execute(HttpContext httpContext, RequestDelegate next);
 
+        /// <summary>
+        /// Configure documentation service
+        /// </summary>
+        /// <param name="apiInformation"></param>
+        /// <param name="endPointMethodHandlersList"></param>
         void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
     }
 
+    /// <inheritdoc />
     public class DocumentationService : IDocumentationService
     {
         private readonly IOpenApiGenerationService _openApiGenerationService;
@@ -26,6 +41,12 @@ namespace EasyRpc.AspNetCore.Documentation
         private string _jsonDataPath;
         private bool _redirect;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="openApiGenerationService"></param>
+        /// <param name="swaggerAssetProvider"></param>
+        /// <param name="configurationManager"></param>
         public DocumentationService(IOpenApiGenerationService openApiGenerationService, ISwaggerAssetProvider swaggerAssetProvider, IConfigurationManager configurationManager)
         {
             _openApiGenerationService = openApiGenerationService;
@@ -33,6 +54,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _configurationManager = configurationManager;
         }
 
+        /// <inheritdoc />
         public Task Execute(HttpContext httpContext, RequestDelegate next)
         {
             if (!_enabled)
@@ -59,24 +81,7 @@ namespace EasyRpc.AspNetCore.Documentation
             return next(httpContext);
         }
 
-        private async Task HandleDocumentationRequest(HttpContext httpContext, RequestDelegate next)
-        {
-            if (string.Equals(httpContext.Request.Path, _jsonDataPath, StringComparison.CurrentCultureIgnoreCase))
-            {
-                await _openApiGenerationService.Execute(httpContext, next);
-            }
-            else if(!await _swaggerAssetProvider.ProvideAsset(httpContext))
-            {
-                await RedirectToSwagger(httpContext);
-            }
-        }
-
-        private async Task RedirectToSwagger(HttpContext httpContext)
-        {
-            httpContext.Response.Headers["Location"] = _pathBase + "index.html";
-            httpContext.Response.StatusCode = (int) HttpStatusCode.Redirect;
-        }
-
+        /// <inheritdoc />
         public void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
             var documentationOptions = _configurationManager.GetConfiguration<DocumentationOptions>();
@@ -86,13 +91,34 @@ namespace EasyRpc.AspNetCore.Documentation
             if (_enabled)
             {
                 _redirect = documentationOptions.RedirectRootToDocumentation;
-                _jsonDataPath = documentationOptions.SwaggerBasePath + documentationOptions.OpenApiJsonUrl;
-                _pathBase = documentationOptions.SwaggerBasePath;
+                _jsonDataPath = documentationOptions.UIBasePath + documentationOptions.OpenApiJsonUrl;
+                _pathBase = documentationOptions.UIBasePath;
 
                 _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
 
-                _swaggerAssetProvider.Configure();
+                _swaggerAssetProvider.Configure(documentationOptions);
             }
         }
+
+        private async Task HandleDocumentationRequest(HttpContext httpContext, RequestDelegate next)
+        {
+            if (string.Equals(httpContext.Request.Path, _jsonDataPath, StringComparison.CurrentCultureIgnoreCase))
+            {
+                await _openApiGenerationService.Execute(httpContext, next);
+            }
+            else if (!await _swaggerAssetProvider.ProvideAsset(httpContext))
+            {
+                await RedirectToSwagger(httpContext);
+            }
+        }
+
+        private Task RedirectToSwagger(HttpContext httpContext)
+        {
+            httpContext.Response.Headers["Location"] = _pathBase + "index.html";
+            httpContext.Response.StatusCode = (int)HttpStatusCode.Redirect;
+
+            return Task.CompletedTask;
+        }
+
     }
 }

@@ -7,30 +7,44 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
     public interface ISwaggerAssetProvider
     {
-        void Configure();
+        void Configure(DocumentationOptions options);
 
         ValueTask<bool> ProvideAsset(HttpContext context);
     }
 
     public class SwaggerAssetProvider : ISwaggerAssetProvider
     {
+        private ILogger<SwaggerAssetProvider> _logger;
         private readonly Dictionary<string, FileEntry> _fileEntries = new Dictionary<string, FileEntry>();
-        private readonly string _pathBase = "/swagger/";
         private readonly ValueTask<bool> _false = new ValueTask<bool>(false);
-        
-        public void Configure()
+        private IHostEnvironment _hostEnvironment;
+        private DocumentationOptions _options;
+
+        public SwaggerAssetProvider(IHostEnvironment hostEnvironment, ILogger<SwaggerAssetProvider> logger)
         {
+            _hostEnvironment = hostEnvironment;
+            _logger = logger;
+        }
+
+        public void Configure(DocumentationOptions options)
+        {
+            _options = options;
             UnpackAssets();
+
+            ProcessContentPath(_options.ContentPath);
         }
 
         public ValueTask<bool> ProvideAsset(HttpContext context)
         {
-            var fileName = context.Request.Path.Value.Substring(_pathBase.Length);
+            var fileName = context.Request.Path.Value.Substring(_options.UIBasePath.Length);
 
             if (_fileEntries.TryGetValue(fileName, out var fileEntry))
             {
@@ -147,9 +161,17 @@ namespace EasyRpc.AspNetCore.Documentation
                 fileEntry.FileName = fileEntry.FileName.Substring(0, fileEntry.FileName.Length - 3);
                 fileEntry.ContentType = "text/js";
             }
+            else if (fileEntry.FileName.EndsWith(".js"))
+            {
+                fileEntry.ContentType = "text/js";
+            }
             else if (fileEntry.FileName.EndsWith(".html"))
             {
                 fileEntry.ContentType = "text/html";
+            }
+            else if (fileEntry.FileName.EndsWith(".css"))
+            {
+                fileEntry.ContentType = "text/css";
             }
         }
 
@@ -208,5 +230,70 @@ namespace EasyRpc.AspNetCore.Documentation
             public byte[] Contents { get; set; }
         }
 
+
+        private void ProcessContentPath(string path)
+        {            
+            var contents = _hostEnvironment.ContentRootFileProvider.GetDirectoryContents(path);
+            
+            if (contents.Exists)
+            {
+                foreach (var fileInfo in contents)
+                {
+                    if (fileInfo.IsDirectory)
+                    {
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var fileEntry = new FileEntry
+                            {
+                                FileName = fileInfo.Name,
+                                IsCompressed = false
+                            };
+
+                            SetContentType(fileEntry);
+
+                            if (fileEntry.ContentType.StartsWith("text/"))
+                            {
+                                fileEntry.IsCompressed = true;
+                                fileEntry.Contents = ReadAndCompressFile(fileInfo);
+                            }
+                            else
+                            {
+                                fileEntry.Contents = ReadFile(fileInfo);
+                            }
+
+                            _fileEntries[fileEntry.FileName] = fileEntry;
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.LogError(e, "Exception thrown while processing asset file {0}", fileInfo.Name);
+                        }
+                    }
+                }
+            }
+        }
+
+        private byte[] ReadFile(IFileInfo fileInfo)
+        {
+            using var memoryStream = new MemoryStream();
+
+            fileInfo.CreateReadStream().CopyTo(memoryStream);
+            
+            return memoryStream.ToArray();
+        }
+
+        private byte[] ReadAndCompressFile(IFileInfo fileInfo)
+        {
+            using var memoryStream = new MemoryStream();
+            using var brStream = new BrotliStream(memoryStream, CompressionLevel.Optimal);
+
+            fileInfo.CreateReadStream().CopyTo(brStream);
+
+            brStream.Flush();
+
+            return memoryStream.ToArray();
+        }
     }
 }

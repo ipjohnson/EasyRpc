@@ -41,16 +41,19 @@ namespace EasyRpc.AspNetCore.Documentation
         private ConcurrentDictionary<Type, string> _referenceNames;
         private ConcurrentDictionary<string, Type> _nameMap;
         private IKnownOpenApiTypeMapper _simpleOpenApiTypeMapper;
+        private IXmlDocProvider _xmlDocProvider;
 
-        public OpenApiSchemaGenerator(IKnownOpenApiTypeMapper simpleOpenApiTypeMapper)
+        public OpenApiSchemaGenerator(IKnownOpenApiTypeMapper simpleOpenApiTypeMapper, IXmlDocProvider xmlDocProvider)
         {
             _simpleOpenApiTypeMapper = simpleOpenApiTypeMapper;
+            _xmlDocProvider = xmlDocProvider;
 
             _knownComponents = new ConcurrentDictionary<string, OpenApiSchema>();
             _referenceNames = new ConcurrentDictionary<Type, string>();
             _nameMap = new ConcurrentDictionary<string, Type>();
         }
 
+        /// <inheritdoc />
         public OpenApiSchema GetSchemaType(Type objectType)
         {
             if (objectType.IsArray)
@@ -177,9 +180,17 @@ namespace EasyRpc.AspNetCore.Documentation
             var properties = new Dictionary<string, OpenApiSchema>();
             var schemaInstance = new OpenApiSchema { Type = "object", Properties = properties };
 
+            var element = _xmlDocProvider.GetTypeDocumentation(objectType);
+
+            schemaInstance.Description = element.GetSummary();
+
             foreach (var propertyInfo in objectType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 var propertyTypeSchema = GetSchemaType(propertyInfo.PropertyType);
+
+                element = _xmlDocProvider.GetPropertyDocumentation(propertyInfo);
+
+                propertyTypeSchema.Description = element.GetSummary();
 
                 properties[CasePropertyName(propertyInfo.Name)] = propertyTypeSchema;
             }

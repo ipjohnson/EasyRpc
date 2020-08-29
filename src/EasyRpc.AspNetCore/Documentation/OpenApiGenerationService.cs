@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using EasyRpc.AspNetCore.CodeGeneration;
 using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.EndPoints;
@@ -34,17 +37,21 @@ namespace EasyRpc.AspNetCore.Documentation
         private IOpenApiSchemaGenerator _apiSchemaGenerator;
         private IContentSerializationService _contentSerializationService;
         private IErrorResultTypeCreator _errorResultTypeCreator;
+        private IXmlDocProvider _xmlDocProvider;
         private ExposeConfigurations _exposeConfiguration;
         private DocumentationOptions _documentationOptions;
+        private byte[] _cachedV3;
 
         public OpenApiGenerationService(IOpenApiSchemaGenerator apiSchemaGenerator,
             IConfigurationManager configurationManager,
             IContentSerializationService contentSerializationService, 
-            IErrorResultTypeCreator errorResultTypeCreator)
+            IErrorResultTypeCreator errorResultTypeCreator,
+            IXmlDocProvider xmlDocProvider)
         {
             _apiSchemaGenerator = apiSchemaGenerator;
             _contentSerializationService = contentSerializationService;
             _errorResultTypeCreator = errorResultTypeCreator;
+            _xmlDocProvider = xmlDocProvider;
         }
 
         public void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
@@ -52,34 +59,85 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             _apiInformation = apiInformation;
             _endPointMethodHandlersList = endPointMethodHandlersList;
-            _exposeConfiguration = apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
+            _exposeConfiguration = 
+                apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
             _documentationOptions = documentationOptions;
             _apiSchemaGenerator.Configure(documentationOptions);
         }
 
-        public async Task Execute(HttpContext httpContext, RequestDelegate next)
+        public Task Execute(HttpContext httpContext, RequestDelegate next)
+        {
+            httpContext.Request.Headers.TryGetValue("Accept-Encoding", out var encodings);
+
+            var brCompress = encodings.ToString().Contains("br");
+
+            bool isVersion3 = !(httpContext.Request.Query.TryGetValue("OpenApi", out var openApiVersion) &&
+                                int.TryParse(openApiVersion, out var versionNumber) &&
+                                versionNumber == 2);
+
+            if (isVersion3 && _cachedV3 != null && brCompress)
+            {
+                httpContext.Response.Headers.TryAdd("Content-Encoding", "br");
+
+                return httpContext.Response.Body.WriteAsync(_cachedV3, 0, _cachedV3.Length);
+            }
+
+            return GenerateAndReturnDocument(httpContext, next, isVersion3, brCompress);
+        }
+
+        private async Task GenerateAndReturnDocument(HttpContext httpContext, RequestDelegate next, bool isVersion3,
+            bool brCompress)
         {
             httpContext.Response.ContentType = "application/json";
 
-            var document = await GenerateDocument();
+            var document = await GenerateDocument(httpContext);
 
             string outputString;
 
-            if (httpContext.Request.Query.TryGetValue("OpenApi", out var openApiVersion) && 
-                int.TryParse(openApiVersion, out var versionNumber) && 
-                versionNumber == 2)
+            if (isVersion3)
             {
-                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi2_0);
+                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi3_0);
+
+                byte[] outputBytes;
+
+                if (brCompress)
+                {
+                    using var memoryStream = new MemoryStream();
+                    using var brStream = new BrotliStream(memoryStream, CompressionLevel.Optimal);
+                    using var streamWriter = new StreamWriter(brStream);
+
+                    streamWriter.Write(outputString);
+
+                    streamWriter.Flush();
+                    brStream.Flush();
+
+                    _cachedV3 = outputBytes = memoryStream.ToArray();
+
+                    httpContext.Response.Headers.TryAdd("Content-Encoding", "br");
+                }
+                else
+                {
+                    using var memoryStream = new MemoryStream();
+                    using var streamWriter = new StreamWriter(memoryStream);
+
+                    streamWriter.Write(outputString);
+                    streamWriter.Flush();
+
+                    outputBytes = memoryStream.ToArray();
+                }
+
+                await httpContext.Response.Body.WriteAsync(outputBytes, 0, outputBytes.Length);
             }
             else
             {
-                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi3_0);
-            }
-            
-            await httpContext.Response.WriteAsync(outputString);
-        }
+                outputString = document.SerializeAsJson(OpenApiSpecVersion.OpenApi2_0);
 
-        protected virtual async Task<OpenApiDocument> GenerateDocument()
+                await httpContext.Response.WriteAsync(outputString);
+            }
+        }
+   
+        
+        protected virtual async Task<OpenApiDocument> GenerateDocument(HttpContext context)
         {
             var document = new OpenApiDocument
             {
@@ -89,10 +147,15 @@ namespace EasyRpc.AspNetCore.Documentation
                     Title = GetTitle()
                 }
             };
-
-            ProcessEndPoints(document, _endPointMethodHandlersList);
+            
+            ProcessEndPoints(context, document, _endPointMethodHandlersList);
 
             _apiSchemaGenerator.PopulateSchemaComponent(document);
+
+            foreach (var documentFilter in _documentationOptions.DocumentFilters)
+            {
+                documentFilter.Apply(new DocumentFilterContext(document,context));
+            }
 
             return document;
         }
@@ -119,7 +182,7 @@ namespace EasyRpc.AspNetCore.Documentation
             return _documentationOptions.Title ?? Assembly.GetEntryAssembly()?.GetName().Name;
         }
 
-        private void ProcessEndPoints(OpenApiDocument document, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
+        private void ProcessEndPoints(HttpContext context, OpenApiDocument document, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
             document.Paths = new OpenApiPaths();
 
@@ -134,9 +197,18 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 foreach (var endPointHandler in groupedMethod.Value)
                 {
-                    var apiOperation = GenerateApiOperation(endPointHandler.Value);
+                    var apiOperation = GenerateApiOperation(document, endPointHandler.Value);
 
-                    pathItem.Operations.Add(GetOperationTypeFromHttpMethod(endPointHandler.Value.HttpMethod), apiOperation);
+                    var method = GetOperationTypeFromHttpMethod(endPointHandler.Value.HttpMethod);
+
+                    var filterContext = new OperationFilterContext(context, endPointHandler.Value.Configuration, apiOperation, document);
+
+                    foreach (var operationFilter in _documentationOptions.OperationFilters)
+                    {
+                        operationFilter.Apply(filterContext);
+                    }
+
+                    pathItem.Operations.Add(method, apiOperation);
                 }
 
                 document.Paths.Add(groupedMethod.Key, pathItem);
@@ -202,26 +274,78 @@ namespace EasyRpc.AspNetCore.Documentation
             return groupings;
         }
 
-        private OpenApiOperation GenerateApiOperation(IEndPointMethodHandler endPointMethodHandler)
+        private OpenApiOperation GenerateApiOperation(OpenApiDocument document,
+            IEndPointMethodHandler endPointMethodHandler)
         {
+            var methodInfo = endPointMethodHandler.Configuration.InvokeInformation.MethodToInvoke;
+            
+            XElement element = null;
+
+            if (methodInfo != null)
+            {
+                element = _xmlDocProvider.GetMethodDocumentation(methodInfo);
+            }
+
             var operation = new OpenApiOperation
             {
-                Description = "test",
-                Parameters = GenerateParameters(endPointMethodHandler),
+                Summary = element.GetSummary(),
+                Tags = new List<OpenApiTag>(),
+                Parameters = GenerateParameters(endPointMethodHandler, element),
                 OperationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/","") 
             };
 
-            if (endPointMethodHandler.RouteInformation.HasBody)
+            foreach (var tag in element.GetTags())
             {
-                operation.RequestBody = GenerateRequestBody(endPointMethodHandler);
+                operation.Tags.Add(new OpenApiTag{ Name = tag });
             }
 
-            operation.Responses = GenerateResponses(endPointMethodHandler);
+            if (methodInfo != null && methodInfo.DeclaringType != null)
+            {
+                var parentElement = _xmlDocProvider.GetTypeDocumentation(methodInfo.DeclaringType);
+
+                if (parentElement != null)
+                {
+                    foreach (var tag in parentElement.GetTags())
+                    {
+                        operation.Tags.Add(new OpenApiTag { Name = tag });
+                    }
+                }
+            }
+
+            if (operation.Tags.Count == 0 && 
+                _documentationOptions.AutoTag && 
+                methodInfo?.DeclaringType  != null)
+            {
+                var tagName = methodInfo.DeclaringType.Name;
+
+                operation.Tags.Add(new OpenApiTag{ Name = tagName });
+
+                if (document.Tags.All(tag => tag.Name != tagName))
+                {
+                    var parentElement = _xmlDocProvider.GetTypeDocumentation(methodInfo.DeclaringType);
+
+                    var newTag = new OpenApiTag
+                    {
+                        Name = tagName,
+                        Description = parentElement.GetSummary()
+                    };
+
+                    document.Tags.Add(newTag);
+                }
+            }
+
+            if (endPointMethodHandler.RouteInformation.HasBody)
+            {
+                operation.RequestBody = GenerateRequestBody(endPointMethodHandler, element);
+            }
+
+            operation.Responses = GenerateResponses(endPointMethodHandler, element);
 
             return operation;
         }
 
-        private OpenApiResponses GenerateResponses(IEndPointMethodHandler endPointMethodHandler)
+
+        private OpenApiResponses GenerateResponses(IEndPointMethodHandler endPointMethodHandler, XElement element)
         {
             var responses = new OpenApiResponses();
             var hasContent = false;
@@ -350,7 +474,7 @@ namespace EasyRpc.AspNetCore.Documentation
             responses.Add(successStatusCode, response);
         }
 
-        private OpenApiRequestBody GenerateRequestBody(IEndPointMethodHandler endPointMethodHandler)
+        private OpenApiRequestBody GenerateRequestBody(IEndPointMethodHandler endPointMethodHandler, XElement element)
         {
             var requestParameter =
                 endPointMethodHandler.Configuration.Parameters.FirstOrDefault(p =>
@@ -364,6 +488,11 @@ namespace EasyRpc.AspNetCore.Documentation
                 };
 
                 var schema = _apiSchemaGenerator.GetSchemaType(requestParameter.ParamType);
+
+                foreach (var schemaProperty in schema.Properties)
+                {
+                    schemaProperty.Value.Description = element.GetParameterSummary(schemaProperty.Key);
+                }
 
                 foreach (var contentType in _contentSerializationService.SupportedContentTypes)
                 {
@@ -387,6 +516,11 @@ namespace EasyRpc.AspNetCore.Documentation
                 };
 
                 var schema = GeneratePostParameterSchema(postParameterList);
+
+                foreach (var schemaProperty in schema.Properties)
+                {
+                    schemaProperty.Value.Description = element.GetParameterSummary(schemaProperty.Key);
+                }
 
                 foreach (var contentType in _contentSerializationService.SupportedContentTypes)
                 {
@@ -419,7 +553,8 @@ namespace EasyRpc.AspNetCore.Documentation
             return schema;
         }
 
-        private IList<OpenApiParameter> GenerateParameters(IEndPointMethodHandler endPointMethodHandler)
+        private IList<OpenApiParameter> GenerateParameters(IEndPointMethodHandler endPointMethodHandler,
+            XElement element)
         {
             var parameterList = new List<OpenApiParameter>();
 
@@ -432,6 +567,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 var apiParameter = new OpenApiParameter
                 {
                     Name = configurationParameter.Name,
+                    Description = element.GetParameterSummary(configurationParameter.Name),
                     Schema = _apiSchemaGenerator.GetSchemaType(configurationParameter.ParamType)
                 };
 
