@@ -24,6 +24,8 @@ namespace EasyRpc.AspNetCore.Data
         /// <param name="max"></param>
         public ObjectPool(Func<T> createFunc, int max = 0)
         {
+            _max = max;
+
             _createFunc = createFunc;
         }
 
