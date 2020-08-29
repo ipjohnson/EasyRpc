@@ -17,8 +17,8 @@ namespace EasyRpc.AspNetCore.Serializers
     /// </summary>
     public class JsonContentSerializer : BaseSerializer, IApiConfigurationCompleteAware
     {
-        protected readonly IConfigurationManager ConfigurationManager;
-        protected JsonSerializerOptions SerializerOptions;
+        private readonly IConfigurationManager _configurationManager;
+        private JsonSerializerOptions _serializerOptions;
         private const string _contentType = "application/json";
 
         /// <summary>
@@ -28,9 +28,9 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <param name="configurationManager"></param>
         public JsonContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(errorHandler)
         {
-            ConfigurationManager = configurationManager;
+            _configurationManager = configurationManager;
 
-            ConfigurationManager.CreationMethod(DefaultJsonSerializerOptions());
+            _configurationManager.CreationMethod(DefaultJsonSerializerOptions());
         }
 
         /// <inheritdoc />
@@ -58,7 +58,7 @@ namespace EasyRpc.AspNetCore.Serializers
 
             var outputStream = GetOutputStream(context);
 
-            await JsonSerializer.SerializeAsync(outputStream, context.Result, context.Result.GetType(), SerializerOptions, context.HttpContext.RequestAborted);
+            await JsonSerializer.SerializeAsync(outputStream, context.Result, context.Result.GetType(), _serializerOptions, context.HttpContext.RequestAborted);
 
             if (outputStream != context.HttpContext.Response.Body)
             {
@@ -73,14 +73,29 @@ namespace EasyRpc.AspNetCore.Serializers
         {
             if (!context.HttpContext.Request.Headers.TryGetValue("Content-Encoding", out var encoding))
             {
-                return JsonSerializer.DeserializeAsync<T>(context.HttpContext.Request.Body, SerializerOptions,
+                return JsonSerializer.DeserializeAsync<T>(context.HttpContext.Request.Body, _serializerOptions,
                     context.HttpContext.RequestAborted);
             }
 
             return HandleContentEncoding<T>(context, encoding);
         }
 
-        protected async ValueTask<T> HandleContentEncoding<T>(RequestExecutionContext context, string encoding)
+        /// <inheritdoc />
+        public void ApiConfigurationComplete(IServiceProvider serviceScope)
+        {
+            _serializerOptions = _configurationManager.GetConfiguration<JsonSerializerOptions>();
+        }
+
+        /// <summary>
+        /// Method that provides default json settings
+        /// </summary>
+        /// <returns></returns>
+        public static Func<JsonSerializerOptions> DefaultJsonSerializerOptions()
+        {
+            return () => new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+        }
+
+        private async ValueTask<T> HandleContentEncoding<T>(RequestExecutionContext context, string encoding)
         {
             if (encoding.Contains("br"))
             {
@@ -127,21 +142,6 @@ namespace EasyRpc.AspNetCore.Serializers
             }
 
             return context.HttpContext.Response.Body;
-        }
-
-        /// <inheritdoc />
-        public void ApiConfigurationComplete(IServiceProvider serviceScope)
-        {
-            SerializerOptions = ConfigurationManager.GetConfiguration<JsonSerializerOptions>();
-        }
-
-        /// <summary>
-        /// Method that provides default json settings
-        /// </summary>
-        /// <returns></returns>
-        public static Func<JsonSerializerOptions> DefaultJsonSerializerOptions()
-        {
-            return () => new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
         }
     }
 }
