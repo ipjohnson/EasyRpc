@@ -137,7 +137,7 @@ namespace EasyRpc.AspNetCore.Documentation
         }
    
         
-        protected virtual async Task<OpenApiDocument> GenerateDocument(HttpContext context)
+        protected virtual Task<OpenApiDocument> GenerateDocument(HttpContext context)
         {
             var document = new OpenApiDocument
             {
@@ -157,7 +157,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 documentFilter.Apply(new DocumentFilterContext(document,context));
             }
 
-            return document;
+            return Task.FromResult(document);
         }
 
         private string GetVersion()
