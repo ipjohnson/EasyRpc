@@ -70,6 +70,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<ISpecialParameterBinder, SpecialParameterBinder>();
             serviceCollection.TryAddScoped<IEnvironmentConfiguration, EnvironmentConfiguration>();
             serviceCollection.TryAddScoped<IWrappedResultTypeCreator, WrappedResultTypeCreator>();
+            serviceCollection.TryAddScoped<IXmlDocProvider,XmlDocProvider>();
 
             serviceCollection.TryAddScoped<BaseEndPointServices>();
 
