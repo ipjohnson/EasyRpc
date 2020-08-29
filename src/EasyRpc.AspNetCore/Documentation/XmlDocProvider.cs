@@ -183,8 +183,9 @@ namespace EasyRpc.AspNetCore.Documentation
                 }
             }
             // ReSharper disable once EmptyGeneralCatchClause
-            catch (Exception e)
+            catch
             {
+                // this is usually caused by assembly.Location throwing an exception
             }
             
             return xDoc;
