@@ -5,7 +5,7 @@ using System.Text;
 namespace EasyRpc.Abstractions.Services
 {
     /// <summary>
-    /// Service should be shared between request instead of creating a new one
+    /// Service will be shared between request vs instance per request
     /// </summary>
     public class SharedServiceAttribute : Attribute, IServiceActivationAttribute
     {
