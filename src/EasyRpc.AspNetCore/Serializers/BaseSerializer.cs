@@ -7,11 +7,25 @@ using EasyRpc.AspNetCore.Errors;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
+    /// <summary>
+    /// Abstract base class for content serializer
+    /// </summary>
     public abstract class BaseSerializer : IContentSerializer
     {
+        /// <summary>
+        /// Error handler for serializer
+        /// </summary>
         protected IErrorHandler ErrorHandler;
+
+        /// <summary>
+        /// Serializer id
+        /// </summary>
         protected int SerializerId;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="errorHandler"></param>
         protected BaseSerializer(IErrorHandler errorHandler)
         {
             ErrorHandler = errorHandler;
@@ -47,6 +61,10 @@ namespace EasyRpc.AspNetCore.Serializers
             context.HttpContext.Response.StatusCode = context.HttpStatusCode;
         }
 
+        /// <summary>
+        /// Assign serialization id
+        /// </summary>
+        /// <param name="id"></param>
         public void AssignUniqueId(int id)
         {
             SerializerId = id;

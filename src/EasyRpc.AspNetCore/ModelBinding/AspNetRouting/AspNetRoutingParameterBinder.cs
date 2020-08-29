@@ -6,20 +6,29 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore.ModelBinding.AspNetRouting
 {
+    /// <summary>
+    /// Parameter binder used for asp.net routing
+    /// </summary>
     public interface IAspNetRoutingParameterBinder : IUrlParameterBinder
     {
 
     }
 
+    /// <inheritdoc />
     public class AspNetRoutingParameterBinder : IAspNetRoutingParameterBinder
     {
         private IStringValueModelBinder _stringValueModelBinder;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="stringValueModelBinder"></param>
         public AspNetRoutingParameterBinder(IStringValueModelBinder stringValueModelBinder)
         {
             _stringValueModelBinder = stringValueModelBinder;
         }
 
+        /// <inheritdoc />
         public void BindUrlParameter(RequestExecutionContext context, 
             EndPointMethodConfiguration configuration,
             IRpcParameterInfo parameter, 
@@ -44,6 +53,13 @@ namespace EasyRpc.AspNetCore.ModelBinding.AspNetRouting
             }
         }
 
+        /// <summary>
+        /// Handle missing parameter
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="configuration"></param>
+        /// <param name="parameter"></param>
+        /// <param name="parameterContext"></param>
         protected virtual void HandleMissingParameter(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext)
         {
             

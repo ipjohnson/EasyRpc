@@ -12,10 +12,21 @@ using EasyRpc.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
+    /// <summary>
+    /// Delegate that takes request execution and returns a task
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public delegate Task MethodEndPointDelegate(RequestExecutionContext context);
 
+    /// <summary>
+    /// information about the method to invoke
+    /// </summary>
     public interface IMethodInvokeInformation
     {
+        /// <summary>
+        /// Signature for method
+        /// </summary>
         MethodInfo Signature { get; }
 
         /// <summary>

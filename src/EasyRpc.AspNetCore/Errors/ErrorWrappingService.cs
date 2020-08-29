@@ -6,6 +6,9 @@ using EasyRpc.AspNetCore.CodeGeneration;
 
 namespace EasyRpc.AspNetCore.Errors
 {
+    /// <summary>
+    /// Service that returns an error object given an exception
+    /// </summary>
     public interface IErrorWrappingService
     {
         object WrapError(RequestExecutionContext context, Exception e);
@@ -16,7 +19,7 @@ namespace EasyRpc.AspNetCore.Errors
     /// </summary>
     public class ErrorWrappingService : IErrorWrappingService
     {
-        private IErrorResultTypeCreator _errorResultTypeCreator;
+        private readonly IErrorResultTypeCreator _errorResultTypeCreator;
         private Func<IErrorWrapper> _errorWrapperCreator;
 
         /// <summary>

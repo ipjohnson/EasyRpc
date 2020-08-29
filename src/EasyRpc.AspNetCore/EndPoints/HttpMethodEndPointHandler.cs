@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
+    /// <summary>
+    /// Collection of end point method handlers
+    /// </summary>
     public class HttpMethodEndPointHandler : IEndPointHandler
     {
         private readonly IEndPointMethodHandler _postHandler;
@@ -15,6 +18,13 @@ namespace EasyRpc.AspNetCore.EndPoints
         private readonly List<IEndPointMethodHandler> _other;
         private readonly IUnmappedEndPointHandler _unknownEndPointHandler;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="supportsLongerPaths"></param>
+        /// <param name="handlers"></param>
+        /// <param name="unknownEndPointHandler"></param>
         public HttpMethodEndPointHandler(string path, bool supportsLongerPaths, List<IEndPointMethodHandler> handlers, IUnmappedEndPointHandler unknownEndPointHandler)
         {
             Path = path;
@@ -41,24 +51,27 @@ namespace EasyRpc.AspNetCore.EndPoints
             }
         }
         
+        /// <inheritdoc />
         public string Path { get; }
 
+        /// <inheritdoc />
         public bool SupportsLongerPaths { get; }
 
+        /// <inheritdoc />
         public Task HandleRequest(HttpContext context, RequestDelegate next)
         {
-            if (context.Request.Method == HttpMethods.Post && 
-                _postHandler != null)
-            {
-                return _postHandler.HandleRequest(context);
-            }
-
-            if (context.Request.Method == HttpMethods.Get && 
-                _getHandler != null)
+            if (_getHandler != null &&
+                context.Request.Method == HttpMethods.Get)
             {
                 return _getHandler.HandleRequest(context);
             }
 
+            if (_postHandler != null && 
+                context.Request.Method == HttpMethods.Post)
+            {
+                return _postHandler.HandleRequest(context);
+            }
+            
             return HandleOther(context, next);
         }
 

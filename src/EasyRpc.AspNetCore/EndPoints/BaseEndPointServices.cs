@@ -10,8 +10,21 @@ using EasyRpc.AspNetCore.Serializers;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
+    /// <summary>
+    /// Collection of services
+    /// </summary>
     public class BaseEndPointServices
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="authorizationService"></param>
+        /// <param name="serializationService"></param>
+        /// <param name="parameterBinderDelegateBuilder"></param>
+        /// <param name="methodInvokerCreationService"></param>
+        /// <param name="errorHandler"></param>
+        /// <param name="rawContentWriter"></param>
+        /// <param name="responseDelegateCreator"></param>
         public BaseEndPointServices(IEndPointAuthorizationService authorizationService,
             IContentSerializationService serializationService, 
             IParameterBinderDelegateBuilder parameterBinderDelegateBuilder, 
@@ -29,20 +42,45 @@ namespace EasyRpc.AspNetCore.EndPoints
             ResponseDelegateCreator = responseDelegateCreator;
         }
 
+        /// <summary>
+        /// Authorization service
+        /// </summary>
         public IEndPointAuthorizationService AuthorizationService { get; }
 
+        /// <summary>
+        /// Serialization service
+        /// </summary>
         public IContentSerializationService SerializationService { get; }
 
+        /// <summary>
+        /// Parameter binding service
+        /// </summary>
         public IParameterBinderDelegateBuilder ParameterBinderDelegateBuilder { get; }
 
+        /// <summary>
+        /// Method invoker creation service
+        /// </summary>
         public IMethodInvokerCreationService MethodInvokerCreationService { get; }
 
+        /// <summary>
+        /// Error handler service
+        /// </summary>
         public IErrorHandler ErrorHandler { get; }
 
+        /// <summary>
+        /// Raw content writer service
+        /// </summary>
         public IRawContentWriter RawContentWriter { get; }
 
+        /// <summary>
+        /// Response delegate creator
+        /// </summary>
         public IResponseDelegateCreator ResponseDelegateCreator { get; }
 
+        /// <summary>
+        /// Configuration is complete
+        /// </summary>
+        /// <param name="serviceScope"></param>
         public void ConfigurationComplete(IServiceProvider serviceScope)
         {
             if (AuthorizationService is IApiConfigurationCompleteAware authorizationAware)

@@ -8,9 +8,17 @@ using EasyRpc.Examples.SharedDefinitions;
 
 namespace EasyRpc.Examples.Service.Services
 {
+    /// <summary>
+    /// Everything math related!
+    /// </summary>
     public class MathService : IMathService
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Test method
+        /// </summary>
+        /// <param name="a">A parameter</param>
+        /// <param name="b">B parameter</param>
+        /// <returns></returns>
         public async Task<int> Add(int a, int b)
         {
             return a + b;
@@ -34,8 +42,14 @@ namespace EasyRpc.Examples.Service.Services
         public string Blah { get; set; }
     }
 
+    /// <summary>
+    /// Result class
+    /// </summary>
     public class ResultClass
     {
+        /// <summary>
+        /// Result value
+        /// </summary>
         public int Result { get; set; }
     }
 }
