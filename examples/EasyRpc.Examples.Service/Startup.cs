@@ -34,7 +34,12 @@ namespace EasyRpc.Examples.Service
             app.UseRpcServices(api =>
             {
                 api.Configure.Documentation(docs =>
-                    docs.MapType<TestStruct>(() => new OpenApiSchema {Type = "string", Format = "test"}));
+                {
+                    // enable to test redoc
+                    // docs.UIBasePath = "/ReDoc/";
+                    // docs.ContentPath = "wwwroot/redoc/";
+                    docs.MapType<TestStruct>(() => new OpenApiSchema { Type = "string", Format = "test" });
+                });
                 api.ExposeNamespaceContaining<MathService>();
             });
         }
