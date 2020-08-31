@@ -67,10 +67,8 @@ namespace EasyRpc.AspNetCore.Views
             }
 
             var viewEngineResult = viewEngine.GetView(null, _viewName, _isMainPage);
-
-            var viewContext = new ActionContext(context.HttpContext, context.RouteData, new ActionDescriptor());
-
-            return _executor.ExecuteAsync(viewContext,
+            
+            return _executor.ExecuteAsync(context,
                 viewEngineResult.View,
                 new ViewDataDictionary(_modelMetadataProvider, context.ModelState)
                 {
