@@ -108,7 +108,8 @@ namespace EasyRpc.AspNetCore.Configuration
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
             {
-                if (configuration.Parameters.Count == 0)
+                if (configuration.Parameters.Count == 0 && 
+                    (configuration.Filters == null || configuration.Filters.Count == 0))
                 {
                     closedType = typeof(NoParamsEndPointMethodHandler<>).MakeGenericType(returnType);
 
