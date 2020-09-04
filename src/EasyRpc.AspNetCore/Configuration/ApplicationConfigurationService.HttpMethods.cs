@@ -28,11 +28,11 @@ namespace EasyRpc.AspNetCore.Configuration
             var func = expression.Compile();
             Delegate finalDelegate = func;
 
-            // this is to handle cases where the TResult is private (anonymous type and can't be referenced in dynamic type)
-            if (typeof(TResult).IsNotPublic)
-            {
-                finalDelegate = new Func<object>(() => func());
-            }
+            //// this is to handle cases where the TResult is private (anonymous type and can't be referenced in dynamic type)
+            //if (typeof(TResult).IsNotPublic)
+            //{
+            //    finalDelegate = new Func<object>(() => func());
+            //}
 
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
