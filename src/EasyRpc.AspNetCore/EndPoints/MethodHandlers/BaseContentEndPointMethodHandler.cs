@@ -14,10 +14,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
     /// <summary>
     /// Base end point method handler
     /// </summary>
-    public abstract class BaseContentEndPointMethodHandler : IEndPointMethodHandler
+    public abstract class BaseContentEndPointMethodHandler<TReturn> : IEndPointMethodHandler
     {
-        private object[] _serializerData = Array.Empty<object>();
-
         /// <summary>
         /// Services
         /// </summary>
@@ -31,7 +29,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         /// <summary>
         /// Invoke method delegate
         /// </summary>
-        protected MethodEndPointDelegate InvokeMethodDelegate;
+        protected InvokeMethodDelegate<TReturn> InvokeMethodDelegate;
 
         /// <summary>
         /// Response delegate
@@ -61,31 +59,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         /// <inheritdoc />
         public abstract Task HandleRequest(HttpContext context);
 
-        /// <inheritdoc />
-        public object GetSerializerData(int serializerId)
-        {
-            return _serializerData.Length > serializerId ? _serializerData[serializerId] : null;
-        }
-
-        /// <inheritdoc />
-        public void SetSerializerData(int serializerId, object data)
-        {
-            if (_serializerData.Length <= serializerId)
-            {
-                lock (this)
-                {
-                    var newData = new object[serializerId + 1];
-
-                    Array.Copy(_serializerData, newData, _serializerData.Length);
-
-                    _serializerData = newData;
-                }
-            }
-
-            _serializerData[serializerId] = data;
-        }
-
-        /// <summary>
+       /// <summary>
         /// Builds method delegates
         /// </summary>
         protected virtual void SetupMethod()
@@ -100,11 +74,12 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                     if (Configuration.InvokeInformation.MethodInvokeDelegate == null)
                     {
                         InvokeMethodDelegate =
-                            Services.MethodInvokerCreationService.BuildMethodInvoker(Configuration, parametersType);
+                            Services.MethodInvokerCreationService.BuildMethodInvoker<TReturn>(Configuration, parametersType);
                     }
                     else
                     {
-                        InvokeMethodDelegate = Configuration.InvokeInformation.MethodInvokeDelegate;
+                        InvokeMethodDelegate = 
+                            (InvokeMethodDelegate<TReturn>)(object)Configuration.InvokeInformation.MethodInvokeDelegate;
                     }
 
                     ResponseDelegate = Services.ResponseDelegateCreator.CreateResponseDelegate(Configuration);

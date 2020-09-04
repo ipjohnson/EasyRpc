@@ -5,11 +5,13 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using EasyRpc.Abstractions.Headers;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Response;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
+using EasyRpc.AspNetCore.CodeGeneration;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.EndPoints.MethodHandlers;
@@ -30,15 +32,18 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly IConfigurationManager _configurationManager;
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private ExposeConfigurations _exposeConfigurations;
+        private IWrappedResultTypeCreator _wrappedResultTypeCreator;
         private string _basePath;
 
         public ApplicationConfigurationService(BaseEndPointServices services, 
             IConfigurationManager configurationManager, 
-            IAuthorizationImplementationProvider authorizationImplementationProvider)
+            IAuthorizationImplementationProvider authorizationImplementationProvider, 
+            IWrappedResultTypeCreator wrappedResultTypeCreator)
         {
             _services = services;
             _configurationManager = configurationManager;
             _authorizationImplementationProvider = authorizationImplementationProvider;
+            _wrappedResultTypeCreator = wrappedResultTypeCreator;
         }
 
         public void AddConfigurationObject(object configurationObject)
@@ -91,18 +96,29 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private IEndPointMethodHandler CreateEndPointMethodHandler(ICurrentApiInformation currentApi, EndPointMethodConfiguration configuration)
         {
+            var returnType = configuration.WrappedType ?? configuration.ReturnType;
+            Type closedType;
+
+            if (returnType.IsConstructedGenericType && (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||
+                                                        returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
+            {
+                returnType = returnType.GenericTypeArguments[0];
+            }
+
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
             {
                 if (configuration.Parameters.Count == 0)
                 {
-                    return new NoParamsEndPointMethodHandler(configuration, _services);
-                }
+                    closedType = typeof(NoParamsEndPointMethodHandler<>).MakeGenericType(returnType);
 
-                return new ParamsEndPointMethodHandler(configuration, _services);
+                    return (IEndPointMethodHandler)Activator.CreateInstance(closedType, configuration, _services);
+                }
             }
 
-            return new AuthenticationEndPointMethodHandler(configuration, _services);
+            closedType = typeof(StateBasedEndPointMethodHandler<>).MakeGenericType(returnType);
+
+            return (IEndPointMethodHandler)Activator.CreateInstance(closedType, configuration, _services);
         }
         
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
@@ -132,6 +148,22 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     configuration.RawContentType = rawAttribute.ContentType;
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
+                }
+                else if(string.IsNullOrEmpty(configuration.RawContentType))
+                {
+                    var returnType = methodInfo.ReturnType;
+
+                    if (returnType.IsConstructedGenericType &&
+                        (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||
+                         returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
+                    {
+                        returnType = returnType.GenericTypeArguments[0];
+                    }
+
+                    if (_exposeConfigurations.TypeWrapSelector(returnType))
+                    {
+                        configuration.WrappedType = _wrappedResultTypeCreator.GetTypeWrapper(returnType);
+                    }
                 }
 
                 var headerAttributes = classAttributes.Where(a => a is ResponseHeaderAttribute).ToList();

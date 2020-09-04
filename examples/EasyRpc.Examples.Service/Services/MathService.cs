@@ -19,9 +19,11 @@ namespace EasyRpc.Examples.Service.Services
         /// <param name="a">A parameter</param>
         /// <param name="b">B parameter</param>
         /// <returns></returns>
-        public async Task<int> Add(int a, int b)
+        public  Task<int> Add(int a, int b)
         {
-            return a + b;
+            //await Task.Delay(1);
+
+            return Task.FromResult(a + b);
         }
         
         public async Task<List<int>> All(TestStruct? blah)

@@ -16,14 +16,14 @@ namespace EasyRpc.AspNetCore.Benchmarks
     {
         public static void Main(string[] args)
         {
-            var benchmark = new MiddleWareBenchmark();
+            //var benchmark = new MiddleWareBenchmark();
 
-            benchmark.Setup();
-            benchmark.GetOneParam().Wait();
-            //benchmark.ConcatBenchmark().Wait();
+            //benchmark.Setup();
+            //benchmark.GetOneParam().Wait();
+            ////benchmark.ConcatBenchmark().Wait();
 
-            //benchmark.CarterPlainText().Wait();
-            benchmark.Shutdown();
+            ////benchmark.CarterPlainText().Wait();
+            //benchmark.Shutdown();
 
             BenchmarkRunner.Run<MiddleWareBenchmark>(DefaultConfig
                 .Instance

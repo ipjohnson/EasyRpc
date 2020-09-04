@@ -33,19 +33,5 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="context"></param>
         /// <returns></returns>
         Task HandleRequest(HttpContext context);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serializerId"></param>
-        /// <returns></returns>
-        object GetSerializerData(int serializerId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serializerId"></param>
-        /// <param name="data"></param>
-        void SetSerializerData(int serializerId, object data);
     }
 }

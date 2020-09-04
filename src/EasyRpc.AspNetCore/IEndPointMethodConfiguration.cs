@@ -40,7 +40,7 @@ namespace EasyRpc.AspNetCore
         Func<RequestExecutionContext, object> ActivationFunc { get; }
 
         /// <summary>
-        /// Can content be serialized
+        /// Should result support compression
         /// </summary>
         bool? SupportsCompression { get; }
 
@@ -53,6 +53,11 @@ namespace EasyRpc.AspNetCore
         /// Return type of method
         /// </summary>
         Type ReturnType { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Type WrappedType { get; }
 
         /// <summary>
         /// Successful http status code (200 GET, 201 POST)

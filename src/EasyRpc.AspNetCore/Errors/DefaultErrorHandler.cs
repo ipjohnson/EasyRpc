@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.Filters;
 using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,16 +58,36 @@ namespace EasyRpc.AspNetCore.Errors
         }
 
         /// <inheritdoc />
-        public virtual Task HandleException(RequestExecutionContext context, Exception e)
+        public virtual Task HandleException(RequestExecutionContext context, Exception exception)
+        {
+            return context.CallFilters != null ? 
+                HandleExceptionWithFilters(context, exception) : 
+                HandleExceptionWithoutFilters(context, exception);
+        }
+
+        private async Task HandleExceptionWithFilters(RequestExecutionContext context, Exception exception)
+        {
+            foreach (var callFilter in context.CallFilters)
+            {
+                if (callFilter is IAsyncRequestExceptionFilter exceptionFilter)
+                {
+                    await exceptionFilter.HandleException(context, exception);
+                }
+            }
+
+            await HandleExceptionWithoutFilters(context, exception);
+        }
+
+        private Task HandleExceptionWithoutFilters(RequestExecutionContext context, Exception exception)
         {
             if (context.ResponseHasStarted)
             {
                 return Task.CompletedTask;
             }
 
-            context.HttpStatusCode = (int)HttpStatusCode.InternalServerError;
+            context.HttpStatusCode = (int) HttpStatusCode.InternalServerError;
 
-            context.Result = ErrorWrappingService.WrapError(context, e);
+            context.Result = ErrorWrappingService.WrapError(context, exception);
 
             return ContentSerializationService.SerializeToResponse(context);
         }

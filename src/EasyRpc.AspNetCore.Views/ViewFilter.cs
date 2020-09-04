@@ -11,7 +11,7 @@ namespace EasyRpc.AspNetCore.Views
     /// <summary>
     /// Rpc method filter
     /// </summary>
-    public class ViewFilter : IAsyncRequestExecutionFilter
+    public class ViewFilter : IRequestExecutionFilter
     {
         private readonly string _viewName;
         private readonly bool _isMainPage;
@@ -45,20 +45,18 @@ namespace EasyRpc.AspNetCore.Views
         }
 
         /// <inheritdoc />
-        public Task BeforeExecute(RequestExecutionContext context)
+        public void BeforeExecute(RequestExecutionContext context)
         {
-            return Task.CompletedTask;
+            
         }
 
         /// <inheritdoc />
-        public Task AfterExecute(RequestExecutionContext context)
+        public void AfterExecute(RequestExecutionContext context)
         {
             var viewActionResult = new ViewActionResult(_executor, _modelMetadataProvider, _tempDataProvider, _viewName, _isMainPage, _contentType, context.Result, context.HttpStatusCode);
 
             // swap the result and it will be executed later in the pipeline if all filters succeed
             context.Result = viewActionResult;
-
-            return Task.CompletedTask;
         }
     }
 }

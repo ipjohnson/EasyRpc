@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
@@ -127,6 +128,23 @@ namespace EasyRpc.AspNetCore.Configuration
                 configuration.Parameters.AddRange(parameters);
 
                 configuration.RawContentType = instanceConfiguration.RawContentType;
+
+                if (string.IsNullOrEmpty(configuration.RawContentType))
+                {
+                    var returnType = expression.ReturnType;
+
+                    if (returnType.IsConstructedGenericType && 
+                        (returnType.GetGenericTypeDefinition() == typeof(Task<>) || 
+                         returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
+                    {
+                        returnType = returnType.GenericTypeArguments[0];
+                    }
+
+                    if (_exposeConfigurations.TypeWrapSelector(returnType))
+                    {
+                        configuration.WrappedType = _wrappedResultTypeCreator.GetTypeWrapper(returnType);
+                    }
+                }
 
                 if (currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty ||
                     instanceConfiguration.Headers != ImmutableLinkedList<IResponseHeader>.Empty)

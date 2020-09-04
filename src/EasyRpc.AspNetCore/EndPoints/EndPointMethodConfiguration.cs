@@ -20,6 +20,14 @@ namespace EasyRpc.AspNetCore.EndPoints
     public delegate Task MethodEndPointDelegate(RequestExecutionContext context);
 
     /// <summary>
+    /// Delegate 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public delegate Task<T> InvokeMethodDelegate<T>(RequestExecutionContext context);
+
+    /// <summary>
     /// information about the method to invoke
     /// </summary>
     public interface IMethodInvokeInformation
@@ -32,7 +40,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <summary>
         /// Allows for custom method invoker to be provided
         /// </summary>
-        MethodEndPointDelegate MethodInvokeDelegate { get;  }
+        InvokeMethodDelegate<object> MethodInvokeDelegate { get; }
 
         /// <summary>
         /// Method to invoke, will be null if DelegateToInvoke is provided
@@ -54,11 +62,11 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// Invoke signature
         /// </summary>
         public MethodInfo Signature => MethodToInvoke ?? MethodInvokeDelegate?.Method ?? MethodInvokeDelegate?.Method;
-        
+
         /// <summary>
         /// Allows for custom method invoker to be provided
         /// </summary>
-        public MethodEndPointDelegate MethodInvokeDelegate { get; set; }
+        public InvokeMethodDelegate<object> MethodInvokeDelegate { get; set; }
 
         /// <summary>
         /// Method to invoke, will be null if DelegateToInvoke is provided
@@ -82,9 +90,9 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="invokeInformation"></param>
         /// <param name="returnType"></param>
         /// <param name="supportsCompression"></param>
-        public EndPointMethodConfiguration(RpcRouteInformation routeInformation, 
-            Func<RequestExecutionContext,object> activationFunc,
-            MethodInvokeInformation invokeInformation, 
+        public EndPointMethodConfiguration(RpcRouteInformation routeInformation,
+            Func<RequestExecutionContext, object> activationFunc,
+            MethodInvokeInformation invokeInformation,
             Type returnType,
             bool? supportsCompression)
         {
@@ -105,7 +113,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         IRpcRouteInformation IEndPointMethodConfigurationReadOnly.RouteInformation => RouteInformation;
 
         /// <inheritdoc />
-        public IReadOnlyList<Func<RequestExecutionContext,IRequestFilter>> Filters { get; set; }
+        public IReadOnlyList<Func<RequestExecutionContext, IRequestFilter>> Filters { get; set; }
 
         /// <inheritdoc />
         public IReadOnlyList<IEndPointMethodAuthorization> Authorizations { get; set; }
@@ -146,5 +154,8 @@ namespace EasyRpc.AspNetCore.EndPoints
 
         /// <inheritdoc />
         public IReadOnlyList<IResponseHeader> ResponseHeaders { get; set; }
+
+        /// <inheritdoc />
+        public Type WrappedType { get; set; }
     }
 }

@@ -21,61 +21,51 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        MethodEndPointDelegate BuildMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType);
+        InvokeMethodDelegate<T> BuildMethodInvoker<T>(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType);
     }
 
     /// <inheritdoc cref="IMethodInvokeInformation"/>
     public class MethodInvokerCreationService : IMethodInvokerCreationService, IApiConfigurationCompleteAware
     {
-        private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
         private readonly PropertyInfo _contextInstance;
         private readonly PropertyInfo _contextParameters;
         private readonly PropertyInfo _resultProperty;
         private readonly MethodInfo _valueTaskAsTask;
-        private readonly MethodInfo _setResultTaskAsync;
         private readonly MethodInfo _setResultValueTaskAsync;
+        private readonly MethodInfo _taskFromResult;
         private readonly MethodInfo _wrapResult;
         private readonly MethodInfo _wrapResultTaskAsync;
         private readonly MethodInfo _wrapResultValueTaskAsync;
-        private readonly MethodInfo _applyFiltersAndInvoke;
         private ExposeConfigurations _exposeOptions;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="wrappedResultTypeCreator"></param>
-        public MethodInvokerCreationService(IWrappedResultTypeCreator wrappedResultTypeCreator)
+        public MethodInvokerCreationService()
         {
-            _wrappedResultTypeCreator = wrappedResultTypeCreator;
             _contextInstance = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.ServiceInstance));
             _contextParameters = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.Parameters));
             _resultProperty = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.Result));
             _valueTaskAsTask = typeof(ValueTask).GetMethod("AsTask");
-            _setResultTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.SetResultTaskAsync));
-            _setResultValueTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.SetResultValueTaskAsync));
+            _setResultValueTaskAsync = typeof(ValueTask<>).GetMethod("AsTask");
+            _taskFromResult = typeof(Task).GetMethod("FromResult");
             _wrapResult = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResult));
             _wrapResultTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResultTaskAsync));
             _wrapResultValueTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResultValueTaskAsync));
-            _applyFiltersAndInvoke = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.ApplyFiltersAndInvoke));
         }
 
         /// <inheritdoc />
-        public MethodEndPointDelegate BuildMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
+        public InvokeMethodDelegate<T> BuildMethodInvoker<T>(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             if (endPointMethodConfiguration.InvokeInformation.MethodToInvoke != null)
             {
-                return BuildInstanceMethodInvoker(endPointMethodConfiguration, parametersType);
+                return BuildInstanceMethodInvoker<T>(endPointMethodConfiguration, parametersType);
             }
             if (endPointMethodConfiguration.InvokeInformation.DelegateToInvoke != null)
             {
-                return BuildDelegateMethodInvoker(endPointMethodConfiguration, parametersType);
+                return BuildDelegateMethodInvoker<T>(endPointMethodConfiguration, parametersType);
             }
-
-            if (endPointMethodConfiguration.InvokeInformation.MethodInvokeDelegate != null)
-            {
-                return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, endPointMethodConfiguration.InvokeInformation.MethodInvokeDelegate);
-            }
-
+            
             throw new Exception("Invoke information is blank");
         }
 
@@ -85,7 +75,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        protected virtual MethodEndPointDelegate BuildDelegateMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
+        protected virtual InvokeMethodDelegate<T> BuildDelegateMethodInvoker<T>(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
             var typedParameterVariable = Expression.Variable(parametersType, "localParameters");
@@ -111,17 +101,17 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
             else
             {
-                callExpression = Expression.Call(Expression.Constant(invokeDelegate.Target), invokeDelegate.Method, parameterList);
+                callExpression = Expression.Invoke(Expression.Constant(invokeDelegate), parameterList);
             }
 
             var methodBodyStatements = new List<Expression> { assignExpression };
 
-            WrapExpression(endPointMethodConfiguration, invokeDelegate.Method, methodBodyStatements, requestParameter, callExpression);
+            WrapExpression<T>(endPointMethodConfiguration, invokeDelegate.Method, methodBodyStatements, requestParameter, callExpression);
 
             var compiledInvokeDelegate =
-                Expression.Lambda<MethodEndPointDelegate>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
+                Expression.Lambda<InvokeMethodDelegate<T>>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
 
-            return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, compiledInvokeDelegate);
+            return compiledInvokeDelegate;
         }
 
         /// <summary>
@@ -130,7 +120,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="endPointMethodConfiguration"></param>
         /// <param name="parametersType"></param>
         /// <returns></returns>
-        protected virtual MethodEndPointDelegate BuildInstanceMethodInvoker(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
+        protected virtual InvokeMethodDelegate<T> BuildInstanceMethodInvoker<T>(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType)
         {
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext), "requestExecutionContext");
             var typedParameterVariable = Expression.Variable(parametersType, "localParameters");
@@ -146,12 +136,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             var methodBodyStatements = new List<Expression> { assignExpression };
 
-            WrapExpression(endPointMethodConfiguration, invokeMethod, methodBodyStatements, requestParameter, invokeExpression);
+            WrapExpression<T>(endPointMethodConfiguration, invokeMethod, methodBodyStatements, requestParameter, invokeExpression);
 
             var compiledInvokeDelegate =
-                Expression.Lambda<MethodEndPointDelegate>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
+                Expression.Lambda<InvokeMethodDelegate<T>>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
 
-            return ApplyFiltersToMethodEndPointDelegate(endPointMethodConfiguration, parametersType, compiledInvokeDelegate);
+            return compiledInvokeDelegate;
         }
 
         /// <summary>
@@ -162,7 +152,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="methodBodyStatements"></param>
         /// <param name="requestParameter"></param>
         /// <param name="invokeExpression"></param>
-        protected virtual void WrapExpression(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration,
+        protected virtual void WrapExpression<T>(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration,
             MethodInfo invokeMethod,
             List<Expression> methodBodyStatements,
             ParameterExpression requestParameter,
@@ -173,109 +163,69 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 methodBodyStatements.Add(invokeExpression);
                 methodBodyStatements.Add(Expression.Constant(Task.CompletedTask));
             }
-            else if (invokeMethod.ReturnType == typeof(Task))
-            {
-                methodBodyStatements.Add(invokeExpression);
-            }
-            else if (invokeMethod.ReturnType == typeof(ValueTask))
-            {
-                var valueTaskExpression = Expression.Call(invokeExpression, _valueTaskAsTask);
+            //else if (invokeMethod.ReturnType == typeof(Task))
+            //{
+            //    methodBodyStatements.Add(invokeExpression);
+            //}
+            //else if (invokeMethod.ReturnType == typeof(ValueTask))
+            //{
+            //    var valueTaskExpression = Expression.Call(invokeExpression, _valueTaskAsTask);
 
-                methodBodyStatements.Add(valueTaskExpression);
-            }
+            //    methodBodyStatements.Add(valueTaskExpression);
+            //}
             else if (invokeMethod.ReturnType.IsConstructedGenericType)
             {
                 var openType = invokeMethod.ReturnType.GetGenericTypeDefinition();
 
-                if (openType == typeof(Task<>))
+                if (openType == typeof(ValueTask<>))
                 {
-                    var closeType = invokeMethod.ReturnType.GenericTypeArguments[0];
+                    var setMethod = invokeMethod.ReturnType.GetMethod("AsTask");
 
-                    var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
-                        _exposeOptions.TypeWrapSelector(closeType);
-
-                    Expression callExpression;
-
-                    if (shouldWrap)
-                    {
-                        var wrapperType = _wrappedResultTypeCreator.GetTypeWrapper(closeType);
-
-                        var closedMethod = _wrapResultTaskAsync.MakeGenericMethod(wrapperType, closeType);
-
-                        callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
-                    }
-                    else
-                    {
-                        var setMethod = _setResultTaskAsync.MakeGenericMethod(closeType);
-
-                        callExpression = Expression.Call(setMethod, invokeExpression, requestParameter);
-                    }
+                    var callExpression = Expression.Call(invokeExpression, setMethod);
 
                     methodBodyStatements.Add(callExpression);
                 }
-                else if (openType == typeof(ValueTask<>))
+                else if (openType == typeof(Task<>))
                 {
-                    var closeType = invokeMethod.ReturnType.GenericTypeArguments[0];
-
-                    var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
-                                     _exposeOptions.TypeWrapSelector(closeType);
-
-                    Expression callExpression;
-
-                    if (shouldWrap)
-                    {
-                        var wrapperType = _wrappedResultTypeCreator.GetTypeWrapper(closeType);
-
-                        var closedMethod = _wrapResultValueTaskAsync.MakeGenericMethod(wrapperType, invokeMethod.ReturnType);
-
-                        callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
-                    }
-                    else
-                    {
-                        var setMethod = _setResultValueTaskAsync.MakeGenericMethod(closeType);
-
-                        callExpression = Expression.Call(setMethod, invokeExpression, requestParameter);
-                    }
-
-                    methodBodyStatements.Add(callExpression);
+                    methodBodyStatements.Add(invokeExpression);
                 }
                 else
                 {
-                    var assignValue = Expression.Assign(Expression.Property(requestParameter, _resultProperty),
-                        invokeExpression);
+                    var closedMethod = _taskFromResult.MakeGenericMethod(typeof(T));
 
-                    methodBodyStatements.Add(assignValue);
-                    methodBodyStatements.Add(Expression.Constant(Task.CompletedTask));
+                    var callFromResult = Expression.Call(closedMethod, invokeExpression);
+
+                    methodBodyStatements.Add(callFromResult);
                 }
             }
             else
             {
-                var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
-                                 _exposeOptions.TypeWrapSelector(invokeMethod.ReturnType);
+                //var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
+                //                 _exposeOptions.TypeWrapSelector(invokeMethod.ReturnType);
 
-                if (shouldWrap)
-                {
-                    var wrapperType = _wrappedResultTypeCreator.GetTypeWrapper(invokeMethod.ReturnType);
+                //if (shouldWrap)
+                //{
+                //    var wrapperType = _wrappedResultTypeCreator.GetTypeWrapper(invokeMethod.ReturnType);
 
-                    var closedMethod = _wrapResult.MakeGenericMethod(wrapperType, invokeMethod.ReturnType);
+                //    var closedMethod = _wrapResult.MakeGenericMethod(wrapperType, invokeMethod.ReturnType);
 
-                    var wrapExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
+                //    var wrapExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
 
-                    methodBodyStatements.Add(wrapExpression);
-                }
-                else
-                {
-                    if (invokeExpression.Type.IsValueType)
-                    {
-                        invokeExpression = Expression.Convert(invokeExpression, typeof(object));
-                    }
+                //    methodBodyStatements.Add(wrapExpression);
+                //}
+                //else
+                //{
+                    //if (invokeExpression.Type.IsValueType)
+                    //{
+                    //    invokeExpression = Expression.Convert(invokeExpression, typeof(object));
+                    //}
 
-                    var assignValue = Expression.Assign(Expression.Property(requestParameter, _resultProperty),
-                        invokeExpression);
+                    var closedMethod = _taskFromResult.MakeGenericMethod(typeof(T));
 
-                    methodBodyStatements.Add(assignValue);
-                    methodBodyStatements.Add(Expression.Constant(Task.CompletedTask));
-                }
+                    var callFromResult = Expression.Call(closedMethod, invokeExpression);
+
+                    methodBodyStatements.Add(callFromResult);
+                //}
             }
         }
 
@@ -313,31 +263,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             return parameterList;
         }
-
-        /// <summary>
-        /// Apply filters to method end point delegate
-        /// </summary>
-        /// <param name="endPointMethodConfiguration"></param>
-        /// <param name="parametersType"></param>
-        /// <param name="endPointDelegate"></param>
-        /// <returns></returns>
-        protected virtual MethodEndPointDelegate ApplyFiltersToMethodEndPointDelegate(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration, Type parametersType, MethodEndPointDelegate endPointDelegate)
-        {
-            if (endPointMethodConfiguration.Filters == null || endPointMethodConfiguration.Filters.Count == 0)
-            {
-                return endPointDelegate;
-            }
-
-            var requestExecutionContextParameter = Expression.Parameter(typeof(RequestExecutionContext));
-
-            var invokeMethod = Expression.Call(_applyFiltersAndInvoke, requestExecutionContextParameter,
-                Expression.Constant(endPointMethodConfiguration.Filters), Expression.Constant(endPointDelegate));
-
-            var lambdaExpression = Expression.Lambda<MethodEndPointDelegate>(invokeMethod, requestExecutionContextParameter);
-
-            return lambdaExpression.Compile();
-        }
-
+        
         /// <inheritdoc />
         public virtual void ApiConfigurationComplete(IServiceProvider serviceScope)
         {

@@ -31,7 +31,5 @@ namespace EasyRpc.AspNetCore.Configuration
         /// Generate method name part of url for non attributed methods
         /// </summary>
         public Func<MethodInfo, string> MethodNameGenerator { get; set; } = DefaultExposeDelegates.DefaultMethodNameGenerator;
-
-
     }
 }

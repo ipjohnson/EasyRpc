@@ -208,14 +208,17 @@ namespace EasyRpc.AspNetCore.Benchmarks
             services.AddRpcServices(false);
             services.TryAddScoped<IContentSerializer, Utf8JsonContentSerializer>();
             services.AddTransient<Services.StringService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+
             app.UseRpcServices(api =>
             {
-                //api.UseAspNetRouting();
+                api.Configure.UseAspNetRouting();
                 api.Expose<Services.StringService>();
                 api.GetMethod("/noparams2", () => new { Value = 1, Value2 = 2 });
             });

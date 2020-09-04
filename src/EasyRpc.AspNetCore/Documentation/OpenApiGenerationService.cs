@@ -437,8 +437,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 returnType = returnType.GenericTypeArguments[0];
             }
             
-            if (string.IsNullOrEmpty(endPointMethodHandler.Configuration.RawContentType) &&
-                _exposeConfiguration.TypeWrapSelector(returnType))
+            if (endPointMethodHandler.Configuration.WrappedType != null)
             {
                 responseSchema = new OpenApiSchema
                 {
