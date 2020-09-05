@@ -40,6 +40,7 @@ namespace EasyRpc.Examples.Service
                     // docs.ContentPath = "wwwroot/redoc/";
                     docs.MapType<TestStruct>(() => new OpenApiSchema { Type = "string", Format = "test" });
                 });
+                api.GetMethod("/json", () => new {message = "Hello, World!"});
                 api.ExposeNamespaceContaining<MathService>();
             });
         }
