@@ -110,7 +110,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
                         SpecialParameterBinder.BindHttpRequestParameter(context, parameter, parameterContext);
                         break;
                     case EndPointMethodParameterSource.HttpCancellationToken:
-
+                        SpecialParameterBinder.BindHttpCancellationTokenParameter(context, parameter, parameterContext);
                         break;
                 }
             }
