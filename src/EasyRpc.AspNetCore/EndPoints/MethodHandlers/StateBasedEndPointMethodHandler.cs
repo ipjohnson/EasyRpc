@@ -103,11 +103,11 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         {
             try
             {
-                var filters = Configuration.Filters;
+                var filterFuncList = Configuration.Filters;
 
-                var filterList = new List<IRequestFilter> { Capacity = filters.Count };
+                var filterList = new List<IRequestFilter> { Capacity = filterFuncList.Count };
 
-                foreach (var filterFunc in filters)
+                foreach (var filterFunc in filterFuncList)
                 {
                     var filter = filterFunc(requestContext);
 
@@ -117,7 +117,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                     }
                 }
 
-                if (filters.Count > 0)
+                if (filterFuncList.Count > 0)
                 {
                     requestContext.CallFilters = filterList;
 
@@ -142,17 +142,20 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             return NextStep(ref state, ref requestContext);
 
             static async Task ExecuteBeforeFilterAsync(StateBasedEndPointMethodHandler<TReturn> stateBasedEndPointMethodHandler,
-                RequestState state, RequestExecutionContext requestContext, int i, IErrorHandler errorHandler)
+                RequestState state, 
+                RequestExecutionContext requestContext, 
+                int index, 
+                IErrorHandler errorHandler)
             {
                 try
                 {
-                    for (; i < requestContext.CallFilters.Count; i++)
+                    for (; index < requestContext.CallFilters.Count; index++)
                     {
-                        if (requestContext.CallFilters[i] is IRequestExecutionFilter executionFilter)
+                        if (requestContext.CallFilters[index] is IRequestExecutionFilter executionFilter)
                         {
                             executionFilter.BeforeExecute(requestContext);
                         }
-                        else if (requestContext.CallFilters[i] is IAsyncRequestExecutionFilter asyncRequestExecution)
+                        else if (requestContext.CallFilters[index] is IAsyncRequestExecutionFilter asyncRequestExecution)
                         {
                             await asyncRequestExecution.BeforeExecute(requestContext);
                         }
