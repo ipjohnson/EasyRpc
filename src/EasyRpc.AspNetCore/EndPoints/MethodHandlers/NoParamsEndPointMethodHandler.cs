@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 {
     /// <summary>
-    /// End point handler with no parameters and no authentication
+    /// End point handler with no parameters, no authentication, no filters
     /// </summary>
     public class NoParamsEndPointMethodHandler<TReturn> : BaseContentEndPointMethodHandler<TReturn>
     {
@@ -44,23 +44,20 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 return Services.ErrorHandler.HandleException(requestContext, e);
             }
 
-            var executionResult = InvokeMethodDelegate(requestContext);
+            var executionTask = InvokeMethodDelegate(requestContext);
 
-            if (!executionResult.IsCompletedSuccessfully)
+            if (!executionTask.IsCompletedSuccessfully)
             {
-                return AwaitInvoke(requestContext, executionResult, Services.ErrorHandler, ResponseDelegate);
+                return AwaitInvoke(requestContext, executionTask, Services.ErrorHandler, ResponseDelegate);
             }
 
-            requestContext.Result = executionResult.Result;
+            requestContext.Result = executionTask.Result;
 
-            var responseResult = ResponseDelegate(requestContext);
+            var responseTask = ResponseDelegate(requestContext);
 
-            if (!responseResult.IsCompletedSuccessfully)
-            {
-                return AwaitResponse(requestContext, responseResult, Services.ErrorHandler);
-            }
-
-            return Task.CompletedTask;
+            return responseTask.IsCompletedSuccessfully ?
+                Task.CompletedTask :
+                AwaitResponse(requestContext, responseTask, Services.ErrorHandler);
         }
 
         private async Task AwaitResponse(RequestExecutionContext requestContext, Task responseResult, IErrorHandler servicesErrorHandler)
