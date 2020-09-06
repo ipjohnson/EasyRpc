@@ -56,10 +56,32 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             var responseTask = ResponseDelegate(requestContext);
 
             return responseTask.IsCompletedSuccessfully ?
-                Task.CompletedTask :
+                responseTask :
                 AwaitResponse(requestContext, responseTask, Services.ErrorHandler);
         }
 
+
+        private static async Task AwaitInvoke(RequestExecutionContext requestContext, 
+            Task<TReturn> executionResult,
+            IErrorHandler servicesErrorHandler, 
+            MethodEndPointDelegate responseDelegate)
+        {
+            try
+            {
+                requestContext.Result = await executionResult;
+
+                if (!requestContext.ResponseHasStarted &&
+                    requestContext.ContinueRequest)
+                {
+                    await responseDelegate(requestContext);
+                }
+            }
+            catch (Exception e)
+            {
+                await servicesErrorHandler.HandleException(requestContext, e);
+            }
+        }
+        
         private async Task AwaitResponse(RequestExecutionContext requestContext, Task responseResult, IErrorHandler servicesErrorHandler)
         {
             try
@@ -69,37 +91,6 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             catch (Exception e)
             {
                 await servicesErrorHandler.HandleException(requestContext, e);
-            }
-        }
-
-        private static async Task AwaitInvoke(RequestExecutionContext requestContext, Task<TReturn> executionResult,
-            IErrorHandler servicesErrorHandler, MethodEndPointDelegate responseDelegate)
-        {
-            Exception exception = null;
-
-            try
-            {
-                requestContext.Result = await executionResult;
-
-                if (!requestContext.ResponseHasStarted &&
-                    requestContext.ContinueRequest)
-                {
-                    var responseResult = responseDelegate(requestContext);
-
-                    if (!responseResult.IsCompletedSuccessfully)
-                    {
-                        await responseResult;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-
-            if (exception != null)
-            {
-                await servicesErrorHandler.HandleException(requestContext, exception);
             }
         }
     }
