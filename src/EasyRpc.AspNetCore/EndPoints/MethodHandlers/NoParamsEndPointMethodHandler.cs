@@ -59,8 +59,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 responseTask :
                 AwaitResponse(requestContext, responseTask, Services.ErrorHandler);
         }
-
-
+        
         private static async Task AwaitInvoke(RequestExecutionContext requestContext, 
             Task<TReturn> executionResult,
             IErrorHandler servicesErrorHandler, 
