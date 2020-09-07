@@ -123,11 +123,11 @@ namespace EasyRpc.AspNetCore.Serializers
         {
             foreach (var contentSerializer in _contentSerializers)
             {
-                if (_serializer.CanDeserialize(context, contentType))
+                if (contentSerializer.CanDeserialize(context, contentType))
                 {
-                    context.ContentSerializer = _serializer;
+                    context.ContentSerializer = contentSerializer;
 
-                    return _serializer.DeserializeFromRequest<T>(context);
+                    return contentSerializer.DeserializeFromRequest<T>(context);
                 }
             }
 
