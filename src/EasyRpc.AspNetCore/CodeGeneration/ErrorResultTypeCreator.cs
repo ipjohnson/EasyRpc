@@ -26,12 +26,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private ModuleBuilder _moduleBuilder;
         private Type _errorType;
         private object _lock = new object();
+        private IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ErrorResultTypeCreator()
+        public ErrorResultTypeCreator(IEnumerable<ISerializationTypeAttributor> serializationTypeAttributors)
         {
+            _serializationTypeAttributors = serializationTypeAttributors;
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
 
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("ErrorType");
@@ -52,6 +54,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 {
                     var typeBuilder = CreateTypeBuilder();
 
+                    AddAttributes(typeBuilder);
+
                     AddInterfaces(typeBuilder);
 
                     AddProperties(typeBuilder);
@@ -61,6 +65,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
 
             return _errorType;
+        }
+
+        private void AddAttributes(TypeBuilder typeBuilder)
+        {
+            foreach (var attributor in _serializationTypeAttributors)
+            {
+                attributor.AttributeType(typeBuilder);
+            }
         }
 
         protected virtual void AddProperties(TypeBuilder typeBuilder)
@@ -76,6 +88,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             GenerateMessagePropertyGet(typeBuilder, propertyBuilder, backingField);
 
             GenerateMessagePropertySet(typeBuilder, propertyBuilder, backingField);
+
+            foreach (var attributor in _serializationTypeAttributors)
+            {
+                attributor.AttributeProperty(propertyBuilder,0);
+            }
         }
 
         private void GenerateMessagePropertySet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder,

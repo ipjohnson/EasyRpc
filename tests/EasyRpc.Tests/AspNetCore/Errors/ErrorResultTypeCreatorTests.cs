@@ -13,7 +13,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
         [Fact]
         public void Errors_ResultTypeCreator()
         {
-            var errorTypeCreator = new ErrorResultTypeCreator();
+            var errorTypeCreator = new ErrorResultTypeCreator(Array.Empty<ISerializationTypeAttributor>());
 
             var type = errorTypeCreator.GenerateErrorType();
 

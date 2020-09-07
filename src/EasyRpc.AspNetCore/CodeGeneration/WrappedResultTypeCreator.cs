@@ -28,14 +28,15 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private readonly object _lock = new object();
         private readonly ModuleBuilder _moduleBuilder;
         private int _proxyCount = 0;
-        private readonly ConcurrentDictionary<Type,Type> _wrappers = new ConcurrentDictionary<Type, Type>();
+        private readonly ConcurrentDictionary<Type, Type> _wrappers = new ConcurrentDictionary<Type, Type>();
+        private IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public WrappedResultTypeCreator()
+        public WrappedResultTypeCreator(IEnumerable<ISerializationTypeAttributor> serializationTypeAttributors)
         {
-
+            _serializationTypeAttributors = serializationTypeAttributors;
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
 
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("TypeWrapper");
@@ -48,7 +49,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 return wrappedType;
             }
-            
+
             return CreateWrapper(typeToWrap);
         }
 
@@ -62,6 +63,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
                 var wrapperTypeBuilder = CreateTypeBuilder(typeToWrap);
 
+                AddAttributes(wrapperTypeBuilder);
+
                 AddInterfaceImplementations(wrapperTypeBuilder, typeToWrap);
 
                 AddValueProperty(wrapperTypeBuilder, typeToWrap);
@@ -73,7 +76,15 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             return wrappedType;
         }
-        
+
+        protected virtual void AddAttributes(TypeBuilder wrapperTypeBuilder)
+        {
+            foreach (var attributor in _serializationTypeAttributors)
+            {
+                attributor.AttributeType(wrapperTypeBuilder);
+            }
+        }
+
         protected virtual TypeBuilder CreateTypeBuilder(Type typeToWrap)
         {
             return _moduleBuilder.DefineType($"{typeToWrap.Name}Wrapper" + _proxyCount, TypeAttributes.Public);
@@ -85,7 +96,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             typeBuilder.AddInterfaceImplementation(closedInterface);
         }
-        
+
         protected virtual void AddValueProperty(TypeBuilder typeBuilder, Type typeToWrap)
         {
             var backingField =
@@ -106,6 +117,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             typeBuilder.DefineMethodOverride(propertyBuilder.GetMethod, interfaceProperty.GetMethod);
             typeBuilder.DefineMethodOverride(propertyBuilder.SetMethod, interfaceProperty.SetMethod);
+
+            foreach (var attributor in _serializationTypeAttributors)
+            {
+                attributor.AttributeProperty(propertyBuilder, 0);
+            }
         }
 
         protected virtual void GeneratePropertySet(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder,

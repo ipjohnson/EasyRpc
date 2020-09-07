@@ -39,7 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.Examples.Service", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.Examples.SharedDefinitions", "examples\EasyRpc.Examples.SharedDefinitions\EasyRpc.Examples.SharedDefinitions.csproj", "{72562989-E0AD-4C30-A795-7D25EC28143A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.AspNetCore.Views", "src\EasyRpc.AspNetCore.Views\EasyRpc.AspNetCore.Views.csproj", "{7929CE21-A41C-4993-80E1-B43588626803}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRpc.AspNetCore.Views", "src\EasyRpc.AspNetCore.Views\EasyRpc.AspNetCore.Views.csproj", "{7929CE21-A41C-4993-80E1-B43588626803}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.AspNetCore.MessagePack", "src\EasyRpc.AspNetCore.MessagePack\EasyRpc.AspNetCore.MessagePack.csproj", "{A9B4329A-7371-4694-A744-2EA575D632E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRpc.DynamicClient.MessagePack", "src\EasyRpc.DynamicClient.MessagePack\EasyRpc.DynamicClient.MessagePack.csproj", "{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +107,14 @@ Global
 		{7929CE21-A41C-4993-80E1-B43588626803}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7929CE21-A41C-4993-80E1-B43588626803}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7929CE21-A41C-4993-80E1-B43588626803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B4329A-7371-4694-A744-2EA575D632E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B4329A-7371-4694-A744-2EA575D632E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B4329A-7371-4694-A744-2EA575D632E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B4329A-7371-4694-A744-2EA575D632E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +136,8 @@ Global
 		{055ECEB9-0A01-44B9-9C6B-9B28BA0ED8DD} = {AE7B91F4-4463-4D4C-8140-C3ADAF441EF8}
 		{72562989-E0AD-4C30-A795-7D25EC28143A} = {AE7B91F4-4463-4D4C-8140-C3ADAF441EF8}
 		{7929CE21-A41C-4993-80E1-B43588626803} = {CB484AE7-2050-4519-A19C-A60675EC7F4A}
+		{A9B4329A-7371-4694-A744-2EA575D632E0} = {CB484AE7-2050-4519-A19C-A60675EC7F4A}
+		{FAD15D43-F76A-4E6A-831A-F1E8BF0982D6} = {81D1EAB5-A7FD-4558-969E-5045A5616C96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {36D0734C-1D28-4A0F-8E73-44D5C3AAB16E}

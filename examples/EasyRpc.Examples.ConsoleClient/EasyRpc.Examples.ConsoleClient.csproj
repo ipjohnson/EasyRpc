@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyRpc.DynamicClient.Grace\EasyRpc.DynamicClient.Grace.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.DynamicClient.MessagePack\EasyRpc.DynamicClient.MessagePack.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj" />
     <ProjectReference Include="..\EasyRpc.Examples.SharedDefinitions\EasyRpc.Examples.SharedDefinitions.csproj" />
   </ItemGroup>

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
+using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.MessagePack;
+using EasyRpc.AspNetCore.Serializers;
 using EasyRpc.Examples.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +24,8 @@ namespace EasyRpc.Examples.Service
         {
             services.AddRpcServices();
             services.AddControllersWithViews();
+            services.AddTransient<ISerializationTypeAttributor, MessagePackSerializationTypeAttributor>();
+            services.AddTransient<IContentSerializer, MessagePackContentSerializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

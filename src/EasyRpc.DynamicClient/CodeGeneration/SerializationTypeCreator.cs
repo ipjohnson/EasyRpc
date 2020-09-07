@@ -18,9 +18,11 @@ namespace EasyRpc.DynamicClient.CodeGeneration
         private readonly object _lock = new object();
         private readonly ModuleBuilder _moduleBuilder;
         private int _proxyCount = 0;
+        private IEnumerable<IClientSerializationTypeAttributor> _serializationTypeAttributors;
 
-        public SerializationTypeCreator()
+        public SerializationTypeCreator(IEnumerable<IClientSerializationTypeAttributor> serializationTypeAttributors)
         {
+            _serializationTypeAttributors = serializationTypeAttributors;
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
 
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("SerializeTypes");
@@ -33,21 +35,34 @@ namespace EasyRpc.DynamicClient.CodeGeneration
             {
                 var typeBuilder = CreateTypeBuilder();
 
+                AddAttributes(typeBuilder);
+
                 GenerateParameters(typeBuilder, parameters);
 
                 return typeBuilder.CreateTypeInfo().AsType();
             }
         }
 
-        private void GenerateParameters(TypeBuilder typeBuilder, List<ParameterInfo> parameters)
+        private void AddAttributes(TypeBuilder typeBuilder)
         {
-            foreach (var parameterInfo in parameters)
+            foreach (var attributor in _serializationTypeAttributors)
             {
-                GenerateProperty(typeBuilder, parameterInfo);
+                attributor.AttributeType(typeBuilder);
             }
         }
 
-        private void GenerateProperty(TypeBuilder typeBuilder, ParameterInfo parameterInfo)
+        private void GenerateParameters(TypeBuilder typeBuilder, List<ParameterInfo> parameters)
+        {
+            var index = 0;
+            foreach (var parameterInfo in parameters)
+            {
+                GenerateProperty(typeBuilder, parameterInfo,index );
+
+                index++;
+            }
+        }
+
+        private void GenerateProperty(TypeBuilder typeBuilder, ParameterInfo parameterInfo, int index)
         {
             var backingField =
                 typeBuilder.DefineField("_" + parameterInfo.Name, parameterInfo.ParameterType, FieldAttributes.Private);
@@ -60,6 +75,11 @@ namespace EasyRpc.DynamicClient.CodeGeneration
             GeneratePropertyGetMethod(typeBuilder, propertyBuilder, backingField, parameterInfo);
 
             GeneratePropertySetMethod(typeBuilder, propertyBuilder, backingField, parameterInfo);
+
+            foreach (var attributor in _serializationTypeAttributors)
+            {
+                attributor.AttributeProperty(propertyBuilder, index);
+            }
         }
 
         private void GeneratePropertySetMethod(TypeBuilder typeBuilder, PropertyBuilder propertyBuilder,

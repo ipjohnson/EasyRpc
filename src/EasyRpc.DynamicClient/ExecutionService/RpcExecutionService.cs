@@ -68,31 +68,32 @@ namespace EasyRpc.DynamicClient.ExecutionService
 
             var client = executeInformation.ClientProvider.ProvideClient();
 
-            var response = await client.SendAsync(request, cancellationToken ?? CancellationToken.None);
-
-            if (response.IsSuccessStatusCode)
+            using (var response = await client.SendAsync(request, cancellationToken ?? CancellationToken.None))
             {
-                if (response.StatusCode == HttpStatusCode.NoContent)
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NoContent)
+                    {
+                        return default;
+                    }
+
+                    return await executeInformation.Serializer.DeserializeFromResponse<T>(response);
+                }
+
+                if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return default;
                 }
 
-                return await executeInformation.Serializer.DeserializeFromResponse<T>(response);
-            }
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new UnauthorizedAccessException("User is not currently authorized");
+                }
 
-            if (response.StatusCode == HttpStatusCode.NotFound)
-            {
-                return default;
-            }
-
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedAccessException("User is not currently authorized");
-            }
-
-            if (response.StatusCode == HttpStatusCode.Forbidden)
-            {
-                throw new UnauthorizedAccessException("User is forbidden from executing method");
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new UnauthorizedAccessException("User is forbidden from executing method");
+                }
             }
 
             throw new Exception("Need to handle error");
@@ -114,7 +115,7 @@ namespace EasyRpc.DynamicClient.ExecutionService
 
             if (response.IsSuccessStatusCode)
             {
-                    return;
+                return;
             }
 
             if (response.StatusCode == HttpStatusCode.NotFound)

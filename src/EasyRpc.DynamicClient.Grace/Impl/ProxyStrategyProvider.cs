@@ -13,21 +13,22 @@ using Grace.DependencyInjection.Impl.CompiledStrategies;
 
 namespace EasyRpc.DynamicClient.Grace.Impl
 {
-    public class ProxyStrategyProvider : IMissingExportStrategyProvider
+    public class ProxyStrategyProvider : IMissingExportStrategyProvider, IDisposable
     {
         private ProxyNamespaceConfig _namespaceConfig;
         private IRpcHttpClientProvider _clientProvider;
         private IClientSerializer _clientSerializer;
+        private HttpClient _client;
         
         public ProxyStrategyProvider(ProxyNamespaceConfig namespaceConfig)
         {
             _namespaceConfig = namespaceConfig;
 
-            var client = namespaceConfig.CreateClient?.Invoke("") ?? new HttpClient();
+            _client = namespaceConfig.CreateClient?.Invoke("") ?? new HttpClient();
 
-            client.BaseAddress = new Uri(_namespaceConfig.Url);
+            _client.BaseAddress = new Uri(_namespaceConfig.Url);
 
-            _clientProvider = new RpcHttpClientProvider(client);
+            _clientProvider = new RpcHttpClientProvider(_client);
         }
         
         /// <inheritdoc />
@@ -89,5 +90,10 @@ namespace EasyRpc.DynamicClient.Grace.Impl
             return Array.Empty<IActivationStrategy>();
         }
 
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            _client.Dispose();
+        }
     }
 }

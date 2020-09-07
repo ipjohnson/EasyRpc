@@ -29,12 +29,14 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private readonly ModuleBuilder _moduleBuilder;
         private int _proxyCount = 0;
         private readonly MethodInfo _stringEqual = typeof(string).GetMethod("Equals", new[] { typeof(string), typeof(string) });
+        private IEnumerable<ISerializationTypeAttributor> _attributors;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public DeserializationTypeCreator()
+        public DeserializationTypeCreator(IEnumerable<ISerializationTypeAttributor> attributors)
         {
+            _attributors = attributors;
             var dynamicAssembly = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()), AssemblyBuilderAccess.Run);
 
             _moduleBuilder = dynamicAssembly.DefineDynamicModule("DeserializeTypes");
@@ -52,6 +54,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
                 var typeBuilder = CreateTypeBuilder(methodConfiguration, creationContext);
 
+                AttributeType(typeBuilder, methodConfiguration);
 
                 AddInterfaceImplementations(typeBuilder, methodConfiguration, creationContext);
 
@@ -71,6 +74,15 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 creationContext.InitActions.ForEach(act => act(returnType));
 
                 return returnType;
+            }
+        }
+
+        protected virtual void AttributeType(TypeBuilder typeBuilder,
+            IEndPointMethodConfigurationReadOnly methodConfiguration)
+        {
+            foreach (var serializationTypeAttributor in _attributors)
+            {
+                serializationTypeAttributor.AttributeMethodType(typeBuilder, methodConfiguration);
             }
         }
 
@@ -546,6 +558,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 GeneratePropertyGet(typeBuilder, propertyBuilder, parameterInfo, methodConfiguration, creationContext);
 
                 GeneratePropertySet(typeBuilder, propertyBuilder, parameterInfo, methodConfiguration, creationContext);
+
+                foreach (var serializationTypeAttributor in _attributors)
+                {
+                    serializationTypeAttributor.AttributeMethodProperty(propertyBuilder, methodConfiguration, parameterInfo.Parameter);
+                }
             }
         }
 

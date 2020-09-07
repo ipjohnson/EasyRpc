@@ -103,7 +103,7 @@ namespace EasyRpc.Tests.AspNetCore.ILGeneration
         private static IRequestParameters DeserializeMethodParameters(EndPointMethodConfiguration methodDefinition,
             string serializedInstance)
         {
-            var creator = new DeserializationTypeCreator();
+            var creator = new DeserializationTypeCreator(Array.Empty<ISerializationTypeAttributor>());
 
             var serializeType = creator.CreateTypeForMethod(methodDefinition);
 
