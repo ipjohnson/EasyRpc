@@ -16,12 +16,7 @@ namespace EasyRpc.AspNetCore.Serializers
         /// Error handler for serializer
         /// </summary>
         protected IErrorHandler ErrorHandler;
-
-        /// <summary>
-        /// Serializer id
-        /// </summary>
-        protected int SerializerId;
-
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -59,15 +54,6 @@ namespace EasyRpc.AspNetCore.Serializers
             context.HttpContext.Response.ContentType = contentType;
 
             context.HttpContext.Response.StatusCode = context.HttpStatusCode;
-        }
-
-        /// <summary>
-        /// Assign serialization id
-        /// </summary>
-        /// <param name="id"></param>
-        public void AssignUniqueId(int id)
-        {
-            SerializerId = id;
         }
     }
 }

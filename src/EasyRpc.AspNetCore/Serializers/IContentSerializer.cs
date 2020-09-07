@@ -21,12 +21,6 @@ namespace EasyRpc.AspNetCore.Serializers
         bool IsDefault { get; }
 
         /// <summary>
-        /// Unique Id that can be used to store serializer specific info on an endpoint
-        /// </summary>
-        /// <param name="id"></param>
-        void AssignUniqueId(int id);
-
-        /// <summary>
         /// Serializer should be used for this call
         /// </summary>
         /// <param name="context"></param>
