@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Filters
 {
+    /// <summary>
+    /// Request filter that will be called after the response has been written
+    /// </summary>
     public interface IRequestFinalizeFilter : IBaseRequestFinalizerFilter
     {
         /// <summary>
