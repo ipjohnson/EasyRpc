@@ -147,13 +147,6 @@ namespace EasyRpc.AspNetCore.Newtonsoft
             return context.HttpContext.Response.Body;
         }
 
-        /// <inheritdoc />
-        public void ApiConfigurationComplete(IServiceProvider serviceScope)
-        {
-
-        }
-
-
         private Json.JsonSerializer CreateJsonSerializer()
         {
             return new Json.JsonSerializer();
