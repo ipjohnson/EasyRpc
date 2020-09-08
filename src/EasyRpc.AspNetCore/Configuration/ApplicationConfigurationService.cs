@@ -81,11 +81,11 @@ namespace EasyRpc.AspNetCore.Configuration
             List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage, MethodInfo methodInfo)
         {
-            var attributes = methodInfo.GetCustomAttributes<Attribute>().ToList();
-            var pathAttribute = (IPathAttribute)attributes.FirstOrDefault(a => a is IPathAttribute);
+            var methodAttributes = methodInfo.GetCustomAttributes<Attribute>().ToList();
+            var pathAttribute = (IPathAttribute)methodAttributes.FirstOrDefault(a => a is IPathAttribute);
 
             foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
-                authorizations, obsoleteMessage, methodInfo, attributes, pathAttribute))
+                authorizations, obsoleteMessage, methodInfo, methodAttributes, pathAttribute))
             {
                 var endPointMethodHandler =
                     CreateEndPointMethodHandler(currentApi, configuration);
@@ -131,7 +131,7 @@ namespace EasyRpc.AspNetCore.Configuration
             string methodVerb;
             bool methodHasBody;
 
-            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, methodAttributes, pathAttribute);
+            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo,classAttributes, methodAttributes, pathAttribute);
 
             var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
 
@@ -394,12 +394,17 @@ namespace EasyRpc.AspNetCore.Configuration
             return parameterList;
         }
 
-        private (string,string,bool) GenerateMethodPath(ICurrentApiInformation currentApi, Type type, string name,
-            MethodInfo methodInfo, List<Attribute> attributes, IPathAttribute pathAttribute)
+        private (string, string, bool) GenerateMethodPath(ICurrentApiInformation currentApi, Type type, string name,
+            MethodInfo methodInfo, List<Attribute> classAttributes, List<Attribute> methodAttributes,
+            IPathAttribute pathAttribute)
         {
             if (string.IsNullOrEmpty(name))
             {
-                name = _exposeConfigurations.RouteNameGenerator(type);
+                var basePath = (IBasePathAttribute)classAttributes.FirstOrDefault(a => a is IBasePathAttribute);
+
+                name = basePath != null ? 
+                    basePath.BasePath : 
+                    _exposeConfigurations.RouteNameGenerator(type);
             }
 
             string fullPathString = null;
@@ -435,6 +440,8 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private string GeneratePath(string name,MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
         {
+            name = name.Trim('/');
+
             var methodPath = $"/{name}/{_exposeConfigurations.MethodNameGenerator(methodInfo)}";
 
             if (!hasBody)

@@ -157,11 +157,6 @@ namespace EasyRpc.AspNetCore.Configuration
 
             var name = _name;
 
-            if (string.IsNullOrEmpty(name))
-            {
-                name = typeof(T).Name;
-            }
-
             service.ExposeType(_currentApiInformation, typeof(T), name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
 
