@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
+using EasyRpc.AspNetCore.Filters;
 using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
@@ -127,8 +128,8 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     var returnType = expression.ReturnType;
 
-                    if (returnType.IsConstructedGenericType && 
-                        (returnType.GetGenericTypeDefinition() == typeof(Task<>) || 
+                    if (returnType.IsConstructedGenericType &&
+                        (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||
                          returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
                     {
                         returnType = returnType.GenericTypeArguments[0];
@@ -151,7 +152,9 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.ResponseHeaders = responseHeaders;
                 }
 
-                ApplyAuthorizations(currentApi,null, configuration, EmptyList, EmptyList);
+                ApplyAuthorizations(currentApi, null, configuration, EmptyList, EmptyList);
+
+                ApplyFilters(currentApi, GetFilterList(currentApi, configuration, EmptyList, EmptyList), configuration);
 
                 yield return configuration;
             }
