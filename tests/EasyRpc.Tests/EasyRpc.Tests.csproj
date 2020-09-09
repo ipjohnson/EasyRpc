@@ -21,12 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.MessagePack\EasyRpc.AspNetCore.MessagePack.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.Newtonsoft\EasyRpc.AspNetCore.Newtonsoft.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.DynamicClient.MessagePack\EasyRpc.DynamicClient.MessagePack.csproj" />
+    <ProjectReference Include="..\..\src\EasyRpc.DynamicClient.Newtonsoft\EasyRpc.DynamicClient.Newtonsoft.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.DynamicClient\EasyRpc.DynamicClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AspNetCore\Serialization\msgpack\" />
     <Folder Include="AspNetCore\Serialization\Newtonsoft\" />
     <Folder Include="AspNetCore\Serialization\utf8json\" />
   </ItemGroup>

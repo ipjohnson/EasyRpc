@@ -3,10 +3,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
+using EasyRpc.AspNetCore.Serializers;
+using EasyRpc.DynamicClient.Serializers;
 using EasyRpc.Tests.Services.SimpleServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -72,8 +75,20 @@ namespace EasyRpc.Tests.AspNetCore
         protected async Task<HttpResponseMessage> Post(string path, object postValue)
         {
             var client = await Client();
+            HttpContent postContent;
 
-            var postContent = new StringContent(JsonSerializer.Serialize(postValue, postValue.GetType(), JsonSerializerOptions), Encoding.UTF8, "application/json");
+            if (CustomSerializer != null)
+            {
+                var bytes = await CustomSerializer.Serialize(postValue);
+
+                postContent = new ByteArrayContent(bytes);
+                postContent.Headers.ContentType = new MediaTypeHeaderValue(CustomSerializer.ContentType);
+            }
+            else
+            {
+                postContent = new StringContent(JsonSerializer.Serialize(postValue, postValue.GetType(), JsonSerializerOptions), Encoding.UTF8, "application/json");
+
+            }
 
             return await client.PostAsync(path, postContent);
         }
@@ -85,17 +100,35 @@ namespace EasyRpc.Tests.AspNetCore
             return await client.GetAsync(path);
         }
 
-        protected async Task<T> Deserialize<T>(HttpResponseMessage responseMessage, HttpStatusCode status = HttpStatusCode.OK)
+        protected async Task<T> Deserialize<T>(HttpResponseMessage responseMessage,
+            HttpStatusCode status = HttpStatusCode.OK)
         {
-            if (responseMessage.StatusCode == status)
+            if (CustomSerializer != null)
             {
-                return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), JsonSerializerOptions);
+                if (responseMessage.StatusCode == status)
+                {
+                    return await CustomSerializer.Deserialize<T>(await responseMessage.Content.ReadAsByteArrayAsync());
+                }
+
+                throw new Exception(
+                    $"Expected Status code {status} received {responseMessage.StatusCode}");
             }
+            else
+            {
+                if (responseMessage.StatusCode == status)
+                {
+                    return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(),
+                        JsonSerializerOptions);
+                }
 
-            var message = await responseMessage.Content.ReadAsStringAsync();
+                var message = await responseMessage.Content.ReadAsStringAsync();
 
-            throw new Exception($"Expected Status code {status} received {responseMessage.StatusCode}{Environment.NewLine}{message}");
+                throw new Exception(
+                    $"Expected Status code {status} received {responseMessage.StatusCode}{Environment.NewLine}{message}");
+            }
         }
+
+        protected IClientSerializer CustomSerializer { get; set; }
 
         protected class InternalStartup
         {
