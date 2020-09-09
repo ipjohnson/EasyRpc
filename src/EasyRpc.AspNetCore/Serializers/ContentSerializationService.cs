@@ -186,11 +186,25 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <returns></returns>
         protected virtual List<string> GenerateSupportedContentTypesList()
         {
+            if (_serializer != null)
+            {
+                return _serializer.SupportedContentTypes.ToList();
+            }
+
             var returnList = new List<string>();
+
+            // we want to put the default in first
+            if (_defaultSerializer != null)
+            {
+                returnList.AddRange(_defaultSerializer.SupportedContentTypes);
+            }
 
             foreach (var contentSerializer in _contentSerializers)
             {
-                returnList.AddRange(contentSerializer.SupportedContentTypes);
+                if (contentSerializer != _defaultSerializer)
+                {
+                    returnList.AddRange(contentSerializer.SupportedContentTypes);
+                }
             }
 
             return returnList;
