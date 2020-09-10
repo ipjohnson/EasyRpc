@@ -54,7 +54,7 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <inheritdoc />
         public override async Task SerializeToResponse(RequestExecutionContext context)
         {
-            SetSuccess(context, _contentType);
+            SetStatusAndContent(context, _contentType);
 
             var outputStream = GetOutputStream(context);
 

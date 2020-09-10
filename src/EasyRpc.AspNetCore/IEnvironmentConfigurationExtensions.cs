@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
+using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore
@@ -41,6 +42,18 @@ namespace EasyRpc.AspNetCore
         public static IEnvironmentConfiguration DisableDocumentation(this IEnvironmentConfiguration configuration)
         {
             return configuration.Documentation(c => c.Enabled = false);
+        }
+
+        /// <summary>
+        /// Configures default exposures
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="configurationAction"></param>
+        /// <returns></returns>
+        public static IEnvironmentConfiguration Exposures(this IEnvironmentConfiguration configuration,
+            Action<ExposeConfigurations> configurationAction)
+        {
+            return configuration.Action(configurationAction);
         }
 
 

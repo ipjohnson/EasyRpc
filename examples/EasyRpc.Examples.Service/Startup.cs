@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.MessagePack;
 using EasyRpc.AspNetCore.Serializers;
 using EasyRpc.Examples.Service.Services;
@@ -25,6 +26,8 @@ namespace EasyRpc.Examples.Service
             services.AddRpcServices();
             services.AddControllersWithViews();
             services.AddTransient<ISerializationTypeAttributor, MessagePackSerializationTypeAttributor>();
+            services.AddTransient<IContentSerializer, XmlContentSerializer>();
+            services.AddTransient<ISerializationTypeAttributor, XmlContentSerializerTypeAttributor>();
             services.AddTransient<IContentSerializer, MessagePackContentSerializer>();
         }
 
@@ -38,6 +41,7 @@ namespace EasyRpc.Examples.Service
 
             app.UseRpcServices(api =>
             {
+                api.Configure.Exposures(e => e.TypeWrapSelector = DefaultExposeDelegates.SimpleTypeWrapSelector);
                 api.Configure.Documentation(docs =>
                 {
                     // enable to test redoc

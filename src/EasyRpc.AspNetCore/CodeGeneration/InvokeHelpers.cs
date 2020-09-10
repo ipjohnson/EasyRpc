@@ -36,20 +36,18 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="result"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static Task WrapResultTaskAsync<TWrapper, TResult>(Task<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult> , new()
+        public static Task<TWrapper> WrapResultTaskAsync<TWrapper, TResult>(Task<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult> , new()
         {
             if (result.IsCompletedSuccessfully)
             {
-                context.Result = new TWrapper { Result = result.Result};
-
-                return Task.CompletedTask;
+                return Task.FromResult(new TWrapper { Result = result.Result});
             }
 
-            return CompleteTaskAsync(result, context);
+            return CompleteTaskAsync(result);
 
-            static async Task CompleteTaskAsync(Task<TResult> r, RequestExecutionContext c)
+            static async Task<TWrapper> CompleteTaskAsync(Task<TResult> r)
             {
-                c.Result = new TWrapper{ Result = await r };
+                return new TWrapper{ Result = await r };
             }
         }
 
@@ -61,20 +59,18 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <param name="result"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static Task WrapResultValueTaskAsync<TWrapper, TResult>(ValueTask<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
+        public static Task<TWrapper> WrapResultValueTaskAsync<TWrapper, TResult>(ValueTask<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
         {
             if (result.IsCompletedSuccessfully)
             {
-                context.Result = new TWrapper { Result = result.Result };
-
-                return Task.CompletedTask;
+                return Task.FromResult(new TWrapper { Result = result.Result });
             }
 
-            return CompleteTaskAsync(result, context);
+            return CompleteTaskAsync(result);
 
-            static async Task CompleteTaskAsync(ValueTask<TResult> r, RequestExecutionContext c)
+            static async Task<TWrapper> CompleteTaskAsync(ValueTask<TResult> r)
             {
-                c.Result = new TWrapper { Result = await r };
+                return new TWrapper { Result = await r };
             }
         }
     }

@@ -10,7 +10,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// </summary>
     public interface ISerializationTypeAttributor
     {
-        void AttributeType(TypeBuilder typeBuilder);
+        void AttributeType(TypeBuilder typeBuilder, string classNameHint);
 
         void AttributeProperty(PropertyBuilder propertyBuilder, int index);
 

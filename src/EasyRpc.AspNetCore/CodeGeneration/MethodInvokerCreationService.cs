@@ -163,31 +163,53 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 methodBodyStatements.Add(invokeExpression);
                 methodBodyStatements.Add(Expression.Constant(Task.CompletedTask));
             }
-            //else if (invokeMethod.ReturnType == typeof(Task))
-            //{
-            //    methodBodyStatements.Add(invokeExpression);
-            //}
-            //else if (invokeMethod.ReturnType == typeof(ValueTask))
-            //{
-            //    var valueTaskExpression = Expression.Call(invokeExpression, _valueTaskAsTask);
+            else if (invokeMethod.ReturnType == typeof(Task))
+            {
+                methodBodyStatements.Add(invokeExpression);
+            }
+            else if (invokeMethod.ReturnType == typeof(ValueTask))
+            {
+                var valueTaskExpression = Expression.Call(invokeExpression, _valueTaskAsTask);
 
-            //    methodBodyStatements.Add(valueTaskExpression);
-            //}
+                methodBodyStatements.Add(valueTaskExpression);
+            }
             else if (invokeMethod.ReturnType.IsConstructedGenericType)
             {
                 var openType = invokeMethod.ReturnType.GetGenericTypeDefinition();
 
                 if (openType == typeof(ValueTask<>))
                 {
-                    var setMethod = invokeMethod.ReturnType.GetMethod("AsTask");
+                    if (endPointMethodConfiguration.WrappedType != null)
+                    {
+                        var closedMethod = _wrapResultValueTaskAsync.MakeGenericMethod(endPointMethodConfiguration.WrappedType, invokeMethod.ReturnType.GenericTypeArguments[0]);
 
-                    var callExpression = Expression.Call(invokeExpression, setMethod);
+                        var callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
 
-                    methodBodyStatements.Add(callExpression);
+                        methodBodyStatements.Add(callExpression);
+                    }
+                    else
+                    {
+                        var setMethod = invokeMethod.ReturnType.GetMethod("AsTask");
+
+                        var callExpression = Expression.Call(invokeExpression, setMethod);
+
+                        methodBodyStatements.Add(callExpression);
+                    }
                 }
                 else if (openType == typeof(Task<>))
                 {
-                    methodBodyStatements.Add(invokeExpression);
+                    if (endPointMethodConfiguration.WrappedType != null)
+                    {
+                        var closedMethod = _wrapResultTaskAsync.MakeGenericMethod(endPointMethodConfiguration.WrappedType, invokeMethod.ReturnType.GenericTypeArguments[0]);
+
+                        var callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
+
+                        methodBodyStatements.Add(callExpression);
+                    }
+                    else
+                    {
+                        methodBodyStatements.Add(invokeExpression);
+                    }
                 }
                 else
                 {

@@ -49,7 +49,7 @@ namespace EasyRpc.AspNetCore.Serializers
         /// </summary>
         /// <param name="context"></param>
         /// <param name="contentType"></param>
-        protected void SetSuccess(RequestExecutionContext context, string contentType)
+        protected void SetStatusAndContent(RequestExecutionContext context, string contentType)
         {
             context.HttpContext.Response.ContentType = contentType;
 

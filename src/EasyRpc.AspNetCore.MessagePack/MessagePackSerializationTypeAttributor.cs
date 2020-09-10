@@ -28,7 +28,7 @@ namespace EasyRpc.AspNetCore.MessagePack
         }
 
         /// <inheritdoc />
-        public void AttributeType(TypeBuilder typeBuilder)
+        public void AttributeType(TypeBuilder typeBuilder, string classNameHint)
         {
             typeBuilder.SetCustomAttribute(new CustomAttributeBuilder(_messagePackAttrInfo, new object[] { _useNameAsKey }));
         }

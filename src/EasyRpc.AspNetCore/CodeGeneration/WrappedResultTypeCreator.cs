@@ -81,7 +81,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         {
             foreach (var attributor in _serializationTypeAttributors)
             {
-                attributor.AttributeType(wrapperTypeBuilder);
+                attributor.AttributeType(wrapperTypeBuilder, "wrapper");
             }
         }
 

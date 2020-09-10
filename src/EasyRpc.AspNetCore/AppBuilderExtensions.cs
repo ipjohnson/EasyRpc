@@ -30,8 +30,9 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="serviceCollection"></param>
         /// <param name="registerJsonSerializer"></param>
+        /// <param name="registerXmlSerializer"></param>
         /// <returns></returns>
-        public static IServiceCollection AddRpcServices(this IServiceCollection serviceCollection, bool registerJsonSerializer = true)
+        public static IServiceCollection AddRpcServices(this IServiceCollection serviceCollection, bool registerJsonSerializer = true, bool registerXmlSerializer = false)
         {
             serviceCollection.TryAddTransient<IMiddlewareHandler, MiddlewareHandler>();
 
@@ -74,11 +75,17 @@ namespace EasyRpc.AspNetCore
 
             serviceCollection.TryAddScoped<BaseEndPointServices>();
 
+            if (registerXmlSerializer)
+            {
+                serviceCollection.TryAddScoped<IContentSerializer, XmlContentSerializer>();
+                serviceCollection.TryAddScoped<ISerializationTypeAttributor, XmlContentSerializerTypeAttributor>();
+            }
+
             if (registerJsonSerializer)
             {
                 serviceCollection.TryAddScoped<IContentSerializer, JsonContentSerializer>();
             }
-
+            
             return serviceCollection;
         }
 

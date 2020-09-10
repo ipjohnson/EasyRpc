@@ -44,7 +44,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
         public OpenApiGenerationService(IOpenApiSchemaGenerator apiSchemaGenerator,
             IConfigurationManager configurationManager,
-            IContentSerializationService contentSerializationService, 
+            IContentSerializationService contentSerializationService,
             IErrorResultTypeCreator errorResultTypeCreator,
             IXmlDocProvider xmlDocProvider)
         {
@@ -59,7 +59,7 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             _apiInformation = apiInformation;
             _endPointMethodHandlersList = endPointMethodHandlersList;
-            _exposeConfiguration = 
+            _exposeConfiguration =
                 apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
             _documentationOptions = documentationOptions;
             _apiSchemaGenerator.Configure(documentationOptions);
@@ -135,8 +135,8 @@ namespace EasyRpc.AspNetCore.Documentation
                 await httpContext.Response.WriteAsync(outputString);
             }
         }
-   
-        
+
+
         protected virtual Task<OpenApiDocument> GenerateDocument(HttpContext context)
         {
             var document = new OpenApiDocument
@@ -147,14 +147,14 @@ namespace EasyRpc.AspNetCore.Documentation
                     Title = GetTitle()
                 }
             };
-            
+
             ProcessEndPoints(context, document, _endPointMethodHandlersList);
 
             _apiSchemaGenerator.PopulateSchemaComponent(document);
 
             foreach (var documentFilter in _documentationOptions.DocumentFilters)
             {
-                documentFilter.Apply(new DocumentFilterContext(document,context));
+                documentFilter.Apply(new DocumentFilterContext(document, context));
             }
 
             return Task.FromResult(document);
@@ -278,7 +278,7 @@ namespace EasyRpc.AspNetCore.Documentation
             IEndPointMethodHandler endPointMethodHandler)
         {
             var methodInfo = endPointMethodHandler.Configuration.InvokeInformation.MethodToInvoke;
-            
+
             XElement element = null;
 
             if (methodInfo != null)
@@ -291,12 +291,12 @@ namespace EasyRpc.AspNetCore.Documentation
                 Summary = element.GetSummary(),
                 Tags = new List<OpenApiTag>(),
                 Parameters = GenerateParameters(endPointMethodHandler, element),
-                OperationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/","") 
+                OperationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/", "")
             };
 
             foreach (var tag in element.GetTags())
             {
-                operation.Tags.Add(new OpenApiTag{ Name = tag });
+                operation.Tags.Add(new OpenApiTag { Name = tag });
             }
 
             if (methodInfo != null && methodInfo.DeclaringType != null)
@@ -312,13 +312,13 @@ namespace EasyRpc.AspNetCore.Documentation
                 }
             }
 
-            if (operation.Tags.Count == 0 && 
-                _documentationOptions.AutoTag && 
-                methodInfo?.DeclaringType  != null)
+            if (operation.Tags.Count == 0 &&
+                _documentationOptions.AutoTag &&
+                methodInfo?.DeclaringType != null)
             {
                 var tagName = methodInfo.DeclaringType.Name;
 
-                operation.Tags.Add(new OpenApiTag{ Name = tagName });
+                operation.Tags.Add(new OpenApiTag { Name = tagName });
 
                 if (document.Tags.All(tag => tag.Name != tagName))
                 {
@@ -379,7 +379,7 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             if (!responses.ContainsKey("500"))
             {
-                var response = new OpenApiResponse {Description = "Internal Server Error"};
+                var response = new OpenApiResponse { Description = "Internal Server Error" };
 
                 var contentDictionary = response.Content = new Dictionary<string, OpenApiMediaType>();
                 var responseSchema = _apiSchemaGenerator.GetSchemaType(_errorResultTypeCreator.GenerateErrorType());
@@ -402,7 +402,7 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 if (!responses.ContainsKey("204"))
                 {
-                    var response = new OpenApiResponse {Description = "No content"};
+                    var response = new OpenApiResponse { Description = "No content" };
 
                     if (success)
                     {
@@ -430,13 +430,13 @@ namespace EasyRpc.AspNetCore.Documentation
 
             var returnType = endPointMethodHandler.Configuration.ReturnType;
 
-            if (returnType.IsConstructedGenericType && 
-                (returnType.GetGenericTypeDefinition() == typeof(Task<>) || 
+            if (returnType.IsConstructedGenericType &&
+                (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||
                  returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
             {
                 returnType = returnType.GenericTypeArguments[0];
             }
-            
+
             if (endPointMethodHandler.Configuration.WrappedType != null)
             {
                 responseSchema = new OpenApiSchema
@@ -515,6 +515,11 @@ namespace EasyRpc.AspNetCore.Documentation
                 };
 
                 var schema = GeneratePostParameterSchema(postParameterList);
+
+                schema.Xml = new OpenApiXml
+                {
+                    Name = "args"
+                };
 
                 foreach (var schemaProperty in schema.Properties)
                 {
