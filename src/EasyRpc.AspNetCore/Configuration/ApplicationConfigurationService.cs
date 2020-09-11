@@ -104,6 +104,11 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 returnType = returnType.GenericTypeArguments[0];
             }
+            else if (returnType == typeof(Task) || returnType == typeof(ValueTask))
+            {
+                // set it to object and it will get wrapped later
+                returnType = typeof(object);
+            }
 
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)

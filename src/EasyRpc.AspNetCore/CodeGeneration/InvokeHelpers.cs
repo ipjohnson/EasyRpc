@@ -12,20 +12,40 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// </summary>
     public static class InvokeHelpers
     {
-        
+        /// <summary>
+        /// Wraps a Task object for calling
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
+        public static async Task<object> WrapTask(Task task)
+        {
+            await task;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Wrap ValueTask object for calling
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
+        public static async Task<object> WrapValueTask(ValueTask task)
+        {
+            await task;
+
+            return null;
+        }
+
         /// <summary>
         /// Wrap result in IResultWrapper
         /// </summary>
         /// <typeparam name="TWrapper"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="result"></param>
-        /// <param name="context"></param>
         /// <returns></returns>
-        public static Task WrapResult<TWrapper, TResult>(TResult result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
+        public static Task<TWrapper> WrapResult<TWrapper, TResult>(TResult result) where TWrapper : IResultWrapper<TResult>, new()
         {
-            context.Result = new TWrapper { Result = result };
-
-            return Task.CompletedTask;
+            return Task.FromResult(new TWrapper { Result = result });
         }
 
         /// <summary>
@@ -34,20 +54,19 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <typeparam name="TWrapper"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="result"></param>
-        /// <param name="context"></param>
         /// <returns></returns>
-        public static Task<TWrapper> WrapResultTaskAsync<TWrapper, TResult>(Task<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult> , new()
+        public static Task<TWrapper> WrapResultTaskAsync<TWrapper, TResult>(Task<TResult> result) where TWrapper : IResultWrapper<TResult>, new()
         {
             if (result.IsCompletedSuccessfully)
             {
-                return Task.FromResult(new TWrapper { Result = result.Result});
+                return Task.FromResult(new TWrapper { Result = result.Result });
             }
 
             return CompleteTaskAsync(result);
 
             static async Task<TWrapper> CompleteTaskAsync(Task<TResult> r)
             {
-                return new TWrapper{ Result = await r };
+                return new TWrapper { Result = await r };
             }
         }
 
@@ -57,9 +76,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <typeparam name="TWrapper"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="result"></param>
-        /// <param name="context"></param>
         /// <returns></returns>
-        public static Task<TWrapper> WrapResultValueTaskAsync<TWrapper, TResult>(ValueTask<TResult> result, RequestExecutionContext context) where TWrapper : IResultWrapper<TResult>, new()
+        public static Task<TWrapper> WrapResultValueTaskAsync<TWrapper, TResult>(ValueTask<TResult> result) where TWrapper : IResultWrapper<TResult>, new()
         {
             if (result.IsCompletedSuccessfully)
             {

@@ -27,28 +27,26 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// <inheritdoc cref="IMethodInvokeInformation"/>
     public class MethodInvokerCreationService : IMethodInvokerCreationService, IApiConfigurationCompleteAware
     {
-        private readonly PropertyInfo _contextInstance;
-        private readonly PropertyInfo _contextParameters;
-        private readonly PropertyInfo _resultProperty;
-        private readonly MethodInfo _valueTaskAsTask;
-        private readonly MethodInfo _setResultValueTaskAsync;
-        private readonly MethodInfo _taskFromResult;
-        private readonly MethodInfo _wrapResult;
-        private readonly MethodInfo _wrapResultTaskAsync;
-        private readonly MethodInfo _wrapResultValueTaskAsync;
+        private static readonly PropertyInfo _contextInstance;
+        private static readonly PropertyInfo _contextParameters;
+        private static readonly MethodInfo _taskFromResult;
+        private static readonly MethodInfo _wrapTask;
+        private static readonly MethodInfo _wrapValueTask;
+        private static readonly MethodInfo _wrapResult;
+        private static readonly MethodInfo _wrapResultTaskAsync;
+        private static readonly MethodInfo _wrapResultValueTaskAsync;
         private ExposeConfigurations _exposeOptions;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MethodInvokerCreationService()
+        static MethodInvokerCreationService()
         {
             _contextInstance = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.ServiceInstance));
             _contextParameters = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.Parameters));
-            _resultProperty = typeof(RequestExecutionContext).GetProperty(nameof(RequestExecutionContext.Result));
-            _valueTaskAsTask = typeof(ValueTask).GetMethod("AsTask");
-            _setResultValueTaskAsync = typeof(ValueTask<>).GetMethod("AsTask");
             _taskFromResult = typeof(Task).GetMethod("FromResult");
+            _wrapTask = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapTask));
+            _wrapValueTask = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapValueTask));
             _wrapResult = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResult));
             _wrapResultTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResultTaskAsync));
             _wrapResultValueTaskAsync = typeof(InvokeHelpers).GetMethod(nameof(InvokeHelpers.WrapResultValueTaskAsync));
@@ -65,7 +63,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 return BuildDelegateMethodInvoker<T>(endPointMethodConfiguration, parametersType);
             }
-            
+
             throw new Exception("Invoke information is blank");
         }
 
@@ -160,16 +158,23 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         {
             if (invokeMethod.ReturnType == typeof(void))
             {
+                var closedMethod = _taskFromResult.MakeGenericMethod(typeof(object));
+
                 methodBodyStatements.Add(invokeExpression);
-                methodBodyStatements.Add(Expression.Constant(Task.CompletedTask));
+
+                var callFromResult = Expression.Call(closedMethod, Expression.Constant(null, typeof(object)));
+
+                methodBodyStatements.Add(callFromResult);
             }
             else if (invokeMethod.ReturnType == typeof(Task))
             {
-                methodBodyStatements.Add(invokeExpression);
+                var taskExpression = Expression.Call(_wrapTask, invokeExpression);
+
+                methodBodyStatements.Add(taskExpression);
             }
             else if (invokeMethod.ReturnType == typeof(ValueTask))
             {
-                var valueTaskExpression = Expression.Call(invokeExpression, _valueTaskAsTask);
+                var valueTaskExpression = Expression.Call(_wrapValueTask, invokeExpression);
 
                 methodBodyStatements.Add(valueTaskExpression);
             }
@@ -183,15 +188,15 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                     {
                         var closedMethod = _wrapResultValueTaskAsync.MakeGenericMethod(endPointMethodConfiguration.WrappedType, invokeMethod.ReturnType.GenericTypeArguments[0]);
 
-                        var callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
+                        var callExpression = Expression.Call(closedMethod, invokeExpression);
 
                         methodBodyStatements.Add(callExpression);
                     }
                     else
                     {
-                        var setMethod = invokeMethod.ReturnType.GetMethod("AsTask");
+                        var asTaskMethod = invokeMethod.ReturnType.GetMethod("AsTask");
 
-                        var callExpression = Expression.Call(invokeExpression, setMethod);
+                        var callExpression = Expression.Call(invokeExpression, asTaskMethod);
 
                         methodBodyStatements.Add(callExpression);
                     }
@@ -202,7 +207,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                     {
                         var closedMethod = _wrapResultTaskAsync.MakeGenericMethod(endPointMethodConfiguration.WrappedType, invokeMethod.ReturnType.GenericTypeArguments[0]);
 
-                        var callExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
+                        var callExpression = Expression.Call(closedMethod, invokeExpression);
 
                         methodBodyStatements.Add(callExpression);
                     }
@@ -222,32 +227,22 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
             else
             {
-                //var shouldWrap = endPointMethodConfiguration.RawContentType == null &&
-                //                 _exposeOptions.TypeWrapSelector(invokeMethod.ReturnType);
+                if (endPointMethodConfiguration.WrappedType != null)
+                {
+                    var closedMethod = _wrapResult.MakeGenericMethod(endPointMethodConfiguration.WrappedType, invokeMethod.ReturnType);
 
-                //if (shouldWrap)
-                //{
-                //    var wrapperType = _wrappedResultTypeCreator.GetTypeWrapper(invokeMethod.ReturnType);
+                    var wrapExpression = Expression.Call(closedMethod, invokeExpression);
 
-                //    var closedMethod = _wrapResult.MakeGenericMethod(wrapperType, invokeMethod.ReturnType);
-
-                //    var wrapExpression = Expression.Call(closedMethod, invokeExpression, requestParameter);
-
-                //    methodBodyStatements.Add(wrapExpression);
-                //}
-                //else
-                //{
-                    //if (invokeExpression.Type.IsValueType)
-                    //{
-                    //    invokeExpression = Expression.Convert(invokeExpression, typeof(object));
-                    //}
-
+                    methodBodyStatements.Add(wrapExpression);
+                }
+                else
+                {
                     var closedMethod = _taskFromResult.MakeGenericMethod(typeof(T));
 
                     var callFromResult = Expression.Call(closedMethod, invokeExpression);
 
                     methodBodyStatements.Add(callFromResult);
-                //}
+                }
             }
         }
 
@@ -285,7 +280,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             return parameterList;
         }
-        
+
         /// <inheritdoc />
         public virtual void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
