@@ -26,17 +26,24 @@ namespace EasyRpc.AspNetCore.Documentation
         private readonly Dictionary<string, FileEntry> _fileEntries = new Dictionary<string, FileEntry>();
         private readonly ValueTask<bool> _false = new ValueTask<bool>(false);
         private readonly IHostEnvironment _hostEnvironment;
+        private readonly IStringTokenReplacementService _stringTokenReplacementService;
         private DocumentationOptions _options;
 
-        public SwaggerAssetProvider(IHostEnvironment hostEnvironment, ILogger<SwaggerAssetProvider> logger)
+        public SwaggerAssetProvider(IHostEnvironment hostEnvironment, 
+            ILogger<SwaggerAssetProvider> logger,
+            IStringTokenReplacementService stringTokenReplacementService)
         {
             _hostEnvironment = hostEnvironment;
             _logger = logger;
+            _stringTokenReplacementService = stringTokenReplacementService;
         }
 
         public void Configure(DocumentationOptions options)
         {
             _options = options;
+
+            _stringTokenReplacementService.Configure(options);
+
             UnpackAssets();
 
             ProcessContentPath(_options.ContentPath);
