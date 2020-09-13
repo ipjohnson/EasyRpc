@@ -15,7 +15,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         private readonly RequestState _startingState;
 
         /// <inheritdoc />
-        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
+        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
+            : base(configuration, services)
         {
             if (configuration.Authorizations != null && configuration.Authorizations.Count > 0)
             {
@@ -35,11 +36,13 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             }
         }
 
-
         /// <inheritdoc />
         public override Task HandleRequest(HttpContext context)
         {
-            var requestContext = new RequestExecutionContext(context, this, Configuration.SuccessStatusCode);
+            var requestContext = new RequestExecutionContext(context, this, Configuration.SuccessStatusCode)
+            {
+                Parameters = EmptyParameters.Instance
+            };
 
             if (InvokeMethodDelegate == null)
             {
@@ -48,8 +51,6 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 
             try
             {
-                requestContext.Parameters = EmptyParameters.Instance;
-
                 requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
             }
             catch (Exception e)
@@ -61,7 +62,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 
             return NextStep(ref state, ref requestContext);
         }
-        
+
         private Task NextStep(ref RequestState state, ref RequestExecutionContext requestContext)
         {
             if (state == RequestState.Complete ||
@@ -88,7 +89,10 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 case RequestState.ExecuteTask:
                     state = requestContext.CallFilters != null ? RequestState.AfterExecuteTaskFilter : RequestState.Response;
 
-                    return ExecuteTask(ref state, ref requestContext);
+                    // only execute if no result was set in the filters
+                    return requestContext.Result == null ? 
+                        ExecuteTask(ref state, ref requestContext) : 
+                        NextStep(ref state, ref requestContext);
 
                 case RequestState.AfterExecuteTaskFilter:
                     state = RequestState.Response;
