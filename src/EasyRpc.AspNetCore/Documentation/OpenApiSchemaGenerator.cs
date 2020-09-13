@@ -37,11 +37,11 @@ namespace EasyRpc.AspNetCore.Documentation
     public class OpenApiSchemaGenerator : IOpenApiSchemaGenerator
     {
         private int _unknownCount;
-        private ConcurrentDictionary<string, OpenApiSchema> _knownComponents;
-        private ConcurrentDictionary<Type, string> _referenceNames;
-        private ConcurrentDictionary<string, Type> _nameMap;
-        private IKnownOpenApiTypeMapper _simpleOpenApiTypeMapper;
-        private IXmlDocProvider _xmlDocProvider;
+        private readonly ConcurrentDictionary<string, OpenApiSchema> _knownComponents;
+        private readonly ConcurrentDictionary<Type, string> _referenceNames;
+        private readonly ConcurrentDictionary<string, Type> _nameMap;
+        private readonly IKnownOpenApiTypeMapper _simpleOpenApiTypeMapper;
+        private readonly IXmlDocProvider _xmlDocProvider;
 
         public OpenApiSchemaGenerator(IKnownOpenApiTypeMapper simpleOpenApiTypeMapper, IXmlDocProvider xmlDocProvider)
         {

@@ -10,7 +10,7 @@ namespace EasyRpc.Tests.AspNetCore.ResponseHeaders
 {
     public class GetMethodGlobalNoCache : BaseRequestTest
     {
-        private static string _cacheControl = "no-cache";
+        private static readonly string _cacheControl = "no-cache";
 
         #region Tests
 

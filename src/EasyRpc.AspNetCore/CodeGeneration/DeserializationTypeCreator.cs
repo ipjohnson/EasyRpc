@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private readonly ModuleBuilder _moduleBuilder;
         private int _proxyCount = 0;
         private readonly MethodInfo _stringEqual = typeof(string).GetMethod("Equals", new[] { typeof(string), typeof(string) });
-        private IEnumerable<ISerializationTypeAttributor> _attributors;
+        private readonly IEnumerable<ISerializationTypeAttributor> _attributors;
 
         /// <summary>
         /// Default constructor

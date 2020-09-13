@@ -23,10 +23,10 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// <inheritdoc />
     public class ErrorResultTypeCreator : IErrorResultTypeCreator
     {
-        private ModuleBuilder _moduleBuilder;
+        private readonly ModuleBuilder _moduleBuilder;
         private Type _errorType;
-        private object _lock = new object();
-        private IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
+        private readonly object _lock = new object();
+        private readonly IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
 
         /// <summary>
         /// Default constructor

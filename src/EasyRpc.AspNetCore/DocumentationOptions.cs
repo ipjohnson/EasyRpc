@@ -12,7 +12,7 @@ namespace EasyRpc.AspNetCore
     /// </summary>
     public class DocumentationOptions
     {
-        private Dictionary<Type,Func<OpenApiSchema>> _knownTypes = new Dictionary<Type, Func<OpenApiSchema>>();
+        private readonly Dictionary<Type,Func<OpenApiSchema>> _knownTypes = new Dictionary<Type, Func<OpenApiSchema>>();
 
         /// <summary>
         /// Documentation enabled, true by default

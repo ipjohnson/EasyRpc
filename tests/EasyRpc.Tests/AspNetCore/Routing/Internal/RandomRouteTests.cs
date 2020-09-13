@@ -11,7 +11,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
 {
     public class RandomRouteTests : BaseRequestTest
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
         private List<string> _routes;
 
         #region Tests

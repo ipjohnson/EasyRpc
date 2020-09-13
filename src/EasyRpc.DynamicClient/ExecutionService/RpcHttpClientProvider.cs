@@ -7,7 +7,7 @@ namespace EasyRpc.DynamicClient.ExecutionService
 {
     public class RpcHttpClientProvider : IRpcHttpClientProvider
     {
-        private HttpClient _client;
+        private readonly HttpClient _client;
 
         public RpcHttpClientProvider(HttpClient client)
         {

@@ -22,10 +22,10 @@ namespace EasyRpc.AspNetCore.Documentation
 
     public class SwaggerAssetProvider : ISwaggerAssetProvider
     {
-        private ILogger<SwaggerAssetProvider> _logger;
+        private readonly ILogger<SwaggerAssetProvider> _logger;
         private readonly Dictionary<string, FileEntry> _fileEntries = new Dictionary<string, FileEntry>();
         private readonly ValueTask<bool> _false = new ValueTask<bool>(false);
-        private IHostEnvironment _hostEnvironment;
+        private readonly IHostEnvironment _hostEnvironment;
         private DocumentationOptions _options;
 
         public SwaggerAssetProvider(IHostEnvironment hostEnvironment, ILogger<SwaggerAssetProvider> logger)

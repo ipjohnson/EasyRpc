@@ -10,7 +10,7 @@ namespace EasyRpc.Tests.DynamicClient
 {
     public class RpcTestClient : IRpcHttpClient
     {
-        private Func<HttpRequestMessage, Task<HttpResponseMessage>> _clientFunc;
+        private readonly Func<HttpRequestMessage, Task<HttpResponseMessage>> _clientFunc;
 
         public RpcTestClient(Func<HttpRequestMessage, Task<HttpResponseMessage>> clientFunc)
         {

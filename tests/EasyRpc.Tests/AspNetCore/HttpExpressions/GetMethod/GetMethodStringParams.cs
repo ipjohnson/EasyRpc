@@ -10,7 +10,7 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
 {
     public class GetMethodStringParams : BaseRequestTest
     {
-        private string _postFix = " World";
+        private readonly string _postFix = " World";
 
         #region Tests
 

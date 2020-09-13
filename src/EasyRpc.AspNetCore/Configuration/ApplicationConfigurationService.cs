@@ -32,7 +32,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly IConfigurationManager _configurationManager;
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private ExposeConfigurations _exposeConfigurations;
-        private IWrappedResultTypeCreator _wrappedResultTypeCreator;
+        private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
         private string _basePath;
 
         public ApplicationConfigurationService(BaseEndPointServices services, 

@@ -13,7 +13,7 @@ namespace EasyRpc.AspNetCore.Data
     {
         private readonly Func<T> _createFunc;
 
-        private int _max;
+        private readonly int _max;
         private int _count;
         private PoolObjectInstance _pool;
 
@@ -120,7 +120,7 @@ namespace EasyRpc.AspNetCore.Data
 
         private class PoolObjectInstance : IPoolObjectInstance
         {
-            private ObjectPool<T> _pool;
+            private readonly ObjectPool<T> _pool;
 
             public PoolObjectInstance(ObjectPool<T> pool, T instance)
             {

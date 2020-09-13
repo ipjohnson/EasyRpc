@@ -7,8 +7,8 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 {
     public class ThreeArgDelegateConfiguration<TArg1, TArg2, TArg3, TResult> : ExpressionInstanceConfiguration, IConfigurationInformationProvider
     {
-        private ICurrentApiInformation _currentApi;
-        private Expression<Func<TArg1, TArg2, TArg3, TResult>> _expression;
+        private readonly ICurrentApiInformation _currentApi;
+        private readonly Expression<Func<TArg1, TArg2, TArg3, TResult>> _expression;
 
         public ThreeArgDelegateConfiguration(ICurrentApiInformation currentApi, string method, string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> expression)
         {

@@ -54,7 +54,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
             return RouteListString.Split("\r\n").ToList();
         }
 
-        private static string RouteListString =
+        private static readonly string RouteListString =
 @"/FormulaEvaluationService/Equals
 /FormulaEvaluationService/Evaluate
 /FormulaEvaluationService/GetHashCode

@@ -10,8 +10,8 @@ namespace EasyRpc.AspNetCore.Authorization
     /// </summary>
     public class UserIsAuthorized : IEndPointMethodAuthorization
     {
-        private static Task<bool> _trueTask = Task.FromResult(true);
-        private static Task<bool> _falseTask = Task.FromResult(false);
+        private static readonly Task<bool> _trueTask = Task.FromResult(true);
+        private static readonly Task<bool> _falseTask = Task.FromResult(false);
 
         /// <inheritdoc />
         public Task<bool> AsyncAuthorize(RequestExecutionContext context)

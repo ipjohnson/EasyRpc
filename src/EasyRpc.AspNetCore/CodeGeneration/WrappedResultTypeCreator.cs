@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         private readonly ModuleBuilder _moduleBuilder;
         private int _proxyCount = 0;
         private readonly ConcurrentDictionary<Type, Type> _wrappers = new ConcurrentDictionary<Type, Type>();
-        private IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
+        private readonly IEnumerable<ISerializationTypeAttributor> _serializationTypeAttributors;
 
         /// <summary>
         /// Default constructor

@@ -34,10 +34,10 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         private IReadOnlyList<IEndPointMethodHandler> _endPointMethodHandlersList;
         private IInternalApiConfiguration _apiInformation;
-        private IOpenApiSchemaGenerator _apiSchemaGenerator;
-        private IContentSerializationService _contentSerializationService;
-        private IErrorResultTypeCreator _errorResultTypeCreator;
-        private IXmlDocProvider _xmlDocProvider;
+        private readonly IOpenApiSchemaGenerator _apiSchemaGenerator;
+        private readonly IContentSerializationService _contentSerializationService;
+        private readonly IErrorResultTypeCreator _errorResultTypeCreator;
+        private readonly IXmlDocProvider _xmlDocProvider;
         private ExposeConfigurations _exposeConfiguration;
         private DocumentationOptions _documentationOptions;
         private byte[] _cachedV3;

@@ -14,8 +14,8 @@ namespace EasyRpc.AspNetCore.Serializers
     public class XmlContentSerializer : BaseSerializer
     {
         private ImmutableHashTree<Type, XmlSerializer> _serializers = ImmutableHashTree<Type, XmlSerializer>.Empty;
-        private string _contentType = "application/xml";
-        private int _memoryThreshold = 30 * 1024;
+        private readonly string _contentType = "application/xml";
+        private readonly int _memoryThreshold = 30 * 1024;
 
         /// <inheritdoc />
         public XmlContentSerializer(IErrorHandler errorHandler) : base(errorHandler)

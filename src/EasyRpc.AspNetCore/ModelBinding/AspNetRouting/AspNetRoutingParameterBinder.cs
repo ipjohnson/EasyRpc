@@ -17,7 +17,7 @@ namespace EasyRpc.AspNetCore.ModelBinding.AspNetRouting
     /// <inheritdoc />
     public class AspNetRoutingParameterBinder : IAspNetRoutingParameterBinder
     {
-        private IStringValueModelBinder _stringValueModelBinder;
+        private readonly IStringValueModelBinder _stringValueModelBinder;
 
         /// <summary>
         /// Default constructor

@@ -40,7 +40,7 @@ namespace EasyRpc.Tests.AspNetCore.Filters
 
         public class FinalizeFilter : IRequestFinalizeFilter
         {
-            private Action _finalizeAction;
+            private readonly Action _finalizeAction;
 
             public FinalizeFilter(Action finalizeAction)
             {

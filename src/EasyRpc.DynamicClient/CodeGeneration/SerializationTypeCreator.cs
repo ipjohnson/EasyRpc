@@ -17,8 +17,8 @@ namespace EasyRpc.DynamicClient.CodeGeneration
     {
         private readonly object _lock = new object();
         private readonly ModuleBuilder _moduleBuilder;
-        private int _proxyCount = 0;
-        private IEnumerable<IClientSerializationTypeAttributor> _serializationTypeAttributors;
+        private readonly int _proxyCount = 0;
+        private readonly IEnumerable<IClientSerializationTypeAttributor> _serializationTypeAttributors;
 
         public SerializationTypeCreator(IEnumerable<IClientSerializationTypeAttributor> serializationTypeAttributors)
         {

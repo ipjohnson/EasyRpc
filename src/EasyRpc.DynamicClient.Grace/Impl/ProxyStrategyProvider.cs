@@ -15,10 +15,10 @@ namespace EasyRpc.DynamicClient.Grace.Impl
 {
     public class ProxyStrategyProvider : IMissingExportStrategyProvider, IDisposable
     {
-        private ProxyNamespaceConfig _namespaceConfig;
-        private IRpcHttpClientProvider _clientProvider;
+        private readonly ProxyNamespaceConfig _namespaceConfig;
+        private readonly IRpcHttpClientProvider _clientProvider;
         private IClientSerializer _clientSerializer;
-        private HttpClient _client;
+        private readonly HttpClient _client;
         
         public ProxyStrategyProvider(ProxyNamespaceConfig namespaceConfig)
         {
