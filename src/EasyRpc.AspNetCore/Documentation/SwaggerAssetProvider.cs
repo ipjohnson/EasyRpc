@@ -223,7 +223,11 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private void TransformIndexFile(FileEntry fileEntry)
         {
+            var indexString = Encoding.UTF8.GetString(fileEntry.Contents);
 
+            indexString = _stringTokenReplacementService.ReplaceTokensInString(indexString);
+
+            fileEntry.Contents = Encoding.UTF8.GetBytes(indexString);
         }
 
         public class FileEntry

@@ -55,6 +55,16 @@ namespace EasyRpc.AspNetCore
         public Func<Version, string> VersionFormat { get; set; } = DefaultVersionFormat;
 
         /// <summary>
+        /// Add extra css can be url or &lt;link&gt; tag
+        /// </summary>
+        public string ExtraCss { get; set; }
+
+        /// <summary>
+        /// Add extra JavaScript can be url or &lt;script&gt; tag
+        /// </summary>
+        public string ExtraJavaScript { get; set; }
+
+        /// <summary>
         /// Default version format 1.0.0
         /// </summary>
         /// <param name="version"></param>
