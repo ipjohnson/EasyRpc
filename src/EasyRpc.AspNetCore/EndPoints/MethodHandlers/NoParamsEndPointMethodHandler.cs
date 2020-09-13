@@ -53,6 +53,11 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
 
             requestContext.Result = executionTask.Result;
 
+            if (context.Response.HasStarted)
+            {
+                return executionTask;
+            }
+
             var responseTask = ResponseDelegate(requestContext);
 
             return responseTask.IsCompletedSuccessfully ?
@@ -69,8 +74,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             {
                 requestContext.Result = await executionResult;
 
-                if (!requestContext.ResponseHasStarted &&
-                    requestContext.ContinueRequest)
+                if (!requestContext.ResponseHasStarted)
                 {
                     await responseDelegate(requestContext);
                 }
