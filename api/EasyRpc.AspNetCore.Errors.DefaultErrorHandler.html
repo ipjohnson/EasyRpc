@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DefaultErrorHandler
+   | docfx seed website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DefaultErrorHandler
+   | docfx seed website ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler">
+  
+  
+  <h1 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler" class="text-break">Class DefaultErrorHandler
+  </h1>
+  <div class="markdown level0 summary"><p>Default error handler</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">DefaultErrorHandler</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="EasyRpc.AspNetCore.Errors.IErrorHandler.html">IErrorHandler</a></div>
+    <div><a class="xref" href="EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html">IApiConfigurationCompleteAware</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.Errors.html">EasyRpc.AspNetCore.Errors</a></h6>
+  <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
+  <h5 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DefaultErrorHandler : IErrorHandler, IApiConfigurationCompleteAware</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler__ctor_EasyRpc_AspNetCore_Errors_IErrorWrappingService_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.%23ctor(EasyRpc.AspNetCore.Errors.IErrorWrappingService)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L33">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler__ctor_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.#ctor*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler__ctor_EasyRpc_AspNetCore_Errors_IErrorWrappingService_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.#ctor(EasyRpc.AspNetCore.Errors.IErrorWrappingService)">DefaultErrorHandler(IErrorWrappingService)</h4>
+  <div class="markdown level1 summary"><p>Default constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DefaultErrorHandler(IErrorWrappingService errorWrappingService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Errors.IErrorWrappingService.html">IErrorWrappingService</a></td>
+        <td><span class="parametername">errorWrappingService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ContentSerializationService.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ContentSerializationService%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L27">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ContentSerializationService" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ContentSerializationService">ContentSerializationService</h4>
+  <div class="markdown level1 summary"><p>Content serialization service</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IContentSerializationService ContentSerializationService</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Serializers.IContentSerializationService.html">IContentSerializationService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ErrorWrappingService.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ErrorWrappingService%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L22">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ErrorWrappingService" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ErrorWrappingService">ErrorWrappingService</h4>
+  <div class="markdown level1 summary"><p>Error wrapping service</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IErrorWrappingService ErrorWrappingService</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Errors.IErrorWrappingService.html">IErrorWrappingService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ApiConfigurationComplete_System_IServiceProvider_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ApiConfigurationComplete(System.IServiceProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L39">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ApiConfigurationComplete_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ApiConfigurationComplete*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_ApiConfigurationComplete_System_IServiceProvider_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.ApiConfigurationComplete(System.IServiceProvider)">ApiConfigurationComplete(IServiceProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApiConfigurationComplete(IServiceProvider serviceScope)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceScope</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleDeserializeUnknownContentType__1_EasyRpc_AspNetCore_RequestExecutionContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleDeserializeUnknownContentType%60%601(EasyRpc.AspNetCore.RequestExecutionContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L96">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleDeserializeUnknownContentType_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleDeserializeUnknownContentType*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleDeserializeUnknownContentType__1_EasyRpc_AspNetCore_RequestExecutionContext_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleDeserializeUnknownContentType``1(EasyRpc.AspNetCore.RequestExecutionContext)">HandleDeserializeUnknownContentType&lt;T&gt;(RequestExecutionContext)</h4>
+  <div class="markdown level1 summary"><p>Handle unknown content type error</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ValueTask&lt;T&gt; HandleDeserializeUnknownContentType&lt;T&gt;(RequestExecutionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleException_EasyRpc_AspNetCore_RequestExecutionContext_System_Exception_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleException(EasyRpc.AspNetCore.RequestExecutionContext%2CSystem.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L61">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleException_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleException*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleException_EasyRpc_AspNetCore_RequestExecutionContext_System_Exception_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleException(EasyRpc.AspNetCore.RequestExecutionContext,System.Exception)">HandleException(RequestExecutionContext, Exception)</h4>
+  <div class="markdown level1 summary"><p>Handle exception from request</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task HandleException(RequestExecutionContext context, Exception exception)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleSerializerUnknownContentType_EasyRpc_AspNetCore_RequestExecutionContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleSerializerUnknownContentType(EasyRpc.AspNetCore.RequestExecutionContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L104">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleSerializerUnknownContentType_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleSerializerUnknownContentType*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleSerializerUnknownContentType_EasyRpc_AspNetCore_RequestExecutionContext_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleSerializerUnknownContentType(EasyRpc.AspNetCore.RequestExecutionContext)">HandleSerializerUnknownContentType(RequestExecutionContext)</h4>
+  <div class="markdown level1 summary"><p>Handle error where no content serializer can be found</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task HandleSerializerUnknownContentType(RequestExecutionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleUnauthorized_EasyRpc_AspNetCore_RequestExecutionContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleUnauthorized(EasyRpc.AspNetCore.RequestExecutionContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L45">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleUnauthorized_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleUnauthorized*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_HandleUnauthorized_EasyRpc_AspNetCore_RequestExecutionContext_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.HandleUnauthorized(EasyRpc.AspNetCore.RequestExecutionContext)">HandleUnauthorized(RequestExecutionContext)</h4>
+  <div class="markdown level1 summary"><p>Handle unauthorized request</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task HandleUnauthorized(RequestExecutionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return401_EasyRpc_AspNetCore_RequestExecutionContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return401(EasyRpc.AspNetCore.RequestExecutionContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L128">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return401_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return401*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return401_EasyRpc_AspNetCore_RequestExecutionContext_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return401(EasyRpc.AspNetCore.RequestExecutionContext)">Return401(RequestExecutionContext)</h4>
+  <div class="markdown level1 summary"><p>Return 401 error</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task Return401(RequestExecutionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return403_EasyRpc_AspNetCore_RequestExecutionContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return403(EasyRpc.AspNetCore.RequestExecutionContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L116">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return403_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return403*"></a>
+  <h4 id="EasyRpc_AspNetCore_Errors_DefaultErrorHandler_Return403_EasyRpc_AspNetCore_RequestExecutionContext_" data-uid="EasyRpc.AspNetCore.Errors.DefaultErrorHandler.Return403(EasyRpc.AspNetCore.RequestExecutionContext)">Return403(RequestExecutionContext)</h4>
+  <div class="markdown level1 summary"><p>Return 403 error</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task Return403(RequestExecutionContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="EasyRpc.AspNetCore.Errors.IErrorHandler.html">IErrorHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html">IApiConfigurationCompleteAware</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Errors_DefaultErrorHandler.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Errors.DefaultErrorHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Errors/DefaultErrorHandler.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

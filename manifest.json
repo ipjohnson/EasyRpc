@@ -1,0 +1,3467 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/projects/easyrpc",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Headers.CacheControlAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Headers.CacheControlAttribute.html",
+          "hash": "qB2d3PE9Fewbn3EwIYiqEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Headers.NoCacheAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Headers.NoCacheAttribute.html",
+          "hash": "L8aigDfIoaadcdZewBZs+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Headers.ResponseHeaderAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Headers.ResponseHeaderAttribute.html",
+          "hash": "yRLuWgGJ+0Jw5v129SEnMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Headers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Headers.html",
+          "hash": "I8YfpSKB3XiC6GHTBCKU3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.BasePathAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.BasePathAttribute.html",
+          "hash": "I8K5VBqYJxhn75vYjZApSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html",
+          "hash": "IfBV0KOCfouoG5Ofe6mEWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.ExposeDefaultMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.ExposeDefaultMethod.html",
+          "hash": "JkShAuzfyoJnZmqUwpLdRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.GetMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.GetMethodAttribute.html",
+          "hash": "TtZ/h8/2z3ewW2qFuAB9bA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.HeadMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html",
+          "hash": "WRmyZxdFeD3134Zh///Muw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.HttpMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html",
+          "hash": "pGPWGO1RB73xWFaqqltbXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.IBasePathAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.IBasePathAttribute.html",
+          "hash": "EGW5WiIFIWlhU8NzXikZDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.IPathAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.IPathAttribute.html",
+          "hash": "9D03I335M+KVSCo31hI56g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.IgnoreMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.IgnoreMethodAttribute.html",
+          "hash": "rexgDc0B1NOV6h5FAgd65w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html",
+          "hash": "PUMWD1tM7tnEoqq4eS96BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.PatchMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html",
+          "hash": "LYx3KHG2j0K4k/qS7mPVhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.PostMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.PostMethodAttribute.html",
+          "hash": "BCov0Vs/vlTutHQ0IrHfdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.PutMethodAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.PutMethodAttribute.html",
+          "hash": "KPmW6pRHoClp6gm4fHiefw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Path.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Path.html",
+          "hash": "+O09H1akYa725Llu74GBYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Response.IRawContentAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Response.IRawContentAttribute.html",
+          "hash": "GqHVNUcs6zEUlvGFYEVGng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Response.RawContentAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Response.RawContentAttribute.html",
+          "hash": "xVBtklt9i1udMIBBDCmCsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Response.html",
+          "hash": "z65D13W6QOVBe37umqor4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Services.IServiceActivationAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Services.IServiceActivationAttribute.html",
+          "hash": "yd/QQ6npH2QIaoaQkGDw6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Services.ServiceActivationMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Services.ServiceActivationMethod.html",
+          "hash": "pA12f8yp0xVSp1+Yo9Tg3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Services.SharedServiceAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Services.SharedServiceAttribute.html",
+          "hash": "IUCTSgqyTzeaCUsoaqlLuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Services.html",
+          "hash": "lttz9FBbb/qvCarxn8AskA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.AppBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.AppBuilderExtensions.html",
+          "hash": "8wWu1qk8UpX4QslSOPbiPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.EndPointAuthorizationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.EndPointAuthorizationService.html",
+          "hash": "OJNHEFH8w+Nd7OWSFoH+ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService.html",
+          "hash": "em0E7VkaA1XQfT5sZumbcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization.html",
+          "hash": "KZLpb7QAUVcJ7znekxGY/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.UserHasPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.UserHasPolicy.html",
+          "hash": "H/SHWceNtOMvg3iTHHMTfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.UserHasRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.UserHasRole.html",
+          "hash": "CC1XIDp/78dU5HuXvH56tg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.UserIsAuthorized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.UserIsAuthorized.html",
+          "hash": "mxswSolek/zA7XsfOEiInw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Authorization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Authorization.html",
+          "hash": "GCAOIpL3VXu/PpEYNaI4qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.InternalParameterInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.InternalParameterInfo.html",
+          "hash": "KzSDufzU0PJUhZ8ZCQo9qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.TypeCreationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.TypeCreationContext.html",
+          "hash": "KsMld0e02l+aCYsyTtTaXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.html",
+          "hash": "LgILkeq3QfOjAJNJyGAcig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.ErrorResultTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ErrorResultTypeCreator.html",
+          "hash": "acn6Fyd4LMNjutMn2qp4SA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.IDeserializationTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.IDeserializationTypeCreator.html",
+          "hash": "nVCkJgSaFyb896pYXyaUFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.IErrorResultTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.IErrorResultTypeCreator.html",
+          "hash": "lVNvQ5hDs3rBLA/tFMpncg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.ILGenerationUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ILGenerationUtilities.html",
+          "hash": "7upNSGzsiaijtVkQwnoM5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService.html",
+          "hash": "MfXQNkce0Jl3oOUKDqHWnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator.html",
+          "hash": "Xvvmwdew5gr6qQLI9thU+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.ISerializationTypeAttributor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ISerializationTypeAttributor.html",
+          "hash": "EabPQl6HbPaXaX8Qz9c1tw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.ITypeBuilderHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ITypeBuilderHelpers.html",
+          "hash": "v5yLUIdMWRmDopT309j3pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator.html",
+          "hash": "bWumiu+/bz5i7inSFtMArQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.InvokeHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.InvokeHelpers.html",
+          "hash": "MhGqwgwtoAtIfEoZnN/ETA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.MethodInvokerCreationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.MethodInvokerCreationService.html",
+          "hash": "GoHzadE1Y/Jv+bbdXSu6lw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html",
+          "hash": "TGHIoxaIR7l7UaRqF0E99g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.WrappedResultTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.WrappedResultTypeCreator.html",
+          "hash": "bV4GEg2gvVmNkRaMZgxyUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.html",
+          "hash": "tlqT7QPPWjBrggt4ETh89w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.ApiConfigurationFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.ApiConfigurationFactory.html",
+          "hash": "U36GsaMeR2S7tWcOwjbLjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html",
+          "hash": "sT2VOW44dtP8Cgvgy9jFcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.AuthorizationImplementationProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.AuthorizationImplementationProvider.html",
+          "hash": "3kmTCSBcAW119yKwPIwGnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.ConfigurationManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.ConfigurationManager.html",
+          "hash": "AIPG9CT5C3d3c/CKJpqZEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.CurrentApiInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.CurrentApiInformation.html",
+          "hash": "PfOU0FsUuY7Na3lxeLLluA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DefaultExposeDelegates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DefaultExposeDelegates.html",
+          "hash": "Xx5nP2akfslqXtc2FWcF1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ExpressionInstanceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ExpressionInstanceConfiguration.html",
+          "hash": "BawC/jBEHsE1t9B0Y/rZNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateConfiguration-1.html",
+          "hash": "DK0JuHGqIKu6qDNMe9vVDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgDelegateConfiguration-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgDelegateConfiguration-2.html",
+          "hash": "9RJe9uptXLH7r4+zQTU0jw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgDelegateConfiguration-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgDelegateConfiguration-4.html",
+          "hash": "Ig0Ky8mq3BRdIiKDrqaDjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgDelegateConfiguration-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgDelegateConfiguration-3.html",
+          "hash": "adBvEDeDJYabOCK1wbUk8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.html",
+          "hash": "VG7y45v9WrLPMoFJT6IJDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.EnvironmentConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.EnvironmentConfiguration.html",
+          "hash": "AdjKdBVphD2fafIoJISSaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.ExposeConfigurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.ExposeConfigurations.html",
+          "hash": "bmfYsrIFSWUzS8lEoVHzAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html",
+          "hash": "TV0W83FQBU4jQmO67EXEhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IApiConfigurationFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IApiConfigurationFactory.html",
+          "hash": "Mojv+1F5r9ME6U1yFeuarA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html",
+          "hash": "cjbdF99XLTdaJS+4pqdMtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider.html",
+          "hash": "BeYaz++rs/+xy5rwjffSQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IConfigurationInformationProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IConfigurationInformationProvider.html",
+          "hash": "hQBQu1ajcXuDSkW52vV5sQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IConfigurationManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IConfigurationManager.html",
+          "hash": "7T9DiY8wlTLgQM9z5P9cdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.ICurrentApiInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.ICurrentApiInformation.html",
+          "hash": "S7RUJMDCALa0owKYM6b3/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IEndPointHandlerConfigurationProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IEndPointHandlerConfigurationProvider.html",
+          "hash": "R9+3Ytw8ExcypJacdDLW/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration.html",
+          "hash": "oIFeeBoU4pNc8caH3PyVHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html",
+          "hash": "nmiVcQhc9t/zlAP0Ap2BYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.TypeExposureConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.TypeExposureConfiguration-1.html",
+          "hash": "uAQzdF3nWsZ+ry//LYBHwg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.TypeExposureConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.TypeExposureConfiguration.html",
+          "hash": "XglrJkdikIJjcf5+ypbSsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.html",
+          "hash": "9MXKkVvsDPyw/yLHnBjnZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.TypeWrapSelector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.TypeWrapSelector.html",
+          "hash": "rdwbB4QnRNSK98lZgi356Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Configuration.html",
+          "hash": "wX1bjefFKuTkqF1SAfwplQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.html",
+          "hash": "XHnXiIuxn78GCmrAYBCUhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.html",
+          "hash": "Uhyz49oi8qrEpKffdd+tpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ContentEncoding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.html",
+          "hash": "mdGS2sLOoWt5hTQMrKqIUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableArray-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableArray-1.html",
+          "hash": "eHnKWsS/OWzmK1BeWFYFtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableArray.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableArray.html",
+          "hash": "lLJygmMhWMbXY4ymDX1DvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableHashTree-2.UpdateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableHashTree-2.UpdateDelegate.html",
+          "hash": "eoSlbxCvm6WTeS6HTYFWxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableHashTree-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableHashTree-2.html",
+          "hash": "X2LIcmJZoDYBnIaclgzu+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableHashTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableHashTree.html",
+          "hash": "q1RKwzom21Np8727EdTEqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableLinkedList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableLinkedList-1.html",
+          "hash": "yaYyXTmmYL9MXOsBUnBMOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ImmutableLinkedList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ImmutableLinkedList.html",
+          "hash": "9laHsaFpthqgH+TcPC5mEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ObjectPool-1.IPoolObjectInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ObjectPool-1.IPoolObjectInstance.html",
+          "hash": "kvVJRNZfTFBc1LLnKD3rBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.ObjectPool-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.ObjectPool-1.html",
+          "hash": "+9mDbQvHhxafn9prqmR/Yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Data.html",
+          "hash": "SvepLW3M/1SN5Sa9U0jKoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.DocumentFilterContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.DocumentFilterContext.html",
+          "hash": "ob98udijJ+ptYRcdgCXHXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.DocumentationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.DocumentationService.html",
+          "hash": "5o9VWXZsjdovEEgc4dG+6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IDocumentFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IDocumentFilter.html",
+          "hash": "RxRPnqIXAbI+D1niFmXlrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IDocumentationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IDocumentationService.html",
+          "hash": "vXd9DwQFIuKLWQEEgDZGMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.html",
+          "hash": "yFfBKeEc8cbnfASrayI5PA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html",
+          "hash": "aBy2GyoyA4kRk0oNfRupMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IOpenApiSchemaGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IOpenApiSchemaGenerator.html",
+          "hash": "ggYCR+JmUpePEOdY/AjDFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IOperationFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IOperationFilter.html",
+          "hash": "9mMsJzsevwI9IYoQodX1aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService.html",
+          "hash": "eJ5q73tseobOYW4taZWf+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html",
+          "hash": "ex2FHCtTlEKb7MndZbOU3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.ITokenValueProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.ITokenValueProvider.html",
+          "hash": "It426ed3wDYnNRCdUxwqWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IXmlDocProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IXmlDocProvider.html",
+          "hash": "IROo1zEgVSGWKFK1n3FPAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.html",
+          "hash": "wUvbWzowOYsI0Bkmsm9n2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.html",
+          "hash": "Vrg8HC1Ly55TXYfS9rVT4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OpenApiSchemaGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.OpenApiSchemaGenerator.html",
+          "hash": "a4Wk254HzgyjtRF0EdJjAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OperationFilterContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.OperationFilterContext.html",
+          "hash": "xmHwRt9U4sqO8IvitWvybQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.html",
+          "hash": "/MCQPlQaKab++gzve38E9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html",
+          "hash": "UlOQIl06tl9iUyA8D5lQ2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html",
+          "hash": "QIg+1GaAwQgM8FWrecBAqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.TokenValueProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.TokenValueProvider.html",
+          "hash": "NH+bBH9Cu0r2BeuGXnnzRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.XmlDocProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.XmlDocProvider.html",
+          "hash": "ZuYztkgg5G2d5SFQUtAu0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.XmlDocumentationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.XmlDocumentationExtensions.html",
+          "hash": "OV8MBjzmsQTvwPptILOJMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.html",
+          "hash": "jM3kiVP7PjkYwLSnpiBFVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.DocumentationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.DocumentationOptions.html",
+          "hash": "GT9RnKXau4grsWrsCrEMcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPointMethodParameterSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPointMethodParameterSource.html",
+          "hash": "epJsryTgFkqAiFnBy8nK8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html",
+          "hash": "lLJIMiEsC2bBtZ9PnJ60iQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.CustomActionResultExecutor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.CustomActionResultExecutor.html",
+          "hash": "b4n448WqmEJiSZXKDAyWrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html",
+          "hash": "fUzAnpAgGdNuZr4j2JuFcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler.html",
+          "hash": "f/c+yHthHFsnDXSsabgJfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.ICustomActionResultExecutor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.ICustomActionResultExecutor.html",
+          "hash": "WxehFeCwE4CldTwIQUbU3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.IEndPointHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IEndPointHandler.html",
+          "hash": "qNImMLuBzvMh1ZK2Wr3xCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler.html",
+          "hash": "S3zXfqzUor6vNZTRUHgRew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation.html",
+          "hash": "XtRF/RJruJ7bd+SN1KTM/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.IRequestParametersImplementations-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IRequestParametersImplementations-1.html",
+          "hash": "5TSfg9IOkErEs3S1E/J7RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html",
+          "hash": "2dKCLuGfzFKgKuWdPv60RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.InvokeMethodDelegate-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.InvokeMethodDelegate-1.html",
+          "hash": "kGs0ttsWzp/wUiOAXwGFFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodEndPointDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodEndPointDelegate.html",
+          "hash": "FW0GdhMgvekYSEC9fj8aiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler-1.html",
+          "hash": "DUU22AZH7zi3pMY8Yj0iOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.NoParamsEndPointMethodHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.NoParamsEndPointMethodHandler-1.html",
+          "hash": "HbWfkK0EOqq3fBxB/E2M2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.RequestState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.RequestState.html",
+          "hash": "p1q13QVP8LEbZA6k21dDQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.html",
+          "hash": "x8Yru3EKHYFWV+4UwgMJvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.html",
+          "hash": "Cf5/E0lL5rIBY6pX+XMD8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation.html",
+          "hash": "168Xl8LG2fGAsp9aDco+jw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.NamingConventions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.NamingConventions.html",
+          "hash": "Hxb6/7l71tfEa2S+e8jssQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html",
+          "hash": "n1GzOKkx8B+SmJcwnWMZSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.html",
+          "hash": "hxI9yhB6lKBBwIx45tZ8wA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.DefaultErrorHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.DefaultErrorHandler.html",
+          "hash": "4ZfmUf89ES9kXf6pR2D8WQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.ErrorWrappingService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.ErrorWrappingService.html",
+          "hash": "HAhnUm+/OiQB+xCKgkG1RQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.IErrorHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.IErrorHandler.html",
+          "hash": "W+iUx4bduomsA0au3c3smA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.IErrorWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.IErrorWrapper.html",
+          "hash": "kPTYtskhM8ZBAuU9PPWpUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.IErrorWrappingService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.IErrorWrappingService.html",
+          "hash": "kY0mLajuX1yGht6EGTb0Cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Errors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Errors.html",
+          "hash": "QG7rod07qu050WjLvIuwtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IAsyncRequestExceptionFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IAsyncRequestExceptionFilter.html",
+          "hash": "hlxHu1yV02OQqzq/LBzdKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IAsyncRequestExecutionFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IAsyncRequestExecutionFilter.html",
+          "hash": "OBjwkMrI8WjdwAKwbbXxzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IAsyncRequestFinalizeFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IAsyncRequestFinalizeFilter.html",
+          "hash": "thDnQRvAn6cqQEeQtU9jkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IBaseRequestFinalizerFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IBaseRequestFinalizerFilter.html",
+          "hash": "/UsztBJgy+jkXcTngR6ZZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IRequestExecutionFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IRequestExecutionFilter.html",
+          "hash": "9k3pu84P8pfhjvdu3B1sOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IRequestFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IRequestFilter.html",
+          "hash": "1hHOMDgo8zCcVDBF5DF7WA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IRequestFilterAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IRequestFilterAttribute.html",
+          "hash": "bAiGO3gGAVqbJwdvAGKRkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.IRequestFinalizeFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.IRequestFinalizeFilter.html",
+          "hash": "iHY64Wm6bB5IYUD/dTIIYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.InstanceFilterAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.InstanceFilterAttribute.html",
+          "hash": "24st9Zo0T5Wx/N9F4sF1cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Filters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Filters.html",
+          "hash": "kXSGmU3n0QPNnGjBFUh2vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.ApiConfigurationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.ApiConfigurationExtensions.html",
+          "hash": "RYFL0MJeRvtgV5qlcIRMeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.Impl.EasyRpcValidationFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.Impl.EasyRpcValidationFilter.html",
+          "hash": "3GE1XU8Fa1eeuayETJr5zQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.Impl.IParameterValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.Impl.IParameterValidator.html",
+          "hash": "rlwAup+FgUCHYE5AkPPp5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.Impl.ParameterValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.Impl.ParameterValidator-1.html",
+          "hash": "JP/5AD7XV27yhMPHDILH1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.Impl.ValidationFilterProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.Impl.ValidationFilterProvider.html",
+          "hash": "J2LrC8GRMdM2dKFXcrNWlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.Impl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.Impl.html",
+          "hash": "vjpAxg6iaMEERmAPXsSoWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.FluentValidation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.FluentValidation.html",
+          "hash": "EagpTxwGPXc8EQUPuFn5Qg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IApiConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IApiConfiguration.html",
+          "hash": "kRay6rLq8lWo86bGze0ikA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IApiConfigurationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IApiConfigurationExtensions.html",
+          "hash": "RFUbKy8mKHJAdbG8aD4Uuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html",
+          "hash": "diSjzRDWEfP7tuc1hkXY/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IEnvironmentConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IEnvironmentConfiguration.html",
+          "hash": "iqft/Y6IwN60Czx/87zL9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html",
+          "hash": "qfJIDXXXsIvnrZdcuT3eAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IExposureConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IExposureConfiguration-1.html",
+          "hash": "wQ9cBbXKv7NCLVdiVY0FYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IExposureConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IExposureConfiguration.html",
+          "hash": "lOCrFE/6G5txfhmMI7mRtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IExposureExpressionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IExposureExpressionConfiguration.html",
+          "hash": "9rHGY11djaxnaMV1KL1oIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IRequestParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IRequestParameters.html",
+          "hash": "gq1YJLEtArr8m/Y5b1Ey+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IResultWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IResultWrapper-1.html",
+          "hash": "rxFyVC0vHdJoNZH6PWvaYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IResultWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IResultWrapper.html",
+          "hash": "xiBLtwoEHGgEz5fTGC5atw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.IRpcParameterInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.IRpcParameterInfo.html",
+          "hash": "N8bSa2xbFi9eEk/LzADA+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html",
+          "hash": "GztjHyhGVVEeWFUDDwDntA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.MessagePack.MessagePackContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.MessagePack.MessagePackContentSerializer.html",
+          "hash": "6iABD9CUgJDABgyFlW+xGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.MessagePack.MessagePackExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.MessagePack.MessagePackExtensions.html",
+          "hash": "fwnmsSoqxO4NFeLzi7E15w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.MessagePack.MessagePackSerializationTypeAttributor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.MessagePack.MessagePackSerializationTypeAttributor.html",
+          "hash": "d+G+GGqxfzfb3/7OGqyGdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.MessagePack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.MessagePack.html",
+          "hash": "HgOHVHEBaHJDj/xMAcg5FQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.html",
+          "hash": "N+8GtKtAMZ/yau3kmZ80Ng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html",
+          "hash": "C/1A+Sv2WtCBqVwyNPDX2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Middleware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Middleware.html",
+          "hash": "HmRovL41RvBSIqTlYy6kpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.AspNetRoutingParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.AspNetRoutingParameterBinder.html",
+          "hash": "KgO9ehyEYpFTtN1pOQA/+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.IAspNetRoutingParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.IAspNetRoutingParameterBinder.html",
+          "hash": "Xb8o7hMJjWB/M+zNcT6ALw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.AspNetRouting.html",
+          "hash": "VOF/b7qxs5uhoD8DQe4Ngg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.BaseParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BaseParameterBinderDelegateBuilder.html",
+          "hash": "c8/0m3FVFkNB9JwjubiQIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.BodyParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BodyParameterBinderDelegateBuilder.html",
+          "hash": "UB5DKqIWxzJjgLmAkBp+JQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.BodySingleParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BodySingleParameterBinderDelegateBuilder.html",
+          "hash": "Bl0ioALX0bC49oOzmQ6d/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.EmptyParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.EmptyParameters.html",
+          "hash": "QBUgyuisBOK3oo4ckmRQIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.IBodyParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.IBodyParameterBinderDelegateBuilder.html",
+          "hash": "blrm2ZyXLVu0uMVQT3zgIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.IBodySingleParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.IBodySingleParameterBinderDelegateBuilder.html",
+          "hash": "9wfZmt0FfqVkgw9RM1ui6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.INoBodyParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.INoBodyParameterBinderDelegateBuilder.html",
+          "hash": "CqgFNh39XeGmUxLQnk6WWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder.html",
+          "hash": "TuAk83BsNK6rnRhxg00rhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.ISpecialParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.ISpecialParameterBinder.html",
+          "hash": "wBYMHibYzYqlAc5weZANrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.IStringValueModelBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.IStringValueModelBinder.html",
+          "hash": "DPf/s/W/DtuQAu77xryS2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.IUrlParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.IUrlParameterBinder.html",
+          "hash": "pJAbQ7m1mcRedHY5xakOyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.IInternalRoutingParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.IInternalRoutingParameterBinder.html",
+          "hash": "8dHw0cvcOa07CoHSIQGjww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.InternalRoutingParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.InternalRoutingParameterBinder.html",
+          "hash": "p6vabm8jUKc85AmY+GxZBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.InternalRouting.html",
+          "hash": "yoov+LxxNd2Nz4I8SR8CeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.NoBodyParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.NoBodyParameterBinderDelegateBuilder.html",
+          "hash": "8XWvEE76OIrKFNDoV9+XPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.ParameterBinderDelegateBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.ParameterBinderDelegateBuilder.html",
+          "hash": "s/Le6Cx7WV4momzAv0Pckw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.SpecialParameterBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.SpecialParameterBinder.html",
+          "hash": "k9oHDStObBNeUrfYbf7rEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.StringValueModelBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.StringValueModelBinder.html",
+          "hash": "JWZl1aZZtctA9aPljjPmbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ModelBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.html",
+          "hash": "W/iQ2FtPq/mfG2aYs+FDvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.html",
+          "hash": "bAqw5SpsRl87MIiQpeiHmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftExtensions.html",
+          "hash": "bGDbjTvmo977RGt2BITM+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Newtonsoft.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Newtonsoft.html",
+          "hash": "MOatU9ExnfZTsBMNY2DQrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.RequestExecutionContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.RequestExecutionContext.html",
+          "hash": "ibyy1P3wZ3USyvOETmiqww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ResponseHeader.IResponseHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ResponseHeader.IResponseHeader.html",
+          "hash": "qrsl0g2DavvtRaJGuxys3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ResponseHeader.ResponseHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ResponseHeader.ResponseHeader.html",
+          "hash": "5x/GIaL8b0bEOQFWMNURXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ResponseHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.ResponseHeader.html",
+          "hash": "iRDtdGEd9oIEJyXGETWQqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.html",
+          "hash": "NilX9ZpsQmIuRHxkOA9nzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.BasePathOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.BasePathOptions.html",
+          "hash": "o881g9YeUbXY8XaR3LbBRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.html",
+          "hash": "xbA9h3iN11mtGp+ili68RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html",
+          "hash": "b3Z53zGZEfivo24vlHOvCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.html",
+          "hash": "IqM/yU8+F0J8qJwVtH7j/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IInternalRoutingHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IInternalRoutingHandler.html",
+          "hash": "C24cAhJi4SjfVHKyxks8iA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IRegisteredEndPoints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IRegisteredEndPoints.html",
+          "hash": "z59SfwOCMqnZLib70Tpsiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IRpcRouteInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IRpcRouteInformation.html",
+          "hash": "VAw7vEgnqoYqtbi15GoQJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html",
+          "hash": "8Jsywd4lApL6ENtqJBg4cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.InternalRoutingHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.InternalRoutingHandler.html",
+          "hash": "VFf4ncOdrVYdHpHm03X6MA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RegisteredEndPoints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RegisteredEndPoints.html",
+          "hash": "8av0eDZCqUDdwHxZ7C9kXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RoutingConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RoutingConfiguration.html",
+          "hash": "2Sozr7Lxgnyy1yJw8uz4Eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RpcRouteInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RpcRouteInformation.html",
+          "hash": "Uvr0VVLzRlIJH2GjcfA/XA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RpcRouteToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html",
+          "hash": "ATc3JOWtKTxsqISmTOalhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.html",
+          "hash": "zE2UAfz2fxc1JJ1o0ce4Ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.RpcRouteTokenType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.RpcRouteTokenType.html",
+          "hash": "IAy9kwFfFg595YPR94WERw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.html",
+          "hash": "thNQnZjzWlZsSxpn8XloLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.RpcParameterInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.RpcParameterInfo.html",
+          "hash": "Glg4/dOrkjrvO1XGL7t5zA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.BaseSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.BaseSerializer.html",
+          "hash": "v+gXsAF6bmhCRFF2JEex4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.ContentSerializationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.ContentSerializationService.html",
+          "hash": "2MaYYAru29FOEtgFkc2bBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.IContentSerializationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.IContentSerializationService.html",
+          "hash": "fVqesfJVc+1KMjN0vzWZ6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.IContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.IContentSerializer.html",
+          "hash": "i/wy7rkst8kfvJmy4Ux/dA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.IRawContentWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.IRawContentWriter.html",
+          "hash": "+mVkSI6WzUgD4/rDwGq2eA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.JsonContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.JsonContentSerializer.html",
+          "hash": "chPl7av530MFshhLEQX2Hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.RawContentWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.RawContentWriter.html",
+          "hash": "yVC2M/khKoY9hjw8dvmYpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.html",
+          "hash": "WOluev0769BKvMF8p+AwAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.XmlContentSerializerTypeAttributor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.XmlContentSerializerTypeAttributor.html",
+          "hash": "ljUYK69XtPzD+AofNt/LcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Serializers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Serializers.html",
+          "hash": "ZADpx5WZ8HhwtDmHbYckaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.TypesThat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.TypesThat.html",
+          "hash": "XWpWkhxwrXRxiUU8qrYeCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Utf8Json.Utf8JsonContentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Utf8Json.Utf8JsonContentSerializer.html",
+          "hash": "GycldsH8bjZ79Nhn/tO8xQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Utf8Json.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Utf8Json.html",
+          "hash": "G6Ddf2ktzW//EMjH5jPSgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Utilities.GenericFilterGroup-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Utilities.GenericFilterGroup-1.html",
+          "hash": "wxXTU4UiEEfLPld8VRPKHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Utilities.TypesThatConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Utilities.TypesThatConfiguration.html",
+          "hash": "I2QqDarnNGXnlxaS80XXjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Utilities.html",
+          "hash": "BVILsuLwrKeQ0j7OTUVpqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Views.IViewNameGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Views.IViewNameGenerator.html",
+          "hash": "y1VuC0fMiYAxS5w1JZWmFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Views.ReturnViewAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Views.ReturnViewAttribute.html",
+          "hash": "Wb9BNv/bLaWFoal1iiDYXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Views.ViewActionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Views.ViewActionResult.html",
+          "hash": "iB/lB8FmjtLj9LVLx1mNUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Views.ViewFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Views.ViewFilter.html",
+          "hash": "rX8Qz/wDzZGa9s1bB1RBDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Views.html",
+          "hash": "3nSy4nbJMbF3/oqXqhDAeg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.html",
+          "hash": "Qd8Ft5bYkomant4aAlKVcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.IClientSerializationTypeAttributor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.IClientSerializationTypeAttributor.html",
+          "hash": "HafVVuu9soUmcuTQeGlB9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ILGenerationUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ILGenerationUtilities.html",
+          "hash": "+bNhs2ng5lNQPXM92QDP9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ISerializationTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ISerializationTypeCreator.html",
+          "hash": "+UYp3GWU/EZfKxaHntZp0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.IServiceImplementationGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.IServiceImplementationGenerator.html",
+          "hash": "3cDziUDi0I2Hx8NJoFU4HA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ImplementationRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ImplementationRequest.html",
+          "hash": "r4vY0Nd5RqKIWV934CoIMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.SerializationTypeCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.SerializationTypeCreator.html",
+          "hash": "aKDGfbm1fgQF/NDm25SImA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.GenerationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.GenerationContext.html",
+          "hash": "q+KboaaOvDrMOvxX8NKsrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.MethodGenerationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.MethodGenerationContext.html",
+          "hash": "SYl6TBQUfTkqssr4j42Bsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.ServiceImplementationGenerator.html",
+          "hash": "EyBeQ0cdJ72FlmfNE14vFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.CodeGeneration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.CodeGeneration.html",
+          "hash": "/gYNU8hfQJdFfW3+s1asJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.IRpcExecutionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.IRpcExecutionService.html",
+          "hash": "WT01fYr/cWO6K3hFHRO2mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.IRpcHttpClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.IRpcHttpClient.html",
+          "hash": "/6YB+ZDmj5HsgONmq6WTjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.IRpcHttpClientProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.IRpcHttpClientProvider.html",
+          "hash": "3q+QIj3SD34FEJzElMkFaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.RpcExecuteInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.RpcExecuteInformation.html",
+          "hash": "+D8soQkzAEKdwWi0Xg0ZWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.RpcExecutionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.RpcExecutionService.html",
+          "hash": "ZndQjKfRGGXnJFHgQHmeTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.RpcHttpClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.RpcHttpClient.html",
+          "hash": "4MTmF1WGweFXJSOt1HzZtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.RpcHttpClientProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.RpcHttpClientProvider.html",
+          "hash": "SIA/Ml6PIaL85y9lnE1p6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.ExecutionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.ExecutionService.html",
+          "hash": "pdNR+5iaBmsPNuaToXDSOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Grace.Impl.ProxyStrategyProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Grace.Impl.ProxyStrategyProvider.html",
+          "hash": "nOS6ld0M2Xj9U82yKkuGYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Grace.Impl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Grace.Impl.html",
+          "hash": "RSzNtB5qppEW7o7MLMtyFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Grace.LanguageExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Grace.LanguageExtensions.html",
+          "hash": "FWbNNIpBCbeILYg7JlcRuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Grace.ProxyNamespaceConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Grace.ProxyNamespaceConfig.html",
+          "hash": "8OsUwGspy2p5ivNr9m4lJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Grace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Grace.html",
+          "hash": "eCRGRNyE3nBTiMTHS9sqsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.IHeaderProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.IHeaderProcessor.html",
+          "hash": "XDlrytCLw33EWIbTK638pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.INamingConventionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.INamingConventionService.html",
+          "hash": "qWzpAGoivjKjkDx8J+gkBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.MessagePack.MessagePackClientSerializationTypeAttributor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.MessagePack.MessagePackClientSerializationTypeAttributor.html",
+          "hash": "lY34cPy1/TRM0EVamgiJ5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.MessagePack.MessagePackClientSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.MessagePack.MessagePackClientSerializer.html",
+          "hash": "3cfRKCMfkAbmop595Mr6yQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.MessagePack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.MessagePack.html",
+          "hash": "BzDriuLhGvqywmzE2AwVBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Newtonsoft.NewtonsoftClientSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Newtonsoft.NewtonsoftClientSerializer.html",
+          "hash": "E5dsr6MDvGE7XXZrwWKw7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Newtonsoft.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Newtonsoft.html",
+          "hash": "jaY564tTheuVVhoC/ts0Zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Serializers.IClientSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Serializers.IClientSerializer.html",
+          "hash": "COWbDDlH8lSlN3GU3zfADg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.Serializers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.Serializers.html",
+          "hash": "T0hMcbIAh81kYYpbrhlfgw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.DynamicClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.DynamicClient.html",
+          "hash": "6KinDMUCb9++vRfNQskCVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "ztpiPtR1VMoQAVhl3vge6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 283,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
