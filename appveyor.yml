@@ -28,6 +28,7 @@ build:
   project: EasyRpc.sln
   publish_nuget: true
   verbosity: minimal
+
 test_script:
 - cmd: cd tests/EasyRpc.Tests/
 - cmd: CodeCoverageAppVeyor.cmd
@@ -54,6 +55,7 @@ after_build:
             git add -A 2>&1
             git commit -m "CI Updates" -q
             git push origin gh-pages -q
+            CD ..
         }
 
 artifacts:
