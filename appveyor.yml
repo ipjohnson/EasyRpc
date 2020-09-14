@@ -20,9 +20,11 @@ before_build:
       nuget restore EasyRpc.sln
       if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
       {
+         CD documentation
          git checkout $env:APPVEYOR_REPO_BRANCH -q
          choco install docfx -y
          # choco install nuget.commandline -y
+         CD ..
       }
 build:
   project: EasyRpc.sln
@@ -38,6 +40,8 @@ after_build:
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
+            
+            CD documentation
             # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
             # & docfx.console.2.18.4\tools\docfx docfx.json
             & docfx docfx.json
@@ -55,7 +59,7 @@ after_build:
             git add -A 2>&1
             git commit -m "CI Updates" -q
             git push origin gh-pages -q
-            CD ..
+            CD ../..
         }
 
 artifacts:
