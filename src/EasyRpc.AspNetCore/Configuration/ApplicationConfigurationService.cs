@@ -382,6 +382,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 parameterList.Add(rpcParam);
+
             }
 
             if (bodyParams == 1 &&

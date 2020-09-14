@@ -11,6 +11,8 @@ namespace EasyRpc.AspNetCore.Errors
     /// </summary>
     public interface IErrorWrappingService
     {
+        IErrorWrapper GetErrorWrapper();
+
         object WrapError(RequestExecutionContext context, Exception e);
     }
 
@@ -31,13 +33,17 @@ namespace EasyRpc.AspNetCore.Errors
             _errorResultTypeCreator = errorResultTypeCreator;
         }
 
+        public IErrorWrapper GetErrorWrapper()
+        {
+            _errorWrapperCreator ??= CreateWrapperFunction();
+
+            return _errorWrapperCreator();
+        }
+
         /// <inheritdoc />
         public object WrapError(RequestExecutionContext context, Exception e)
         {
-            if (_errorWrapperCreator == null)
-            {
-                _errorWrapperCreator = CreateWrapperFunction();
-            }
+            _errorWrapperCreator ??= CreateWrapperFunction();
 
             var wrapper = _errorWrapperCreator();
 

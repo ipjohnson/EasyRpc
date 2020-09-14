@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.FluentValidation\EasyRpc.AspNetCore.FluentValidation.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.MessagePack\EasyRpc.AspNetCore.MessagePack.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore.Newtonsoft\EasyRpc.AspNetCore.Newtonsoft.csproj" />
     <ProjectReference Include="..\..\src\EasyRpc.AspNetCore\EasyRpc.AspNetCore.csproj" />
