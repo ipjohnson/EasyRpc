@@ -19,7 +19,7 @@
         "dest": "api"
       },
       {
-        "files": [ ]
+        "files": [ "*.md", "toc.yml" ]
       }
     ],
     "resource": [
@@ -29,7 +29,7 @@
     ],
     "overwrite": "specs/*.md",
     "globalMetadata": {
-      "_appTitle": "docfx seed website",
+      "_appTitle": "EasyRpc documentation website",
       "_enableSearch": true
     },
     "markdownEngineName": "markdig",
