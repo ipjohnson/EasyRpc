@@ -4,9 +4,9 @@ environment:
   op_build_user: "ipjohnson"
   op_build_user_email: "ipjohnson123@yahoo.com"
   access_token:
-    secure: LAPybJ2f5MnzOSOv5XT+PA==
+    secure: vCRC/3M0+oha9ayrLw0InjkRodm+DwoHAXyifCORdU6HlfE9NzNXdOw1J4zhXsw3
   COVERALLS_REPO_TOKEN:
-    secure: YIWjlQX7oBbRd1HjrEe/5YMk5FiS0mNUKy3OkGItvWfKFwBV9Dbi7XLFdoMY1Pwx
+    secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
 version: $(build_version)-{build}
 configuration: Release
 assembly_info:
