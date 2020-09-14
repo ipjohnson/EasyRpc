@@ -14,18 +14,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Index.md",
-      "output": {
-        ".html": {
-          "relative_path": "Index.html",
-          "hash": "J1qDmPBJNuZQzIRRV5n/bQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
@@ -3445,12 +3433,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "pDBGAectj3m6WC1W+MYGjQ=="
+          "hash": "Z7X3m5TkAlzf8M3O3EWdLQ=="
         }
       },
       "is_incremental": false,
@@ -3471,7 +3462,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 2,
+          "total_file_count": 1,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
