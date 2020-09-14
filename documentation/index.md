@@ -1,4 +1,4 @@
-# EasyRpc
+# EasyRpc - test service
 Adds rpc service support to AspNetCore
 
 ```
