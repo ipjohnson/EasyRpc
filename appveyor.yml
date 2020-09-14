@@ -6,7 +6,7 @@ environment:
   access_token:
     secure: LAPybJ2f5MnzOSOv5XT+PA==
   COVERALLS_REPO_TOKEN:
-    secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
+    secure: YIWjlQX7oBbRd1HjrEe/5YMk5FiS0mNUKy3OkGItvWfKFwBV9Dbi7XLFdoMY1Pwx
 version: $(build_version)-{build}
 configuration: Release
 assembly_info:
