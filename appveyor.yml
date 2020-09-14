@@ -12,7 +12,14 @@ assembly_info:
   assembly_file_version: '$(build_version).{build}'
   assembly_informational_version: '$(build_version)'
 before_build:
-- cmd: nuget restore EasyRpc.sln
+- ps: |
+      nuget restore EasyRpc.sln
+      if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+      {
+         git checkout $env:APPVEYOR_REPO_BRANCH -q
+         choco install docfx -y
+         # choco install nuget.commandline -y
+      }
 build:
   project: EasyRpc.sln
   publish_nuget: true
