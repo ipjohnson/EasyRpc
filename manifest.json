@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/projects/easyrpc",
+  "source_base_path": "C:/projects/easyrpc/documentation",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -14,23 +14,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html",
-          "hash": "lxBLrmHnzo0WqsYLEYl33A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "IZ+VyVtTl+EtwqycIzTDQg=="
+          "hash": "iJ/v746tG3TNSXKWyLeh+g=="
         }
       },
       "is_incremental": false,
@@ -3471,7 +3459,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 2,
+          "total_file_count": 1,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
