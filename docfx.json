@@ -1,0 +1,39 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "src/**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "src"
+        }
+      ],
+      "dest": "obj/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/api",
+        "dest": "api"
+      },
+      {
+        "files": [ ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ ]
+      }
+    ],
+    "overwrite": "specs/*.md",
+    "globalMetadata": {
+      "_appTitle": "docfx seed website",
+      "_enableSearch": true
+    },
+    "markdownEngineName": "markdig",
+    "dest": "_site",
+    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ]
+  }
+}
