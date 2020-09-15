@@ -618,7 +618,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html",
-          "hash": "hJOUyhU1MH+PgFYrg/XgBA=="
+          "hash": "Aop0aYWLetgph/MjeTeV7Q=="
         }
       },
       "is_incremental": false,
@@ -1038,7 +1038,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html",
-          "hash": "mZC8i/gjmSVEKOnV5msA3g=="
+          "hash": "uKfwLwNyfSS3+iw5DzeVbg=="
         }
       },
       "is_incremental": false,
@@ -1046,11 +1046,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.yml",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.ContentEncoding.ICompressionActionProvider.yml",
       "output": {
         ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html",
-          "hash": "C2KCNALxgPa8Q5o/VnU1gg=="
+          "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.ICompressionActionProvider.html",
+          "hash": "5CBDSNH3kMEe3CBTEtOMpQ=="
         }
       },
       "is_incremental": false,
@@ -1074,7 +1074,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ContentEncoding.html",
-          "hash": "sTVfu2luNKX8LkcwGzc1qw=="
+          "hash": "0XZneaMQ6CoEMSG0bvTNHg=="
         }
       },
       "is_incremental": false,
@@ -3498,7 +3498,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "OsfsGrKvd+VJzIUWFkV6lA=="
+          "hash": "VtJL3Do3r4Fw8VJbrnsLiw=="
         }
       },
       "is_incremental": false,
