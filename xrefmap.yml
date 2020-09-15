@@ -1,6 +1,44 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: EasyRpc.Abstractions.Encoding
+  name: EasyRpc.Abstractions.Encoding
+  href: api/EasyRpc.Abstractions.Encoding.html
+  commentId: N:EasyRpc.Abstractions.Encoding
+  fullName: EasyRpc.Abstractions.Encoding
+  nameWithType: EasyRpc.Abstractions.Encoding
+- uid: EasyRpc.Abstractions.Encoding.CompressAttribute
+  name: CompressAttribute
+  href: api/EasyRpc.Abstractions.Encoding.CompressAttribute.html
+  commentId: T:EasyRpc.Abstractions.Encoding.CompressAttribute
+  fullName: EasyRpc.Abstractions.Encoding.CompressAttribute
+  nameWithType: CompressAttribute
+- uid: EasyRpc.Abstractions.Encoding.CompressAttribute.Min
+  name: Min
+  href: api/EasyRpc.Abstractions.Encoding.CompressAttribute.html#EasyRpc_Abstractions_Encoding_CompressAttribute_Min
+  commentId: P:EasyRpc.Abstractions.Encoding.CompressAttribute.Min
+  fullName: EasyRpc.Abstractions.Encoding.CompressAttribute.Min
+  nameWithType: CompressAttribute.Min
+- uid: EasyRpc.Abstractions.Encoding.CompressAttribute.Min*
+  name: Min
+  href: api/EasyRpc.Abstractions.Encoding.CompressAttribute.html#EasyRpc_Abstractions_Encoding_CompressAttribute_Min_
+  commentId: Overload:EasyRpc.Abstractions.Encoding.CompressAttribute.Min
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Encoding.CompressAttribute.Min
+  nameWithType: CompressAttribute.Min
+- uid: EasyRpc.Abstractions.Encoding.CompressAttribute.Request
+  name: Request
+  href: api/EasyRpc.Abstractions.Encoding.CompressAttribute.html#EasyRpc_Abstractions_Encoding_CompressAttribute_Request
+  commentId: P:EasyRpc.Abstractions.Encoding.CompressAttribute.Request
+  fullName: EasyRpc.Abstractions.Encoding.CompressAttribute.Request
+  nameWithType: CompressAttribute.Request
+- uid: EasyRpc.Abstractions.Encoding.CompressAttribute.Request*
+  name: Request
+  href: api/EasyRpc.Abstractions.Encoding.CompressAttribute.html#EasyRpc_Abstractions_Encoding_CompressAttribute_Request_
+  commentId: Overload:EasyRpc.Abstractions.Encoding.CompressAttribute.Request
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Encoding.CompressAttribute.Request
+  nameWithType: CompressAttribute.Request
 - uid: EasyRpc.Abstractions.Headers
   name: EasyRpc.Abstractions.Headers
   href: api/EasyRpc.Abstractions.Headers.html
@@ -2240,12 +2278,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator
   fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator
   nameWithType: ResponseDelegateCreator
-- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter)
-  name: ResponseDelegateCreator(IContentSerializationService, IRawContentWriter)
-  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_
-  commentId: M:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter)
-  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ResponseDelegateCreator(EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.Serializers.IRawContentWriter)
-  nameWithType: ResponseDelegateCreator.ResponseDelegateCreator(IContentSerializationService, IRawContentWriter)
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider)
+  name: ResponseDelegateCreator(IContentSerializationService, IRawContentWriter, IConfigurationManager, ICompressionPredicateProvider)
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_ContentEncoding_ICompressionPredicateProvider_
+  commentId: M:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider)
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ResponseDelegateCreator(EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.Serializers.IRawContentWriter, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider)
+  nameWithType: ResponseDelegateCreator.ResponseDelegateCreator(IContentSerializationService, IRawContentWriter, IConfigurationManager, ICompressionPredicateProvider)
 - uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor*
   name: ResponseDelegateCreator
   href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_
@@ -2253,6 +2291,31 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ResponseDelegateCreator
   nameWithType: ResponseDelegateCreator.ResponseDelegateCreator
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete(System.IServiceProvider)
+  name: ApiConfigurationComplete(IServiceProvider)
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ApiConfigurationComplete_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete(System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete(System.IServiceProvider)
+  nameWithType: ResponseDelegateCreator.ApiConfigurationComplete(IServiceProvider)
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete*
+  name: ApiConfigurationComplete
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ApiConfigurationComplete_
+  commentId: Overload:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete
+  nameWithType: ResponseDelegateCreator.ApiConfigurationComplete
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CompressionPredicateProvider
+  name: CompressionPredicateProvider
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CompressionPredicateProvider
+  commentId: F:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CompressionPredicateProvider
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CompressionPredicateProvider
+  nameWithType: ResponseDelegateCreator.CompressionPredicateProvider
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ConfigurationManager
+  name: ConfigurationManager
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ConfigurationManager
+  commentId: F:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ConfigurationManager
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ConfigurationManager
+  nameWithType: ResponseDelegateCreator.ConfigurationManager
 - uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ContentSerializer
   name: ContentSerializer
   href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ContentSerializer
@@ -2306,15 +2369,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawHeaderResponseWriter
   nameWithType: ResponseDelegateCreator.RawHeaderResponseWriter
-- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader})
-  name: SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList<IResponseHeader>)
-  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__
-  commentId: M:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader})
-  name.vb: SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList(Of IResponseHeader))
-  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext, System.Collections.Generic.IReadOnlyList<EasyRpc.AspNetCore.ResponseHeader.IResponseHeader>)
-  fullName.vb: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext, System.Collections.Generic.IReadOnlyList(Of EasyRpc.AspNetCore.ResponseHeader.IResponseHeader))
-  nameWithType: ResponseDelegateCreator.SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList<IResponseHeader>)
-  nameWithType.vb: ResponseDelegateCreator.SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList(Of IResponseHeader))
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader},System.Action{EasyRpc.AspNetCore.RequestExecutionContext})
+  name: SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList<IResponseHeader>, Action<RequestExecutionContext>)
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__System_Action_EasyRpc_AspNetCore_RequestExecutionContext__
+  commentId: M:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader},System.Action{EasyRpc.AspNetCore.RequestExecutionContext})
+  name.vb: SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList(Of IResponseHeader), Action(Of RequestExecutionContext))
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext, System.Collections.Generic.IReadOnlyList<EasyRpc.AspNetCore.ResponseHeader.IResponseHeader>, System.Action<EasyRpc.AspNetCore.RequestExecutionContext>)
+  fullName.vb: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext, System.Collections.Generic.IReadOnlyList(Of EasyRpc.AspNetCore.ResponseHeader.IResponseHeader), System.Action(Of EasyRpc.AspNetCore.RequestExecutionContext))
+  nameWithType: ResponseDelegateCreator.SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList<IResponseHeader>, Action<RequestExecutionContext>)
+  nameWithType.vb: ResponseDelegateCreator.SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList(Of IResponseHeader), Action(Of RequestExecutionContext))
 - uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter*
   name: SerializeHeaderResponseWriter
   href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_
@@ -2505,12 +2568,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService
   nameWithType: ApplicationConfigurationService
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator)
-  name: ApplicationConfigurationService(BaseEndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_Configuration_IAuthorizationImplementationProvider_EasyRpc_AspNetCore_CodeGeneration_IWrappedResultTypeCreator_
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator)
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ApplicationConfigurationService(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider, EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator)
-  nameWithType: ApplicationConfigurationService.ApplicationConfigurationService(BaseEndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator)
+- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
+  name: ApplicationConfigurationService(BaseEndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService)
+  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_Configuration_IAuthorizationImplementationProvider_EasyRpc_AspNetCore_CodeGeneration_IWrappedResultTypeCreator_EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_
+  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
+  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ApplicationConfigurationService(EasyRpc.AspNetCore.EndPoints.BaseEndPointServices, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider, EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator, EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
+  nameWithType: ApplicationConfigurationService.ApplicationConfigurationService(BaseEndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService)
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor*
   name: ApplicationConfigurationService
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_
@@ -4705,12 +4768,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService
   fullName: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService
   nameWithType: CompressionSelectorService
-- uid: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  name: ShouldCompressResult(MethodInfo)
-  href: api/EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_CompressionSelectorService_ShouldCompressResult_System_Reflection_MethodInfo_
-  commentId: M:EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  fullName: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  nameWithType: CompressionSelectorService.ShouldCompressResult(MethodInfo)
+- uid: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: ShouldCompressResult(IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_CompressionSelectorService_ShouldCompressResult_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: CompressionSelectorService.ShouldCompressResult(IEndPointMethodConfigurationReadOnly)
 - uid: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult*
   name: ShouldCompressResult
   href: api/EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_CompressionSelectorService_ShouldCompressResult_
@@ -4718,18 +4781,133 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.ContentEncoding.CompressionSelectorService.ShouldCompressResult
   nameWithType: CompressionSelectorService.ShouldCompressResult
+- uid: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration
+  name: ContentEncodingConfiguration
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.html
+  commentId: T:EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration
+  nameWithType: ContentEncodingConfiguration
+- uid: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled
+  name: CompressionEnabled
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.html#EasyRpc_AspNetCore_ContentEncoding_ContentEncodingConfiguration_CompressionEnabled
+  commentId: P:EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled
+  nameWithType: ContentEncodingConfiguration.CompressionEnabled
+- uid: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled*
+  name: CompressionEnabled
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.html#EasyRpc_AspNetCore_ContentEncoding_ContentEncodingConfiguration_CompressionEnabled_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ContentEncodingConfiguration.CompressionEnabled
+  nameWithType: ContentEncodingConfiguration.CompressionEnabled
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider
+  name: DefaultCompressionPredicateProvider
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html
+  commentId: T:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider
+  nameWithType: DefaultCompressionPredicateProvider
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck
+  name: DefaultCompressionPredicateProvider.ListCompressionCheck
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.html
+  commentId: T:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck
+  nameWithType: DefaultCompressionPredicateProvider.ListCompressionCheck
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.#ctor(System.Int32)
+  name: ListCompressionCheck(Int32)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ListCompressionCheck__ctor_System_Int32_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.#ctor(System.Int32)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.ListCompressionCheck(System.Int32)
+  nameWithType: DefaultCompressionPredicateProvider.ListCompressionCheck.ListCompressionCheck(Int32)
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.#ctor*
+  name: ListCompressionCheck
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ListCompressionCheck__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.ListCompressionCheck
+  nameWithType: DefaultCompressionPredicateProvider.ListCompressionCheck.ListCompressionCheck
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  name: CompressionCheck(RequestExecutionContext)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ListCompressionCheck_CompressionCheck_EasyRpc_AspNetCore_RequestExecutionContext_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  nameWithType: DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck(RequestExecutionContext)
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck*
+  name: CompressionCheck
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ListCompressionCheck_CompressionCheck_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck
+  nameWithType: DefaultCompressionPredicateProvider.ListCompressionCheck.CompressionCheck
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  name: NullCompressionCheck(RequestExecutionContext)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_NullCompressionCheck_EasyRpc_AspNetCore_RequestExecutionContext_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  nameWithType: DefaultCompressionPredicateProvider.NullCompressionCheck(RequestExecutionContext)
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck*
+  name: NullCompressionCheck
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_NullCompressionCheck_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.NullCompressionCheck
+  nameWithType: DefaultCompressionPredicateProvider.NullCompressionCheck
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: ProvideCompressionPredicate(IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ProvideCompressionPredicate_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: DefaultCompressionPredicateProvider.ProvideCompressionPredicate(IEndPointMethodConfigurationReadOnly)
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate*
+  name: ProvideCompressionPredicate
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_ProvideCompressionPredicate_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.ProvideCompressionPredicate
+  nameWithType: DefaultCompressionPredicateProvider.ProvideCompressionPredicate
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  name: StringCompressionCheck(RequestExecutionContext)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_StringCompressionCheck_EasyRpc_AspNetCore_RequestExecutionContext_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck(EasyRpc.AspNetCore.RequestExecutionContext)
+  nameWithType: DefaultCompressionPredicateProvider.StringCompressionCheck(RequestExecutionContext)
+- uid: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck*
+  name: StringCompressionCheck
+  href: api/EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_DefaultCompressionPredicateProvider_StringCompressionCheck_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.DefaultCompressionPredicateProvider.StringCompressionCheck
+  nameWithType: DefaultCompressionPredicateProvider.StringCompressionCheck
+- uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider
+  name: ICompressionPredicateProvider
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html
+  commentId: T:EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider
+  nameWithType: ICompressionPredicateProvider
+- uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: ProvideCompressionPredicate(IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_ICompressionPredicateProvider_ProvideCompressionPredicate_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: ICompressionPredicateProvider.ProvideCompressionPredicate(IEndPointMethodConfigurationReadOnly)
+- uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate*
+  name: ProvideCompressionPredicate
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html#EasyRpc_AspNetCore_ContentEncoding_ICompressionPredicateProvider_ProvideCompressionPredicate_
+  commentId: Overload:EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.ProvideCompressionPredicate
+  nameWithType: ICompressionPredicateProvider.ProvideCompressionPredicate
 - uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService
   name: ICompressionSelectorService
   href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.html
   commentId: T:EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService
   fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService
   nameWithType: ICompressionSelectorService
-- uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  name: ShouldCompressResult(MethodInfo)
-  href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_ShouldCompressResult_System_Reflection_MethodInfo_
-  commentId: M:EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(System.Reflection.MethodInfo)
-  nameWithType: ICompressionSelectorService.ShouldCompressResult(MethodInfo)
+- uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: ShouldCompressResult(IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_ShouldCompressResult_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: ICompressionSelectorService.ShouldCompressResult(IEndPointMethodConfigurationReadOnly)
 - uid: EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.ShouldCompressResult*
   name: ShouldCompressResult
   href: api/EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService.html#EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_ShouldCompressResult_
@@ -7776,15 +7954,15 @@ references:
   commentId: T:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration
   nameWithType: EndPointMethodConfiguration
-- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type,System.Nullable{System.Boolean})
-  name: EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type, Nullable<Boolean>)
-  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_EasyRpc_AspNetCore_Routing_RpcRouteInformation_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__EasyRpc_AspNetCore_EndPoints_MethodInvokeInformation_System_Type_System_Nullable_System_Boolean__
-  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type,System.Nullable{System.Boolean})
-  name.vb: EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type, Nullable(Of Boolean))
-  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type, System.Nullable<System.Boolean>)
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type, System.Nullable(Of System.Boolean))
-  nameWithType: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type, Nullable<Boolean>)
-  nameWithType.vb: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type, Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type)
+  name: EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type)
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_EasyRpc_AspNetCore_Routing_RpcRouteInformation_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__EasyRpc_AspNetCore_EndPoints_MethodInvokeInformation_System_Type_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type)
+  name.vb: EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type)
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type)
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type)
+  nameWithType: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type)
+  nameWithType.vb: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type)
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor*
   name: EndPointMethodConfiguration
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_
@@ -10080,6 +10258,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.Documentation
   nameWithType: IEnvironmentConfigurationExtensions.Documentation
+- uid: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression(EasyRpc.AspNetCore.IEnvironmentConfiguration)
+  name: EnableCompression(IEnvironmentConfiguration)
+  href: api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html#EasyRpc_AspNetCore_IEnvironmentConfigurationExtensions_EnableCompression_EasyRpc_AspNetCore_IEnvironmentConfiguration_
+  commentId: M:EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression(EasyRpc.AspNetCore.IEnvironmentConfiguration)
+  fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression(EasyRpc.AspNetCore.IEnvironmentConfiguration)
+  nameWithType: IEnvironmentConfigurationExtensions.EnableCompression(IEnvironmentConfiguration)
+- uid: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression*
+  name: EnableCompression
+  href: api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html#EasyRpc_AspNetCore_IEnvironmentConfigurationExtensions_EnableCompression_
+  commentId: Overload:EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.EnableCompression
+  nameWithType: IEnvironmentConfigurationExtensions.EnableCompression
 - uid: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.Exposures(EasyRpc.AspNetCore.IEnvironmentConfiguration,System.Action{EasyRpc.AspNetCore.Configuration.ExposeConfigurations})
   name: Exposures(IEnvironmentConfiguration, Action<ExposeConfigurations>)
   href: api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html#EasyRpc_AspNetCore_IEnvironmentConfigurationExtensions_Exposures_EasyRpc_AspNetCore_IEnvironmentConfiguration_System_Action_EasyRpc_AspNetCore_Configuration_ExposeConfigurations__

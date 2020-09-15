@@ -94,6 +94,7 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator.html">IResponseDelegateCreator</a></div>
+    <div><a class="xref" href="EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html">IApiConfigurationCompleteAware</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -123,25 +124,25 @@
   <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
   <h5 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ResponseDelegateCreator : IResponseDelegateCreator</code></pre>
+    <pre><code class="lang-csharp hljs">public class ResponseDelegateCreator : IResponseDelegateCreator, IApiConfigurationCompleteAware</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.%23ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService%2CEasyRpc.AspNetCore.Serializers.IRawContentWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_ContentEncoding_ICompressionPredicateProvider_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.%23ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService%2CEasyRpc.AspNetCore.Serializers.IRawContentWriter%2CEasyRpc.AspNetCore.Configuration.IConfigurationManager%2CEasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L54">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L70">View Source</a>
   </span>
   <a id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor*"></a>
-  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter)">ResponseDelegateCreator(IContentSerializationService, IRawContentWriter)</h4>
+  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator__ctor_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_ContentEncoding_ICompressionPredicateProvider_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.#ctor(EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider)">ResponseDelegateCreator(IContentSerializationService, IRawContentWriter, IConfigurationManager, ICompressionPredicateProvider)</h4>
   <div class="markdown level1 summary"><p>Default constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResponseDelegateCreator(IContentSerializationService contentSerializer, IRawContentWriter rawContentWriter)</code></pre>
+    <pre><code class="lang-csharp hljs">public ResponseDelegateCreator(IContentSerializationService contentSerializer, IRawContentWriter rawContentWriter, IConfigurationManager configurationManager, ICompressionPredicateProvider compressionPredicateProvider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -163,16 +164,86 @@
         <td><span class="parametername">rawContentWriter</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Configuration.IConfigurationManager.html">IConfigurationManager</a></td>
+        <td><span class="parametername">configurationManager</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html">ICompressionPredicateProvider</a></td>
+        <td><span class="parametername">compressionPredicateProvider</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CompressionPredicateProvider.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CompressionPredicateProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L59">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CompressionPredicateProvider" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CompressionPredicateProvider">CompressionPredicateProvider</h4>
+  <div class="markdown level1 summary"><p>Compression predicate provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ICompressionPredicateProvider CompressionPredicateProvider</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.ContentEncoding.ICompressionPredicateProvider.html">ICompressionPredicateProvider</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ConfigurationManager.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ConfigurationManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L54">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ConfigurationManager" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ConfigurationManager">ConfigurationManager</h4>
+  <div class="markdown level1 summary"><p>Configuration manager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IConfigurationManager ConfigurationManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Configuration.IConfigurationManager.html">IConfigurationManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ContentSerializer.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ContentSerializer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L37">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L39">View Source</a>
   </span>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ContentSerializer" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ContentSerializer">ContentSerializer</h4>
   <div class="markdown level1 summary"><p>Content serializer</p>
@@ -202,7 +273,7 @@
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_DefaultContentSerializer.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.DefaultContentSerializer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L47">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L49">View Source</a>
   </span>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_DefaultContentSerializer" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.DefaultContentSerializer">DefaultContentSerializer</h4>
   <div class="markdown level1 summary"><p>Default content serializer method</p>
@@ -232,7 +303,7 @@
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_Noop.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.Noop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L32">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L34">View Source</a>
   </span>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_Noop" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.Noop">Noop</h4>
   <div class="markdown level1 summary"><p>No operation method</p>
@@ -262,7 +333,7 @@
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_RawContentWriter.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawContentWriter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L42">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L44">View Source</a>
   </span>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_RawContentWriter" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawContentWriter">RawContentWriter</h4>
   <div class="markdown level1 summary"><p>Raw Content Writer</p>
@@ -291,10 +362,42 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ApiConfigurationComplete_System_IServiceProvider_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete(System.IServiceProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L162">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ApiConfigurationComplete_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete*"></a>
+  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_ApiConfigurationComplete_System_IServiceProvider_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.ApiConfigurationComplete(System.IServiceProvider)">ApiConfigurationComplete(IServiceProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApiConfigurationComplete(IServiceProvider serviceScope)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceScope</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CreateResponseDelegate_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CreateResponseDelegate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L63">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L84">View Source</a>
   </span>
   <a id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CreateResponseDelegate_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CreateResponseDelegate*"></a>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_CreateResponseDelegate_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.CreateResponseDelegate(EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)">CreateResponseDelegate(IEndPointMethodConfigurationReadOnly)</h4>
@@ -342,7 +445,7 @@
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_RawHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_String_System_String_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext%2CSystem.String%2CSystem.String%2CSystem.Collections.Generic.IReadOnlyList%7BEasyRpc.AspNetCore.ResponseHeader.IResponseHeader%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L115">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L150">View Source</a>
   </span>
   <a id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_RawHeaderResponseWriter_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawHeaderResponseWriter*"></a>
   <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_RawHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_String_System_String_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.RawHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.String,System.String,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader})">RawHeaderResponseWriter(RequestExecutionContext, String, String, IReadOnlyList&lt;IResponseHeader&gt;)</h4>
@@ -402,19 +505,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext%2CSystem.Collections.Generic.IReadOnlyList%7BEasyRpc.AspNetCore.ResponseHeader.IResponseHeader%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__System_Action_EasyRpc_AspNetCore_RequestExecutionContext__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext%2CSystem.Collections.Generic.IReadOnlyList%7BEasyRpc.AspNetCore.ResponseHeader.IResponseHeader%7D%2CSystem.Action%7BEasyRpc.AspNetCore.RequestExecutionContext%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L94">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L126">View Source</a>
   </span>
   <a id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter*"></a>
-  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader})">SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList&lt;IResponseHeader&gt;)</h4>
+  <h4 id="EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_SerializeHeaderResponseWriter_EasyRpc_AspNetCore_RequestExecutionContext_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_ResponseHeader_IResponseHeader__System_Action_EasyRpc_AspNetCore_RequestExecutionContext__" data-uid="EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.SerializeHeaderResponseWriter(EasyRpc.AspNetCore.RequestExecutionContext,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.ResponseHeader.IResponseHeader},System.Action{EasyRpc.AspNetCore.RequestExecutionContext})">SerializeHeaderResponseWriter(RequestExecutionContext, IReadOnlyList&lt;IResponseHeader&gt;, Action&lt;RequestExecutionContext&gt;)</h4>
   <div class="markdown level1 summary"><p>Serialize response as well as process headers</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task SerializeHeaderResponseWriter(RequestExecutionContext context, IReadOnlyList&lt;IResponseHeader&gt; responseHeaders)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual Task SerializeHeaderResponseWriter(RequestExecutionContext context, IReadOnlyList&lt;IResponseHeader&gt; responseHeaders, Action&lt;RequestExecutionContext&gt; compressCheck)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -434,6 +537,11 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="EasyRpc.AspNetCore.ResponseHeader.IResponseHeader.html">IResponseHeader</a>&gt;</td>
         <td><span class="parametername">responseHeaders</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a>&gt;</td>
+        <td><span class="parametername">compressCheck</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -457,6 +565,9 @@
   <div>
       <a class="xref" href="EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator.html">IResponseDelegateCreator</a>
   </div>
+  <div>
+      <a class="xref" href="EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html">IApiConfigurationCompleteAware</a>
+  </div>
 </article>
           </div>
           
@@ -468,7 +579,7 @@
                     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/CodeGeneration/ResponseDelegateCreator.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
