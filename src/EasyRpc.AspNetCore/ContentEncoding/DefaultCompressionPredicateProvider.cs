@@ -8,9 +8,9 @@ using EasyRpc.Abstractions.Encoding;
 
 namespace EasyRpc.AspNetCore.ContentEncoding
 {
-    public class DefaultCompressionPredicateProvider : ICompressionPredicateProvider
+    public class DefaultCompressionPredicateProvider : ICompressionActionProvider
     {
-        public Action<RequestExecutionContext> ProvideCompressionPredicate(IEndPointMethodConfigurationReadOnly configuration)
+        public Action<RequestExecutionContext> ProvideCompressionAction(IEndPointMethodConfigurationReadOnly configuration)
         {
             if (configuration.ReturnType == typeof(string))
             {
@@ -34,7 +34,7 @@ namespace EasyRpc.AspNetCore.ContentEncoding
         public static void StringCompressionCheck(RequestExecutionContext context)
         {
             if (context.Result is string stringResult &&
-                stringResult.Length > 1500)
+                stringResult.Length > 1400)
             {
                 context.CanCompress = true;
             }
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.ContentEncoding
 
         public class ListCompressionCheck
         {
-            private int _min;
+            private readonly int _min;
 
             public ListCompressionCheck(int min)
             {

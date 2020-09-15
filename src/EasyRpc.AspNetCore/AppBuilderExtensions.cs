@@ -51,7 +51,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IErrorWrappingService, ErrorWrappingService>();
             serviceCollection.TryAddScoped<IErrorResultTypeCreator, ErrorResultTypeCreator>();
             serviceCollection.TryAddScoped<IRawContentWriter, RawContentWriter>();
-            serviceCollection.TryAddScoped<ICompressionPredicateProvider,DefaultCompressionPredicateProvider>();
+            serviceCollection.TryAddScoped<ICompressionActionProvider,DefaultCompressionPredicateProvider>();
             serviceCollection.TryAddScoped<ICompressionSelectorService,CompressionSelectorService>();
             serviceCollection.TryAddScoped<IApiConfigurationFactory, ApiConfigurationFactory>();
             serviceCollection.TryAddScoped<IApplicationConfigurationService, ApplicationConfigurationService>();

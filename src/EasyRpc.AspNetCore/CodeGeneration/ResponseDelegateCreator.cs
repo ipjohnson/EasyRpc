@@ -56,7 +56,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// <summary>
         /// Compression predicate provider
         /// </summary>
-        protected readonly ICompressionPredicateProvider CompressionPredicateProvider;
+        protected readonly ICompressionActionProvider CompressionPredicateProvider;
 
         private ContentEncodingConfiguration _contentEncoding;
 
@@ -70,7 +70,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         public ResponseDelegateCreator(IContentSerializationService contentSerializer,
             IRawContentWriter rawContentWriter,
             IConfigurationManager configurationManager, 
-            ICompressionPredicateProvider compressionPredicateProvider)
+            ICompressionActionProvider compressionPredicateProvider)
         {
             ContentSerializer = contentSerializer;
             RawContentWriter = rawContentWriter;
@@ -97,10 +97,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
                 if (configuration.SupportsCompression.GetValueOrDefault(false))
                 {
-                    compressCheck = CompressionPredicateProvider.ProvideCompressionPredicate(configuration);
+                    compressCheck = CompressionPredicateProvider.ProvideCompressionAction(configuration);
                 }
 
-                return context => SerializeHeaderResponseWriter(context, configuration.ResponseHeaders, compressCheck);
+                var headerList = configuration.ResponseHeaders ?? Array.Empty<IResponseHeader>();
+
+                return context => SerializeHeaderResponseWriter(context, headerList, compressCheck);
             }
 
             var contentType = configuration.RawContentType;

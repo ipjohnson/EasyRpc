@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -58,6 +61,8 @@ namespace EasyRpc.Tests.AspNetCore
 
         protected virtual string BasePath => "/";
 
+        protected virtual string AcceptEncoding { get; set; }
+
         protected virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Shared);
@@ -68,7 +73,7 @@ namespace EasyRpc.Tests.AspNetCore
 
         public void Dispose()
         {
-           _client?.Dispose();
+            _client?.Dispose();
             _host?.Dispose();
         }
 
@@ -87,8 +92,16 @@ namespace EasyRpc.Tests.AspNetCore
             else
             {
                 postContent = new StringContent(JsonSerializer.Serialize(postValue, postValue.GetType(), JsonSerializerOptions), Encoding.UTF8, "application/json");
-
             }
+
+            client.DefaultRequestHeaders.AcceptEncoding.Clear();
+
+            if (!string.IsNullOrEmpty(AcceptEncoding))
+            {
+                client.DefaultRequestHeaders.AcceptEncoding.Clear();
+                client.DefaultRequestHeaders.AcceptEncoding.ParseAdd(AcceptEncoding);
+            }
+
 
             return await client.PostAsync(path, postContent);
         }
@@ -96,6 +109,14 @@ namespace EasyRpc.Tests.AspNetCore
         protected async Task<HttpResponseMessage> Get(string path)
         {
             var client = await Client();
+
+            client.DefaultRequestHeaders.AcceptEncoding.Clear();
+
+            if (!string.IsNullOrEmpty(AcceptEncoding))
+            {
+                client.DefaultRequestHeaders.AcceptEncoding.Clear();
+                client.DefaultRequestHeaders.AcceptEncoding.ParseAdd(AcceptEncoding);
+            }
 
             return await client.GetAsync(path);
         }
@@ -113,20 +134,70 @@ namespace EasyRpc.Tests.AspNetCore
                 throw new Exception(
                     $"Expected Status code {status} received {responseMessage.StatusCode}");
             }
-            else
+
+            if (responseMessage.StatusCode == status)
             {
-                if (responseMessage.StatusCode == status)
+                string jsonString;
+
+                if (responseMessage.Content.Headers.TryGetValues("Content-Encoding", out var contentEncoding))
                 {
-                    return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(),
-                        JsonSerializerOptions);
+                    jsonString = await GetEncodingString(responseMessage, contentEncoding.ToArray());
+                }
+                else
+                {
+                    jsonString = await responseMessage.Content.ReadAsStringAsync();
                 }
 
-                var message = await responseMessage.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<T>(jsonString, JsonSerializerOptions);
+            }
 
-                throw new Exception(
-                    $"Expected Status code {status} received {responseMessage.StatusCode}{Environment.NewLine}{message}");
+            var message = await responseMessage.Content.ReadAsStringAsync();
+
+            throw new Exception(
+                $"Expected Status code {status} received {responseMessage.StatusCode}{Environment.NewLine}{message}");
+        }
+
+        private Task<string> GetEncodingString(HttpResponseMessage responseMessage, string[] contentEncoding)
+        {
+            if (contentEncoding.Contains("br"))
+            {
+                return BrEncodedString(responseMessage);
+            }
+
+            if (contentEncoding.Contains("gzip"))
+            {
+                return GzipEncodedString(responseMessage);
+            }
+
+            throw new Exception("Unknown encoding");
+        }
+
+        private async Task<string> GzipEncodedString(HttpResponseMessage responseMessage)
+        {
+            var responseStream = await responseMessage.Content.ReadAsStreamAsync();
+
+            using (var brSteam = new GZipStream(responseStream, CompressionMode.Decompress))
+            {
+                using (var streamReader = new StreamReader(brSteam))
+                {
+                    return await streamReader.ReadToEndAsync();
+                }
             }
         }
+
+        private async Task<string> BrEncodedString(HttpResponseMessage responseMessage)
+        {
+            var responseStream = await responseMessage.Content.ReadAsStreamAsync();
+
+            using (var brSteam = new BrotliStream(responseStream, CompressionMode.Decompress))
+            {
+                using (var streamReader = new StreamReader(brSteam))
+                {
+                    return await streamReader.ReadToEndAsync();
+                }
+            }
+        }
+
 
         protected IClientSerializer CustomSerializer { get; set; }
 
@@ -142,10 +213,10 @@ namespace EasyRpc.Tests.AspNetCore
 
         public class SharedStorage : ISharedStorage
         {
-            public ConcurrentDictionary<string,object> Items { get; } = new ConcurrentDictionary<string, object>();
+            public ConcurrentDictionary<string, object> Items { get; } = new ConcurrentDictionary<string, object>();
         }
 
         protected virtual JsonSerializerOptions JsonSerializerOptions => _jsonSerializerOptions ??=
-            new JsonSerializerOptions {PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
+            new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
     }
 }
