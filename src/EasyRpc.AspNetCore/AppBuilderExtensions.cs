@@ -8,6 +8,7 @@ using EasyRpc.AspNetCore.Documentation;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.Errors;
 using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.Middleware;
 using EasyRpc.AspNetCore.ModelBinding;
 using EasyRpc.AspNetCore.ModelBinding.AspNetRouting;
@@ -50,6 +51,8 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IErrorWrappingService, ErrorWrappingService>();
             serviceCollection.TryAddScoped<IErrorResultTypeCreator, ErrorResultTypeCreator>();
             serviceCollection.TryAddScoped<IRawContentWriter, RawContentWriter>();
+            serviceCollection.TryAddScoped<ICompressionPredicateProvider,DefaultCompressionPredicateProvider>();
+            serviceCollection.TryAddScoped<ICompressionSelectorService,CompressionSelectorService>();
             serviceCollection.TryAddScoped<IApiConfigurationFactory, ApiConfigurationFactory>();
             serviceCollection.TryAddScoped<IApplicationConfigurationService, ApplicationConfigurationService>();
             serviceCollection.TryAddScoped<IInternalRoutingHandler, InternalRoutingHandler>();
