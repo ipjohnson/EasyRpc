@@ -23,7 +23,6 @@ namespace EasyRpc.Tests.AspNetCore.Filters
 
             var value = await Deserialize<int>(response);
 
-            Assert.NotNull(value);
             Assert.Equal((a + 10) + (b + 10), value);
         }
 
