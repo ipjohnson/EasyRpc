@@ -83,15 +83,15 @@ namespace EasyRpc.DynamicClient.Serializers
         }
 
         /// <inheritdoc />
-        public async Task<byte[]> Serialize(object value)
+        public  Task<byte[]> Serialize(object value)
         {
-            return JsonSerializer.SerializeToUtf8Bytes(value, DefaultJsonSerializerOptions);
+            return Task.FromResult(JsonSerializer.SerializeToUtf8Bytes(value, DefaultJsonSerializerOptions));
         }
 
         /// <inheritdoc />
-        public async Task<T> Deserialize<T>(byte[] bytes)
+        public Task<T> Deserialize<T>(byte[] bytes)
         {
-            return JsonSerializer.Deserialize<T>(bytes, DefaultJsonSerializerOptions);
+            return Task.FromResult(JsonSerializer.Deserialize<T>(bytes, DefaultJsonSerializerOptions));
         }
     }
 

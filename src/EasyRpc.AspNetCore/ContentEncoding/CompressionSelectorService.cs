@@ -7,14 +7,14 @@ namespace EasyRpc.AspNetCore.ContentEncoding
 {
     public interface ICompressionSelectorService
     {
-        bool ShouldCompressResult(MethodInfo method);
+        bool ShouldCompressResult(IEndPointMethodConfigurationReadOnly configuration);
     }
 
     public class CompressionSelectorService : ICompressionSelectorService
     {
-        public bool ShouldCompressResult(MethodInfo method)
+        public bool ShouldCompressResult(IEndPointMethodConfigurationReadOnly configuration)
         {
-            return true;
+            return !configuration.ReturnType.IsValueType;
         }
     }
 }

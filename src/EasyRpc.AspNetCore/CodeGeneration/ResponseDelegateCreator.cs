@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Serializers;
@@ -24,7 +26,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
     /// <summary>
     /// Builds delegate that writes result to the response stream
     /// </summary>
-    public class ResponseDelegateCreator : IResponseDelegateCreator
+    public class ResponseDelegateCreator : IResponseDelegateCreator, IApiConfigurationCompleteAware
     {
         /// <summary>
         /// No operation method
@@ -45,16 +47,35 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// Default content serializer method
         /// </summary>
         protected readonly MethodEndPointDelegate DefaultContentSerializer;
-        
+
+        /// <summary>
+        /// Configuration manager
+        /// </summary>
+        protected readonly IConfigurationManager ConfigurationManager;
+
+        /// <summary>
+        /// Compression predicate provider
+        /// </summary>
+        protected readonly ICompressionPredicateProvider CompressionPredicateProvider;
+
+        private ContentEncodingConfiguration _contentEncoding;
+
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="contentSerializer"></param>
         /// <param name="rawContentWriter"></param>
-        public ResponseDelegateCreator(IContentSerializationService contentSerializer, IRawContentWriter rawContentWriter)
+        /// <param name="configurationManager"></param>
+        /// <param name="compressionPredicateProvider"></param>
+        public ResponseDelegateCreator(IContentSerializationService contentSerializer,
+            IRawContentWriter rawContentWriter,
+            IConfigurationManager configurationManager, 
+            ICompressionPredicateProvider compressionPredicateProvider)
         {
             ContentSerializer = contentSerializer;
             RawContentWriter = rawContentWriter;
+            ConfigurationManager = configurationManager;
+            CompressionPredicateProvider = compressionPredicateProvider;
 
             DefaultContentSerializer = contentSerializer.SerializeToResponse;
         }
@@ -66,10 +87,20 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 if ((configuration.ResponseHeaders?.Count ?? 0) == 0)
                 {
-                    return DefaultContentSerializer;
+                    if (!configuration.SupportsCompression.GetValueOrDefault(false))
+                    {
+                        return DefaultContentSerializer;
+                    }
                 }
 
-                return context => SerializeHeaderResponseWriter(context, configuration.ResponseHeaders);
+                Action<RequestExecutionContext> compressCheck = null;
+
+                if (configuration.SupportsCompression.GetValueOrDefault(false))
+                {
+                    compressCheck = CompressionPredicateProvider.ProvideCompressionPredicate(configuration);
+                }
+
+                return context => SerializeHeaderResponseWriter(context, configuration.ResponseHeaders, compressCheck);
             }
 
             var contentType = configuration.RawContentType;
@@ -90,9 +121,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// </summary>
         /// <param name="context"></param>
         /// <param name="responseHeaders"></param>
+        /// <param name="compressCheck"></param>
         /// <returns></returns>
         protected virtual Task SerializeHeaderResponseWriter(RequestExecutionContext context,
-            IReadOnlyList<IResponseHeader> responseHeaders)
+            IReadOnlyList<IResponseHeader> responseHeaders,
+            Action<RequestExecutionContext> compressCheck)
         {
             var headers = context.HttpContext.Response.Headers;
 
@@ -100,6 +133,8 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 responseHeader.ApplyHeader(context, headers);
             }
+
+            compressCheck?.Invoke(context);
 
             return DefaultContentSerializer(context);
         }
@@ -122,6 +157,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             }
 
             return RawContentWriter.WriteRawContent(context, contentType, encodingType);
+        }
+
+        public void ApiConfigurationComplete(IServiceProvider serviceScope)
+        {
+            _contentEncoding = ConfigurationManager.GetConfiguration<ContentEncodingConfiguration>();
         }
     }
 }

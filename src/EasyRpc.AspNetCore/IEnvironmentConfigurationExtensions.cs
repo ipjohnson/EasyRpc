@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore
@@ -42,6 +43,17 @@ namespace EasyRpc.AspNetCore
         public static IEnvironmentConfiguration DisableDocumentation(this IEnvironmentConfiguration configuration)
         {
             return configuration.Documentation(c => c.Enabled = false);
+        }
+
+        /// <summary>
+        /// Enable response compression
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IEnvironmentConfiguration EnableCompression(this IEnvironmentConfiguration configuration)
+        {
+            return configuration.Action<ContentEncodingConfiguration>(config =>
+                config.CompressionEnabled = true);
         }
 
         /// <summary>

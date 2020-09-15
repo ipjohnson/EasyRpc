@@ -95,7 +95,7 @@ namespace EasyRpc.DynamicClient.Newtonsoft
         }
 
         /// <inheritdoc />
-        public async Task<byte[]> Serialize(object value)
+        public Task<byte[]> Serialize(object value)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -104,7 +104,7 @@ namespace EasyRpc.DynamicClient.Newtonsoft
                     JsonSerializer.Serialize(textStream, value);
                 }
 
-                return memoryStream.ToArray();
+                return Task.FromResult(memoryStream.ToArray());
             }
         }
 

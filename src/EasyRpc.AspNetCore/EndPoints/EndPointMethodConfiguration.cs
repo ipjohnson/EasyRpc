@@ -89,16 +89,13 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="activationFunc"></param>
         /// <param name="invokeInformation"></param>
         /// <param name="returnType"></param>
-        /// <param name="supportsCompression"></param>
         public EndPointMethodConfiguration(RpcRouteInformation routeInformation,
             Func<RequestExecutionContext, object> activationFunc,
             MethodInvokeInformation invokeInformation,
-            Type returnType,
-            bool? supportsCompression)
+            Type returnType)
         {
             RouteInformation = routeInformation;
             ActivationFunc = activationFunc;
-            SupportsCompression = supportsCompression;
             ReturnType = returnType;
             InvokeInformation = invokeInformation;
             Parameters = new List<RpcParameterInfo>();
@@ -130,7 +127,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         public Func<RequestExecutionContext, object> ActivationFunc { get; }
 
         /// <inheritdoc />
-        public bool? SupportsCompression { get; }
+        public bool? SupportsCompression { get; set; }
 
         /// <summary>
         /// List of parameters for method

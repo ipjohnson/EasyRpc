@@ -116,7 +116,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 func.Method, new List<Attribute>()))
             {
                 var configuration = new EndPointMethodConfiguration(routeInformation, context => null,
-                    new MethodInvokeInformation { DelegateToInvoke = func }, expression.ReturnType, true);
+                    new MethodInvokeInformation { DelegateToInvoke = func }, expression.ReturnType);
 
                 var parameters = GenerateMethodParametersForExpression(currentApi, routeInformation, expression);
 
@@ -155,6 +155,11 @@ namespace EasyRpc.AspNetCore.Configuration
                 ApplyAuthorizations(currentApi, null, configuration, EmptyList, EmptyList);
 
                 ApplyFilters(currentApi, GetFilterList(currentApi, configuration, EmptyList, EmptyList), configuration);
+
+                if (_supportCompression)
+                {
+                    configuration.SupportsCompression = _compressionSelectorService.ShouldCompressResult(configuration);
+                }
 
                 yield return configuration;
             }

@@ -17,7 +17,6 @@ namespace EasyRpc.DynamicClient.Grace.Impl
     {
         private readonly ProxyNamespaceConfig _namespaceConfig;
         private readonly IRpcHttpClientProvider _clientProvider;
-        private IClientSerializer _clientSerializer;
         private readonly HttpClient _client;
         
         public ProxyStrategyProvider(ProxyNamespaceConfig namespaceConfig)

@@ -12,6 +12,7 @@ using EasyRpc.Abstractions.Response;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.EndPoints.MethodHandlers;
@@ -31,19 +32,23 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly BaseEndPointServices _services;
         private readonly IConfigurationManager _configurationManager;
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
+        private readonly ICompressionSelectorService _compressionSelectorService;
         private ExposeConfigurations _exposeConfigurations;
         private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
         private string _basePath;
+        private bool _supportCompression;
 
         public ApplicationConfigurationService(BaseEndPointServices services, 
             IConfigurationManager configurationManager, 
             IAuthorizationImplementationProvider authorizationImplementationProvider, 
-            IWrappedResultTypeCreator wrappedResultTypeCreator)
+            IWrappedResultTypeCreator wrappedResultTypeCreator, 
+            ICompressionSelectorService compressionSelectorService)
         {
             _services = services;
             _configurationManager = configurationManager;
             _authorizationImplementationProvider = authorizationImplementationProvider;
             _wrappedResultTypeCreator = wrappedResultTypeCreator;
+            _compressionSelectorService = compressionSelectorService;
         }
 
         public void AddConfigurationObject(object configurationObject)
@@ -142,7 +147,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             foreach (var routeInformation in GenerateRouteInformationList(methodPath, methodVerb, methodHasBody, currentApi, type, name, methodInfo, methodAttributes))
             {
-                var configuration = new EndPointMethodConfiguration(routeInformation, activationMethod, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType, false);
+                var configuration = new EndPointMethodConfiguration(routeInformation, activationMethod, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType);
 
                 var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, methodAttributes, routeInformation);
 
@@ -192,6 +197,11 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 ApplyAuthorizations(currentApi, null, configuration, classAttributes, methodAttributes);
                 ApplyFilters(currentApi, GetFilterList(currentApi, configuration, classAttributes, methodAttributes), configuration);
+
+                if (_supportCompression)
+                {
+                    configuration.SupportsCompression = _compressionSelectorService.ShouldCompressResult(configuration);
+                }
 
                 yield return configuration;
             }
@@ -464,6 +474,8 @@ namespace EasyRpc.AspNetCore.Configuration
         public IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers()
         {
             _exposeConfigurations = _configurationManager.GetConfiguration<ExposeConfigurations>();
+            _supportCompression = _configurationManager.GetConfiguration<ContentEncodingConfiguration>()
+                .CompressionEnabled;
 
             ProcessConfigurationObjects();
 

@@ -27,7 +27,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         {
             var requestContext = new RequestExecutionContext(context, this, Configuration.SuccessStatusCode)
             {
-                Parameters = EmptyParameters.Instance
+                Parameters = EmptyParameters.Instance,
+                CanCompress = Configuration.SupportsCompression.GetValueOrDefault(false)
             };
 
             if (InvokeMethodDelegate == null)

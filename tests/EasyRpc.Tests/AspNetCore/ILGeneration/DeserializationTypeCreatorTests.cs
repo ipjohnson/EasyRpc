@@ -113,7 +113,7 @@ namespace EasyRpc.Tests.AspNetCore.ILGeneration
         private static EndPointMethodConfiguration CreateSimpleMethodDefinition(out string serializedInstance)
         {
             var invokeInfo = new MethodInvokeInformation{ MethodToInvoke = typeof(Invoker).GetMethod("InvokeMethod")};
-            var methodDefinition = new EndPointMethodConfiguration(new RpcRouteInformation(), null, invokeInfo, typeof(ResultHolder), null);
+            var methodDefinition = new EndPointMethodConfiguration(new RpcRouteInformation(), null, invokeInfo, typeof(ResultHolder));
 
             methodDefinition.Parameters.Add(new RpcParameterInfo { Name = "intValue", ParamType = typeof(int), Position = 0 });
             methodDefinition.Parameters.Add(new RpcParameterInfo { Name = "stringValue", ParamType = typeof(string), Position = 1 });
