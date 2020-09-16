@@ -5,8 +5,8 @@ environment:
   op_build_user_email: "ipjohnson123@yahoo.com"
   access_token:
     secure: vCRC/3M0+oha9ayrLw0InjkRodm+DwoHAXyifCORdU6HlfE9NzNXdOw1J4zhXsw3
-  COVERALLS_REPO_TOKEN:
-    secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
+  codecov_token:
+    secure: QR0uOQBaDnL/Cbp2l46/KAIVftXshfopHfvrn4z4ePF/IFJW05lOX2BOHyuwIqDa
 version: $(build_version)-{build}
 configuration: Release
 assembly_info:
@@ -17,7 +17,6 @@ assembly_info:
   assembly_informational_version: '$(build_version)'
 before_build:
 - ps: |
-      nuget install OpenCover -Version 4.7.922 -OutputDirectory packages
       nuget restore EasyRpc.sln
       if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
       {
@@ -34,7 +33,15 @@ build:
 
 test_script:
 - ps: |
-    .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --logger:trx;LogFileName=results.trx -c Debug /p:DebugType=full C:\projects\EasyRpc\tests\EasyRpc.Tests\EasyRpc.Tests.csproj" -output:"coverage.xml" -filter:"+[EasyRpc*]* -[EasyRpc.Tests]*" -coverbytest:XUnit -oldstyle
+      dotnet tool install --global coverlet.console
+      dotnet build -c Debug
+      coverlet .\tests\EasyRpc.Tests\bin\debug\netcoreapp3.1\EasyRpc.Tests.dll --target "dotnet" --targetargs "test --no-build"
+
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.json" -t $env:codecov_token
 
 after_build:
   - ps: |
