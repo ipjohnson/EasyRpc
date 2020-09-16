@@ -33,13 +33,13 @@ build:
 
 test_script:
 - ps: |
-       dotnet test "./tests/EasyRpc.Tests/EasyRpc.Tests.csproj" /p:CollectCoverage=true /p:Include="[EasyRpc.*]*" /p:Exclude="[*Test]*"
+       dotnet test "./tests/EasyRpc.Tests/EasyRpc.Tests.csproj" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Include="[EasyRpc.*]*" /p:Exclude="[*Test]*"
 
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-      bash codecov.sh -f "./tests/EasyRpc.Tests/coverage.json" -U "-s" -A "-s" -t $env:codecov_token
+      bash codecov.sh -f "./tests/EasyRpc.Tests/cobertura.xml" -U "-s" -A "-s" -t $env:codecov_token
 
 after_build:
   - ps: |
