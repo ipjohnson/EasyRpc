@@ -93,9 +93,10 @@ namespace EasyRpc.AspNetCore.Errors
         }
 
         /// <inheritdoc />
-        public virtual ValueTask<T> HandleDeserializeUnknownContentType<T>(RequestExecutionContext context)
+        public virtual async ValueTask<T> HandleDeserializeUnknownContentType<T>(RequestExecutionContext context)
         {
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.UnsupportedMediaType;
+            context.ContinueRequest = false;
 
             return default;
         }
@@ -104,8 +105,9 @@ namespace EasyRpc.AspNetCore.Errors
         public virtual Task HandleSerializerUnknownContentType(RequestExecutionContext context)
         {
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.UnsupportedMediaType;
+            context.ContinueRequest = false;
 
-            return default;
+            return Task.CompletedTask;
         }
 
         /// <summary>

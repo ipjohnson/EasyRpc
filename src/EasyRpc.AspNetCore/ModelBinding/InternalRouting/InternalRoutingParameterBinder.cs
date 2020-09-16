@@ -171,6 +171,11 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
                 return parameter.DefaultValue;
             }
 
+            if (parameter.ParamType.IsValueType)
+            {
+                return Activator.CreateInstance(parameter.ParamType);
+            }
+
             return null;
         }
     }

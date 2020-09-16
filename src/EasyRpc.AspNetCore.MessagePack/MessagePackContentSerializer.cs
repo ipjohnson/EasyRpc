@@ -24,7 +24,7 @@ namespace EasyRpc.AspNetCore.MessagePack
         public IEnumerable<string> SupportedContentTypes => new[] { ContentType };
 
         /// <inheritdoc />
-        public bool IsDefault => false;
+        public bool IsDefault { get; set; }
 
         /// <inheritdoc />
         public bool CanDeserialize(RequestExecutionContext context, string contentType)
@@ -42,7 +42,7 @@ namespace EasyRpc.AspNetCore.MessagePack
         public Task SerializeToResponse(RequestExecutionContext context)
         {
             var response = context.HttpContext.Response;
-            
+
             response.ContentType = ContentType;
             response.StatusCode = context.HttpStatusCode;
 
