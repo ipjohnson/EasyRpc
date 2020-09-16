@@ -254,3 +254,4 @@ paket-files/
 /tests/EasyRpc.AspNetCore.Benchmarks/BenchmarkDotNet.Artifacts/results
 /tests/EasyRpc.Tests/AspNetCore/Data/ObjectPoolTests.cs
 /coverage.json
+/tests/EasyRpc.Tests/coverage.json

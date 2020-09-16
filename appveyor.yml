@@ -33,7 +33,7 @@ build:
 
 test_script:
 - ps: |
-       dotnet test "test/EasyRpc.Tests/EasyRpc.Tests.csproj" /p:CollectCoverage=true /p:Include="[EasyRpc.*]*" /p:Exclude="[*Test]*"
+       dotnet test "./tests/EasyRpc.Tests/EasyRpc.Tests.csproj" /p:CollectCoverage=true /p:Include="[EasyRpc.*]*" /p:Exclude="[*Test]*"
 
 after_test:
   - ps: |
