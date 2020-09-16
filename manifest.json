@@ -1758,7 +1758,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Errors.DefaultErrorHandler.html",
-          "hash": "opBDEi2L742zP2vdhHVIDA=="
+          "hash": "x3yEMXZlyRreOkoAxSA/CA=="
         }
       },
       "is_incremental": false,
@@ -2190,7 +2190,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.MessagePack.MessagePackContentSerializer.html",
-          "hash": "D8XZG73ijs58S9herWvSwQ=="
+          "hash": "aDHl77fhuiGzw+EBW1Dk4w=="
         }
       },
       "is_incremental": false,
@@ -2538,7 +2538,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.html",
-          "hash": "46dbDPlFUrEZ3HderHJ8Ow=="
+          "hash": "ewmemsZePrnMuyu0MsyEIQ=="
         }
       },
       "is_incremental": false,
@@ -2838,7 +2838,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.BaseSerializer.html",
-          "hash": "TRrlfU5xmOOcW6l15hPuwQ=="
+          "hash": "uIXXQKgBnt7PeNIJmodFqQ=="
         }
       },
       "is_incremental": false,
@@ -2850,7 +2850,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.ContentSerializationService.html",
-          "hash": "uJbXVyrrz0vpAZ5WAPqmTw=="
+          "hash": "GCzNw2/qmirR+ztob7yy9g=="
         }
       },
       "is_incremental": false,
@@ -2898,7 +2898,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.JsonContentSerializer.html",
-          "hash": "sgz553RUHfF9znmkxzl2MQ=="
+          "hash": "09eoEFqK5mnqWtznr2a+TQ=="
         }
       },
       "is_incremental": false,
@@ -2922,7 +2922,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.html",
-          "hash": "uAI13qbif7LwA89vvSuU4A=="
+          "hash": "kSd87r2ofsAX7MAFyLg7hw=="
         }
       },
       "is_incremental": false,
@@ -2970,7 +2970,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Utf8Json.Utf8JsonContentSerializer.html",
-          "hash": "39lf6J/RlGgEuddWgsPSOg=="
+          "hash": "2KShIgtIqddtYhsyYUgtZw=="
         }
       },
       "is_incremental": false,

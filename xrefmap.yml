@@ -13877,19 +13877,6 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.DeserializeFromRequest(Of T)(EasyRpc.AspNetCore.RequestExecutionContext)
   nameWithType: XmlContentSerializer.DeserializeFromRequest<T>(RequestExecutionContext)
   nameWithType.vb: XmlContentSerializer.DeserializeFromRequest(Of T)(RequestExecutionContext)
-- uid: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault
-  name: IsDefault
-  href: api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.html#EasyRpc_AspNetCore_Serializers_XmlContentSerializer_IsDefault
-  commentId: P:EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault
-  fullName: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault
-  nameWithType: XmlContentSerializer.IsDefault
-- uid: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault*
-  name: IsDefault
-  href: api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.html#EasyRpc_AspNetCore_Serializers_XmlContentSerializer_IsDefault_
-  commentId: Overload:EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.IsDefault
-  nameWithType: XmlContentSerializer.IsDefault
 - uid: EasyRpc.AspNetCore.Serializers.XmlContentSerializer.SerializeToResponse(EasyRpc.AspNetCore.RequestExecutionContext)
   name: SerializeToResponse(RequestExecutionContext)
   href: api/EasyRpc.AspNetCore.Serializers.XmlContentSerializer.html#EasyRpc_AspNetCore_Serializers_XmlContentSerializer_SerializeToResponse_EasyRpc_AspNetCore_RequestExecutionContext_
