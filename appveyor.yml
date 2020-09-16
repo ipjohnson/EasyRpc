@@ -5,8 +5,8 @@ environment:
   op_build_user_email: "ipjohnson123@yahoo.com"
   access_token:
     secure: vCRC/3M0+oha9ayrLw0InjkRodm+DwoHAXyifCORdU6HlfE9NzNXdOw1J4zhXsw3
-  COVERALLS_REPO_TOKEN:
-    secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
+  codecov_token:
+    secure: QR0uOQBaDnL/Cbp2l46/KAIVftXshfopHfvrn4z4ePF/IFJW05lOX2BOHyuwIqDa
 version: $(build_version)-{build}
 configuration: Release
 assembly_info:
@@ -32,9 +32,16 @@ build:
   verbosity: minimal
 
 test_script:
-- cmd: cd tests/EasyRpc.Tests/
-- cmd: CodeCoverageAppVeyor.cmd
-- sh: dotnet test tests/EasyRpc.Tests/EasyRpc.Tests.csproj
+- ps: |
+      dotnet tool install --global coverlet.console
+      dotnet build -c Debug /p:DebugType=full
+      coverlet .\tests\EasyRpc.Tests\bin\debug\netcoreapp3.1\EasyRpc.Tests.dll --target "dotnet" --targetargs "test --no-build"
+
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.json" -U "-s" -A "-s" -t $env:codecov_token
 
 after_build:
   - ps: |
