@@ -34,7 +34,7 @@ build:
 
 test_script:
 - ps: |
-    .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --logger:trx;LogFileName=results.trx /p:DebugType=full C:\projects\EasyRpc\tests\EasyRpc.Tests\EasyRpc.Tests.csproj" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
+    .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --logger:trx;LogFileName=results.trx -c Debug /p:DebugType=full C:\projects\EasyRpc\tests\EasyRpc.Tests\EasyRpc.Tests.csproj" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
 
 after_build:
   - ps: |
