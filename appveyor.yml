@@ -34,7 +34,7 @@ build:
 test_script:
 - ps: |
       dotnet tool install --global coverlet.console
-      dotnet build -c Debug
+      dotnet build -c Debug /p:DebugType=full
       coverlet .\tests\EasyRpc.Tests\bin\debug\netcoreapp3.1\EasyRpc.Tests.dll --target "dotnet" --targetargs "test --no-build"
 
 after_test:
