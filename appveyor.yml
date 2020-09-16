@@ -35,7 +35,7 @@ build:
 test_script:
 - ps: |
       dotnet build  
-      .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\tests\EasyRpc.Tests\bin\Debug\netcoreapp3.1\EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
+      .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\EasyRpc\tests\EasyRpc.Tests\bin\Debug\netcoreapp3.1\EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
 
 after_build:
   - ps: |
