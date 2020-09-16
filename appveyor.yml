@@ -33,9 +33,8 @@ build:
   verbosity: minimal
 
 test_script:
-- ps: |
-      dotnet build -c Debug
-      .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\EasyRpc\tests\EasyRpc.Tests\bin\Debug\netcoreapp3.1\EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
+- .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --logger:trx;LogFileName=results.trx
+/p:DebugType=full C:\projects\EasyRpc\tests\EasyRpc.Tests\EasyRpc.Tests.csproj" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
 
 after_build:
   - ps: |
