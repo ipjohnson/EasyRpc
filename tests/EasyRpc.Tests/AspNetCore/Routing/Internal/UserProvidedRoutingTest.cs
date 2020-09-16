@@ -15,7 +15,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
 
         #region Tests
 
-        //[Fact]
+        [Fact]
         public async Task Routing_Internal_UserProvidedRoutingTest()
         {
             _routes = GenerateRouteList();
@@ -55,34 +55,34 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
         }
 
         private static readonly string RouteListString =
-@"/FormulaEvaluationService/Equals
-/FormulaEvaluationService/Evaluate
-/FormulaEvaluationService/GetHashCode
-/FormulaEvaluationService/GetType
-/FormulaEvaluationService/ToString
-/FormulaRangeCalculatorService/Equals
-/FormulaRangeCalculatorService/GetHashCode
-/FormulaRangeCalculatorService/GetRanges
-/FormulaRangeCalculatorService/GetType
-/FormulaRangeCalculatorService/ToString
-/FormulaService/Create
-/FormulaService/Delete
-/FormulaService/Equals
-/FormulaService/Get
-/FormulaService/GetAll
-/FormulaService/GetByExpression
-/FormulaService/GetHashCode
-/FormulaService/GetType
-/FormulaService/ToString
-/FormulaService/Update
-/IFormulaEvaluationService/Evaluate
-/IFormulaRangeCalculatorService/GetRanges
-/IFormulaService/Create
-/IFormulaService/Delete
-/IFormulaService/Get
-/IFormulaService/GetAll
-/IFormulaService/GetByExpression
-/IFormulaService/Update
+@"/EquationEvaluationService/Equals
+/EquationEvaluationService/Evaluate
+/EquationEvaluationService/GetHashCode
+/EquationEvaluationService/GetType
+/EquationEvaluationService/ToString
+/EquationRangeCalculatorService/Equals
+/EquationRangeCalculatorService/GetHashCode
+/EquationRangeCalculatorService/GetRanges
+/EquationRangeCalculatorService/GetType
+/EquationRangeCalculatorService/ToString
+/EquationService/Create
+/EquationService/Delete
+/EquationService/Equals
+/EquationService/Get
+/EquationService/GetAll
+/EquationService/GetByExpression
+/EquationService/GetHashCode
+/EquationService/GetType
+/EquationService/ToString
+/EquationService/Update
+/IEquationEvaluationService/Evaluate
+/IEquationRangeCalculatorService/GetRanges
+/IEquationService/Create
+/IEquationService/Delete
+/IEquationService/Get
+/IEquationService/GetAll
+/IEquationService/GetByExpression
+/IEquationService/Update
 /IIndexService/GetAll
 /IIndexService/GetValues
 /IListService/GetAll
