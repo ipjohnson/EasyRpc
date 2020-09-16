@@ -33,9 +33,7 @@ build:
 
 test_script:
 - ps: |
-      dotnet tool install --global coverlet.console
-      dotnet build -c Debug /p:DebugType=portable
-      coverlet .\tests\EasyRpc.Tests\bin\debug\netcoreapp3.1\EasyRpc.Tests.dll --target "dotnet" --targetargs "test --no-build"
+       dotnet test "test/EasyRpc.Tests/EasyRpc.Tests.csproj" /p:CollectCoverage=true /p:Include="[EasyRpc.*]*" /p:Exclude="[*Test]*"
 
 after_test:
   - ps: |
