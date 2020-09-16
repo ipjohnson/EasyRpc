@@ -17,6 +17,7 @@ assembly_info:
   assembly_informational_version: '$(build_version)'
 before_build:
 - ps: |
+      nuget install OpenCover -Version 4.7.922 -OutputDirectory packages
       nuget restore EasyRpc.sln
       if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
       {
@@ -32,9 +33,7 @@ build:
   verbosity: minimal
 
 test_script:
-- cmd: cd tests/EasyRpc.Tests/
-- cmd: CodeCoverageAppVeyor.cmd
-- sh: dotnet test tests/EasyRpc.Tests/EasyRpc.Tests.csproj
+.\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
 
 after_build:
   - ps: |
