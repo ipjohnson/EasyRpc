@@ -9,8 +9,8 @@ SET filter="+[*]EasyRpc.* -[EasyRpc.Tests]* -[xunit.*]* "
 SET coveragefile=Coverage.xml  
 SET coveragedir=Coverage
 
-nuget install OpenCover -Version 4.7.922 -OutputDirectory ..\..\tools
-nuget install coveralls.net -Version 2.0.0-beta0002 -OutputDirectory ..\..\tools
+dotnet install OpenCover -Version 4.7.922 -OutputDirectory ..\..\tools
+dotnet install coveralls.net -Version 2.0.0-beta0002 -OutputDirectory ..\..\tools
 
 REM Run code coverage analysis  
 %opencover% -oldStyle -returntargetcode -register:user -target:%dotnet% -output:%coveragefile% -targetargs:%targetargs% -filter:%filter% -skipautoprops -hideskipped:All
