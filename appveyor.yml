@@ -33,7 +33,7 @@ build:
   verbosity: minimal
 
 test_script:
-- .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
+- .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"EasyRpc.Tests.dll -noshadow" -output:"coverage.xml" -filter:"+[EasyRpc.AspNetCore.*]* -[EasyRpc.Tests.*]*"
 
 after_build:
   - ps: |
