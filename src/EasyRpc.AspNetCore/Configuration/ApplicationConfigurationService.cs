@@ -149,6 +149,11 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 var configuration = new EndPointMethodConfiguration(routeInformation, activationMethod, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType);
 
+                if (pathAttribute != null)
+                {
+                    configuration.SuccessStatusCode = pathAttribute.SuccessCodeValue;
+                }
+
                 var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, methodAttributes, routeInformation);
 
                 configuration.Parameters.AddRange(methodParameters);
