@@ -111,12 +111,17 @@ namespace EasyRpc.AspNetCore.Data
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [DebuggerDisplay("{" + nameof(DebuggerDisplayString) + ",nq}")]
-    public class ImmutableLinkedList<T> : IEnumerable<T>
+    public class ImmutableLinkedList<T> : IEnumerable<T>, IReadOnlyList<T>
     {
         /// <summary>
         /// Empty instance of list
         /// </summary>
         public static readonly ImmutableLinkedList<T> Empty = new ImmutableLinkedList<T>(default(T), null, 0);
+
+        /// <summary>
+        /// Empty enumerator
+        /// </summary>
+        private static readonly EmptyLinkedListEnumerator EmptyEnumerator = new EmptyLinkedListEnumerator();
 
         /// <summary>
         /// Default constructor
@@ -181,7 +186,7 @@ namespace EasyRpc.AspNetCore.Data
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
-            return new LinkedListEnumerator(this);
+            return Count == 0 ? (IEnumerator<T>)EmptyEnumerator : new LinkedListEnumerator(this);
         }
 
         /// <summary>
@@ -261,6 +266,41 @@ namespace EasyRpc.AspNetCore.Data
 
         private string DebuggerDisplayString => $"Count: {Count}";
 
+        /// <summary>
+        /// Empty enumerator
+        /// </summary>
+        private class EmptyLinkedListEnumerator : IEnumerator<T>
+        {
+            /// <summary>Advances the enumerator to the next element of the collection.</summary>
+            /// <returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+            /// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
+            public bool MoveNext()
+            {
+                return false;
+            }
+
+            /// <summary>Sets the enumerator to its initial position, which is before the first element in the collection.</summary>
+            /// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
+            public void Reset()
+            {
+
+            }
+
+            /// <summary>Gets the element in the collection at the current position of the enumerator.</summary>
+            /// <returns>The element in the collection at the current position of the enumerator.</returns>
+            public T Current { get; }
+
+            /// <summary>Gets the current element in the collection.</summary>
+            /// <returns>The current element in the collection.</returns>
+            object IEnumerator.Current => Current;
+
+            /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+            public void Dispose()
+            {
+
+            }
+        }
+
         private class LinkedListEnumerator : IEnumerator<T>
         {
             private readonly ImmutableLinkedList<T> _start;
@@ -305,7 +345,30 @@ namespace EasyRpc.AspNetCore.Data
 
             public void Dispose()
             {
+                // leaving empty as there is nothing to dispose
+            }
+        }
 
+        /// <summary>Gets the element at the specified index in the read-only list.</summary>
+        /// <returns>The element at the specified index in the read-only list.</returns>
+        /// <param name="index">The zero-based index of the element to get. </param>
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                }
+
+                var current = this;
+
+                for (var i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                }
+
+                return current.Value;
             }
         }
     }
