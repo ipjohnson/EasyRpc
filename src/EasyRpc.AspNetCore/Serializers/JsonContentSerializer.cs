@@ -26,7 +26,8 @@ namespace EasyRpc.AspNetCore.Serializers
         /// </summary>
         /// <param name="errorHandler"></param>
         /// <param name="configurationManager"></param>
-        public JsonContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(errorHandler)
+        public JsonContentSerializer(IErrorHandler errorHandler, IConfigurationManager configurationManager) : base(
+            errorHandler)
         {
             _configurationManager = configurationManager;
 
@@ -37,7 +38,7 @@ namespace EasyRpc.AspNetCore.Serializers
         public override IEnumerable<string> SupportedContentTypes => new[] {_contentType};
 
         /// <inheritdoc />
-        public override bool IsDefault => true;
+        public override bool IsDefault { get; set; } = true;
 
         /// <inheritdoc />
         public override bool CanDeserialize(RequestExecutionContext context, string contentType)
@@ -48,7 +49,8 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <inheritdoc />
         public override bool CanSerialize(RequestExecutionContext context, string accepts)
         {
-            return accepts.IndexOf(_contentType, StringComparison.CurrentCultureIgnoreCase) >= 0;
+            return accepts != null &&
+                accepts.IndexOf(_contentType, StringComparison.CurrentCultureIgnoreCase) >= 0;
         }
 
         /// <inheritdoc />

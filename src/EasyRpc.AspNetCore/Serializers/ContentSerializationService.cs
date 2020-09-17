@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Primitives;
 
 namespace EasyRpc.AspNetCore.Serializers
 {
@@ -84,7 +85,8 @@ namespace EasyRpc.AspNetCore.Serializers
                 return NullResult(context);
             }
 
-            if (_serializer != null)
+            if (_serializer != null && 
+                _serializer.IsDefault)
             {
                 return _serializer.SerializeToResponse(context);
             }
@@ -138,6 +140,7 @@ namespace EasyRpc.AspNetCore.Serializers
         /// Negotiate serialization
         /// </summary>
         /// <param name="context"></param>
+        /// <param name="accepts"></param>
         /// <returns></returns>
         protected virtual Task NegotiateSerialization(RequestExecutionContext context)
         {

@@ -30,7 +30,7 @@ namespace EasyRpc.AspNetCore.Serializers
         public abstract IEnumerable<string> SupportedContentTypes { get; }
 
         /// <inheritdoc />
-        public abstract bool IsDefault { get; }
+        public virtual bool IsDefault { get; set; }
 
         /// <inheritdoc />
         public abstract bool CanDeserialize(RequestExecutionContext context, string contentType);

@@ -34,7 +34,7 @@ namespace EasyRpc.AspNetCore.Utf8Json
         /// <summary>
         /// This is a default serializer
         /// </summary>
-        public override bool IsDefault => true;
+        public override bool IsDefault { get; set; } = true;
 
         /// <inheritdoc />
         public override bool CanDeserialize(RequestExecutionContext context, string contentType)

@@ -26,9 +26,6 @@ namespace EasyRpc.AspNetCore.Serializers
         public override IEnumerable<string> SupportedContentTypes => new[] { _contentType };
 
         /// <inheritdoc />
-        public override bool IsDefault => false;
-
-        /// <inheritdoc />
         public override bool CanDeserialize(RequestExecutionContext context, string contentType)
         {
             return string.Compare(contentType, 0, _contentType, 0, _contentType.Length, StringComparison.InvariantCultureIgnoreCase) == 0;
@@ -37,7 +34,8 @@ namespace EasyRpc.AspNetCore.Serializers
         /// <inheritdoc />
         public override bool CanSerialize(RequestExecutionContext context, string accepts)
         {
-            return accepts.IndexOf(_contentType, StringComparison.CurrentCultureIgnoreCase) >= 0;
+            return accepts != null &&
+                accepts.IndexOf(_contentType, StringComparison.CurrentCultureIgnoreCase) >= 0;
         }
 
         /// <inheritdoc />
