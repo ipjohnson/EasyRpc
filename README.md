@@ -44,6 +44,8 @@ that require the developer to think about which verbs they want to use.
 * Built in Swagger UI
 
 ### Build
-[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) [![Coverage Status](https://coveralls.io/repos/github/ipjohnson/EasyRpc/badge.svg?branch=master)](https://coveralls.io/github/ipjohnson/EasyRpc?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) <a href="https://codecov.io/gh/ipjohnson/EasyRpc">
+  <img src="https://codecov.io/gh/ipjohnson/EasyRpc/branch/master/graph/badge.svg" />
+</a>
 
 
