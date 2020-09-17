@@ -22,7 +22,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
             _validators = validators;
         }
 
-        public async Task BeforeExecute(RequestExecutionContext context)
+        public async Task BeforeExecuteAsync(RequestExecutionContext context)
         {
             foreach (var validator in _validators)
             {
@@ -30,7 +30,7 @@ namespace EasyRpc.AspNetCore.FluentValidation.Impl
             }
         }
 
-        public Task AfterExecute(RequestExecutionContext context)
+        public Task AfterExecuteAsync(RequestExecutionContext context)
         {
             return Task.CompletedTask;
         }

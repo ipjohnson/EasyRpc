@@ -15,6 +15,6 @@ namespace EasyRpc.AspNetCore.Filters
         /// </summary>
         /// <param name="context"></param>
         /// <param name="exception"></param>
-        Task HandleException(RequestExecutionContext context, Exception exception);
+        Task HandleExceptionAsync(RequestExecutionContext context, Exception exception);
     }
 }

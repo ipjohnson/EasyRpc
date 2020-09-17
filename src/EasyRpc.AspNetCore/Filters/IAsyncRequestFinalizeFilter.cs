@@ -14,6 +14,6 @@ namespace EasyRpc.AspNetCore.Filters
         /// Finalize request, called after response has been written
         /// </summary>
         /// <param name="context"></param>
-        Task Finalize(RequestExecutionContext context);
+        Task FinalizeAsync(RequestExecutionContext context);
     }
 }

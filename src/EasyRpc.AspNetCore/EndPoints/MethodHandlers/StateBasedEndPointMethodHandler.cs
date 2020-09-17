@@ -239,7 +239,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                         }
                         else if (requestContext.CallFilters[index] is IAsyncRequestExecutionFilter asyncRequestExecution)
                         {
-                            await asyncRequestExecution.BeforeExecute(requestContext);
+                            await asyncRequestExecution.BeforeExecuteAsync(requestContext);
                         }
                     }
 
@@ -321,7 +321,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                         }
                         else if (requestContext.CallFilters[i] is IAsyncRequestExecutionFilter asyncRequestExecution)
                         {
-                            await asyncRequestExecution.AfterExecute(requestContext);
+                            await asyncRequestExecution.AfterExecuteAsync(requestContext);
                         }
                     }
 
@@ -401,7 +401,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                         }
                         else if (requestContext.CallFilters[i] is IAsyncRequestFinalizeFilter asyncRequestExecution)
                         {
-                            await asyncRequestExecution.Finalize(requestContext);
+                            await asyncRequestExecution.FinalizeAsync(requestContext);
                         }
                     }
 

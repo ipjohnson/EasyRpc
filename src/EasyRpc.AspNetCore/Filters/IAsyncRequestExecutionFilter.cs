@@ -14,12 +14,12 @@ namespace EasyRpc.AspNetCore.Filters
         /// Called before the execution happens. 
         /// </summary>
         /// <param name="context"></param>
-        Task BeforeExecute(RequestExecutionContext context);
+        Task BeforeExecuteAsync(RequestExecutionContext context);
 
         /// <summary>
         /// Called after the execution
         /// </summary>
         /// <param name="context"></param>
-        Task AfterExecute(RequestExecutionContext context);
+        Task AfterExecuteAsync(RequestExecutionContext context);
     }
 }

@@ -71,7 +71,7 @@ namespace EasyRpc.AspNetCore.Errors
             {
                 if (callFilter is IAsyncRequestExceptionFilter exceptionFilter)
                 {
-                    await exceptionFilter.HandleException(context, exception);
+                    await exceptionFilter.HandleExceptionAsync(context, exception);
                 }
             }
 
