@@ -34,7 +34,7 @@ namespace EasyRpc.Tests.AspNetCore.Serialization.SystemTextJson
         {
             var list = new List<Model>();
 
-            for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < 500000; i++)
             {
                 list.Add(new Model{ StringValue = "Model String " + i});
             }
