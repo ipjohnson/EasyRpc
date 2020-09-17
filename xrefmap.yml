@@ -5956,6 +5956,24 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Data.ImmutableLinkedList(Of T).GetEnumerator
   nameWithType: ImmutableLinkedList<T>.GetEnumerator
   nameWithType.vb: ImmutableLinkedList(Of T).GetEnumerator
+- uid: EasyRpc.AspNetCore.Data.ImmutableLinkedList`1.Item(System.Int32)
+  name: Item[Int32]
+  href: api/EasyRpc.AspNetCore.Data.ImmutableLinkedList-1.html#EasyRpc_AspNetCore_Data_ImmutableLinkedList_1_Item_System_Int32_
+  commentId: P:EasyRpc.AspNetCore.Data.ImmutableLinkedList`1.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: EasyRpc.AspNetCore.Data.ImmutableLinkedList<T>.Item[System.Int32]
+  fullName.vb: EasyRpc.AspNetCore.Data.ImmutableLinkedList(Of T).Item(System.Int32)
+  nameWithType: ImmutableLinkedList<T>.Item[Int32]
+  nameWithType.vb: ImmutableLinkedList(Of T).Item(Int32)
+- uid: EasyRpc.AspNetCore.Data.ImmutableLinkedList`1.Item*
+  name: Item
+  href: api/EasyRpc.AspNetCore.Data.ImmutableLinkedList-1.html#EasyRpc_AspNetCore_Data_ImmutableLinkedList_1_Item_
+  commentId: Overload:EasyRpc.AspNetCore.Data.ImmutableLinkedList`1.Item
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Data.ImmutableLinkedList<T>.Item
+  fullName.vb: EasyRpc.AspNetCore.Data.ImmutableLinkedList(Of T).Item
+  nameWithType: ImmutableLinkedList<T>.Item
+  nameWithType.vb: ImmutableLinkedList(Of T).Item
 - uid: EasyRpc.AspNetCore.Data.ImmutableLinkedList`1.Next
   name: Next
   href: api/EasyRpc.AspNetCore.Data.ImmutableLinkedList-1.html#EasyRpc_AspNetCore_Data_ImmutableLinkedList_1_Next
