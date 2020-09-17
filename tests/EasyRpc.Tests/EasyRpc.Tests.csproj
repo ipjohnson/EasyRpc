@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="AspNetCore\Serialization\Newtonsoft\" />
-    <Folder Include="AspNetCore\Serialization\SystemTextJson\" />
     <Folder Include="AspNetCore\Serialization\utf8json\" />
   </ItemGroup>
 
