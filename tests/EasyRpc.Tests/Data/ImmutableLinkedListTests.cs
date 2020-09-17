@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Data;
 using Xunit;
 
-namespace EasyRpc.Tests.Data.Immutable
+namespace EasyRpc.Tests.Data
 {
     public class ImmutableLinkedListTests
     {

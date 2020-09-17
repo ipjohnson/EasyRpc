@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Grace.Data.Immutable;
+using EasyRpc.AspNetCore.Data;
 using Xunit;
 
 namespace EasyRpc.Tests.Data
@@ -70,14 +70,6 @@ namespace EasyRpc.Tests.Data
             Assert.Equal(5, tree[5]);
             Assert.Equal(10, tree[10]);
             Assert.Equal(15, tree[15]);
-        }
-
-        [Fact]
-        public void ImmutableHashTree_Throws_Key_Already_Exists()
-        {
-            var tree = ImmutableHashTree<int, int>.Empty.Add(10, 10);
-
-            Assert.Throws<KeyExistsException<int>>(() => tree.Add(10, 10));
         }
 
         [Fact]
