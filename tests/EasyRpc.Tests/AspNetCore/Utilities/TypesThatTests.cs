@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using EasyRpc.AspNetCore;
 using EasyRpc.Tests.Classes.Attributes;
 using EasyRpc.Tests.Classes.Simple;
 using Grace.DependencyInjection;
@@ -17,7 +18,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespace()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(DependencyInjectionContainer));
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IApiConfiguration));
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 
@@ -27,7 +28,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceAndSubnamespace()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(DependencyInjectionContainer),
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IApiConfiguration),
                 true);
 
             Assert.True(sameNamespace(typeof(TypesThat)));
@@ -38,7 +39,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceGeneric()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<DependencyInjectionContainer>();
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IApiConfiguration>();
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 
@@ -48,7 +49,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceAndSubnamespaceGeneric()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<DependencyInjectionContainer>(true);
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IApiConfiguration>(true);
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 
