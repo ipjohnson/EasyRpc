@@ -256,7 +256,16 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         #region Execute Task
         private Task ExecuteTask(ref RequestState state, ref RequestExecutionContext requestContext)
         {
-            var taskResult = InvokeMethodDelegate(requestContext);
+            Task<TReturn> taskResult;
+
+            try
+            {
+                taskResult = InvokeMethodDelegate(requestContext);
+            }
+            catch (Exception e)
+            {
+                return Services.ErrorHandler.HandleException(requestContext, e);
+            }
 
             if (taskResult.IsCompletedSuccessfully)
             {

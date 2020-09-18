@@ -39,36 +39,36 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             try
             {
                 requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+            
+                var executionTask = InvokeMethodDelegate(requestContext);
+                
+                if (!executionTask.IsCompletedSuccessfully)
+                {
+                    return AwaitInvoke(requestContext, executionTask, Services.ErrorHandler, ResponseDelegate);
+                }
+
+                requestContext.Result = executionTask.Result;
+
+                if (context.Response.HasStarted)
+                {
+                    return executionTask;
+                }
+
+                var responseTask = ResponseDelegate(requestContext);
+
+                return responseTask.IsCompletedSuccessfully ?
+                    responseTask :
+                    AwaitResponse(requestContext, responseTask, Services.ErrorHandler);
             }
             catch (Exception e)
             {
                 return Services.ErrorHandler.HandleException(requestContext, e);
             }
-
-            var executionTask = InvokeMethodDelegate(requestContext);
-
-            if (!executionTask.IsCompletedSuccessfully)
-            {
-                return AwaitInvoke(requestContext, executionTask, Services.ErrorHandler, ResponseDelegate);
-            }
-
-            requestContext.Result = executionTask.Result;
-
-            if (context.Response.HasStarted)
-            {
-                return executionTask;
-            }
-
-            var responseTask = ResponseDelegate(requestContext);
-
-            return responseTask.IsCompletedSuccessfully ?
-                responseTask :
-                AwaitResponse(requestContext, responseTask, Services.ErrorHandler);
         }
-        
-        private static async Task AwaitInvoke(RequestExecutionContext requestContext, 
+
+        private static async Task AwaitInvoke(RequestExecutionContext requestContext,
             Task<TReturn> executionResult,
-            IErrorHandler servicesErrorHandler, 
+            IErrorHandler servicesErrorHandler,
             MethodEndPointDelegate responseDelegate)
         {
             try
@@ -85,7 +85,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 await servicesErrorHandler.HandleException(requestContext, e);
             }
         }
-        
+
         private async Task AwaitResponse(RequestExecutionContext requestContext, Task responseResult, IErrorHandler servicesErrorHandler)
         {
             try
