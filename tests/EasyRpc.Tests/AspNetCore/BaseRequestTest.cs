@@ -77,6 +77,77 @@ namespace EasyRpc.Tests.AspNetCore
             _host?.Dispose();
         }
 
+        protected Task<HttpResponseMessage> SendAsync(string httpMethod, string path, object postValue = null)
+        {
+            if (string.Equals(HttpMethod.Post.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Post, path, postValue);
+            }
+
+            if (string.Equals(HttpMethod.Put.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Put, path, postValue);
+            }
+            
+            if (string.Equals(HttpMethod.Patch.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Patch, path, postValue);
+            }
+            
+            if (string.Equals(HttpMethod.Get.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Get, path, postValue);
+            }
+
+            if (string.Equals(HttpMethod.Head.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Head, path, postValue);
+            }
+
+            throw new Exception("Unknown method type " + httpMethod);
+        }
+
+
+
+        protected async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string path, object postValue = null)
+        {
+            var client = await Client();
+
+            var request = new HttpRequestMessage(httpMethod, path);
+
+            if (postValue != null)
+            {
+                HttpContent postContent;
+
+                if (CustomSerializer != null)
+                {
+                    var bytes = await CustomSerializer.Serialize(postValue);
+
+                    postContent = new ByteArrayContent(bytes);
+                    postContent.Headers.ContentType = new MediaTypeHeaderValue(CustomSerializer.ContentType);
+                }
+                else
+                {
+                    postContent =
+                        new StringContent(
+                            JsonSerializer.Serialize(postValue, postValue.GetType(), JsonSerializerOptions),
+                            Encoding.UTF8, "application/json");
+                }
+
+                request.Content = postContent;
+            }
+
+            client.DefaultRequestHeaders.AcceptEncoding.Clear();
+
+            if (!string.IsNullOrEmpty(AcceptEncoding))
+            {
+                client.DefaultRequestHeaders.AcceptEncoding.Clear();
+                client.DefaultRequestHeaders.AcceptEncoding.ParseAdd(AcceptEncoding);
+            }
+
+            return await client.SendAsync(request);
+        }
+
         protected async Task<HttpResponseMessage> Post(string path, object postValue)
         {
             var client = await Client();
