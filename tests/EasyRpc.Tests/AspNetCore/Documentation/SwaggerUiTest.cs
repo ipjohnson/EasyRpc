@@ -15,15 +15,27 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
 
         public class Service
         {
-            [GetMethod]
-            public int GetValue()
+            [GetMethod("/Service/GetValue/{id}")]
+            public int GetValue(int id)
             {
                 return 10;
             }
+
+            [PostMethod("/Service/PostValue/{id}")]
+            public Model PostValue(int id, Model model)
+            {
+                model.Value = id.ToString();
+
+                return model;
+            }
+        }
+
+        public class Model
+        {
+            public string Value { get; set; }
         }
 
         #endregion
-
 
         #region Tests
 
@@ -33,16 +45,29 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
         [InlineData("/swagger/swagger-ui-bundle.js")]
         [InlineData("/swagger/swagger-ui-standalone-preset.js")]
         [InlineData("/swagger/api.json")]
-        public async Task Documentation_SwaggerUi(string path)
+        [InlineData("/swagger/api.json?OpenApi=2")]
+        [InlineData("/swagger/swagger-ui.css", "br")]
+        [InlineData("/swagger/swagger-ui-bundle.js", "br")]
+        [InlineData("/swagger/swagger-ui-standalone-preset.js", "br")]
+        public async Task Documentation_SwaggerUi(string path, string acceptEncoding = null)
         {
+            AcceptEncoding = acceptEncoding;
+
             var response = await Get(path);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            var result = await response.Content.ReadAsStringAsync();
+            if (acceptEncoding != null)
+            {
+                Assert.True(response.Content.Headers.ContentEncoding.Contains(acceptEncoding));
+            }
 
-            Assert.True(result.Length > 0);
+            var bytes = await response.Content.ReadAsByteArrayAsync();
+
+            Assert.True(bytes.Length > 0);
         }
+
+
 
         #endregion
 
