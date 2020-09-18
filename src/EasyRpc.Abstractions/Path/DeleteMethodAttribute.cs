@@ -8,6 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// Expose method as DELETE
     /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
     public class DeleteMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

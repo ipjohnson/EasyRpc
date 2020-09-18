@@ -8,6 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// Patch HTTP method
     /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
     public class PatchMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

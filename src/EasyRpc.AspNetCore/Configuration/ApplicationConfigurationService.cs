@@ -87,15 +87,39 @@ namespace EasyRpc.AspNetCore.Configuration
             string obsoleteMessage, MethodInfo methodInfo)
         {
             var methodAttributes = methodInfo.GetCustomAttributes<Attribute>().ToList();
-            var pathAttribute = (IPathAttribute)methodAttributes.FirstOrDefault(a => a is IPathAttribute);
 
-            foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
-                authorizations, obsoleteMessage, methodInfo, methodAttributes, pathAttribute))
+            // skip methods that have IgnoreMethodAttribute
+            if (methodAttributes.Any(a => a is IgnoreMethodAttribute))
             {
-                var endPointMethodHandler =
-                    CreateEndPointMethodHandler(currentApi, configuration);
+                return;
+            }
 
-                _handlers.Add(endPointMethodHandler);
+            var pathAttributes = methodAttributes.Where(a => a is IPathAttribute).ToArray();
+
+            if (pathAttributes.Length > 0)
+            {
+                foreach (var pathAttribute in pathAttributes)
+                {
+                    foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
+                        authorizations, obsoleteMessage, methodInfo, methodAttributes, pathAttribute as IPathAttribute))
+                    {
+                        var endPointMethodHandler =
+                            CreateEndPointMethodHandler(currentApi, configuration);
+
+                        _handlers.Add(endPointMethodHandler);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
+                    authorizations, obsoleteMessage, methodInfo, methodAttributes, null))
+                {
+                    var endPointMethodHandler =
+                        CreateEndPointMethodHandler(currentApi, configuration);
+
+                    _handlers.Add(endPointMethodHandler);
+                }
             }
         }
 
