@@ -153,8 +153,17 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             var substringIndex = name.Value.IndexOf('(');
 
-            var key = name.Value.Substring(0, substringIndex);
 
+            var key = name.Value;
+
+            if (substringIndex > 0)
+            {
+                key = name.Value.Substring(0, substringIndex);
+            }
+            else
+            {
+                
+            }
             _methods[key] = element;
         }
 
