@@ -25,6 +25,8 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
             public async Task TestModel(ISharedStorage sharedStorage, StringResult body)
             {
                 sharedStorage.Items["body"] = body;
+
+                await Task.Delay(1);
             }
         }
 
