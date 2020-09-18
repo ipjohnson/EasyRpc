@@ -39,6 +39,11 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
 
                 return model;
             }
+
+            public int AddValue(int x, int y)
+            {
+                return x + y;
+            }
         }
 
         /// <summary>
