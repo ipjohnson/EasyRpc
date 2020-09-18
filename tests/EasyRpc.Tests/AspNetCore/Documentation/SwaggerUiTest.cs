@@ -15,12 +15,23 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
 
         public class Service
         {
+            /// <summary>
+            /// Get value tests
+            /// </summary>
+            /// <param name="id">url id</param>
+            /// <returns></returns>
             [GetMethod("/Service/GetValue/{id}")]
             public int GetValue(int id)
             {
                 return 10;
             }
 
+            /// <summary>
+            /// Post test method
+            /// </summary>
+            /// <param name="id">id</param>
+            /// <param name="model">model value</param>
+            /// <returns></returns>
             [PostMethod("/Service/PostValue/{id}")]
             public Model PostValue(int id, Model model)
             {
@@ -30,8 +41,14 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
             }
         }
 
+        /// <summary>
+        /// Model
+        /// </summary>
         public class Model
         {
+            /// <summary>
+            /// Value
+            /// </summary>
             public string Value { get; set; }
         }
 
