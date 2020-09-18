@@ -160,10 +160,7 @@ namespace EasyRpc.AspNetCore.Documentation
             {
                 key = name.Value.Substring(0, substringIndex);
             }
-            else
-            {
-                
-            }
+
             _methods[key] = element;
         }
 
