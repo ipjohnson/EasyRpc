@@ -23,6 +23,11 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <param name="type">simple type</param>
         /// <returns>open api schema element</returns>
         OpenApiSchema GetMapping(Type type);
+
+        /// <summary>
+        /// List of mapped types
+        /// </summary>
+        IEnumerable<Type> MappedTypes { get; }
     }
 
     /// <summary>
@@ -46,7 +51,10 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             return Mappings.GetValueOrDefault(type)?.Invoke();
         }
-        
+
+        /// <inheritdoc />
+        public IEnumerable<Type> MappedTypes => Mappings.Keys;
+
         /// <summary>
         /// 
         /// </summary>
