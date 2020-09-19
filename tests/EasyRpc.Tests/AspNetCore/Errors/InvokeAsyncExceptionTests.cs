@@ -80,7 +80,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
 
         protected override void ApiRegistration(IApiConfiguration api)
         {
-            api.Expose<InvokeExceptionTests.Service>();
+            api.Expose<Service>();
         }
 
         #endregion
