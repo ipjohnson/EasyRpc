@@ -6334,6 +6334,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.GetMapping
   nameWithType: IKnownOpenApiTypeMapper.GetMapping
+- uid: EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes
+  name: MappedTypes
+  href: api/EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.html#EasyRpc_AspNetCore_Documentation_IKnownOpenApiTypeMapper_MappedTypes
+  commentId: P:EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes
+  fullName: EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes
+  nameWithType: IKnownOpenApiTypeMapper.MappedTypes
+- uid: EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes*
+  name: MappedTypes
+  href: api/EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.html#EasyRpc_AspNetCore_Documentation_IKnownOpenApiTypeMapper_MappedTypes_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.MappedTypes
+  nameWithType: IKnownOpenApiTypeMapper.MappedTypes
 - uid: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService
   name: IOpenApiGenerationService
   href: api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html
@@ -6840,6 +6853,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.GetMapping
   nameWithType: KnownOpenApiTypeMapper.GetMapping
+- uid: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes
+  name: MappedTypes
+  href: api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.html#EasyRpc_AspNetCore_Documentation_KnownOpenApiTypeMapper_MappedTypes
+  commentId: P:EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes
+  fullName: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes
+  nameWithType: KnownOpenApiTypeMapper.MappedTypes
+- uid: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes*
+  name: MappedTypes
+  href: api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.html#EasyRpc_AspNetCore_Documentation_KnownOpenApiTypeMapper_MappedTypes_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.MappedTypes
+  nameWithType: KnownOpenApiTypeMapper.MappedTypes
 - uid: EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.Mappings
   name: Mappings
   href: api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.html#EasyRpc_AspNetCore_Documentation_KnownOpenApiTypeMapper_Mappings

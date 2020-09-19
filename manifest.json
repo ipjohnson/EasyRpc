@@ -1254,7 +1254,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.IKnownOpenApiTypeMapper.html",
-          "hash": "+LiwYHFO13jmR0LvtF640A=="
+          "hash": "avsiF36VBVXvdGRCFe169w=="
         }
       },
       "is_incremental": false,
@@ -1350,7 +1350,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.KnownOpenApiTypeMapper.html",
-          "hash": "dODNnev/0l5GBY3LA/4zlg=="
+          "hash": "lkx6CB4mBxvlXRgWT5AbWQ=="
         }
       },
       "is_incremental": false,
