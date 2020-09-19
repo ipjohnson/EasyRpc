@@ -1,0 +1,8 @@
+﻿@model List<int>
+
+<div>Count=@(this.ViewContext.RouteData.Values["count"])</div>
+
+@foreach (var i in Model)
+{
+    <div>@i</div>
+}

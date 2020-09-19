@@ -23,6 +23,20 @@ namespace EasyRpc.Tests.AspNetCore.Views
             {
                 return new List<int> { 1, 2, 3, 4, 5 };
             }
+
+
+            [ReturnView(ViewName = "~/Views/Simple/Count.cshtml")]
+            [GetMethod("/Simple/Count/{count}")]
+            public List<int> Count(int count)
+            {
+                var returnList = new List<int>();
+
+                for (int i = 1; i <= count; i++)
+                {
+                    returnList.Add(i);
+                }
+                return returnList;
+            }
         }
 
         #endregion
@@ -39,6 +53,25 @@ namespace EasyRpc.Tests.AspNetCore.Views
             var result = await response.Content.ReadAsStringAsync();
 
             for (var i = 1; i <= 5; i++)
+            {
+                Assert.Contains($"<div>{i}</div>", result);
+            }
+        }
+
+
+        [Fact]
+        public async Task Views_SimpleView_With_Parameter()
+        {
+            var count = 10;
+            var response = await Get($"/Simple/Count/{count}");
+
+            //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains($"<div>Count={count}</div>", result);
+
+            for (var i = 1; i <= count; i++)
             {
                 Assert.Contains($"<div>{i}</div>", result);
             }

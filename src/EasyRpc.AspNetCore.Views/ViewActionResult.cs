@@ -65,7 +65,7 @@ namespace EasyRpc.AspNetCore.Views
             {
                 throw new Exception("Could not find ICompositeViewEngine");
             }
-
+            
             var viewEngineResult = viewEngine.GetView(null, _viewName, _isMainPage);
             
             return _executor.ExecuteAsync(context,
