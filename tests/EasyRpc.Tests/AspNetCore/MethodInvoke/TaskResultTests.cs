@@ -19,6 +19,8 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
             public async Task TestString(ISharedStorage sharedStorage, string pathValue, string id, string id2)
             {
                 sharedStorage.Items["id"] = pathValue + id + id2;
+
+                await Task.Delay(1);
             }
 
             [PostMethod("/TestModel")]
