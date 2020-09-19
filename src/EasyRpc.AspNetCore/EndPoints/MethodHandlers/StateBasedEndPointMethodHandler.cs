@@ -18,6 +18,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
             : base(configuration, services)
         {
+            _startingState = RequestState.ExecuteTask;
+
             if (configuration.Authorizations != null && configuration.Authorizations.Count > 0)
             {
                 _startingState = RequestState.CheckAuth;
@@ -29,10 +31,6 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             else if (configuration.Filters != null && configuration.Filters.Count > 0)
             {
                 _startingState = RequestState.BeforeExecuteTaskFilter;
-            }
-            else
-            {
-                _startingState = RequestState.ExecuteTask;
             }
         }
 
