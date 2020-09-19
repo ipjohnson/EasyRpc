@@ -14,6 +14,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
     public class InvokeExceptionTests : BaseRequestTest
     {
         private const string _errorMessage = "Some error";
+        private const string _errorWithParametersMessage = "Some other error";
         private string _returnedError;
 
         #region Service
@@ -24,6 +25,13 @@ namespace EasyRpc.Tests.AspNetCore.Errors
             public int Error()
             {
                 throw new Exception(_errorMessage);
+            }
+
+
+            [GetMethod("/Service/ErrorValue/{value}")]
+            public int ErrorValue(int value)
+            {
+                throw new Exception(_errorWithParametersMessage);
             }
         }
 
@@ -41,6 +49,16 @@ namespace EasyRpc.Tests.AspNetCore.Errors
             Assert.Equal(_errorMessage, _returnedError);
         }
 
+
+        [Fact]
+        public async Task Errors_InvokeException_WithParameters()
+        {
+            var response = await Get("/Service/ErrorValue/10");
+
+            Assert.NotNull(response);
+            Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+            Assert.Equal(_errorWithParametersMessage, _returnedError);
+        }
         #endregion
 
         #region registration

@@ -1,40 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace EasyRpc.Tests.AspNetCore.Errors
 {
-    public class InstantiateExceptionTest : BaseRequestTest
+    public class FilterFinalizeAsyncExceptionTests : BaseRequestTest
     {
-        private const string _errorMessage = "Some error";
+        private const string _finalizeError = "Finalize error";
         private string _returnedError;
+        private const int _intReturn = 10;
 
         #region Service
 
         public class Service
         {
-            public Service()
-            {
-                throw new Exception(_errorMessage);
-            }
-
             [GetMethod]
-            public int Error()
+            [InstanceFilter(typeof(FinalizeAsyncExceptionFilter))]
+            public int GetValue()
             {
-                return 0;
+                return _intReturn;
             }
+        }
 
-            [GetMethod("/Service/ErrorValue/{value}")]
-            public int ErrorValue(int value)
+        public class FinalizeAsyncExceptionFilter : IAsyncRequestFinalizeFilter
+        {
+            public async Task FinalizeAsync(RequestExecutionContext context)
             {
-                return value;
+                await Task.Delay(1);
+
+                throw new Exception(_finalizeError);
             }
         }
 
@@ -43,23 +44,14 @@ namespace EasyRpc.Tests.AspNetCore.Errors
         #region Tests
 
         [Fact]
-        public async Task Errors_InstantiateException()
+        public async Task Errors_FilterFinalizeException()
         {
-            var response = await Get("/Service/Error");
+            var response = await Get("/Service/GetValue");
 
-            Assert.NotNull(response);
-            Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
-            Assert.Equal(_errorMessage, _returnedError);
-        }
+            var result = await Deserialize<int>(response);
 
-        [Fact]
-        public async Task Errors_InstantiateException_WithParameters()
-        {
-            var response = await Get("/Service/ErrorValue/10");
-
-            Assert.NotNull(response);
-            Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
-            Assert.Equal(_errorMessage, _returnedError);
+            Assert.True(result == _intReturn);
+            Assert.Equal(_returnedError, _finalizeError);
         }
 
         #endregion
@@ -81,6 +73,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
         {
             api.Expose<Service>();
         }
+        
         #endregion
     }
 }

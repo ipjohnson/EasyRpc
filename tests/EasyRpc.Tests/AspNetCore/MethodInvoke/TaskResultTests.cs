@@ -15,6 +15,15 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
 
         public class Services
         {
+            [GetMethod("/GetAll")]
+            public async Task<int> GetAll()
+            {
+                await Task.Delay(1);
+
+                return 5;
+            }
+
+
             [PostMethod("/teststring/{pathValue}")]
             public async Task TestString(ISharedStorage sharedStorage, string pathValue, string id, string id2)
             {
@@ -37,7 +46,7 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
         #region Tests
 
         [Fact]
-        public async Task TaskResultTest()
+        public async Task MethodInvoke_TaskResult()
         {
             var id = " Hello";
             var id2 = " World!";
@@ -50,7 +59,7 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
         }
 
         [Fact]
-        public async Task BodyTest()
+        public async Task MethodInvoke_BodyParameters()
         {
             var stringResult = new StringResult{ Result = "Hello World!" };
 
@@ -59,6 +68,14 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
             Assert.True(response.IsSuccessStatusCode);
 
             Assert.Equal(stringResult.Result, ((StringResult)Shared.Items["body"]).Result);
+        }
+
+        [Fact]
+        public async Task MethodInvoke_NoParameters()
+        {
+            var response = await Get("/GetAll");
+
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         #endregion

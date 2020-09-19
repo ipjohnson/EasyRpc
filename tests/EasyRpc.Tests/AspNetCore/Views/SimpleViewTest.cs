@@ -65,7 +65,7 @@ namespace EasyRpc.Tests.AspNetCore.Views
             var count = 10;
             var response = await Get($"/Simple/Count/{count}");
 
-            //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             var result = await response.Content.ReadAsStringAsync();
 
