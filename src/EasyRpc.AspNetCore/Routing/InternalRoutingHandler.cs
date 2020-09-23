@@ -60,7 +60,7 @@ namespace EasyRpc.AspNetCore.Routing
                 return endpointHandler.HandleRequest(context, _requestDelegate);
             }
 
-            return _unmappedEndPointHandler.Execute(context, _requestDelegate);
+            return _unmappedEndPointHandler.HandleUnmatched(context, _requestDelegate);
         }
 
         protected virtual IDictionary<string, IEndPointHandler> CreateEndPointDictionary(
@@ -98,6 +98,5 @@ namespace EasyRpc.AspNetCore.Routing
 
             return endPointHandlerDictionary;
         }
-
     }
 }

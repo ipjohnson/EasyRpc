@@ -13,9 +13,7 @@ namespace EasyRpc.AspNetCore.EndPoints
     /// </summary>
     public class HttpMethodEndPointHandler : IEndPointHandler
     {
-        private readonly IEndPointMethodHandler _postHandler;
-        private readonly IEndPointMethodHandler _getHandler;
-        private readonly List<IEndPointMethodHandler> _other;
+        private readonly IEndPointMethodHandler[] _endPoints;
         private readonly IUnmappedEndPointHandler _unknownEndPointHandler;
 
         /// <summary>
@@ -31,24 +29,8 @@ namespace EasyRpc.AspNetCore.EndPoints
             SupportsLongerPaths = supportsLongerPaths;
             _unknownEndPointHandler = unknownEndPointHandler;
 
-            _postHandler = handlers.FirstOrDefault(x => x.HttpMethod == HttpMethods.Post);
 
-            if (_postHandler != null)
-            {
-                handlers.Remove(_postHandler);
-            }
-
-            _getHandler = handlers.FirstOrDefault(x => x.HttpMethod == HttpMethods.Get);
-
-            if (_getHandler != null)
-            {
-                handlers.Remove(_getHandler);
-            }
-
-            if (handlers.Count > 0)
-            {
-                _other = handlers;
-            }
+            _endPoints = handlers.ToArray();
         }
         
         /// <inheritdoc />
@@ -60,35 +42,29 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <inheritdoc />
         public Task HandleRequest(HttpContext context, RequestDelegate next)
         {
-            if (_getHandler != null &&
-                context.Request.Method == HttpMethods.Get)
-            {
-                return _getHandler.HandleRequest(context);
-            }
+            var endPoint = _endPoints[0];
 
-            if (_postHandler != null && 
-                context.Request.Method == HttpMethods.Post)
-            {
-                return _postHandler.HandleRequest(context);
-            }
-            
-            return HandleOther(context, next);
+            return endPoint.HttpMethod == context.Request.Method ? 
+                endPoint.HandleRequest(context) : 
+                HandleOther(context, next);
         }
 
         private Task HandleOther(HttpContext context, RequestDelegate next)
         {
-            if (_other != null)
+            if (_endPoints.Length > 1)
             {
-                foreach (var endPointMethodHandler in _other)
+                var requestMethod = context.Request.Method;
+
+                for (var i = 1; i < _endPoints.Length; i++)
                 {
-                    if (endPointMethodHandler.HttpMethod == context.Request.Method)
+                    if (_endPoints[i].HttpMethod == requestMethod)
                     {
-                        return endPointMethodHandler.HandleRequest(context);
+                        return _endPoints[i].HandleRequest(context);
                     }
                 }
             }
 
-            return _unknownEndPointHandler.Execute(context, next, true);
+            return _unknownEndPointHandler.HandleMatchedButNoMethod(context, next, _endPoints);
         }
     }
 }

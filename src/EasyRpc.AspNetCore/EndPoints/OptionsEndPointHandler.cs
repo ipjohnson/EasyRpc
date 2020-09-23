@@ -25,23 +25,19 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <summary>
         /// Handle server option request (i.e. OPTIONS *)
         /// </summary>
-        /// <param name="context">http context for the request</param>
+        /// <param name="httpContext">http context for the request</param>
         /// <param name="requestDelegate"></param>
         /// <returns></returns>
-        Task HandleServerOptionsRequest(HttpContext context, RequestDelegate requestDelegate);
+        Task HandleServerOptionsRequest(HttpContext httpContext, RequestDelegate requestDelegate);
 
         /// <summary>
-        /// Handle an option request for a specific path
+        /// Handle path based options request
         /// </summary>
-        /// <param name="context">http context for the request</param>
-        /// <param name="getMethod">get method can be null</param>
-        /// <param name="postMethod">post method can be null</param>
-        /// <param name="others">other methods can be null</param>
+        /// <param name="httpContext"></param>
+        /// <param name="getMethod"></param>
+        /// <param name="postMethod"></param>
         /// <returns></returns>
-        Task HandlePathOptionRequest(HttpContext context,
-            IEndPointMethodHandler getMethod,
-            IEndPointMethodHandler postMethod,
-            IReadOnlyList<IEndPointMethodHandler> others);
+        Task HandlePathOptionRequest(HttpContext httpContext, RequestDelegate getMethod, IEndPointMethodHandler[] postMethod);
     }
 
     public class OptionsEndPointHandler : IOptionsEndPointHandler, IApiConfigurationCompleteAware
@@ -60,86 +56,64 @@ namespace EasyRpc.AspNetCore.EndPoints
         public bool Enabled => _optionsConfig.Enabled;
 
         /// <inheritdoc />
-        public Task HandleServerOptionsRequest(HttpContext context, RequestDelegate next)
+        public Task HandleServerOptionsRequest(HttpContext httpContext, RequestDelegate next)
         {
             if (!_optionsConfig.Enabled)
             {
-                return next(context);
+                return next(httpContext);
             }
 
-            var headers = context.Response.Headers;
+            httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+
+            var headers = httpContext.Response.Headers;
+            
+            headers.TryAdd(_optionsConfig.AllowHeader, _methods);
 
             if (_optionsConfig.Headers.Count > 0)
             {
-                var requestContext = new RequestExecutionContext(context, _emptyHandler, 204);
+                var requestContext = new RequestExecutionContext(httpContext, _emptyHandler, 204);
 
                 foreach (var optionsConfigHeader in _optionsConfig.Headers)
                 {
                     optionsConfigHeader.ApplyHeader(requestContext, headers);
                 }
             }
-
-            headers.TryAdd(_optionsConfig.AllowHeader, _methods);
 
             return Task.CompletedTask;
         }
 
         /// <inheritdoc />
-        public Task HandlePathOptionRequest(HttpContext context,
-            IEndPointMethodHandler getMethod,
-            IEndPointMethodHandler postMethod,
-            IReadOnlyList<IEndPointMethodHandler> others)
+        public Task HandlePathOptionRequest(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] methods)
         {
-            IEndPointMethodHandler defaultHandler = null;
-            StringBuilder response = new StringBuilder();
-
-            if (getMethod != null)
+            if (!_optionsConfig.Enabled)
             {
-                response.Append(getMethod.HttpMethod);
-
-                defaultHandler = getMethod;
+                return next(httpContext);
             }
 
-            if (postMethod != null)
+            var response = new StringBuilder ("OPTIONS");
+
+            foreach (var endPointMethodHandler in methods)
             {
-                if (response.Length > 0)
-                {
-                    response.Append(", ");
-                }
+                response.Append(", ");
 
-                response.Append(postMethod.HttpMethod);
-
-                defaultHandler ??= postMethod;
+                response.Append(endPointMethodHandler.HttpMethod);
             }
 
-            if (others != null)
-            {
-                foreach (var methodHandler in others)
-                {
-                    if (response.Length > 0)
-                    {
-                        response.Append(", ");
-                    }
+            var headers = httpContext.Response.Headers;
 
-                    response.Append(methodHandler.HttpMethod);
+            headers.TryAdd(_optionsConfig.AllowHeader, response.ToString());
 
-                    defaultHandler ??= methodHandler;
-                }
-            }
-
-            var headers = context.Response.Headers;
+            httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
 
             if (_optionsConfig.Headers.Count > 0)
             {
-                var requestContext = new RequestExecutionContext(context, defaultHandler, 204);
+                var requestContext = new RequestExecutionContext(httpContext, methods[0], 204);
 
                 foreach (var optionsConfigHeader in _optionsConfig.Headers)
                 {
                     optionsConfigHeader.ApplyHeader(requestContext, headers);
                 }
             }
-
-            headers.TryAdd(_optionsConfig.AllowHeader, response.ToString());
 
             return Task.CompletedTask;
         }

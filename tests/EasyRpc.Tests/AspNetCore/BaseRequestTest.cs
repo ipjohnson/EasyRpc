@@ -104,6 +104,11 @@ namespace EasyRpc.Tests.AspNetCore
                 return SendAsync(HttpMethod.Head, path, postValue);
             }
 
+            if (string.Equals(HttpMethod.Options.Method, httpMethod, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return SendAsync(HttpMethod.Options, path, postValue);
+            }
+
             throw new Exception("Unknown method type " + httpMethod);
         }
 

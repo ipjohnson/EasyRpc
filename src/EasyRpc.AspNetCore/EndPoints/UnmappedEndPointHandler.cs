@@ -18,9 +18,17 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// </summary>
         /// <param name="httpContext"></param>
         /// <param name="next"></param>
-        /// <param name="matchPathNotMethod"></param>
         /// <returns></returns>
-        Task Execute(HttpContext httpContext, RequestDelegate next, bool matchPathNotMethod = false);
+        Task HandleUnmatched(HttpContext httpContext, RequestDelegate next);
+
+        /// <summary>
+        /// Handle unmapped request that matches path but hot http method
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="next"></param>
+        /// <param name="handlers"></param>
+        /// <returns></returns>
+        Task HandleMatchedButNoMethod(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] handlers);
 
         /// <summary>
         /// Configure handler
@@ -49,12 +57,23 @@ namespace EasyRpc.AspNetCore.EndPoints
         }
 
         /// <inheritdoc />
-        public Task Execute(HttpContext httpContext, RequestDelegate next, bool matchPathNotMethod = false)
+        public Task HandleUnmatched(HttpContext httpContext, RequestDelegate next)
         {
             if (httpContext.Request.Method == HttpMethods.Options &&
-                httpContext.Request.Path == "*")
+                httpContext.Request.Path == "/*")
             {
                 return _optionsEndPointHandler.HandleServerOptionsRequest(httpContext, next);
+            }
+
+            return _documentationService.Execute(httpContext, next);
+        }
+
+        /// <inheritdoc />
+        public Task HandleMatchedButNoMethod(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] handlers)
+        {
+            if (httpContext.Request.Method == HttpMethods.Options)
+            {
+                return _optionsEndPointHandler.HandlePathOptionRequest(httpContext, next, handlers);
             }
 
             return _documentationService.Execute(httpContext, next);

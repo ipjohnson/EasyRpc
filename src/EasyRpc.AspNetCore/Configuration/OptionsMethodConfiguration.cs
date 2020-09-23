@@ -7,7 +7,7 @@ namespace EasyRpc.AspNetCore.Configuration
 {
     public class OptionsMethodConfiguration
     {
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         public string AllowHeader { get; set; } = "Allow";
 
