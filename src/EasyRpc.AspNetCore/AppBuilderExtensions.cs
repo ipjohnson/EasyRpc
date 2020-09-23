@@ -43,6 +43,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IContentSerializationService, ContentSerializationService>();
             serviceCollection.TryAddScoped<IResponseDelegateCreator, ResponseDelegateCreator>();
             serviceCollection.TryAddScoped<IUnmappedEndPointHandler, UnmappedEndPointHandler>();
+            serviceCollection.TryAddScoped<IOptionsEndPointHandler, OptionsEndPointHandler>();
             serviceCollection.TryAddScoped<IEndPointAuthorizationService, EndPointAuthorizationService>();
             serviceCollection.TryAddScoped<IParameterBinderDelegateBuilder, ParameterBinderDelegateBuilder>();
             serviceCollection.TryAddScoped<IDeserializationTypeCreator, DeserializationTypeCreator>();

@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// Expose method as GET 
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class GetMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

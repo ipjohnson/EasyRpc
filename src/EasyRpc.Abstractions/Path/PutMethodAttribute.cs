@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// PUT method
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class PutMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

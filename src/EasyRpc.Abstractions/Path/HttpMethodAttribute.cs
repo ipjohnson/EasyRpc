@@ -7,6 +7,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// Expose HTTP Method
     /// </summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class HttpMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

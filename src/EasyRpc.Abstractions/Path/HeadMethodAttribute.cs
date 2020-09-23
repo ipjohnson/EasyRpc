@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// HEAD method
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class HeadMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

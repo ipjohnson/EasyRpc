@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// OPTIONS Method
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class OptionsMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>

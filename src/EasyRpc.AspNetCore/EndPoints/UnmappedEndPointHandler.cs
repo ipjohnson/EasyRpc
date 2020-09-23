@@ -33,20 +33,30 @@ namespace EasyRpc.AspNetCore.EndPoints
     /// <inheritdoc />
     public class UnmappedEndPointHandler : IUnmappedEndPointHandler
     {
+        private readonly IOptionsEndPointHandler _optionsEndPointHandler;
         private readonly IDocumentationService _documentationService;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="documentationService"></param>
-        public UnmappedEndPointHandler(IDocumentationService documentationService)
+        /// <param name="optionsEndPointHandler"></param>
+        public UnmappedEndPointHandler(IDocumentationService documentationService, 
+            IOptionsEndPointHandler optionsEndPointHandler)
         {
             _documentationService = documentationService;
+            _optionsEndPointHandler = optionsEndPointHandler;
         }
 
         /// <inheritdoc />
         public Task Execute(HttpContext httpContext, RequestDelegate next, bool matchPathNotMethod = false)
         {
+            if (httpContext.Request.Method == HttpMethods.Options &&
+                httpContext.Request.Path == "*")
+            {
+                return _optionsEndPointHandler.HandleServerOptionsRequest(httpContext, next);
+            }
+
             return _documentationService.Execute(httpContext, next);
         }
 

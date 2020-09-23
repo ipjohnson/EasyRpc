@@ -31,7 +31,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             IMethodInvokerCreationService methodInvokerCreationService, 
             IErrorHandler errorHandler, 
             IRawContentWriter rawContentWriter,
-            IResponseDelegateCreator responseDelegateCreator)
+            IResponseDelegateCreator responseDelegateCreator, IOptionsEndPointHandler optionsEndPointHandler)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;
@@ -40,6 +40,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             ErrorHandler = errorHandler;
             RawContentWriter = rawContentWriter;
             ResponseDelegateCreator = responseDelegateCreator;
+            OptionsEndPointHandler = optionsEndPointHandler;
         }
 
         /// <summary>
@@ -76,6 +77,11 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// Response delegate creator
         /// </summary>
         public IResponseDelegateCreator ResponseDelegateCreator { get; }
+
+        /// <summary>
+        /// Options end point handler
+        /// </summary>
+        public IOptionsEndPointHandler OptionsEndPointHandler { get; }
 
         /// <summary>
         /// Configuration is complete
@@ -116,6 +122,11 @@ namespace EasyRpc.AspNetCore.EndPoints
             if (ResponseDelegateCreator is IApiConfigurationCompleteAware responseDelegateAware)
             {
                 responseDelegateAware.ApiConfigurationComplete(serviceScope);
+            }
+
+            if (OptionsEndPointHandler is IApiConfigurationCompleteAware optionsEndPointAware)
+            {
+                optionsEndPointAware.ApiConfigurationComplete(serviceScope);
             }
         }
     }

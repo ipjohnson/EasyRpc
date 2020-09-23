@@ -9,7 +9,7 @@ namespace EasyRpc.Abstractions.Path
     /// <summary>
     /// Expose method as POST
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class PostMethodAttribute : Attribute, IPathAttribute
     {
         /// <summary>
