@@ -8574,15 +8574,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
   nameWithType: IOptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler})
-  name: HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList<IEndPointMethodHandler>)
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler__
-  commentId: M:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler})
-  name.vb: HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList(Of IEndPointMethodHandler))
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, System.Collections.Generic.IReadOnlyList<EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler>)
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, System.Collections.Generic.IReadOnlyList(Of EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler))
-  nameWithType: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList<IEndPointMethodHandler>)
-  nameWithType.vb: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList(Of IEndPointMethodHandler))
+- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
 - uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest*
   name: HandlePathOptionRequest
   href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandlePathOptionRequest_
@@ -8653,19 +8653,35 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Configure
   nameWithType: IUnmappedEndPointHandler.Configure
-- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,System.Boolean)
-  name: Execute(HttpContext, RequestDelegate, Boolean)
-  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_Execute_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,System.Boolean)
-  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, System.Boolean)
-  nameWithType: IUnmappedEndPointHandler.Execute(HttpContext, RequestDelegate, Boolean)
-- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute*
-  name: Execute
-  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_Execute_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute
+- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_HandleMatchedButNoMethod_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: IUnmappedEndPointHandler.HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: IUnmappedEndPointHandler.HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod*
+  name: HandleMatchedButNoMethod
+  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_HandleMatchedButNoMethod_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.Execute
-  nameWithType: IUnmappedEndPointHandler.Execute
+  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleMatchedButNoMethod
+  nameWithType: IUnmappedEndPointHandler.HandleMatchedButNoMethod
+- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  name: HandleUnmatched(HttpContext, RequestDelegate)
+  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
+  nameWithType: IUnmappedEndPointHandler.HandleUnmatched(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched*
+  name: HandleUnmatched
+  href: api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_HandleUnmatched_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.HandleUnmatched
+  nameWithType: IUnmappedEndPointHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.EndPoints.MethodEndPointDelegate
   name: MethodEndPointDelegate
   href: api/EasyRpc.AspNetCore.EndPoints.MethodEndPointDelegate.html
@@ -9141,15 +9157,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
   nameWithType: OptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler})
-  name: HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList<IEndPointMethodHandler>)
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler__
-  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler})
-  name.vb: HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList(Of IEndPointMethodHandler))
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, System.Collections.Generic.IReadOnlyList<EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler>)
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, System.Collections.Generic.IReadOnlyList(Of EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler))
-  nameWithType: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList<IEndPointMethodHandler>)
-  nameWithType.vb: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, IEndPointMethodHandler, IEndPointMethodHandler, IReadOnlyList(Of IEndPointMethodHandler))
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
 - uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest*
   name: HandlePathOptionRequest
   href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandlePathOptionRequest_
@@ -9205,19 +9221,35 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Configure
   nameWithType: UnmappedEndPointHandler.Configure
-- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,System.Boolean)
-  name: Execute(HttpContext, RequestDelegate, Boolean)
-  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_Execute_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,System.Boolean)
-  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, System.Boolean)
-  nameWithType: UnmappedEndPointHandler.Execute(HttpContext, RequestDelegate, Boolean)
-- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute*
-  name: Execute
-  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_Execute_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_HandleMatchedButNoMethod_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: UnmappedEndPointHandler.HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: UnmappedEndPointHandler.HandleMatchedButNoMethod(HttpContext, RequestDelegate, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod*
+  name: HandleMatchedButNoMethod
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_HandleMatchedButNoMethod_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Execute
-  nameWithType: UnmappedEndPointHandler.Execute
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleMatchedButNoMethod
+  nameWithType: UnmappedEndPointHandler.HandleMatchedButNoMethod
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  name: HandleUnmatched(HttpContext, RequestDelegate)
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
+  nameWithType: UnmappedEndPointHandler.HandleUnmatched(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched*
+  name: HandleUnmatched
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_HandleUnmatched_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.HandleUnmatched
+  nameWithType: UnmappedEndPointHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.Errors
   name: EasyRpc.AspNetCore.Errors
   href: api/EasyRpc.AspNetCore.Errors.html

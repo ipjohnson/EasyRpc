@@ -1554,7 +1554,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler.html",
-          "hash": "z7czimmcgJt1bWAutOkzgA=="
+          "hash": "SSIeSeRzwZf0HVwz0FHTyQ=="
         }
       },
       "is_incremental": false,
@@ -1614,7 +1614,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html",
-          "hash": "L3kkUcvwCpOJbLzOSl73pQ=="
+          "hash": "+mDl9ZYtx5IQ41pewqstmg=="
         }
       },
       "is_incremental": false,
@@ -1638,7 +1638,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler.html",
-          "hash": "0mpyOswXZ2AmD/EUlKzG7w=="
+          "hash": "3B0c6faZs6Zu6ICGpJohYg=="
         }
       },
       "is_incremental": false,
@@ -1758,7 +1758,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html",
-          "hash": "QNOMwloi9IXJu523rvy1iQ=="
+          "hash": "ya1luiJH1xaEcylb109hYQ=="
         }
       },
       "is_incremental": false,
@@ -1770,7 +1770,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html",
-          "hash": "H2fY81C+GUf1Sbl83wzqmQ=="
+          "hash": "aTtInlPgmb6RHQYTw5X5Hw=="
         }
       },
       "is_incremental": false,
