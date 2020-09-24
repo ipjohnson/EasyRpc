@@ -55,12 +55,17 @@ namespace EasyRpc.AspNetCore
         Type ReturnType { get; }
 
         /// <summary>
+        /// Has response body
+        /// </summary>
+        bool HasResponseBody { get; }
+
+        /// <summary>
         /// 
         /// </summary>
         Type WrappedType { get; }
 
         /// <summary>
-        /// Successful http status code (200 GET, 201 POST)
+        /// Successful http status code (200)
         /// </summary>
         int SuccessStatusCode { get; }
 

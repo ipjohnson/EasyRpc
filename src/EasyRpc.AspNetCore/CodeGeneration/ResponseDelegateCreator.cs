@@ -49,6 +49,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         protected readonly MethodEndPointDelegate DefaultContentSerializer;
 
         /// <summary>
+        /// Response delegate when there is no body
+        /// </summary>
+        protected readonly MethodEndPointDelegate NoBodyResponse;
+
+        /// <summary>
         /// Configuration manager
         /// </summary>
         protected readonly IConfigurationManager ConfigurationManager;
@@ -87,6 +92,11 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             {
                 if ((configuration.ResponseHeaders?.Count ?? 0) == 0)
                 {
+                    if (!configuration.HasResponseBody)
+                    {
+
+                    }
+
                     if (!configuration.SupportsCompression.GetValueOrDefault(false))
                     {
                         return DefaultContentSerializer;

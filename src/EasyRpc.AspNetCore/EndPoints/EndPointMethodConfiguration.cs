@@ -154,5 +154,10 @@ namespace EasyRpc.AspNetCore.EndPoints
 
         /// <inheritdoc />
         public Type WrappedType { get; set; }
+
+        /// <summary>
+        /// Does this method offer a response body
+        /// </summary>
+        public bool HasResponseBody { get; set; } = true;
     }
 }

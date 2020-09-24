@@ -176,6 +176,11 @@ namespace EasyRpc.AspNetCore.Configuration
                 if (pathAttribute != null)
                 {
                     configuration.SuccessStatusCode = pathAttribute.SuccessCodeValue;
+                    configuration.HasResponseBody = pathAttribute.HasResponseBody;
+                }
+                else
+                {
+                    configuration.HasResponseBody = true;
                 }
 
                 var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, methodAttributes, routeInformation);
@@ -462,10 +467,10 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 if (string.IsNullOrEmpty(fullPathString))
                 {
-                    fullPathString = GeneratePath(name, methodInfo, parameters, pathAttribute.HasBody);
+                    fullPathString = GeneratePath(name, methodInfo, parameters, pathAttribute.HasRequestBody);
                 }
 
-                return (fullPathString, pathAttribute.Method, pathAttribute.HasBody);
+                return (fullPathString, pathAttribute.Method, pathAttribute.HasRequestBody);
             }
             
             if (currentApi.DefaultMethod == ExposeDefaultMethod.PostOnly ||

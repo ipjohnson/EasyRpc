@@ -12,35 +12,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
-    /// <summary>
-    /// interface for handling unrequested 
-    /// </summary>
-    public interface IOptionsEndPointHandler
-    {
-        /// <summary>
-        /// Is the options end point enabled
-        /// </summary>
-        bool Enabled { get; }
-
-        /// <summary>
-        /// Handle server option request (i.e. OPTIONS *)
-        /// </summary>
-        /// <param name="httpContext">http context for the request</param>
-        /// <param name="requestDelegate"></param>
-        /// <returns></returns>
-        Task HandleServerOptionsRequest(HttpContext httpContext, RequestDelegate requestDelegate);
-
-        /// <summary>
-        /// Handle path based options request
-        /// </summary>
-        /// <param name="httpContext"></param>
-        /// <param name="getMethod"></param>
-        /// <param name="postMethod"></param>
-        /// <returns></returns>
-        Task HandlePathOptionRequest(HttpContext httpContext, RequestDelegate getMethod, IEndPointMethodHandler[] postMethod);
-    }
-
-    public class OptionsEndPointHandler : IOptionsEndPointHandler, IApiConfigurationCompleteAware
+    public class OptionsEndPointHandler : IDefaultHttpMethodHandler, IApiConfigurationCompleteAware
     {
         private readonly IConfigurationManager _configurationManager;
         private OptionsMethodConfiguration _optionsConfig;
@@ -51,18 +23,20 @@ namespace EasyRpc.AspNetCore.EndPoints
         {
             _configurationManager = configurationManager;
         }
-
-        /// <inheritdoc />
-        public bool Enabled => _optionsConfig.Enabled;
-
-        /// <inheritdoc />
-        public Task HandleServerOptionsRequest(HttpContext httpContext, RequestDelegate next)
+        
+        public bool CanHandle(HttpContext context, bool isMatched, IEndPointMethodHandler[] handlers)
         {
             if (!_optionsConfig.Enabled)
             {
-                return next(httpContext);
+                return false;
             }
 
+            return context.Request.Method == HttpMethods.Options;
+        }
+
+        /// <inheritdoc />
+        public Task HandleUnmatched(HttpContext httpContext, RequestDelegate next)
+        {
             httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
 
             var headers = httpContext.Response.Headers;
@@ -83,13 +57,8 @@ namespace EasyRpc.AspNetCore.EndPoints
         }
 
         /// <inheritdoc />
-        public Task HandlePathOptionRequest(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] methods)
+        public Task HandleMatchedPath(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] methods)
         {
-            if (!_optionsConfig.Enabled)
-            {
-                return next(httpContext);
-            }
-
             var response = new StringBuilder ("OPTIONS");
 
             foreach (var endPointMethodHandler in methods)

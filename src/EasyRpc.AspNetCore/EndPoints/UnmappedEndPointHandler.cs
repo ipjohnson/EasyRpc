@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration;
@@ -39,30 +40,32 @@ namespace EasyRpc.AspNetCore.EndPoints
     }
 
     /// <inheritdoc />
-    public class UnmappedEndPointHandler : IUnmappedEndPointHandler
+    public class UnmappedEndPointHandler : IUnmappedEndPointHandler, IApiConfigurationCompleteAware
     {
-        private readonly IOptionsEndPointHandler _optionsEndPointHandler;
+        private readonly IDefaultHttpMethodHandler[] _methodHandlers;
         private readonly IDocumentationService _documentationService;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="documentationService"></param>
-        /// <param name="optionsEndPointHandler"></param>
+        /// <param name="methodHandlers"></param>
         public UnmappedEndPointHandler(IDocumentationService documentationService, 
-            IOptionsEndPointHandler optionsEndPointHandler)
+            IEnumerable<IDefaultHttpMethodHandler> methodHandlers)
         {
             _documentationService = documentationService;
-            _optionsEndPointHandler = optionsEndPointHandler;
+            _methodHandlers = methodHandlers.ToArray();
         }
 
         /// <inheritdoc />
         public Task HandleUnmatched(HttpContext httpContext, RequestDelegate next)
         {
-            if (httpContext.Request.Method == HttpMethods.Options &&
-                httpContext.Request.Path == "/*")
+            foreach (var handler in _methodHandlers)
             {
-                return _optionsEndPointHandler.HandleServerOptionsRequest(httpContext, next);
+                if (handler.CanHandle(httpContext, false, null))
+                {
+                    return handler.HandleUnmatched(httpContext, next);
+                }
             }
 
             return _documentationService.Execute(httpContext, next);
@@ -71,9 +74,12 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <inheritdoc />
         public Task HandleMatchedButNoMethod(HttpContext httpContext, RequestDelegate next, IEndPointMethodHandler[] handlers)
         {
-            if (httpContext.Request.Method == HttpMethods.Options)
+            foreach (var handler in _methodHandlers)
             {
-                return _optionsEndPointHandler.HandlePathOptionRequest(httpContext, next, handlers);
+                if (handler.CanHandle(httpContext, true, handlers))
+                {
+                    return handler.HandleMatchedPath(httpContext, next, handlers);
+                }
             }
 
             return _documentationService.Execute(httpContext, next);
@@ -83,6 +89,18 @@ namespace EasyRpc.AspNetCore.EndPoints
         public void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
             _documentationService.Configure(apiInformation, endPointMethodHandlersList);
+        }
+
+        /// <inheritdoc />
+        public void ApiConfigurationComplete(IServiceProvider serviceScope)
+        {
+            foreach (var handler in _methodHandlers)
+            {
+                if (handler is IApiConfigurationCompleteAware aware)
+                {
+                    aware.ApiConfigurationComplete(serviceScope);
+                }
+            }
         }
     }
 }

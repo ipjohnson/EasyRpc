@@ -109,7 +109,7 @@ namespace EasyRpc.DynamicClient.Newtonsoft
         }
 
         /// <inheritdoc />
-        public async Task<T> Deserialize<T>(byte[] bytes)
+        public Task<T> Deserialize<T>(byte[] bytes)
         {
             using (var memoryStream = new MemoryStream(bytes))
             {
@@ -117,7 +117,7 @@ namespace EasyRpc.DynamicClient.Newtonsoft
                 {
                     using (var jsonRead = new JsonTextReader(textStream))
                     {
-                        return JsonSerializer.Deserialize<T>(jsonRead);
+                        return Task.FromResult(JsonSerializer.Deserialize<T>(jsonRead));
                     }
                 }
             }

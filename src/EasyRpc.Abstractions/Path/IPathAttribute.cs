@@ -27,6 +27,11 @@ namespace EasyRpc.Abstractions.Path
         /// <summary>
         /// Does the request have a body
         /// </summary>
-        bool HasBody { get; }
+        bool HasRequestBody { get; }
+
+        /// <summary>
+        /// Does the response have a body
+        /// </summary>
+        bool HasResponseBody { get; }
     }
 }

@@ -25,13 +25,15 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="errorHandler"></param>
         /// <param name="rawContentWriter"></param>
         /// <param name="responseDelegateCreator"></param>
+        /// <param name="unmappedEndPointHandler"></param>
         public BaseEndPointServices(IEndPointAuthorizationService authorizationService,
             IContentSerializationService serializationService, 
             IParameterBinderDelegateBuilder parameterBinderDelegateBuilder, 
             IMethodInvokerCreationService methodInvokerCreationService, 
             IErrorHandler errorHandler, 
             IRawContentWriter rawContentWriter,
-            IResponseDelegateCreator responseDelegateCreator, IOptionsEndPointHandler optionsEndPointHandler)
+            IResponseDelegateCreator responseDelegateCreator, 
+            IUnmappedEndPointHandler unmappedEndPointHandler)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;
@@ -40,7 +42,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             ErrorHandler = errorHandler;
             RawContentWriter = rawContentWriter;
             ResponseDelegateCreator = responseDelegateCreator;
-            OptionsEndPointHandler = optionsEndPointHandler;
+            UnmappedEndPointHandler = unmappedEndPointHandler;
         }
 
         /// <summary>
@@ -79,10 +81,10 @@ namespace EasyRpc.AspNetCore.EndPoints
         public IResponseDelegateCreator ResponseDelegateCreator { get; }
 
         /// <summary>
-        /// Options end point handler
+        /// Unmapped end point handler
         /// </summary>
-        public IOptionsEndPointHandler OptionsEndPointHandler { get; }
-
+        public IUnmappedEndPointHandler UnmappedEndPointHandler { get; }
+        
         /// <summary>
         /// Configuration is complete
         /// </summary>
@@ -124,9 +126,9 @@ namespace EasyRpc.AspNetCore.EndPoints
                 responseDelegateAware.ApiConfigurationComplete(serviceScope);
             }
 
-            if (OptionsEndPointHandler is IApiConfigurationCompleteAware optionsEndPointAware)
+            if (UnmappedEndPointHandler is IApiConfigurationCompleteAware unmappedEndAware)
             {
-                optionsEndPointAware.ApiConfigurationComplete(serviceScope);
+                unmappedEndAware.ApiConfigurationComplete(serviceScope);
             }
         }
     }

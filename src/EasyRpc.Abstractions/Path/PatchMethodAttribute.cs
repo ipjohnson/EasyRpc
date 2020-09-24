@@ -36,6 +36,9 @@ namespace EasyRpc.Abstractions.Path
         int IPathAttribute.SuccessCodeValue => (int)Success;
 
         /// <inheritdoc />
-        public bool HasBody => true;
+        public bool HasRequestBody => true;
+
+        /// <inheritdoc />
+        public bool HasResponseBody { get; set; } = true;
     }
 }

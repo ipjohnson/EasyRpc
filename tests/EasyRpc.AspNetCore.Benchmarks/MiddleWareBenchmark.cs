@@ -205,7 +205,7 @@ namespace EasyRpc.AspNetCore.Benchmarks
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRpcServices(false);
+            services.AddRpcServices(config => config.RegisterJsonSerializer = false);
             services.TryAddScoped<IContentSerializer, Utf8JsonContentSerializer>();
             services.AddTransient<Services.StringService>();
             

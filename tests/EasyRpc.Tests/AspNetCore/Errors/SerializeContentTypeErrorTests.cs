@@ -65,7 +65,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
         protected override void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Shared);
-            services.AddRpcServices(false);
+            services.AddRpcServices(s => s.RegisterJsonSerializer = false);
             services.AddScoped<IContentSerializer, XmlContentSerializer>();
         }
 

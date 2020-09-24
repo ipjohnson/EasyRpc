@@ -22,6 +22,32 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
+    /// Default rpc services
+    /// </summary>
+    public class DefaultRpcServices
+    {
+        /// <summary>
+        /// Register default System.Text.Json serializer
+        /// </summary>
+        public bool RegisterJsonSerializer { get; set; } = true;
+
+        /// <summary>
+        /// Register XmlSerializer 
+        /// </summary>
+        public bool RegisterXmlSerializer { get; set; } = false;
+
+        /// <summary>
+        /// Register default OPTIONS handler
+        /// </summary>
+        public bool RegisterDefaultOptionsHandler { get; set; } = true;
+
+        /// <summary>
+        /// Register default HEAD handler
+        /// </summary>
+        public bool RegisterDefaultHeadHandler { get; set; } = true;
+    }
+
+    /// <summary>
     /// C# extension methods for app building
     /// </summary>
     public static class AppBuilderExtensions
@@ -30,11 +56,14 @@ namespace EasyRpc.AspNetCore
         /// Add rpc services to service collection
         /// </summary>
         /// <param name="serviceCollection"></param>
-        /// <param name="registerJsonSerializer"></param>
-        /// <param name="registerXmlSerializer"></param>
+        /// <param name="configurationAction"></param>
         /// <returns></returns>
-        public static IServiceCollection AddRpcServices(this IServiceCollection serviceCollection, bool registerJsonSerializer = true, bool registerXmlSerializer = false)
+        public static IServiceCollection AddRpcServices(this IServiceCollection serviceCollection, Action<DefaultRpcServices> configurationAction = null)
         {
+            var config = new DefaultRpcServices();
+
+            configurationAction?.Invoke(config);
+
             serviceCollection.TryAddTransient<IMiddlewareHandler, MiddlewareHandler>();
 
             serviceCollection.TryAddScoped<ICustomActionResultExecutor, CustomActionResultExecutor>();
@@ -43,7 +72,6 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IContentSerializationService, ContentSerializationService>();
             serviceCollection.TryAddScoped<IResponseDelegateCreator, ResponseDelegateCreator>();
             serviceCollection.TryAddScoped<IUnmappedEndPointHandler, UnmappedEndPointHandler>();
-            serviceCollection.TryAddScoped<IOptionsEndPointHandler, OptionsEndPointHandler>();
             serviceCollection.TryAddScoped<IEndPointAuthorizationService, EndPointAuthorizationService>();
             serviceCollection.TryAddScoped<IParameterBinderDelegateBuilder, ParameterBinderDelegateBuilder>();
             serviceCollection.TryAddScoped<IDeserializationTypeCreator, DeserializationTypeCreator>();
@@ -81,15 +109,25 @@ namespace EasyRpc.AspNetCore
 
             serviceCollection.TryAddScoped<BaseEndPointServices>();
 
-            if (registerXmlSerializer)
+            if (config.RegisterXmlSerializer)
             {
-                serviceCollection.TryAddScoped<IContentSerializer, XmlContentSerializer>();
-                serviceCollection.TryAddScoped<ISerializationTypeAttributor, XmlContentSerializerTypeAttributor>();
+                serviceCollection.AddScoped<IContentSerializer, XmlContentSerializer>();
+                serviceCollection.AddScoped<ISerializationTypeAttributor, XmlContentSerializerTypeAttributor>();
             }
 
-            if (registerJsonSerializer)
+            if (config.RegisterJsonSerializer)
             {
-                serviceCollection.TryAddScoped<IContentSerializer, JsonContentSerializer>();
+                serviceCollection.AddScoped<IContentSerializer, JsonContentSerializer>();
+            }
+
+            if(config.RegisterDefaultHeadHandler)
+            {
+                serviceCollection.AddScoped<IDefaultHttpMethodHandler, HeadEndPointHandler>();
+            }
+
+            if (config.RegisterDefaultOptionsHandler)
+            {
+                serviceCollection.AddScoped<IDefaultHttpMethodHandler, OptionsEndPointHandler>();
             }
             
             return serviceCollection;
