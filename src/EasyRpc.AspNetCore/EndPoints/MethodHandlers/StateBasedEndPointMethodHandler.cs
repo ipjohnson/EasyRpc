@@ -15,7 +15,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         private readonly RequestState _startingState;
 
         /// <inheritdoc />
-        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
+        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, EndPointServices services)
             : base(configuration, services)
         {
             _startingState = RequestState.ExecuteTask;

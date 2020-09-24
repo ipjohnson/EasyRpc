@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.Features;
 
 namespace EasyRpc.AspNetCore
 {
@@ -18,11 +19,24 @@ namespace EasyRpc.AspNetCore
         /// <typeparam name="T"></typeparam>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static  ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IApiConfiguration configuration)
+        public static ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IApiConfiguration configuration)
         {
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
             return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes.Where(TypesThat.AreInTheSameNamespaceAs<T>()));
         }
+
+        /// <summary>
+        /// Adds IRequestExecutionContextFeature to HttpContext.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IApiConfiguration UseRequestExecutionContextFeature(this IApiConfiguration configuration)
+        {
+            configuration.ApplyFilter<RequestExecutionContextFeatureFilter>(shared: true);
+
+            return configuration;
+        }
+
     }
 }

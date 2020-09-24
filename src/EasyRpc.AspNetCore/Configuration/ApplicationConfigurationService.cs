@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         private readonly List<IEndPointMethodHandler> _handlers = new List<IEndPointMethodHandler>();
         private readonly List<object> _configurationObjects = new List<object>();
-        private readonly BaseEndPointServices _services;
+        private readonly EndPointServices _services;
         private readonly IConfigurationManager _configurationManager;
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private readonly ICompressionSelectorService _compressionSelectorService;
@@ -38,7 +38,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private string _basePath;
         private bool _supportCompression;
 
-        public ApplicationConfigurationService(BaseEndPointServices services, 
+        public ApplicationConfigurationService(EndPointServices services, 
             IConfigurationManager configurationManager, 
             IAuthorizationImplementationProvider authorizationImplementationProvider, 
             IWrappedResultTypeCreator wrappedResultTypeCreator, 

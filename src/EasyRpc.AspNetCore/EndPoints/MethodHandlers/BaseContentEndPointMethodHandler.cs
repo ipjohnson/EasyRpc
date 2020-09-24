@@ -16,10 +16,6 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
     /// </summary>
     public abstract class BaseContentEndPointMethodHandler<TReturn> : IEndPointMethodHandler
     {
-        /// <summary>
-        /// Services
-        /// </summary>
-        protected readonly BaseEndPointServices Services;
 
         /// <summary>
         /// Method for binding parameters
@@ -41,11 +37,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="services"></param>
-        protected BaseContentEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
+        protected BaseContentEndPointMethodHandler(EndPointMethodConfiguration configuration, EndPointServices services)
         {
             Configuration = configuration;
             Services = services;
         }
+
+        /// <inheritdoc />
+        public EndPointServices Services { get; }
 
         /// <inheritdoc />
         public IRpcRouteInformation RouteInformation => Configuration.RouteInformation;

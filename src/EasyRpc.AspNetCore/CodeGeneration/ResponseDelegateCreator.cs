@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Configuration;
@@ -48,10 +49,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// </summary>
         protected readonly MethodEndPointDelegate DefaultContentSerializer;
 
+        private MethodEndPointDelegate _noBodyResponseDelegate;
+
         /// <summary>
         /// Response delegate when there is no body
         /// </summary>
-        protected readonly MethodEndPointDelegate NoBodyResponse;
+        protected MethodEndPointDelegate NoBodyResponse => _noBodyResponseDelegate ??= NobodyResponseHandler;
 
         /// <summary>
         /// Configuration manager
@@ -94,7 +97,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 {
                     if (!configuration.HasResponseBody)
                     {
-
+                        return NoBodyResponse;
                     }
 
                     if (!configuration.SupportsCompression.GetValueOrDefault(false))
@@ -174,6 +177,18 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             _contentEncoding = ConfigurationManager.GetConfiguration<ContentEncodingConfiguration>();
+        }
+
+
+        protected virtual Task NobodyResponseHandler(RequestExecutionContext context)
+        {
+            if (context.Result == null || 
+                (context.Result is bool boolResult && boolResult))
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

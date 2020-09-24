@@ -96,7 +96,7 @@ namespace EasyRpc.AspNetCore.EndPoints
                         context => new object(), 
                         new MethodInvokeInformation{ MethodInvokeDelegate = context => null}, 
                         typeof(object)), 
-                    serviceScope.GetService(typeof(BaseEndPointServices)) as BaseEndPointServices);
+                    serviceScope.GetService(typeof(EndPointServices)) as EndPointServices);
 
             _optionsConfig = _configurationManager.GetConfiguration<OptionsMethodConfiguration>();
 

@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="services"></param>
-        public NoParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
+        public NoParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, EndPointServices services) : base(configuration, services)
         {
 
         }

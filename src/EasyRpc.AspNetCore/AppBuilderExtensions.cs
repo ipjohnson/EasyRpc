@@ -107,7 +107,7 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IWrappedResultTypeCreator, WrappedResultTypeCreator>();
             serviceCollection.TryAddScoped<IXmlDocProvider,XmlDocProvider>();
 
-            serviceCollection.TryAddScoped<BaseEndPointServices>();
+            serviceCollection.TryAddScoped<EndPointServices>();
 
             if (config.RegisterXmlSerializer)
             {
