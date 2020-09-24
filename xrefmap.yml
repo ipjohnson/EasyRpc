@@ -202,19 +202,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: DeleteMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: DeleteMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody
-  nameWithType: DeleteMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody
+  nameWithType: DeleteMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasBody
-  nameWithType: DeleteMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasRequestBody
+  nameWithType: DeleteMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody
+  nameWithType: DeleteMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.DeleteMethodAttribute.HasResponseBody
+  nameWithType: DeleteMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.DeleteMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.DeleteMethodAttribute.html#EasyRpc_Abstractions_Path_DeleteMethodAttribute_Method
@@ -320,19 +333,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: GetMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: GetMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody
-  nameWithType: GetMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody
+  nameWithType: GetMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasBody
-  nameWithType: GetMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasRequestBody
+  nameWithType: GetMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody
+  nameWithType: GetMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.GetMethodAttribute.HasResponseBody
+  nameWithType: GetMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.GetMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.GetMethodAttribute.html#EasyRpc_Abstractions_Path_GetMethodAttribute_Method
@@ -408,19 +434,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: HeadMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: HeadMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody
-  nameWithType: HeadMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody
+  nameWithType: HeadMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasBody
-  nameWithType: HeadMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasRequestBody
+  nameWithType: HeadMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody
+  nameWithType: HeadMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.HeadMethodAttribute.HasResponseBody
+  nameWithType: HeadMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.HeadMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.HeadMethodAttribute.html#EasyRpc_Abstractions_Path_HeadMethodAttribute_Method
@@ -479,19 +518,32 @@ references:
   isSpec: "True"
   fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HttpMethodAttribute
   nameWithType: HttpMethodAttribute.HttpMethodAttribute
-- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody
-  nameWithType: HttpMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
+  nameWithType: HttpMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasBody
-  nameWithType: HttpMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
+  nameWithType: HttpMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody
+  nameWithType: HttpMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody
+  nameWithType: HttpMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_Method
@@ -562,19 +614,32 @@ references:
   commentId: T:EasyRpc.Abstractions.Path.IPathAttribute
   fullName: EasyRpc.Abstractions.Path.IPathAttribute
   nameWithType: IPathAttribute
-- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.IPathAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasBody
-  nameWithType: IPathAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.IPathAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody
+  nameWithType: IPathAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasBody
-  nameWithType: IPathAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasRequestBody
+  nameWithType: IPathAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody
+  nameWithType: IPathAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.IPathAttribute.HasResponseBody
+  nameWithType: IPathAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.IPathAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.IPathAttribute.html#EasyRpc_Abstractions_Path_IPathAttribute_Method
@@ -650,19 +715,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: OptionsMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: OptionsMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody
-  nameWithType: OptionsMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody
+  nameWithType: OptionsMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasBody
-  nameWithType: OptionsMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasRequestBody
+  nameWithType: OptionsMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody
+  nameWithType: OptionsMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.OptionsMethodAttribute.HasResponseBody
+  nameWithType: OptionsMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.OptionsMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.OptionsMethodAttribute.html#EasyRpc_Abstractions_Path_OptionsMethodAttribute_Method
@@ -738,19 +816,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: PatchMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: PatchMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody
-  nameWithType: PatchMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody
+  nameWithType: PatchMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasBody
-  nameWithType: PatchMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasRequestBody
+  nameWithType: PatchMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody
+  nameWithType: PatchMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.PatchMethodAttribute.HasResponseBody
+  nameWithType: PatchMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.PatchMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.PatchMethodAttribute.html#EasyRpc_Abstractions_Path_PatchMethodAttribute_Method
@@ -826,19 +917,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: PostMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: PostMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody
-  nameWithType: PostMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody
+  nameWithType: PostMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasBody
-  nameWithType: PostMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasRequestBody
+  nameWithType: PostMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody
+  nameWithType: PostMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.PostMethodAttribute.HasResponseBody
+  nameWithType: PostMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.PostMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.PostMethodAttribute.html#EasyRpc_Abstractions_Path_PostMethodAttribute_Method
@@ -914,19 +1018,32 @@ references:
   fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
   nameWithType: PutMethodAttribute.IPathAttribute.SuccessCodeValue
   nameWithType.vb: PutMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasBody
-  commentId: P:EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody
-  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody
-  nameWithType: PutMethodAttribute.HasBody
-- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody*
-  name: HasBody
-  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasBody_
-  commentId: Overload:EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody
+- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasRequestBody
+  commentId: P:EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody
+  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody
+  nameWithType: PutMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasRequestBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasBody
-  nameWithType: PutMethodAttribute.HasBody
+  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasRequestBody
+  nameWithType: PutMethodAttribute.HasRequestBody
+- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasResponseBody
+  commentId: P:EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody
+  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody
+  nameWithType: PutMethodAttribute.HasResponseBody
+- uid: EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_HasResponseBody_
+  commentId: Overload:EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Path.PutMethodAttribute.HasResponseBody
+  nameWithType: PutMethodAttribute.HasResponseBody
 - uid: EasyRpc.Abstractions.Path.PutMethodAttribute.Method
   name: Method
   href: api/EasyRpc.Abstractions.Path.PutMethodAttribute.html#EasyRpc_Abstractions_Path_PutMethodAttribute_Method
@@ -1152,12 +1269,15 @@ references:
   commentId: T:EasyRpc.AspNetCore.AppBuilderExtensions
   fullName: EasyRpc.AspNetCore.AppBuilderExtensions
   nameWithType: AppBuilderExtensions
-- uid: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Boolean,System.Boolean)
-  name: AddRpcServices(IServiceCollection, Boolean, Boolean)
-  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_AddRpcServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Boolean_System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Boolean,System.Boolean)
-  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Boolean, System.Boolean)
-  nameWithType: AppBuilderExtensions.AddRpcServices(IServiceCollection, Boolean, Boolean)
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{EasyRpc.AspNetCore.DefaultRpcServices})
+  name: AddRpcServices(IServiceCollection, Action<DefaultRpcServices>)
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_AddRpcServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_EasyRpc_AspNetCore_DefaultRpcServices__
+  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{EasyRpc.AspNetCore.DefaultRpcServices})
+  name.vb: AddRpcServices(IServiceCollection, Action(Of DefaultRpcServices))
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<EasyRpc.AspNetCore.DefaultRpcServices>)
+  fullName.vb: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of EasyRpc.AspNetCore.DefaultRpcServices))
+  nameWithType: AppBuilderExtensions.AddRpcServices(IServiceCollection, Action<DefaultRpcServices>)
+  nameWithType.vb: AppBuilderExtensions.AddRpcServices(IServiceCollection, Action(Of DefaultRpcServices))
 - uid: EasyRpc.AspNetCore.AppBuilderExtensions.AddRpcServices*
   name: AddRpcServices
   href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_AddRpcServices_
@@ -2341,6 +2461,12 @@ references:
   commentId: F:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.DefaultContentSerializer
   fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.DefaultContentSerializer
   nameWithType: ResponseDelegateCreator.DefaultContentSerializer
+- uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.NoBodyResponse
+  name: NoBodyResponse
+  href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_NoBodyResponse
+  commentId: F:EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.NoBodyResponse
+  fullName: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.NoBodyResponse
+  nameWithType: ResponseDelegateCreator.NoBodyResponse
 - uid: EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.Noop
   name: Noop
   href: api/EasyRpc.AspNetCore.CodeGeneration.ResponseDelegateCreator.html#EasyRpc_AspNetCore_CodeGeneration_ResponseDelegateCreator_Noop
@@ -6207,6 +6333,64 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Data.ObjectPool(Of T).IPoolObjectInstance.Instance
   nameWithType: ObjectPool<T>.IPoolObjectInstance.Instance
   nameWithType.vb: ObjectPool(Of T).IPoolObjectInstance.Instance
+- uid: EasyRpc.AspNetCore.DefaultRpcServices
+  name: DefaultRpcServices
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html
+  commentId: T:EasyRpc.AspNetCore.DefaultRpcServices
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices
+  nameWithType: DefaultRpcServices
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler
+  name: RegisterDefaultHeadHandler
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterDefaultHeadHandler
+  commentId: P:EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler
+  nameWithType: DefaultRpcServices.RegisterDefaultHeadHandler
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler*
+  name: RegisterDefaultHeadHandler
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterDefaultHeadHandler_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultHeadHandler
+  nameWithType: DefaultRpcServices.RegisterDefaultHeadHandler
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler
+  name: RegisterDefaultOptionsHandler
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterDefaultOptionsHandler
+  commentId: P:EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler
+  nameWithType: DefaultRpcServices.RegisterDefaultOptionsHandler
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler*
+  name: RegisterDefaultOptionsHandler
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterDefaultOptionsHandler_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterDefaultOptionsHandler
+  nameWithType: DefaultRpcServices.RegisterDefaultOptionsHandler
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer
+  name: RegisterJsonSerializer
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterJsonSerializer
+  commentId: P:EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer
+  nameWithType: DefaultRpcServices.RegisterJsonSerializer
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer*
+  name: RegisterJsonSerializer
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterJsonSerializer_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterJsonSerializer
+  nameWithType: DefaultRpcServices.RegisterJsonSerializer
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer
+  name: RegisterXmlSerializer
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterXmlSerializer
+  commentId: P:EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer
+  nameWithType: DefaultRpcServices.RegisterXmlSerializer
+- uid: EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer*
+  name: RegisterXmlSerializer
+  href: api/EasyRpc.AspNetCore.DefaultRpcServices.html#EasyRpc_AspNetCore_DefaultRpcServices_RegisterXmlSerializer_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultRpcServices.RegisterXmlSerializer
+  nameWithType: DefaultRpcServices.RegisterXmlSerializer
 - uid: EasyRpc.AspNetCore.Documentation
   name: EasyRpc.AspNetCore.Documentation
   href: api/EasyRpc.AspNetCore.Documentation.html
@@ -7875,12 +8059,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices
   fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices
   nameWithType: BaseEndPointServices
-- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  name: BaseEndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IOptionsEndPointHandler)
-  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices__ctor_EasyRpc_AspNetCore_Authorization_IEndPointAuthorizationService_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_ModelBinding_IParameterBinderDelegateBuilder_EasyRpc_AspNetCore_CodeGeneration_IMethodInvokerCreationService_EasyRpc_AspNetCore_Errors_IErrorHandler_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_CodeGeneration_IResponseDelegateCreator_EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.BaseEndPointServices(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService, EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder, EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService, EasyRpc.AspNetCore.Errors.IErrorHandler, EasyRpc.AspNetCore.Serializers.IRawContentWriter, EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator, EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  nameWithType: BaseEndPointServices.BaseEndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IOptionsEndPointHandler)
+- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
+  name: BaseEndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler)
+  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices__ctor_EasyRpc_AspNetCore_Authorization_IEndPointAuthorizationService_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_ModelBinding_IParameterBinderDelegateBuilder_EasyRpc_AspNetCore_CodeGeneration_IMethodInvokerCreationService_EasyRpc_AspNetCore_Errors_IErrorHandler_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_CodeGeneration_IResponseDelegateCreator_EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
+  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.BaseEndPointServices(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService, EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder, EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService, EasyRpc.AspNetCore.Errors.IErrorHandler, EasyRpc.AspNetCore.Serializers.IRawContentWriter, EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator, EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
+  nameWithType: BaseEndPointServices.BaseEndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler)
 - uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.#ctor*
   name: BaseEndPointServices
   href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices__ctor_
@@ -7940,19 +8124,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.MethodInvokerCreationService
   nameWithType: BaseEndPointServices.MethodInvokerCreationService
-- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler
-  name: OptionsEndPointHandler
-  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_OptionsEndPointHandler
-  commentId: P:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler
-  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler
-  nameWithType: BaseEndPointServices.OptionsEndPointHandler
-- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler*
-  name: OptionsEndPointHandler
-  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_OptionsEndPointHandler_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.OptionsEndPointHandler
-  nameWithType: BaseEndPointServices.OptionsEndPointHandler
 - uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.ParameterBinderDelegateBuilder
   name: ParameterBinderDelegateBuilder
   href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_ParameterBinderDelegateBuilder
@@ -8005,6 +8176,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.SerializationService
   nameWithType: BaseEndPointServices.SerializationService
+- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler
+  name: UnmappedEndPointHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_UnmappedEndPointHandler
+  commentId: P:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler
+  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler
+  nameWithType: BaseEndPointServices.UnmappedEndPointHandler
+- uid: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler*
+  name: UnmappedEndPointHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.html#EasyRpc_AspNetCore_EndPoints_BaseEndPointServices_UnmappedEndPointHandler_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.BaseEndPointServices.UnmappedEndPointHandler
+  nameWithType: BaseEndPointServices.UnmappedEndPointHandler
 - uid: EasyRpc.AspNetCore.EndPoints.CustomActionResultExecutor
   name: CustomActionResultExecutor
   href: api/EasyRpc.AspNetCore.EndPoints.CustomActionResultExecutor.html
@@ -8175,6 +8359,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.Filters
   nameWithType: EndPointMethodConfiguration.Filters
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_HasResponseBody
+  commentId: P:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody
+  nameWithType: EndPointMethodConfiguration.HasResponseBody
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_HasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.HasResponseBody
+  nameWithType: EndPointMethodConfiguration.HasResponseBody
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.InvokeInformation
   name: InvokeInformation
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_InvokeInformation
@@ -8305,6 +8502,57 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.WrappedType
   nameWithType: EndPointMethodConfiguration.WrappedType
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
+  name: HeadEndPointHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html
+  commentId: T:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
+  nameWithType: HeadEndPointHandler
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_CanHandle_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: HeadEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  nameWithType.vb: HeadEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle*
+  name: CanHandle
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_CanHandle_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle
+  nameWithType: HeadEndPointHandler.CanHandle
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleMatchedPath_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: HeadEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: HeadEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath*
+  name: HandleMatchedPath
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleMatchedPath_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath
+  nameWithType: HeadEndPointHandler.HandleMatchedPath
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  name: HandleUnmatched(HttpContext, RequestDelegate)
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
+  nameWithType: HeadEndPointHandler.HandleUnmatched(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched*
+  name: HandleUnmatched
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleUnmatched_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched
+  nameWithType: HeadEndPointHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler
   name: HttpMethodEndPointHandler
   href: api/EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler.html
@@ -8385,6 +8633,57 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.ICustomActionResultExecutor.Execute
   nameWithType: ICustomActionResultExecutor.Execute
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler
+  name: IDefaultHttpMethodHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html
+  commentId: T:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler
+  nameWithType: IDefaultHttpMethodHandler
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_CanHandle_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: IDefaultHttpMethodHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  nameWithType.vb: IDefaultHttpMethodHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle*
+  name: CanHandle
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_CanHandle_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.CanHandle
+  nameWithType: IDefaultHttpMethodHandler.CanHandle
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_HandleMatchedPath_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: IDefaultHttpMethodHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: IDefaultHttpMethodHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath*
+  name: HandleMatchedPath
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_HandleMatchedPath_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleMatchedPath
+  nameWithType: IDefaultHttpMethodHandler.HandleMatchedPath
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  name: HandleUnmatched(HttpContext, RequestDelegate)
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
+  nameWithType: IDefaultHttpMethodHandler.HandleUnmatched(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched*
+  name: HandleUnmatched
+  href: api/EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.html#EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler_HandleUnmatched_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler.HandleUnmatched
+  nameWithType: IDefaultHttpMethodHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.EndPoints.IEndPointHandler
   name: IEndPointHandler
   href: api/EasyRpc.AspNetCore.EndPoints.IEndPointHandler.html
@@ -8555,54 +8854,6 @@ references:
   fullName.vb: EasyRpc.AspNetCore.EndPoints.InvokeMethodDelegate(Of T)
   nameWithType: InvokeMethodDelegate<T>
   nameWithType.vb: InvokeMethodDelegate(Of T)
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler
-  name: IOptionsEndPointHandler
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html
-  commentId: T:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler
-  nameWithType: IOptionsEndPointHandler
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
-  name: Enabled
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_Enabled
-  commentId: P:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
-  nameWithType: IOptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled*
-  name: Enabled
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_Enabled_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.Enabled
-  nameWithType: IOptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
-  commentId: M:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name.vb: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
-  nameWithType: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  nameWithType.vb: IOptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest*
-  name: HandlePathOptionRequest
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandlePathOptionRequest_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandlePathOptionRequest
-  nameWithType: IOptionsEndPointHandler.HandlePathOptionRequest
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  name: HandleServerOptionsRequest(HttpContext, RequestDelegate)
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandleServerOptionsRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
-  nameWithType: IOptionsEndPointHandler.HandleServerOptionsRequest(HttpContext, RequestDelegate)
-- uid: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest*
-  name: HandleServerOptionsRequest
-  href: api/EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_HandleServerOptionsRequest_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler.HandleServerOptionsRequest
-  nameWithType: IOptionsEndPointHandler.HandleServerOptionsRequest
 - uid: EasyRpc.AspNetCore.EndPoints.IRequestParametersImplementations`1
   name: IRequestParametersImplementations<T>
   href: api/EasyRpc.AspNetCore.EndPoints.IRequestParametersImplementations-1.html
@@ -9144,60 +9395,66 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.ApiConfigurationComplete
   nameWithType: OptionsEndPointHandler.ApiConfigurationComplete
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
-  name: Enabled
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_Enabled
-  commentId: P:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
-  nameWithType: OptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled*
-  name: Enabled
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_Enabled_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_CanHandle_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: OptionsEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
+  nameWithType.vb: OptionsEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle*
+  name: CanHandle
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_CanHandle_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.Enabled
-  nameWithType: OptionsEndPointHandler.Enabled
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandlePathOptionRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
-  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name.vb: HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
-  nameWithType: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  nameWithType.vb: OptionsEndPointHandler.HandlePathOptionRequest(HttpContext, RequestDelegate, IEndPointMethodHandler())
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest*
-  name: HandlePathOptionRequest
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandlePathOptionRequest_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.CanHandle
+  nameWithType: OptionsEndPointHandler.CanHandle
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleMatchedPath_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  name.vb: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
+  nameWithType: OptionsEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
+  nameWithType.vb: OptionsEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath*
+  name: HandleMatchedPath
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleMatchedPath_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandlePathOptionRequest
-  nameWithType: OptionsEndPointHandler.HandlePathOptionRequest
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  name: HandleServerOptionsRequest(HttpContext, RequestDelegate)
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleServerOptionsRequest_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
-  nameWithType: OptionsEndPointHandler.HandleServerOptionsRequest(HttpContext, RequestDelegate)
-- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest*
-  name: HandleServerOptionsRequest
-  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleServerOptionsRequest_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleMatchedPath
+  nameWithType: OptionsEndPointHandler.HandleMatchedPath
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  name: HandleUnmatched(HttpContext, RequestDelegate)
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
+  nameWithType: OptionsEndPointHandler.HandleUnmatched(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched*
+  name: HandleUnmatched
+  href: api/EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_OptionsEndPointHandler_HandleUnmatched_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleServerOptionsRequest
-  nameWithType: OptionsEndPointHandler.HandleServerOptionsRequest
+  fullName: EasyRpc.AspNetCore.EndPoints.OptionsEndPointHandler.HandleUnmatched
+  nameWithType: OptionsEndPointHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler
   name: UnmappedEndPointHandler
   href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html
   commentId: T:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler
   fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler
   nameWithType: UnmappedEndPointHandler
-- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.#ctor(EasyRpc.AspNetCore.Documentation.IDocumentationService,EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  name: UnmappedEndPointHandler(IDocumentationService, IOptionsEndPointHandler)
-  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler__ctor_EasyRpc_AspNetCore_Documentation_IDocumentationService_EasyRpc_AspNetCore_EndPoints_IOptionsEndPointHandler_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.#ctor(EasyRpc.AspNetCore.Documentation.IDocumentationService,EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.UnmappedEndPointHandler(EasyRpc.AspNetCore.Documentation.IDocumentationService, EasyRpc.AspNetCore.EndPoints.IOptionsEndPointHandler)
-  nameWithType: UnmappedEndPointHandler.UnmappedEndPointHandler(IDocumentationService, IOptionsEndPointHandler)
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.#ctor(EasyRpc.AspNetCore.Documentation.IDocumentationService,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler})
+  name: UnmappedEndPointHandler(IDocumentationService, IEnumerable<IDefaultHttpMethodHandler>)
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler__ctor_EasyRpc_AspNetCore_Documentation_IDocumentationService_System_Collections_Generic_IEnumerable_EasyRpc_AspNetCore_EndPoints_IDefaultHttpMethodHandler__
+  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.#ctor(EasyRpc.AspNetCore.Documentation.IDocumentationService,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler})
+  name.vb: UnmappedEndPointHandler(IDocumentationService, IEnumerable(Of IDefaultHttpMethodHandler))
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.UnmappedEndPointHandler(EasyRpc.AspNetCore.Documentation.IDocumentationService, System.Collections.Generic.IEnumerable<EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler>)
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.UnmappedEndPointHandler(EasyRpc.AspNetCore.Documentation.IDocumentationService, System.Collections.Generic.IEnumerable(Of EasyRpc.AspNetCore.EndPoints.IDefaultHttpMethodHandler))
+  nameWithType: UnmappedEndPointHandler.UnmappedEndPointHandler(IDocumentationService, IEnumerable<IDefaultHttpMethodHandler>)
+  nameWithType.vb: UnmappedEndPointHandler.UnmappedEndPointHandler(IDocumentationService, IEnumerable(Of IDefaultHttpMethodHandler))
 - uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.#ctor*
   name: UnmappedEndPointHandler
   href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler__ctor_
@@ -9205,6 +9462,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.UnmappedEndPointHandler
   nameWithType: UnmappedEndPointHandler.UnmappedEndPointHandler
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete(System.IServiceProvider)
+  name: ApiConfigurationComplete(IServiceProvider)
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_ApiConfigurationComplete_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete(System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete(System.IServiceProvider)
+  nameWithType: UnmappedEndPointHandler.ApiConfigurationComplete(IServiceProvider)
+- uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete*
+  name: ApiConfigurationComplete
+  href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_ApiConfigurationComplete_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.ApiConfigurationComplete
+  nameWithType: UnmappedEndPointHandler.ApiConfigurationComplete
 - uid: EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.Configure(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.Collections.Generic.IReadOnlyList{EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler})
   name: Configure(IInternalApiConfiguration, IReadOnlyList<IEndPointMethodHandler>)
   href: api/EasyRpc.AspNetCore.EndPoints.UnmappedEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_UnmappedEndPointHandler_Configure_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_Collections_Generic_IReadOnlyList_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler__
@@ -10327,6 +10597,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.Filters
   nameWithType: IEndPointMethodConfigurationReadOnly.Filters
+- uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_HasResponseBody
+  commentId: P:EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody
+  fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody
+  nameWithType: IEndPointMethodConfigurationReadOnly.HasResponseBody
+- uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_HasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.HasResponseBody
+  nameWithType: IEndPointMethodConfigurationReadOnly.HasResponseBody
 - uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
   name: InvokeInformation
   href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_InvokeInformation
@@ -14687,177 +14970,6 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Utilities.GenericFilterGroup(Of T).UseOr
   nameWithType: GenericFilterGroup<T>.UseOr
   nameWithType.vb: GenericFilterGroup(Of T).UseOr
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream
-  name: NullWriteStream
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html
-  commentId: T:EasyRpc.AspNetCore.Utilities.NullWriteStream
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream
-  nameWithType: NullWriteStream
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead
-  name: CanRead
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanRead
-  commentId: P:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead
-  nameWithType: NullWriteStream.CanRead
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead*
-  name: CanRead
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanRead_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanRead
-  nameWithType: NullWriteStream.CanRead
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek
-  name: CanSeek
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanSeek
-  commentId: P:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek
-  nameWithType: NullWriteStream.CanSeek
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek*
-  name: CanSeek
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanSeek_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanSeek
-  nameWithType: NullWriteStream.CanSeek
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite
-  name: CanWrite
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanWrite
-  commentId: P:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite
-  nameWithType: NullWriteStream.CanWrite
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite*
-  name: CanWrite
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CanWrite_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CanWrite
-  nameWithType: NullWriteStream.CanWrite
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)
-  name: CopyToAsync(Stream, Int32, CancellationToken)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync(System.IO.Stream, System.Int32, System.Threading.CancellationToken)
-  nameWithType: NullWriteStream.CopyToAsync(Stream, Int32, CancellationToken)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync*
-  name: CopyToAsync
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_CopyToAsync_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.CopyToAsync
-  nameWithType: NullWriteStream.CopyToAsync
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush
-  name: Flush()
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Flush
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush()
-  nameWithType: NullWriteStream.Flush()
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush*
-  name: Flush
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Flush_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Flush
-  nameWithType: NullWriteStream.Flush
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Length
-  name: Length
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Length
-  commentId: P:EasyRpc.AspNetCore.Utilities.NullWriteStream.Length
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Length
-  nameWithType: NullWriteStream.Length
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Length*
-  name: Length
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Length_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Length
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Length
-  nameWithType: NullWriteStream.Length
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Position
-  name: Position
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Position
-  commentId: P:EasyRpc.AspNetCore.Utilities.NullWriteStream.Position
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Position
-  nameWithType: NullWriteStream.Position
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Position*
-  name: Position
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Position_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Position
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Position
-  nameWithType: NullWriteStream.Position
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Read(System.Byte[],System.Int32,System.Int32)
-  name: Read(Byte[], Int32, Int32)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Read_System_Byte___System_Int32_System_Int32_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.Read(System.Byte[],System.Int32,System.Int32)
-  name.vb: Read(Byte(), Int32, Int32)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Read(System.Byte[], System.Int32, System.Int32)
-  fullName.vb: EasyRpc.AspNetCore.Utilities.NullWriteStream.Read(System.Byte(), System.Int32, System.Int32)
-  nameWithType: NullWriteStream.Read(Byte[], Int32, Int32)
-  nameWithType.vb: NullWriteStream.Read(Byte(), Int32, Int32)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Read*
-  name: Read
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Read_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Read
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Read
-  nameWithType: NullWriteStream.Read
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek(System.Int64,System.IO.SeekOrigin)
-  name: Seek(Int64, SeekOrigin)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Seek_System_Int64_System_IO_SeekOrigin_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek(System.Int64,System.IO.SeekOrigin)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek(System.Int64, System.IO.SeekOrigin)
-  nameWithType: NullWriteStream.Seek(Int64, SeekOrigin)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek*
-  name: Seek
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Seek_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Seek
-  nameWithType: NullWriteStream.Seek
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength(System.Int64)
-  name: SetLength(Int64)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_SetLength_System_Int64_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength(System.Int64)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength(System.Int64)
-  nameWithType: NullWriteStream.SetLength(Int64)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength*
-  name: SetLength
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_SetLength_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.SetLength
-  nameWithType: NullWriteStream.SetLength
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Write(System.Byte[],System.Int32,System.Int32)
-  name: Write(Byte[], Int32, Int32)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Write_System_Byte___System_Int32_System_Int32_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.Write(System.Byte[],System.Int32,System.Int32)
-  name.vb: Write(Byte(), Int32, Int32)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Write(System.Byte[], System.Int32, System.Int32)
-  fullName.vb: EasyRpc.AspNetCore.Utilities.NullWriteStream.Write(System.Byte(), System.Int32, System.Int32)
-  nameWithType: NullWriteStream.Write(Byte[], Int32, Int32)
-  nameWithType.vb: NullWriteStream.Write(Byte(), Int32, Int32)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.Write*
-  name: Write
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_Write_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.Write
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.Write
-  nameWithType: NullWriteStream.Write
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
-  name: WriteAsync(Byte[], Int32, Int32, CancellationToken)
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_
-  commentId: M:EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
-  name.vb: WriteAsync(Byte(), Int32, Int32, CancellationToken)
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync(System.Byte[], System.Int32, System.Int32, System.Threading.CancellationToken)
-  fullName.vb: EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync(System.Byte(), System.Int32, System.Int32, System.Threading.CancellationToken)
-  nameWithType: NullWriteStream.WriteAsync(Byte[], Int32, Int32, CancellationToken)
-  nameWithType.vb: NullWriteStream.WriteAsync(Byte(), Int32, Int32, CancellationToken)
-- uid: EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync*
-  name: WriteAsync
-  href: api/EasyRpc.AspNetCore.Utilities.NullWriteStream.html#EasyRpc_AspNetCore_Utilities_NullWriteStream_WriteAsync_
-  commentId: Overload:EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Utilities.NullWriteStream.WriteAsync
-  nameWithType: NullWriteStream.WriteAsync
 - uid: EasyRpc.AspNetCore.Utilities.TypesThatConfiguration
   name: TypesThatConfiguration
   href: api/EasyRpc.AspNetCore.Utilities.TypesThatConfiguration.html
