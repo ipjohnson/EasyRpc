@@ -185,7 +185,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     ParamType = expressionParameter.Type,
                     Name = expressionParameter.Name,
-                    Position = ++i
+                    Position = i++
                 };
 
                 SetParameterSource(routeInformation, expressionParameter.Type, rpcParameter);
@@ -204,7 +204,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     var rpcParam = new RpcParameterInfo
                     {
-                        Position = ++i,
+                        Position = i++,
                         Name = routeToken.Name,
                         HasDefaultValue = false,
                         DefaultValue = null,
@@ -263,20 +263,20 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.HttpCancellationToken;
             }
-            else if (routeInformation.HasBody)
-            {
-                rpcParameter.ParameterSource = EndPointMethodParameterSource.PostParameter;
-            }
             else
             {
-                var token = routeInformation.Tokens.FirstOrDefault(t =>
-                    string.Compare(t.Name, rpcParameter.Name, StringComparison.CurrentCultureIgnoreCase) == 0);
+                var matchingToken = 
+                    routeInformation.Tokens.FirstOrDefault(token => string.Compare(token.Name, rpcParameter.Name, StringComparison.CurrentCultureIgnoreCase) == 0);
 
-                if (token != null)
+                if (matchingToken != null)
                 {
                     rpcParameter.ParameterSource = EndPointMethodParameterSource.PathParameter;
 
-                    token.ParameterInfo = rpcParameter;
+                    matchingToken.ParameterInfo = rpcParameter;
+                }
+                else if (routeInformation.HasBody)
+                {
+                    rpcParameter.ParameterSource = EndPointMethodParameterSource.PostParameter;
                 }
                 else
                 {

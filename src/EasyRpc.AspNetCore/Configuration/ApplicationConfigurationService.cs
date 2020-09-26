@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using EasyRpc.Abstractions.Headers;
 using EasyRpc.Abstractions.Path;
@@ -38,10 +39,10 @@ namespace EasyRpc.AspNetCore.Configuration
         private string _basePath;
         private bool _supportCompression;
 
-        public ApplicationConfigurationService(EndPointServices services, 
-            IConfigurationManager configurationManager, 
-            IAuthorizationImplementationProvider authorizationImplementationProvider, 
-            IWrappedResultTypeCreator wrappedResultTypeCreator, 
+        public ApplicationConfigurationService(EndPointServices services,
+            IConfigurationManager configurationManager,
+            IAuthorizationImplementationProvider authorizationImplementationProvider,
+            IWrappedResultTypeCreator wrappedResultTypeCreator,
             ICompressionSelectorService compressionSelectorService)
         {
             _services = services;
@@ -142,7 +143,7 @@ namespace EasyRpc.AspNetCore.Configuration
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
             {
-                if (configuration.Parameters.Count == 0 && 
+                if (configuration.Parameters.Count == 0 &&
                     (configuration.Filters == null || configuration.Filters.Count == 0))
                 {
                     closedType = typeof(NoParamsEndPointMethodHandler<>).MakeGenericType(returnType);
@@ -155,7 +156,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             return (IEndPointMethodHandler)Activator.CreateInstance(closedType, configuration, _services);
         }
-        
+
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
             Type type, List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage,
@@ -165,7 +166,7 @@ namespace EasyRpc.AspNetCore.Configuration
             string methodVerb;
             bool methodHasBody;
 
-            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo,classAttributes, methodAttributes, pathAttribute);
+            (methodPath, methodVerb, methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, classAttributes, methodAttributes, pathAttribute);
 
             var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
 
@@ -194,7 +195,7 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.RawContentType = rawAttribute.ContentType;
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
                 }
-                else if(string.IsNullOrEmpty(configuration.RawContentType))
+                else if (string.IsNullOrEmpty(configuration.RawContentType))
                 {
                     var returnType = methodInfo.ReturnType;
 
@@ -214,7 +215,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 var headerAttributes = classAttributes.Where(a => a is ResponseHeaderAttribute).ToList();
                 headerAttributes.AddRange(methodAttributes.Where(a => a is ResponseHeaderAttribute));
 
-                if (headerAttributes.Count > 0 || 
+                if (headerAttributes.Count > 0 ||
                     currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
                 {
                     var headers = new List<IResponseHeader>();
@@ -242,9 +243,9 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         private IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> GetFilterList(
-                ICurrentApiInformation currentApi, 
+                ICurrentApiInformation currentApi,
                 EndPointMethodConfiguration configuration,
-                List<Attribute> classAttributes, 
+                List<Attribute> classAttributes,
                 List<Attribute> methodAttributes)
         {
             var returnList =
@@ -526,8 +527,8 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 var basePath = (IBasePathAttribute)classAttributes.FirstOrDefault(a => a is IBasePathAttribute);
 
-                name = basePath != null ? 
-                    basePath.BasePath : 
+                name = basePath != null ?
+                    basePath.BasePath :
                     _exposeConfigurations.RouteNameGenerator(type);
             }
 
@@ -546,7 +547,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 return (fullPathString, pathAttribute.Method, pathAttribute.HasRequestBody);
             }
-            
+
             if (currentApi.DefaultMethod == ExposeDefaultMethod.PostOnly ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGet && parameters.Length > 0) ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGetInt && parameters.Any(p => p.ParameterType != typeof(int))))
@@ -562,7 +563,7 @@ namespace EasyRpc.AspNetCore.Configuration
             return (fullPathString, HttpMethods.Get, false);
         }
 
-        private string GeneratePath(string name,MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
+        private string GeneratePath(string name, MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
         {
             name = name.Trim('/');
 
@@ -572,11 +573,33 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 foreach (var parameterInfo in parameters)
                 {
+                    if (ShouldExcludeParameterFromPath(parameterInfo))
+                    {
+                        continue;
+                    }
+
                     methodPath += "/{" + parameterInfo.Name + "}";
                 }
             }
 
             return methodPath;
+        }
+
+        private bool ShouldExcludeParameterFromPath(ParameterInfo parameterInfo)
+        {
+            var parameterType = parameterInfo.ParameterType;
+
+            if (_exposeConfigurations.ResolveFromContainer(parameterType) ||
+                parameterType == typeof(RequestExecutionContext) ||
+                parameterType == typeof(HttpContext) ||
+                parameterType == typeof(HttpResponse) ||
+                parameterType == typeof(HttpRequest) ||
+                parameterType == typeof(CancellationToken))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers()
@@ -613,7 +636,7 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 return;
             }
-            
+
             var authorizationList = new List<IEndPointMethodAuthorization>();
 
             foreach (var authorizationFunc in currentApi.Authorizations)
@@ -641,7 +664,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             ProcessAuthorizeAttributes(classAttributes, authorizationList);
             ProcessAuthorizeAttributes(methodAttributes, authorizationList);
-            
+
             if (authorizationList.Count > 0)
             {
                 configuration.Authorizations = authorizationList;
@@ -669,7 +692,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
             }
         }
-        
+
         private void ApplyFilters(ICurrentApiInformation currentApi,
             IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly,
                 IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> filters,
