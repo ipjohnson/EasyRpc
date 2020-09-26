@@ -33,10 +33,10 @@ namespace EasyRpc.AspNetCore
         /// <returns></returns>
         public static IApiConfiguration UseRequestExecutionContextFeature(this IApiConfiguration configuration)
         {
-            configuration.ApplyFilter<RequestExecutionContextFeatureFilter>(shared: true);
+            configuration.Configure.Action<RequestExecutionContextFeatureConfiguration>(featureConfiguration =>
+                featureConfiguration.FeatureEnabled = true);
 
             return configuration;
         }
-
     }
 }

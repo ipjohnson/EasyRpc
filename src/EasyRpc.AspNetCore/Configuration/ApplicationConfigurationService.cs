@@ -332,10 +332,12 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private void CalculateRouteTokens(RpcRouteInformation rpcRouteInformation)
         {
+            var routeTemplate = rpcRouteInformation.RouteTemplate;
+
             var rpcTokens = new List<RpcRouteToken>();
             rpcRouteInformation.Tokens = rpcTokens;
 
-            var tokenStartBracket = rpcRouteInformation.RouteTemplate.IndexOf('{');
+            var tokenStartBracket = routeTemplate.IndexOf('{');
 
             if (tokenStartBracket == -1)
             {
@@ -343,34 +345,61 @@ namespace EasyRpc.AspNetCore.Configuration
                 return;
             }
 
-            rpcRouteInformation.RouteBasePath = rpcRouteInformation.RouteTemplate.Substring(0, tokenStartBracket);
+            rpcRouteInformation.RouteBasePath = routeTemplate.Substring(0, tokenStartBracket);
 
             while (tokenStartBracket > 0)
             {
-                var tokenEnd = rpcRouteInformation.RouteTemplate.IndexOf('}', tokenStartBracket);
+                var tokenEndBracket = routeTemplate.IndexOf('}', tokenStartBracket);
 
-                var colonIndex = rpcRouteInformation.RouteTemplate.IndexOf(':', tokenStartBracket, tokenEnd - tokenStartBracket);
+                var colonIndex = routeTemplate.IndexOf(':', tokenStartBracket, tokenEndBracket - tokenStartBracket);
+
+                var tokenEnd = tokenEndBracket;
+
+                var token = new RpcRouteToken();
 
                 if (colonIndex > 0)
                 {
                     tokenEnd = colonIndex;
+
+                    var tokenTypeString = routeTemplate.Substring(colonIndex + 1,
+                        tokenEndBracket - (colonIndex + 1));
+
+                    token.ParseType = GetParseType(tokenTypeString);
                 }
 
                 var tokenName =
-                    rpcRouteInformation.RouteTemplate.Substring(tokenStartBracket + 1,
+                    routeTemplate.Substring(tokenStartBracket + 1,
                          tokenEnd - (tokenStartBracket + 1));
 
-                var token = new RpcRouteToken
-                {
-                    Name = tokenName
-                };
+                token.Name = tokenName;
 
                 rpcTokens.Add(token);
 
-                tokenStartBracket = rpcRouteInformation.RouteTemplate.IndexOf('{', tokenEnd);
+                tokenStartBracket = routeTemplate.IndexOf('{', tokenEnd);
             }
         }
-        
+
+        private RpcRouteTokenParseType GetParseType(string tokenTypeString)
+        {
+            switch (tokenTypeString.ToLowerInvariant())
+            {
+                case "int":
+                case "integer":
+                    return RpcRouteTokenParseType.Integer;
+                case "double":
+                    return RpcRouteTokenParseType.Double;
+                case "decimal":
+                    return RpcRouteTokenParseType.Decimal;
+                case "guid":
+                    return RpcRouteTokenParseType.GUID;
+                case "datetime":
+                    return RpcRouteTokenParseType.DateTime;
+
+                default:
+                    return RpcRouteTokenParseType.String;
+            }
+        }
+
         private Func<RequestExecutionContext, object> GenerateActivation(ICurrentApiInformation currentApi, Type type, List<Attribute> classAttributes, string name, MethodInfo methodInfo, List<Attribute> attributes)
         {
             var serviceActivationMethod = currentApi.ServiceActivationMethod;
@@ -406,6 +435,7 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             var parameterList = new List<RpcParameterInfo>();
             var bodyParams = 0;
+            var lastPosition = 0;
 
             foreach (var parameterInfo in methodInfo.GetParameters())
             {
@@ -418,6 +448,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     ParamType = parameterInfo.ParameterType
                 };
 
+                lastPosition = parameterInfo.Position;
+
                 SetParameterSource(routeInformation, parameterInfo.ParameterType, rpcParam);
 
                 if (rpcParam.ParameterSource == EndPointMethodParameterSource.PostParameter)
@@ -426,7 +458,25 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 parameterList.Add(rpcParam);
+            }
 
+            foreach (var routeToken in routeInformation.Tokens)
+            {
+                if (routeToken.ParameterInfo == null)
+                {
+                    var rpcParam = new RpcParameterInfo
+                    {
+                        Position = ++lastPosition,
+                        Name = routeToken.Name,
+                        HasDefaultValue = false,
+                        DefaultValue = null,
+                        ParamType = GetParameterTypeFromTokenType(routeToken.ParseType),
+                        ParameterSource = EndPointMethodParameterSource.PathParameter,
+                        IsInvokeParameter = false
+                    };
+
+                    parameterList.Add(rpcParam);
+                }
             }
 
             if (bodyParams == 1 &&
@@ -442,6 +492,30 @@ namespace EasyRpc.AspNetCore.Configuration
             }
 
             return parameterList;
+        }
+
+        private Type GetParameterTypeFromTokenType(RpcRouteTokenParseType routeTokenParseType)
+        {
+            switch (routeTokenParseType)
+            {
+                case RpcRouteTokenParseType.Integer:
+                    return typeof(int);
+
+                case RpcRouteTokenParseType.Double:
+                    return typeof(double);
+
+                case RpcRouteTokenParseType.Decimal:
+                    return typeof(decimal);
+
+                case RpcRouteTokenParseType.DateTime:
+                    return typeof(DateTime);
+
+                case RpcRouteTokenParseType.GUID:
+                    return typeof(Guid);
+
+                default:
+                    return typeof(string);
+            }
         }
 
         private (string, string, bool) GenerateMethodPath(ICurrentApiInformation currentApi, Type type, string name,

@@ -42,14 +42,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 Parameters = EmptyParameters.Instance
             };
 
-            if (InvokeMethodDelegate == null)
+            if (ActivationFunc == null)
             {
                 SetupMethod();
             }
 
             try
             {
-                requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+                requestContext.ServiceInstance = ActivationFunc(requestContext);
             }
             catch (Exception e)
             {

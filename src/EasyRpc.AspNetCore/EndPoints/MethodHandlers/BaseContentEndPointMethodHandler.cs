@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.Errors;
+using EasyRpc.AspNetCore.Features;
 using EasyRpc.AspNetCore.Filters;
 using EasyRpc.AspNetCore.Routing;
 using EasyRpc.AspNetCore.Serializers;
@@ -33,6 +34,11 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         protected MethodEndPointDelegate ResponseDelegate;
 
         /// <summary>
+        /// instance activation function
+        /// </summary>
+        protected Func<RequestExecutionContext, object> ActivationFunc;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="configuration"></param>
@@ -41,6 +47,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         {
             Configuration = configuration;
             Services = services;
+            HttpMethod = configuration.RouteInformation.Method;
         }
 
         /// <inheritdoc />
@@ -53,7 +60,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         public virtual IEndPointMethodConfigurationReadOnly Configuration { get; }
 
         /// <inheritdoc />
-        public virtual string HttpMethod => RouteInformation.Method;
+        public string HttpMethod {get; }
 
         /// <inheritdoc />
         public abstract Task HandleRequest(HttpContext context);
@@ -65,8 +72,10 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         {
             lock (this)
             {
-                if (BindParametersDelegate == null)
+                if (ActivationFunc == null)
                 {
+                    AssignActivationFunc();
+
                     BindParametersDelegate =
                         Services.ParameterBinderDelegateBuilder.CreateParameterBindingMethod(Configuration, out var parametersType);
 
@@ -85,5 +94,27 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 }
             }
         }
+
+       private void AssignActivationFunc()
+       {
+           var requestExecutionContextFeature = Services.ConfigurationManager
+               .GetConfiguration<RequestExecutionContextFeatureConfiguration>().FeatureEnabled;
+
+           if (requestExecutionContextFeature)
+           {
+               var activationFunc = Configuration.ActivationFunc;
+
+                ActivationFunc = context =>
+               {
+                   context.HttpContext.Features.Set<IRequestExecutionContextFeature>(new RequestExecutionContextFeature(context));
+
+                   return activationFunc(context);
+               };
+           }
+           else
+           {
+               ActivationFunc = Configuration.ActivationFunc;
+           }
+       }
     }
 }

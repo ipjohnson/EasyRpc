@@ -4,8 +4,8 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Features
 {
-    public interface IRequestExecutionContextFeature
+    public class RequestExecutionContextFeatureConfiguration
     {
-        RequestExecutionContext Context { get; }
+        public bool FeatureEnabled { get; set; } = false;
     }
 }

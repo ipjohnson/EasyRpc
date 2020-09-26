@@ -25,6 +25,17 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
             Assert.Equal(123.456m, value);
         }
 
+
+        [Fact]
+        public async Task ModelBinding_AspNetRouting_PostDecimal()
+        {
+            var response = await Post("/TestPath/123.456", new {});
+
+            var value = await Deserialize<decimal>(response);
+
+            Assert.Equal(123.456m, value);
+        }
+
         #endregion
 
         #region Registration
@@ -45,6 +56,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
         {
             api.Configure.UseAspNetRouting();
             api.GetMethod("/TestPath/{decimalParam}", (decimal decimalParam) => decimalParam);
+            api.PostMethod("/TestPath/{decimalParam}", (decimal decimalParam) => decimalParam);
         }
 
         #endregion

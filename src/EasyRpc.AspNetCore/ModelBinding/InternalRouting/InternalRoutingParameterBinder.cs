@@ -34,6 +34,11 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             {
                 parameterValue = ParseDecimal(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
             }
+            else if (parameter.ParamType == typeof(Guid))
+            {
+                parameterValue = ParseGuid(context, configuration, parameter, parameterContext, ref currentIndex,
+                    pathSpan);
+            }
             else
             {
                 HandleUnknownParameterType(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
@@ -41,6 +46,23 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             }
 
             parameterContext[parameter.Position] = parameterValue;
+        }
+
+        private object ParseGuid(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)
+        {
+            var guidString = ParseString(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
+
+            if (Guid.TryParse(guidString, out var decimalValue))
+            {
+                return decimalValue;
+            }
+
+            if (parameter.HasDefaultValue)
+            {
+                return parameter.DefaultValue;
+            }
+
+            return HandleParsingError(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
         }
 
         protected virtual object ParseDecimal(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)

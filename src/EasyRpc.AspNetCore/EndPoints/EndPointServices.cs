@@ -30,7 +30,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             IErrorHandler errorHandler, 
             IRawContentWriter rawContentWriter,
             IResponseDelegateCreator responseDelegateCreator, 
-            IUnmappedEndPointHandler unmappedEndPointHandler)
+            IUnmappedEndPointHandler unmappedEndPointHandler, IConfigurationManager configurationManager)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;
@@ -40,6 +40,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             RawContentWriter = rawContentWriter;
             ResponseDelegateCreator = responseDelegateCreator;
             UnmappedEndPointHandler = unmappedEndPointHandler;
+            ConfigurationManager = configurationManager;
         }
 
         /// <summary>
@@ -81,6 +82,11 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// Unmapped end point handler
         /// </summary>
         public IUnmappedEndPointHandler UnmappedEndPointHandler { get; }
+
+        /// <summary>
+        /// Configuration Manager
+        /// </summary>
+        public IConfigurationManager ConfigurationManager { get; }
         
         /// <summary>
         /// Configuration is complete

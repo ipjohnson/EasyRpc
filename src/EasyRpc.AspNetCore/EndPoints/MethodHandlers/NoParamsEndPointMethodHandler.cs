@@ -31,14 +31,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 CanCompress = Configuration.SupportsCompression.GetValueOrDefault(false)
             };
 
-            if (InvokeMethodDelegate == null)
+            if (ActivationFunc == null)
             {
                 SetupMethod();
             }
 
             try
             {
-                requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+                requestContext.ServiceInstance = ActivationFunc(requestContext);
             
                 var executionTask = InvokeMethodDelegate(requestContext);
                 

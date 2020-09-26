@@ -185,10 +185,8 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     ParamType = expressionParameter.Type,
                     Name = expressionParameter.Name,
-                    Position = i
+                    Position = ++i
                 };
-
-                i++;
 
                 SetParameterSource(routeInformation, expressionParameter.Type, rpcParameter);
 
@@ -198,6 +196,25 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 parameterList.Add(rpcParameter);
+            }
+            
+            foreach (var routeToken in routeInformation.Tokens)
+            {
+                if (routeToken.ParameterInfo == null)
+                {
+                    var rpcParam = new RpcParameterInfo
+                    {
+                        Position = ++i,
+                        Name = routeToken.Name,
+                        HasDefaultValue = false,
+                        DefaultValue = null,
+                        ParamType = typeof(string),
+                        ParameterSource = EndPointMethodParameterSource.PathParameter,
+                        IsInvokeParameter = false
+                    };
+
+                    parameterList.Add(rpcParam);
+                }
             }
 
             if (bodyParams == 1 && _exposeConfigurations.SingleParameterPostFromBody)
@@ -246,17 +263,25 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.HttpCancellationToken;
             }
-            else if (routeInformation.Tokens.Any(token => string.Compare(token.Name, rpcParameter.Name, StringComparison.CurrentCultureIgnoreCase) == 0))
-            {
-                rpcParameter.ParameterSource = EndPointMethodParameterSource.PathParameter;
-            }
             else if (routeInformation.HasBody)
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.PostParameter;
             }
             else
             {
-                rpcParameter.ParameterSource = EndPointMethodParameterSource.QueryStringParameter;
+                var token = routeInformation.Tokens.FirstOrDefault(t =>
+                    string.Compare(t.Name, rpcParameter.Name, StringComparison.CurrentCultureIgnoreCase) == 0);
+
+                if (token != null)
+                {
+                    rpcParameter.ParameterSource = EndPointMethodParameterSource.PathParameter;
+
+                    token.ParameterInfo = rpcParameter;
+                }
+                else
+                {
+                    rpcParameter.ParameterSource = EndPointMethodParameterSource.QueryStringParameter;
+                }
             }
         }
     }
