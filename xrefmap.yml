@@ -8392,12 +8392,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.EndPoints.EndPointServices
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices
   nameWithType: EndPointServices
-- uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
-  name: EndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler)
-  href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices__ctor_EasyRpc_AspNetCore_Authorization_IEndPointAuthorizationService_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_ModelBinding_IParameterBinderDelegateBuilder_EasyRpc_AspNetCore_CodeGeneration_IMethodInvokerCreationService_EasyRpc_AspNetCore_Errors_IErrorHandler_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_CodeGeneration_IResponseDelegateCreator_EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
-  fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.EndPointServices(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService, EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder, EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService, EasyRpc.AspNetCore.Errors.IErrorHandler, EasyRpc.AspNetCore.Serializers.IRawContentWriter, EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator, EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler)
-  nameWithType: EndPointServices.EndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler)
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler,EasyRpc.AspNetCore.Configuration.IConfigurationManager)
+  name: EndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler, IConfigurationManager)
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices__ctor_EasyRpc_AspNetCore_Authorization_IEndPointAuthorizationService_EasyRpc_AspNetCore_Serializers_IContentSerializationService_EasyRpc_AspNetCore_ModelBinding_IParameterBinderDelegateBuilder_EasyRpc_AspNetCore_CodeGeneration_IMethodInvokerCreationService_EasyRpc_AspNetCore_Errors_IErrorHandler_EasyRpc_AspNetCore_Serializers_IRawContentWriter_EasyRpc_AspNetCore_CodeGeneration_IResponseDelegateCreator_EasyRpc_AspNetCore_EndPoints_IUnmappedEndPointHandler_EasyRpc_AspNetCore_Configuration_IConfigurationManager_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointServices.#ctor(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService,EasyRpc.AspNetCore.Serializers.IContentSerializationService,EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder,EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService,EasyRpc.AspNetCore.Errors.IErrorHandler,EasyRpc.AspNetCore.Serializers.IRawContentWriter,EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator,EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler,EasyRpc.AspNetCore.Configuration.IConfigurationManager)
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.EndPointServices(EasyRpc.AspNetCore.Authorization.IEndPointAuthorizationService, EasyRpc.AspNetCore.Serializers.IContentSerializationService, EasyRpc.AspNetCore.ModelBinding.IParameterBinderDelegateBuilder, EasyRpc.AspNetCore.CodeGeneration.IMethodInvokerCreationService, EasyRpc.AspNetCore.Errors.IErrorHandler, EasyRpc.AspNetCore.Serializers.IRawContentWriter, EasyRpc.AspNetCore.CodeGeneration.IResponseDelegateCreator, EasyRpc.AspNetCore.EndPoints.IUnmappedEndPointHandler, EasyRpc.AspNetCore.Configuration.IConfigurationManager)
+  nameWithType: EndPointServices.EndPointServices(IEndPointAuthorizationService, IContentSerializationService, IParameterBinderDelegateBuilder, IMethodInvokerCreationService, IErrorHandler, IRawContentWriter, IResponseDelegateCreator, IUnmappedEndPointHandler, IConfigurationManager)
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.#ctor*
   name: EndPointServices
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices__ctor_
@@ -8431,6 +8431,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationComplete
   nameWithType: EndPointServices.ConfigurationComplete
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager
+  name: ConfigurationManager
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices_ConfigurationManager
+  commentId: P:EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager
+  nameWithType: EndPointServices.ConfigurationManager
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager*
+  name: ConfigurationManager
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices_ConfigurationManager_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.ConfigurationManager
+  nameWithType: EndPointServices.ConfigurationManager
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointServices.ErrorHandler
   name: ErrorHandler
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html#EasyRpc_AspNetCore_EndPoints_EndPointServices_ErrorHandler
@@ -9004,6 +9017,14 @@ references:
   fullName.vb: EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler(Of TReturn).BaseContentEndPointMethodHandler
   nameWithType: BaseContentEndPointMethodHandler<TReturn>.BaseContentEndPointMethodHandler
   nameWithType.vb: BaseContentEndPointMethodHandler(Of TReturn).BaseContentEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler`1.ActivationFunc
+  name: ActivationFunc
+  href: api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler-1.html#EasyRpc_AspNetCore_EndPoints_MethodHandlers_BaseContentEndPointMethodHandler_1_ActivationFunc
+  commentId: F:EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler`1.ActivationFunc
+  fullName: EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler<TReturn>.ActivationFunc
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler(Of TReturn).ActivationFunc
+  nameWithType: BaseContentEndPointMethodHandler<TReturn>.ActivationFunc
+  nameWithType.vb: BaseContentEndPointMethodHandler(Of TReturn).ActivationFunc
 - uid: EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler`1.BindParametersDelegate
   name: BindParametersDelegate
   href: api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.BaseContentEndPointMethodHandler-1.html#EasyRpc_AspNetCore_EndPoints_MethodHandlers_BaseContentEndPointMethodHandler_1_BindParametersDelegate
@@ -9907,38 +9928,25 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeature.Context
   nameWithType: RequestExecutionContextFeature.Context
-- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter
-  name: RequestExecutionContextFeatureFilter
-  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.html
-  commentId: T:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter
-  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter
-  nameWithType: RequestExecutionContextFeatureFilter
-- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  name: AfterExecute(RequestExecutionContext)
-  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureFilter_AfterExecute_EasyRpc_AspNetCore_RequestExecutionContext_
-  commentId: M:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  nameWithType: RequestExecutionContextFeatureFilter.AfterExecute(RequestExecutionContext)
-- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute*
-  name: AfterExecute
-  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureFilter_AfterExecute_
-  commentId: Overload:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute
+- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration
+  name: RequestExecutionContextFeatureConfiguration
+  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.html
+  commentId: T:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration
+  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration
+  nameWithType: RequestExecutionContextFeatureConfiguration
+- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled
+  name: FeatureEnabled
+  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureConfiguration_FeatureEnabled
+  commentId: P:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled
+  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled
+  nameWithType: RequestExecutionContextFeatureConfiguration.FeatureEnabled
+- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled*
+  name: FeatureEnabled
+  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureConfiguration_FeatureEnabled_
+  commentId: Overload:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.AfterExecute
-  nameWithType: RequestExecutionContextFeatureFilter.AfterExecute
-- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  name: BeforeExecute(RequestExecutionContext)
-  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureFilter_BeforeExecute_EasyRpc_AspNetCore_RequestExecutionContext_
-  commentId: M:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute(EasyRpc.AspNetCore.RequestExecutionContext)
-  nameWithType: RequestExecutionContextFeatureFilter.BeforeExecute(RequestExecutionContext)
-- uid: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute*
-  name: BeforeExecute
-  href: api/EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.html#EasyRpc_AspNetCore_Features_RequestExecutionContextFeatureFilter_BeforeExecute_
-  commentId: Overload:EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureFilter.BeforeExecute
-  nameWithType: RequestExecutionContextFeatureFilter.BeforeExecute
+  fullName: EasyRpc.AspNetCore.Features.RequestExecutionContextFeatureConfiguration.FeatureEnabled
+  nameWithType: RequestExecutionContextFeatureConfiguration.FeatureEnabled
 - uid: EasyRpc.AspNetCore.Filters
   name: EasyRpc.AspNetCore.Filters
   href: api/EasyRpc.AspNetCore.Filters.html
@@ -11359,6 +11367,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcParameterInfo.HasDefaultValue
   nameWithType: IRpcParameterInfo.HasDefaultValue
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter
+  name: IsInvokeParameter
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_IsInvokeParameter
+  commentId: P:EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter
+  nameWithType: IRpcParameterInfo.IsInvokeParameter
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter*
+  name: IsInvokeParameter
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_IsInvokeParameter_
+  commentId: Overload:EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.IsInvokeParameter
+  nameWithType: IRpcParameterInfo.IsInvokeParameter
 - uid: EasyRpc.AspNetCore.IRpcParameterInfo.Name
   name: Name
   href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_Name
@@ -13580,6 +13601,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterIndex
   nameWithType: IRpcRouteToken.ParameterIndex
+- uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo
+  name: ParameterInfo
+  href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_ParameterInfo
+  commentId: P:EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo
+  fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo
+  nameWithType: IRpcRouteToken.ParameterInfo
+- uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo*
+  name: ParameterInfo
+  href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_ParameterInfo_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParameterInfo
+  nameWithType: IRpcRouteToken.ParameterInfo
 - uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParseType
   name: ParseType
   href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_ParseType
@@ -13760,6 +13794,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterIndex
   nameWithType: RpcRouteToken.ParameterIndex
+- uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo
+  name: ParameterInfo
+  href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_ParameterInfo
+  commentId: P:EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo
+  fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo
+  nameWithType: RpcRouteToken.ParameterInfo
+- uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo*
+  name: ParameterInfo
+  href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_ParameterInfo_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParameterInfo
+  nameWithType: RpcRouteToken.ParameterInfo
 - uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParseType
   name: ParseType
   href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_ParseType
@@ -13878,6 +13925,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.RpcParameterInfo.HasDefaultValue
   nameWithType: RpcParameterInfo.HasDefaultValue
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter
+  name: IsInvokeParameter
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_IsInvokeParameter
+  commentId: P:EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter
+  nameWithType: RpcParameterInfo.IsInvokeParameter
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter*
+  name: IsInvokeParameter
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_IsInvokeParameter_
+  commentId: Overload:EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.IsInvokeParameter
+  nameWithType: RpcParameterInfo.IsInvokeParameter
 - uid: EasyRpc.AspNetCore.RpcParameterInfo.Name
   name: Name
   href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_Name
