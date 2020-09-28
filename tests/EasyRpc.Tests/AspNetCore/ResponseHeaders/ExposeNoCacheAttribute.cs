@@ -38,7 +38,7 @@ namespace EasyRpc.Tests.AspNetCore.ResponseHeaders
 
         #region Registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<Service>();
         }

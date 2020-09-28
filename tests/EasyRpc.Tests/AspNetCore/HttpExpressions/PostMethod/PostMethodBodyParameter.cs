@@ -31,7 +31,7 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.PostMethod
 
         #region Registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.PostMethod(_simpleBodyPath, (RequestBody body) => body.ValueA + body.ValueB);
         }

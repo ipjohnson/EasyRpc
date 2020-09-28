@@ -17,7 +17,7 @@ namespace EasyRpc.AspNetCore.FluentValidation
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IApiConfiguration ApplyFluentValidation(this IApiConfiguration configuration)
+        public static IRpcApi ApplyFluentValidation(this IRpcApi configuration)
         {
             var filterProvider = new ValidationFilterProvider(
                 configuration.AppServices.GetRequiredService< IErrorWrappingService>());

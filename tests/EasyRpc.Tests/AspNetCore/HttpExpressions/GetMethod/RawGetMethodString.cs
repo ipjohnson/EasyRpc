@@ -27,7 +27,7 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.GetMethod("/plaintext", () => _responseString).Raw("text/plain");
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore
 {
-    public partial interface IApiConfiguration
+    public partial interface IRpcApi
     {
         /// <summary>
         /// Register simple GET method

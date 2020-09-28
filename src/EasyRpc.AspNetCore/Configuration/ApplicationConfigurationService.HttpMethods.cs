@@ -24,7 +24,13 @@ namespace EasyRpc.AspNetCore.Configuration
         protected readonly List<Attribute> EmptyList = new List<Attribute>();
 
         /// <inheritdoc />
-        public void ExposeExpression<TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration, Expression<Func<TResult>> expression)
+        public void ExposeDelegate(ICurrentApiInformation currentApi, DelegateInstanceConfiguration delegateInstanceConfiguration, Delegate @delegate)
+        {
+            RegisterDelegate(currentApi, delegateInstanceConfiguration, @delegate);
+        }
+
+        /// <inheritdoc />
+        public void ExposeExpression<TResult>(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration, Expression<Func<TResult>> expression)
         {
             var func = expression.Compile();
             Delegate finalDelegate = func;
@@ -33,7 +39,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public void ExposeExpression<TArg1, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
+        public void ExposeExpression<TArg1, TResult>(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TResult>> expression)
         {
             var func = expression.Compile();
@@ -49,7 +55,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public void ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
+        public void ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TArg2, TResult>> expression)
         {
             var func = expression.Compile();
@@ -65,7 +71,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public void ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
+        public void ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration,
             Expression<Func<TArg1, TArg2, TArg3, TResult>> expression)
         {
             var func = expression.Compile();
@@ -80,6 +86,16 @@ namespace EasyRpc.AspNetCore.Configuration
             RegisterExpression(currentApi, instanceConfiguration, expression, finalDelegate);
         }
 
+        protected virtual void RegisterDelegate(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration, Delegate @delegate)
+        {
+            foreach (var configuration in CreateEndPointMethodConfigurationForDelegate(currentApi, instanceConfiguration,@delegate))
+            {
+                var endPointMethodHandler = CreateEndPointMethodHandler(currentApi, configuration);
+
+                _handlers.Add(endPointMethodHandler);
+            }
+        }
+
         /// <summary>
         /// Register expression end point
         /// </summary>
@@ -88,10 +104,10 @@ namespace EasyRpc.AspNetCore.Configuration
         /// <param name="instanceConfiguration"></param>
         /// <param name="expression"></param>
         /// <param name="finalDelegate"></param>
-        protected virtual void RegisterExpression<TDelegate>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration,
+        protected virtual void RegisterExpression<TDelegate>(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration,
             Expression<TDelegate> expression, Delegate finalDelegate)
         {
-            foreach (var configuration in CreateEndPointMethodConfigurationForFunc(currentApi, instanceConfiguration, finalDelegate, expression))
+            foreach (var configuration in CreateEndPointMethodConfigurationForExpression(currentApi, instanceConfiguration, finalDelegate, expression))
             {
                 var endPointMethodHandler = CreateEndPointMethodHandler(currentApi, configuration);
 
@@ -99,6 +115,64 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
+        protected virtual IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfigurationForDelegate(ICurrentApiInformation currentApi, BaseDelegateInstanceConfiguration instanceConfiguration, Delegate func)
+        {
+            var fullPath = instanceConfiguration.Path;
+            var funcMethod = func.Method;
+
+            foreach (var routeInformation in GenerateRouteInformationList(fullPath, instanceConfiguration.Method, instanceConfiguration.HasBody, currentApi, typeof(object), "",
+                funcMethod, new List<Attribute>()))
+            {
+                var configuration = new EndPointMethodConfiguration(routeInformation, context => null,
+                    new MethodInvokeInformation { DelegateToInvoke = func }, funcMethod.ReturnType);
+
+                var parameters = GenerateMethodParameters(funcMethod, routeInformation);
+
+                configuration.Parameters.AddRange(parameters);
+
+                configuration.RawContentType = instanceConfiguration.RawContentType;
+
+                if (string.IsNullOrEmpty(configuration.RawContentType))
+                {
+                    var returnType = funcMethod.ReturnType;
+
+                    if (returnType.IsConstructedGenericType &&
+                        (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||
+                         returnType.GetGenericTypeDefinition() == typeof(ValueTask<>)))
+                    {
+                        returnType = returnType.GenericTypeArguments[0];
+                    }
+
+                    if (_exposeConfigurations.TypeWrapSelector(returnType))
+                    {
+                        configuration.WrappedType = _wrappedResultTypeCreator.GetTypeWrapper(returnType);
+                    }
+                }
+
+                if (currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty ||
+                    instanceConfiguration.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
+                {
+                    var responseHeaders = new List<IResponseHeader>();
+
+                    responseHeaders.AddRange(currentApi.Headers);
+                    responseHeaders.AddRange(instanceConfiguration.Headers);
+
+                    configuration.ResponseHeaders = responseHeaders;
+                }
+
+                ApplyAuthorizations(currentApi, null, configuration, EmptyList, EmptyList);
+
+                ApplyFilters(currentApi, GetFilterList(currentApi, configuration, EmptyList, EmptyList), configuration);
+
+                if (_supportCompression)
+                {
+                    configuration.SupportsCompression = _compressionSelectorService.ShouldCompressResult(configuration);
+                }
+
+                yield return configuration;
+            }
+        }
+        
         /// <summary>
         /// Create end point configuration for func delegate
         /// </summary>
@@ -108,15 +182,19 @@ namespace EasyRpc.AspNetCore.Configuration
         /// <param name="func"></param>
         /// <param name="expression"></param>
         /// <returns></returns>
-        protected virtual IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfigurationForFunc<TDelegate>(ICurrentApiInformation currentApi, ExpressionInstanceConfiguration instanceConfiguration, Delegate func, Expression<TDelegate> expression)
+        protected virtual IEnumerable<EndPointMethodConfiguration>
+            CreateEndPointMethodConfigurationForExpression<TDelegate>(ICurrentApiInformation currentApi,
+                BaseDelegateInstanceConfiguration instanceConfiguration, Delegate func,
+                Expression<TDelegate> expression)
         {
             var fullPath = instanceConfiguration.Path;
 
-            foreach (var routeInformation in GenerateRouteInformationList(fullPath, instanceConfiguration.Method, instanceConfiguration.HasBody, currentApi, typeof(object), "",
+            foreach (var routeInformation in GenerateRouteInformationList(fullPath, instanceConfiguration.Method,
+                instanceConfiguration.HasBody, currentApi, typeof(object), "",
                 func.Method, new List<Attribute>()))
             {
                 var configuration = new EndPointMethodConfiguration(routeInformation, context => null,
-                    new MethodInvokeInformation { DelegateToInvoke = func }, expression.ReturnType);
+                    new MethodInvokeInformation {DelegateToInvoke = func}, expression.ReturnType);
 
                 var parameters = GenerateMethodParametersForExpression(currentApi, routeInformation, expression);
 

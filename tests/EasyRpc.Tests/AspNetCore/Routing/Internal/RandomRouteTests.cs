@@ -35,7 +35,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             foreach (var route in _routes)
             {

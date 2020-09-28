@@ -69,7 +69,7 @@ namespace EasyRpc.Tests.AspNetCore
             services.AddRpcServices();
         }
 
-        protected abstract void ApiRegistration(IApiConfiguration api);
+        protected abstract void ApiRegistration(IRpcApi api);
 
         public void Dispose()
         {

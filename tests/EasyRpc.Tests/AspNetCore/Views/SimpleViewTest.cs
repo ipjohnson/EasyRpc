@@ -89,7 +89,7 @@ namespace EasyRpc.Tests.AspNetCore.Views
             services.AddMvc();
         }
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<Service>();
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
-    public interface IInternalApiConfiguration : IApiConfiguration, IEndPointHandlerConfigurationProvider
+    public interface IInternalApiConfiguration : IRpcApi, IEndPointHandlerConfigurationProvider
     {
         ICurrentApiInformation GetCurrentApiInformation();
     }

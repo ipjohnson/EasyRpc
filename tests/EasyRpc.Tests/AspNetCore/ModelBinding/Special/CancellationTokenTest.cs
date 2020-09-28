@@ -42,7 +42,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.Special
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<Service>();
         }

@@ -71,7 +71,7 @@ namespace EasyRpc.Tests.AspNetCore.FluentValidation
             services.AddSingleton<IValidator<Model>, ModelValidator>();
         }
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.ApplyFluentValidation();
             api.Expose<Service>();

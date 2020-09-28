@@ -62,7 +62,7 @@ namespace EasyRpc.Tests.AspNetCore.MethodInvoke
 
         #region Api Registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<Services>();
         }

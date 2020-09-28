@@ -12,6 +12,7 @@ using EasyRpc.Abstractions.Response;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.CodeGeneration;
+using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
@@ -25,6 +26,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Configuration
 {
+    /// <summary>
+    /// Class used to configure exposures
+    /// </summary>
     public partial class ApplicationConfigurationService : IApplicationConfigurationService
     {
         private readonly List<IEndPointMethodHandler> _handlers = new List<IEndPointMethodHandler>();
@@ -50,6 +54,7 @@ namespace EasyRpc.AspNetCore.Configuration
             _wrappedResultTypeCreator = wrappedResultTypeCreator;
             _compressionSelectorService = compressionSelectorService;
         }
+
 
         public void AddConfigurationObject(object configurationObject)
         {
@@ -183,7 +188,7 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.HasResponseBody = true;
                 }
 
-                var methodParameters = GenerateMethodParameters(currentApi, type, name, methodInfo, methodAttributes, routeInformation);
+                var methodParameters = GenerateMethodParameters(methodInfo, routeInformation);
 
                 configuration.Parameters.AddRange(methodParameters);
 
@@ -401,8 +406,7 @@ namespace EasyRpc.AspNetCore.Configuration
             }
         }
 
-        private List<RpcParameterInfo> GenerateMethodParameters(ICurrentApiInformation currentApi, Type type,
-            string name, MethodInfo methodInfo, List<Attribute> attributes, RpcRouteInformation routeInformation)
+        private List<RpcParameterInfo> GenerateMethodParameters(MethodInfo methodInfo, RpcRouteInformation routeInformation)
         {
             var parameterList = new List<RpcParameterInfo>();
             var bodyParams = 0;

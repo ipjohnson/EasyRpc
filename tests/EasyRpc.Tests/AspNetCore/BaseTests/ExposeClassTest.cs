@@ -59,7 +59,7 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
         }
 
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<AttributedIntMathService>();
             api.GetMethod("/stringtest/{stringValue}", (string stringValue) => stringValue + " Hello World!");
@@ -102,7 +102,7 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
             base.ConfigureAspNetPipeline(app);
         }
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Configure.UseAspNetRouting();
             api.Expose<AttributedIntMathService>();

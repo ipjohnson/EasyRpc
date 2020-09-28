@@ -24,21 +24,21 @@ namespace EasyRpc.AspNetCore.Middleware
         /// <param name="builder"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        IApplicationBuilder Attach(IApplicationBuilder builder, Action<IApiConfiguration> configuration);
+        IApplicationBuilder Attach(IApplicationBuilder builder, Action<IRpcApi> configuration);
     }
 
     /// <inheritdoc />
     public class MiddlewareHandler : IMiddlewareHandler
     {
         /// <inheritdoc />
-        public IApplicationBuilder Attach(IApplicationBuilder builder,  Action<IApiConfiguration> configuration)
+        public IApplicationBuilder Attach(IApplicationBuilder builder,  Action<IRpcApi> configuration)
         {
             ConfigureEndPoints(builder, configuration);
 
             return builder;
         }
 
-        private void ConfigureEndPoints(IApplicationBuilder builder, Action<IApiConfiguration> configuration)
+        private void ConfigureEndPoints(IApplicationBuilder builder, Action<IRpcApi> configuration)
         {
             var scope = CreateServiceProvider(builder);
 
@@ -64,7 +64,7 @@ namespace EasyRpc.AspNetCore.Middleware
             }
         }
 
-        protected virtual IInternalApiConfiguration ConfigureApi(Action<IApiConfiguration> configuration, IServiceProvider scope)
+        protected virtual IInternalApiConfiguration ConfigureApi(Action<IRpcApi> configuration, IServiceProvider scope)
         {
             var factory = scope.GetService<IApiConfigurationFactory>();
 

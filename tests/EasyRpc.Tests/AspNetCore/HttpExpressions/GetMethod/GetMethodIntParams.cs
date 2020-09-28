@@ -54,7 +54,7 @@ namespace EasyRpc.Tests.AspNetCore.HttpExpressions.GetMethod
         #endregion
 
         #region Registration
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.GetMethod("/OneInt/{arg1}", (int arg1) => arg1 );
             api.GetMethod("/TwoInt/{arg1}/{arg2}", (int arg1, int arg2) => arg1 + arg2);

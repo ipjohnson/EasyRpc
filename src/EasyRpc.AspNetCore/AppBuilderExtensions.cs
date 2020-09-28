@@ -140,7 +140,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="configure">api configuration</param>
         /// <returns></returns>
         public static IApplicationBuilder UseRpcServices(this IApplicationBuilder appBuilder,
-            Action<IApiConfiguration> configure = null)
+            Action<IRpcApi> configure = null)
         {
             var middlewareHandler = appBuilder.ApplicationServices.GetService<IMiddlewareHandler>();
 
@@ -160,7 +160,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Default action when calling UseRpcServices
         /// </summary>
-        public static Action<IApiConfiguration> DefaultAction { get; set; } =
+        public static Action<IRpcApi> DefaultAction { get; set; } =
             api => api.Expose(Assembly.GetEntryAssembly().ExportedTypes).OnlyAttributed();
     }
 }

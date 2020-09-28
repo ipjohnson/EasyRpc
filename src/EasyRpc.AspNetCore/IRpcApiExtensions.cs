@@ -10,7 +10,7 @@ namespace EasyRpc.AspNetCore
     /// <summary>
     /// static extension class for IApiConfiguration
     /// </summary>
-    public static class IApiConfigurationExtensions
+    public static class IRpcApiExtensions
     {
         /// <summary>
         /// Expose types in the same assembly and namespace as T
@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore
         /// <typeparam name="T"></typeparam>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static  ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IApiConfiguration configuration)
+        public static  ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IRpcApi configuration)
         {
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 

@@ -26,7 +26,7 @@ namespace EasyRpc.Tests.AspNetCore.Filters
 
         #region Registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             var filter = new FinalizeFilter(() => _finalizedCalled = true);
 

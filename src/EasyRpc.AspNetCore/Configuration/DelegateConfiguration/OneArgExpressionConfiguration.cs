@@ -5,12 +5,12 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 {
-    public class TwoArgDelegateConfiguration<TArg1, TArg2, TResult> : ExpressionInstanceConfiguration, IConfigurationInformationProvider
+    public class OneArgExpressionExpression<TArg1, TResult> : BaseDelegateInstanceConfiguration, IConfigurationInformationProvider
     {
         private readonly ICurrentApiInformation _currentApi;
-        private readonly Expression<Func<TArg1,TArg2, TResult>> _expression;
+        private readonly Expression<Func<TArg1, TResult>> _expression;
 
-        public TwoArgDelegateConfiguration(ICurrentApiInformation currentApi, string method, string path, Expression<Func<TArg1, TArg2, TResult>> expression)
+        public OneArgExpressionExpression(ICurrentApiInformation currentApi, string method, string path, Expression<Func<TArg1, TResult>> expression)
         {
             _currentApi = currentApi;
             _expression = expression;
@@ -18,8 +18,8 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
             Method = method;
             Path = path;
         }
-        
-        public void ExecuteConfiguration(IApplicationConfigurationService service)
+
+        public override void ExecuteConfiguration(IApplicationConfigurationService service)
         {
             service.ExposeExpression(_currentApi, this, _expression);
         }

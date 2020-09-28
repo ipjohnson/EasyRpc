@@ -11,7 +11,7 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         public IExposureExpressionConfiguration GetMethod<TResult>(string path, Expression<Func<TResult>> getExpression)
         {
-            var config = new NoParamDelegateConfiguration<TResult>(GetCurrentApiInformation(),  HttpMethods.Get, path, getExpression);
+            var config = new NoParamDelegateExpression<TResult>(GetCurrentApiInformation(),  HttpMethods.Get, path, getExpression);
 
             _applicationConfigurationService.AddConfigurationObject(config);
 
@@ -20,7 +20,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration GetMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> getExpression)
         {
-            var config = new OneArgDelegateConfiguration<TArg1, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
+            var config = new OneArgExpressionExpression<TArg1, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
 
             _applicationConfigurationService.AddConfigurationObject(config);
 
@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration GetMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> getExpression)
         {
-            var config = new TwoArgDelegateConfiguration<TArg1,TArg2, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
+            var config = new TwoArgExpressionExpression<TArg1,TArg2, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
 
             _applicationConfigurationService.AddConfigurationObject(config);
 
@@ -38,7 +38,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration GetMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> getExpression)
         {
-            var config = new ThreeArgDelegateConfiguration<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
+            var config = new ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), HttpMethods.Get, path, getExpression);
 
             _applicationConfigurationService.AddConfigurationObject(config);
 
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration PostMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> postExpression)
         {
-            var config = new OneArgDelegateConfiguration<TArg1, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
+            var config = new OneArgExpressionExpression<TArg1, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
             {
                 HasBody = true
             };
@@ -59,7 +59,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration PostMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> postExpression)
         {
-            var config = new TwoArgDelegateConfiguration<TArg1, TArg2, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
+            var config = new TwoArgExpressionExpression<TArg1, TArg2, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
             {
                 HasBody = true
             };
@@ -71,7 +71,7 @@ namespace EasyRpc.AspNetCore.Configuration
         
         public IExposureExpressionConfiguration PostMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> postExpression)
         {
-            var config = new ThreeArgDelegateConfiguration<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
+            var config = new ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), HttpMethods.Post, path, postExpression)
             {
                 HasBody = true
             };
@@ -83,7 +83,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration HttpMethod<TResult>(string httpMethod, string path, Expression<Func<TResult>> method)
         {
-            var config = new NoParamDelegateConfiguration<TResult>(GetCurrentApiInformation(), httpMethod, path, method);
+            var config = new NoParamDelegateExpression<TResult>(GetCurrentApiInformation(), httpMethod, path, method);
 
             _applicationConfigurationService.AddConfigurationObject(config);
 
@@ -92,7 +92,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration HttpMethod<TArg1, TResult>(string httpMethod, string path, Expression<Func<TArg1, TResult>> method)
         {
-            var config = new OneArgDelegateConfiguration<TArg1, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
+            var config = new OneArgExpressionExpression<TArg1, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
             {
                 HasBody = true
             };
@@ -104,7 +104,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration HttpMethod<TArg1, TArg2, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TResult>> method)
         {
-            var config = new TwoArgDelegateConfiguration<TArg1, TArg2, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
+            var config = new TwoArgExpressionExpression<TArg1, TArg2, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
             {
                 HasBody = true
             };
@@ -116,7 +116,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         public IExposureExpressionConfiguration HttpMethod<TArg1, TArg2, TArg3, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> method)
         {
-            var config = new ThreeArgDelegateConfiguration<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
+            var config = new ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>(GetCurrentApiInformation(), httpMethod, path, method)
             {
                 HasBody = true
             };

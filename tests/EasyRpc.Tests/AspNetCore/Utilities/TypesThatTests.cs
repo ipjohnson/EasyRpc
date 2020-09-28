@@ -18,7 +18,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespace()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IApiConfiguration));
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IRpcApi));
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 
@@ -28,7 +28,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceAndSubnamespace()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IApiConfiguration),
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs(typeof(IRpcApi),
                 true);
 
             Assert.True(sameNamespace(typeof(TypesThat)));
@@ -39,7 +39,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceGeneric()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IApiConfiguration>();
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IRpcApi>();
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 
@@ -49,7 +49,7 @@ namespace EasyRpc.Tests.AspNetCore.Utilities
         [Fact]
         public void AreInTheSameNamespaceAndSubnamespaceGeneric()
         {
-            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IApiConfiguration>(true);
+            Func<Type, bool> sameNamespace = TypesThat.AreInTheSameNamespaceAs<IRpcApi>(true);
 
             Assert.True(sameNamespace(typeof(TypesThat)));
 

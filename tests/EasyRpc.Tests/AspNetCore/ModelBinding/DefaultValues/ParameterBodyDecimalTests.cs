@@ -27,7 +27,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.DefaultValues
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.DefaultHttpMethod(ExposeDefaultMethod.PostOnly);
             api.Expose<Service>();

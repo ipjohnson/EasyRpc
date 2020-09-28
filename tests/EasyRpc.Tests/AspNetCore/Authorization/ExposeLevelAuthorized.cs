@@ -34,7 +34,7 @@ namespace EasyRpc.Tests.AspNetCore.Authorization
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Authorize();
             api.GetMethod("/test", () => "success");

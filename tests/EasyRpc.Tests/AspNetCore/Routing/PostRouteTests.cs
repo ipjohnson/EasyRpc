@@ -34,9 +34,30 @@ namespace EasyRpc.Tests.AspNetCore.Routing
 
         public void Testing<TIn>(Expression<Func<TIn, Task>> expression)
         {
+            Add(api => api.Get("/test", Test));
+        }
+
+        public class TestApi
+        {
+            public void Get<T>(string path, Func<T> action)
+            {
+
+            }
+        }
+
+        public delegate void RegisterApi(TestApi api);
+
+        public void Add(Expression<RegisterApi> _)
+        {
 
         }
 
+        public int Test()
+        {
+            return 0;
+        }
+
+        
 
         [Fact]
         public void Testing2()

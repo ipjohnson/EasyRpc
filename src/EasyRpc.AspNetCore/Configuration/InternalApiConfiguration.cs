@@ -56,7 +56,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration Authorize(string role = null, string policy = null)
+        public IRpcApi Authorize(string role = null, string policy = null)
         {
             IEndPointMethodAuthorization authorization;
 
@@ -77,7 +77,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations)
+        public IRpcApi Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations)
         {
             _authorizations = _authorizations.Add(authorizations);
 
@@ -85,7 +85,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ClearAuthorize()
+        public IRpcApi ClearAuthorize()
         {
             _authorizations = ImmutableLinkedList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>>.Empty;
 
@@ -98,7 +98,7 @@ namespace EasyRpc.AspNetCore.Configuration
         public IEnvironmentConfiguration Configure { get; }
 
         /// <inheritdoc />
-        public IApiConfiguration Prefix(string prefix)
+        public IRpcApi Prefix(string prefix)
         {
             var prefixArray = new [] {prefix};
 
@@ -106,7 +106,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration Prefix(Func<Type, IEnumerable<string>> prefixFunc)
+        public IRpcApi Prefix(Func<Type, IEnumerable<string>> prefixFunc)
         {
             _prefixes = _prefixes.Add(prefixFunc);
 
@@ -114,7 +114,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ClearPrefixes()
+        public IRpcApi ClearPrefixes()
         {
             _prefixes = ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
 
@@ -153,8 +153,20 @@ namespace EasyRpc.AspNetCore.Configuration
             return config;
         }
 
+        public IRpcApi ExposeModules(IEnumerable<Type> types = null)
+        {
+            types ??= Assembly.GetEntryAssembly()?.ExportedTypes;
+
+            if (types != null)
+            {
+                ExposeModuleTypes(types);
+            }
+
+            return this;
+        }
+        
         /// <inheritdoc />
-        public IApiConfiguration Header(string header, string value)
+        public IRpcApi Header(string header, string value)
         {
             _responseHeaders = _responseHeaders.Add(new ResponseHeader.ResponseHeader(header, value));
 
@@ -162,7 +174,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ClearHeaders()
+        public IRpcApi ClearHeaders()
         {
             _responseHeaders = ImmutableLinkedList<IResponseHeader>.Empty;
             
@@ -170,7 +182,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter
+        public IRpcApi ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter
         {
             if (where == null)
             {
@@ -189,7 +201,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ApplyFilter(Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc)
+        public IRpcApi ApplyFilter(Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc)
         {
             _filters = _filters.Add(filterFunc);
 
@@ -197,7 +209,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration MethodFilter(Func<MethodInfo, bool> methodFilter)
+        public IRpcApi MethodFilter(Func<MethodInfo, bool> methodFilter)
         {
             _methodFilters = _methodFilters.Add(methodFilter);
 
@@ -205,7 +217,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IApiConfiguration ClearMethodFilters()
+        public IRpcApi ClearMethodFilters()
         {
             _methodFilters = ImmutableLinkedList<Func<MethodInfo, bool>>.Empty;
 
@@ -216,7 +228,7 @@ namespace EasyRpc.AspNetCore.Configuration
         public IServiceProvider AppServices { get; }
 
         /// <inheritdoc />
-        public IApiConfiguration DefaultHttpMethod(ExposeDefaultMethod defaultMethod)
+        public IRpcApi DefaultHttpMethod(ExposeDefaultMethod defaultMethod)
         {
             _defaultMethod = defaultMethod;
 
@@ -258,6 +270,19 @@ namespace EasyRpc.AspNetCore.Configuration
         protected void ClearCurrentApi()
         {
             _currentApiInformation = null;
+        }
+
+        private void ExposeModuleTypes(IEnumerable<Type> types)
+        {
+            foreach (var type in types)
+            {
+                if (type.GetTypeInfo().GetInterface(nameof(IRpcModule)) != null)
+                {
+                    var rpcModule = ActivatorUtilities.CreateInstance(AppServices, type) as IRpcModule;
+
+                    rpcModule?.Configure(this);
+                }
+            }
         }
     }
 }

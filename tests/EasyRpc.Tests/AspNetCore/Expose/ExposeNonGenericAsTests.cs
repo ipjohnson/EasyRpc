@@ -40,7 +40,7 @@ namespace EasyRpc.Tests.AspNetCore.Expose
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose(typeof(Service)).As("IntMath");
         }

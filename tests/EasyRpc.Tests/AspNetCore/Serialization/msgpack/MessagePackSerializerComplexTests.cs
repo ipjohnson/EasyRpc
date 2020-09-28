@@ -85,7 +85,7 @@ namespace EasyRpc.Tests.AspNetCore.Serialization.msgpack
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<IntMath>();
         }

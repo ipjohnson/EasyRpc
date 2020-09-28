@@ -7,7 +7,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing
 {
     public class GetRouteTests : BaseRequestTest
     {
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             
         }

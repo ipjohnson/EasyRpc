@@ -31,7 +31,7 @@ namespace EasyRpc.Tests.AspNetCore.ResponseHeaders
 
         #region Registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.Header("Cache-Control", _cacheControl);
             api.GetMethod("/test",() => DateTime.Now.ToString());

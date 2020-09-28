@@ -17,7 +17,7 @@ namespace EasyRpc.AspNetCore
     /// <summary>
     /// Api configuration interface
     /// </summary>
-    public partial interface IApiConfiguration
+    public partial interface IRpcApi
     {
         /// <summary>
         /// Set default Authorize
@@ -25,20 +25,20 @@ namespace EasyRpc.AspNetCore
         /// <param name="role"></param>
         /// <param name="policy"></param>
         /// <returns></returns>
-        IApiConfiguration Authorize(string role = null, string policy = null);
+        IRpcApi Authorize(string role = null, string policy = null);
 
         /// <summary>
         /// Apply authorize to types 
         /// </summary>
         /// <param name="authorizations"></param>
         /// <returns></returns>
-        IApiConfiguration Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations);
+        IRpcApi Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>> authorizations);
         
         /// <summary>
         /// Clear authorize flags
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ClearAuthorize();
+        IRpcApi ClearAuthorize();
 
         /// <summary>
         /// Configuration options that apply for all end points
@@ -50,20 +50,20 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="prefix"></param>
         /// <returns></returns>
-        IApiConfiguration Prefix(string prefix);
+        IRpcApi Prefix(string prefix);
 
         /// <summary>
         /// Prefix function returns list of prefixes based on type
         /// </summary>
         /// <param name="prefixFunc"></param>
         /// <returns></returns>
-        IApiConfiguration Prefix(Func<Type, IEnumerable<string>> prefixFunc);
+        IRpcApi Prefix(Func<Type, IEnumerable<string>> prefixFunc);
 
         /// <summary>
         /// Clear prefixes
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ClearPrefixes();
+        IRpcApi ClearPrefixes();
 
         /// <summary>
         /// Expose type for RPC
@@ -85,33 +85,39 @@ namespace EasyRpc.AspNetCore
         /// <param name="types"></param>
         /// <returns></returns>
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
-        
+
+        /// <summary>
+        /// Expose modules, if types are null expose entry assembly
+        /// </summary>
+        /// <returns></returns>
+        IRpcApi ExposeModules(IEnumerable<Type> types = null);
+
         /// <summary>
         /// Add header to all responses
         /// </summary>
         /// <param name="header"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        IApiConfiguration Header(string header, string value);
+        IRpcApi Header(string header, string value);
 
         /// <summary>
         /// Clear all global headers
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ClearHeaders();
+        IRpcApi ClearHeaders();
 
         /// <summary>
         /// Apply call filter
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter;
+        IRpcApi ApplyFilter<T>(Func<MethodInfo, bool> where = null, bool shared = false) where T : IRequestFilter;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filterFunc"></param>
         /// <returns></returns>
-        IApiConfiguration ApplyFilter(
+        IRpcApi ApplyFilter(
             Func<IEndPointMethodConfigurationReadOnly, Func<RequestExecutionContext, IRequestFilter>> filterFunc);
         
         /// <summary>
@@ -119,13 +125,13 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="methodFilter"></param>
         /// <returns></returns>
-        IApiConfiguration MethodFilter(Func<MethodInfo, bool> methodFilter);
+        IRpcApi MethodFilter(Func<MethodInfo, bool> methodFilter);
 
         /// <summary>
         /// Clear method filters
         /// </summary>
         /// <returns></returns>
-        IApiConfiguration ClearMethodFilters();
+        IRpcApi ClearMethodFilters();
 
         /// <summary>
         /// Application services
@@ -137,7 +143,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="defaultMethod"></param>
         /// <returns></returns>
-        IApiConfiguration DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
+        IRpcApi DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
     }
 
 }
