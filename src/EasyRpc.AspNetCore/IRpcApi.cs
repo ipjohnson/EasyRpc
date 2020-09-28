@@ -44,7 +44,7 @@ namespace EasyRpc.AspNetCore
         /// Configuration options that apply for all end points
         /// </summary>
         IEnvironmentConfiguration Configure { get; }
-        
+
         /// <summary>
         /// Apply prefix 
         /// </summary>
@@ -85,6 +85,16 @@ namespace EasyRpc.AspNetCore
         /// <param name="types"></param>
         /// <returns></returns>
         ITypeSetExposureConfiguration Expose(IEnumerable<Type> types);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        IRpcApi ExposeModule<T>()
+        {
+            return ExposeModules(new[] {typeof(T)});
+        }
 
         /// <summary>
         /// Expose modules, if types are null expose entry assembly
@@ -144,6 +154,12 @@ namespace EasyRpc.AspNetCore
         /// <param name="defaultMethod"></param>
         /// <returns></returns>
         IRpcApi DefaultHttpMethod(ExposeDefaultMethod defaultMethod);
+
+        /// <summary>
+        /// Clone the current api configuration
+        /// </summary>
+        /// <returns></returns>
+        IRpcApi Clone();
     }
 
 }

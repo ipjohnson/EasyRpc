@@ -14,7 +14,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration GetMethod<TResult>(string path, Expression<Func<TResult>> method);
+        IExposureDelegateConfiguration GetMethod<TResult>(string path, Expression<Func<TResult>> method);
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration GetMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> method);
+        IExposureDelegateConfiguration GetMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> method);
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration GetMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> method);
+        IExposureDelegateConfiguration GetMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> method);
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration GetMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> method);
+        IExposureDelegateConfiguration GetMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> method);
 
         /// <summary>
         /// Simple post method
@@ -60,7 +60,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="postExpression"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration PostMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> postExpression);
+        IExposureDelegateConfiguration PostMethod<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> postExpression);
 
         /// <summary>
         /// Simple post method with two arg
@@ -71,7 +71,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="postExpression"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration PostMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> postExpression);
+        IExposureDelegateConfiguration PostMethod<TArg1, TArg2, TResult>(string path, Expression<Func<TArg1, TArg2, TResult>> postExpression);
 
         /// <summary>
         /// Simple post method with two arg
@@ -83,7 +83,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="postExpression"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration PostMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> postExpression);
+        IExposureDelegateConfiguration PostMethod<TArg1, TArg2, TArg3, TResult>(string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> postExpression);
 
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration HttpMethod<TResult>(string httpMethod, string path, Expression<Func<TResult>> method);
+        IExposureDelegateConfiguration HttpMethod<TResult>(string httpMethod, string path, Expression<Func<TResult>> method);
 
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration HttpMethod<TArg1, TResult>(string httpMethod, string path, Expression<Func<TArg1, TResult>> method);
+        IExposureDelegateConfiguration HttpMethod<TArg1, TResult>(string httpMethod, string path, Expression<Func<TArg1, TResult>> method);
 
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration HttpMethod<TArg1, TArg2, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TResult>> method);
+        IExposureDelegateConfiguration HttpMethod<TArg1, TArg2, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TResult>> method);
 
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration HttpMethod<TArg1, TArg2, TArg3, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> method);
+        IExposureDelegateConfiguration HttpMethod<TArg1, TArg2, TArg3, TResult>(string httpMethod, string path, Expression<Func<TArg1, TArg2, TArg3, TResult>> method);
 
     }
 }

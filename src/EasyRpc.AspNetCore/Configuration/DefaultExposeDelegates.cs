@@ -10,6 +10,8 @@ namespace EasyRpc.AspNetCore.Configuration
     /// </summary>
     public static class DefaultExposeDelegates
     {
+        private const string _moduleName = "Module";
+
         /// <summary>
         /// Default route name generator
         /// </summary>
@@ -17,7 +19,14 @@ namespace EasyRpc.AspNetCore.Configuration
         /// <returns></returns>
         public static string DefaultRouteNameGenerator(Type type)
         {
-            return type.Name;
+            var name = type.Name;
+
+            if (name.EndsWith(_moduleName, StringComparison.CurrentCulture))
+            {
+                name = name.Substring(0, name.Length - _moduleName.Length);
+            }
+
+            return name;
         }
 
         /// <summary>

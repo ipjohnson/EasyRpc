@@ -31,7 +31,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IApiConfiguration UseRequestExecutionContextFeature(this IApiConfiguration configuration)
+        public static IRpcApi UseRequestExecutionContextFeature(this IRpcApi configuration)
         {
             configuration.Configure.Action<RequestExecutionContextFeatureConfiguration>(featureConfiguration =>
                 featureConfiguration.FeatureEnabled = true);

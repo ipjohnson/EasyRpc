@@ -7,7 +7,7 @@ namespace EasyRpc.AspNetCore
     /// <summary>
     /// configuration object for exposure expression
     /// </summary>
-    public interface IExposureExpressionConfiguration
+    public interface IExposureDelegateConfiguration
     {
         /// <summary>
         /// Require authorization for method
@@ -15,14 +15,14 @@ namespace EasyRpc.AspNetCore
         /// <param name="role"></param>
         /// <param name="policy"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration Authorize(string role = null, string policy = null);
+        IExposureDelegateConfiguration Authorize(string role = null, string policy = null);
 
         /// <summary>
         /// Return raw content as a specific content type
         /// </summary>
         /// <param name="contentType">Content-Type header value (i.e. text/plain, etc.)</param>
         /// <returns></returns>
-        IExposureExpressionConfiguration Raw(string contentType);
+        IExposureDelegateConfiguration Raw(string contentType);
         
         /// <summary>
         /// Adds response header
@@ -30,6 +30,6 @@ namespace EasyRpc.AspNetCore
         /// <param name="header"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        IExposureExpressionConfiguration Header(string header, string value);
+        IExposureDelegateConfiguration Header(string header, string value);
     }
 }

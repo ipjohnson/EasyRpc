@@ -13,14 +13,14 @@ namespace EasyRpc.AspNetCore
     {
         void IRpcModule.Configure(IRpcApi api)
         {
+            api.ApplyFilter(ApplyFilter);
+
+            Configure(api);
+
             if (AutoRegister)
             {
                 AutoRegisterMethods(api);
             }
-
-            api.ApplyFilter(ApplyFilter);
-
-            Configure(api);
         }
         
         /// <summary>
@@ -28,13 +28,15 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         protected bool AutoRegister { get; set; } = true;
 
+        protected bool ReuseModule { get; set; } = true;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="api"></param>
         protected virtual void Configure(IRpcApi api)
         {
-
+            
         }
 
         /// <summary>
@@ -53,7 +55,12 @@ namespace EasyRpc.AspNetCore
         /// <param name="api"></param>
         protected virtual void AutoRegisterMethods(IRpcApi api)
         {
+            var exposure = api.Expose(GetType());
 
+            if (ReuseModule)
+            {
+                exposure.Activation(context => this);
+            }
         }
 
         /// <summary>

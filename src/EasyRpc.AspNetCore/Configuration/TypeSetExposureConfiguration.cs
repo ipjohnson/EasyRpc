@@ -146,14 +146,14 @@ namespace EasyRpc.AspNetCore.Configuration
                     {
                         foreach (var nameString in asFunc(type))
                         {
-                            service.ExposeType(_currentApiInformation, type, nameString, authorizationList,
+                            service.ExposeType(_currentApiInformation, type, null, nameString, authorizationList,
                                 MethodFilterGroup, null);
                         }
                     }
                 }
                 else
                 {
-                    service.ExposeType(_currentApiInformation, type, "", authorizationList,
+                    service.ExposeType(_currentApiInformation, type, null, "", authorizationList,
                         MethodFilterGroup, null);
 
                 }

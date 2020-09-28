@@ -8,7 +8,7 @@ using EasyRpc.AspNetCore.ResponseHeader;
 
 namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 {
-    public abstract class BaseDelegateInstanceConfiguration : IExposureExpressionConfiguration, IConfigurationInformationProvider
+    public abstract class BaseDelegateInstanceConfiguration : IExposureDelegateConfiguration, IConfigurationInformationProvider
     {
         public string Path { get; set; }
 
@@ -25,7 +25,7 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 
         public ImmutableLinkedList<IEndPointMethodAuthorization> Authorizations = ImmutableLinkedList<IEndPointMethodAuthorization>.Empty;
         
-        public IExposureExpressionConfiguration Authorize(string role = null, string policy = null)
+        public IExposureDelegateConfiguration Authorize(string role = null, string policy = null)
         {
             IEndPointMethodAuthorization authorization;
 
@@ -47,14 +47,14 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
             return this;
         }
 
-        public IExposureExpressionConfiguration Raw(string contentType)
+        public IExposureDelegateConfiguration Raw(string contentType)
         {
             RawContentType = contentType;
 
             return this;
         }
 
-        public IExposureExpressionConfiguration Header(string header, string value)
+        public IExposureDelegateConfiguration Header(string header, string value)
         {
             Headers = Headers.Add(new ResponseHeader.ResponseHeader(header, value));
 

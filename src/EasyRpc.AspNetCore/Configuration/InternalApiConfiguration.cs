@@ -36,7 +36,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private ICurrentApiInformation _currentApiInformation;
         private ExposeDefaultMethod _defaultMethod = ExposeDefaultMethod.PostOnly;
 
-        private readonly IApplicationConfigurationService _applicationConfigurationService;
+
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.Configuration
         public InternalApiConfiguration(IServiceProvider applicationServiceProvider, 
             IAuthorizationImplementationProvider authorizationImplementationProvider)
         {
-            _applicationConfigurationService = applicationServiceProvider.GetRequiredService<IApplicationConfigurationService>();
+            ApplicationConfigurationService = applicationServiceProvider.GetRequiredService<IApplicationConfigurationService>();
             Configure = applicationServiceProvider.GetRequiredService<IEnvironmentConfiguration>();
             AppServices = applicationServiceProvider;
             _authorizationImplementationProvider = authorizationImplementationProvider;
@@ -128,7 +128,7 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             var config = new TypeExposureConfiguration(GetCurrentApiInformation(), type);
 
-            _applicationConfigurationService.AddConfigurationObject(config);
+            ApplicationConfigurationService.AddConfigurationObject(config);
 
             return config;
         }
@@ -138,7 +138,7 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             var config = new TypeExposureConfiguration<T>(GetCurrentApiInformation());
 
-            _applicationConfigurationService.AddConfigurationObject(config);
+            ApplicationConfigurationService.AddConfigurationObject(config);
 
             return config;
         }
@@ -148,7 +148,7 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             var config = new TypeSetExposureConfiguration(GetCurrentApiInformation(), types);
 
-            _applicationConfigurationService.AddConfigurationObject(config);
+            ApplicationConfigurationService.AddConfigurationObject(config);
 
             return config;
         }
@@ -236,6 +236,24 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
+        public IRpcApi Clone()
+        {
+            return new InternalApiConfiguration(AppServices, _authorizationImplementationProvider)
+            {
+                _authorizations = _authorizations,
+                _defaultMethod = _defaultMethod,
+                _filters = _filters,
+                _methodFilters = _methodFilters,
+                _responseHeaders = _responseHeaders,
+                _prefixes = _prefixes,
+                _currentApiInformation = _currentApiInformation
+            };
+        }
+
+        /// <inheritdoc />
+        public IApplicationConfigurationService ApplicationConfigurationService { get; }
+
+        /// <inheritdoc />
         public ICurrentApiInformation GetCurrentApiInformation()
         {
             if (_currentApiInformation != null)
@@ -261,7 +279,7 @@ namespace EasyRpc.AspNetCore.Configuration
         /// <inheritdoc />
         public IReadOnlyList<IEndPointMethodHandler> GetEndPointHandlers()
         {
-            return _applicationConfigurationService.ProvideEndPointHandlers();
+            return ApplicationConfigurationService.ProvideEndPointHandlers();
         }
 
         /// <summary>
@@ -280,7 +298,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     var rpcModule = ActivatorUtilities.CreateInstance(AppServices, type) as IRpcModule;
 
-                    rpcModule?.Configure(this);
+                    rpcModule?.Configure(Clone());
                 }
             }
         }

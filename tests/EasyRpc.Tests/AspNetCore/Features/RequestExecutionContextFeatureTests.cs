@@ -44,7 +44,7 @@ namespace EasyRpc.Tests.AspNetCore.Features
 
         #region registration
 
-        protected override void ApiRegistration(IApiConfiguration api)
+        protected override void ApiRegistration(IRpcApi api)
         {
             api.UseRequestExecutionContextFeature();
             api.Expose<Service>();

@@ -11,6 +11,13 @@ namespace EasyRpc.AspNetCore
     public interface IExposureConfiguration
     {
         /// <summary>
+        /// Activation func
+        /// </summary>
+        /// <param name="activationFunc"></param>
+        /// <returns></returns>
+        IExposureConfiguration Activation(Func<RequestExecutionContext, object> activationFunc);
+
+        /// <summary>
         /// Expose type as a particular name
         /// </summary>
         /// <param name="name"></param>
@@ -46,6 +53,13 @@ namespace EasyRpc.AspNetCore
     /// <typeparam name="T"></typeparam>
     public interface IExposureConfiguration<T>
     {
+        /// <summary>
+        /// Provide mechanism for activating type
+        /// </summary>
+        /// <param name="activationFunc"></param>
+        /// <returns></returns>
+        IExposureConfiguration<T> Activation(Func<RequestExecutionContext, T> activationFunc);
+
         /// <summary>
         /// Expose type as a specific name
         /// </summary>

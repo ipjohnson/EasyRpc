@@ -62,7 +62,8 @@ namespace EasyRpc.AspNetCore.Configuration
             _configurationObjects.Add(configurationObject);
         }
 
-        public void ExposeType(ICurrentApiInformation currentApi, Type type, string name, List<IEndPointMethodAuthorization> authorizations, Func<MethodInfo, bool> methodFilter,
+        public void ExposeType(ICurrentApiInformation currentApi, Type type, 
+            Func<RequestExecutionContext, object> activationFunc, string name, List<IEndPointMethodAuthorization> authorizations, Func<MethodInfo, bool> methodFilter,
             string obsoleteMessage)
         {
             methodFilter ??= DefaultFilterMethod;
@@ -70,7 +71,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             foreach (var methodInfo in type.GetMethods().Where(methodFilter))
             {
-                ExposeMethod(currentApi, type, classAttributes, name, authorizations, obsoleteMessage, methodInfo);
+                ExposeMethod(currentApi, type, activationFunc, classAttributes, name, authorizations, obsoleteMessage, methodInfo);
             }
         }
 
@@ -89,6 +90,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         protected virtual void ExposeMethod(ICurrentApiInformation currentApi, Type type,
+            Func<RequestExecutionContext,object> activationFunc,
             List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage, MethodInfo methodInfo)
         {
@@ -106,7 +108,7 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 foreach (var pathAttribute in pathAttributes)
                 {
-                    foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
+                    foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type,activationFunc, classAttributes, name,
                         authorizations, obsoleteMessage, methodInfo, methodAttributes, pathAttribute as IPathAttribute))
                     {
                         var endPointMethodHandler =
@@ -118,7 +120,7 @@ namespace EasyRpc.AspNetCore.Configuration
             }
             else
             {
-                foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, classAttributes, name,
+                foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, activationFunc, classAttributes, name,
                     authorizations, obsoleteMessage, methodInfo, methodAttributes, null))
                 {
                     var endPointMethodHandler =
@@ -162,8 +164,12 @@ namespace EasyRpc.AspNetCore.Configuration
             return (IEndPointMethodHandler)Activator.CreateInstance(closedType, configuration, _services);
         }
 
-        private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
-            Type type, List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
+        private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(
+            ICurrentApiInformation currentApi,
+            Type type, Func<RequestExecutionContext, object> activationFunc,
+            List<Attribute> classAttributes,
+            string name, 
+            List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage,
             MethodInfo methodInfo, List<Attribute> methodAttributes, IPathAttribute pathAttribute)
         {
@@ -172,12 +178,15 @@ namespace EasyRpc.AspNetCore.Configuration
             bool methodHasBody;
 
             (methodPath, methodVerb, methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, classAttributes, methodAttributes, pathAttribute);
-
-            var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
+            
+            if (activationFunc == null)
+            {
+                activationFunc = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
+            }
 
             foreach (var routeInformation in GenerateRouteInformationList(methodPath, methodVerb, methodHasBody, currentApi, type, name, methodInfo, methodAttributes))
             {
-                var configuration = new EndPointMethodConfiguration(routeInformation, activationMethod, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType);
+                var configuration = new EndPointMethodConfiguration(routeInformation, activationFunc, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType);
 
                 if (pathAttribute != null)
                 {

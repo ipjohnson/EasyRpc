@@ -23,6 +23,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="rawContentWriter"></param>
         /// <param name="responseDelegateCreator"></param>
         /// <param name="unmappedEndPointHandler"></param>
+        /// <param name="configurationManager"></param>
         public EndPointServices(IEndPointAuthorizationService authorizationService,
             IContentSerializationService serializationService, 
             IParameterBinderDelegateBuilder parameterBinderDelegateBuilder, 
@@ -30,7 +31,8 @@ namespace EasyRpc.AspNetCore.EndPoints
             IErrorHandler errorHandler, 
             IRawContentWriter rawContentWriter,
             IResponseDelegateCreator responseDelegateCreator, 
-            IUnmappedEndPointHandler unmappedEndPointHandler, IConfigurationManager configurationManager)
+            IUnmappedEndPointHandler unmappedEndPointHandler, 
+            IConfigurationManager configurationManager)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;

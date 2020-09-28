@@ -12,11 +12,14 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         void AddConfigurationObject(object configurationObject);
 
-        void ExposeType(ICurrentApiInformation currentApi, Type type, string name,
-            List<IEndPointMethodAuthorization> authorizations, Func<MethodInfo, bool> methodFilter,
+        void ExposeType(ICurrentApiInformation currentApi, 
+            Type type,
+            Func<RequestExecutionContext,object> activationFunc, 
+            string name,
+            List<IEndPointMethodAuthorization> authorizations, 
+            Func<MethodInfo, bool> methodFilter,
             string obsoleteMessage);
-
-
+        
         IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers();
     }
 }

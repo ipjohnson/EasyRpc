@@ -18,10 +18,11 @@ namespace EasyRpc.AspNetCore.Configuration
         private string _name;
         private readonly GenericFilterGroup<MethodInfo> _methodFilterGroup;
         private string _obsoleteMessage;
+        private Func<RequestExecutionContext, object> _activationFunc;
 
         public TypeExposureConfiguration(ICurrentApiInformation currentApiInformation, Type exposeType)
         {
-            
+
             _currentApiInformation = currentApiInformation;
             _exposeType = exposeType;
             _methodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
@@ -79,12 +80,19 @@ namespace EasyRpc.AspNetCore.Configuration
                 authorizations = _authorizations.ToList();
             }
 
-            service.ExposeType(_currentApiInformation, _exposeType, _name, authorizations, _methodFilterGroup, _obsoleteMessage);
+            service.ExposeType(_currentApiInformation, _exposeType, _activationFunc, _name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
 
         private bool FilterObjectMethods(MethodInfo method)
         {
             return method.DeclaringType != typeof(object);
+        }
+
+        public IExposureConfiguration Activation(Func<RequestExecutionContext, object> activationFunc)
+        {
+            _activationFunc = activationFunc;
+
+            return this;
         }
     }
 
@@ -95,12 +103,21 @@ namespace EasyRpc.AspNetCore.Configuration
         private string _name;
         private readonly GenericFilterGroup<MethodInfo> _methodFilterGroup;
         private string _obsoleteMessage;
+        private Func<RequestExecutionContext, object> _activationFunc;
 
         public TypeExposureConfiguration(ICurrentApiInformation currentApiInformation)
         {
             _currentApiInformation = currentApiInformation;
 
             _methodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
+        }
+
+        /// <inheritdoc />
+        public IExposureConfiguration<T> Activation(Func<RequestExecutionContext, T> activationFunc)
+        {
+            _activationFunc = context => activationFunc(context);
+
+            return this;
         }
 
         public IExposureConfiguration<T> As(string name)
@@ -157,7 +174,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             var name = _name;
 
-            service.ExposeType(_currentApiInformation, typeof(T), name, authorizations, _methodFilterGroup, _obsoleteMessage);
+            service.ExposeType(_currentApiInformation, typeof(T), _activationFunc, name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
 
         private bool FilterObjectMethods(MethodInfo method)
