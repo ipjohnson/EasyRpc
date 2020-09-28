@@ -75,7 +75,7 @@ namespace EasyRpc.AspNetCore
         public object Result { get; set; }
 
         /// <summary>
-        /// Content serializer if available 
+        /// Content serializer, will be null if no body was deserialized from the request
         /// </summary>
         public IContentSerializer ContentSerializer { get; set; }
         

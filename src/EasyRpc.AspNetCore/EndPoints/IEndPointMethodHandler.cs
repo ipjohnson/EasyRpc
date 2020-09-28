@@ -18,6 +18,11 @@ namespace EasyRpc.AspNetCore.EndPoints
         IEndPointMethodConfigurationReadOnly Configuration { get; }
 
         /// <summary>
+        /// Services associated with this endpoint
+        /// </summary>
+        EndPointServices Services { get; }
+
+        /// <summary>
         /// Route information for end point
         /// </summary>
         IRpcRouteInformation RouteInformation { get; }

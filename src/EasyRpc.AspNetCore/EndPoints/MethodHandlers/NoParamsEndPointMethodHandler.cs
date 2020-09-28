@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="services"></param>
-        public NoParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services) : base(configuration, services)
+        public NoParamsEndPointMethodHandler(EndPointMethodConfiguration configuration, EndPointServices services) : base(configuration, services)
         {
 
         }
@@ -31,14 +31,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 CanCompress = Configuration.SupportsCompression.GetValueOrDefault(false)
             };
 
-            if (InvokeMethodDelegate == null)
+            if (ActivationFunc == null)
             {
                 SetupMethod();
             }
 
             try
             {
-                requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+                requestContext.ServiceInstance = ActivationFunc(requestContext);
             
                 var executionTask = InvokeMethodDelegate(requestContext);
                 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Configuration;
+using EasyRpc.AspNetCore.Features;
 
 namespace EasyRpc.AspNetCore
 {
@@ -23,6 +24,19 @@ namespace EasyRpc.AspNetCore
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
             return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes.Where(TypesThat.AreInTheSameNamespaceAs<T>()));
+        }
+
+        /// <summary>
+        /// Adds IRequestExecutionContextFeature to HttpContext.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IApiConfiguration UseRequestExecutionContextFeature(this IApiConfiguration configuration)
+        {
+            configuration.Configure.Action<RequestExecutionContextFeatureConfiguration>(featureConfiguration =>
+                featureConfiguration.FeatureEnabled = true);
+
+            return configuration;
         }
     }
 }

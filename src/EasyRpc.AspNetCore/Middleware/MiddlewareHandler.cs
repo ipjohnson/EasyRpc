@@ -46,7 +46,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             ConfigureEndPointRouting(builder, apiConfig, scope);
 
-            scope.GetService<BaseEndPointServices>().ConfigurationComplete(scope);
+            scope.GetService<EndPointServices>().ConfigurationComplete(scope);
         }
 
         protected virtual void ConfigureEndPointRouting(IApplicationBuilder builder,

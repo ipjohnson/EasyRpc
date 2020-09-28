@@ -15,7 +15,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         private readonly RequestState _startingState;
 
         /// <inheritdoc />
-        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, BaseEndPointServices services)
+        public StateBasedEndPointMethodHandler(EndPointMethodConfiguration configuration, EndPointServices services)
             : base(configuration, services)
         {
             _startingState = RequestState.ExecuteTask;
@@ -42,14 +42,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 Parameters = EmptyParameters.Instance
             };
 
-            if (InvokeMethodDelegate == null)
+            if (ActivationFunc == null)
             {
                 SetupMethod();
             }
 
             try
             {
-                requestContext.ServiceInstance = Configuration.ActivationFunc(requestContext);
+                requestContext.ServiceInstance = ActivationFunc(requestContext);
             }
             catch (Exception e)
             {

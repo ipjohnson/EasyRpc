@@ -10,10 +10,7 @@ using EasyRpc.AspNetCore.Serializers;
 
 namespace EasyRpc.AspNetCore.EndPoints
 {
-    /// <summary>
-    /// Collection of services
-    /// </summary>
-    public class BaseEndPointServices
+    public class EndPointServices
     {
         /// <summary>
         /// Default constructor
@@ -26,14 +23,14 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="rawContentWriter"></param>
         /// <param name="responseDelegateCreator"></param>
         /// <param name="unmappedEndPointHandler"></param>
-        public BaseEndPointServices(IEndPointAuthorizationService authorizationService,
+        public EndPointServices(IEndPointAuthorizationService authorizationService,
             IContentSerializationService serializationService, 
             IParameterBinderDelegateBuilder parameterBinderDelegateBuilder, 
             IMethodInvokerCreationService methodInvokerCreationService, 
             IErrorHandler errorHandler, 
             IRawContentWriter rawContentWriter,
             IResponseDelegateCreator responseDelegateCreator, 
-            IUnmappedEndPointHandler unmappedEndPointHandler)
+            IUnmappedEndPointHandler unmappedEndPointHandler, IConfigurationManager configurationManager)
         {
             AuthorizationService = authorizationService;
             SerializationService = serializationService;
@@ -43,6 +40,7 @@ namespace EasyRpc.AspNetCore.EndPoints
             RawContentWriter = rawContentWriter;
             ResponseDelegateCreator = responseDelegateCreator;
             UnmappedEndPointHandler = unmappedEndPointHandler;
+            ConfigurationManager = configurationManager;
         }
 
         /// <summary>
@@ -84,6 +82,11 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// Unmapped end point handler
         /// </summary>
         public IUnmappedEndPointHandler UnmappedEndPointHandler { get; }
+
+        /// <summary>
+        /// Configuration Manager
+        /// </summary>
+        public IConfigurationManager ConfigurationManager { get; }
         
         /// <summary>
         /// Configuration is complete

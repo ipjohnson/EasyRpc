@@ -40,7 +40,6 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Attributes
         [Theory]
         [InlineData("POST")]
         [InlineData("PATCH")]
-        [InlineData("PUT")]
         public async Task Routing_Attributes_BodyMethod(string httpMethod)
         {
             var id = 20;

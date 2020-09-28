@@ -7,9 +7,14 @@ namespace EasyRpc.AspNetCore.Routing
     public interface IRpcRouteToken
     {
         string Name { get; set; }
+        
         RpcRouteTokenType TokenType { get; set; }
+        
         RpcRouteTokenParseType ParseType { get; set; }
+        
         int ParameterIndex { get; set; }
+        IRpcParameterInfo ParameterInfo { get; set; }
+
         bool? Optional { get; set; }
     }
 
@@ -22,6 +27,8 @@ namespace EasyRpc.AspNetCore.Routing
         public RpcRouteTokenParseType ParseType { get; set; }
 
         public int ParameterIndex { get; set; }
+
+        public IRpcParameterInfo ParameterInfo { get; set; }
 
         public bool? Optional { get; set; }
     }

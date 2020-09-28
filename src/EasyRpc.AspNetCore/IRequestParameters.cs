@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore
         /// Parameter is part of the query string
         /// </summary>
         QueryStringParameter,
-        
+
         /// <summary>
         /// Parameter should be resolved from the request service scope
         /// </summary>
@@ -89,7 +89,12 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Parameter index
         /// </summary>
-        int Position { get;  }
+        int Position { get; }
+
+        /// <summary>
+        /// Is this parameter included in the method invoke
+        /// </summary>
+        bool IsInvokeParameter { get; }
 
         /// <summary>
         /// Source for parameter
@@ -104,11 +109,11 @@ namespace EasyRpc.AspNetCore
     {
         /// <inheritdoc />
         public string Name { get; set; }
-        
+
         /// <inheritdoc />
         [JsonIgnore]
         public Type ParamType { get; set; }
-        
+
         /// <summary>
         /// Type name of property
         /// </summary>
@@ -118,16 +123,17 @@ namespace EasyRpc.AspNetCore
             set { }
         }
 
-
         /// <inheritdoc />
         public object DefaultValue { get; set; }
-
 
         /// <inheritdoc />
         public bool HasDefaultValue { get; set; }
 
         /// <inheritdoc />
         public int Position { get; set; }
+
+        /// <inheritdoc />
+        public bool IsInvokeParameter { get; set; } = true;
 
         /// <inheritdoc />
         public EndPointMethodParameterSource ParameterSource { get; set; }
@@ -182,7 +188,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <param name="parameterName"></param>
         /// <returns></returns>
-        object this[string parameterName] 
+        object this[string parameterName]
         {
             get
             {

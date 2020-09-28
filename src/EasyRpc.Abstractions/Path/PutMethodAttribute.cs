@@ -39,6 +39,6 @@ namespace EasyRpc.Abstractions.Path
         public bool HasRequestBody => true;
 
         /// <inheritdoc />
-        public bool HasResponseBody { get; set; }
+        public bool HasResponseBody => false;
     }
 }

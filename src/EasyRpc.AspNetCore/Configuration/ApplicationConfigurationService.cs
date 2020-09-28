@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using EasyRpc.Abstractions.Headers;
 using EasyRpc.Abstractions.Path;
@@ -33,7 +34,7 @@ namespace EasyRpc.AspNetCore.Configuration
     {
         private readonly List<IEndPointMethodHandler> _handlers = new List<IEndPointMethodHandler>();
         private readonly List<object> _configurationObjects = new List<object>();
-        private readonly BaseEndPointServices _services;
+        private readonly EndPointServices _services;
         private readonly IConfigurationManager _configurationManager;
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private readonly ICompressionSelectorService _compressionSelectorService;
@@ -42,10 +43,10 @@ namespace EasyRpc.AspNetCore.Configuration
         private string _basePath;
         private bool _supportCompression;
 
-        public ApplicationConfigurationService(BaseEndPointServices services, 
-            IConfigurationManager configurationManager, 
-            IAuthorizationImplementationProvider authorizationImplementationProvider, 
-            IWrappedResultTypeCreator wrappedResultTypeCreator, 
+        public ApplicationConfigurationService(EndPointServices services,
+            IConfigurationManager configurationManager,
+            IAuthorizationImplementationProvider authorizationImplementationProvider,
+            IWrappedResultTypeCreator wrappedResultTypeCreator,
             ICompressionSelectorService compressionSelectorService)
         {
             _services = services;
@@ -147,7 +148,7 @@ namespace EasyRpc.AspNetCore.Configuration
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
             {
-                if (configuration.Parameters.Count == 0 && 
+                if (configuration.Parameters.Count == 0 &&
                     (configuration.Filters == null || configuration.Filters.Count == 0))
                 {
                     closedType = typeof(NoParamsEndPointMethodHandler<>).MakeGenericType(returnType);
@@ -160,7 +161,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             return (IEndPointMethodHandler)Activator.CreateInstance(closedType, configuration, _services);
         }
-        
+
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(ICurrentApiInformation currentApi,
             Type type, List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage,
@@ -170,7 +171,7 @@ namespace EasyRpc.AspNetCore.Configuration
             string methodVerb;
             bool methodHasBody;
 
-            (methodPath,methodVerb,methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo,classAttributes, methodAttributes, pathAttribute);
+            (methodPath, methodVerb, methodHasBody) = GenerateMethodPath(currentApi, type, name, methodInfo, classAttributes, methodAttributes, pathAttribute);
 
             var activationMethod = GenerateActivation(currentApi, type, classAttributes, name, methodInfo, methodAttributes);
 
@@ -199,7 +200,7 @@ namespace EasyRpc.AspNetCore.Configuration
                     configuration.RawContentType = rawAttribute.ContentType;
                     configuration.RawContentEncoding = rawAttribute.ContentEncoding;
                 }
-                else if(string.IsNullOrEmpty(configuration.RawContentType))
+                else if (string.IsNullOrEmpty(configuration.RawContentType))
                 {
                     var returnType = methodInfo.ReturnType;
 
@@ -219,7 +220,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 var headerAttributes = classAttributes.Where(a => a is ResponseHeaderAttribute).ToList();
                 headerAttributes.AddRange(methodAttributes.Where(a => a is ResponseHeaderAttribute));
 
-                if (headerAttributes.Count > 0 || 
+                if (headerAttributes.Count > 0 ||
                     currentApi.Headers != ImmutableLinkedList<IResponseHeader>.Empty)
                 {
                     var headers = new List<IResponseHeader>();
@@ -247,9 +248,9 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         private IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly, IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> GetFilterList(
-                ICurrentApiInformation currentApi, 
+                ICurrentApiInformation currentApi,
                 EndPointMethodConfiguration configuration,
-                List<Attribute> classAttributes, 
+                List<Attribute> classAttributes,
                 List<Attribute> methodAttributes)
         {
             var returnList =
@@ -337,10 +338,12 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private void CalculateRouteTokens(RpcRouteInformation rpcRouteInformation)
         {
+            var routeTemplate = rpcRouteInformation.RouteTemplate;
+
             var rpcTokens = new List<RpcRouteToken>();
             rpcRouteInformation.Tokens = rpcTokens;
 
-            var tokenStartBracket = rpcRouteInformation.RouteTemplate.IndexOf('{');
+            var tokenStartBracket = routeTemplate.IndexOf('{');
 
             if (tokenStartBracket == -1)
             {
@@ -348,34 +351,61 @@ namespace EasyRpc.AspNetCore.Configuration
                 return;
             }
 
-            rpcRouteInformation.RouteBasePath = rpcRouteInformation.RouteTemplate.Substring(0, tokenStartBracket);
+            rpcRouteInformation.RouteBasePath = routeTemplate.Substring(0, tokenStartBracket);
 
             while (tokenStartBracket > 0)
             {
-                var tokenEnd = rpcRouteInformation.RouteTemplate.IndexOf('}', tokenStartBracket);
+                var tokenEndBracket = routeTemplate.IndexOf('}', tokenStartBracket);
 
-                var colonIndex = rpcRouteInformation.RouteTemplate.IndexOf(':', tokenStartBracket, tokenEnd - tokenStartBracket);
+                var colonIndex = routeTemplate.IndexOf(':', tokenStartBracket, tokenEndBracket - tokenStartBracket);
+
+                var tokenEnd = tokenEndBracket;
+
+                var token = new RpcRouteToken();
 
                 if (colonIndex > 0)
                 {
                     tokenEnd = colonIndex;
+
+                    var tokenTypeString = routeTemplate.Substring(colonIndex + 1,
+                        tokenEndBracket - (colonIndex + 1));
+
+                    token.ParseType = GetParseType(tokenTypeString);
                 }
 
                 var tokenName =
-                    rpcRouteInformation.RouteTemplate.Substring(tokenStartBracket + 1,
+                    routeTemplate.Substring(tokenStartBracket + 1,
                          tokenEnd - (tokenStartBracket + 1));
 
-                var token = new RpcRouteToken
-                {
-                    Name = tokenName
-                };
+                token.Name = tokenName;
 
                 rpcTokens.Add(token);
 
-                tokenStartBracket = rpcRouteInformation.RouteTemplate.IndexOf('{', tokenEnd);
+                tokenStartBracket = routeTemplate.IndexOf('{', tokenEnd);
             }
         }
-        
+
+        private RpcRouteTokenParseType GetParseType(string tokenTypeString)
+        {
+            switch (tokenTypeString.ToLowerInvariant())
+            {
+                case "int":
+                case "integer":
+                    return RpcRouteTokenParseType.Integer;
+                case "double":
+                    return RpcRouteTokenParseType.Double;
+                case "decimal":
+                    return RpcRouteTokenParseType.Decimal;
+                case "guid":
+                    return RpcRouteTokenParseType.GUID;
+                case "datetime":
+                    return RpcRouteTokenParseType.DateTime;
+
+                default:
+                    return RpcRouteTokenParseType.String;
+            }
+        }
+
         private Func<RequestExecutionContext, object> GenerateActivation(ICurrentApiInformation currentApi, Type type, List<Attribute> classAttributes, string name, MethodInfo methodInfo, List<Attribute> attributes)
         {
             var serviceActivationMethod = currentApi.ServiceActivationMethod;
@@ -410,6 +440,7 @@ namespace EasyRpc.AspNetCore.Configuration
         {
             var parameterList = new List<RpcParameterInfo>();
             var bodyParams = 0;
+            var lastPosition = 0;
 
             foreach (var parameterInfo in methodInfo.GetParameters())
             {
@@ -422,6 +453,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     ParamType = parameterInfo.ParameterType
                 };
 
+                lastPosition = parameterInfo.Position;
+
                 SetParameterSource(routeInformation, parameterInfo.ParameterType, rpcParam);
 
                 if (rpcParam.ParameterSource == EndPointMethodParameterSource.PostParameter)
@@ -430,7 +463,25 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 parameterList.Add(rpcParam);
+            }
 
+            foreach (var routeToken in routeInformation.Tokens)
+            {
+                if (routeToken.ParameterInfo == null)
+                {
+                    var rpcParam = new RpcParameterInfo
+                    {
+                        Position = ++lastPosition,
+                        Name = routeToken.Name,
+                        HasDefaultValue = false,
+                        DefaultValue = null,
+                        ParamType = GetParameterTypeFromTokenType(routeToken.ParseType),
+                        ParameterSource = EndPointMethodParameterSource.PathParameter,
+                        IsInvokeParameter = false
+                    };
+
+                    parameterList.Add(rpcParam);
+                }
             }
 
             if (bodyParams == 1 &&
@@ -448,6 +499,30 @@ namespace EasyRpc.AspNetCore.Configuration
             return parameterList;
         }
 
+        private Type GetParameterTypeFromTokenType(RpcRouteTokenParseType routeTokenParseType)
+        {
+            switch (routeTokenParseType)
+            {
+                case RpcRouteTokenParseType.Integer:
+                    return typeof(int);
+
+                case RpcRouteTokenParseType.Double:
+                    return typeof(double);
+
+                case RpcRouteTokenParseType.Decimal:
+                    return typeof(decimal);
+
+                case RpcRouteTokenParseType.DateTime:
+                    return typeof(DateTime);
+
+                case RpcRouteTokenParseType.GUID:
+                    return typeof(Guid);
+
+                default:
+                    return typeof(string);
+            }
+        }
+
         private (string, string, bool) GenerateMethodPath(ICurrentApiInformation currentApi, Type type, string name,
             MethodInfo methodInfo, List<Attribute> classAttributes, List<Attribute> methodAttributes,
             IPathAttribute pathAttribute)
@@ -456,8 +531,8 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 var basePath = (IBasePathAttribute)classAttributes.FirstOrDefault(a => a is IBasePathAttribute);
 
-                name = basePath != null ? 
-                    basePath.BasePath : 
+                name = basePath != null ?
+                    basePath.BasePath :
                     _exposeConfigurations.RouteNameGenerator(type);
             }
 
@@ -476,7 +551,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 return (fullPathString, pathAttribute.Method, pathAttribute.HasRequestBody);
             }
-            
+
             if (currentApi.DefaultMethod == ExposeDefaultMethod.PostOnly ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGet && parameters.Length > 0) ||
                 (currentApi.DefaultMethod == ExposeDefaultMethod.PostAndGetInt && parameters.Any(p => p.ParameterType != typeof(int))))
@@ -492,7 +567,7 @@ namespace EasyRpc.AspNetCore.Configuration
             return (fullPathString, HttpMethods.Get, false);
         }
 
-        private string GeneratePath(string name,MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
+        private string GeneratePath(string name, MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
         {
             name = name.Trim('/');
 
@@ -502,11 +577,33 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 foreach (var parameterInfo in parameters)
                 {
+                    if (ShouldExcludeParameterFromPath(parameterInfo))
+                    {
+                        continue;
+                    }
+
                     methodPath += "/{" + parameterInfo.Name + "}";
                 }
             }
 
             return methodPath;
+        }
+
+        private bool ShouldExcludeParameterFromPath(ParameterInfo parameterInfo)
+        {
+            var parameterType = parameterInfo.ParameterType;
+
+            if (_exposeConfigurations.ResolveFromContainer(parameterType) ||
+                parameterType == typeof(RequestExecutionContext) ||
+                parameterType == typeof(HttpContext) ||
+                parameterType == typeof(HttpResponse) ||
+                parameterType == typeof(HttpRequest) ||
+                parameterType == typeof(CancellationToken))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers()
@@ -543,7 +640,7 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 return;
             }
-            
+
             var authorizationList = new List<IEndPointMethodAuthorization>();
 
             foreach (var authorizationFunc in currentApi.Authorizations)
@@ -571,7 +668,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             ProcessAuthorizeAttributes(classAttributes, authorizationList);
             ProcessAuthorizeAttributes(methodAttributes, authorizationList);
-            
+
             if (authorizationList.Count > 0)
             {
                 configuration.Authorizations = authorizationList;
@@ -599,7 +696,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
             }
         }
-        
+
         private void ApplyFilters(ICurrentApiInformation currentApi,
             IReadOnlyList<Func<IEndPointMethodConfigurationReadOnly,
                 IEnumerable<Func<RequestExecutionContext, IRequestFilter>>>> filters,

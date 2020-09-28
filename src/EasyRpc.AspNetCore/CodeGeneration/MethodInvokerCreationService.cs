@@ -273,9 +273,12 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             foreach (var rpcParameterInfo in endPointMethodConfiguration.Parameters)
             {
-                var property = parametersType.GetProperty(rpcParameterInfo.Name);
-
-                parameterList.Add(Expression.Property(typedParameterVariable, property));
+                if (rpcParameterInfo.IsInvokeParameter)
+                {
+                    var property = parametersType.GetProperty(rpcParameterInfo.Name);
+                    
+                    parameterList.Add(Expression.Property(typedParameterVariable, property));
+                }
             }
 
             return parameterList;
