@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IMiddlewareHandler
+    <title>Interface IRpcModule
    | EasyRpc documentation website </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IMiddlewareHandler
+    <meta name="title" content="Interface IRpcModule
    | EasyRpc documentation website ">
     <meta name="generator" content="docfx 2.56.2.0">
     
@@ -78,37 +78,37 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.Middleware.IMiddlewareHandler">
+            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.IRpcModule">
   
   
-  <h1 id="EasyRpc_AspNetCore_Middleware_IMiddlewareHandler" data-uid="EasyRpc.AspNetCore.Middleware.IMiddlewareHandler" class="text-break">Interface IMiddlewareHandler
+  <h1 id="EasyRpc_AspNetCore_IRpcModule" data-uid="EasyRpc.AspNetCore.IRpcModule" class="text-break">Interface IRpcModule
   </h1>
-  <div class="markdown level0 summary"><p>Middleware handler interface</p>
+  <div class="markdown level0 summary"><p>Rpc module</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.Middleware.html">EasyRpc.AspNetCore.Middleware</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.html">EasyRpc.AspNetCore</a></h6>
   <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
-  <h5 id="EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_syntax">Syntax</h5>
+  <h5 id="EasyRpc_AspNetCore_IRpcModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IMiddlewareHandler</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IRpcModule</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_Attach_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder%2CSystem.Action%7BEasyRpc.AspNetCore.IRpcApi%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_IRpcModule_Configure_EasyRpc_AspNetCore_IRpcApi_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.IRpcModule.Configure(EasyRpc.AspNetCore.IRpcApi)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Middleware/MiddlewareHandler.cs/#L27">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/IRpcModule.cs/#L16">View Source</a>
   </span>
-  <a id="EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_Attach_" data-uid="EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach*"></a>
-  <h4 id="EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_Attach_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__" data-uid="EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})">Attach(IApplicationBuilder, Action&lt;IRpcApi&gt;)</h4>
-  <div class="markdown level1 summary"><p>Attach api to application pipeline</p>
+  <a id="EasyRpc_AspNetCore_IRpcModule_Configure_" data-uid="EasyRpc.AspNetCore.IRpcModule.Configure*"></a>
+  <h4 id="EasyRpc_AspNetCore_IRpcModule_Configure_EasyRpc_AspNetCore_IRpcApi_" data-uid="EasyRpc.AspNetCore.IRpcModule.Configure(EasyRpc.AspNetCore.IRpcApi)">Configure(IRpcApi)</h4>
+  <div class="markdown level1 summary"><p>Configure module</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IApplicationBuilder Attach(IApplicationBuilder builder, Action&lt;IRpcApi&gt; configuration)</code></pre>
+    <pre><code class="lang-csharp hljs">void Configure(IRpcApi api)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -121,28 +121,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></td>
-        <td><span class="parametername">builder</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="EasyRpc.AspNetCore.IRpcApi.html">IRpcApi</a>&gt;</td>
-        <td><span class="parametername">configuration</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></td>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IRpcApi.html">IRpcApi</a></td>
+        <td><span class="parametername">api</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -155,10 +135,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Middleware_IMiddlewareHandler.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Middleware.IMiddlewareHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_IRpcModule.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.IRpcModule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Middleware/MiddlewareHandler.cs/#L19" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/IRpcModule.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
