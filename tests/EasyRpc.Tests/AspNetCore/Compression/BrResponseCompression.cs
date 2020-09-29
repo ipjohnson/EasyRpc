@@ -75,7 +75,7 @@ namespace EasyRpc.Tests.AspNetCore.Compression
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.Configure.EnableCompression();
+            api.Environment.EnableCompression();
             api.Expose<Service>();
         }
 

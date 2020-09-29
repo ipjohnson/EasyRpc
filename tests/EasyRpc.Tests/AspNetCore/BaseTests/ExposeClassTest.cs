@@ -104,7 +104,7 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.Configure.UseAspNetRouting();
+            api.Environment.UseAspNetRouting();
             api.Expose<AttributedIntMathService>();
             api.GetMethod("/noparams2", () => new GenericResult<int> { Result = 10 });
         }

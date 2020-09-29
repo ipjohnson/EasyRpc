@@ -43,7 +43,7 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Configuration options that apply for all end points
         /// </summary>
-        IEnvironmentConfiguration Configure { get; }
+        IEnvironmentConfiguration Environment { get; }
 
         /// <summary>
         /// Apply prefix 

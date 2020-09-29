@@ -41,8 +41,8 @@ namespace EasyRpc.Examples.Service
 
             app.UseRpcServices(api =>
             {
-                api.Configure.Exposures(e => e.TypeWrapSelector = DefaultExposeDelegates.SimpleTypeWrapSelector);
-                api.Configure.Documentation(docs =>
+                api.Environment.Exposures(e => e.TypeWrapSelector = DefaultExposeDelegates.SimpleTypeWrapSelector);
+                api.Environment.Documentation(docs =>
                 {
                     // enable to test redoc
                     // docs.UIBasePath = "/ReDoc/";

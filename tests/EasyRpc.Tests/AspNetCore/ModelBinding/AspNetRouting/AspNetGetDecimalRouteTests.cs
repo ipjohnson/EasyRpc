@@ -54,7 +54,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.Configure.UseAspNetRouting();
+            api.Environment.UseAspNetRouting();
             api.GetMethod("/TestPath/{decimalParam}", (decimal decimalParam) => decimalParam);
             api.PostMethod("/TestPath/{decimalParam}", (decimal decimalParam) => decimalParam);
         }

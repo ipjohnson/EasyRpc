@@ -48,7 +48,7 @@ namespace EasyRpc.AspNetCore.Configuration
             IAuthorizationImplementationProvider authorizationImplementationProvider)
         {
             ApplicationConfigurationService = applicationServiceProvider.GetRequiredService<IApplicationConfigurationService>();
-            Configure = applicationServiceProvider.GetRequiredService<IEnvironmentConfiguration>();
+            Environment = applicationServiceProvider.GetRequiredService<IEnvironmentConfiguration>();
             AppServices = applicationServiceProvider;
             _authorizationImplementationProvider = authorizationImplementationProvider;
             _configurationMethodRepository =
@@ -95,7 +95,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IEnvironmentConfiguration Configure { get; }
+        public IEnvironmentConfiguration Environment { get; }
 
         /// <inheritdoc />
         public IRpcApi Prefix(string prefix)
