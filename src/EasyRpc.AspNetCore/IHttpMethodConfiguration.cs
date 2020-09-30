@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore
 {
+    /// <summary>
+    /// Interface for configuring http methods directly
+    /// </summary>
     public interface IHttpMethodConfiguration
     {
         #region GET
@@ -17,7 +20,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Get<TResult>(string path, Expression<Func<TResult>> method)
+        IExposureDelegateConfiguration Get<TResult>(string path, Func<TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -30,7 +33,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Get<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> method)
+        IExposureDelegateConfiguration Get<TArg1, TResult>(string path, Func<TArg1, TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -45,7 +48,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Get<TArg1, TArg2, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TResult>> method)
+            Func<TArg1, TArg2, TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -61,7 +64,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Get<TArg1, TArg2, TArg3, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -78,7 +81,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Get<TArg1, TArg2, TArg3, TArg4, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TArg4, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TArg4, TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -96,7 +99,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Get<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> method)
         {
             return Handle(HttpMethods.Get, path, method, false);
         }
@@ -107,22 +110,9 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="getMethod"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration GetAsync<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
+        IExposureDelegateConfiguration Get<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
         {
-            return HandleAsync(HttpMethods.Get, path, getMethod);
-        }
-
-        /// <summary>
-        /// Expose GET Method with request and response parameters
-        /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="getMethod"></param>
-        /// <returns></returns>
-        IExposureDelegateConfiguration GetAsync<TResult>(string path,
-            Func<HttpRequest, HttpResponse, TResult> getMethod)
-        {
-            return HandleAsync(HttpMethods.Get, path, getMethod);
+            return Handle(HttpMethods.Get, path, getMethod, false);
         }
 
         #endregion
@@ -136,7 +126,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Post<TResult>(string path, Expression<Func<TResult>> method)
+        IExposureDelegateConfiguration Post<TResult>(string path, Func<TResult> method)
         {
             return Handle(HttpMethods.Post, path, method, false);
         }
@@ -149,9 +139,9 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Post<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> method)
+        IExposureDelegateConfiguration Post<TArg1, TResult>(string path, Func<TArg1, TResult> method)
         {
-            return Handle(HttpMethods.Post, path, method, false);
+            return Handle(HttpMethods.Post, path, method);
         }
 
         /// <summary>
@@ -164,7 +154,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Post<TArg1, TArg2, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TResult>> method)
+            Func<TArg1, TArg2, TResult> method)
         {
             return Handle(HttpMethods.Post, path, method);
         }
@@ -180,7 +170,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Post<TArg1, TArg2, TArg3, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TResult> method)
         {
             return Handle(HttpMethods.Post, path, method);
         }
@@ -197,7 +187,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Post<TArg1, TArg2, TArg3, TArg4, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TArg4, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TArg4, TResult> method)
         {
             return Handle(HttpMethods.Post, path, method);
         }
@@ -215,7 +205,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Post<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> method)
         {
             return Handle(HttpMethods.Post, path, method);
         }
@@ -227,22 +217,9 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="getMethod"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration PostAsync<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
+        IExposureDelegateConfiguration Post<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
         {
-            return HandleAsync(HttpMethods.Post, path, getMethod);
-        }
-
-        /// <summary>
-        /// Expose POST async Method with request and response parameters
-        /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="getMethod"></param>
-        /// <returns></returns>
-        IExposureDelegateConfiguration PostAsync<TResult>(string path,
-            Func<HttpRequest, HttpResponse, TResult> getMethod)
-        {
-            return HandleAsync(HttpMethods.Post, path, getMethod);
+            return Handle(HttpMethods.Post, path, getMethod);
         }
 
         #endregion
@@ -256,9 +233,9 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Patch<TResult>(string path, Expression<Func<TResult>> method)
+        IExposureDelegateConfiguration Patch<TResult>(string path, Func<TResult> method)
         {
-            return Handle(HttpMethods.Patch, path, method);
+            return Handle(HttpMethods.Patch, path, method, false);
         }
 
         /// <summary>
@@ -269,7 +246,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration Patch<TArg1, TResult>(string path, Expression<Func<TArg1, TResult>> method)
+        IExposureDelegateConfiguration Patch<TArg1, TResult>(string path, Func<TArg1, TResult> method)
         {
             return Handle(HttpMethods.Patch, path, method);
         }
@@ -284,7 +261,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Patch<TArg1, TArg2, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TResult>> method)
+            Func<TArg1, TArg2, TResult> method)
         {
             return Handle(HttpMethods.Patch, path, method);
         }
@@ -300,7 +277,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Patch<TArg1, TArg2, TArg3, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TResult> method)
         {
             return Handle(HttpMethods.Patch, path, method);
         }
@@ -317,7 +294,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Patch<TArg1, TArg2, TArg3, TArg4, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3,TArg4, TResult>> method)
+            Func<TArg1, TArg2, TArg3,TArg4, TResult> method)
         {
             return Handle(HttpMethods.Patch, path, method);
         }
@@ -335,7 +312,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="method"></param>
         /// <returns></returns>
         IExposureDelegateConfiguration Patch<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(string path,
-            Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>> method)
+            Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> method)
         {
             return Handle(HttpMethods.Patch, path, method);
         }
@@ -347,56 +324,151 @@ namespace EasyRpc.AspNetCore
         /// <param name="path"></param>
         /// <param name="getMethod"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration PatchAsync<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
+        IExposureDelegateConfiguration Patch<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
         {
-            return HandleAsync(HttpMethods.Patch, path, getMethod);
+            return Handle(HttpMethods.Patch, path, getMethod);
+        }
+
+        #endregion
+
+        #region PUT
+
+        /// <summary>
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TResult>(string path, Func<TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method, false);
         }
 
         /// <summary>
-        /// Expose PATCH Method with request and response parameters
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TArg1"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TArg1, TResult>(string path, Func<TArg1, TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method);
+        }
+
+        /// <summary>
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TArg1"></typeparam>
+        /// <typeparam name="TArg2"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TArg1, TArg2, TResult>(string path,
+            Func<TArg1, TArg2, TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method);
+        }
+
+        /// <summary>
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TArg1"></typeparam>
+        /// <typeparam name="TArg2"></typeparam>
+        /// <typeparam name="TArg3"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TArg1, TArg2, TArg3, TResult>(string path,
+            Func<TArg1, TArg2, TArg3, TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method);
+        }
+
+        /// <summary>
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TArg1"></typeparam>
+        /// <typeparam name="TArg2"></typeparam>
+        /// <typeparam name="TArg3"></typeparam>
+        /// <typeparam name="TArg4"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TArg1, TArg2, TArg3, TArg4, TResult>(string path,
+            Func<TArg1, TArg2, TArg3, TArg4, TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method);
+        }
+
+        /// <summary>
+        /// Register simple PUT method
+        /// </summary>
+        /// <typeparam name="TArg1"></typeparam>
+        /// <typeparam name="TArg2"></typeparam>
+        /// <typeparam name="TArg3"></typeparam>
+        /// <typeparam name="TArg4"></typeparam>
+        /// <typeparam name="TArg5"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Put<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(string path,
+            Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> method)
+        {
+            return Handle(HttpMethods.Put, path, method);
+        }
+
+        /// <summary>
+        /// Expose PUT method with execution parameter
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="path"></param>
         /// <param name="getMethod"></param>
         /// <returns></returns>
-        IExposureDelegateConfiguration PatchAsync<TResult>(string path,
-            Func<HttpRequest, HttpResponse, TResult> getMethod)
+        IExposureDelegateConfiguration Put<TResult>(string path, Func<RequestExecutionContext, TResult> getMethod)
         {
-            return HandleAsync(HttpMethods.Patch, path, getMethod);
+            return Handle(HttpMethods.Put, path, getMethod);
         }
+        
+        #endregion
+
+        #region DELETE
+
+        
 
         #endregion
 
         #region Handle
 
         IExposureDelegateConfiguration
-            Handle<TResult>(string method, string path,
-                Expression<Func<TResult>> expression, bool hasBody = true);
+            Handle<TResult>(string method, string path,Func<TResult> func, bool hasBody = true);
 
         IExposureDelegateConfiguration
             Handle<TArg, TResult>(string method, string path,
-                Expression<Func<TArg, TResult>> expression, bool hasBody = true);
+                Func<TArg, TResult> func, bool hasBody = true);
 
         IExposureDelegateConfiguration
             Handle<TArg1, TArg2, TResult>(string method, string path,
-                Expression<Func<TArg1, TArg2, TResult>> expression, bool hasBody = true);
+                Func<TArg1, TArg2, TResult> expression, bool hasBody = true);
 
         IExposureDelegateConfiguration
             Handle<TArg1, TArg2, TArg3, TResult>(string method, string path,
-                Expression<Func<TArg1, TArg2, TArg3, TResult>> expression, bool hasBody = true);
+                Func<TArg1, TArg2, TArg3, TResult> expression, bool hasBody = true);
 
         IExposureDelegateConfiguration
             Handle<TArg1, TArg2, TArg3, TArg4, TResult>(string method, string path,
-                Expression<Func<TArg1, TArg2, TArg3, TArg4, TResult>> expression, bool hasBody = true);
+                Func<TArg1, TArg2, TArg3, TArg4, TResult> expression, bool hasBody = true);
 
         IExposureDelegateConfiguration
             Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(string method, string path,
-                Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>> expression, bool hasBody = true);
-        IExposureDelegateConfiguration HandleAsync<TResult>(string method, string path,
-            Func<RequestExecutionContext, TResult> getMethod, bool hasBody = true);
+                Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> expression, bool hasBody = true);
 
-        IExposureDelegateConfiguration HandleAsync<TResult>(string method, string path,
-            Func<HttpRequest, HttpResponse, TResult> getMethod, bool hasBody = true);
 
         #endregion
 
