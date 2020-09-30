@@ -239,7 +239,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L18">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L19">View Source</a>
   </span>
   <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute__ctor_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.#ctor*"></a>
   <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute__ctor_System_String_System_String_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.#ctor(System.String,System.String)">HttpMethodAttribute(String, String)</h4>
@@ -279,7 +279,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L34">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L40">View Source</a>
   </span>
   <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody*"></a>
   <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody">HasRequestBody</h4>
@@ -288,7 +288,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasRequestBody { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool? HasRequestBody { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -300,7 +300,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -310,7 +310,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_HasResponseBody.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L37">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L43">View Source</a>
   </span>
   <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_HasResponseBody_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody*"></a>
   <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_HasResponseBody" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.HasResponseBody">HasResponseBody</h4>
@@ -319,7 +319,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasResponseBody { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool? HasResponseBody { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -331,7 +331,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -341,7 +341,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_Method.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.Method%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L25">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L26">View Source</a>
   </span>
   <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Method_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Method*"></a>
   <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Method" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Method">Method</h4>
@@ -372,7 +372,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_Path.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.Path%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L28">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L29">View Source</a>
   </span>
   <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Path_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Path*"></a>
   <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Path" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Path">Path</h4>
@@ -400,19 +400,19 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_SuccessCodeValue.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_Success.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.Success%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L31">View Source</a>
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L34">View Source</a>
   </span>
-  <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_SuccessCodeValue_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue*"></a>
-  <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_SuccessCodeValue" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue">SuccessCodeValue</h4>
-  <div class="markdown level1 summary"><p>HTTP success code</p>
+  <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Success_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Success*"></a>
+  <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_Success" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.Success">Success</h4>
+  <div class="markdown level1 summary"><p>HTTP success status code</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int SuccessCodeValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HttpStatusCode? Success { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -424,7 +424,40 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.httpstatuscode">HttpStatusCode</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute_EasyRpc_Abstractions_Path_IPathAttribute_SuccessCodeValue.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc%23Abstractions%23Path%23IPathAttribute%23SuccessCodeValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L37">View Source</a>
+  </span>
+  <a id="EasyRpc_Abstractions_Path_HttpMethodAttribute_EasyRpc_Abstractions_Path_IPathAttribute_SuccessCodeValue_" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue*"></a>
+  <h4 id="EasyRpc_Abstractions_Path_HttpMethodAttribute_EasyRpc_Abstractions_Path_IPathAttribute_SuccessCodeValue" data-uid="EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue">IPathAttribute.SuccessCodeValue</h4>
+  <div class="markdown level1 summary"><p>HTTP success code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int? IPathAttribute.SuccessCodeValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -444,7 +477,7 @@ public class HttpMethodAttribute : Attribute, IPathAttribute</code></pre>
                     <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_Abstractions_Path_HttpMethodAttribute.md&amp;value=---%0Auid%3A%20EasyRpc.Abstractions.Path.HttpMethodAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.Abstractions/Path/HttpMethodAttribute.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

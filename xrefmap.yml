@@ -518,6 +518,23 @@ references:
   isSpec: "True"
   fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.HttpMethodAttribute
   nameWithType: HttpMethodAttribute.HttpMethodAttribute
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue
+  name: IPathAttribute.SuccessCodeValue
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_EasyRpc_Abstractions_Path_IPathAttribute_SuccessCodeValue
+  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue
+  name.vb: EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
+  nameWithType: HttpMethodAttribute.IPathAttribute.SuccessCodeValue
+  nameWithType.vb: HttpMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue*
+  name: IPathAttribute.SuccessCodeValue
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_EasyRpc_Abstractions_Path_IPathAttribute_SuccessCodeValue_
+  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc#Abstractions#Path#IPathAttribute#SuccessCodeValue
+  isSpec: "True"
+  name.vb: EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
+  nameWithType: HttpMethodAttribute.IPathAttribute.SuccessCodeValue
+  nameWithType.vb: HttpMethodAttribute.EasyRpc.Abstractions.Path.IPathAttribute.SuccessCodeValue
 - uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.HasRequestBody
   name: HasRequestBody
   href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_HasRequestBody
@@ -570,19 +587,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.Path
   nameWithType: HttpMethodAttribute.Path
-- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue
-  name: SuccessCodeValue
-  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_SuccessCodeValue
-  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue
-  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue
-  nameWithType: HttpMethodAttribute.SuccessCodeValue
-- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue*
-  name: SuccessCodeValue
-  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_SuccessCodeValue_
-  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.Success
+  name: Success
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_Success
+  commentId: P:EasyRpc.Abstractions.Path.HttpMethodAttribute.Success
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.Success
+  nameWithType: HttpMethodAttribute.Success
+- uid: EasyRpc.Abstractions.Path.HttpMethodAttribute.Success*
+  name: Success
+  href: api/EasyRpc.Abstractions.Path.HttpMethodAttribute.html#EasyRpc_Abstractions_Path_HttpMethodAttribute_Success_
+  commentId: Overload:EasyRpc.Abstractions.Path.HttpMethodAttribute.Success
   isSpec: "True"
-  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.SuccessCodeValue
-  nameWithType: HttpMethodAttribute.SuccessCodeValue
+  fullName: EasyRpc.Abstractions.Path.HttpMethodAttribute.Success
+  nameWithType: HttpMethodAttribute.Success
 - uid: EasyRpc.Abstractions.Path.IBasePathAttribute
   name: IBasePathAttribute
   href: api/EasyRpc.Abstractions.Path.IBasePathAttribute.html
@@ -2782,22 +2799,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForDelegate
   nameWithType: ApplicationConfigurationService.CreateEndPointMethodConfigurationForDelegate
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression*
-  name: CreateEndPointMethodConfigurationForExpression
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_CreateEndPointMethodConfigurationForExpression_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression
-  nameWithType: ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Delegate,System.Linq.Expressions.Expression{``0})
-  name: CreateEndPointMethodConfigurationForExpression<TDelegate>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Delegate, Expression<TDelegate>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_CreateEndPointMethodConfigurationForExpression__1_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Delegate_System_Linq_Expressions_Expression___0__
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Delegate,System.Linq.Expressions.Expression{``0})
-  name.vb: CreateEndPointMethodConfigurationForExpression(Of TDelegate)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Delegate, Expression(Of TDelegate))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression<TDelegate>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Delegate, System.Linq.Expressions.Expression<TDelegate>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression(Of TDelegate)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Delegate, System.Linq.Expressions.Expression(Of TDelegate))
-  nameWithType: ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression<TDelegate>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Delegate, Expression<TDelegate>)
-  nameWithType.vb: ApplicationConfigurationService.CreateEndPointMethodConfigurationForExpression(Of TDelegate)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Delegate, Expression(Of TDelegate))
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.DefaultFilterMethod(System.Reflection.MethodInfo)
   name: DefaultFilterMethod(MethodInfo)
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_DefaultFilterMethod_System_Reflection_MethodInfo_
@@ -2830,49 +2831,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeDelegate
   nameWithType: ApplicationConfigurationService.ExposeDelegate
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression*
-  name: ExposeExpression
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeExpression_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression
-  nameWithType: ApplicationConfigurationService.ExposeExpression
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: ExposeExpression<TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeExpression__1_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: ExposeExpression(Of TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression<TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression(Of TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: ApplicationConfigurationService.ExposeExpression<TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TResult>>)
-  nameWithType.vb: ApplicationConfigurationService.ExposeExpression(Of TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``2(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: ExposeExpression<TArg1, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeExpression__2_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``2(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: ExposeExpression(Of TArg1, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression<TArg1, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression(Of TArg1, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: ApplicationConfigurationService.ExposeExpression<TArg1, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: ApplicationConfigurationService.ExposeExpression(Of TArg1, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``3(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeExpression__3_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``3(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: ExposeExpression(Of TArg1, TArg2, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: ApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: ApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``4(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeExpression__4_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression``4(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TArg3, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: ApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: ApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.Collections.Generic.List{System.Attribute},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.String,System.Reflection.MethodInfo)
   name: ExposeMethod(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, List<Attribute>, String, List<IEndPointMethodAuthorization>, String, MethodInfo)
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeMethod_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_Collections_Generic_List_System_Attribute__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_String_System_Reflection_MethodInfo_
@@ -2905,22 +2863,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType
   nameWithType: ApplicationConfigurationService.ExposeType
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression*
-  name: GenerateMethodParametersForExpression
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_GenerateMethodParametersForExpression_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression
-  nameWithType: ApplicationConfigurationService.GenerateMethodParametersForExpression
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Routing.IRpcRouteInformation,System.Linq.Expressions.Expression{``0})
-  name: GenerateMethodParametersForExpression<TDelegate>(ICurrentApiInformation, IRpcRouteInformation, Expression<TDelegate>)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_GenerateMethodParametersForExpression__1_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Routing_IRpcRouteInformation_System_Linq_Expressions_Expression___0__
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Routing.IRpcRouteInformation,System.Linq.Expressions.Expression{``0})
-  name.vb: GenerateMethodParametersForExpression(Of TDelegate)(ICurrentApiInformation, IRpcRouteInformation, Expression(Of TDelegate))
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression<TDelegate>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Routing.IRpcRouteInformation, System.Linq.Expressions.Expression<TDelegate>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.GenerateMethodParametersForExpression(Of TDelegate)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Routing.IRpcRouteInformation, System.Linq.Expressions.Expression(Of TDelegate))
-  nameWithType: ApplicationConfigurationService.GenerateMethodParametersForExpression<TDelegate>(ICurrentApiInformation, IRpcRouteInformation, Expression<TDelegate>)
-  nameWithType.vb: ApplicationConfigurationService.GenerateMethodParametersForExpression(Of TDelegate)(ICurrentApiInformation, IRpcRouteInformation, Expression(Of TDelegate))
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ProcessConfigurationObjects
   name: ProcessConfigurationObjects()
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ProcessConfigurationObjects
@@ -2960,22 +2902,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterDelegate
   nameWithType: ApplicationConfigurationService.RegisterDelegate
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression*
-  name: RegisterExpression
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_RegisterExpression_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression
-  nameWithType: ApplicationConfigurationService.RegisterExpression
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{``0},System.Delegate)
-  name: RegisterExpression<TDelegate>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<TDelegate>, Delegate)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_RegisterExpression__1_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression___0__System_Delegate_
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{``0},System.Delegate)
-  name.vb: RegisterExpression(Of TDelegate)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of TDelegate), Delegate)
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression<TDelegate>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<TDelegate>, System.Delegate)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.RegisterExpression(Of TDelegate)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of TDelegate), System.Delegate)
-  nameWithType: ApplicationConfigurationService.RegisterExpression<TDelegate>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<TDelegate>, Delegate)
-  nameWithType.vb: ApplicationConfigurationService.RegisterExpression(Of TDelegate)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of TDelegate), Delegate)
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.SetParameterSource(EasyRpc.AspNetCore.Routing.IRpcRouteInformation,System.Type,EasyRpc.AspNetCore.RpcParameterInfo)
   name: SetParameterSource(IRpcRouteInformation, Type, RpcParameterInfo)
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_SetParameterSource_EasyRpc_AspNetCore_Routing_IRpcRouteInformation_System_Type_EasyRpc_AspNetCore_RpcParameterInfo_
@@ -3381,19 +3307,32 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.Filters
   nameWithType: BaseDelegateInstanceConfiguration.Filters
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody
-  name: HasBody
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasBody
-  commentId: P:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody
-  nameWithType: BaseDelegateInstanceConfiguration.HasBody
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody*
-  name: HasBody
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasBody_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody
+  name: HasRequestBody
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasRequestBody
+  commentId: P:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody
+  nameWithType: BaseDelegateInstanceConfiguration.HasRequestBody
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody*
+  name: HasRequestBody
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasRequestBody_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasBody
-  nameWithType: BaseDelegateInstanceConfiguration.HasBody
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasRequestBody
+  nameWithType: BaseDelegateInstanceConfiguration.HasRequestBody
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasResponseBody
+  commentId: P:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody
+  nameWithType: BaseDelegateInstanceConfiguration.HasResponseBody
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody*
+  name: HasResponseBody
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_HasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.HasResponseBody
+  nameWithType: BaseDelegateInstanceConfiguration.HasResponseBody
 - uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.Header(System.String,System.String)
   name: Header(String, String)
   href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_Header_System_String_System_String_
@@ -3472,6 +3411,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.RawContentType
   nameWithType: BaseDelegateInstanceConfiguration.RawContentType
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode
+  name: SuccessStatusCode
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_SuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode
+  nameWithType: BaseDelegateInstanceConfiguration.SuccessStatusCode
+- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode*
+  name: SuccessStatusCode
+  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_SuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration.SuccessStatusCode
+  nameWithType: BaseDelegateInstanceConfiguration.SuccessStatusCode
 - uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.DelegateInstanceConfiguration
   name: DelegateInstanceConfiguration
   href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.DelegateInstanceConfiguration.html
@@ -3504,182 +3456,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.DelegateInstanceConfiguration.ExecuteConfiguration
   nameWithType: DelegateInstanceConfiguration.ExecuteConfiguration
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1
-  name: NoParamDelegateExpression<TResult>
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression-1.html
-  commentId: T:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1
-  name.vb: NoParamDelegateExpression(Of TResult)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression<TResult>
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression(Of TResult)
-  nameWithType: NoParamDelegateExpression<TResult>
-  nameWithType.vb: NoParamDelegateExpression(Of TResult)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0}})
-  name: NoParamDelegateExpression(ICurrentApiInformation, String, String, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression-1.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_NoParamDelegateExpression_1__ctor_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_String_System_String_System_Linq_Expressions_Expression_System_Func__0___
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0}})
-  name.vb: NoParamDelegateExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression<TResult>.NoParamDelegateExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression(Of TResult).NoParamDelegateExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: NoParamDelegateExpression<TResult>.NoParamDelegateExpression(ICurrentApiInformation, String, String, Expression<Func<TResult>>)
-  nameWithType.vb: NoParamDelegateExpression(Of TResult).NoParamDelegateExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.#ctor*
-  name: NoParamDelegateExpression
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression-1.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_NoParamDelegateExpression_1__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.#ctor
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression<TResult>.NoParamDelegateExpression
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression(Of TResult).NoParamDelegateExpression
-  nameWithType: NoParamDelegateExpression<TResult>.NoParamDelegateExpression
-  nameWithType.vb: NoParamDelegateExpression(Of TResult).NoParamDelegateExpression
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  name: ExecuteConfiguration(IApplicationConfigurationService)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression-1.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_NoParamDelegateExpression_1_ExecuteConfiguration_EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression<TResult>.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression(Of TResult).ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  nameWithType: NoParamDelegateExpression<TResult>.ExecuteConfiguration(IApplicationConfigurationService)
-  nameWithType.vb: NoParamDelegateExpression(Of TResult).ExecuteConfiguration(IApplicationConfigurationService)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.ExecuteConfiguration*
-  name: ExecuteConfiguration
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression-1.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_NoParamDelegateExpression_1_ExecuteConfiguration_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression`1.ExecuteConfiguration
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression<TResult>.ExecuteConfiguration
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.NoParamDelegateExpression(Of TResult).ExecuteConfiguration
-  nameWithType: NoParamDelegateExpression<TResult>.ExecuteConfiguration
-  nameWithType.vb: NoParamDelegateExpression(Of TResult).ExecuteConfiguration
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2
-  name: OneArgExpressionExpression<TArg1, TResult>
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression-2.html
-  commentId: T:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2
-  name.vb: OneArgExpressionExpression(Of TArg1, TResult)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression<TArg1, TResult>
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression(Of TArg1, TResult)
-  nameWithType: OneArgExpressionExpression<TArg1, TResult>
-  nameWithType.vb: OneArgExpressionExpression(Of TArg1, TResult)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1}})
-  name: OneArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression-2.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_OneArgExpressionExpression_2__ctor_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_String_System_String_System_Linq_Expressions_Expression_System_Func__0__1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1}})
-  name.vb: OneArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression<TArg1, TResult>.OneArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression(Of TArg1, TResult).OneArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: OneArgExpressionExpression<TArg1, TResult>.OneArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: OneArgExpressionExpression(Of TArg1, TResult).OneArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.#ctor*
-  name: OneArgExpressionExpression
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression-2.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_OneArgExpressionExpression_2__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.#ctor
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression<TArg1, TResult>.OneArgExpressionExpression
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression(Of TArg1, TResult).OneArgExpressionExpression
-  nameWithType: OneArgExpressionExpression<TArg1, TResult>.OneArgExpressionExpression
-  nameWithType.vb: OneArgExpressionExpression(Of TArg1, TResult).OneArgExpressionExpression
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  name: ExecuteConfiguration(IApplicationConfigurationService)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression-2.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_OneArgExpressionExpression_2_ExecuteConfiguration_EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression<TArg1, TResult>.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression(Of TArg1, TResult).ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  nameWithType: OneArgExpressionExpression<TArg1, TResult>.ExecuteConfiguration(IApplicationConfigurationService)
-  nameWithType.vb: OneArgExpressionExpression(Of TArg1, TResult).ExecuteConfiguration(IApplicationConfigurationService)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.ExecuteConfiguration*
-  name: ExecuteConfiguration
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression-2.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_OneArgExpressionExpression_2_ExecuteConfiguration_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression`2.ExecuteConfiguration
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression<TArg1, TResult>.ExecuteConfiguration
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.OneArgExpressionExpression(Of TArg1, TResult).ExecuteConfiguration
-  nameWithType: OneArgExpressionExpression<TArg1, TResult>.ExecuteConfiguration
-  nameWithType.vb: OneArgExpressionExpression(Of TArg1, TResult).ExecuteConfiguration
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4
-  name: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression-4.html
-  commentId: T:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4
-  name.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult)
-  nameWithType: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>
-  nameWithType.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1,`2,`3}})
-  name: ThreeArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression-4.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_ThreeArgExpressionExpression_4__ctor_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_String_System_String_System_Linq_Expressions_Expression_System_Func__0__1__2__3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1,`2,`3}})
-  name.vb: ThreeArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ThreeArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ThreeArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ThreeArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ThreeArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.#ctor*
-  name: ThreeArgExpressionExpression
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression-4.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_ThreeArgExpressionExpression_4__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.#ctor
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ThreeArgExpressionExpression
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ThreeArgExpressionExpression
-  nameWithType: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ThreeArgExpressionExpression
-  nameWithType.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ThreeArgExpressionExpression
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  name: ExecuteConfiguration(IApplicationConfigurationService)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression-4.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_ThreeArgExpressionExpression_4_ExecuteConfiguration_EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  nameWithType: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ExecuteConfiguration(IApplicationConfigurationService)
-  nameWithType.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ExecuteConfiguration(IApplicationConfigurationService)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.ExecuteConfiguration*
-  name: ExecuteConfiguration
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression-4.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_ThreeArgExpressionExpression_4_ExecuteConfiguration_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression`4.ExecuteConfiguration
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ExecuteConfiguration
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ExecuteConfiguration
-  nameWithType: ThreeArgExpressionExpression<TArg1, TArg2, TArg3, TResult>.ExecuteConfiguration
-  nameWithType.vb: ThreeArgExpressionExpression(Of TArg1, TArg2, TArg3, TResult).ExecuteConfiguration
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3
-  name: TwoArgExpressionExpression<TArg1, TArg2, TResult>
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression-3.html
-  commentId: T:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3
-  name.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression<TArg1, TArg2, TResult>
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression(Of TArg1, TArg2, TResult)
-  nameWithType: TwoArgExpressionExpression<TArg1, TArg2, TResult>
-  nameWithType.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1,`2}})
-  name: TwoArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression-3.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_TwoArgExpressionExpression_3__ctor_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_String_System_String_System_Linq_Expressions_Expression_System_Func__0__1__2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.#ctor(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.String,System.String,System.Linq.Expressions.Expression{System.Func{`0,`1,`2}})
-  name.vb: TwoArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression<TArg1, TArg2, TResult>.TwoArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression(Of TArg1, TArg2, TResult).TwoArgExpressionExpression(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: TwoArgExpressionExpression<TArg1, TArg2, TResult>.TwoArgExpressionExpression(ICurrentApiInformation, String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult).TwoArgExpressionExpression(ICurrentApiInformation, String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.#ctor*
-  name: TwoArgExpressionExpression
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression-3.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_TwoArgExpressionExpression_3__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.#ctor
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression<TArg1, TArg2, TResult>.TwoArgExpressionExpression
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression(Of TArg1, TArg2, TResult).TwoArgExpressionExpression
-  nameWithType: TwoArgExpressionExpression<TArg1, TArg2, TResult>.TwoArgExpressionExpression
-  nameWithType.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult).TwoArgExpressionExpression
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  name: ExecuteConfiguration(IApplicationConfigurationService)
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression-3.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_TwoArgExpressionExpression_3_ExecuteConfiguration_EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_
-  commentId: M:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression<TArg1, TArg2, TResult>.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression(Of TArg1, TArg2, TResult).ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
-  nameWithType: TwoArgExpressionExpression<TArg1, TArg2, TResult>.ExecuteConfiguration(IApplicationConfigurationService)
-  nameWithType.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult).ExecuteConfiguration(IApplicationConfigurationService)
-- uid: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.ExecuteConfiguration*
-  name: ExecuteConfiguration
-  href: api/EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression-3.html#EasyRpc_AspNetCore_Configuration_DelegateConfiguration_TwoArgExpressionExpression_3_ExecuteConfiguration_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression`3.ExecuteConfiguration
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression<TArg1, TArg2, TResult>.ExecuteConfiguration
-  fullName.vb: EasyRpc.AspNetCore.Configuration.DelegateConfiguration.TwoArgExpressionExpression(Of TArg1, TArg2, TResult).ExecuteConfiguration
-  nameWithType: TwoArgExpressionExpression<TArg1, TArg2, TResult>.ExecuteConfiguration
-  nameWithType.vb: TwoArgExpressionExpression(Of TArg1, TArg2, TResult).ExecuteConfiguration
 - uid: EasyRpc.AspNetCore.Configuration.EnvironmentConfiguration
   name: EnvironmentConfiguration
   href: api/EasyRpc.AspNetCore.Configuration.EnvironmentConfiguration.html
@@ -3786,6 +3562,102 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.TypeWrapSelector
   nameWithType: ExposeConfigurations.TypeWrapSelector
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration
+  name: HttpMethodConfiguration
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html
+  commentId: T:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration
+  nameWithType: HttpMethodConfiguration
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration)
+  name: HttpMethodConfiguration(IInternalApiConfiguration)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration__ctor_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration)
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.HttpMethodConfiguration(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration)
+  nameWithType: HttpMethodConfiguration.HttpMethodConfiguration(IInternalApiConfiguration)
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor*
+  name: HttpMethodConfiguration
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.HttpMethodConfiguration
+  nameWithType: HttpMethodConfiguration.HttpMethodConfiguration
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*
+  name: Handle
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle
+  nameWithType: HttpMethodConfiguration.Handle
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Nullable{System.Boolean})
+  name: Handle<TResult>(String, String, Func<TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__1_System_String_System_String_System_Func___0__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TResult)(String, String, Func(Of TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TResult>(System.String, System.String, System.Func<TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TResult)(System.String, System.String, System.Func(Of TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TResult>(String, String, Func<TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TResult)(String, String, Func(Of TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Nullable{System.Boolean})
+  name: Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__2_System_String_System_String_System_Func___0___1__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TArg, TResult>(System.String, System.String, System.Func<TArg, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TArg, TResult)(System.String, System.String, System.Func(Of TArg, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__3_System_String_System_String_System_Func___0___1___2__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__4_System_String_System_String_System_Func___0___1___2___3__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__5_System_String_System_String_System_Func___0___1___2___3___4__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__6_System_String_System_String_System_Func___0___1___2___3___4___5__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String,System.String,System.Delegate,System.Nullable{System.Boolean})
+  name: RegisterDelegateHandler(String, String, Delegate, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_RegisterDelegateHandler_System_String_System_String_System_Delegate_System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String,System.String,System.Delegate,System.Nullable{System.Boolean})
+  name.vb: RegisterDelegateHandler(String, String, Delegate, Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String, System.String, System.Delegate, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String, System.String, System.Delegate, System.Nullable(Of System.Boolean))
+  nameWithType: HttpMethodConfiguration.RegisterDelegateHandler(String, String, Delegate, Nullable<Boolean>)
+  nameWithType.vb: HttpMethodConfiguration.RegisterDelegateHandler(String, String, Delegate, Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler*
+  name: RegisterDelegateHandler
+  href: api/EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.html#EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_RegisterDelegateHandler_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler
+  nameWithType: HttpMethodConfiguration.RegisterDelegateHandler
 - uid: EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware
   name: IApiConfigurationCompleteAware
   href: api/EasyRpc.AspNetCore.Configuration.IApiConfigurationCompleteAware.html
@@ -3856,49 +3728,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeDelegate
   nameWithType: IApplicationConfigurationService.ExposeDelegate
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression*
-  name: ExposeExpression
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeExpression_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression
-  nameWithType: IApplicationConfigurationService.ExposeExpression
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: ExposeExpression<TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeExpression__1_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``1(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: ExposeExpression(Of TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression<TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression(Of TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: IApplicationConfigurationService.ExposeExpression<TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TResult>>)
-  nameWithType.vb: IApplicationConfigurationService.ExposeExpression(Of TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``2(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: ExposeExpression<TArg1, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeExpression__2_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``2(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: ExposeExpression(Of TArg1, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression<TArg1, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression(Of TArg1, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: IApplicationConfigurationService.ExposeExpression<TArg1, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: IApplicationConfigurationService.ExposeExpression(Of TArg1, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``3(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeExpression__3_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``3(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: ExposeExpression(Of TArg1, TArg2, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: IApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: IApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``4(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeExpression__4_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_EasyRpc_AspNetCore_Configuration_DelegateConfiguration_BaseDelegateInstanceConfiguration_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression``4(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TArg3, TResult>(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, EasyRpc.AspNetCore.Configuration.DelegateConfiguration.BaseDelegateInstanceConfiguration, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: IApplicationConfigurationService.ExposeExpression<TArg1, TArg2, TArg3, TResult>(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: IApplicationConfigurationService.ExposeExpression(Of TArg1, TArg2, TArg3, TResult)(ICurrentApiInformation, BaseDelegateInstanceConfiguration, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
   name: ExposeType(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
   href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeType_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_Func_System_Reflection_MethodInfo_System_Boolean__System_String_
@@ -4502,49 +4331,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetEndPointHandlers
   nameWithType: InternalApiConfiguration.GetEndPointHandlers
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod*
-  name: GetMethod
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_GetMethod_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod
-  nameWithType: InternalApiConfiguration.GetMethod
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``1(System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: GetMethod<TResult>(String, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_GetMethod__1_System_String_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``1(System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: GetMethod(Of TResult)(String, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod<TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod(Of TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: InternalApiConfiguration.GetMethod<TResult>(String, Expression<Func<TResult>>)
-  nameWithType.vb: InternalApiConfiguration.GetMethod(Of TResult)(String, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: GetMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_GetMethod__2_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: GetMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod<TArg1, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod(Of TArg1, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: InternalApiConfiguration.GetMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.GetMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: GetMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_GetMethod__3_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: GetMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod<TArg1, TArg2, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod(Of TArg1, TArg2, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: InternalApiConfiguration.GetMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.GetMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: GetMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_GetMethod__4_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: GetMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.GetMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: InternalApiConfiguration.GetMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.GetMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Header(System.String,System.String)
   name: Header(String, String)
   href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Header_System_String_System_String_
@@ -4558,49 +4344,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Header
   nameWithType: InternalApiConfiguration.Header
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod*
-  name: HttpMethod
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_HttpMethod_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod
+- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method
+  name: Method
+  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Method
+  commentId: P:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method
+  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method
+  nameWithType: InternalApiConfiguration.Method
+- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method*
+  name: Method
+  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Method_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod
-  nameWithType: InternalApiConfiguration.HttpMethod
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``1(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: HttpMethod<TResult>(String, String, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_HttpMethod__1_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``1(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: HttpMethod(Of TResult)(String, String, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod<TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod(Of TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: InternalApiConfiguration.HttpMethod<TResult>(String, String, Expression<Func<TResult>>)
-  nameWithType.vb: InternalApiConfiguration.HttpMethod(Of TResult)(String, String, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``2(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: HttpMethod<TArg1, TResult>(String, String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_HttpMethod__2_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``2(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: HttpMethod(Of TArg1, TResult)(String, String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod<TArg1, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod(Of TArg1, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: InternalApiConfiguration.HttpMethod<TArg1, TResult>(String, String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.HttpMethod(Of TArg1, TResult)(String, String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``3(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: HttpMethod<TArg1, TArg2, TResult>(String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_HttpMethod__3_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``3(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: HttpMethod(Of TArg1, TArg2, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod<TArg1, TArg2, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod(Of TArg1, TArg2, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: InternalApiConfiguration.HttpMethod<TArg1, TArg2, TResult>(String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.HttpMethod(Of TArg1, TArg2, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``4(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: HttpMethod<TArg1, TArg2, TArg3, TResult>(String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_HttpMethod__4_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod``4(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: HttpMethod(Of TArg1, TArg2, TArg3, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.HttpMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: InternalApiConfiguration.HttpMethod<TArg1, TArg2, TArg3, TResult>(String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.HttpMethod(Of TArg1, TArg2, TArg3, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
+  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Method
+  nameWithType: InternalApiConfiguration.Method
 - uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.MethodFilter(System.Func{System.Reflection.MethodInfo,System.Boolean})
   name: MethodFilter(Func<MethodInfo, Boolean>)
   href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_MethodFilter_System_Func_System_Reflection_MethodInfo_System_Boolean__
@@ -4617,40 +4373,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.MethodFilter
   nameWithType: InternalApiConfiguration.MethodFilter
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod*
-  name: PostMethod
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_PostMethod_
-  commentId: Overload:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod
-  nameWithType: InternalApiConfiguration.PostMethod
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: PostMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_PostMethod__2_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: PostMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod<TArg1, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod(Of TArg1, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: InternalApiConfiguration.PostMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.PostMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: PostMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_PostMethod__3_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: PostMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod<TArg1, TArg2, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod(Of TArg1, TArg2, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: InternalApiConfiguration.PostMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.PostMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: PostMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_PostMethod__4_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: PostMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.PostMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: InternalApiConfiguration.PostMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: InternalApiConfiguration.PostMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Prefix(System.Func{System.Type,System.Collections.Generic.IEnumerable{System.String}})
   name: Prefix(Func<Type, IEnumerable<String>>)
   href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Prefix_System_Func_System_Type_System_Collections_Generic_IEnumerable_System_String___
@@ -6565,6 +6287,188 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.DeleteSuccessStatusCode
   nameWithType: DefaultMethodConfiguration.DeleteSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody
+  name: GetHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_GetHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody
+  nameWithType: DefaultMethodConfiguration.GetHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody*
+  name: GetHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_GetHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetHasResponseBody
+  nameWithType: DefaultMethodConfiguration.GetHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode
+  name: GetSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_GetSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.GetSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode*
+  name: GetSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_GetSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.GetSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.GetSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody
+  name: HeadHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_HeadHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody
+  nameWithType: DefaultMethodConfiguration.HeadHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody*
+  name: HeadHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_HeadHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadHasResponseBody
+  nameWithType: DefaultMethodConfiguration.HeadHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode
+  name: HeadSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_HeadSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.HeadSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode*
+  name: HeadSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_HeadSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.HeadSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.HeadSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody
+  name: OptionsHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_OptionsHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody
+  nameWithType: DefaultMethodConfiguration.OptionsHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody*
+  name: OptionsHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_OptionsHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsHasResponseBody
+  nameWithType: DefaultMethodConfiguration.OptionsHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode
+  name: OptionsSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_OptionsSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.OptionsSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode*
+  name: OptionsSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_OptionsSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.OptionsSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.OptionsSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody
+  name: PatchHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PatchHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PatchHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody*
+  name: PatchHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PatchHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PatchHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode
+  name: PatchSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PatchSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PatchSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode*
+  name: PatchSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PatchSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PatchSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PatchSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody
+  name: PostHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PostHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PostHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody*
+  name: PostHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PostHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PostHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode
+  name: PostSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PostSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PostSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode*
+  name: PostSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PostSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PostSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PostSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody
+  name: PutHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PutHasResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PutHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody*
+  name: PutHasResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PutHasResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutHasResponseBody
+  nameWithType: DefaultMethodConfiguration.PutHasResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode
+  name: PutSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PutSuccessStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PutSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode*
+  name: PutSuccessStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_PutSuccessStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.PutSuccessStatusCode
+  nameWithType: DefaultMethodConfiguration.PutSuccessStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody
+  name: UnknownMethodResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_UnknownMethodResponseBody
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody
+  nameWithType: DefaultMethodConfiguration.UnknownMethodResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody*
+  name: UnknownMethodResponseBody
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_UnknownMethodResponseBody_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodResponseBody
+  nameWithType: DefaultMethodConfiguration.UnknownMethodResponseBody
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode
+  name: UnknownMethodStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_UnknownMethodStatusCode
+  commentId: P:EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode
+  nameWithType: DefaultMethodConfiguration.UnknownMethodStatusCode
+- uid: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode*
+  name: UnknownMethodStatusCode
+  href: api/EasyRpc.AspNetCore.DefaultMethodConfiguration.html#EasyRpc_AspNetCore_DefaultMethodConfiguration_UnknownMethodStatusCode_
+  commentId: Overload:EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.DefaultMethodConfiguration.UnknownMethodStatusCode
+  nameWithType: DefaultMethodConfiguration.UnknownMethodStatusCode
 - uid: EasyRpc.AspNetCore.DefaultRpcServices
   name: DefaultRpcServices
   href: api/EasyRpc.AspNetCore.DefaultRpcServices.html
@@ -11075,6 +10979,67 @@ references:
   commentId: T:EasyRpc.AspNetCore.IHttpMethodConfiguration
   fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration
   nameWithType: IHttpMethodConfiguration
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete*
+  name: Delete
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete_
+  commentId: Overload:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete
+  nameWithType: IHttpMethodConfiguration.Delete
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``1(System.String,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,``0})
+  name: Delete<TResult>(String, Func<RequestExecutionContext, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__1_System_String_System_Func_EasyRpc_AspNetCore_RequestExecutionContext___0__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``1(System.String,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,``0})
+  name.vb: Delete(Of TResult)(String, Func(Of RequestExecutionContext, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TResult>(System.String, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TResult)(System.String, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TResult>(String, Func<RequestExecutionContext, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TResult)(String, Func(Of RequestExecutionContext, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``2(System.String,System.Func{``0,``1})
+  name: Delete<TArg1, TResult>(String, Func<TArg1, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__2_System_String_System_Func___0___1__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``2(System.String,System.Func{``0,``1})
+  name.vb: Delete(Of TArg1, TResult)(String, Func(Of TArg1, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TArg1, TResult>(System.String, System.Func<TArg1, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TResult)(System.String, System.Func(Of TArg1, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TArg1, TResult>(String, Func<TArg1, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TResult)(String, Func(Of TArg1, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``3(System.String,System.Func{``0,``1,``2})
+  name: Delete<TArg1, TArg2, TResult>(String, Func<TArg1, TArg2, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__3_System_String_System_Func___0___1___2__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``3(System.String,System.Func{``0,``1,``2})
+  name.vb: Delete(Of TArg1, TArg2, TResult)(String, Func(Of TArg1, TArg2, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TArg1, TArg2, TResult>(System.String, System.Func<TArg1, TArg2, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TResult)(System.String, System.Func(Of TArg1, TArg2, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TArg1, TArg2, TResult>(String, Func<TArg1, TArg2, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TResult)(String, Func(Of TArg1, TArg2, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``4(System.String,System.Func{``0,``1,``2,``3})
+  name: Delete<TArg1, TArg2, TArg3, TResult>(String, Func<TArg1, TArg2, TArg3, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__4_System_String_System_Func___0___1___2___3__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``4(System.String,System.Func{``0,``1,``2,``3})
+  name.vb: Delete(Of TArg1, TArg2, TArg3, TResult)(String, Func(Of TArg1, TArg2, TArg3, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TResult>(System.String, System.Func<TArg1, TArg2, TArg3, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TResult)(System.String, System.Func(Of TArg1, TArg2, TArg3, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TResult>(String, Func<TArg1, TArg2, TArg3, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TResult)(String, Func(Of TArg1, TArg2, TArg3, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``5(System.String,System.Func{``0,``1,``2,``3,``4})
+  name: Delete<TArg1, TArg2, TArg3, TArg4, TResult>(String, Func<TArg1, TArg2, TArg3, TArg4, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__5_System_String_System_Func___0___1___2___3___4__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``5(System.String,System.Func{``0,``1,``2,``3,``4})
+  name.vb: Delete(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TArg4, TResult>(System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TResult)(System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TArg4, TResult>(String, Func<TArg1, TArg2, TArg3, TArg4, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``6(System.String,System.Func{``0,``1,``2,``3,``4,``5})
+  name: Delete<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Delete__6_System_String_System_Func___0___1___2___3___4___5__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete``6(System.String,System.Func{``0,``1,``2,``3,``4,``5})
+  name.vb: Delete(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult))
+  nameWithType: IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>)
+  nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult))
 - uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Get*
   name: Get
   href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Get_
@@ -11152,60 +11117,60 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle
   nameWithType: IHttpMethodConfiguration.Handle
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Boolean)
-  name: Handle<TResult>(String, String, Func<TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__1_System_String_System_String_System_Func___0__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Boolean)
-  name.vb: Handle(Of TResult)(String, String, Func(Of TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TResult>(System.String, System.String, System.Func<TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TResult)(System.String, System.String, System.Func(Of TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TResult>(String, String, Func<TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TResult)(String, String, Func(Of TResult), Boolean)
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Boolean)
-  name: Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__2_System_String_System_String_System_Func___0___1__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Boolean)
-  name.vb: Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg, TResult>(System.String, System.String, System.Func<TArg, TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg, TResult)(System.String, System.String, System.Func(Of TArg, TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Boolean)
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Boolean)
-  name: Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__3_System_String_System_String_System_Func___0___1___2__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Boolean)
-  name.vb: Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Boolean)
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Boolean)
-  name: Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__4_System_String_System_String_System_Func___0___1___2___3__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Boolean)
-  name.vb: Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Boolean)
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Boolean)
-  name: Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__5_System_String_System_String_System_Func___0___1___2___3___4__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Boolean)
-  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Boolean)
-- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Boolean)
-  name: Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Boolean)
-  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__6_System_String_System_String_System_Func___0___1___2___3___4___5__System_Boolean_
-  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Boolean)
-  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Boolean)
-  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, System.Boolean)
-  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), System.Boolean)
-  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Boolean)
-  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Boolean)
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Nullable{System.Boolean})
+  name: Handle<TResult>(String, String, Func<TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__1_System_String_System_String_System_Func___0__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TResult)(String, String, Func(Of TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TResult>(System.String, System.String, System.Func<TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TResult)(System.String, System.String, System.Func(Of TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TResult>(String, String, Func<TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TResult)(String, String, Func(Of TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Nullable{System.Boolean})
+  name: Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__2_System_String_System_String_System_Func___0___1__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg, TResult>(System.String, System.String, System.Func<TArg, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg, TResult)(System.String, System.String, System.Func(Of TArg, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TArg, TResult>(String, String, Func<TArg, TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg, TResult)(String, String, Func(Of TArg, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__3_System_String_System_String_System_Func___0___1___2__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TResult>(String, String, Func<TArg1, TArg2, TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TResult)(String, String, Func(Of TArg1, TArg2, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__4_System_String_System_String_System_Func___0___1___2___3__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TResult>(String, String, Func<TArg1, TArg2, TArg3, TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__5_System_String_System_String_System_Func___0___1___2___3___4__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TResult), Nullable(Of Boolean))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Nullable{System.Boolean})
+  name: Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Nullable<Boolean>)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Handle__6_System_String_System_String_System_Func___0___1___2___3___4___5__System_Nullable_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Nullable{System.Boolean})
+  name.vb: Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Nullable(Of Boolean))
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(System.String, System.String, System.Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, System.Nullable<System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(System.String, System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), System.Nullable(Of System.Boolean))
+  nameWithType: IHttpMethodConfiguration.Handle<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>, Nullable<Boolean>)
+  nameWithType.vb: IHttpMethodConfiguration.Handle(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult), Nullable(Of Boolean))
 - uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Patch*
   name: Patch
   href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Patch_
@@ -11767,49 +11732,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcApi.ExposeModules
   nameWithType: IRpcApi.ExposeModules
-- uid: EasyRpc.AspNetCore.IRpcApi.GetMethod*
-  name: GetMethod
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_GetMethod_
-  commentId: Overload:EasyRpc.AspNetCore.IRpcApi.GetMethod
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.IRpcApi.GetMethod
-  nameWithType: IRpcApi.GetMethod
-- uid: EasyRpc.AspNetCore.IRpcApi.GetMethod``1(System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: GetMethod<TResult>(String, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_GetMethod__1_System_String_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.GetMethod``1(System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: GetMethod(Of TResult)(String, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.GetMethod<TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.GetMethod(Of TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: IRpcApi.GetMethod<TResult>(String, Expression<Func<TResult>>)
-  nameWithType.vb: IRpcApi.GetMethod(Of TResult)(String, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.GetMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: GetMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_GetMethod__2_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.GetMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: GetMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.GetMethod<TArg1, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.GetMethod(Of TArg1, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: IRpcApi.GetMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: IRpcApi.GetMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.GetMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: GetMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_GetMethod__3_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.GetMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: GetMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.GetMethod<TArg1, TArg2, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.GetMethod(Of TArg1, TArg2, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: IRpcApi.GetMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: IRpcApi.GetMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.GetMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: GetMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_GetMethod__4_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.GetMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: GetMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.GetMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.GetMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: IRpcApi.GetMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: IRpcApi.GetMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.IRpcApi.Header(System.String,System.String)
   name: Header(String, String)
   href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Header_System_String_System_String_
@@ -11823,49 +11745,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcApi.Header
   nameWithType: IRpcApi.Header
-- uid: EasyRpc.AspNetCore.IRpcApi.HttpMethod*
-  name: HttpMethod
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_HttpMethod_
-  commentId: Overload:EasyRpc.AspNetCore.IRpcApi.HttpMethod
+- uid: EasyRpc.AspNetCore.IRpcApi.Method
+  name: Method
+  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Method
+  commentId: P:EasyRpc.AspNetCore.IRpcApi.Method
+  fullName: EasyRpc.AspNetCore.IRpcApi.Method
+  nameWithType: IRpcApi.Method
+- uid: EasyRpc.AspNetCore.IRpcApi.Method*
+  name: Method
+  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Method_
+  commentId: Overload:EasyRpc.AspNetCore.IRpcApi.Method
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.IRpcApi.HttpMethod
-  nameWithType: IRpcApi.HttpMethod
-- uid: EasyRpc.AspNetCore.IRpcApi.HttpMethod``1(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name: HttpMethod<TResult>(String, String, Expression<Func<TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_HttpMethod__1_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.HttpMethod``1(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0}})
-  name.vb: HttpMethod(Of TResult)(String, String, Expression(Of Func(Of TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.HttpMethod<TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.HttpMethod(Of TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
-  nameWithType: IRpcApi.HttpMethod<TResult>(String, String, Expression<Func<TResult>>)
-  nameWithType.vb: IRpcApi.HttpMethod(Of TResult)(String, String, Expression(Of Func(Of TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.HttpMethod``2(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: HttpMethod<TArg1, TResult>(String, String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_HttpMethod__2_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.HttpMethod``2(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: HttpMethod(Of TArg1, TResult)(String, String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.HttpMethod<TArg1, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.HttpMethod(Of TArg1, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: IRpcApi.HttpMethod<TArg1, TResult>(String, String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: IRpcApi.HttpMethod(Of TArg1, TResult)(String, String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.HttpMethod``3(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: HttpMethod<TArg1, TArg2, TResult>(String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_HttpMethod__3_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.HttpMethod``3(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: HttpMethod(Of TArg1, TArg2, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.HttpMethod<TArg1, TArg2, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.HttpMethod(Of TArg1, TArg2, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: IRpcApi.HttpMethod<TArg1, TArg2, TResult>(String, String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: IRpcApi.HttpMethod(Of TArg1, TArg2, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.HttpMethod``4(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: HttpMethod<TArg1, TArg2, TArg3, TResult>(String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_HttpMethod__4_System_String_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.HttpMethod``4(System.String,System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: HttpMethod(Of TArg1, TArg2, TArg3, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.HttpMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.HttpMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: IRpcApi.HttpMethod<TArg1, TArg2, TArg3, TResult>(String, String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: IRpcApi.HttpMethod(Of TArg1, TArg2, TArg3, TResult)(String, String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
+  fullName: EasyRpc.AspNetCore.IRpcApi.Method
+  nameWithType: IRpcApi.Method
 - uid: EasyRpc.AspNetCore.IRpcApi.MethodFilter(System.Func{System.Reflection.MethodInfo,System.Boolean})
   name: MethodFilter(Func<MethodInfo, Boolean>)
   href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_MethodFilter_System_Func_System_Reflection_MethodInfo_System_Boolean__
@@ -11882,40 +11774,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcApi.MethodFilter
   nameWithType: IRpcApi.MethodFilter
-- uid: EasyRpc.AspNetCore.IRpcApi.PostMethod*
-  name: PostMethod
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_PostMethod_
-  commentId: Overload:EasyRpc.AspNetCore.IRpcApi.PostMethod
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.IRpcApi.PostMethod
-  nameWithType: IRpcApi.PostMethod
-- uid: EasyRpc.AspNetCore.IRpcApi.PostMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name: PostMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_PostMethod__2_System_String_System_Linq_Expressions_Expression_System_Func___0___1___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.PostMethod``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})
-  name.vb: PostMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.PostMethod<TArg1, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.PostMethod(Of TArg1, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TResult)))
-  nameWithType: IRpcApi.PostMethod<TArg1, TResult>(String, Expression<Func<TArg1, TResult>>)
-  nameWithType.vb: IRpcApi.PostMethod(Of TArg1, TResult)(String, Expression(Of Func(Of TArg1, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.PostMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name: PostMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_PostMethod__3_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.PostMethod``3(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
-  name.vb: PostMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.PostMethod<TArg1, TArg2, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.PostMethod(Of TArg1, TArg2, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TResult)))
-  nameWithType: IRpcApi.PostMethod<TArg1, TArg2, TResult>(String, Expression<Func<TArg1, TArg2, TResult>>)
-  nameWithType.vb: IRpcApi.PostMethod(Of TArg1, TArg2, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TResult)))
-- uid: EasyRpc.AspNetCore.IRpcApi.PostMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name: PostMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_PostMethod__4_System_String_System_Linq_Expressions_Expression_System_Func___0___1___2___3___
-  commentId: M:EasyRpc.AspNetCore.IRpcApi.PostMethod``4(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
-  name.vb: PostMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
-  fullName: EasyRpc.AspNetCore.IRpcApi.PostMethod<TArg1, TArg2, TArg3, TResult>(System.String, System.Linq.Expressions.Expression<System.Func<TArg1, TArg2, TArg3, TResult>>)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApi.PostMethod(Of TArg1, TArg2, TArg3, TResult)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TArg1, TArg2, TArg3, TResult)))
-  nameWithType: IRpcApi.PostMethod<TArg1, TArg2, TArg3, TResult>(String, Expression<Func<TArg1, TArg2, TArg3, TResult>>)
-  nameWithType.vb: IRpcApi.PostMethod(Of TArg1, TArg2, TArg3, TResult)(String, Expression(Of Func(Of TArg1, TArg2, TArg3, TResult)))
 - uid: EasyRpc.AspNetCore.IRpcApi.Prefix(System.Func{System.Type,System.Collections.Generic.IEnumerable{System.String}})
   name: Prefix(Func<Type, IEnumerable<String>>)
   href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Prefix_System_Func_System_Type_System_Collections_Generic_IEnumerable_System_String___
@@ -14638,19 +14496,6 @@ references:
   fullName: EasyRpc.AspNetCore.RpcModule.EasyRpc.AspNetCore.IRpcModule.Configure
   nameWithType: RpcModule.IRpcModule.Configure
   nameWithType.vb: RpcModule.EasyRpc.AspNetCore.IRpcModule.Configure
-- uid: EasyRpc.AspNetCore.RpcModule.ReuseModule
-  name: ReuseModule
-  href: api/EasyRpc.AspNetCore.RpcModule.html#EasyRpc_AspNetCore_RpcModule_ReuseModule
-  commentId: P:EasyRpc.AspNetCore.RpcModule.ReuseModule
-  fullName: EasyRpc.AspNetCore.RpcModule.ReuseModule
-  nameWithType: RpcModule.ReuseModule
-- uid: EasyRpc.AspNetCore.RpcModule.ReuseModule*
-  name: ReuseModule
-  href: api/EasyRpc.AspNetCore.RpcModule.html#EasyRpc_AspNetCore_RpcModule_ReuseModule_
-  commentId: Overload:EasyRpc.AspNetCore.RpcModule.ReuseModule
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.RpcModule.ReuseModule
-  nameWithType: RpcModule.ReuseModule
 - uid: EasyRpc.AspNetCore.RpcParameterInfo
   name: RpcParameterInfo
   href: api/EasyRpc.AspNetCore.RpcParameterInfo.html

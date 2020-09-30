@@ -1,0 +1,805 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class HttpMethodConfiguration
+   | EasyRpc documentation website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class HttpMethodConfiguration
+   | EasyRpc documentation website ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration">
+  
+  
+  <h1 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration" class="text-break">Class HttpMethodConfiguration
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">HttpMethodConfiguration</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="EasyRpc.AspNetCore.IHttpMethodConfiguration.html">IHttpMethodConfiguration</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.Configuration.html">EasyRpc.AspNetCore.Configuration</a></h6>
+  <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
+  <h5 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class HttpMethodConfiguration : IHttpMethodConfiguration</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration__ctor_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.%23ctor(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L12">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration__ctor_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration__ctor_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.#ctor(EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration)">HttpMethodConfiguration(IInternalApiConfiguration)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HttpMethodConfiguration(IInternalApiConfiguration internalApiConfiguration)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration.html">IInternalApiConfiguration</a></td>
+        <td><span class="parametername">internalApiConfiguration</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__1_System_String_System_String_System_Func___0__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%601(System.String%2CSystem.String%2CSystem.Func%7B%60%600%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L18">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__1_System_String_System_String_System_Func___0__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``1(System.String,System.String,System.Func{``0},System.Nullable{System.Boolean})">Handle&lt;TResult&gt;(String, String, Func&lt;TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TResult&gt;(string method, string path, Func&lt;TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__2_System_String_System_String_System_Func___0___1__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%602(System.String%2CSystem.String%2CSystem.Func%7B%60%600%2C%60%601%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L24">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__2_System_String_System_String_System_Func___0___1__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``2(System.String,System.String,System.Func{``0,``1},System.Nullable{System.Boolean})">Handle&lt;TArg, TResult&gt;(String, String, Func&lt;TArg, TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TArg, TResult&gt;(string method, string path, Func&lt;TArg, TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TArg, TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TArg</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__3_System_String_System_String_System_Func___0___1___2__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%603(System.String%2CSystem.String%2CSystem.Func%7B%60%600%2C%60%601%2C%60%602%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L30">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__3_System_String_System_String_System_Func___0___1___2__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``3(System.String,System.String,System.Func{``0,``1,``2},System.Nullable{System.Boolean})">Handle&lt;TArg1, TArg2, TResult&gt;(String, String, Func&lt;TArg1, TArg2, TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TArg1, TArg2, TResult&gt;(string method, string path, Func&lt;TArg1, TArg2, TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TArg1, TArg2, TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TArg1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__4_System_String_System_String_System_Func___0___1___2___3__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%604(System.String%2CSystem.String%2CSystem.Func%7B%60%600%2C%60%601%2C%60%602%2C%60%603%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L36">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__4_System_String_System_String_System_Func___0___1___2___3__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``4(System.String,System.String,System.Func{``0,``1,``2,``3},System.Nullable{System.Boolean})">Handle&lt;TArg1, TArg2, TArg3, TResult&gt;(String, String, Func&lt;TArg1, TArg2, TArg3, TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TArg1, TArg2, TArg3, TResult&gt;(string method, string path, Func&lt;TArg1, TArg2, TArg3, TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TArg1, TArg2, TArg3, TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TArg1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg3</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__5_System_String_System_String_System_Func___0___1___2___3___4__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%605(System.String%2CSystem.String%2CSystem.Func%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L42">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__5_System_String_System_String_System_Func___0___1___2___3___4__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``5(System.String,System.String,System.Func{``0,``1,``2,``3,``4},System.Nullable{System.Boolean})">Handle&lt;TArg1, TArg2, TArg3, TArg4, TResult&gt;(String, String, Func&lt;TArg1, TArg2, TArg3, TArg4, TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TArg1, TArg2, TArg3, TArg4, TResult&gt;(string method, string path, Func&lt;TArg1, TArg2, TArg3, TArg4, TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TArg1, TArg2, TArg3, TArg4, TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TArg1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg3</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg4</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__6_System_String_System_String_System_Func___0___1___2___3___4___5__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle%60%606(System.String%2CSystem.String%2CSystem.Func%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L48">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_Handle__6_System_String_System_String_System_Func___0___1___2___3___4___5__System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.Handle``6(System.String,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Nullable{System.Boolean})">Handle&lt;TArg1, TArg2, TArg3, TArg4, TArg5, TResult&gt;(String, String, Func&lt;TArg1, TArg2, TArg3, TArg4, TArg5, TResult&gt;, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Handle custom HTTP method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IExposureDelegateConfiguration Handle&lt;TArg1, TArg2, TArg3, TArg4, TArg5, TResult&gt;(string method, string path, Func&lt;TArg1, TArg2, TArg3, TArg4, TArg5, TResult&gt; func, bool? hasBody = default(bool? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-6">Func</a>&lt;TArg1, TArg2, TArg3, TArg4, TArg5, TResult&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TArg1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg3</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg4</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TArg5</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_RegisterDelegateHandler_System_String_System_String_System_Delegate_System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String%2CSystem.String%2CSystem.Delegate%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L61">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_RegisterDelegateHandler_" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler*"></a>
+  <h4 id="EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration_RegisterDelegateHandler_System_String_System_String_System_Delegate_System_Nullable_System_Boolean__" data-uid="EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration.RegisterDelegateHandler(System.String,System.String,System.Delegate,System.Nullable{System.Boolean})">RegisterDelegateHandler(String, String, Delegate, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Register a delegate to handle a specific method/path combination</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IExposureDelegateConfiguration RegisterDelegateHandler(string method, string path, Delegate func, bool? hasBody)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.delegate">Delegate</a></td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">hasBody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IExposureDelegateConfiguration.html">IExposureDelegateConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="EasyRpc.AspNetCore.IHttpMethodConfiguration.html">IHttpMethodConfiguration</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Configuration_HttpMethodConfiguration.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Configuration.HttpMethodConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Configuration/HttpMethodConfiguration.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
