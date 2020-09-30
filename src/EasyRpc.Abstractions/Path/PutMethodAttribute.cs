@@ -19,26 +19,25 @@ namespace EasyRpc.Abstractions.Path
         {
             Path = path;
         }
-
-
+        
         /// <inheritdoc />
         public string Method => "PUT";
 
         /// <inheritdoc />
         public string Path { get; }
-
+        
         /// <summary>
         /// HTTP success status code
         /// </summary>
-        public HttpStatusCode Success { get; set; } = HttpStatusCode.OK;
+        public HttpStatusCode? Success { get; set; } = HttpStatusCode.OK;
 
         /// <inheritdoc />
-        int IPathAttribute.SuccessCodeValue => (int)Success;
+        int? IPathAttribute.SuccessCodeValue => Success.HasValue ? (int)Success : (int?)null;
 
         /// <inheritdoc />
-        public bool HasRequestBody => true;
+        public bool? HasRequestBody { get; set; }
 
         /// <inheritdoc />
-        public bool HasResponseBody => false;
+        public bool? HasResponseBody { get; set; }
     }
 }

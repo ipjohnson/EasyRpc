@@ -158,6 +158,6 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <summary>
         /// Does this method offer a response body
         /// </summary>
-        public bool HasResponseBody { get; set; } = true;
+        public bool HasResponseBody { get; set; }
     }
 }

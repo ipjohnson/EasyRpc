@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace EasyRpc.Abstractions.Path
@@ -27,13 +28,18 @@ namespace EasyRpc.Abstractions.Path
         /// <inheritdoc />
         public string Path { get; }
 
-        /// <inheritdoc />
-        public int SuccessCodeValue { get; set; }
+        /// <summary>
+        /// HTTP success status code
+        /// </summary>
+        public HttpStatusCode? Success { get; set; } = HttpStatusCode.OK;
 
         /// <inheritdoc />
-        public bool HasRequestBody { get; set; }
+        int? IPathAttribute.SuccessCodeValue => Success.HasValue ? (int)Success : (int?)null;
 
         /// <inheritdoc />
-        public bool HasResponseBody { get; set; } = true;
+        public bool? HasRequestBody { get; set; }
+
+        /// <inheritdoc />
+        public bool? HasResponseBody { get; set; }
     }
 }

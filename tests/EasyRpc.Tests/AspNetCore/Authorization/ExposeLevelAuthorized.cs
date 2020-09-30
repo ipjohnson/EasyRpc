@@ -37,7 +37,7 @@ namespace EasyRpc.Tests.AspNetCore.Authorization
         protected override void ApiRegistration(IRpcApi api)
         {
             api.Authorize();
-            api.GetMethod("/test", () => "success");
+            api.Method.Get("/test", () => "success");
         }
 
         protected override void ConfigureAspNetPipeline(IApplicationBuilder app)

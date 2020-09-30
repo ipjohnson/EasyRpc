@@ -29,15 +29,15 @@ namespace EasyRpc.Abstractions.Path
         /// <summary>
         /// HTTP success status code
         /// </summary>
-        public HttpStatusCode Success { get; set; } = HttpStatusCode.OK;
+        public HttpStatusCode? Success { get; set; } = HttpStatusCode.OK;
 
         /// <inheritdoc />
-        int IPathAttribute.SuccessCodeValue => (int)Success;
+        int? IPathAttribute.SuccessCodeValue => Success.HasValue ? (int)Success : (int?)null;
 
         /// <inheritdoc />
-        public bool HasRequestBody => false;
+        public bool? HasRequestBody { get; set; }
 
         /// <inheritdoc />
-        public bool HasResponseBody { get; set; } = true;
+        public bool? HasResponseBody { get; set; }
     }
 }

@@ -103,6 +103,11 @@ namespace EasyRpc.AspNetCore
         IRpcApi ExposeModules(IEnumerable<Type> types = null);
 
         /// <summary>
+        /// Expose individual HTTP method
+        /// </summary>
+        IHttpMethodConfiguration Method { get; }
+
+        /// <summary>
         /// Add header to all responses
         /// </summary>
         /// <param name="header"></param>

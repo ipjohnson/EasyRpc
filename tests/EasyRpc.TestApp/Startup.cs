@@ -29,14 +29,14 @@ namespace EasyRpc.TestApp
 
             app.UseRpcServices(api =>
             {
-                //api.GetMethod("/test/{id}", (int id) => new { value = id });
+                //api.Method.Get("/test/{id}", (int id) => new { value = id });
                 //api.PostMethod("/test/{id}", (int id, BodyTest body) => id + body.Value);
                 //api.PostMethod("/another/{id}", (int id, int id2, int id3) => id + id2 + id3);
-                //api.GetMethod("/test2/{id}/{id2}", (int id, int id2) => new { value = id, value2 = id });
-                //api.GetMethod("/StringTest/{stringValue}", (string stringValue) => stringValue + " Hello world!");
-                api.GetMethod("/plaintext", () => "Hello, World!").Raw("text/plain");
-                api.GetMethod("/json", () => new { message = "Hello, World!" });
-                api.PostMethod("/lists", (TestClass value) => Task.CompletedTask);
+                //api.Method.Get("/test2/{id}/{id2}", (int id, int id2) => new { value = id, value2 = id });
+                //api.Method.Get("/StringTest/{stringValue}", (string stringValue) => stringValue + " Hello world!");
+                api.Method.Get("/plaintext", () => "Hello, World!").Raw("text/plain");
+                api.Method.Get("/json", () => new { message = "Hello, World!" });
+                api.Method.Post("/lists", (TestClass value) => Task.CompletedTask);
             });
         }
 

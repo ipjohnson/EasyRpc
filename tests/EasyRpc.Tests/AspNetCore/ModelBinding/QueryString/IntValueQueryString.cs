@@ -29,7 +29,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.QueryString
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.GetMethod("/test", (int count) => count);
+            api.Method.Get("/test", (int count) => count);
         }
 
         #endregion

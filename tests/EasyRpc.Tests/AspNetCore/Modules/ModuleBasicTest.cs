@@ -16,7 +16,7 @@ namespace EasyRpc.Tests.AspNetCore.Modules
         {
             protected override void Configure(IRpcApi api)
             {
-                api.GetMethod("/Service/All", () => new TestValue { Value = "Test" });
+                api.Method.Get("/Service/All", () => new TestValue { Value = "Test" });
             }
         }
 

@@ -14,8 +14,12 @@ namespace EasyRpc.AspNetCore.Configuration.DelegateConfiguration
 
         public string Method { get; set; }
 
-        public bool HasBody { get; set; }
+        public bool? HasRequestBody { get; set; }
 
+        public bool? HasResponseBody { get; set; }
+
+        public int? SuccessStatusCode { get; set; }
+        
         public string RawContentType { get; set; }
 
         public ImmutableLinkedList<IResponseHeader> Headers { get; set; } = ImmutableLinkedList<IResponseHeader>.Empty;

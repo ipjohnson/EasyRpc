@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using EasyRpc.AspNetCore.Authorization;
+using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.EndPoints;
 
 namespace EasyRpc.AspNetCore.Configuration
@@ -19,7 +20,10 @@ namespace EasyRpc.AspNetCore.Configuration
             List<IEndPointMethodAuthorization> authorizations, 
             Func<MethodInfo, bool> methodFilter,
             string obsoleteMessage);
-        
+
+
+        void ExposeDelegate(ICurrentApiInformation currentApi, DelegateInstanceConfiguration delegateInstanceConfiguration, Delegate @delegate);
+
         IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers();
     }
 }

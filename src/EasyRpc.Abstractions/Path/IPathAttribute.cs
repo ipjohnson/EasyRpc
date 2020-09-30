@@ -22,16 +22,16 @@ namespace EasyRpc.Abstractions.Path
         /// <summary>
         /// HTTP success code
         /// </summary>
-        int SuccessCodeValue { get; }
+        int? SuccessCodeValue { get; }
 
         /// <summary>
         /// Does the request have a body
         /// </summary>
-        bool HasRequestBody { get; }
+        bool? HasRequestBody { get; }
 
         /// <summary>
         /// Does the response have a body
         /// </summary>
-        bool HasResponseBody { get; }
+        bool? HasResponseBody { get; }
     }
 }

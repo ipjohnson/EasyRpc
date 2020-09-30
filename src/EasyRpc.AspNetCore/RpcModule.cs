@@ -27,9 +27,7 @@ namespace EasyRpc.AspNetCore
         /// Auto register all public methods
         /// </summary>
         protected bool AutoRegister { get; set; } = true;
-
-        protected bool ReuseModule { get; set; } = true;
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -53,15 +51,7 @@ namespace EasyRpc.AspNetCore
         /// Register public methods
         /// </summary>
         /// <param name="api"></param>
-        protected virtual void AutoRegisterMethods(IRpcApi api)
-        {
-            var exposure = api.Expose(GetType());
-
-            if (ReuseModule)
-            {
-                exposure.Activation(context => this);
-            }
-        }
+        protected virtual void AutoRegisterMethods(IRpcApi api) => api.Expose(GetType()).Activation(context => this);
 
         /// <summary>
         /// Apply before and after filter methods

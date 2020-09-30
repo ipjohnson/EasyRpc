@@ -31,7 +31,7 @@ namespace EasyRpc.Tests.AspNetCore.Filters
             var filter = new FinalizeFilterTest.FinalizeFilter(() => _finalizedCalled = true);
 
             api.ApplyFilter(method => context => filter);
-            api.GetMethod("/test", () => new { result = 123 });
+            api.Method.Get("/test", () => new { result = 123 });
         }
 
         #endregion

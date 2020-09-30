@@ -35,6 +35,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private ICurrentApiInformation _currentApiInformation;
         private ExposeDefaultMethod _defaultMethod = ExposeDefaultMethod.PostOnly;
+        private IHttpMethodConfiguration _methodConfiguration;
 
 
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
@@ -164,7 +165,10 @@ namespace EasyRpc.AspNetCore.Configuration
 
             return this;
         }
-        
+
+        /// <inheritdoc />
+        public IHttpMethodConfiguration Method => _methodConfiguration ??= new HttpMethodConfiguration(this);
+
         /// <inheritdoc />
         public IRpcApi Header(string header, string value)
         {

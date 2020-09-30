@@ -39,7 +39,7 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
         {
             foreach (var route in _routes)
             {
-                api.GetMethod(route, () => route);
+                api.Method.Get(route, () => route);
             }
         }
 

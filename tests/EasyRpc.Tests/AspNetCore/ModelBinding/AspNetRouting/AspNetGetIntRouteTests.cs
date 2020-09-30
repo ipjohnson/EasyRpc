@@ -43,7 +43,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
         protected override void ApiRegistration(IRpcApi api)
         {
             api.Environment.UseAspNetRouting();
-            api.GetMethod("/TestPath/{intParam}", (int intParam) => intParam);
+            api.Method.Get("/TestPath/{intParam}", (int intParam) => intParam);
         }
 
         #endregion

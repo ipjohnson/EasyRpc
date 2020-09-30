@@ -8,6 +8,7 @@ using EasyRpc.AspNetCore.ContentEncoding;
 using EasyRpc.AspNetCore.EndPoints;
 using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Serializers;
+using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.CodeGeneration
 {
@@ -65,8 +66,9 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         /// Compression predicate provider
         /// </summary>
         protected readonly ICompressionActionProvider CompressionPredicateProvider;
-
+        
         private ContentEncodingConfiguration _contentEncoding;
+        private DefaultMethodConfiguration _defaultMethodConfiguration;
 
         /// <summary>
         /// Default constructor
@@ -177,15 +179,19 @@ namespace EasyRpc.AspNetCore.CodeGeneration
         public void ApiConfigurationComplete(IServiceProvider serviceScope)
         {
             _contentEncoding = ConfigurationManager.GetConfiguration<ContentEncodingConfiguration>();
+            _defaultMethodConfiguration = ConfigurationManager.GetConfiguration<DefaultMethodConfiguration>();
         }
-
 
         protected virtual Task NobodyResponseHandler(RequestExecutionContext context)
         {
             if (context.Result == null || 
-                (context.Result is bool boolResult && boolResult))
+                (context.Result is bool boolResult && !boolResult))
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            }
+            else
+            {
+                context.HttpContext.Response.StatusCode = context.HttpStatusCode;
             }
 
             return Task.CompletedTask;

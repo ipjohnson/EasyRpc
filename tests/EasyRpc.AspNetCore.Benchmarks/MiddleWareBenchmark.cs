@@ -182,8 +182,8 @@ namespace EasyRpc.AspNetCore.Benchmarks
             app.UseRpcServices(api =>
             {
                 api.Expose<Services.StringService>();
-                api.GetMethod("/noparams2", () => new { Value = 1, Value2 = 2 });
-                api.GetMethod("/test/{id}", (int id) => new { id });
+                api.Method.Get("/noparams2", () => new { Value = 1, Value2 = 2 });
+                api.Method.Get("/test/{id}", (int id) => new { id });
             });
         }
 
@@ -220,7 +220,7 @@ namespace EasyRpc.AspNetCore.Benchmarks
             {
                 api.Environment.UseAspNetRouting();
                 api.Expose<Services.StringService>();
-                api.GetMethod("/noparams2", () => new { Value = 1, Value2 = 2 });
+                api.Method.Get("/noparams2", () => new { Value = 1, Value2 = 2 });
             });
         }
     }

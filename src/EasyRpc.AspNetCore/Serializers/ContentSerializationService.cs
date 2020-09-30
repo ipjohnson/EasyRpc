@@ -140,7 +140,6 @@ namespace EasyRpc.AspNetCore.Serializers
         /// Negotiate serialization
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="accepts"></param>
         /// <returns></returns>
         protected virtual Task NegotiateSerialization(RequestExecutionContext context)
         {
@@ -171,13 +170,13 @@ namespace EasyRpc.AspNetCore.Serializers
         {
             var method = context.HttpContext.Request.Method;
 
-            if (method == HttpMethods.Get || method == HttpMethods.Head)
+            if (method == HttpMethods.Post)
             {
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
             }
             else
             {
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
             }
 
             return Task.CompletedTask;

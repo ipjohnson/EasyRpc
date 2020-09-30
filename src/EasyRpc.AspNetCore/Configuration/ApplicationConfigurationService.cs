@@ -23,6 +23,7 @@ using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.Configuration
@@ -39,6 +40,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly IAuthorizationImplementationProvider _authorizationImplementationProvider;
         private readonly ICompressionSelectorService _compressionSelectorService;
         private ExposeConfigurations _exposeConfigurations;
+        private DefaultMethodConfiguration _defaultMethodConfiguration;
         private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
         private string _basePath;
         private bool _supportCompression;
@@ -188,15 +190,7 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 var configuration = new EndPointMethodConfiguration(routeInformation, activationFunc, new MethodInvokeInformation { MethodToInvoke = methodInfo }, methodInfo.ReturnType);
 
-                if (pathAttribute != null)
-                {
-                    configuration.SuccessStatusCode = pathAttribute.SuccessCodeValue;
-                    configuration.HasResponseBody = pathAttribute.HasResponseBody;
-                }
-                else
-                {
-                    configuration.HasResponseBody = true;
-                }
+                AssignDefaultValues(configuration, pathAttribute);
 
                 var methodParameters = GenerateMethodParameters(methodInfo, routeInformation);
 
@@ -253,6 +247,83 @@ namespace EasyRpc.AspNetCore.Configuration
                 }
 
                 yield return configuration;
+            }
+        }
+
+        private void AssignDefaultValues(EndPointMethodConfiguration configuration, IPathAttribute pathAttribute)
+        {
+            if (pathAttribute != null)
+            {
+                SetStatusAndResponseBodyConfigValues(configuration, pathAttribute.HasResponseBody, pathAttribute.SuccessCodeValue);
+            }
+            else
+            {
+                SetStatusAndResponseBodyConfigValues(configuration, null, null);
+            }
+        }
+
+        private void SetStatusAndResponseBodyConfigValues(EndPointMethodConfiguration configuration, 
+            bool? hasResponseBody, 
+            int? successStatusCode)
+        {
+            var finalResponseBody = hasResponseBody;
+            var finalStatusCode = successStatusCode;
+
+            if (configuration.RouteInformation.Method == HttpMethods.Get)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.GetHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.GetSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Head)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.HeadHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.HeadSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Post)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.PostHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.PostSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Put)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.PutHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.PutSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Patch)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.PatchHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.PatchSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Delete)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.DeleteHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.DeleteSuccessStatusCode);
+            }
+            else if (configuration.RouteInformation.Method == HttpMethods.Options)
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.OptionsHasResponseBody);
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.OptionsSuccessStatusCode);
+            }
+            else
+            {
+                configuration.HasResponseBody =
+                    finalResponseBody.GetValueOrDefault(_defaultMethodConfiguration.UnknownMethodResponseBody(configuration.RouteInformation.Method));
+                configuration.SuccessStatusCode =
+                    finalStatusCode.GetValueOrDefault(_defaultMethodConfiguration.UnknownMethodStatusCode(configuration.RouteInformation.Method));
             }
         }
 
@@ -555,10 +626,10 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 if (string.IsNullOrEmpty(fullPathString))
                 {
-                    fullPathString = GeneratePath(name, methodInfo, parameters, pathAttribute.HasRequestBody);
+                    fullPathString = GeneratePath(name, methodInfo, parameters, GetDefaultRequestBody(pathAttribute.Method, pathAttribute.HasRequestBody));
                 }
 
-                return (fullPathString, pathAttribute.Method, pathAttribute.HasRequestBody);
+                return (fullPathString, pathAttribute.Method, GetDefaultRequestBody(pathAttribute.Method, pathAttribute.HasRequestBody));
             }
 
             if (currentApi.DefaultMethod == ExposeDefaultMethod.PostOnly ||
@@ -574,6 +645,23 @@ namespace EasyRpc.AspNetCore.Configuration
             fullPathString = GeneratePath(name, methodInfo, parameters, false);
 
             return (fullPathString, HttpMethods.Get, false);
+        }
+
+        private bool GetDefaultRequestBody(string httpMethod, bool? pathAttributeHasRequestBody)
+        {
+            if (pathAttributeHasRequestBody.HasValue)
+            {
+                return pathAttributeHasRequestBody.Value;
+            }
+
+            if (httpMethod == HttpMethods.Get || 
+                httpMethod == HttpMethods.Delete || 
+                httpMethod == HttpMethods.Options)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private string GeneratePath(string name, MethodInfo methodInfo, ParameterInfo[] parameters, bool hasBody)
@@ -620,6 +708,8 @@ namespace EasyRpc.AspNetCore.Configuration
             _exposeConfigurations = _configurationManager.GetConfiguration<ExposeConfigurations>();
             _supportCompression = _configurationManager.GetConfiguration<ContentEncodingConfiguration>()
                 .CompressionEnabled;
+
+            _defaultMethodConfiguration = _configurationManager.GetConfiguration<DefaultMethodConfiguration>();
 
             ProcessConfigurationObjects();
 
@@ -741,6 +831,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 configuration.Filters = filterList;
             }
         }
+
 
     }
 }
