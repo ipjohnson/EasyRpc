@@ -102,7 +102,10 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                         ? RequestState.FinalizeFilter
                         : RequestState.Complete;
 
-                    return SendResponse(ref state, ref requestContext);
+                    // skip response if already started
+                    return requestContext.HttpContext.Response.HasStarted ? 
+                        NextStep(ref state, ref requestContext) : 
+                        SendResponse(ref state, ref requestContext);
 
                 case RequestState.FinalizeFilter:
                     state = RequestState.Complete;
