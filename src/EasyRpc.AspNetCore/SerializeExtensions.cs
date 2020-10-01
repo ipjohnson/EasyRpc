@@ -18,7 +18,7 @@ namespace EasyRpc.AspNetCore
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static ValueTask<T> DeserializeFromRequest<T>(this RequestExecutionContext context)
+        public static ValueTask<T> Deserialize<T>(this RequestExecutionContext context)
         {
             return context.Handler.Services.SerializationService.DeserializeFromRequest<T>(context);
         }
@@ -29,7 +29,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="context"></param>
         /// <param name="responseObject"></param>
         /// <returns></returns>
-        public static Task SerializeToResponse(this RequestExecutionContext context, object responseObject)
+        public static Task Serialize(this RequestExecutionContext context, object responseObject)
         {
             context.Result = responseObject;
 
@@ -42,11 +42,11 @@ namespace EasyRpc.AspNetCore
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static ValueTask<T> DeserializeFromRequest<T>(this HttpRequest request)
+        public static ValueTask<T> Deserialize<T>(this HttpRequest request)
         {
             var requestExecutionContextFeature = GetRequestExecutionContext(request.HttpContext);
 
-            return DeserializeFromRequest<T>(requestExecutionContextFeature);
+            return Deserialize<T>(requestExecutionContextFeature);
         }
 
         /// <summary>
@@ -55,11 +55,11 @@ namespace EasyRpc.AspNetCore
         /// <param name="response"></param>
         /// <param name="responseObject"></param>
         /// <returns></returns>
-        public static Task SerializeToResponse(this HttpResponse response, object responseObject)
+        public static Task Serialize(this HttpResponse response, object responseObject)
         {
             var requestExecutionContextFeature = GetRequestExecutionContext(response.HttpContext);
 
-            return SerializeToResponse(requestExecutionContextFeature, responseObject);
+            return Serialize(requestExecutionContextFeature, responseObject);
         }
         
         private static RequestExecutionContext GetRequestExecutionContext(HttpContext context)
