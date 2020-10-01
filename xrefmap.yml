@@ -14612,50 +14612,50 @@ references:
   commentId: T:EasyRpc.AspNetCore.SerializeExtensions
   fullName: EasyRpc.AspNetCore.SerializeExtensions
   nameWithType: SerializeExtensions
-- uid: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest*
-  name: DeserializeFromRequest
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_DeserializeFromRequest_
-  commentId: Overload:EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Deserialize*
+  name: Deserialize
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Deserialize_
+  commentId: Overload:EasyRpc.AspNetCore.SerializeExtensions.Deserialize
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest
-  nameWithType: SerializeExtensions.DeserializeFromRequest
-- uid: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest``1(EasyRpc.AspNetCore.RequestExecutionContext)
-  name: DeserializeFromRequest<T>(RequestExecutionContext)
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_DeserializeFromRequest__1_EasyRpc_AspNetCore_RequestExecutionContext_
-  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest``1(EasyRpc.AspNetCore.RequestExecutionContext)
-  name.vb: DeserializeFromRequest(Of T)(RequestExecutionContext)
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest<T>(EasyRpc.AspNetCore.RequestExecutionContext)
-  fullName.vb: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest(Of T)(EasyRpc.AspNetCore.RequestExecutionContext)
-  nameWithType: SerializeExtensions.DeserializeFromRequest<T>(RequestExecutionContext)
-  nameWithType.vb: SerializeExtensions.DeserializeFromRequest(Of T)(RequestExecutionContext)
-- uid: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest``1(Microsoft.AspNetCore.Http.HttpRequest)
-  name: DeserializeFromRequest<T>(HttpRequest)
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_DeserializeFromRequest__1_Microsoft_AspNetCore_Http_HttpRequest_
-  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest``1(Microsoft.AspNetCore.Http.HttpRequest)
-  name.vb: DeserializeFromRequest(Of T)(HttpRequest)
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest<T>(Microsoft.AspNetCore.Http.HttpRequest)
-  fullName.vb: EasyRpc.AspNetCore.SerializeExtensions.DeserializeFromRequest(Of T)(Microsoft.AspNetCore.Http.HttpRequest)
-  nameWithType: SerializeExtensions.DeserializeFromRequest<T>(HttpRequest)
-  nameWithType.vb: SerializeExtensions.DeserializeFromRequest(Of T)(HttpRequest)
-- uid: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(EasyRpc.AspNetCore.RequestExecutionContext,System.Object)
-  name: SerializeToResponse(RequestExecutionContext, Object)
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_SerializeToResponse_EasyRpc_AspNetCore_RequestExecutionContext_System_Object_
-  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(EasyRpc.AspNetCore.RequestExecutionContext,System.Object)
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(EasyRpc.AspNetCore.RequestExecutionContext, System.Object)
-  nameWithType: SerializeExtensions.SerializeToResponse(RequestExecutionContext, Object)
-- uid: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(Microsoft.AspNetCore.Http.HttpResponse,System.Object)
-  name: SerializeToResponse(HttpResponse, Object)
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_SerializeToResponse_Microsoft_AspNetCore_Http_HttpResponse_System_Object_
-  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(Microsoft.AspNetCore.Http.HttpResponse,System.Object)
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse(Microsoft.AspNetCore.Http.HttpResponse, System.Object)
-  nameWithType: SerializeExtensions.SerializeToResponse(HttpResponse, Object)
-- uid: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse*
-  name: SerializeToResponse
-  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_SerializeToResponse_
-  commentId: Overload:EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Deserialize
+  nameWithType: SerializeExtensions.Deserialize
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Deserialize``1(EasyRpc.AspNetCore.RequestExecutionContext)
+  name: Deserialize<T>(RequestExecutionContext)
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Deserialize__1_EasyRpc_AspNetCore_RequestExecutionContext_
+  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.Deserialize``1(EasyRpc.AspNetCore.RequestExecutionContext)
+  name.vb: Deserialize(Of T)(RequestExecutionContext)
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Deserialize<T>(EasyRpc.AspNetCore.RequestExecutionContext)
+  fullName.vb: EasyRpc.AspNetCore.SerializeExtensions.Deserialize(Of T)(EasyRpc.AspNetCore.RequestExecutionContext)
+  nameWithType: SerializeExtensions.Deserialize<T>(RequestExecutionContext)
+  nameWithType.vb: SerializeExtensions.Deserialize(Of T)(RequestExecutionContext)
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Deserialize``1(Microsoft.AspNetCore.Http.HttpRequest)
+  name: Deserialize<T>(HttpRequest)
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Deserialize__1_Microsoft_AspNetCore_Http_HttpRequest_
+  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.Deserialize``1(Microsoft.AspNetCore.Http.HttpRequest)
+  name.vb: Deserialize(Of T)(HttpRequest)
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Deserialize<T>(Microsoft.AspNetCore.Http.HttpRequest)
+  fullName.vb: EasyRpc.AspNetCore.SerializeExtensions.Deserialize(Of T)(Microsoft.AspNetCore.Http.HttpRequest)
+  nameWithType: SerializeExtensions.Deserialize<T>(HttpRequest)
+  nameWithType.vb: SerializeExtensions.Deserialize(Of T)(HttpRequest)
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Serialize(EasyRpc.AspNetCore.RequestExecutionContext,System.Object)
+  name: Serialize(RequestExecutionContext, Object)
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Serialize_EasyRpc_AspNetCore_RequestExecutionContext_System_Object_
+  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.Serialize(EasyRpc.AspNetCore.RequestExecutionContext,System.Object)
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Serialize(EasyRpc.AspNetCore.RequestExecutionContext, System.Object)
+  nameWithType: SerializeExtensions.Serialize(RequestExecutionContext, Object)
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Serialize(Microsoft.AspNetCore.Http.HttpResponse,System.Object)
+  name: Serialize(HttpResponse, Object)
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Serialize_Microsoft_AspNetCore_Http_HttpResponse_System_Object_
+  commentId: M:EasyRpc.AspNetCore.SerializeExtensions.Serialize(Microsoft.AspNetCore.Http.HttpResponse,System.Object)
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Serialize(Microsoft.AspNetCore.Http.HttpResponse, System.Object)
+  nameWithType: SerializeExtensions.Serialize(HttpResponse, Object)
+- uid: EasyRpc.AspNetCore.SerializeExtensions.Serialize*
+  name: Serialize
+  href: api/EasyRpc.AspNetCore.SerializeExtensions.html#EasyRpc_AspNetCore_SerializeExtensions_Serialize_
+  commentId: Overload:EasyRpc.AspNetCore.SerializeExtensions.Serialize
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.SerializeExtensions.SerializeToResponse
-  nameWithType: SerializeExtensions.SerializeToResponse
+  fullName: EasyRpc.AspNetCore.SerializeExtensions.Serialize
+  nameWithType: SerializeExtensions.Serialize
 - uid: EasyRpc.AspNetCore.Serializers
   name: EasyRpc.AspNetCore.Serializers
   href: api/EasyRpc.AspNetCore.Serializers.html
