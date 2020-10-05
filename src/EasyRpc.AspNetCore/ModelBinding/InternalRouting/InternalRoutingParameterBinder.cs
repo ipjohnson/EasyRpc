@@ -45,7 +45,10 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
                 return;
             }
 
-            parameterContext[parameter.Position] = parameterValue;
+            if (parameterValue != null)
+            {
+                parameterContext[parameter.Position] = parameterValue;
+            }
         }
 
         private object ParseGuid(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)

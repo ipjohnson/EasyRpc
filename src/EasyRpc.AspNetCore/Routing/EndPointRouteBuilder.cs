@@ -90,7 +90,7 @@ namespace EasyRpc.AspNetCore.Routing
             }
 
             var comparisonStatement =
-                GenerateStringComparisonStatements(pathList[pathListStart].Key, currentStringIndex, longMatch);
+                GenerateStringComparisonStatements(pathList[pathListStart].Key, currentStringIndex, longMatch, longMatch);
 
             Expression matchLogic = null;
 
@@ -106,11 +106,11 @@ namespace EasyRpc.AspNetCore.Routing
             return Expression.Condition(comparisonStatement, matchLogic, Expression.Constant(null, typeof(IEndPointHandler)));
         }
 
-        private BinaryExpression GenerateStringComparisonStatements(string path, int currentStringIndex, int testLength)
+        private BinaryExpression GenerateStringComparisonStatements(string path, int currentStringIndex, int stringLength, int testLength)
         {
             Expression currentExpression = null;
 
-            for (int i = 0; i < testLength; i++)
+            for (int i = 0; i < stringLength; i++)
             {
                 var index = currentStringIndex + i;
 
@@ -172,7 +172,7 @@ namespace EasyRpc.AspNetCore.Routing
 
                 var newExpression = GenerateSearchMethod(pathList, currentStringIndex + 1, currentStart, i, level);
 
-                var comparison = GenerateStringComparisonStatements(pathList[currentStart].Key, currentStringIndex, 1);
+                var comparison = GenerateStringComparisonStatements(pathList[currentStart].Key, currentStringIndex, 1, 1);
 
                 currentExpression = Expression.Condition(comparison, newExpression, currentExpression);
 
@@ -183,7 +183,7 @@ namespace EasyRpc.AspNetCore.Routing
             var lastExpression = GenerateSearchMethod(pathList, currentStringIndex + 1, currentStart,
                 pathListEnd, level);
 
-            var lastComparison = GenerateStringComparisonStatements(pathList[currentStart].Key, currentStringIndex, 1);
+            var lastComparison = GenerateStringComparisonStatements(pathList[currentStart].Key, currentStringIndex, 1, 1);
 
             currentExpression = Expression.Condition(lastComparison, lastExpression, currentExpression);
 
@@ -195,15 +195,20 @@ namespace EasyRpc.AspNetCore.Routing
         {
             Expression currentExpression = Expression.Constant(null, typeof(IEndPointHandler));
 
+            var exactMatch = false;
+
             for (var i = pathListStart; i < pathListEnd; i++)
             {
                 var path = pathList[i].Key;
                 var value = pathList[i].Value;
+                
 
                 BinaryExpression comparison = null;
 
                 if (path.Length - currentStringIndex == 0)
                 {
+                    exactMatch = true;
+
                     if (value.SupportsLongerPaths)
                     {
                         comparison = Expression.GreaterThanOrEqual(Expression.Property(_pathParameter, _lengthProperty),
@@ -218,14 +223,24 @@ namespace EasyRpc.AspNetCore.Routing
                 else
                 {
                     var length = path.Length - currentStringIndex;
+                    var testLength = length;
 
-                    // this is to handle the case where the path ends with a / and it should still match
-                    if (path.EndsWith("/"))
+                    if (exactMatch)
                     {
-                        length--;
+                        testLength++;
+                    }
+                    else
+                    {
+                        // this is to handle the case where the path ends with a / and it should still match
+                        if (path.EndsWith("/"))
+                        {
+                            length--;
+                        }
+
+                        testLength = length;
                     }
 
-                    comparison = GenerateStringComparisonStatements(path, currentStringIndex, length);
+                    comparison = GenerateStringComparisonStatements(path, currentStringIndex, length, testLength);
                 }
 
                 currentExpression = Expression.Condition(comparison, Expression.Constant(value, typeof(IEndPointHandler)), currentExpression);
