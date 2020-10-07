@@ -66,25 +66,12 @@ namespace EasyRpc.AspNetCore.Routing
         protected virtual IDictionary<string, IEndPointHandler> CreateEndPointDictionary(
             IInternalApiConfiguration apiConfig, IUnmappedEndPointHandler unmappedEndPointHandler)
         {
-            var endPointMethodHandlersList = apiConfig.GetEndPointHandlers();
+            var endPointMethodHandlersDictionary = apiConfig.GetEndPointHandlers();
 
-            _unmappedEndPointHandler.Configure(apiConfig, endPointMethodHandlersList);
+            var list = endPointMethodHandlersDictionary.SelectMany(pair => pair.Value.Values).ToList();
 
-            var endPointMethodHandlersDictionary = new Dictionary<string,Dictionary<string,IEndPointMethodHandler>>();
-
-            foreach (var handler in endPointMethodHandlersList)
-            {
-                if (!endPointMethodHandlersDictionary.TryGetValue(handler.RouteInformation.RouteBasePath,
-                    out var methodDictionary))
-                {
-                    methodDictionary = new Dictionary<string, IEndPointMethodHandler>();
-
-                    endPointMethodHandlersDictionary[handler.RouteInformation.RouteBasePath] = methodDictionary;
-                }
-
-                methodDictionary[handler.HttpMethod] = handler;
-            }
-
+            _unmappedEndPointHandler.Configure(apiConfig, list);
+            
             var endPointHandlerDictionary = new Dictionary<string,IEndPointHandler>();
 
             foreach (var kvp in endPointMethodHandlersDictionary)

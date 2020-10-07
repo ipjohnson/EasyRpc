@@ -23,7 +23,6 @@ namespace EasyRpc.AspNetCore.Routing
     /// <inheritdoc />
     public class AspNetRoutingHandler : IAspNetRoutingHandler
     {
-
         /// <inheritdoc />
         public void Attach(IApplicationBuilder builder, IInternalApiConfiguration apiConfig,
             IServiceProvider scopedProvider)
@@ -32,10 +31,13 @@ namespace EasyRpc.AspNetCore.Routing
             
             builder.UseEndpoints(routeBuilder =>
             {
-                foreach (var methodHandler in endPointList)
+                foreach (var methodHandlerPair in endPointList)
                 {
-                    routeBuilder.MapMethods(methodHandler.RouteInformation.RouteTemplate,
-                        new[] {methodHandler.HttpMethod}, methodHandler.HandleRequest);
+                    foreach (var methodHandler in methodHandlerPair.Value.Values)
+                    {
+                        routeBuilder.MapMethods(methodHandler.RouteInformation.RouteTemplate,
+                            new[] { methodHandler.HttpMethod }, methodHandler.HandleRequest);
+                    }
                 }
             });
         }

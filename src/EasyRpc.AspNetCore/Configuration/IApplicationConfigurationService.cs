@@ -24,6 +24,6 @@ namespace EasyRpc.AspNetCore.Configuration
 
         void ExposeDelegate(ICurrentApiInformation currentApi, DelegateInstanceConfiguration delegateInstanceConfiguration, Delegate @delegate);
 
-        IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers();
+        Dictionary<string, Dictionary<string, IEndPointMethodHandler>> ProvideEndPointHandlers();
     }
 }

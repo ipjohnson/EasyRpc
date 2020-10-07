@@ -122,7 +122,7 @@ namespace EasyRpc.AspNetCore
 
             if(config.RegisterDefaultHeadHandler)
             {
-                serviceCollection.AddScoped<IDefaultHttpMethodHandler, HeadEndPointHandler>();
+                serviceCollection.AddScoped<IApiEndPointInspector, HeadEndPointInspector>();
             }
 
             if (config.RegisterDefaultOptionsHandler)

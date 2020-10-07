@@ -286,12 +286,15 @@ namespace EasyRpc.AspNetCore.Documentation
                 element = _xmlDocProvider.GetMethodDocumentation(methodInfo);
             }
 
+            var operationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/", "") + "-" +
+                              endPointMethodHandler.HttpMethod;
+
             var operation = new OpenApiOperation
             {
                 Summary = element.GetSummary(),
                 Tags = new List<OpenApiTag>(),
                 Parameters = GenerateParameters(endPointMethodHandler, element),
-                OperationId = endPointMethodHandler.RouteInformation.RouteBasePath.Replace("/", "")
+                OperationId = operationId
             };
 
             foreach (var tag in element.GetTags())

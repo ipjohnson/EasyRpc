@@ -91,7 +91,7 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <param name="returnType"></param>
         public EndPointMethodConfiguration(RpcRouteInformation routeInformation,
             Func<RequestExecutionContext, object> activationFunc,
-            MethodInvokeInformation invokeInformation,
+            IMethodInvokeInformation invokeInformation,
             Type returnType)
         {
             RouteInformation = routeInformation;
@@ -118,11 +118,8 @@ namespace EasyRpc.AspNetCore.EndPoints
         /// <summary>
         /// Invoke information for method
         /// </summary>
-        public MethodInvokeInformation InvokeInformation { get; }
-
-        /// <inheritdoc />
-        IMethodInvokeInformation IEndPointMethodConfigurationReadOnly.InvokeInformation => InvokeInformation;
-
+        public IMethodInvokeInformation InvokeInformation { get; }
+        
         /// <inheritdoc />
         public Func<RequestExecutionContext, object> ActivationFunc { get; }
 

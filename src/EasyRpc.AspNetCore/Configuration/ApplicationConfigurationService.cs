@@ -42,6 +42,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private ExposeConfigurations _exposeConfigurations;
         private DefaultMethodConfiguration _defaultMethodConfiguration;
         private readonly IWrappedResultTypeCreator _wrappedResultTypeCreator;
+        private readonly IApiEndPointInspector[] _endPointInspectors;
         private string _basePath;
         private bool _supportCompression;
 
@@ -49,16 +50,17 @@ namespace EasyRpc.AspNetCore.Configuration
             IConfigurationManager configurationManager,
             IAuthorizationImplementationProvider authorizationImplementationProvider,
             IWrappedResultTypeCreator wrappedResultTypeCreator,
-            ICompressionSelectorService compressionSelectorService)
+            ICompressionSelectorService compressionSelectorService,
+            IEnumerable<IApiEndPointInspector> endPointInspectors)
         {
             _services = services;
             _configurationManager = configurationManager;
             _authorizationImplementationProvider = authorizationImplementationProvider;
             _wrappedResultTypeCreator = wrappedResultTypeCreator;
             _compressionSelectorService = compressionSelectorService;
+            _endPointInspectors = endPointInspectors.ToArray();
         }
-
-
+        
         public void AddConfigurationObject(object configurationObject)
         {
             _configurationObjects.Add(configurationObject);
@@ -703,7 +705,7 @@ namespace EasyRpc.AspNetCore.Configuration
             return false;
         }
 
-        public IReadOnlyList<IEndPointMethodHandler> ProvideEndPointHandlers()
+        public Dictionary<string, Dictionary<string, IEndPointMethodHandler>> ProvideEndPointHandlers()
         {
             _exposeConfigurations = _configurationManager.GetConfiguration<ExposeConfigurations>();
             _supportCompression = _configurationManager.GetConfiguration<ContentEncodingConfiguration>()
@@ -713,7 +715,44 @@ namespace EasyRpc.AspNetCore.Configuration
 
             ProcessConfigurationObjects();
 
-            return _handlers;
+            return ProcessInspectors();
+        }
+
+        private Dictionary<string, Dictionary<string, IEndPointMethodHandler>> ProcessInspectors()
+        {
+            var handlersDictionary = new Dictionary<string, Dictionary<string, IEndPointMethodHandler>>();
+
+            AddHandlersToDictionary(handlersDictionary, _handlers);
+
+            foreach (var inspector in _endPointInspectors)
+            {
+                var endPoints = inspector.InspectEndPoints(handlersDictionary);
+
+                if (endPoints != null)
+                {
+                    AddHandlersToDictionary(handlersDictionary, endPoints);
+                }
+            }
+
+            return handlersDictionary;
+        }
+
+        private void AddHandlersToDictionary(Dictionary<string, Dictionary<string, IEndPointMethodHandler>> endPointMethodHandlersDictionary, IEnumerable<IEndPointMethodHandler> handlers)
+        {
+            foreach (var handler in handlers)
+            {
+
+
+                if (!endPointMethodHandlersDictionary.TryGetValue(handler.RouteInformation.RouteBasePath,
+                    out var methodDictionary))
+                {
+                    methodDictionary = new Dictionary<string, IEndPointMethodHandler>();
+
+                    endPointMethodHandlersDictionary[handler.RouteInformation.RouteBasePath] = methodDictionary;
+                }
+
+                methodDictionary[handler.HttpMethod] = handler;
+            }
         }
 
         protected virtual void ProcessConfigurationObjects()

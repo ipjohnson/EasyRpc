@@ -281,7 +281,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         /// <inheritdoc />
-        public IReadOnlyList<IEndPointMethodHandler> GetEndPointHandlers()
+        public Dictionary<string, Dictionary<string, IEndPointMethodHandler>> GetEndPointHandlers()
         {
             return ApplicationConfigurationService.ProvideEndPointHandlers();
         }

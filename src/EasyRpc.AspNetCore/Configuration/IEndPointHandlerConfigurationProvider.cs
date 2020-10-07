@@ -7,6 +7,6 @@ namespace EasyRpc.AspNetCore.Configuration
 {
     public interface IEndPointHandlerConfigurationProvider
     {
-        IReadOnlyList<IEndPointMethodHandler> GetEndPointHandlers();
+        Dictionary<string, Dictionary<string, IEndPointMethodHandler>> GetEndPointHandlers();
     }
 }
