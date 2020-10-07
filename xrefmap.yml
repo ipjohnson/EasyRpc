@@ -2731,12 +2731,15 @@ references:
   commentId: T:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService
   nameWithType: ApplicationConfigurationService
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
-  name: ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_Configuration_IAuthorizationImplementationProvider_EasyRpc_AspNetCore_CodeGeneration_IWrappedResultTypeCreator_EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ApplicationConfigurationService(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider, EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator, EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService)
-  nameWithType: ApplicationConfigurationService.ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService)
+- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.IApiEndPointInspector})
+  name: ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService, IEnumerable<IApiEndPointInspector>)
+  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_Configuration_IConfigurationManager_EasyRpc_AspNetCore_Configuration_IAuthorizationImplementationProvider_EasyRpc_AspNetCore_CodeGeneration_IWrappedResultTypeCreator_EasyRpc_AspNetCore_ContentEncoding_ICompressionSelectorService_System_Collections_Generic_IEnumerable_EasyRpc_AspNetCore_IApiEndPointInspector__
+  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.Configuration.IConfigurationManager,EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider,EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator,EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.IApiEndPointInspector})
+  name.vb: ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService, IEnumerable(Of IApiEndPointInspector))
+  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ApplicationConfigurationService(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider, EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator, EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService, System.Collections.Generic.IEnumerable<EasyRpc.AspNetCore.IApiEndPointInspector>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ApplicationConfigurationService(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.Configuration.IConfigurationManager, EasyRpc.AspNetCore.Configuration.IAuthorizationImplementationProvider, EasyRpc.AspNetCore.CodeGeneration.IWrappedResultTypeCreator, EasyRpc.AspNetCore.ContentEncoding.ICompressionSelectorService, System.Collections.Generic.IEnumerable(Of EasyRpc.AspNetCore.IApiEndPointInspector))
+  nameWithType: ApplicationConfigurationService.ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService, IEnumerable<IApiEndPointInspector>)
+  nameWithType.vb: ApplicationConfigurationService.ApplicationConfigurationService(EndPointServices, IConfigurationManager, IAuthorizationImplementationProvider, IWrappedResultTypeCreator, ICompressionSelectorService, IEnumerable(Of IApiEndPointInspector))
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.#ctor*
   name: ApplicationConfigurationService
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService__ctor_
@@ -6533,6 +6536,28 @@ references:
   commentId: N:EasyRpc.AspNetCore.Documentation
   fullName: EasyRpc.AspNetCore.Documentation
   nameWithType: EasyRpc.AspNetCore.Documentation
+- uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector
+  name: DocumentationEndPointInspector
+  href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector
+  fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector
+  nameWithType: DocumentationEndPointInspector
+- uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name: InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html#EasyRpc_AspNetCore_Documentation_DocumentationEndPointInspector_InspectEndPoints_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_Dictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name.vb: InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+  fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary<System.String, System.Collections.Generic.Dictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler>>)
+  fullName.vb: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary(Of System.String, System.Collections.Generic.Dictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler)))
+  nameWithType: DocumentationEndPointInspector.InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  nameWithType.vb: DocumentationEndPointInspector.InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+- uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints*
+  name: InspectEndPoints
+  href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html#EasyRpc_AspNetCore_Documentation_DocumentationEndPointInspector_InspectEndPoints_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints
+  nameWithType: DocumentationEndPointInspector.InspectEndPoints
 - uid: EasyRpc.AspNetCore.Documentation.DocumentationService
   name: DocumentationService
   href: api/EasyRpc.AspNetCore.Documentation.DocumentationService.html
@@ -8253,15 +8278,15 @@ references:
   commentId: T:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration
   nameWithType: EndPointMethodConfiguration
-- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type)
-  name: EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type)
-  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_EasyRpc_AspNetCore_Routing_RpcRouteInformation_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__EasyRpc_AspNetCore_EndPoints_MethodInvokeInformation_System_Type_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation,System.Type)
-  name.vb: EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type)
-  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type)
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), EasyRpc.AspNetCore.EndPoints.MethodInvokeInformation, System.Type)
-  nameWithType: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, MethodInvokeInformation, Type)
-  nameWithType.vb: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), MethodInvokeInformation, Type)
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation,System.Type)
+  name: EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, IMethodInvokeInformation, Type)
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_EasyRpc_AspNetCore_Routing_RpcRouteInformation_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__EasyRpc_AspNetCore_EndPoints_IMethodInvokeInformation_System_Type_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor(EasyRpc.AspNetCore.Routing.RpcRouteInformation,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation,System.Type)
+  name.vb: EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), IMethodInvokeInformation, Type)
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation, System.Type)
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EndPointMethodConfiguration(EasyRpc.AspNetCore.Routing.RpcRouteInformation, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), EasyRpc.AspNetCore.EndPoints.IMethodInvokeInformation, System.Type)
+  nameWithType: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func<RequestExecutionContext, Object>, IMethodInvokeInformation, Type)
+  nameWithType.vb: EndPointMethodConfiguration.EndPointMethodConfiguration(RpcRouteInformation, Func(Of RequestExecutionContext, Object), IMethodInvokeInformation, Type)
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.#ctor*
   name: EndPointMethodConfiguration
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration__ctor_
@@ -8295,23 +8320,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.Authorizations
   nameWithType: EndPointMethodConfiguration.Authorizations
-- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#InvokeInformation
-  name: IEndPointMethodConfigurationReadOnly.InvokeInformation
-  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_InvokeInformation
-  commentId: P:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#InvokeInformation
-  name.vb: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  nameWithType: EndPointMethodConfiguration.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  nameWithType.vb: EndPointMethodConfiguration.EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
-- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#InvokeInformation*
-  name: IEndPointMethodConfigurationReadOnly.InvokeInformation
-  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_InvokeInformation_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#InvokeInformation
-  isSpec: "True"
-  name.vb: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  nameWithType: EndPointMethodConfiguration.IEndPointMethodConfigurationReadOnly.InvokeInformation
-  nameWithType.vb: EndPointMethodConfiguration.EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.InvokeInformation
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#Parameters
   name: IEndPointMethodConfigurationReadOnly.Parameters
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_Parameters
@@ -8702,6 +8710,112 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched
   nameWithType: HeadEndPointHandler.HandleUnmatched
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector
+  name: HeadEndPointInspector
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.html
+  commentId: T:EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector
+  nameWithType: HeadEndPointInspector
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name: InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointInspector_InspectEndPoints_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_Dictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name.vb: InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary<System.String, System.Collections.Generic.Dictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler>>)
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary(Of System.String, System.Collections.Generic.Dictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler)))
+  nameWithType: HeadEndPointInspector.InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  nameWithType.vb: HeadEndPointInspector.InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints*
+  name: InspectEndPoints
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointInspector_InspectEndPoints_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.InspectEndPoints
+  nameWithType: HeadEndPointInspector.InspectEndPoints
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler
+  name: HeadEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html
+  commentId: T:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler
+  nameWithType: HeadEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: HeadEndPointMethodHandler(IEndPointMethodHandler, IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HeadEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: HeadEndPointMethodHandler.HeadEndPointMethodHandler(IEndPointMethodHandler, IEndPointMethodConfigurationReadOnly)
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.#ctor*
+  name: HeadEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HeadEndPointMethodHandler
+  nameWithType: HeadEndPointMethodHandler.HeadEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_Configuration
+  commentId: P:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration
+  nameWithType: HeadEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration*
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_Configuration_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Configuration
+  nameWithType: HeadEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  name: HandleRequest(HttpContext)
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_HandleRequest_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: HeadEndPointMethodHandler.HandleRequest(HttpContext)
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest*
+  name: HandleRequest
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_HandleRequest_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HandleRequest
+  nameWithType: HeadEndPointMethodHandler.HandleRequest
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_HttpMethod
+  commentId: P:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod
+  nameWithType: HeadEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod*
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_HttpMethod_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.HttpMethod
+  nameWithType: HeadEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_RouteInformation
+  commentId: P:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation
+  nameWithType: HeadEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation*
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_RouteInformation_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.RouteInformation
+  nameWithType: HeadEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services
+  name: Services
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_Services
+  commentId: P:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services
+  nameWithType: HeadEndPointMethodHandler.Services
+- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services*
+  name: Services
+  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointMethodHandler_Services_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointMethodHandler.Services
+  nameWithType: HeadEndPointMethodHandler.Services
 - uid: EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler
   name: HttpMethodEndPointHandler
   href: api/EasyRpc.AspNetCore.EndPoints.HttpMethodEndPointHandler.html
@@ -10439,6 +10553,28 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.FluentValidation.Impl.ValidationFilterProvider.GetFilters
   nameWithType: ValidationFilterProvider.GetFilters
+- uid: EasyRpc.AspNetCore.IApiEndPointInspector
+  name: IApiEndPointInspector
+  href: api/EasyRpc.AspNetCore.IApiEndPointInspector.html
+  commentId: T:EasyRpc.AspNetCore.IApiEndPointInspector
+  fullName: EasyRpc.AspNetCore.IApiEndPointInspector
+  nameWithType: IApiEndPointInspector
+- uid: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name: InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  href: api/EasyRpc.AspNetCore.IApiEndPointInspector.html#EasyRpc_AspNetCore_IApiEndPointInspector_InspectEndPoints_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_Dictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
+  commentId: M:EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
+  name.vb: InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+  fullName: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary<System.String, System.Collections.Generic.Dictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler>>)
+  fullName.vb: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary(Of System.String, System.Collections.Generic.Dictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler)))
+  nameWithType: IApiEndPointInspector.InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
+  nameWithType.vb: IApiEndPointInspector.InspectEndPoints(Dictionary(Of String, Dictionary(Of String, IEndPointMethodHandler)))
+- uid: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints*
+  name: InspectEndPoints
+  href: api/EasyRpc.AspNetCore.IApiEndPointInspector.html#EasyRpc_AspNetCore_IApiEndPointInspector_InspectEndPoints_
+  commentId: Overload:EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints
+  nameWithType: IApiEndPointInspector.InspectEndPoints
 - uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly
   name: IEndPointMethodConfigurationReadOnly
   href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html
