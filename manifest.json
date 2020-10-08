@@ -1394,6 +1394,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html",
+          "hash": "zZ3SfDPMj0YFjPyhkBPH8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OpenApiSchemaGenerator.yml",
       "output": {
         ".html": {
@@ -1411,6 +1423,30 @@
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.OperationFilterContext.html",
           "hash": "XfVGlESs7pLXXKK4hEFjWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.StaticResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.StaticResource.html",
+          "hash": "qlPxF1A9e41iYb6+Cxw1UA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html",
+          "hash": "BH5m/7Ljdm3oj6sXo/3hzw=="
         }
       },
       "is_incremental": false,
@@ -1494,7 +1530,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.html",
-          "hash": "SAyV2XBBEOZ8W7hGFiV2Pg=="
+          "hash": "44+TqteX0cF58lyY4XxMBQ=="
         }
       },
       "is_incremental": false,
@@ -1555,18 +1591,6 @@
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.EndPointServices.html",
           "hash": "EvhxNmcecz2HgBCfdXgGTQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html",
-          "hash": "hbv8z7jAtGYeoMdgskUGhg=="
         }
       },
       "is_incremental": false,
@@ -1830,7 +1854,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPoints.html",
-          "hash": "3p8wRfEBT9fuuIZ/ZxqfWQ=="
+          "hash": "QsBhyavTxiyMOu3BNQeDCQ=="
         }
       },
       "is_incremental": false,
@@ -3690,7 +3714,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "PKixSnREW0YxwxkZE+Pr3A=="
+          "hash": "OTEF2SHP3V5onw5xeL2XPQ=="
         }
       },
       "is_incremental": false,
@@ -3729,7 +3753,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 305,
+          "total_file_count": 307,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

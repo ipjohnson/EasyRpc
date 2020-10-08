@@ -7343,6 +7343,90 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.GenerateDocument
   nameWithType: OpenApiGenerationService.GenerateDocument
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler
+  name: OpenApiJsonEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler
+  nameWithType: OpenApiJsonEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  name: OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly)
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
+  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
+  nameWithType: OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly)
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor*
+  name: OpenApiJsonEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler
+  nameWithType: OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_Configuration
+  commentId: P:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration
+  nameWithType: OpenApiJsonEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration*
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_Configuration_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Configuration
+  nameWithType: OpenApiJsonEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  name: HandleRequest(HttpContext)
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_HandleRequest_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: OpenApiJsonEndPointMethodHandler.HandleRequest(HttpContext)
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest*
+  name: HandleRequest
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_HandleRequest_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HandleRequest
+  nameWithType: OpenApiJsonEndPointMethodHandler.HandleRequest
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_HttpMethod
+  commentId: P:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod
+  nameWithType: OpenApiJsonEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod*
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_HttpMethod_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.HttpMethod
+  nameWithType: OpenApiJsonEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_RouteInformation
+  commentId: P:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation
+  nameWithType: OpenApiJsonEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation*
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_RouteInformation_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.RouteInformation
+  nameWithType: OpenApiJsonEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services
+  name: Services
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_Services
+  commentId: P:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services
+  nameWithType: OpenApiJsonEndPointMethodHandler.Services
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services*
+  name: Services
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler_Services_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.Services
+  nameWithType: OpenApiJsonEndPointMethodHandler.Services
 - uid: EasyRpc.AspNetCore.Documentation.OpenApiSchemaGenerator
   name: OpenApiSchemaGenerator
   href: api/EasyRpc.AspNetCore.Documentation.OpenApiSchemaGenerator.html
@@ -7485,6 +7569,151 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.OperationFilterContext.Operation
   nameWithType: OperationFilterContext.Operation
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource
+  name: StaticResource
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.StaticResource
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource
+  nameWithType: StaticResource
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.#ctor(System.String,System.Boolean,System.Byte[])
+  name: StaticResource(String, Boolean, Byte[])
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource__ctor_System_String_System_Boolean_System_Byte___
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResource.#ctor(System.String,System.Boolean,System.Byte[])
+  name.vb: StaticResource(String, Boolean, Byte())
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource(System.String, System.Boolean, System.Byte[])
+  fullName.vb: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource(System.String, System.Boolean, System.Byte())
+  nameWithType: StaticResource.StaticResource(String, Boolean, Byte[])
+  nameWithType.vb: StaticResource.StaticResource(String, Boolean, Byte())
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.#ctor*
+  name: StaticResource
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource
+  nameWithType: StaticResource.StaticResource
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_ContentType
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
+  nameWithType: StaticResource.ContentType
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType*
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_ContentType_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
+  nameWithType: StaticResource.ContentType
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
+  name: GetBytes()
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_GetBytes
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes()
+  nameWithType: StaticResource.GetBytes()
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes*
+  name: GetBytes
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_GetBytes_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
+  nameWithType: StaticResource.GetBytes
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
+  name: IsBrCompressed
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_IsBrCompressed
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
+  nameWithType: StaticResource.IsBrCompressed
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed*
+  name: IsBrCompressed
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_IsBrCompressed_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
+  nameWithType: StaticResource.IsBrCompressed
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
+  name: StaticResourceEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
+  nameWithType: StaticResourceEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.StaticResource)
+  name: StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, StaticResource)
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_EasyRpc_AspNetCore_Documentation_StaticResource_
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.StaticResource)
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly, EasyRpc.AspNetCore.Documentation.StaticResource)
+  nameWithType: StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, StaticResource)
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor*
+  name: StaticResourceEndPointMethodHandler
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler
+  nameWithType: StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_Configuration
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration
+  nameWithType: StaticResourceEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration*
+  name: Configuration
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_Configuration_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Configuration
+  nameWithType: StaticResourceEndPointMethodHandler.Configuration
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  name: HandleRequest(HttpContext)
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_HandleRequest_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: StaticResourceEndPointMethodHandler.HandleRequest(HttpContext)
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest*
+  name: HandleRequest
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_HandleRequest_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HandleRequest
+  nameWithType: StaticResourceEndPointMethodHandler.HandleRequest
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_HttpMethod
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod
+  nameWithType: StaticResourceEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod*
+  name: HttpMethod
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_HttpMethod_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.HttpMethod
+  nameWithType: StaticResourceEndPointMethodHandler.HttpMethod
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_RouteInformation
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation
+  nameWithType: StaticResourceEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation*
+  name: RouteInformation
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_RouteInformation_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.RouteInformation
+  nameWithType: StaticResourceEndPointMethodHandler.RouteInformation
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
+  name: Services
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_Services
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
+  nameWithType: StaticResourceEndPointMethodHandler.Services
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services*
+  name: Services
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler_Services_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
+  nameWithType: StaticResourceEndPointMethodHandler.Services
 - uid: EasyRpc.AspNetCore.Documentation.StringTokenReplacementService
   name: StringTokenReplacementService
   href: api/EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.html
@@ -8659,57 +8888,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointServices.UnmappedEndPointHandler
   nameWithType: EndPointServices.UnmappedEndPointHandler
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
-  name: HeadEndPointHandler
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html
-  commentId: T:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler
-  nameWithType: HeadEndPointHandler
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name: CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_CanHandle_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
-  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext,System.Boolean,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name.vb: CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle(Microsoft.AspNetCore.Http.HttpContext, System.Boolean, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
-  nameWithType: HeadEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler[])
-  nameWithType.vb: HeadEndPointHandler.CanHandle(HttpContext, Boolean, IEndPointMethodHandler())
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle*
-  name: CanHandle
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_CanHandle_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.CanHandle
-  nameWithType: HeadEndPointHandler.CanHandle
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleMatchedPath_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
-  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  name.vb: HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler[])
-  fullName.vb: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate, EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler())
-  nameWithType: HeadEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler[])
-  nameWithType.vb: HeadEndPointHandler.HandleMatchedPath(HttpContext, RequestDelegate, IEndPointMethodHandler())
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath*
-  name: HandleMatchedPath
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleMatchedPath_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleMatchedPath
-  nameWithType: HeadEndPointHandler.HandleMatchedPath
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  name: HandleUnmatched(HttpContext, RequestDelegate)
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleUnmatched_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
-  commentId: M:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
-  nameWithType: HeadEndPointHandler.HandleUnmatched(HttpContext, RequestDelegate)
-- uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched*
-  name: HandleUnmatched
-  href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.html#EasyRpc_AspNetCore_EndPoints_HeadEndPointHandler_HandleUnmatched_
-  commentId: Overload:EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.EndPoints.HeadEndPointHandler.HandleUnmatched
-  nameWithType: HeadEndPointHandler.HandleUnmatched
 - uid: EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector
   name: HeadEndPointInspector
   href: api/EasyRpc.AspNetCore.EndPoints.HeadEndPointInspector.html
