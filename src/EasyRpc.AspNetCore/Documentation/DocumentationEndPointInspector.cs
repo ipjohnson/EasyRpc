@@ -9,9 +9,11 @@ namespace EasyRpc.AspNetCore.Documentation
     {
         public IEnumerable<IEndPointMethodHandler> InspectEndPoints(Dictionary<string, Dictionary<string, IEndPointMethodHandler>> endPoints)
         {
+            var returnList = new List<IEndPointMethodHandler>();
 
+            
 
-            yield break;
+            return returnList;
         }
     }
 }
