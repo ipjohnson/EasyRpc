@@ -1230,7 +1230,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html",
-          "hash": "Eaxs3g5bncRlDnilj85c0g=="
+          "hash": "mUE0m63WYIBUhY/PcZjADg=="
         }
       },
       "is_incremental": false,
@@ -1290,7 +1290,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html",
-          "hash": "sQ+FbYQgt3dn51SY+UdopQ=="
+          "hash": "SBN2SfpgqLv1ad1sZt5fLQ=="
         }
       },
       "is_incremental": false,
@@ -1322,6 +1322,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IStaticResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.IStaticResource.html",
+          "hash": "9mBaVioGX4cHJKG7WMbIJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService.yml",
       "output": {
         ".html": {
@@ -1338,7 +1350,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html",
-          "hash": "pzgxTsISEPkgarl7yxNaqw=="
+          "hash": "Yq7+P/QsyftIuJG5TQtmYg=="
         }
       },
       "is_incremental": false,
@@ -1386,7 +1398,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.html",
-          "hash": "QQHVXo1M6WPjfKy3lcLmBQ=="
+          "hash": "8FhE07z75zuFbe79L6yYZA=="
         }
       },
       "is_incremental": false,
@@ -1398,7 +1410,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html",
-          "hash": "zZ3SfDPMj0YFjPyhkBPH8g=="
+          "hash": "NqnyxqVNmy5Y62j+EqV0Xg=="
         }
       },
       "is_incremental": false,
@@ -1434,7 +1446,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.StaticResource.html",
-          "hash": "qlPxF1A9e41iYb6+Cxw1UA=="
+          "hash": "vy9A5IfoOCQxbNg6ezMg6w=="
         }
       },
       "is_incremental": false,
@@ -1446,7 +1458,19 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html",
-          "hash": "BH5m/7Ljdm3oj6sXo/3hzw=="
+          "hash": "iqpN65LgT8I2wRJyHx8j/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.html",
+          "hash": "Jd396C6R90ocJvDBsMCjzA=="
         }
       },
       "is_incremental": false,
@@ -1466,23 +1490,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.yml",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.yml",
       "output": {
         ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html",
-          "hash": "oI9/sdYQbDul4XQScviYvw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html",
-          "hash": "2+XOkay8EYpi9sQ5+gOBBA=="
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html",
+          "hash": "VRQ2GgR63E8mnaTFH70sqg=="
         }
       },
       "is_incremental": false,
@@ -1530,7 +1542,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.html",
-          "hash": "44+TqteX0cF58lyY4XxMBQ=="
+          "hash": "iJJBdgtLPXWBhRtS9CO2QA=="
         }
       },
       "is_incremental": false,
@@ -3714,7 +3726,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "OTEF2SHP3V5onw5xeL2XPQ=="
+          "hash": "R4xRjvbo64cRmKqFM0KQ3A=="
         }
       },
       "is_incremental": false,
@@ -3753,7 +3765,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 307,
+          "total_file_count": 308,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

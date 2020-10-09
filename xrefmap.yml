@@ -6542,6 +6542,19 @@ references:
   commentId: T:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector
   fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector
   nameWithType: DocumentationEndPointInspector
+- uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.#ctor(EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  name: DocumentationEndPointInspector(IOpenApiGenerationService)
+  href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html#EasyRpc_AspNetCore_Documentation_DocumentationEndPointInspector__ctor_EasyRpc_AspNetCore_Documentation_IOpenApiGenerationService_
+  commentId: M:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.#ctor(EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.DocumentationEndPointInspector(EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  nameWithType: DocumentationEndPointInspector.DocumentationEndPointInspector(IOpenApiGenerationService)
+- uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.#ctor*
+  name: DocumentationEndPointInspector
+  href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html#EasyRpc_AspNetCore_Documentation_DocumentationEndPointInspector__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.DocumentationEndPointInspector
+  nameWithType: DocumentationEndPointInspector.DocumentationEndPointInspector
 - uid: EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.InspectEndPoints(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointMethodHandler}})
   name: InspectEndPoints(Dictionary<String, Dictionary<String, IEndPointMethodHandler>>)
   href: api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.html#EasyRpc_AspNetCore_Documentation_DocumentationEndPointInspector_InspectEndPoints_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_Dictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointMethodHandler___
@@ -6772,12 +6785,12 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Configure
   nameWithType: IOpenApiGenerationService.Configure
-- uid: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  name: Execute(HttpContext, RequestDelegate)
-  href: api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_IOpenApiGenerationService_Execute_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
-  commentId: M:EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  fullName: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
-  nameWithType: IOpenApiGenerationService.Execute(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  name: Execute(HttpContext)
+  href: api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_IOpenApiGenerationService_Execute_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: IOpenApiGenerationService.Execute(HttpContext)
 - uid: EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.Execute*
   name: Execute
   href: api/EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_IOpenApiGenerationService_Execute_
@@ -6849,6 +6862,64 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.IOperationFilter.Apply
   nameWithType: IOperationFilter.Apply
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource
+  name: IStaticResource
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.IStaticResource
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource
+  nameWithType: IStaticResource
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.Content
+  name: Content
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_Content
+  commentId: P:EasyRpc.AspNetCore.Documentation.IStaticResource.Content
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.Content
+  nameWithType: IStaticResource.Content
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.Content*
+  name: Content
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_Content_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.IStaticResource.Content
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.Content
+  nameWithType: IStaticResource.Content
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_ContentType
+  commentId: P:EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType
+  nameWithType: IStaticResource.ContentType
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType*
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_ContentType_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.ContentType
+  nameWithType: IStaticResource.ContentType
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed
+  name: IsBrCompressed
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_IsBrCompressed
+  commentId: P:EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed
+  nameWithType: IStaticResource.IsBrCompressed
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed*
+  name: IsBrCompressed
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_IsBrCompressed_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.IsBrCompressed
+  nameWithType: IStaticResource.IsBrCompressed
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.Path
+  name: Path
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_Path
+  commentId: P:EasyRpc.AspNetCore.Documentation.IStaticResource.Path
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.Path
+  nameWithType: IStaticResource.Path
+- uid: EasyRpc.AspNetCore.Documentation.IStaticResource.Path*
+  name: Path
+  href: api/EasyRpc.AspNetCore.Documentation.IStaticResource.html#EasyRpc_AspNetCore_Documentation_IStaticResource_Path_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.IStaticResource.Path
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.IStaticResource.Path
+  nameWithType: IStaticResource.Path
 - uid: EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService
   name: IStringTokenReplacementService
   href: api/EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService.html
@@ -6887,32 +6958,19 @@ references:
   commentId: T:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider
   fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider
   nameWithType: ISwaggerAssetProvider
-- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
-  name: Configure(DocumentationOptions)
-  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_Configure_EasyRpc_AspNetCore_DocumentationOptions_
-  commentId: M:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
-  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
-  nameWithType: ISwaggerAssetProvider.Configure(DocumentationOptions)
-- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure*
-  name: Configure
-  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_Configure_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure
+- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  name: ProvideStaticResources(DocumentationOptions)
+  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_ProvideStaticResources_EasyRpc_AspNetCore_DocumentationOptions_
+  commentId: M:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  nameWithType: ISwaggerAssetProvider.ProvideStaticResources(DocumentationOptions)
+- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources*
+  name: ProvideStaticResources
+  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_ProvideStaticResources_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.Configure
-  nameWithType: ISwaggerAssetProvider.Configure
-- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  name: ProvideAsset(HttpContext)
-  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_
-  commentId: M:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  nameWithType: ISwaggerAssetProvider.ProvideAsset(HttpContext)
-- uid: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset*
-  name: ProvideAsset
-  href: api/EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_ProvideAsset_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideAsset
-  nameWithType: ISwaggerAssetProvider.ProvideAsset
+  fullName: EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider.ProvideStaticResources
+  nameWithType: ISwaggerAssetProvider.ProvideStaticResources
 - uid: EasyRpc.AspNetCore.Documentation.ITokenValueProvider
   name: ITokenValueProvider
   href: api/EasyRpc.AspNetCore.Documentation.ITokenValueProvider.html
@@ -7317,12 +7375,12 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Configure
   nameWithType: OpenApiGenerationService.Configure
-- uid: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  name: Execute(HttpContext, RequestDelegate)
-  href: api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_OpenApiGenerationService_Execute_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_
-  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)
-  fullName: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Http.RequestDelegate)
-  nameWithType: OpenApiGenerationService.Execute(HttpContext, RequestDelegate)
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  name: Execute(HttpContext)
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_OpenApiGenerationService_Execute_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: OpenApiGenerationService.Execute(HttpContext)
 - uid: EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.Execute*
   name: Execute
   href: api/EasyRpc.AspNetCore.Documentation.OpenApiGenerationService.html#EasyRpc_AspNetCore_Documentation_OpenApiGenerationService_Execute_
@@ -7349,12 +7407,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler
   fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler
   nameWithType: OpenApiJsonEndPointMethodHandler
-- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
-  name: OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly)
-  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_
-  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
-  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly)
-  nameWithType: OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly)
+- uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  name: OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, IOpenApiGenerationService)
+  href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_EasyRpc_AspNetCore_Documentation_IOpenApiGenerationService_
+  commentId: M:EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  fullName: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly, EasyRpc.AspNetCore.Documentation.IOpenApiGenerationService)
+  nameWithType: OpenApiJsonEndPointMethodHandler.OpenApiJsonEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, IOpenApiGenerationService)
 - uid: EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.#ctor*
   name: OpenApiJsonEndPointMethodHandler
   href: api/EasyRpc.AspNetCore.Documentation.OpenApiJsonEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_OpenApiJsonEndPointMethodHandler__ctor_
@@ -7575,22 +7633,19 @@ references:
   commentId: T:EasyRpc.AspNetCore.Documentation.StaticResource
   fullName: EasyRpc.AspNetCore.Documentation.StaticResource
   nameWithType: StaticResource
-- uid: EasyRpc.AspNetCore.Documentation.StaticResource.#ctor(System.String,System.Boolean,System.Byte[])
-  name: StaticResource(String, Boolean, Byte[])
-  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource__ctor_System_String_System_Boolean_System_Byte___
-  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResource.#ctor(System.String,System.Boolean,System.Byte[])
-  name.vb: StaticResource(String, Boolean, Byte())
-  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource(System.String, System.Boolean, System.Byte[])
-  fullName.vb: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource(System.String, System.Boolean, System.Byte())
-  nameWithType: StaticResource.StaticResource(String, Boolean, Byte[])
-  nameWithType.vb: StaticResource.StaticResource(String, Boolean, Byte())
-- uid: EasyRpc.AspNetCore.Documentation.StaticResource.#ctor*
-  name: StaticResource
-  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.#ctor
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.Content
+  name: Content
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_Content
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResource.Content
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.Content
+  nameWithType: StaticResource.Content
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.Content*
+  name: Content
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_Content_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.Content
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.StaticResource
-  nameWithType: StaticResource.StaticResource
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.Content
+  nameWithType: StaticResource.Content
 - uid: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
   name: ContentType
   href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_ContentType
@@ -7604,19 +7659,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.StaticResource.ContentType
   nameWithType: StaticResource.ContentType
-- uid: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
-  name: GetBytes()
-  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_GetBytes
-  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
-  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes()
-  nameWithType: StaticResource.GetBytes()
-- uid: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes*
-  name: GetBytes
-  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_GetBytes_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.GetBytes
-  nameWithType: StaticResource.GetBytes
 - uid: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
   name: IsBrCompressed
   href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_IsBrCompressed
@@ -7630,18 +7672,31 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.StaticResource.IsBrCompressed
   nameWithType: StaticResource.IsBrCompressed
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.Path
+  name: Path
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_Path
+  commentId: P:EasyRpc.AspNetCore.Documentation.StaticResource.Path
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.Path
+  nameWithType: StaticResource.Path
+- uid: EasyRpc.AspNetCore.Documentation.StaticResource.Path*
+  name: Path
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResource.html#EasyRpc_AspNetCore_Documentation_StaticResource_Path_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResource.Path
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResource.Path
+  nameWithType: StaticResource.Path
 - uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
   name: StaticResourceEndPointMethodHandler
   href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html
   commentId: T:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
   fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler
   nameWithType: StaticResourceEndPointMethodHandler
-- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.StaticResource)
-  name: StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, StaticResource)
-  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_EasyRpc_AspNetCore_Documentation_StaticResource_
-  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.StaticResource)
-  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly, EasyRpc.AspNetCore.Documentation.StaticResource)
-  nameWithType: StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, StaticResource)
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.IStaticResource)
+  name: StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, IStaticResource)
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler__ctor_EasyRpc_AspNetCore_EndPoints_EndPointServices_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_EasyRpc_AspNetCore_Documentation_IStaticResource_
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor(EasyRpc.AspNetCore.EndPoints.EndPointServices,EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,EasyRpc.AspNetCore.Documentation.IStaticResource)
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EasyRpc.AspNetCore.EndPoints.EndPointServices, EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly, EasyRpc.AspNetCore.Documentation.IStaticResource)
+  nameWithType: StaticResourceEndPointMethodHandler.StaticResourceEndPointMethodHandler(EndPointServices, IEndPointMethodConfigurationReadOnly, IStaticResource)
 - uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.#ctor*
   name: StaticResourceEndPointMethodHandler
   href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointMethodHandler__ctor_
@@ -7714,6 +7769,25 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointMethodHandler.Services
   nameWithType: StaticResourceEndPointMethodHandler.Services
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider
+  name: StaticResourceEndPointProvider
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider
+  nameWithType: StaticResourceEndPointProvider
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.#ctor(EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider)
+  name: StaticResourceEndPointProvider(ISwaggerAssetProvider)
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointProvider__ctor_EasyRpc_AspNetCore_Documentation_ISwaggerAssetProvider_
+  commentId: M:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.#ctor(EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider)
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.StaticResourceEndPointProvider(EasyRpc.AspNetCore.Documentation.ISwaggerAssetProvider)
+  nameWithType: StaticResourceEndPointProvider.StaticResourceEndPointProvider(ISwaggerAssetProvider)
+- uid: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.#ctor*
+  name: StaticResourceEndPointProvider
+  href: api/EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.html#EasyRpc_AspNetCore_Documentation_StaticResourceEndPointProvider__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Documentation.StaticResourceEndPointProvider.StaticResourceEndPointProvider
+  nameWithType: StaticResourceEndPointProvider.StaticResourceEndPointProvider
 - uid: EasyRpc.AspNetCore.Documentation.StringTokenReplacementService
   name: StringTokenReplacementService
   href: api/EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.html
@@ -7771,138 +7845,67 @@ references:
   commentId: F:EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.StartReplacement
   fullName: EasyRpc.AspNetCore.Documentation.StringTokenReplacementService.StartReplacement
   nameWithType: StringTokenReplacementService.StartReplacement
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider
-  name: SwaggerAssetProvider
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html
-  commentId: T:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider
-  nameWithType: SwaggerAssetProvider
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment,Microsoft.Extensions.Logging.ILogger{EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider},EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
-  name: SwaggerAssetProvider(IHostEnvironment, ILogger<SwaggerAssetProvider>, IStringTokenReplacementService)
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider__ctor_Microsoft_Extensions_Hosting_IHostEnvironment_Microsoft_Extensions_Logging_ILogger_EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider__EasyRpc_AspNetCore_Documentation_IStringTokenReplacementService_
-  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment,Microsoft.Extensions.Logging.ILogger{EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider},EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
-  name.vb: SwaggerAssetProvider(IHostEnvironment, ILogger(Of SwaggerAssetProvider), IStringTokenReplacementService)
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SwaggerAssetProvider(Microsoft.Extensions.Hosting.IHostEnvironment, Microsoft.Extensions.Logging.ILogger<EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider>, EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
-  fullName.vb: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SwaggerAssetProvider(Microsoft.Extensions.Hosting.IHostEnvironment, Microsoft.Extensions.Logging.ILogger(Of EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider), EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
-  nameWithType: SwaggerAssetProvider.SwaggerAssetProvider(IHostEnvironment, ILogger<SwaggerAssetProvider>, IStringTokenReplacementService)
-  nameWithType.vb: SwaggerAssetProvider.SwaggerAssetProvider(IHostEnvironment, ILogger(Of SwaggerAssetProvider), IStringTokenReplacementService)
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.#ctor*
-  name: SwaggerAssetProvider
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider__ctor_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.#ctor
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider
+  name: SwaggerStaticResourceProvider
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html
+  commentId: T:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider
+  nameWithType: SwaggerStaticResourceProvider
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment,Microsoft.Extensions.Logging.ILogger{EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider},EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
+  name: SwaggerStaticResourceProvider(IHostEnvironment, ILogger<SwaggerStaticResourceProvider>, IStringTokenReplacementService)
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider__ctor_Microsoft_Extensions_Hosting_IHostEnvironment_Microsoft_Extensions_Logging_ILogger_EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider__EasyRpc_AspNetCore_Documentation_IStringTokenReplacementService_
+  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment,Microsoft.Extensions.Logging.ILogger{EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider},EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
+  name.vb: SwaggerStaticResourceProvider(IHostEnvironment, ILogger(Of SwaggerStaticResourceProvider), IStringTokenReplacementService)
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.SwaggerStaticResourceProvider(Microsoft.Extensions.Hosting.IHostEnvironment, Microsoft.Extensions.Logging.ILogger<EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider>, EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
+  fullName.vb: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.SwaggerStaticResourceProvider(Microsoft.Extensions.Hosting.IHostEnvironment, Microsoft.Extensions.Logging.ILogger(Of EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider), EasyRpc.AspNetCore.Documentation.IStringTokenReplacementService)
+  nameWithType: SwaggerStaticResourceProvider.SwaggerStaticResourceProvider(IHostEnvironment, ILogger<SwaggerStaticResourceProvider>, IStringTokenReplacementService)
+  nameWithType.vb: SwaggerStaticResourceProvider.SwaggerStaticResourceProvider(IHostEnvironment, ILogger(Of SwaggerStaticResourceProvider), IStringTokenReplacementService)
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.#ctor*
+  name: SwaggerStaticResourceProvider
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.#ctor
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SwaggerAssetProvider
-  nameWithType: SwaggerAssetProvider.SwaggerAssetProvider
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.SwaggerStaticResourceProvider
+  nameWithType: SwaggerStaticResourceProvider.SwaggerStaticResourceProvider
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
   name: Configure(DocumentationOptions)
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_Configure_EasyRpc_AspNetCore_DocumentationOptions_
-  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
-  nameWithType: SwaggerAssetProvider.Configure(DocumentationOptions)
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure*
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_Configure_EasyRpc_AspNetCore_DocumentationOptions_
+  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure(EasyRpc.AspNetCore.DocumentationOptions)
+  nameWithType: SwaggerStaticResourceProvider.Configure(DocumentationOptions)
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure*
   name: Configure
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_Configure_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_Configure_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.Configure
-  nameWithType: SwaggerAssetProvider.Configure
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry
-  name: SwaggerAssetProvider.FileEntry
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html
-  commentId: T:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry
-  nameWithType: SwaggerAssetProvider.FileEntry
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents
-  name: Contents
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_Contents
-  commentId: P:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents
-  nameWithType: SwaggerAssetProvider.FileEntry.Contents
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents*
-  name: Contents
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_Contents_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.Configure
+  nameWithType: SwaggerStaticResourceProvider.Configure
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  name: ProvideStaticResources(DocumentationOptions)
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_ProvideStaticResources_EasyRpc_AspNetCore_DocumentationOptions_
+  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources(EasyRpc.AspNetCore.DocumentationOptions)
+  nameWithType: SwaggerStaticResourceProvider.ProvideStaticResources(DocumentationOptions)
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources*
+  name: ProvideStaticResources
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_ProvideStaticResources_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.Contents
-  nameWithType: SwaggerAssetProvider.FileEntry.Contents
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType
-  name: ContentType
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_ContentType
-  commentId: P:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType
-  nameWithType: SwaggerAssetProvider.FileEntry.ContentType
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType*
-  name: ContentType
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_ContentType_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.ContentType
-  nameWithType: SwaggerAssetProvider.FileEntry.ContentType
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName
-  name: FileName
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_FileName
-  commentId: P:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName
-  nameWithType: SwaggerAssetProvider.FileEntry.FileName
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName*
-  name: FileName
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_FileName_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.FileName
-  nameWithType: SwaggerAssetProvider.FileEntry.FileName
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed
-  name: IsCompressed
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_IsCompressed
-  commentId: P:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed
-  nameWithType: SwaggerAssetProvider.FileEntry.IsCompressed
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed*
-  name: IsCompressed
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_IsCompressed_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry.IsCompressed
-  nameWithType: SwaggerAssetProvider.FileEntry.IsCompressed
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  name: ProvideAsset(HttpContext)
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_
-  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext)
-  nameWithType: SwaggerAssetProvider.ProvideAsset(HttpContext)
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset*
-  name: ProvideAsset
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_ProvideAsset_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.ProvideAsset
-  nameWithType: SwaggerAssetProvider.ProvideAsset
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry)
-  name: SendFile(HttpContext, SwaggerAssetProvider.FileEntry)
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_SendFile_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_FileEntry_
-  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry)
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.FileEntry)
-  nameWithType: SwaggerAssetProvider.SendFile(HttpContext, SwaggerAssetProvider.FileEntry)
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile*
-  name: SendFile
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_SendFile_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.SendFile
-  nameWithType: SwaggerAssetProvider.SendFile
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.ProvideStaticResources
+  nameWithType: SwaggerStaticResourceProvider.ProvideStaticResources
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets
   name: UnpackAssets()
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_UnpackAssets
-  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets()
-  nameWithType: SwaggerAssetProvider.UnpackAssets()
-- uid: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets*
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_UnpackAssets
+  commentId: M:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets()
+  nameWithType: SwaggerStaticResourceProvider.UnpackAssets()
+- uid: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets*
   name: UnpackAssets
-  href: api/EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerAssetProvider_UnpackAssets_
-  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets
+  href: api/EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.html#EasyRpc_AspNetCore_Documentation_SwaggerStaticResourceProvider_UnpackAssets_
+  commentId: Overload:EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Documentation.SwaggerAssetProvider.UnpackAssets
-  nameWithType: SwaggerAssetProvider.UnpackAssets
+  fullName: EasyRpc.AspNetCore.Documentation.SwaggerStaticResourceProvider.UnpackAssets
+  nameWithType: SwaggerStaticResourceProvider.UnpackAssets
 - uid: EasyRpc.AspNetCore.Documentation.TokenValueProvider
   name: TokenValueProvider
   href: api/EasyRpc.AspNetCore.Documentation.TokenValueProvider.html
