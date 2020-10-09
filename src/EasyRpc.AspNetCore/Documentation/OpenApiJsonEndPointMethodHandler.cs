@@ -8,14 +8,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
-
-
     public class OpenApiJsonEndPointMethodHandler : IEndPointMethodHandler
     {
-        public OpenApiJsonEndPointMethodHandler(EndPointServices services, IEndPointMethodConfigurationReadOnly configuration)
+        private IOpenApiGenerationService _openApiGenerationService;
+
+        public OpenApiJsonEndPointMethodHandler(EndPointServices services, 
+            IEndPointMethodConfigurationReadOnly configuration, IOpenApiGenerationService openApiGenerationService)
         {
             Services = services;
             Configuration = configuration;
+            _openApiGenerationService = openApiGenerationService;
         }
 
         /// <inheritdoc />
@@ -33,7 +35,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <inheritdoc />
         public Task HandleRequest(HttpContext context)
         {
-            throw new NotImplementedException();
+            return _openApiGenerationService.Execute(context);
         }
     }
 }

@@ -4,7 +4,13 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
-    class StaticResourceEndPointProvider
+    public class StaticResourceEndPointProvider
     {
+        private ISwaggerAssetProvider _swaggerAssetProvider;
+
+        public StaticResourceEndPointProvider(ISwaggerAssetProvider swaggerAssetProvider)
+        {
+            _swaggerAssetProvider = swaggerAssetProvider;
+        }
     }
 }

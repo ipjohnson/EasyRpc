@@ -10,9 +10,10 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public class StaticResourceEndPointMethodHandler : IEndPointMethodHandler
     {
-        private StaticResource _staticResource;
+        private readonly IStaticResource _staticResource;
 
-        public StaticResourceEndPointMethodHandler(EndPointServices services, IEndPointMethodConfigurationReadOnly configuration, StaticResource staticResource)
+        public StaticResourceEndPointMethodHandler(EndPointServices services, 
+            IEndPointMethodConfigurationReadOnly configuration, IStaticResource staticResource)
         {
             Services = services;
             Configuration = configuration;
@@ -32,9 +33,16 @@ namespace EasyRpc.AspNetCore.Documentation
         public string HttpMethod => HttpMethods.Get;
 
         /// <inheritdoc />
-        public Task HandleRequest(HttpContext context)
+        public async Task HandleRequest(HttpContext context)
         {
-            throw new NotImplementedException();
+            context.Response.ContentType = _staticResource.ContentType;
+
+            if (_staticResource.IsBrCompressed)
+            {
+                context.Response.Headers.TryAdd("ContentEncoding", "br");
+            }
+
+            await context.Response.Body.WriteAsync(_staticResource.Content);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace EasyRpc.AspNetCore.Documentation
         void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
             IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
 
-        Task Execute(HttpContext httpContext, RequestDelegate next);
+        Task Execute(HttpContext httpContext);
     }
 
     public class OpenApiGenerationService : IOpenApiGenerationService
@@ -54,7 +54,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _xmlDocProvider = xmlDocProvider;
         }
 
-        public void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
+        public void Configure(IInternalApiConfiguration apiInformation,DocumentationOptions documentationOptions,
             IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
             _apiInformation = apiInformation;
@@ -65,7 +65,7 @@ namespace EasyRpc.AspNetCore.Documentation
             _apiSchemaGenerator.Configure(documentationOptions);
         }
 
-        public Task Execute(HttpContext httpContext, RequestDelegate next)
+        public Task Execute(HttpContext httpContext)
         {
             httpContext.Request.Headers.TryGetValue("Accept-Encoding", out var encodings);
 
@@ -82,10 +82,10 @@ namespace EasyRpc.AspNetCore.Documentation
                 return httpContext.Response.Body.WriteAsync(_cachedV3, 0, _cachedV3.Length);
             }
 
-            return GenerateAndReturnDocument(httpContext, next, isVersion3, brCompress);
+            return GenerateAndReturnDocument(httpContext, isVersion3, brCompress);
         }
 
-        private async Task GenerateAndReturnDocument(HttpContext httpContext, RequestDelegate next, bool isVersion3,
+        private async Task GenerateAndReturnDocument(HttpContext httpContext, bool isVersion3,
             bool brCompress)
         {
             httpContext.Response.ContentType = "application/json";

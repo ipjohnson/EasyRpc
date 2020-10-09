@@ -4,25 +4,22 @@ using System.Text;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
-    public class StaticResource
+    public interface IStaticResource
     {
-        private byte[] _bytes;
+        byte[] Content { get; }
+        string Path { get; }
+        string ContentType { get; }
+        bool IsBrCompressed { get; }
+    }
 
-        public StaticResource(string contentType, bool isBrCompressed, byte[] bytes)
-        {
-            ContentType = contentType;
-            IsBrCompressed = isBrCompressed;
-            _bytes = bytes;
-        }
+    public class StaticResource : IStaticResource
+    {
+        public byte[] Content { get; set; }
 
+        public string Path { get; set; }
 
-        public string ContentType { get; }
+        public string ContentType { get; set; }
 
-        public bool IsBrCompressed { get; }
-
-        public byte[] GetBytes()
-        {
-            return _bytes;
-        }
+        public bool IsBrCompressed { get; set; }
     }
 }

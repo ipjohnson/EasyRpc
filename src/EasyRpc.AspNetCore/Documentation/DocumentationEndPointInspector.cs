@@ -7,6 +7,13 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public class DocumentationEndPointInspector : IApiEndPointInspector
     {
+        private IOpenApiGenerationService _openApiGenerationService;
+
+        public DocumentationEndPointInspector(IOpenApiGenerationService openApiGenerationService)
+        {
+            _openApiGenerationService = openApiGenerationService;
+        }
+
         public IEnumerable<IEndPointMethodHandler> InspectEndPoints(Dictionary<string, Dictionary<string, IEndPointMethodHandler>> endPoints)
         {
             var returnList = new List<IEndPointMethodHandler>();

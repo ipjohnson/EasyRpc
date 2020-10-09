@@ -96,7 +96,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
                 _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
 
-                _swaggerAssetProvider.Configure(documentationOptions);
+                //_swaggerAssetProvider.Configure(documentationOptions);
             }
         }
 
@@ -104,12 +104,12 @@ namespace EasyRpc.AspNetCore.Documentation
         {
             if (string.Equals(httpContext.Request.Path, _jsonDataPath, StringComparison.CurrentCultureIgnoreCase))
             {
-                await _openApiGenerationService.Execute(httpContext, next);
+                await _openApiGenerationService.Execute(httpContext);
             }
-            else if (!await _swaggerAssetProvider.ProvideAsset(httpContext))
-            {
-                await RedirectToSwagger(httpContext);
-            }
+            //else if (!await _swaggerAssetProvider.ProvideAsset(httpContext))
+            //{
+            //    await RedirectToSwagger(httpContext);
+            //}
         }
 
         private Task RedirectToSwagger(HttpContext httpContext)

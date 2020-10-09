@@ -15,22 +15,20 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public interface ISwaggerAssetProvider
     {
-        void Configure(DocumentationOptions options);
-
-        ValueTask<bool> ProvideAsset(HttpContext context);
+        IEnumerable<StaticResource> ProvideStaticResources(DocumentationOptions options);
     }
 
-    public class SwaggerAssetProvider : ISwaggerAssetProvider
+    public class SwaggerStaticResourceProvider : ISwaggerAssetProvider
     {
-        private readonly ILogger<SwaggerAssetProvider> _logger;
-        private readonly Dictionary<string, FileEntry> _fileEntries = new Dictionary<string, FileEntry>();
+        private readonly ILogger<SwaggerStaticResourceProvider> _logger;
+        private readonly Dictionary<string, StaticResource> _fileEntries = new Dictionary<string, StaticResource>();
         private readonly ValueTask<bool> _false = new ValueTask<bool>(false);
         private readonly IHostEnvironment _hostEnvironment;
         private readonly IStringTokenReplacementService _stringTokenReplacementService;
         private DocumentationOptions _options;
 
-        public SwaggerAssetProvider(IHostEnvironment hostEnvironment, 
-            ILogger<SwaggerAssetProvider> logger,
+        public SwaggerStaticResourceProvider(IHostEnvironment hostEnvironment, 
+            ILogger<SwaggerStaticResourceProvider> logger,
             IStringTokenReplacementService stringTokenReplacementService)
         {
             _hostEnvironment = hostEnvironment;
@@ -49,57 +47,23 @@ namespace EasyRpc.AspNetCore.Documentation
             ProcessContentPath(_options.ContentPath);
         }
 
-        public ValueTask<bool> ProvideAsset(HttpContext context)
+        public IEnumerable<StaticResource> ProvideStaticResources(DocumentationOptions options)
         {
-            var fileName = context.Request.Path.Value.Substring(_options.UIBasePath.Length);
+            _options = options;
 
-            if (_fileEntries.TryGetValue(fileName, out var fileEntry))
-            {
-                return SendFile(context, fileEntry);
-            }
+            _stringTokenReplacementService.Configure(options);
 
-            return _false;
-        }
+            UnpackAssets();
 
-        protected virtual async ValueTask<bool> SendFile(HttpContext context, FileEntry fileEntry)
-        {
-            context.Response.ContentType = fileEntry.ContentType;
+            ProcessContentPath(_options.ContentPath);
 
-            if (!fileEntry.IsCompressed || CompressionEnabled(context))
-            {
-                context.Response.ContentLength = fileEntry.Contents.Length;
-
-                if (fileEntry.IsCompressed)
-                {
-                    context.Response.Headers.TryAdd("content-encoding", "br");
-                }
-
-                await context.Response.Body.WriteAsync(fileEntry.Contents, context.RequestAborted);
-            }
-            else
-            {
-                using var decompress = new BrotliStream(new MemoryStream(fileEntry.Contents), CompressionMode.Decompress);
-
-                await decompress.CopyToAsync(context.Response.Body);
-            }
-
-            return true;
-        }
-
-        private bool CompressionEnabled(HttpContext context)
-        {
-            if (context.Request.Headers.TryGetValue("accept-encoding", out var encoding))
-            {
-                return encoding.ToString().Contains("br");
-            }
-
-            return false;
+            return _fileEntries.Values;
         }
 
 
         protected virtual void UnpackAssets()
         {
-            var assembly = typeof(SwaggerAssetProvider).GetTypeInfo().Assembly;
+            var assembly = typeof(SwaggerStaticResourceProvider).GetTypeInfo().Assembly;
 
             using var resource = assembly.GetManifestResourceStream("EasyRpc.AspNetCore.Documentation.swagger-ui.zip");
 
@@ -129,10 +93,9 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private void ProcessOtherFile(ZipArchiveEntry entry)
         {
-            var fileEntry = new FileEntry
+            var fileEntry = new StaticResource
             {
-                FileName = entry.FullName,
-                IsCompressed = false
+                Path = entry.FullName
             };
 
             using var fileStream = entry.Open();
@@ -140,43 +103,43 @@ namespace EasyRpc.AspNetCore.Documentation
 
             fileStream.CopyTo(memoryStream);
 
-            fileEntry.Contents = memoryStream.ToArray();
+            fileEntry.Content = memoryStream.ToArray();
 
             SetContentType(fileEntry);
 
-            _fileEntries.Add(fileEntry.FileName, fileEntry);
+            _fileEntries.Add(fileEntry.Path, fileEntry);
         }
 
-        private void SetContentType(FileEntry fileEntry)
+        private void SetContentType(StaticResource fileEntry)
         {
-            if (fileEntry.FileName.EndsWith(".png"))
+            if (fileEntry.Path.EndsWith(".png"))
             {
                 fileEntry.ContentType = "image/png";
             }
-            else if (fileEntry.FileName.EndsWith(".css.br"))
+            else if (fileEntry.Path.EndsWith(".css.br"))
             {
-                fileEntry.FileName = fileEntry.FileName.Substring(0, fileEntry.FileName.Length - 3);
+                fileEntry.Path = fileEntry.Path.Substring(0, fileEntry.Path.Length - 3);
                 fileEntry.ContentType = "text/css";
             }
-            else if (fileEntry.FileName.EndsWith(".html.br"))
+            else if (fileEntry.Path.EndsWith(".html.br"))
             {
-                fileEntry.FileName = fileEntry.FileName.Substring(0, fileEntry.FileName.Length - 3);
+                fileEntry.Path = fileEntry.Path.Substring(0, fileEntry.Path.Length - 3);
                 fileEntry.ContentType = "text/html";
             }
-            else if (fileEntry.FileName.EndsWith(".js.br"))
+            else if (fileEntry.Path.EndsWith(".js.br"))
             {
-                fileEntry.FileName = fileEntry.FileName.Substring(0, fileEntry.FileName.Length - 3);
+                fileEntry.Path = fileEntry.Path.Substring(0, fileEntry.Path.Length - 3);
                 fileEntry.ContentType = "text/js";
             }
-            else if (fileEntry.FileName.EndsWith(".js"))
+            else if (fileEntry.Path.EndsWith(".js"))
             {
                 fileEntry.ContentType = "text/js";
             }
-            else if (fileEntry.FileName.EndsWith(".html"))
+            else if (fileEntry.Path.EndsWith(".html"))
             {
                 fileEntry.ContentType = "text/html";
             }
-            else if (fileEntry.FileName.EndsWith(".css"))
+            else if (fileEntry.Path.EndsWith(".css"))
             {
                 fileEntry.ContentType = "text/css";
             }
@@ -184,10 +147,10 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private void ProcessBrFile(ZipArchiveEntry entry)
         {
-            var fileEntry = new FileEntry
+            var fileEntry = new StaticResource
             {
-                FileName = entry.FullName,
-                IsCompressed = true
+                Path = entry.FullName,
+                IsBrCompressed = true
             };
 
             using var fileStream = entry.Open();
@@ -195,18 +158,17 @@ namespace EasyRpc.AspNetCore.Documentation
 
             fileStream.CopyTo(memoryStream);
 
-            fileEntry.Contents = memoryStream.ToArray();
+            fileEntry.Content = memoryStream.ToArray();
 
             SetContentType(fileEntry);
-            _fileEntries.Add(fileEntry.FileName, fileEntry);
+            _fileEntries.Add(fileEntry.Path, fileEntry);
         }
 
         private void ProcessIndexHtmlFile(ZipArchiveEntry entry)
         {
-            var fileEntry = new FileEntry
+            var fileEntry = new StaticResource
             {
-                FileName = entry.FullName,
-                IsCompressed = false
+                Path = entry.FullName
             };
 
             using var fileStream = entry.Open();
@@ -214,34 +176,22 @@ namespace EasyRpc.AspNetCore.Documentation
 
             fileStream.CopyTo(memoryStream);
 
-            fileEntry.Contents = memoryStream.ToArray();
+            fileEntry.Content = memoryStream.ToArray();
 
             SetContentType(fileEntry);
             TransformIndexFile(fileEntry);
-            _fileEntries.Add(fileEntry.FileName, fileEntry);
+            _fileEntries.Add(fileEntry.Path, fileEntry);
         }
 
-        private void TransformIndexFile(FileEntry fileEntry)
+        private void TransformIndexFile(StaticResource fileEntry)
         {
-            var indexString = Encoding.UTF8.GetString(fileEntry.Contents);
+            var indexString = Encoding.UTF8.GetString(fileEntry.Content);
 
             indexString = _stringTokenReplacementService.ReplaceTokensInString(indexString);
 
-            fileEntry.Contents = Encoding.UTF8.GetBytes(indexString);
+            fileEntry.Content = Encoding.UTF8.GetBytes(indexString);
         }
-
-        public class FileEntry
-        {
-            public string FileName { get; set; }
-
-            public bool IsCompressed { get; set; }
-
-            public string ContentType { get; set; }
-
-            public byte[] Contents { get; set; }
-        }
-
-
+        
         private void ProcessContentPath(string path)
         {            
             var contents = _hostEnvironment.ContentRootFileProvider.GetDirectoryContents(path);
@@ -257,25 +207,24 @@ namespace EasyRpc.AspNetCore.Documentation
                     {
                         try
                         {
-                            var fileEntry = new FileEntry
+                            var fileEntry = new StaticResource
                             {
-                                FileName = fileInfo.Name,
-                                IsCompressed = false
+                                Path = fileInfo.Name
                             };
 
                             SetContentType(fileEntry);
 
                             if (fileEntry.ContentType.StartsWith("text/"))
                             {
-                                fileEntry.IsCompressed = true;
-                                fileEntry.Contents = ReadAndCompressFile(fileInfo);
+                                fileEntry.IsBrCompressed = true;
+                                fileEntry.Content = ReadAndCompressFile(fileInfo);
                             }
                             else
                             {
-                                fileEntry.Contents = ReadFile(fileInfo);
+                                fileEntry.Content = ReadFile(fileInfo);
                             }
 
-                            _fileEntries[fileEntry.FileName] = fileEntry;
+                            _fileEntries[fileEntry.Path] = fileEntry;
                         }
                         catch (Exception e)
                         {
