@@ -31,12 +31,13 @@ namespace EasyRpc.AspNetCore.Routing
         private readonly ParameterExpression _pathParameter = Expression.Parameter(typeof(string), "path");
         private readonly PropertyInfo _charsProperty = typeof(string).GetProperty("Chars");
         private readonly PropertyInfo _lengthProperty = typeof(string).GetProperty("Length");
+        private readonly MethodInfo _toLower = typeof(char).GetMethod("ToLower", new []{typeof(char)});
 
         /// <inheritdoc />
         public Func<string, IEndPointHandler> BuildRouteFunc(IDictionary<string, IEndPointHandler> handlers)
         {
             List<KeyValuePair<string, IEndPointHandler>> pathList = null;
-
+            
             if (handlers.Count == 0)
             {
                 return s => null;
@@ -156,9 +157,20 @@ namespace EasyRpc.AspNetCore.Routing
         private Expression GenerateIfBranchMethod(List<KeyValuePair<string, IEndPointHandler>> pathList, int currentStringIndex,
             int pathListStart, int pathListEnd, int level, int distinctCharacters)
         {
+            var startingPath = pathList[pathListStart];
+
+            IEndPointHandler endPointHandler = null;
+
+            if (startingPath.Key.Length == currentStringIndex)
+            {
+                endPointHandler = startingPath.Value;
+                pathListStart++;
+            }
+
             var currentChar = char.ToLowerInvariant(pathList[pathListStart].Key[currentStringIndex]);
             var currentStart = pathListStart;
-            Expression currentExpression = Expression.Constant(null, typeof(IEndPointHandler));
+
+            Expression currentExpression = Expression.Constant(endPointHandler, typeof(IEndPointHandler));
 
             for (var i = pathListStart; i < pathListEnd; i++)
             {
@@ -201,7 +213,7 @@ namespace EasyRpc.AspNetCore.Routing
             {
                 var path = pathList[i].Key;
                 var value = pathList[i].Value;
-                
+
 
                 BinaryExpression comparison = null;
 
@@ -227,7 +239,7 @@ namespace EasyRpc.AspNetCore.Routing
 
                     if (exactMatch)
                     {
-                        testLength++;
+                        //testLength++;
                     }
                     else
                     {
@@ -251,14 +263,14 @@ namespace EasyRpc.AspNetCore.Routing
 
         private Expression GenerateSwitch(List<KeyValuePair<string, IEndPointHandler>> pathList, int currentStringIndex, int pathListStart, int pathListEnd)
         {
-            var currentChar = pathList[pathListStart].Key[currentStringIndex];
+            var currentChar = char.ToLower(pathList[pathListStart].Key[currentStringIndex]);
             var currentStart = pathListStart;
 
             var caseList = new List<SwitchCase>();
 
             for (var i = pathListStart; i < pathListEnd; i++)
             {
-                var newValue = pathList[i].Key[currentStringIndex];
+                var newValue = char.ToLower(pathList[i].Key[currentStringIndex]);
 
                 if (newValue == currentChar)
                 {
@@ -273,7 +285,12 @@ namespace EasyRpc.AspNetCore.Routing
 
             caseList.Add(CreateCaseStatements(pathList, currentChar, currentStringIndex, currentStart, pathListEnd));
 
-            return Expression.Switch(Expression.Property(_pathParameter, _charsProperty, Expression.Constant(currentStringIndex)), Expression.Constant(null, typeof(IEndPointHandler)), caseList.ToArray());
+            var charExpression =
+                Expression.Property(_pathParameter, _charsProperty, Expression.Constant(currentStringIndex));
+
+            var lowerExpression = Expression.Call(_toLower, charExpression);
+
+            return Expression.Switch(lowerExpression, Expression.Constant(null, typeof(IEndPointHandler)), caseList.ToArray());
         }
 
         private SwitchCase CreateCaseStatements(List<KeyValuePair<string, IEndPointHandler>> pathList, char currentChar,
