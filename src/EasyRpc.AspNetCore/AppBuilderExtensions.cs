@@ -89,11 +89,11 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IConfigurationManager, ConfigurationManager>();
             serviceCollection.TryAddScoped<IAuthorizationImplementationProvider, AuthorizationImplementationProvider>();
             serviceCollection.TryAddScoped<IRegisteredEndPoints, RegisteredEndPoints>();
-            serviceCollection.TryAddScoped<IDocumentationService, DocumentationService>();
+
             serviceCollection.TryAddScoped<IOpenApiGenerationService, OpenApiGenerationService>();
             serviceCollection.TryAddScoped<IOpenApiSchemaGenerator, OpenApiSchemaGenerator>();
             serviceCollection.TryAddScoped<IKnownOpenApiTypeMapper, KnownOpenApiTypeMapper>();
-            serviceCollection.TryAddScoped<ISwaggerAssetProvider, SwaggerStaticResourceProvider>();
+            serviceCollection.TryAddScoped<ISwaggerStaticResourceProvider, SwaggerStaticResourceProvider>();
             serviceCollection.TryAddScoped<IStringTokenReplacementService, StringTokenReplacementService>();
             serviceCollection.TryAddScoped<ITokenValueProvider, TokenValueProvider>();
             serviceCollection.TryAddScoped<INoBodyParameterBinderDelegateBuilder, NoBodyParameterBinderDelegateBuilder>();
@@ -129,7 +129,9 @@ namespace EasyRpc.AspNetCore
             {
                 serviceCollection.AddScoped<IDefaultHttpMethodHandler, OptionsEndPointHandler>();
             }
-            
+
+            serviceCollection.AddScoped<IApiEndPointInspector, DocumentationEndPointInspector>();
+
             return serviceCollection;
         }
 

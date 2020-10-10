@@ -39,7 +39,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
             if (_staticResource.IsBrCompressed)
             {
-                context.Response.Headers.TryAdd("ContentEncoding", "br");
+                context.Response.Headers.TryAdd("content-encoding", "br");
             }
 
             await context.Response.Body.WriteAsync(_staticResource.Content);

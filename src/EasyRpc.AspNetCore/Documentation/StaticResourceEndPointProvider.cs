@@ -6,9 +6,9 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public class StaticResourceEndPointProvider
     {
-        private ISwaggerAssetProvider _swaggerAssetProvider;
+        private ISwaggerStaticResourceProvider _swaggerAssetProvider;
 
-        public StaticResourceEndPointProvider(ISwaggerAssetProvider swaggerAssetProvider)
+        public StaticResourceEndPointProvider(ISwaggerStaticResourceProvider swaggerAssetProvider)
         {
             _swaggerAssetProvider = swaggerAssetProvider;
         }

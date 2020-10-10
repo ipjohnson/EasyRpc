@@ -39,21 +39,17 @@ namespace EasyRpc.AspNetCore.EndPoints
         void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
     }
 
-    /// <inheritdoc />
     public class UnmappedEndPointHandler : IUnmappedEndPointHandler, IApiConfigurationCompleteAware
     {
         private readonly IDefaultHttpMethodHandler[] _methodHandlers;
-        private readonly IDocumentationService _documentationService;
-
+        
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="documentationService"></param>
         /// <param name="methodHandlers"></param>
-        public UnmappedEndPointHandler(IDocumentationService documentationService, 
-            IEnumerable<IDefaultHttpMethodHandler> methodHandlers)
+        public UnmappedEndPointHandler(IEnumerable<IDefaultHttpMethodHandler> methodHandlers)
         {
-            _documentationService = documentationService;
+            
             _methodHandlers = methodHandlers.ToArray();
         }
 
@@ -68,7 +64,7 @@ namespace EasyRpc.AspNetCore.EndPoints
                 }
             }
 
-            return _documentationService.Execute(httpContext, next);
+            return next(httpContext);
         }
 
         /// <inheritdoc />
@@ -82,13 +78,13 @@ namespace EasyRpc.AspNetCore.EndPoints
                 }
             }
 
-            return _documentationService.Execute(httpContext, next);
+            return next(httpContext);
         }
 
         /// <inheritdoc />
         public void Configure(IInternalApiConfiguration apiInformation, IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
-            _documentationService.Configure(apiInformation, endPointMethodHandlersList);
+            
         }
 
         /// <inheritdoc />

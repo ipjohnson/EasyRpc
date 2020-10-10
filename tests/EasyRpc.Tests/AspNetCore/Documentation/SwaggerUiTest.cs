@@ -61,16 +61,16 @@ namespace EasyRpc.Tests.AspNetCore.Documentation
 
         #region Tests
 
-        //[Theory]
-        //[InlineData("/swagger/index.html")]
-        //[InlineData("/swagger/swagger-ui.css")]
-        //[InlineData("/swagger/swagger-ui-bundle.js")]
-        //[InlineData("/swagger/swagger-ui-standalone-preset.js")]
-        //[InlineData("/swagger/api.json")]
-        //[InlineData("/swagger/api.json?OpenApi=2")]
-        //[InlineData("/swagger/swagger-ui.css", "br")]
-        //[InlineData("/swagger/swagger-ui-bundle.js", "br")]
-        //[InlineData("/swagger/swagger-ui-standalone-preset.js", "br")]
+        [Theory]
+        [InlineData("/swagger/index.html")]
+        [InlineData("/swagger/swagger-ui.css")]
+        [InlineData("/swagger/swagger-ui-bundle.js")]
+        [InlineData("/swagger/swagger-ui-standalone-preset.js")]
+        [InlineData("/swagger/api.json")]
+        [InlineData("/swagger/api.json?OpenApi=2")]
+        [InlineData("/swagger/swagger-ui.css", "br")]
+        [InlineData("/swagger/swagger-ui-bundle.js", "br")]
+        [InlineData("/swagger/swagger-ui-standalone-preset.js", "br")]
         public async Task Documentation_SwaggerUi(string path, string acceptEncoding = null)
         {
             AcceptEncoding = acceptEncoding;

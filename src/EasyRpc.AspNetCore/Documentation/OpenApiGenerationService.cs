@@ -24,7 +24,7 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public interface IOpenApiGenerationService
     {
-        void Configure(IInternalApiConfiguration apiInformation, DocumentationOptions documentationOptions,
+        void Configure(DocumentationOptions documentationOptions,
             IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList);
 
         Task Execute(HttpContext httpContext);
@@ -33,8 +33,8 @@ namespace EasyRpc.AspNetCore.Documentation
     public class OpenApiGenerationService : IOpenApiGenerationService
     {
         private IReadOnlyList<IEndPointMethodHandler> _endPointMethodHandlersList;
-        private IInternalApiConfiguration _apiInformation;
         private readonly IOpenApiSchemaGenerator _apiSchemaGenerator;
+        private readonly IConfigurationManager _configurationManager;
         private readonly IContentSerializationService _contentSerializationService;
         private readonly IErrorResultTypeCreator _errorResultTypeCreator;
         private readonly IXmlDocProvider _xmlDocProvider;
@@ -49,18 +49,17 @@ namespace EasyRpc.AspNetCore.Documentation
             IXmlDocProvider xmlDocProvider)
         {
             _apiSchemaGenerator = apiSchemaGenerator;
+            _configurationManager = configurationManager;
             _contentSerializationService = contentSerializationService;
             _errorResultTypeCreator = errorResultTypeCreator;
             _xmlDocProvider = xmlDocProvider;
         }
 
-        public void Configure(IInternalApiConfiguration apiInformation,DocumentationOptions documentationOptions,
+        public void Configure(DocumentationOptions documentationOptions,
             IReadOnlyList<IEndPointMethodHandler> endPointMethodHandlersList)
         {
-            _apiInformation = apiInformation;
             _endPointMethodHandlersList = endPointMethodHandlersList;
-            _exposeConfiguration =
-                apiInformation.AppServices.GetService<IConfigurationManager>().GetConfiguration<ExposeConfigurations>();
+            _exposeConfiguration = _configurationManager.GetConfiguration<ExposeConfigurations>();
             _documentationOptions = documentationOptions;
             _apiSchemaGenerator.Configure(documentationOptions);
         }

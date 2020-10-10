@@ -13,12 +13,12 @@ using Microsoft.Extensions.Logging;
 
 namespace EasyRpc.AspNetCore.Documentation
 {
-    public interface ISwaggerAssetProvider
+    public interface ISwaggerStaticResourceProvider
     {
         IEnumerable<StaticResource> ProvideStaticResources(DocumentationOptions options);
     }
 
-    public class SwaggerStaticResourceProvider : ISwaggerAssetProvider
+    public class SwaggerStaticResourceProvider : ISwaggerStaticResourceProvider
     {
         private readonly ILogger<SwaggerStaticResourceProvider> _logger;
         private readonly Dictionary<string, StaticResource> _fileEntries = new Dictionary<string, StaticResource>();

@@ -10,10 +10,11 @@ namespace EasyRpc.AspNetCore.Documentation
 {
     public class OpenApiJsonEndPointMethodHandler : IEndPointMethodHandler
     {
-        private IOpenApiGenerationService _openApiGenerationService;
+        private readonly IOpenApiGenerationService _openApiGenerationService;
 
         public OpenApiJsonEndPointMethodHandler(EndPointServices services, 
-            IEndPointMethodConfigurationReadOnly configuration, IOpenApiGenerationService openApiGenerationService)
+            IEndPointMethodConfigurationReadOnly configuration, 
+            IOpenApiGenerationService openApiGenerationService)
         {
             Services = services;
             Configuration = configuration;

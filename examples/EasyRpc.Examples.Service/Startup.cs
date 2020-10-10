@@ -51,6 +51,7 @@ namespace EasyRpc.Examples.Service
                 });
                 api.Method.Get("/json", () => new {message = "Hello, World!"});
                 api.ExposeNamespaceContaining<MathService>();
+                api.Method.Get("/", () => "testing");
             });
         }
     }

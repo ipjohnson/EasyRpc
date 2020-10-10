@@ -34,7 +34,7 @@ namespace EasyRpc.AspNetCore.Documentation
     public class DocumentationService : IDocumentationService
     {
         private readonly IOpenApiGenerationService _openApiGenerationService;
-        private readonly ISwaggerAssetProvider _swaggerAssetProvider;
+        private readonly ISwaggerStaticResourceProvider _swaggerAssetProvider;
         private readonly IConfigurationManager _configurationManager;
         private bool _enabled;
         private string _pathBase;
@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.Documentation
         /// <param name="openApiGenerationService"></param>
         /// <param name="swaggerAssetProvider"></param>
         /// <param name="configurationManager"></param>
-        public DocumentationService(IOpenApiGenerationService openApiGenerationService, ISwaggerAssetProvider swaggerAssetProvider, IConfigurationManager configurationManager)
+        public DocumentationService(IOpenApiGenerationService openApiGenerationService, ISwaggerStaticResourceProvider swaggerAssetProvider, IConfigurationManager configurationManager)
         {
             _openApiGenerationService = openApiGenerationService;
             _swaggerAssetProvider = swaggerAssetProvider;
@@ -94,7 +94,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 _jsonDataPath = documentationOptions.UIBasePath + documentationOptions.OpenApiJsonUrl;
                 _pathBase = documentationOptions.UIBasePath;
 
-                _openApiGenerationService.Configure(apiInformation, documentationOptions, endPointMethodHandlersList);
+                _openApiGenerationService.Configure(documentationOptions, endPointMethodHandlersList);
 
                 //_swaggerAssetProvider.Configure(documentationOptions);
             }
