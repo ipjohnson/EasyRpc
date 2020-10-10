@@ -31,7 +31,6 @@ namespace EasyRpc.AspNetCore.Routing
         private readonly ParameterExpression _pathParameter = Expression.Parameter(typeof(string), "path");
         private readonly PropertyInfo _charsProperty = typeof(string).GetProperty("Chars");
         private readonly PropertyInfo _lengthProperty = typeof(string).GetProperty("Length");
-        private readonly MethodInfo _toLower = typeof(char).GetMethod("ToLower", new []{typeof(char)});
 
         /// <inheritdoc />
         public Func<string, IEndPointHandler> BuildRouteFunc(IDictionary<string, IEndPointHandler> handlers)
@@ -285,12 +284,7 @@ namespace EasyRpc.AspNetCore.Routing
 
             caseList.Add(CreateCaseStatements(pathList, currentChar, currentStringIndex, currentStart, pathListEnd));
 
-            var charExpression =
-                Expression.Property(_pathParameter, _charsProperty, Expression.Constant(currentStringIndex));
-
-            var lowerExpression = Expression.Call(_toLower, charExpression);
-
-            return Expression.Switch(lowerExpression, Expression.Constant(null, typeof(IEndPointHandler)), caseList.ToArray());
+            return Expression.Switch(Expression.Property(_pathParameter, _charsProperty, Expression.Constant(currentStringIndex)), Expression.Constant(null, typeof(IEndPointHandler)), caseList.ToArray());
         }
 
         private SwitchCase CreateCaseStatements(List<KeyValuePair<string, IEndPointHandler>> pathList, char currentChar,
