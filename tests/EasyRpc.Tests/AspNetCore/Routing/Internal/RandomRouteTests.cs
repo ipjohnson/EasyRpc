@@ -54,6 +54,8 @@ namespace EasyRpc.Tests.AspNetCore.Routing.Internal
                 routes.Add(path);
             }
 
+            routes.Sort();
+
             return routes;
         }
 
