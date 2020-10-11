@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Documentation;
@@ -16,6 +18,7 @@ using EasyRpc.AspNetCore.ModelBinding.InternalRouting;
 using EasyRpc.AspNetCore.Routing;
 using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -68,7 +71,7 @@ namespace EasyRpc.AspNetCore
 
             serviceCollection.TryAddScoped<ICustomActionResultExecutor, CustomActionResultExecutor>();
             serviceCollection.TryAddScoped<IApiConfigurationFactory, ApiConfigurationFactory>();
-            serviceCollection.TryAddScoped<IEndPointRouteBuilder, EndPointRouteBuilder>();
+            serviceCollection.TryAddScoped<IInternalEndPointRouteBuilder, InternalEndPointRouteBuilder>();
             serviceCollection.TryAddScoped<IContentSerializationService, ContentSerializationService>();
             serviceCollection.TryAddScoped<IResponseDelegateCreator, ResponseDelegateCreator>();
             serviceCollection.TryAddScoped<IUnmappedEndPointHandler, UnmappedEndPointHandler>();
@@ -135,6 +138,19 @@ namespace EasyRpc.AspNetCore
             return serviceCollection;
         }
 
+        public static IEndpointRouteBuilder MapRpcApi(this IEndpointRouteBuilder routeBuilder,
+            Action<IRpcApi> configure = null)
+        {
+            var middlewareHandler = routeBuilder.ServiceProvider.GetService<IMiddlewareHandler>();
+
+            if (middlewareHandler == null)
+            {
+                throw new Exception("Please add services.AddRpcServices(); in the ConfigureServices method of your Startup.cs file.");
+            }
+
+            return middlewareHandler.Attach(routeBuilder, configure ?? DefaultAction);
+        }
+
         /// <summary>
         /// Add rpc services to asp.net pipeline
         /// </summary>
@@ -151,12 +167,7 @@ namespace EasyRpc.AspNetCore
                 throw new Exception("Please add services.AddRpcServices(); in the ConfigureServices method of your Startup.cs file.");
             }
 
-            if (configure == null)
-            {
-                configure = DefaultAction;
-            }
-
-            return middlewareHandler.Attach(appBuilder, configure);
+            return middlewareHandler.Attach(appBuilder, configure ?? DefaultAction);
         }
 
         /// <summary>
@@ -164,5 +175,13 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         public static Action<IRpcApi> DefaultAction { get; set; } =
             api => api.Expose(Assembly.GetEntryAssembly().ExportedTypes).OnlyAttributed();
+
+
+        public static void DefaultConfigurationAction(IRpcApi api)
+        {
+            api.ExposeModules();
+
+            api.Expose(Assembly.GetEntryAssembly().ExportedTypes).OnlyAttributed();
+        }
     }
 }

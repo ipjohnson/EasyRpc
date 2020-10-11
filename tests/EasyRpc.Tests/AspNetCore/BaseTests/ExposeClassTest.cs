@@ -96,17 +96,13 @@ namespace EasyRpc.Tests.AspNetCore.BaseTests
             services.AddRouting();
         }
 
-        protected override void ConfigureAspNetPipeline(IApplicationBuilder app)
-        {
-            app.UseRouting();
-            base.ConfigureAspNetPipeline(app);
-        }
+        protected override bool UseInternalRouting => false;
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.Environment.UseAspNetRouting();
             api.Expose<AttributedIntMathService>();
-            api.Method.Get("/noparams2", () => new GenericResult<int> { Result = 10 });
+            api.Method.Get("/noparams2", () => 
+                new GenericResult<int> { Result = 10 });
         }
     }
 }

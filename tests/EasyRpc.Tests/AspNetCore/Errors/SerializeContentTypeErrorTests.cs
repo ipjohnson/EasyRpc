@@ -67,6 +67,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
             services.AddSingleton(Shared);
             services.AddRpcServices(s => s.RegisterJsonSerializer = false);
             services.AddScoped<IContentSerializer, XmlContentSerializer>();
+            services.AddRouting();
         }
 
         protected override void ApiRegistration(IRpcApi api)

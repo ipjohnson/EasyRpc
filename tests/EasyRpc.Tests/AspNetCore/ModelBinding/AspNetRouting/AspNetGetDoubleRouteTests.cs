@@ -35,15 +35,10 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
             services.AddRouting();
         }
         
-        protected override void ConfigureAspNetPipeline(IApplicationBuilder app)
-        {
-            app.UseRouting();
-            base.ConfigureAspNetPipeline(app);
-        }
+        protected override bool UseInternalRouting => false;
 
         protected override void ApiRegistration(IRpcApi api)
         {
-            api.Environment.UseAspNetRouting();
             api.Method.Get("/TestPath/{doubleParam}", (double doubleParam) => doubleParam);
         }
 

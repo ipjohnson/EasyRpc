@@ -79,15 +79,5 @@ namespace EasyRpc.AspNetCore
         {
             return configuration.Action(options);
         }
-
-        /// <summary>
-        /// Use Asp.Net routing instead of internal routing. 
-        /// </summary>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        public static IEnvironmentConfiguration UseAspNetRouting(this IEnvironmentConfiguration configuration)
-        {
-            return configuration.Action<RoutingConfiguration>(routingConfiguration => routingConfiguration.UseAspNetCoreRouting = true);
-        }
     }
 }

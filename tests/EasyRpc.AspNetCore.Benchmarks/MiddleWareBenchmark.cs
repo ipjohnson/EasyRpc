@@ -218,7 +218,6 @@ namespace EasyRpc.AspNetCore.Benchmarks
 
             app.UseRpcRouting(api =>
             {
-                api.Environment.UseAspNetRouting();
                 api.Expose<Services.StringService>();
                 api.Method.Get("/noparams2", () => new { Value = 1, Value2 = 2 });
             });

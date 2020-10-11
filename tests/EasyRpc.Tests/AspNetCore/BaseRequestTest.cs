@@ -56,8 +56,19 @@ namespace EasyRpc.Tests.AspNetCore
 
         protected virtual void ConfigureAspNetPipeline(IApplicationBuilder app)
         {
-            app.UseRpcRouting(ApiRegistration);
+            if (UseInternalRouting)
+            {
+                app.UseRpcRouting(ApiRegistration);
+            }
+            else
+            {
+                app.UseRouting();
+
+                app.UseEndpoints(endPoints => endPoints.MapRpcApi(ApiRegistration));
+            }
         }
+
+        protected virtual bool UseInternalRouting => true;
 
         protected virtual string BasePath => "/";
 
@@ -67,6 +78,11 @@ namespace EasyRpc.Tests.AspNetCore
         {
             services.AddSingleton(Shared);
             services.AddRpcServices();
+
+            if (!UseInternalRouting)
+            {
+                services.AddRouting();
+            }
         }
 
         protected abstract void ApiRegistration(IRpcApi api);

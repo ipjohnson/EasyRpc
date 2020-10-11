@@ -39,7 +39,7 @@ namespace EasyRpc.AspNetCore.Routing
 
             var endPoints = CreateEndPointDictionary(apiConfig, _unmappedEndPointHandler);
 
-            var routeBuilder = scopedProvider.GetService<IEndPointRouteBuilder>();
+            var routeBuilder = scopedProvider.GetService<IInternalEndPointRouteBuilder>();
 
             _endPointHandlers = routeBuilder.BuildRouteFunc(endPoints);
 

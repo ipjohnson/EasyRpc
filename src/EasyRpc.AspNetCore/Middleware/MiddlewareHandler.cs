@@ -8,6 +8,7 @@ using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -18,6 +19,8 @@ namespace EasyRpc.AspNetCore.Middleware
     /// </summary>
     public interface IMiddlewareHandler
     {
+        IEndpointRouteBuilder Attach(IEndpointRouteBuilder builder, Action<IRpcApi> configuration);
+
         /// <summary>
         /// Attach api to application pipeline
         /// </summary>
@@ -30,6 +33,21 @@ namespace EasyRpc.AspNetCore.Middleware
     /// <inheritdoc />
     public class MiddlewareHandler : IMiddlewareHandler
     {
+        public IEndpointRouteBuilder Attach(IEndpointRouteBuilder builder, Action<IRpcApi> configuration)
+        {
+            var scope = CreateServiceProvider(builder.ServiceProvider);
+
+            var apiConfig = ConfigureApi(configuration, scope);
+
+            scope.GetRequiredService<IAspNetRoutingHandler>().Attach(builder, apiConfig, scope);
+
+            apiConfig.GetCurrentApiInformation().ConfigurationMethods.GetConfiguration<RoutingConfiguration>().UseAspNetCoreRouting = true;
+
+            scope.GetService<EndPointServices>().ConfigurationComplete(scope);
+
+            return builder;
+        }
+
         /// <inheritdoc />
         public IApplicationBuilder Attach(IApplicationBuilder builder,  Action<IRpcApi> configuration)
         {
@@ -40,30 +58,17 @@ namespace EasyRpc.AspNetCore.Middleware
 
         private void ConfigureEndPoints(IApplicationBuilder builder, Action<IRpcApi> configuration)
         {
-            var scope = CreateServiceProvider(builder);
+            var scope = CreateServiceProvider(builder.ApplicationServices);
 
             var apiConfig = ConfigureApi(configuration, scope);
 
-            ConfigureEndPointRouting(builder, apiConfig, scope);
+            scope.GetRequiredService<IInternalRoutingHandler>().Attach(builder, apiConfig, scope);
+
+            apiConfig.GetCurrentApiInformation().ConfigurationMethods.GetConfiguration<RoutingConfiguration>().UseAspNetCoreRouting = false;
 
             scope.GetService<EndPointServices>().ConfigurationComplete(scope);
         }
-
-        protected virtual void ConfigureEndPointRouting(IApplicationBuilder builder,
-            IInternalApiConfiguration apiConfig, IServiceProvider scope)
-        {
-            var routingConfiguration = apiConfig.GetCurrentApiInformation().ConfigurationMethods.GetConfiguration<RoutingConfiguration>();
-            
-            if (routingConfiguration.UseAspNetCoreRouting)
-            {
-                scope.GetRequiredService<IAspNetRoutingHandler>().Attach(builder, apiConfig, scope);
-            }
-            else
-            {
-                scope.GetRequiredService<IInternalRoutingHandler>().Attach(builder, apiConfig, scope);
-            }
-        }
-
+        
         protected virtual IInternalApiConfiguration ConfigureApi(Action<IRpcApi> configuration, IServiceProvider scope)
         {
             var factory = scope.GetService<IApiConfigurationFactory>();
@@ -75,11 +80,11 @@ namespace EasyRpc.AspNetCore.Middleware
             return apiConfig;
         }
 
-        protected virtual IServiceProvider CreateServiceProvider(IApplicationBuilder builder)
+        protected virtual IServiceProvider CreateServiceProvider(IServiceProvider applicationServiceProvider)
         {
-            var scope = builder.ApplicationServices.CreateScope();
+            var scope = applicationServiceProvider.CreateScope();
 
-            var applicationLifetime = builder.ApplicationServices.GetRequiredService<IHostApplicationLifetime>();
+            var applicationLifetime = applicationServiceProvider.GetRequiredService<IHostApplicationLifetime>();
 
             applicationLifetime.ApplicationStopped.Register(() => scope.Dispose());
 

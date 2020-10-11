@@ -13,7 +13,7 @@ namespace EasyRpc.AspNetCore.Routing
     /// <summary>
     /// Service that provides an internal routing method path => IEndPointHandler
     /// </summary>
-    public interface IEndPointRouteBuilder
+    public interface IInternalEndPointRouteBuilder
     {
         /// <summary>
         /// Builds routing function given a dictionary of handlers
@@ -26,7 +26,7 @@ namespace EasyRpc.AspNetCore.Routing
     /// <summary>
     /// Internal route building service
     /// </summary>
-    public class EndPointRouteBuilder : IEndPointRouteBuilder
+    public class InternalEndPointRouteBuilder : IInternalEndPointRouteBuilder
     {
         private readonly ParameterExpression _pathParameter = Expression.Parameter(typeof(string), "path");
         private readonly PropertyInfo _charsProperty = typeof(string).GetProperty("Chars");

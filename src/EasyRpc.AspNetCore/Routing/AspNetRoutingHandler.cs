@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using EasyRpc.AspNetCore.Configuration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 
 namespace EasyRpc.AspNetCore.Routing
 {
@@ -17,29 +18,26 @@ namespace EasyRpc.AspNetCore.Routing
         /// <param name="builder"></param>
         /// <param name="apiConfig"></param>
         /// <param name="scopedProvider"></param>
-        void Attach(IApplicationBuilder builder, IInternalApiConfiguration apiConfig, IServiceProvider scopedProvider);
+        void Attach(IEndpointRouteBuilder builder, IInternalApiConfiguration apiConfig, IServiceProvider scopedProvider);
     }
 
     /// <inheritdoc />
     public class AspNetRoutingHandler : IAspNetRoutingHandler
     {
         /// <inheritdoc />
-        public void Attach(IApplicationBuilder builder, IInternalApiConfiguration apiConfig,
+        public void Attach(IEndpointRouteBuilder routeBuilder, IInternalApiConfiguration apiConfig,
             IServiceProvider scopedProvider)
         {
             var endPointList = apiConfig.GetEndPointHandlers();
-            
-            builder.UseEndpoints(routeBuilder =>
+
+            foreach (var methodHandlerPair in endPointList)
             {
-                foreach (var methodHandlerPair in endPointList)
+                foreach (var methodHandler in methodHandlerPair.Value.Values)
                 {
-                    foreach (var methodHandler in methodHandlerPair.Value.Values)
-                    {
-                        routeBuilder.MapMethods(methodHandler.RouteInformation.RouteTemplate,
-                            new[] { methodHandler.HttpMethod }, methodHandler.HandleRequest);
-                    }
+                    routeBuilder.MapMethods(methodHandler.RouteInformation.RouteTemplate,
+                        new[] { methodHandler.HttpMethod }, methodHandler.HandleRequest);
                 }
-            });
+            }
         }
     }
 }
