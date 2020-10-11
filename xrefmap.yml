@@ -1315,6 +1315,35 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultAction
   nameWithType: AppBuilderExtensions.DefaultAction
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction(EasyRpc.AspNetCore.IRpcApi)
+  name: DefaultConfigurationAction(IRpcApi)
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_DefaultConfigurationAction_EasyRpc_AspNetCore_IRpcApi_
+  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction(EasyRpc.AspNetCore.IRpcApi)
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction(EasyRpc.AspNetCore.IRpcApi)
+  nameWithType: AppBuilderExtensions.DefaultConfigurationAction(IRpcApi)
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction*
+  name: DefaultConfigurationAction
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_DefaultConfigurationAction_
+  commentId: Overload:EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultConfigurationAction
+  nameWithType: AppBuilderExtensions.DefaultConfigurationAction
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name: MapRpcApi(IEndpointRouteBuilder, Action<IRpcApi>)
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_MapRpcApi_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
+  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name.vb: MapRpcApi(IEndpointRouteBuilder, Action(Of IRpcApi))
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<EasyRpc.AspNetCore.IRpcApi>)
+  fullName.vb: EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
+  nameWithType: AppBuilderExtensions.MapRpcApi(IEndpointRouteBuilder, Action<IRpcApi>)
+  nameWithType.vb: AppBuilderExtensions.MapRpcApi(IEndpointRouteBuilder, Action(Of IRpcApi))
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi*
+  name: MapRpcApi
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_MapRpcApi_
+  commentId: Overload:EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.MapRpcApi
+  nameWithType: AppBuilderExtensions.MapRpcApi
 - uid: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
   name: UseRpcRouting(IApplicationBuilder, Action<IRpcApi>)
   href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_UseRpcRouting_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
@@ -11143,19 +11172,6 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.SystemTextJson
   nameWithType: IEnvironmentConfigurationExtensions.SystemTextJson
-- uid: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting(EasyRpc.AspNetCore.IEnvironmentConfiguration)
-  name: UseAspNetRouting(IEnvironmentConfiguration)
-  href: api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html#EasyRpc_AspNetCore_IEnvironmentConfigurationExtensions_UseAspNetRouting_EasyRpc_AspNetCore_IEnvironmentConfiguration_
-  commentId: M:EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting(EasyRpc.AspNetCore.IEnvironmentConfiguration)
-  fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting(EasyRpc.AspNetCore.IEnvironmentConfiguration)
-  nameWithType: IEnvironmentConfigurationExtensions.UseAspNetRouting(IEnvironmentConfiguration)
-- uid: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting*
-  name: UseAspNetRouting
-  href: api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html#EasyRpc_AspNetCore_IEnvironmentConfigurationExtensions_UseAspNetRouting_
-  commentId: Overload:EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.UseAspNetRouting
-  nameWithType: IEnvironmentConfigurationExtensions.UseAspNetRouting
 - uid: EasyRpc.AspNetCore.IExposureConfiguration
   name: IExposureConfiguration
   href: api/EasyRpc.AspNetCore.IExposureConfiguration.html
@@ -12663,6 +12679,15 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
   nameWithType: IMiddlewareHandler.Attach(IApplicationBuilder, Action<IRpcApi>)
   nameWithType.vb: IMiddlewareHandler.Attach(IApplicationBuilder, Action(Of IRpcApi))
+- uid: EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name: Attach(IEndpointRouteBuilder, Action<IRpcApi>)
+  href: api/EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_Attach_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
+  commentId: M:EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name.vb: Attach(IEndpointRouteBuilder, Action(Of IRpcApi))
+  fullName: EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<EasyRpc.AspNetCore.IRpcApi>)
+  fullName.vb: EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
+  nameWithType: IMiddlewareHandler.Attach(IEndpointRouteBuilder, Action<IRpcApi>)
+  nameWithType.vb: IMiddlewareHandler.Attach(IEndpointRouteBuilder, Action(Of IRpcApi))
 - uid: EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.Attach*
   name: Attach
   href: api/EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_IMiddlewareHandler_Attach_
@@ -12685,6 +12710,15 @@ references:
   fullName.vb: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
   nameWithType: MiddlewareHandler.Attach(IApplicationBuilder, Action<IRpcApi>)
   nameWithType.vb: MiddlewareHandler.Attach(IApplicationBuilder, Action(Of IRpcApi))
+- uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name: Attach(IEndpointRouteBuilder, Action<IRpcApi>)
+  href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_Attach_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
+  commentId: M:EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name.vb: Attach(IEndpointRouteBuilder, Action(Of IRpcApi))
+  fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<EasyRpc.AspNetCore.IRpcApi>)
+  fullName.vb: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
+  nameWithType: MiddlewareHandler.Attach(IEndpointRouteBuilder, Action<IRpcApi>)
+  nameWithType.vb: MiddlewareHandler.Attach(IEndpointRouteBuilder, Action(Of IRpcApi))
 - uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.Attach*
   name: Attach
   href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_Attach_
@@ -12708,25 +12742,12 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureApi
   nameWithType: MiddlewareHandler.ConfigureApi
-- uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  name: ConfigureEndPointRouting(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
-  href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_ConfigureEndPointRouting_Microsoft_AspNetCore_Builder_IApplicationBuilder_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_IServiceProvider_
-  commentId: M:EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder, EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration, System.IServiceProvider)
-  nameWithType: MiddlewareHandler.ConfigureEndPointRouting(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
-- uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting*
-  name: ConfigureEndPointRouting
-  href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_ConfigureEndPointRouting_
-  commentId: Overload:EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.ConfigureEndPointRouting
-  nameWithType: MiddlewareHandler.ConfigureEndPointRouting
-- uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  name: CreateServiceProvider(IApplicationBuilder)
-  href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_CreateServiceProvider_Microsoft_AspNetCore_Builder_IApplicationBuilder_
-  commentId: M:EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  nameWithType: MiddlewareHandler.CreateServiceProvider(IApplicationBuilder)
+- uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(System.IServiceProvider)
+  name: CreateServiceProvider(IServiceProvider)
+  href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_CreateServiceProvider_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider(System.IServiceProvider)
+  nameWithType: MiddlewareHandler.CreateServiceProvider(IServiceProvider)
 - uid: EasyRpc.AspNetCore.Middleware.MiddlewareHandler.CreateServiceProvider*
   name: CreateServiceProvider
   href: api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html#EasyRpc_AspNetCore_Middleware_MiddlewareHandler_CreateServiceProvider_
@@ -14205,12 +14226,12 @@ references:
   commentId: T:EasyRpc.AspNetCore.Routing.AspNetRoutingHandler
   fullName: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler
   nameWithType: AspNetRoutingHandler
-- uid: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  name: Attach(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
-  href: api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_AspNetRoutingHandler_Attach_Microsoft_AspNetCore_Builder_IApplicationBuilder_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_IServiceProvider_
-  commentId: M:EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  fullName: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder, EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration, System.IServiceProvider)
-  nameWithType: AspNetRoutingHandler.Attach(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
+- uid: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
+  name: Attach(IEndpointRouteBuilder, IInternalApiConfiguration, IServiceProvider)
+  href: api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_AspNetRoutingHandler_Attach_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration, System.IServiceProvider)
+  nameWithType: AspNetRoutingHandler.Attach(IEndpointRouteBuilder, IInternalApiConfiguration, IServiceProvider)
 - uid: EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.Attach*
   name: Attach
   href: api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_AspNetRoutingHandler_Attach_
@@ -14237,40 +14258,18 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.BasePathOptions.Path
   nameWithType: BasePathOptions.Path
-- uid: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder
-  name: EndPointRouteBuilder
-  href: api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.html
-  commentId: T:EasyRpc.AspNetCore.Routing.EndPointRouteBuilder
-  fullName: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder
-  nameWithType: EndPointRouteBuilder
-- uid: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
-  name: BuildRouteFunc(IDictionary<String, IEndPointHandler>)
-  href: api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_EndPointRouteBuilder_BuildRouteFunc_System_Collections_Generic_IDictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointHandler__
-  commentId: M:EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
-  name.vb: BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
-  fullName: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler>)
-  fullName.vb: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler))
-  nameWithType: EndPointRouteBuilder.BuildRouteFunc(IDictionary<String, IEndPointHandler>)
-  nameWithType.vb: EndPointRouteBuilder.BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
-- uid: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc*
-  name: BuildRouteFunc
-  href: api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_EndPointRouteBuilder_BuildRouteFunc_
-  commentId: Overload:EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc
-  isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.BuildRouteFunc
-  nameWithType: EndPointRouteBuilder.BuildRouteFunc
 - uid: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler
   name: IAspNetRoutingHandler
   href: api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html
   commentId: T:EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler
   fullName: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler
   nameWithType: IAspNetRoutingHandler
-- uid: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  name: Attach(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
-  href: api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_IAspNetRoutingHandler_Attach_Microsoft_AspNetCore_Builder_IApplicationBuilder_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_IServiceProvider_
-  commentId: M:EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
-  fullName: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Builder.IApplicationBuilder, EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration, System.IServiceProvider)
-  nameWithType: IAspNetRoutingHandler.Attach(IApplicationBuilder, IInternalApiConfiguration, IServiceProvider)
+- uid: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
+  name: Attach(IEndpointRouteBuilder, IInternalApiConfiguration, IServiceProvider)
+  href: api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_IAspNetRoutingHandler_Attach_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_EasyRpc_AspNetCore_Configuration_IInternalApiConfiguration_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration,System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, EasyRpc.AspNetCore.Configuration.IInternalApiConfiguration, System.IServiceProvider)
+  nameWithType: IAspNetRoutingHandler.Attach(IEndpointRouteBuilder, IInternalApiConfiguration, IServiceProvider)
 - uid: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach*
   name: Attach
   href: api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html#EasyRpc_AspNetCore_Routing_IAspNetRoutingHandler_Attach_
@@ -14278,28 +14277,28 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.Attach
   nameWithType: IAspNetRoutingHandler.Attach
-- uid: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder
-  name: IEndPointRouteBuilder
-  href: api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.html
-  commentId: T:EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder
-  fullName: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder
-  nameWithType: IEndPointRouteBuilder
-- uid: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
+- uid: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder
+  name: IInternalEndPointRouteBuilder
+  href: api/EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.html
+  commentId: T:EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder
+  fullName: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder
+  nameWithType: IInternalEndPointRouteBuilder
+- uid: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
   name: BuildRouteFunc(IDictionary<String, IEndPointHandler>)
-  href: api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_IEndPointRouteBuilder_BuildRouteFunc_System_Collections_Generic_IDictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointHandler__
-  commentId: M:EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
+  href: api/EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_IInternalEndPointRouteBuilder_BuildRouteFunc_System_Collections_Generic_IDictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointHandler__
+  commentId: M:EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
   name.vb: BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
-  fullName: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler>)
-  fullName.vb: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler))
-  nameWithType: IEndPointRouteBuilder.BuildRouteFunc(IDictionary<String, IEndPointHandler>)
-  nameWithType.vb: IEndPointRouteBuilder.BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
-- uid: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc*
+  fullName: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler>)
+  fullName.vb: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler))
+  nameWithType: IInternalEndPointRouteBuilder.BuildRouteFunc(IDictionary<String, IEndPointHandler>)
+  nameWithType.vb: IInternalEndPointRouteBuilder.BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
+- uid: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc*
   name: BuildRouteFunc
-  href: api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_IEndPointRouteBuilder_BuildRouteFunc_
-  commentId: Overload:EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc
+  href: api/EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_IInternalEndPointRouteBuilder_BuildRouteFunc_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.BuildRouteFunc
-  nameWithType: IEndPointRouteBuilder.BuildRouteFunc
+  fullName: EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.BuildRouteFunc
+  nameWithType: IInternalEndPointRouteBuilder.BuildRouteFunc
 - uid: EasyRpc.AspNetCore.Routing.IInternalRoutingHandler
   name: IInternalRoutingHandler
   href: api/EasyRpc.AspNetCore.Routing.IInternalRoutingHandler.html
@@ -14319,6 +14318,28 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.IInternalRoutingHandler.Attach
   nameWithType: IInternalRoutingHandler.Attach
+- uid: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder
+  name: InternalEndPointRouteBuilder
+  href: api/EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.html
+  commentId: T:EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder
+  fullName: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder
+  nameWithType: InternalEndPointRouteBuilder
+- uid: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
+  name: BuildRouteFunc(IDictionary<String, IEndPointHandler>)
+  href: api/EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_InternalEndPointRouteBuilder_BuildRouteFunc_System_Collections_Generic_IDictionary_System_String_EasyRpc_AspNetCore_EndPoints_IEndPointHandler__
+  commentId: M:EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary{System.String,EasyRpc.AspNetCore.EndPoints.IEndPointHandler})
+  name.vb: BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
+  fullName: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary<System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler>)
+  fullName.vb: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc(System.Collections.Generic.IDictionary(Of System.String, EasyRpc.AspNetCore.EndPoints.IEndPointHandler))
+  nameWithType: InternalEndPointRouteBuilder.BuildRouteFunc(IDictionary<String, IEndPointHandler>)
+  nameWithType.vb: InternalEndPointRouteBuilder.BuildRouteFunc(IDictionary(Of String, IEndPointHandler))
+- uid: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc*
+  name: BuildRouteFunc
+  href: api/EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.html#EasyRpc_AspNetCore_Routing_InternalEndPointRouteBuilder_BuildRouteFunc_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.BuildRouteFunc
+  nameWithType: InternalEndPointRouteBuilder.BuildRouteFunc
 - uid: EasyRpc.AspNetCore.Routing.InternalRoutingHandler
   name: InternalRoutingHandler
   href: api/EasyRpc.AspNetCore.Routing.InternalRoutingHandler.html

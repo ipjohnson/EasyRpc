@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.AppBuilderExtensions.html",
-          "hash": "Um7QHbqMpCVhlONmiKEPsg=="
+          "hash": "s4y5mAi42TDSIIhlDLwINg=="
         }
       },
       "is_incremental": false,
@@ -762,7 +762,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Configuration.EnvironmentConfiguration.html",
-          "hash": "sboLk5oEaXU7LhvrEP1CmQ=="
+          "hash": "E6wdZGQ53VhzljVoh1J3BQ=="
         }
       },
       "is_incremental": false,
@@ -1206,7 +1206,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.DefaultRpcServices.html",
-          "hash": "EEuALX2wT6DiIZlzvOXGBg=="
+          "hash": "GB0qLrwrDIYPNd6WUyNEPw=="
         }
       },
       "is_incremental": false,
@@ -2238,7 +2238,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.IEnvironmentConfiguration.html",
-          "hash": "iY0jYoEXu1NDDeddQhG44Q=="
+          "hash": "BLgLYcVCXmdHmbx9NFoTuQ=="
         }
       },
       "is_incremental": false,
@@ -2250,7 +2250,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.IEnvironmentConfigurationExtensions.html",
-          "hash": "vg2FD3TJ1CTLZBMltUa7iw=="
+          "hash": "44G9hbkHgj3NaOw4B9K0Ng=="
         }
       },
       "is_incremental": false,
@@ -2454,7 +2454,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Middleware.IMiddlewareHandler.html",
-          "hash": "JUYAIXLozj8c+8fofIQWJw=="
+          "hash": "MAy+0ruRQQZ8Ii2BEcUcyw=="
         }
       },
       "is_incremental": false,
@@ -2466,7 +2466,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Middleware.MiddlewareHandler.html",
-          "hash": "gF2Du/X3AK7YBHp/mkfyrw=="
+          "hash": "Xogd4t3GoHUpUGnsYqbeyA=="
         }
       },
       "is_incremental": false,
@@ -2838,7 +2838,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Routing.AspNetRoutingHandler.html",
-          "hash": "XzaJOHH1620VXyxXQ/ZYsw=="
+          "hash": "T77MYkFc3ktJp+6T+iBrSg=="
         }
       },
       "is_incremental": false,
@@ -2858,23 +2858,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.Routing.EndPointRouteBuilder.html",
-          "hash": "nQ2EBCS92oDqRgP1dBvzfA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.yml",
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Routing.IAspNetRoutingHandler.html",
-          "hash": "aWvy7vV1VPzK0jpIx0eh6Q=="
+          "hash": "LdUlx3GfkeIHEYH0U0kMWQ=="
         }
       },
       "is_incremental": false,
@@ -2882,11 +2870,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.yml",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.yml",
       "output": {
         ".html": {
-          "relative_path": "api/EasyRpc.AspNetCore.Routing.IEndPointRouteBuilder.html",
-          "hash": "TezwZbE+uGWHL2O76pi9VA=="
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.IInternalEndPointRouteBuilder.html",
+          "hash": "3dlCVVCsdWaNQIIYoKFKQQ=="
         }
       },
       "is_incremental": false,
@@ -2935,6 +2923,18 @@
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html",
           "hash": "AyeT0D2ApGYTxCc83uwfug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Routing.InternalEndPointRouteBuilder.html",
+          "hash": "lxhTGBZGbU9lTP/Tqh8tMQ=="
         }
       },
       "is_incremental": false,
@@ -3030,7 +3030,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Routing.html",
-          "hash": "jJYv/w5duD/u6Y2HiP3Dvg=="
+          "hash": "VY9wVBemKie1A3C+ZbCEbg=="
         }
       },
       "is_incremental": false,
@@ -3738,7 +3738,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "VsEuA4VJX0hbDgiHmSU7zw=="
+          "hash": "8R86A3zLiZowmZG1OU8GFw=="
         }
       },
       "is_incremental": false,
