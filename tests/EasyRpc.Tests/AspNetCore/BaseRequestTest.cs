@@ -56,7 +56,7 @@ namespace EasyRpc.Tests.AspNetCore
 
         protected virtual void ConfigureAspNetPipeline(IApplicationBuilder app)
         {
-            app.UseRpcServices(ApiRegistration);
+            app.UseRpcRouting(ApiRegistration);
         }
 
         protected virtual string BasePath => "/";

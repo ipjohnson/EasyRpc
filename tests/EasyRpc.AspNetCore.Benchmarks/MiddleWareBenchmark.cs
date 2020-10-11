@@ -179,7 +179,7 @@ namespace EasyRpc.AspNetCore.Benchmarks
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseRpcServices(api =>
+            app.UseRpcRouting(api =>
             {
                 api.Expose<Services.StringService>();
                 api.Method.Get("/noparams2", () => new { Value = 1, Value2 = 2 });
@@ -216,7 +216,7 @@ namespace EasyRpc.AspNetCore.Benchmarks
         {
             app.UseRouting();
 
-            app.UseRpcServices(api =>
+            app.UseRpcRouting(api =>
             {
                 api.Environment.UseAspNetRouting();
                 api.Expose<Services.StringService>();

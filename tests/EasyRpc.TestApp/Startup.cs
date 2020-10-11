@@ -27,7 +27,7 @@ namespace EasyRpc.TestApp
         {
             var types = Assembly.GetEntryAssembly().GetTypes();
 
-            app.UseRpcServices(api =>
+            app.UseRpcRouting(api =>
             {
                 //api.Method.Get("/test/{id}", (int id) => new { value = id });
                 //api.PostMethod("/test/{id}", (int id, BodyTest body) => id + body.Value);

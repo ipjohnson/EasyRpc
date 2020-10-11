@@ -39,7 +39,7 @@ namespace EasyRpc.Examples.Service
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRpcServices(api =>
+            app.UseRpcRouting(api =>
             {
                 api.Environment.Exposures(e => e.TypeWrapSelector = DefaultExposeDelegates.SimpleTypeWrapSelector);
                 api.Environment.Documentation(docs =>

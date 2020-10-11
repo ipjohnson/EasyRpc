@@ -141,7 +141,7 @@ namespace EasyRpc.AspNetCore
         /// <param name="appBuilder">application builder</param>
         /// <param name="configure">api configuration</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseRpcServices(this IApplicationBuilder appBuilder,
+        public static IApplicationBuilder UseRpcRouting(this IApplicationBuilder appBuilder,
             Action<IRpcApi> configure = null)
         {
             var middlewareHandler = appBuilder.ApplicationServices.GetService<IMiddlewareHandler>();
