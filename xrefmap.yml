@@ -1315,22 +1315,22 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.AppBuilderExtensions.DefaultAction
   nameWithType: AppBuilderExtensions.DefaultAction
-- uid: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
-  name: UseRpcServices(IApplicationBuilder, Action<IRpcApi>)
-  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_UseRpcServices_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
-  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
-  name.vb: UseRpcServices(IApplicationBuilder, Action(Of IRpcApi))
-  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<EasyRpc.AspNetCore.IRpcApi>)
-  fullName.vb: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
-  nameWithType: AppBuilderExtensions.UseRpcServices(IApplicationBuilder, Action<IRpcApi>)
-  nameWithType.vb: AppBuilderExtensions.UseRpcServices(IApplicationBuilder, Action(Of IRpcApi))
-- uid: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices*
-  name: UseRpcServices
-  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_UseRpcServices_
-  commentId: Overload:EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name: UseRpcRouting(IApplicationBuilder, Action<IRpcApi>)
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_UseRpcRouting_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_EasyRpc_AspNetCore_IRpcApi__
+  commentId: M:EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{EasyRpc.AspNetCore.IRpcApi})
+  name.vb: UseRpcRouting(IApplicationBuilder, Action(Of IRpcApi))
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<EasyRpc.AspNetCore.IRpcApi>)
+  fullName.vb: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of EasyRpc.AspNetCore.IRpcApi))
+  nameWithType: AppBuilderExtensions.UseRpcRouting(IApplicationBuilder, Action<IRpcApi>)
+  nameWithType.vb: AppBuilderExtensions.UseRpcRouting(IApplicationBuilder, Action(Of IRpcApi))
+- uid: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting*
+  name: UseRpcRouting
+  href: api/EasyRpc.AspNetCore.AppBuilderExtensions.html#EasyRpc_AspNetCore_AppBuilderExtensions_UseRpcRouting_
+  commentId: Overload:EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting
   isSpec: "True"
-  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcServices
-  nameWithType: AppBuilderExtensions.UseRpcServices
+  fullName: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting
+  nameWithType: AppBuilderExtensions.UseRpcRouting
 - uid: EasyRpc.AspNetCore.Authorization
   name: EasyRpc.AspNetCore.Authorization
   href: api/EasyRpc.AspNetCore.Authorization.html
