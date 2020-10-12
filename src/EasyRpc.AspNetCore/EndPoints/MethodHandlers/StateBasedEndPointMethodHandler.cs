@@ -24,13 +24,14 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             {
                 _startingState = RequestState.CheckAuth;
             }
+            else if (configuration.Filters != null && 
+                     configuration.Filters.Count > 0)
+            {
+                _startingState = RequestState.CreateFilters;
+            }
             else if (configuration.Parameters.Count > 0)
             {
                 _startingState = RequestState.BindParameters;
-            }
-            else if (configuration.Filters != null && configuration.Filters.Count > 0)
-            {
-                _startingState = RequestState.BeforeExecuteTaskFilter;
             }
         }
 
@@ -72,10 +73,17 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             switch (state)
             {
                 case RequestState.CheckAuth:
-                    return CheckAuthentication(RequestState.BindParameters, requestContext);
+                    state = Configuration.Filters != null ? RequestState.CreateFilters : RequestState.BindParameters;
+
+                    return CheckAuthentication(state, requestContext);
+
+                case RequestState.CreateFilters:
+                    state = RequestState.BindParameters;
+
+                    return CreateFilters(ref state, ref requestContext);
 
                 case RequestState.BindParameters:
-                    state = Configuration.Filters != null ? RequestState.BeforeExecuteTaskFilter : RequestState.ExecuteTask;
+                    state = requestContext.CallFilters != null ? RequestState.BeforeExecuteTaskFilter : RequestState.ExecuteTask;
 
                     return BindParameters(ref state, ref requestContext);
 
@@ -88,8 +96,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                     state = requestContext.CallFilters != null ? RequestState.AfterExecuteTaskFilter : RequestState.Response;
 
                     // only execute if no result was set in the filters
-                    return requestContext.Result == null ? 
-                        ExecuteTask(ref state, ref requestContext) : 
+                    return requestContext.Result == null ?
+                        ExecuteTask(ref state, ref requestContext) :
                         NextStep(ref state, ref requestContext);
 
                 case RequestState.AfterExecuteTaskFilter:
@@ -103,8 +111,8 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                         : RequestState.Complete;
 
                     // skip response if already started
-                    return requestContext.HttpContext.Response.HasStarted ? 
-                        NextStep(ref state, ref requestContext) : 
+                    return requestContext.HttpContext.Response.HasStarted ?
+                        NextStep(ref state, ref requestContext) :
                         SendResponse(ref state, ref requestContext);
 
                 case RequestState.FinalizeFilter:
@@ -117,10 +125,44 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
             }
         }
 
+        private Task CreateFilters(ref RequestState state, ref RequestExecutionContext requestContext)
+        {
+            try
+            {
+                var filterFuncList = Configuration.Filters;
+
+                var filterList = new List<IRequestFilter> { Capacity = filterFuncList.Count };
+
+                foreach (var filterFunc in filterFuncList)
+                {
+                    var filter = filterFunc(requestContext);
+
+                    if (filter != null)
+                    {
+                        filterList.Add(filter);
+                    }
+                }
+
+                if (filterFuncList.Count > 0)
+                {
+                    requestContext.CallFilters = filterList;
+                }
+
+                return NextStep(ref state, ref requestContext);
+            }
+            catch (Exception e)
+            {
+                return Services.ErrorHandler.HandleException(requestContext, e);
+            }
+
+        }
+
         #region Request State
         public enum RequestState
         {
             CheckAuth,
+
+            CreateFilters,
 
             BindParameters,
 
@@ -186,34 +228,15 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
         {
             try
             {
-                var filterFuncList = Configuration.Filters;
-
-                var filterList = new List<IRequestFilter> { Capacity = filterFuncList.Count };
-
-                foreach (var filterFunc in filterFuncList)
+                for (var i = 0; i < requestContext.CallFilters.Count; i++)
                 {
-                    var filter = filterFunc(requestContext);
-
-                    if (filter != null)
+                    if (requestContext.CallFilters[i] is IRequestExecutionFilter executionFilter)
                     {
-                        filterList.Add(filter);
+                        executionFilter.BeforeExecute(requestContext);
                     }
-                }
-
-                if (filterFuncList.Count > 0)
-                {
-                    requestContext.CallFilters = filterList;
-
-                    for (var i = 0; i < requestContext.CallFilters.Count; i++)
+                    else if (requestContext.CallFilters[i] is IAsyncRequestExecutionFilter)
                     {
-                        if (requestContext.CallFilters[i] is IRequestExecutionFilter executionFilter)
-                        {
-                            executionFilter.BeforeExecute(requestContext);
-                        }
-                        else if (requestContext.CallFilters[i] is IAsyncRequestExecutionFilter)
-                        {
-                            return ExecuteBeforeFilterAsync(this, state, requestContext, i, Services.ErrorHandler);
-                        }
+                        return ExecuteBeforeFilterAsync(this, state, requestContext, i, Services.ErrorHandler);
                     }
                 }
             }
