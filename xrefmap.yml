@@ -9810,6 +9810,14 @@ references:
   fullName.vb: EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler(Of TReturn).RequestState.Complete
   nameWithType: StateBasedEndPointMethodHandler<TReturn>.RequestState.Complete
   nameWithType.vb: StateBasedEndPointMethodHandler(Of TReturn).RequestState.Complete
+- uid: EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler`1.RequestState.CreateFilters
+  name: CreateFilters
+  href: api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.RequestState.html#EasyRpc_AspNetCore_EndPoints_MethodHandlers_StateBasedEndPointMethodHandler_1_RequestState_CreateFilters
+  commentId: F:EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler`1.RequestState.CreateFilters
+  fullName: EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler<TReturn>.RequestState.CreateFilters
+  fullName.vb: EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler(Of TReturn).RequestState.CreateFilters
+  nameWithType: StateBasedEndPointMethodHandler<TReturn>.RequestState.CreateFilters
+  nameWithType.vb: StateBasedEndPointMethodHandler(Of TReturn).RequestState.CreateFilters
 - uid: EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler`1.RequestState.ExecuteTask
   name: ExecuteTask
   href: api/EasyRpc.AspNetCore.EndPoints.MethodHandlers.StateBasedEndPointMethodHandler-1.RequestState.html#EasyRpc_AspNetCore_EndPoints_MethodHandlers_StateBasedEndPointMethodHandler_1_RequestState_ExecuteTask
