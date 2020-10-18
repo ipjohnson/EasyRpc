@@ -41,7 +41,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
             var requestParameter = Expression.Parameter(typeof(RequestExecutionContext));
 
-            var orderedParameters = GenerateOrderedParameterList(configuration);
+            var orderedParameters = GenerateOrderedNonBodyParameterList(configuration);
 
             var callExpression = Expression.Call(Expression.Constant(this), 
                 closedMethod, 

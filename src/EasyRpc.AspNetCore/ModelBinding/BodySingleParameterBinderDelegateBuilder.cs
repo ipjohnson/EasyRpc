@@ -47,7 +47,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
             var closedMethod = BindParametersMethod.MakeGenericMethod(parameter.ParamType, parametersType);
             
-            var orderedParameters = GenerateOrderedParameterList(configuration);
+            var orderedParameters = GenerateOrderedNonBodyParameterList(configuration);
 
             var callExpression = Expression.Call(Expression.Constant(this), 
                 closedMethod, 

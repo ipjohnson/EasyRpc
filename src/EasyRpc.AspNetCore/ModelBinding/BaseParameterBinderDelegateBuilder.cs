@@ -140,7 +140,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
             }
         }
 
-        protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedParameterList(IEndPointMethodConfigurationReadOnly configuration)
+        protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedNonBodyParameterList(IEndPointMethodConfigurationReadOnly configuration)
         {
             if (configuration.Parameters.All(parameter => parameter.ParameterSource != EndPointMethodParameterSource.PathParameter))
             {
@@ -165,7 +165,16 @@ namespace EasyRpc.AspNetCore.ModelBinding
                     continue;
                 }
 
-                newList.Add(configurationParameter);
+                if (configurationParameter.ParameterSource != EndPointMethodParameterSource.PostBody &&
+                    configurationParameter.ParameterSource != EndPointMethodParameterSource.PostParameter)
+                {
+                    newList.Add(configurationParameter);
+                }
+            }
+
+            if (newList.Count == 0)
+            {
+                return Array.Empty<RpcParameterInfo>();
             }
 
             return newList.Equals(configuration.Parameters) ? configuration.Parameters : newList;
