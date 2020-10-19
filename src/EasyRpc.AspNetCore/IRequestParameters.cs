@@ -6,6 +6,18 @@ using System.Text.Json.Serialization;
 namespace EasyRpc.AspNetCore
 {
     /// <summary>
+    /// 
+    /// </summary>
+    public enum EndPointBindingType
+    {
+        InvokeParameter,
+
+        InstanceProperty,
+
+        Other
+    }
+
+    /// <summary>
     /// parameter sources
     /// </summary>
     public enum EndPointMethodParameterSource
@@ -29,6 +41,11 @@ namespace EasyRpc.AspNetCore
         /// Parameter is part of the query string
         /// </summary>
         QueryStringParameter,
+        
+        /// <summary>
+        /// Parameter is 
+        /// </summary>
+        HeaderParameter,
 
         /// <summary>
         /// Parameter should be resolved from the request service scope
@@ -92,9 +109,9 @@ namespace EasyRpc.AspNetCore
         int Position { get; }
 
         /// <summary>
-        /// Is this parameter included in the method invoke
+        /// Binding type (parameter, property, other)
         /// </summary>
-        bool IsInvokeParameter { get; }
+        EndPointBindingType BindingType { get; }
 
         /// <summary>
         /// Source for parameter
@@ -133,7 +150,7 @@ namespace EasyRpc.AspNetCore
         public int Position { get; set; }
 
         /// <inheritdoc />
-        public bool IsInvokeParameter { get; set; } = true;
+        public EndPointBindingType BindingType { get; set; } = EndPointBindingType.InvokeParameter;
 
         /// <inheritdoc />
         public EndPointMethodParameterSource ParameterSource { get; set; }

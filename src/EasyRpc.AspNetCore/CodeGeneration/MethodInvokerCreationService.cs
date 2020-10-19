@@ -273,7 +273,7 @@ namespace EasyRpc.AspNetCore.CodeGeneration
 
             foreach (var rpcParameterInfo in endPointMethodConfiguration.Parameters)
             {
-                if (rpcParameterInfo.IsInvokeParameter)
+                if (rpcParameterInfo.BindingType == EndPointBindingType.InvokeParameter)
                 {
                     var property = parametersType.GetProperty(rpcParameterInfo.Name);
                     

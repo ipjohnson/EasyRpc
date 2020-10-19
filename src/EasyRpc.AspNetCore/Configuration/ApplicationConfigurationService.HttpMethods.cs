@@ -71,7 +71,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 var configuration = new EndPointMethodConfiguration(routeInformation, context => null,
                     new MethodInvokeInformation { DelegateToInvoke = func }, funcMethod.ReturnType);
 
-                var parameters = GenerateMethodParameters(funcMethod, routeInformation);
+                var parameters = GenerateMethodParameters(null, funcMethod, routeInformation);
 
                 configuration.Parameters.AddRange(parameters);
 
