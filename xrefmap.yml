@@ -7,50 +7,50 @@ references:
   commentId: N:EasyRpc.Abstractions.Binding
   fullName: EasyRpc.Abstractions.Binding
   nameWithType: EasyRpc.Abstractions.Binding
+- uid: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute
+  name: BindFromHeaderAttribute
+  href: api/EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.html
+  commentId: T:EasyRpc.Abstractions.Binding.BindFromHeaderAttribute
+  fullName: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute
+  nameWithType: BindFromHeaderAttribute
+- uid: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name
+  name: Name
+  href: api/EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.html#EasyRpc_Abstractions_Binding_BindFromHeaderAttribute_Name
+  commentId: P:EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name
+  fullName: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name
+  nameWithType: BindFromHeaderAttribute.Name
+- uid: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name*
+  name: Name
+  href: api/EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.html#EasyRpc_Abstractions_Binding_BindFromHeaderAttribute_Name_
+  commentId: Overload:EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.Name
+  nameWithType: BindFromHeaderAttribute.Name
+- uid: EasyRpc.Abstractions.Binding.BindFromQueryAttribute
+  name: BindFromQueryAttribute
+  href: api/EasyRpc.Abstractions.Binding.BindFromQueryAttribute.html
+  commentId: T:EasyRpc.Abstractions.Binding.BindFromQueryAttribute
+  fullName: EasyRpc.Abstractions.Binding.BindFromQueryAttribute
+  nameWithType: BindFromQueryAttribute
+- uid: EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name
+  name: Name
+  href: api/EasyRpc.Abstractions.Binding.BindFromQueryAttribute.html#EasyRpc_Abstractions_Binding_BindFromQueryAttribute_Name
+  commentId: P:EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name
+  fullName: EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name
+  nameWithType: BindFromQueryAttribute.Name
+- uid: EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name*
+  name: Name
+  href: api/EasyRpc.Abstractions.Binding.BindFromQueryAttribute.html#EasyRpc_Abstractions_Binding_BindFromQueryAttribute_Name_
+  commentId: Overload:EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Binding.BindFromQueryAttribute.Name
+  nameWithType: BindFromQueryAttribute.Name
 - uid: EasyRpc.Abstractions.Binding.BindFromServicesAttribute
   name: BindFromServicesAttribute
   href: api/EasyRpc.Abstractions.Binding.BindFromServicesAttribute.html
   commentId: T:EasyRpc.Abstractions.Binding.BindFromServicesAttribute
   fullName: EasyRpc.Abstractions.Binding.BindFromServicesAttribute
   nameWithType: BindFromServicesAttribute
-- uid: EasyRpc.Abstractions.Binding.BindHeaderAttribute
-  name: BindHeaderAttribute
-  href: api/EasyRpc.Abstractions.Binding.BindHeaderAttribute.html
-  commentId: T:EasyRpc.Abstractions.Binding.BindHeaderAttribute
-  fullName: EasyRpc.Abstractions.Binding.BindHeaderAttribute
-  nameWithType: BindHeaderAttribute
-- uid: EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name
-  name: Name
-  href: api/EasyRpc.Abstractions.Binding.BindHeaderAttribute.html#EasyRpc_Abstractions_Binding_BindHeaderAttribute_Name
-  commentId: P:EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name
-  fullName: EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name
-  nameWithType: BindHeaderAttribute.Name
-- uid: EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name*
-  name: Name
-  href: api/EasyRpc.Abstractions.Binding.BindHeaderAttribute.html#EasyRpc_Abstractions_Binding_BindHeaderAttribute_Name_
-  commentId: Overload:EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name
-  isSpec: "True"
-  fullName: EasyRpc.Abstractions.Binding.BindHeaderAttribute.Name
-  nameWithType: BindHeaderAttribute.Name
-- uid: EasyRpc.Abstractions.Binding.BindQueryAttribute
-  name: BindQueryAttribute
-  href: api/EasyRpc.Abstractions.Binding.BindQueryAttribute.html
-  commentId: T:EasyRpc.Abstractions.Binding.BindQueryAttribute
-  fullName: EasyRpc.Abstractions.Binding.BindQueryAttribute
-  nameWithType: BindQueryAttribute
-- uid: EasyRpc.Abstractions.Binding.BindQueryAttribute.Name
-  name: Name
-  href: api/EasyRpc.Abstractions.Binding.BindQueryAttribute.html#EasyRpc_Abstractions_Binding_BindQueryAttribute_Name
-  commentId: P:EasyRpc.Abstractions.Binding.BindQueryAttribute.Name
-  fullName: EasyRpc.Abstractions.Binding.BindQueryAttribute.Name
-  nameWithType: BindQueryAttribute.Name
-- uid: EasyRpc.Abstractions.Binding.BindQueryAttribute.Name*
-  name: Name
-  href: api/EasyRpc.Abstractions.Binding.BindQueryAttribute.html#EasyRpc_Abstractions_Binding_BindQueryAttribute_Name_
-  commentId: Overload:EasyRpc.Abstractions.Binding.BindQueryAttribute.Name
-  isSpec: "True"
-  fullName: EasyRpc.Abstractions.Binding.BindQueryAttribute.Name
-  nameWithType: BindQueryAttribute.Name
 - uid: EasyRpc.Abstractions.Binding.BindRouteAttribute
   name: BindRouteAttribute
   href: api/EasyRpc.Abstractions.Binding.BindRouteAttribute.html
@@ -12393,6 +12393,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcParameterInfo.BindingType
   nameWithType: IRpcParameterInfo.BindingType
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.BindName
+  name: BindName
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_BindName
+  commentId: P:EasyRpc.AspNetCore.IRpcParameterInfo.BindName
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.BindName
+  nameWithType: IRpcParameterInfo.BindName
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.BindName*
+  name: BindName
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_BindName_
+  commentId: Overload:EasyRpc.AspNetCore.IRpcParameterInfo.BindName
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.BindName
+  nameWithType: IRpcParameterInfo.BindName
 - uid: EasyRpc.AspNetCore.IRpcParameterInfo.DefaultValue
   name: DefaultValue
   href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_DefaultValue
@@ -15044,6 +15057,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.RpcParameterInfo.BindingType
   nameWithType: RpcParameterInfo.BindingType
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.BindName
+  name: BindName
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_BindName
+  commentId: P:EasyRpc.AspNetCore.RpcParameterInfo.BindName
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.BindName
+  nameWithType: RpcParameterInfo.BindName
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.BindName*
+  name: BindName
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_BindName_
+  commentId: Overload:EasyRpc.AspNetCore.RpcParameterInfo.BindName
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.BindName
+  nameWithType: RpcParameterInfo.BindName
 - uid: EasyRpc.AspNetCore.RpcParameterInfo.DefaultValue
   name: DefaultValue
   href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_DefaultValue
