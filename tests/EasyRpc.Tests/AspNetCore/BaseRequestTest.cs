@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -127,10 +128,8 @@ namespace EasyRpc.Tests.AspNetCore
 
             throw new Exception("Unknown method type " + httpMethod);
         }
-
-
-
-        protected async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string path, object postValue = null)
+        
+        protected async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string path, object postValue = null, object headers = null)
         {
             var client = await Client();
 
@@ -166,7 +165,30 @@ namespace EasyRpc.Tests.AspNetCore
                 client.DefaultRequestHeaders.AcceptEncoding.ParseAdd(AcceptEncoding);
             }
 
+            if (headers != null)
+            {
+                ProcessHeaders(request, headers);
+            }
+
             return await client.SendAsync(request);
+        }
+
+        private void ProcessHeaders(HttpRequestMessage request, object headers)
+        {
+            if (headers is IDictionary<string, string> dictionary)
+            {
+                foreach (var kvp in dictionary)
+                {
+                    request.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+                }
+            }
+            else
+            {
+                foreach (var property in headers.GetType().GetRuntimeProperties())
+                {
+                    request.Headers.TryAddWithoutValidation(property.Name, property.GetValue(headers)?.ToString());
+                }
+            }
         }
 
         protected async Task<HttpResponseMessage> Post(string path, object postValue)

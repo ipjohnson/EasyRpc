@@ -89,6 +89,11 @@ namespace EasyRpc.AspNetCore
         string Name { get; }
 
         /// <summary>
+        /// Binding name (header or query)
+        /// </summary>
+        string BindName { get; set; }
+
+        /// <summary>
         /// Parameter type
         /// </summary>
         Type ParamType { get; }
@@ -124,8 +129,17 @@ namespace EasyRpc.AspNetCore
     /// </summary>
     public class RpcParameterInfo : IRpcParameterInfo
     {
+        private string _bindingName;
+
         /// <inheritdoc />
         public string Name { get; set; }
+
+        /// <inheritdoc />
+        public string BindName
+        {
+            get => _bindingName ?? Name;
+            set => _bindingName = value;
+        }
 
         /// <inheritdoc />
         [JsonIgnore]

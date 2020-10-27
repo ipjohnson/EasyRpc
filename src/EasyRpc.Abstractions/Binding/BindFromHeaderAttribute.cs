@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Binding
     /// Bind from header
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class BindHeaderAttribute : Attribute
+    public class BindFromHeaderAttribute : Attribute
     {
         /// <summary>
         /// Header name if different from property

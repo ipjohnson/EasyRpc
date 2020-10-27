@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using EasyRpc.Abstractions.Binding;
 using EasyRpc.Abstractions.Headers;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Response;
@@ -23,6 +24,7 @@ using EasyRpc.AspNetCore.ResponseHeader;
 using EasyRpc.AspNetCore.Routing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -145,11 +147,14 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 returnType = returnType.GenericTypeArguments[0];
             }
-            else if (returnType == typeof(Task) || returnType == typeof(ValueTask))
+            else if (returnType == typeof(Task) ||
+                     returnType == typeof(ValueTask) ||
+                     returnType == typeof(void))
             {
                 // set it to object and it will get wrapped later
                 returnType = typeof(object);
             }
+
 
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
@@ -247,7 +252,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 if (authorizations != null)
                 {
-                    authorizationFunc = 
+                    authorizationFunc =
                         new Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>[]
                         {
                             config => authorizations
@@ -268,12 +273,46 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private IEnumerable<RpcParameterInfo> AddInstancePropertyBindingParameters(EndPointMethodConfiguration configuration, Type type)
         {
+            var position = 0;
+
+            configuration.Parameters.ForEach(p =>
+            {
+                if (p.Position > position)
+                {
+                    position = p.Position + 1;
+                }
+            });
+
             foreach (var propertyInfo in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
+                if (propertyInfo.PropertyType == typeof(RequestExecutionContext))
+                {
+                    yield return new RpcParameterInfo
+                    {
+                        BindingType = EndPointBindingType.InstanceProperty,
+                        Name = propertyInfo.Name,
+                        HasDefaultValue = false,
+                        ParamType = propertyInfo.PropertyType,
+                        ParameterSource = EndPointMethodParameterSource.RequestExecutionContext,
+                        Position = position++
+                    };
+                }
+                else if (propertyInfo.PropertyType == typeof(HttpContext))
+                {
+                    yield return new RpcParameterInfo
+                    {
+                        BindingType = EndPointBindingType.InstanceProperty,
+                        Name = propertyInfo.Name,
+                        ParamType = propertyInfo.PropertyType,
+                        ParameterSource = EndPointMethodParameterSource.HttpContext,
+                        Position = position++
+                    };
+                }
+                else
+                {
 
+                }
             }
-
-            yield break;
         }
 
         private void AssignDefaultValues(EndPointMethodConfiguration configuration, IPathAttribute pathAttribute)
@@ -579,7 +618,13 @@ namespace EasyRpc.AspNetCore.Configuration
 
                     if (rpcParam != null)
                     {
+                        rpcParam.BindingType = EndPointBindingType.InstanceProperty;
+                        rpcParam.Name = propertyInfo.Name;
+                        rpcParam.ParamType = propertyInfo.PropertyType;
+
                         parameterList.Add(rpcParam);
+
+                        rpcParam.Position = parameterList.Count - 1;
                     }
                 }
             }
@@ -590,7 +635,6 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     var rpcParam = new RpcParameterInfo
                     {
-                        Position = ++lastPosition,
                         Name = routeToken.Name,
                         HasDefaultValue = false,
                         DefaultValue = null,
@@ -600,6 +644,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     };
 
                     parameterList.Add(rpcParam);
+
+                    rpcParam.Position = parameterList.Count - 1;
                 }
             }
 
@@ -620,7 +666,52 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private RpcParameterInfo ProcessProperty(PropertyInfo propertyInfo)
         {
-            throw new NotImplementedException();
+            if (propertyInfo.PropertyType == typeof(HttpContext))
+            {
+                return new RpcParameterInfo
+                {
+                    ParameterSource = EndPointMethodParameterSource.HttpContext
+                };
+            }
+
+            if (propertyInfo.PropertyType == typeof(RequestExecutionContext))
+            {
+                return new RpcParameterInfo
+                {
+                    ParameterSource = EndPointMethodParameterSource.RequestExecutionContext
+                };
+            }
+
+            foreach (var attribute in propertyInfo.GetCustomAttributes())
+            {
+                if (attribute is BindFromHeaderAttribute headerAttribute)
+                {
+                    return new RpcParameterInfo
+                    {
+                        BindName = headerAttribute.Name,
+                        ParameterSource = EndPointMethodParameterSource.HeaderParameter
+                    };
+                }
+                
+                if (attribute is BindFromServicesAttribute)
+                {
+                    return new RpcParameterInfo
+                    {
+                        ParameterSource = EndPointMethodParameterSource.RequestServices
+                    };
+                }
+                
+                if (attribute is BindFromQueryAttribute queryAttribute)
+                {
+                    return new RpcParameterInfo
+                    {
+                        BindName = queryAttribute.Name,
+                        ParameterSource = EndPointMethodParameterSource.QueryStringParameter
+                    };
+                }
+            }
+
+            return null;
         }
 
         private Type GetParameterTypeFromTokenType(RpcRouteTokenParseType routeTokenParseType)

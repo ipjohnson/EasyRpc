@@ -91,6 +91,9 @@ namespace EasyRpc.AspNetCore.ModelBinding
                         UrlParameterBinder.BindUrlParameter(context, configuration, parameter, parameterContext,
                             ref currentIndex, pathSpan);
                         break;
+                    case EndPointMethodParameterSource.HeaderParameter:
+                        BindHeaderParameter(context, configuration, parameter, parameterContext);
+                        break;
                     case EndPointMethodParameterSource.QueryStringParameter:
                         BindQueryStringParameter(context, configuration, parameter, parameterContext);
                         break;
@@ -118,6 +121,20 @@ namespace EasyRpc.AspNetCore.ModelBinding
             return Task.CompletedTask;
         }
 
+        private void BindHeaderParameter(RequestExecutionContext context, EndPointMethodConfiguration configuration, RpcParameterInfo parameter, IRequestParameters parameters)
+        {
+            if (context.HttpContext.Request.Headers.TryGetValue(parameter.BindName, out var value))
+            {
+                var boundValue = _stringValueModelBinder.ConvertString(parameter, value);
+
+                parameters[parameter.Position] = boundValue;
+            }
+            else if (parameter.HasDefaultValue)
+            {
+                parameters[parameter.Position] = parameter.DefaultValue;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -128,7 +145,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
         protected virtual void BindQueryStringParameter(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameters)
         {
-            if (context.HttpContext.Request.Query.TryGetValue(parameter.Name, out var value))
+            if (context.HttpContext.Request.Query.TryGetValue(parameter.BindName, out var value))
             {
                 var boundValue = _stringValueModelBinder.ConvertString(parameter, value);
 

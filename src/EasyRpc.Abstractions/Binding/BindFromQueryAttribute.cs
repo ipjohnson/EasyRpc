@@ -8,7 +8,7 @@ namespace EasyRpc.Abstractions.Binding
     /// 
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class BindQueryAttribute : Attribute
+    public class BindFromQueryAttribute : Attribute
     {
         /// <summary>
         /// Query string

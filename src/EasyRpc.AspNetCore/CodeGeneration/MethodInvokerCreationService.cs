@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
@@ -128,11 +129,19 @@ namespace EasyRpc.AspNetCore.CodeGeneration
             var parameterList = BuildParameterList(endPointMethodConfiguration, parametersType, typedParameterVariable);
             var invokeMethod = endPointMethodConfiguration.InvokeInformation.MethodToInvoke;
 
-            var instanceExpression = Expression.Convert(Expression.Property(requestParameter, _contextInstance), invokeMethod.DeclaringType);
+            var invokeType = invokeMethod.DeclaringType;
+
+            var instanceExpression = Expression.Convert(Expression.Property(requestParameter, _contextInstance), invokeType);
 
             var invokeExpression = Expression.Call(instanceExpression, invokeMethod, parameterList);
 
             var methodBodyStatements = new List<Expression> { assignExpression };
+
+            if (endPointMethodConfiguration.Parameters.Any(p => p.BindingType == EndPointBindingType.InstanceProperty))
+            {
+                AddInstanceBindStatements(endPointMethodConfiguration, instanceExpression, invokeType, typedParameterVariable, parametersType,
+                    methodBodyStatements);
+            }
 
             WrapExpression<T>(endPointMethodConfiguration, invokeMethod, methodBodyStatements, requestParameter, invokeExpression);
 
@@ -140,6 +149,32 @@ namespace EasyRpc.AspNetCore.CodeGeneration
                 Expression.Lambda<InvokeMethodDelegate<T>>(Expression.Block(new[] { typedParameterVariable }, methodBodyStatements), requestParameter).Compile();
 
             return compiledInvokeDelegate;
+        }
+
+        private void AddInstanceBindStatements(IEndPointMethodConfigurationReadOnly endPointMethodConfiguration,
+            UnaryExpression instanceExpression, 
+            Type invokeType, 
+            ParameterExpression typedParameterVariable,
+            Type parametersType, 
+            List<Expression> methodBodyStatements)
+        {
+            foreach (var rpcParameterInfo in endPointMethodConfiguration.Parameters.Where(p => p.BindingType == EndPointBindingType.InstanceProperty))
+            {
+                var targetPropertyInfo = invokeType.GetProperty(rpcParameterInfo.Name);
+                var sourcePropertyInfo = parametersType.GetProperty(rpcParameterInfo.Name);
+
+                if (targetPropertyInfo != null && 
+                    targetPropertyInfo.CanWrite &&
+                    sourcePropertyInfo != null &&
+                    sourcePropertyInfo.PropertyType == targetPropertyInfo.PropertyType)
+                {
+                    var sourceExpression = Expression.Call(typedParameterVariable, sourcePropertyInfo.GetMethod);
+
+                    var assignExpression = Expression.Call(instanceExpression, targetPropertyInfo.SetMethod, sourceExpression);
+
+                    methodBodyStatements.Add(assignExpression);
+                }
+            }
         }
 
         /// <summary>
