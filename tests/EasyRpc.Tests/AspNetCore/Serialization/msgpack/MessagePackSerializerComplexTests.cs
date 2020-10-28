@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore;
 using EasyRpc.AspNetCore.CodeGeneration;
 using EasyRpc.AspNetCore.MessagePack;
@@ -24,6 +25,7 @@ namespace EasyRpc.Tests.AspNetCore.Serialization.msgpack
 
         public class IntMath
         {
+            [PostMethod]
             public PostReturn Add(int x, int y)
             {
                 return new PostReturn{ Result = x + y };

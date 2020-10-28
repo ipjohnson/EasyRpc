@@ -15,6 +15,7 @@ namespace EasyRpc.Tests.AspNetCore.Expose
         [BasePath("/IntMath")]
         public class Service
         {
+            [PostMethod]
             public int Add(int x, int y)
             {
                 return x + y;

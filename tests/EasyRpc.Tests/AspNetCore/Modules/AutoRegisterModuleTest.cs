@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore;
 using Xunit;
 
@@ -17,7 +18,7 @@ namespace EasyRpc.Tests.AspNetCore.Modules
             {
                 this.ToString();
             }
-
+            [PostMethod]
             public int Add(int x, int y)
             {
                 return x + y;

@@ -34,7 +34,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly IConfigurationManager _configurationMethodRepository;
 
         private ICurrentApiInformation _currentApiInformation;
-        private ExposeDefaultMethod _defaultMethod = ExposeDefaultMethod.PostOnly;
+        private ExposeDefaultMethod _defaultMethod = ExposeDefaultMethod.PostAndGetInt;
         private IHttpMethodConfiguration _methodConfiguration;
 
 

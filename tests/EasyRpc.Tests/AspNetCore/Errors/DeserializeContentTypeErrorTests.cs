@@ -28,6 +28,7 @@ namespace EasyRpc.Tests.AspNetCore.Errors
 
         public class IntMath
         {
+            [PostMethod]
             public PostReturn Add(int x, int y)
             {
                 return new PostReturn { Result = x + y };
