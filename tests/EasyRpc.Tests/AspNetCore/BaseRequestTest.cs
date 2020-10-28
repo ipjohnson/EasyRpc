@@ -69,7 +69,7 @@ namespace EasyRpc.Tests.AspNetCore
             }
         }
 
-        protected virtual bool UseInternalRouting => true;
+        protected virtual bool UseInternalRouting => false;
 
         protected virtual string BasePath => "/";
 

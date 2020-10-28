@@ -515,12 +515,24 @@ namespace EasyRpc.AspNetCore.Configuration
                     var tokenTypeString = routeTemplate.Substring(colonIndex + 1,
                         tokenEndBracket - (colonIndex + 1));
 
+                    if (tokenTypeString.EndsWith('?'))
+                    {
+                        tokenTypeString = tokenTypeString.TrimEnd('?');
+                        token.Optional = true;
+                    }
+
                     token.ParseType = GetParseType(tokenTypeString);
                 }
 
                 var tokenName =
                     routeTemplate.Substring(tokenStartBracket + 1,
                          tokenEnd - (tokenStartBracket + 1));
+
+                if (tokenName.EndsWith('?'))
+                {
+                    tokenName = tokenName.TrimEnd('?');
+                    token.Optional = true;
+                }
 
                 token.Name = tokenName;
 
@@ -814,7 +826,14 @@ namespace EasyRpc.AspNetCore.Configuration
                         continue;
                     }
 
-                    methodPath += "/{" + parameterInfo.Name + "}";
+                    var nameString = parameterInfo.Name;
+
+                    if (parameterInfo.HasDefaultValue)
+                    {
+                        nameString += '?';
+                    }
+
+                    methodPath += "/{" + nameString + "}";
                 }
             }
 

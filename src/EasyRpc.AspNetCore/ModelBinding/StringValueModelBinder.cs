@@ -44,7 +44,33 @@ namespace EasyRpc.AspNetCore.ModelBinding
                 return ParameterBooleanValue(parameter, stringValue, parameterType);
             }
 
+            if (parameterType == typeof(Guid) ||
+                parameterType == typeof(Guid?))
+            {
+                return ParameterGuidValue(parameter, stringValue, parameterType);
+            }
+
             return Convert.ChangeType(stringValue, parameterType);
+        }
+
+        private object ParameterGuidValue(IRpcParameterInfo parameter, string stringValue, Type parameterType)
+        {
+            if (Guid.TryParse(stringValue, out var intValue))
+            {
+                return intValue;
+            }
+
+            if (parameter.HasDefaultValue)
+            {
+                return parameter.DefaultValue;
+            }
+
+            if (parameterType == typeof(Guid?))
+            {
+                return null;
+            }
+
+            throw new Exception($"Could not convert parameter {parameter.Name} value {stringValue} to guid");
         }
 
         protected virtual object ParameterBooleanValue(IRpcParameterInfo parameter, string stringValue, Type parameterType)

@@ -52,6 +52,9 @@ namespace EasyRpc.Tests.AspNetCore.Options
 
         #region registration
 
+        /// <inheritdoc />
+        protected override bool UseInternalRouting => true;
+
         protected override void ApiRegistration(IRpcApi api)
         {
             api.Expose<Service>();
