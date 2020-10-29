@@ -49,19 +49,21 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
             Assert.Equal(value, result);
         }
 
-
-
-        // [Fact] TODO
+        [Fact]
         public async Task ModelBinding_InternalRouting_DoubleParameter_Invalid()
         {
-            var response = await Get($"/Service/Value/blah-blah");
+            var response = await Get($"/Service/Value2/blah-blah");
 
-            Assert.NotNull(response);
+            var result = await Deserialize<double>(response);
+
+            Assert.Equal(123.456, result);
         }
 
         #endregion
 
         #region Registration
+
+        protected override bool UseInternalRouting => true;
 
         /// <inheritdoc />
         protected override void ConfigureServices(IServiceCollection services)

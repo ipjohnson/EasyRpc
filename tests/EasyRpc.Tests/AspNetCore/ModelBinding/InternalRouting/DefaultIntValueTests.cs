@@ -12,6 +12,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
     public class DefaultIntValueTests : BaseRequestTest
     {
         private const int _defaultValue = 5;
+
         #region Tests
 
         [Fact]
@@ -58,6 +59,8 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
         #region registration
 
+        protected override bool UseInternalRouting => true;
+
         protected override void ApiRegistration(IRpcApi api)
         {
             api.DefaultHttpMethod(ExposeDefaultMethod.PostAndGetInt);
@@ -65,7 +68,6 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         }
 
         #endregion
-
 
         #region Service
 

@@ -6,9 +6,9 @@ using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore;
 using Xunit;
 
-namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
+namespace EasyRpc.Tests.AspNetCore.ModelBinding.AspNetRouting
 {
-    public class GuidParameterTests : BaseRequestTest
+    public class AspNetGetGuidRouteTest : BaseRequestTest
     {
         #region Service
 
@@ -26,10 +26,10 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
         #region Tests
 
         [Fact]
-        public async Task ModelBinding_InternalRouting_GuidParameter()
+        public async Task ModelBinding_AspNetRouting_GuidParameter()
         {
             var guidString = "E8230402-67BA-41DF-B23C-6B9C1580C249";
-            
+
             var response = await Get($"/Service/Get/{guidString}");
 
             var result = await Deserialize<Guid>(response);
@@ -39,7 +39,7 @@ namespace EasyRpc.Tests.AspNetCore.ModelBinding.InternalRouting
 
         #region registration
 
-        protected override bool UseInternalRouting => true;
+        protected override bool UseInternalRouting => false;
 
         protected override void ApiRegistration(IRpcApi api)
         {
