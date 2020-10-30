@@ -52,6 +52,11 @@ namespace EasyRpc.Tests.AspNetCore.Options
 
         #region registration
 
+        protected override void RpcServiceConfig(DefaultRpcServices services)
+        {
+            services.RegisterDefaultOptionsHandler = true;
+        }
+
         /// <inheritdoc />
         protected override bool UseInternalRouting => true;
 

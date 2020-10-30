@@ -42,12 +42,12 @@ namespace EasyRpc.AspNetCore
         /// <summary>
         /// Register default OPTIONS handler
         /// </summary>
-        public bool RegisterDefaultOptionsHandler { get; set; } = true;
+        public bool RegisterDefaultOptionsHandler { get; set; } = false;
 
         /// <summary>
         /// Register default HEAD handler
         /// </summary>
-        public bool RegisterDefaultHeadHandler { get; set; } = true;
+        public bool RegisterDefaultHeadHandler { get; set; } = false;
     }
 
     /// <summary>

@@ -78,13 +78,19 @@ namespace EasyRpc.Tests.AspNetCore
         protected virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Shared);
-            services.AddRpcServices();
+            services.AddRpcServices(RpcServiceConfig);
 
             if (!UseInternalRouting)
             {
                 services.AddRouting();
             }
         }
+
+        protected virtual void RpcServiceConfig(DefaultRpcServices services)
+        {
+
+        }
+
 
         protected abstract void ApiRegistration(IRpcApi api);
 

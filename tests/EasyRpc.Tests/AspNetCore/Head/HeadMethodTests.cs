@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace EasyRpc.Tests.AspNetCore.Head
@@ -53,6 +54,11 @@ namespace EasyRpc.Tests.AspNetCore.Head
         #endregion
 
         #region Registration
+
+        protected override void RpcServiceConfig(DefaultRpcServices services)
+        {
+            services.RegisterDefaultHeadHandler = true;
+        }
 
         protected override void ApiRegistration(IRpcApi api)
         {
