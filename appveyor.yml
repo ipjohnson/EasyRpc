@@ -1,6 +1,6 @@
 environment:
   build_version: 5.0.0
-  Version: $(build_version)-Beta%APPVEYOR_BUILD_NUMBER%
+  Version: $(build_version)-Preview1
   op_build_user: "ipjohnson"
   op_build_user_email: "ipjohnson123@yahoo.com"
   access_token:
