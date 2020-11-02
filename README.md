@@ -12,7 +12,7 @@ public void Configure(IApplicationBuilder app)
   app.UseRpcServices(api =>
   {
      // simple web method at /Status
-     api.GetMethod("/Status", () => new { status = "Ok"});
+     api.Method.Get("/Status", () => new { status = "Ok"});
 
      // Expose methods at /IntMath
      api.Expose<IntMathService>().As("IntMath");
