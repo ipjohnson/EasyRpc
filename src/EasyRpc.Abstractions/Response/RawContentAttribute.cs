@@ -19,7 +19,6 @@ namespace EasyRpc.Abstractions.Response
         /// Content encoding if applicable
         /// </summary>
         string ContentEncoding { get; }
-
     }
 
     /// <summary>
