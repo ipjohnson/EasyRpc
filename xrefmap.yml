@@ -1252,6 +1252,38 @@ references:
   isSpec: "True"
   fullName: EasyRpc.Abstractions.Response.RawContentAttribute.ContentType
   nameWithType: RawContentAttribute.ContentType
+- uid: EasyRpc.Abstractions.Response.ReturnsTypeAttribute
+  name: ReturnsTypeAttribute
+  href: api/EasyRpc.Abstractions.Response.ReturnsTypeAttribute.html
+  commentId: T:EasyRpc.Abstractions.Response.ReturnsTypeAttribute
+  fullName: EasyRpc.Abstractions.Response.ReturnsTypeAttribute
+  nameWithType: ReturnsTypeAttribute
+- uid: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.#ctor(System.Type)
+  name: ReturnsTypeAttribute(Type)
+  href: api/EasyRpc.Abstractions.Response.ReturnsTypeAttribute.html#EasyRpc_Abstractions_Response_ReturnsTypeAttribute__ctor_System_Type_
+  commentId: M:EasyRpc.Abstractions.Response.ReturnsTypeAttribute.#ctor(System.Type)
+  fullName: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnsTypeAttribute(System.Type)
+  nameWithType: ReturnsTypeAttribute.ReturnsTypeAttribute(Type)
+- uid: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.#ctor*
+  name: ReturnsTypeAttribute
+  href: api/EasyRpc.Abstractions.Response.ReturnsTypeAttribute.html#EasyRpc_Abstractions_Response_ReturnsTypeAttribute__ctor_
+  commentId: Overload:EasyRpc.Abstractions.Response.ReturnsTypeAttribute.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnsTypeAttribute
+  nameWithType: ReturnsTypeAttribute.ReturnsTypeAttribute
+- uid: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType
+  name: ReturnType
+  href: api/EasyRpc.Abstractions.Response.ReturnsTypeAttribute.html#EasyRpc_Abstractions_Response_ReturnsTypeAttribute_ReturnType
+  commentId: P:EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType
+  fullName: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType
+  nameWithType: ReturnsTypeAttribute.ReturnType
+- uid: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType*
+  name: ReturnType
+  href: api/EasyRpc.Abstractions.Response.ReturnsTypeAttribute.html#EasyRpc_Abstractions_Response_ReturnsTypeAttribute_ReturnType_
+  commentId: Overload:EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType
+  isSpec: "True"
+  fullName: EasyRpc.Abstractions.Response.ReturnsTypeAttribute.ReturnType
+  nameWithType: ReturnsTypeAttribute.ReturnType
 - uid: EasyRpc.Abstractions.Services
   name: EasyRpc.Abstractions.Services
   href: api/EasyRpc.Abstractions.Services.html
@@ -1289,6 +1321,12 @@ references:
   commentId: F:EasyRpc.Abstractions.Services.ServiceActivationMethod.ActivationUtility
   fullName: EasyRpc.Abstractions.Services.ServiceActivationMethod.ActivationUtility
   nameWithType: ServiceActivationMethod.ActivationUtility
+- uid: EasyRpc.Abstractions.Services.ServiceActivationMethod.Default
+  name: Default
+  href: api/EasyRpc.Abstractions.Services.ServiceActivationMethod.html#EasyRpc_Abstractions_Services_ServiceActivationMethod_Default
+  commentId: F:EasyRpc.Abstractions.Services.ServiceActivationMethod.Default
+  fullName: EasyRpc.Abstractions.Services.ServiceActivationMethod.Default
+  nameWithType: ServiceActivationMethod.Default
 - uid: EasyRpc.Abstractions.Services.ServiceActivationMethod.ServiceContainer
   name: ServiceContainer
   href: api/EasyRpc.Abstractions.Services.ServiceActivationMethod.html#EasyRpc_Abstractions_Services_ServiceActivationMethod_ServiceContainer
@@ -2932,15 +2970,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeDelegate
   nameWithType: ApplicationConfigurationService.ExposeDelegate
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.Collections.Generic.List{System.Attribute},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.String,System.Reflection.MethodInfo)
-  name: ExposeMethod(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, List<Attribute>, String, List<IEndPointMethodAuthorization>, String, MethodInfo)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeMethod_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_Collections_Generic_List_System_Attribute__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_String_System_Reflection_MethodInfo_
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.Collections.Generic.List{System.Attribute},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.String,System.Reflection.MethodInfo)
-  name.vb: ExposeMethod(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), List(Of Attribute), String, List(Of IEndPointMethodAuthorization), String, MethodInfo)
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.Collections.Generic.List<System.Attribute>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.String, System.Reflection.MethodInfo)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.Collections.Generic.List(Of System.Attribute), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.String, System.Reflection.MethodInfo)
-  nameWithType: ApplicationConfigurationService.ExposeMethod(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, List<Attribute>, String, List<IEndPointMethodAuthorization>, String, MethodInfo)
-  nameWithType.vb: ApplicationConfigurationService.ExposeMethod(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), List(Of Attribute), String, List(Of IEndPointMethodAuthorization), String, MethodInfo)
+- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.Collections.Generic.List{System.Attribute},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.String,System.Reflection.MethodInfo)
+  name: ExposeMethod(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, List<Attribute>, String, List<IEndPointMethodAuthorization>, String, MethodInfo)
+  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeMethod_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_EasyRpc_Abstractions_Services_ServiceActivationMethod_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_Collections_Generic_List_System_Attribute__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_String_System_Reflection_MethodInfo_
+  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.Collections.Generic.List{System.Attribute},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.String,System.Reflection.MethodInfo)
+  name.vb: ExposeMethod(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), List(Of Attribute), String, List(Of IEndPointMethodAuthorization), String, MethodInfo)
+  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.Collections.Generic.List<System.Attribute>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.String, System.Reflection.MethodInfo)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.Collections.Generic.List(Of System.Attribute), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.String, System.Reflection.MethodInfo)
+  nameWithType: ApplicationConfigurationService.ExposeMethod(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, List<Attribute>, String, List<IEndPointMethodAuthorization>, String, MethodInfo)
+  nameWithType.vb: ApplicationConfigurationService.ExposeMethod(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), List(Of Attribute), String, List(Of IEndPointMethodAuthorization), String, MethodInfo)
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod*
   name: ExposeMethod
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeMethod_
@@ -2948,15 +2986,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeMethod
   nameWithType: ApplicationConfigurationService.ExposeMethod
-- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
-  name: ExposeType(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
-  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeType_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_Func_System_Reflection_MethodInfo_System_Boolean__System_String_
-  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
-  name.vb: ExposeType(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
-  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.Func<System.Reflection.MethodInfo, System.Boolean>, System.String)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.Func(Of System.Reflection.MethodInfo, System.Boolean), System.String)
-  nameWithType: ApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
-  nameWithType.vb: ApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
+- uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
+  name: ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
+  href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeType_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_EasyRpc_Abstractions_Services_ServiceActivationMethod_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_Func_System_Reflection_MethodInfo_System_Boolean__System_String_
+  commentId: M:EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
+  name.vb: ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
+  fullName: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.Func<System.Reflection.MethodInfo, System.Boolean>, System.String)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.Func(Of System.Reflection.MethodInfo, System.Boolean), System.String)
+  nameWithType: ApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
+  nameWithType.vb: ApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
 - uid: EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.ExposeType*
   name: ExposeType
   href: api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_ApplicationConfigurationService_ExposeType_
@@ -3829,15 +3867,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeDelegate
   nameWithType: IApplicationConfigurationService.ExposeDelegate
-- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
-  name: ExposeType(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
-  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeType_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_Func_System_Reflection_MethodInfo_System_Boolean__System_String_
-  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
-  name.vb: ExposeType(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
-  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.Func<System.Reflection.MethodInfo, System.Boolean>, System.String)
-  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.Func(Of System.Reflection.MethodInfo, System.Boolean), System.String)
-  nameWithType: IApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
-  nameWithType.vb: IApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
+- uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
+  name: ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
+  href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeType_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_System_Type_EasyRpc_Abstractions_Services_ServiceActivationMethod_System_Func_EasyRpc_AspNetCore_RequestExecutionContext_System_Object__System_String_System_Collections_Generic_List_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization__System_Func_System_Reflection_MethodInfo_System_Boolean__System_String_
+  commentId: M:EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation,System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod,System.Func{EasyRpc.AspNetCore.RequestExecutionContext,System.Object},System.String,System.Collections.Generic.List{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization},System.Func{System.Reflection.MethodInfo,System.Boolean},System.String)
+  name.vb: ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
+  fullName: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func<EasyRpc.AspNetCore.RequestExecutionContext, System.Object>, System.String, System.Collections.Generic.List<EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization>, System.Func<System.Reflection.MethodInfo, System.Boolean>, System.String)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType(EasyRpc.AspNetCore.Configuration.ICurrentApiInformation, System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod, System.Func(Of EasyRpc.AspNetCore.RequestExecutionContext, System.Object), System.String, System.Collections.Generic.List(Of EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization), System.Func(Of System.Reflection.MethodInfo, System.Boolean), System.String)
+  nameWithType: IApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func<RequestExecutionContext, Object>, String, List<IEndPointMethodAuthorization>, Func<MethodInfo, Boolean>, String)
+  nameWithType.vb: IApplicationConfigurationService.ExposeType(ICurrentApiInformation, Type, ServiceActivationMethod, Func(Of RequestExecutionContext, Object), String, List(Of IEndPointMethodAuthorization), Func(Of MethodInfo, Boolean), String)
 - uid: EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.ExposeType*
   name: ExposeType
   href: api/EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService.html#EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_ExposeType_
@@ -4809,6 +4847,28 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.TypeSetExposureConfiguration
   nameWithType: TypeSetExposureConfiguration.TypeSetExposureConfiguration
+- uid: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration._activateMethod
+  name: _activateMethod
+  href: api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.html#EasyRpc_AspNetCore_Configuration_TypeSetExposureConfiguration__activateMethod
+  commentId: F:EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration._activateMethod
+  fullName: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration._activateMethod
+  nameWithType: TypeSetExposureConfiguration._activateMethod
+- uid: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate(System.Func{System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod})
+  name: Activate(Func<Type, ServiceActivationMethod>)
+  href: api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.html#EasyRpc_AspNetCore_Configuration_TypeSetExposureConfiguration_Activate_System_Func_System_Type_EasyRpc_Abstractions_Services_ServiceActivationMethod__
+  commentId: M:EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate(System.Func{System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod})
+  name.vb: Activate(Func(Of Type, ServiceActivationMethod))
+  fullName: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate(System.Func<System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod>)
+  fullName.vb: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate(System.Func(Of System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod))
+  nameWithType: TypeSetExposureConfiguration.Activate(Func<Type, ServiceActivationMethod>)
+  nameWithType.vb: TypeSetExposureConfiguration.Activate(Func(Of Type, ServiceActivationMethod))
+- uid: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate*
+  name: Activate
+  href: api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.html#EasyRpc_AspNetCore_Configuration_TypeSetExposureConfiguration_Activate_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.Activate
+  nameWithType: TypeSetExposureConfiguration.Activate
 - uid: EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.As(System.Func{System.Type,System.Collections.Generic.IEnumerable{System.String}})
   name: As(Func<Type, IEnumerable<String>>)
   href: api/EasyRpc.AspNetCore.Configuration.TypeSetExposureConfiguration.html#EasyRpc_AspNetCore_Configuration_TypeSetExposureConfiguration_As_System_Func_System_Type_System_Collections_Generic_IEnumerable_System_String___
@@ -8764,6 +8824,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.Authorizations
   nameWithType: EndPointMethodConfiguration.Authorizations
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType
+  name: DocumentationReturnType
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_DocumentationReturnType
+  commentId: P:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType
+  nameWithType: EndPointMethodConfiguration.DocumentationReturnType
+- uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType*
+  name: DocumentationReturnType
+  href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_DocumentationReturnType_
+  commentId: Overload:EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.DocumentationReturnType
+  nameWithType: EndPointMethodConfiguration.DocumentationReturnType
 - uid: EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.EasyRpc#AspNetCore#IEndPointMethodConfigurationReadOnly#Parameters
   name: IEndPointMethodConfigurationReadOnly.Parameters
   href: api/EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html#EasyRpc_AspNetCore_EndPoints_EndPointMethodConfiguration_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_Parameters
@@ -11008,6 +11081,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.Authorizations
   nameWithType: IEndPointMethodConfigurationReadOnly.Authorizations
+- uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+  name: DocumentationReturnType
+  href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_DocumentationReturnType
+  commentId: P:EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+  fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+  nameWithType: IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+- uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType*
+  name: DocumentationReturnType
+  href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_DocumentationReturnType_
+  commentId: Overload:EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.DocumentationReturnType
+  nameWithType: IEndPointMethodConfigurationReadOnly.DocumentationReturnType
 - uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.Filters
   name: Filters
   href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html#EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_Filters
@@ -12333,15 +12419,15 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining
   nameWithType: IRpcApiExtensions.ExposeNamespaceContaining
-- uid: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining``1(EasyRpc.AspNetCore.IRpcApi)
-  name: ExposeNamespaceContaining<T>(IRpcApi)
-  href: api/EasyRpc.AspNetCore.IRpcApiExtensions.html#EasyRpc_AspNetCore_IRpcApiExtensions_ExposeNamespaceContaining__1_EasyRpc_AspNetCore_IRpcApi_
-  commentId: M:EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining``1(EasyRpc.AspNetCore.IRpcApi)
-  name.vb: ExposeNamespaceContaining(Of T)(IRpcApi)
-  fullName: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining<T>(EasyRpc.AspNetCore.IRpcApi)
-  fullName.vb: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining(Of T)(EasyRpc.AspNetCore.IRpcApi)
-  nameWithType: IRpcApiExtensions.ExposeNamespaceContaining<T>(IRpcApi)
-  nameWithType.vb: IRpcApiExtensions.ExposeNamespaceContaining(Of T)(IRpcApi)
+- uid: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining``1(EasyRpc.AspNetCore.IRpcApi,System.Boolean)
+  name: ExposeNamespaceContaining<T>(IRpcApi, Boolean)
+  href: api/EasyRpc.AspNetCore.IRpcApiExtensions.html#EasyRpc_AspNetCore_IRpcApiExtensions_ExposeNamespaceContaining__1_EasyRpc_AspNetCore_IRpcApi_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining``1(EasyRpc.AspNetCore.IRpcApi,System.Boolean)
+  name.vb: ExposeNamespaceContaining(Of T)(IRpcApi, Boolean)
+  fullName: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining<T>(EasyRpc.AspNetCore.IRpcApi, System.Boolean)
+  fullName.vb: EasyRpc.AspNetCore.IRpcApiExtensions.ExposeNamespaceContaining(Of T)(EasyRpc.AspNetCore.IRpcApi, System.Boolean)
+  nameWithType: IRpcApiExtensions.ExposeNamespaceContaining<T>(IRpcApi, Boolean)
+  nameWithType.vb: IRpcApiExtensions.ExposeNamespaceContaining(Of T)(IRpcApi, Boolean)
 - uid: EasyRpc.AspNetCore.IRpcApiExtensions.UseRequestExecutionContextFeature(EasyRpc.AspNetCore.IRpcApi)
   name: UseRequestExecutionContextFeature(IRpcApi)
   href: api/EasyRpc.AspNetCore.IRpcApiExtensions.html#EasyRpc_AspNetCore_IRpcApiExtensions_UseRequestExecutionContextFeature_EasyRpc_AspNetCore_IRpcApi_
@@ -12490,6 +12576,28 @@ references:
   commentId: T:EasyRpc.AspNetCore.ITypeSetExposureConfiguration
   fullName: EasyRpc.AspNetCore.ITypeSetExposureConfiguration
   nameWithType: ITypeSetExposureConfiguration
+- uid: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(EasyRpc.Abstractions.Services.ServiceActivationMethod)
+  name: Activate(ServiceActivationMethod)
+  href: api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html#EasyRpc_AspNetCore_ITypeSetExposureConfiguration_Activate_EasyRpc_Abstractions_Services_ServiceActivationMethod_
+  commentId: M:EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(EasyRpc.Abstractions.Services.ServiceActivationMethod)
+  fullName: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(EasyRpc.Abstractions.Services.ServiceActivationMethod)
+  nameWithType: ITypeSetExposureConfiguration.Activate(ServiceActivationMethod)
+- uid: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(System.Func{System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod})
+  name: Activate(Func<Type, ServiceActivationMethod>)
+  href: api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html#EasyRpc_AspNetCore_ITypeSetExposureConfiguration_Activate_System_Func_System_Type_EasyRpc_Abstractions_Services_ServiceActivationMethod__
+  commentId: M:EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(System.Func{System.Type,EasyRpc.Abstractions.Services.ServiceActivationMethod})
+  name.vb: Activate(Func(Of Type, ServiceActivationMethod))
+  fullName: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(System.Func<System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod>)
+  fullName.vb: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate(System.Func(Of System.Type, EasyRpc.Abstractions.Services.ServiceActivationMethod))
+  nameWithType: ITypeSetExposureConfiguration.Activate(Func<Type, ServiceActivationMethod>)
+  nameWithType.vb: ITypeSetExposureConfiguration.Activate(Func(Of Type, ServiceActivationMethod))
+- uid: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate*
+  name: Activate
+  href: api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html#EasyRpc_AspNetCore_ITypeSetExposureConfiguration_Activate_
+  commentId: Overload:EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.Activate
+  nameWithType: ITypeSetExposureConfiguration.Activate
 - uid: EasyRpc.AspNetCore.ITypeSetExposureConfiguration.As(System.Func{System.Type,System.Collections.Generic.IEnumerable{System.String}})
   name: As(Func<Type, IEnumerable<String>>)
   href: api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html#EasyRpc_AspNetCore_ITypeSetExposureConfiguration_As_System_Func_System_Type_System_Collections_Generic_IEnumerable_System_String___
