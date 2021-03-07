@@ -18,12 +18,13 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="configuration"></param>
+        /// <param name="includeSubnamespaces"></param>
         /// <returns></returns>
-        public static  ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IRpcApi configuration)
+        public static  ITypeSetExposureConfiguration ExposeNamespaceContaining<T>(this IRpcApi configuration, bool includeSubnamespaces = true)
         {
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes.Where(TypesThat.AreInTheSameNamespaceAs<T>()));
+            return configuration.Expose(typeof(T).GetTypeInfo().Assembly.ExportedTypes.Where(TypesThat.AreInTheSameNamespaceAs<T>(includeSubnamespaces)));
         }
 
         /// <summary>

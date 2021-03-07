@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EasyRpc.Abstractions.Path;
+using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.Utilities;
@@ -18,6 +19,7 @@ namespace EasyRpc.AspNetCore.Configuration
         private readonly ICurrentApiInformation _currentApiInformation;
         protected IEnumerable<Type> Types;
         protected bool OnlyAttributedFlag = false;
+        protected Func<Type, ServiceActivationMethod> _activateMethod = _ => ServiceActivationMethod.ActivationUtility;
         protected ImmutableLinkedList<Func<Type, IEnumerable<string>>> AsFuncs =
             ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty;
         protected ImmutableLinkedList<Func<Type, IEnumerable<IEndPointMethodAuthorization>>> AuthorizeFuncs =
@@ -37,6 +39,14 @@ namespace EasyRpc.AspNetCore.Configuration
 
             MethodFilterGroup = new GenericFilterGroup<MethodInfo>(FilterObjectMethods);
             WhereFilters = new GenericFilterGroup<Type>(FilterOutTypes);
+        }
+
+        /// <inheritdoc />
+        public ITypeSetExposureConfiguration Activate(Func<Type, ServiceActivationMethod> activationMethod)
+        {
+            _activateMethod = activationMethod;
+
+            return this;
         }
 
         /// <inheritdoc />
@@ -138,6 +148,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     continue;
                 }
 
+                var activationMethod = _activateMethod(type);
+
                 var authorizationList = AuthorizeFuncs.SelectMany(func => func(type)).ToList();
 
                 if (AsFuncs != ImmutableLinkedList<Func<Type, IEnumerable<string>>>.Empty)
@@ -146,14 +158,16 @@ namespace EasyRpc.AspNetCore.Configuration
                     {
                         foreach (var nameString in asFunc(type))
                         {
-                            service.ExposeType(_currentApiInformation, type, null, nameString, authorizationList,
+                            service.ExposeType(_currentApiInformation, type, activationMethod,
+                                null, nameString, authorizationList,
                                 MethodFilterGroup, null);
                         }
                     }
                 }
                 else
                 {
-                    service.ExposeType(_currentApiInformation, type, null, "", authorizationList,
+                    service.ExposeType(_currentApiInformation, type, activationMethod,
+                        null, "", authorizationList,
                         MethodFilterGroup, null);
 
                 }

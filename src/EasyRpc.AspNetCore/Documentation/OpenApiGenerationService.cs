@@ -352,9 +352,9 @@ namespace EasyRpc.AspNetCore.Documentation
             var responses = new OpenApiResponses();
             var hasContent = false;
 
-            if (endPointMethodHandler.Configuration.ReturnType != typeof(void) &&
-                endPointMethodHandler.Configuration.ReturnType != typeof(Task) &&
-                endPointMethodHandler.Configuration.ReturnType != typeof(ValueTask))
+            if (endPointMethodHandler.Configuration.DocumentationReturnType != typeof(void) &&
+                endPointMethodHandler.Configuration.DocumentationReturnType != typeof(Task) &&
+                endPointMethodHandler.Configuration.DocumentationReturnType != typeof(ValueTask))
             {
                 hasContent = true;
 
@@ -430,7 +430,7 @@ namespace EasyRpc.AspNetCore.Documentation
             var response = new OpenApiResponse { Content = contentDictionary, Description = "Success" };
             OpenApiSchema responseSchema = null;
 
-            var returnType = endPointMethodHandler.Configuration.ReturnType;
+            var returnType = endPointMethodHandler.Configuration.DocumentationReturnType;
 
             if (returnType.IsConstructedGenericType &&
                 (returnType.GetGenericTypeDefinition() == typeof(Task<>) ||

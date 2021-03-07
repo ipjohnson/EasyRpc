@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.Utilities;
@@ -80,7 +81,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 authorizations = _authorizations.ToList();
             }
 
-            service.ExposeType(_currentApiInformation, _exposeType, _activationFunc, _name, authorizations, _methodFilterGroup, _obsoleteMessage);
+            service.ExposeType(_currentApiInformation, _exposeType,ServiceActivationMethod.Default, _activationFunc, _name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
 
         private bool FilterObjectMethods(MethodInfo method)
@@ -174,7 +175,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             var name = _name;
 
-            service.ExposeType(_currentApiInformation, typeof(T), _activationFunc, name, authorizations, _methodFilterGroup, _obsoleteMessage);
+            service.ExposeType(_currentApiInformation, typeof(T), ServiceActivationMethod.Default, _activationFunc, name, authorizations, _methodFilterGroup, _obsoleteMessage);
         }
 
         private bool FilterObjectMethods(MethodInfo method)

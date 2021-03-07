@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.EndPoints;
@@ -15,6 +16,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
         void ExposeType(ICurrentApiInformation currentApi, 
             Type type,
+            ServiceActivationMethod serviceActivationMethod,
             Func<RequestExecutionContext,object> activationFunc, 
             string name,
             List<IEndPointMethodAuthorization> authorizations, 

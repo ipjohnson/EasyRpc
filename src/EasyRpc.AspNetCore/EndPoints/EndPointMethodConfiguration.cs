@@ -82,6 +82,8 @@ namespace EasyRpc.AspNetCore.EndPoints
     /// <inheritdoc />
     public class EndPointMethodConfiguration : IEndPointMethodConfigurationReadOnly
     {
+        private Type _documentationType;
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -136,6 +138,13 @@ namespace EasyRpc.AspNetCore.EndPoints
 
         /// <inheritdoc />
         public Type ReturnType { get; }
+
+        /// <inheritdoc />
+        public Type DocumentationReturnType
+        {
+            get => _documentationType ?? ReturnType;
+            set => _documentationType = value;
+        }
 
         /// <inheritdoc />
         public int SuccessStatusCode { get; set; } = (int)HttpStatusCode.OK;

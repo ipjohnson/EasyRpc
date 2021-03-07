@@ -55,6 +55,11 @@ namespace EasyRpc.AspNetCore
         Type ReturnType { get; }
 
         /// <summary>
+        /// Return type for documentation
+        /// </summary>
+        Type DocumentationReturnType { get; }
+
+        /// <summary>
         /// Has response body
         /// </summary>
         bool HasResponseBody { get; }

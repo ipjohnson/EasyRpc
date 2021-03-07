@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
 
 namespace EasyRpc.AspNetCore
@@ -11,6 +12,23 @@ namespace EasyRpc.AspNetCore
     /// </summary>
     public interface ITypeSetExposureConfiguration
     {
+        /// <summary>
+        /// Specify how services are activated
+        /// </summary>
+        /// <param name="activationMethod"></param>
+        /// <returns></returns>
+        ITypeSetExposureConfiguration Activate(ServiceActivationMethod activationMethod)
+        {
+            return Activate(_ => activationMethod);
+        }
+
+        /// <summary>
+        /// Specify how services are activated
+        /// </summary>
+        /// <param name="activationMethod"></param>
+        /// <returns></returns>
+        ITypeSetExposureConfiguration Activate(Func<Type,ServiceActivationMethod> activationMethod);
+
         /// <summary>
         /// Function for picking name
         /// </summary>

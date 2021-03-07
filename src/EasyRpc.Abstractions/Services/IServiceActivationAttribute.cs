@@ -10,6 +10,11 @@ namespace EasyRpc.Abstractions.Services
     public enum ServiceActivationMethod
     {
         /// <summary>
+        /// Default activation
+        /// </summary>
+        Default = 0,
+
+        /// <summary>
         /// ActivatorUtilities.GetServiceOrCreateInstance will be used to activate services
         /// </summary>
         ActivationUtility,

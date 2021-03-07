@@ -102,7 +102,7 @@ namespace EasyRpc.AspNetCore.Documentation
 
         private async Task HandleDocumentationRequest(HttpContext httpContext, RequestDelegate next)
         {
-            if (string.Equals(httpContext.Request.Path, _jsonDataPath, StringComparison.CurrentCultureIgnoreCase))
+            if (string.Equals(httpContext.Request.Path.Value, _jsonDataPath, StringComparison.CurrentCultureIgnoreCase))
             {
                 await _openApiGenerationService.Execute(httpContext);
             }

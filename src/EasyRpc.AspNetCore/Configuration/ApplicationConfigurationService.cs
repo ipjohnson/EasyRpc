@@ -68,8 +68,12 @@ namespace EasyRpc.AspNetCore.Configuration
             _configurationObjects.Add(configurationObject);
         }
 
-        public void ExposeType(ICurrentApiInformation currentApi, Type type,
-            Func<RequestExecutionContext, object> activationFunc, string name, List<IEndPointMethodAuthorization> authorizations, Func<MethodInfo, bool> methodFilter,
+        public void ExposeType(ICurrentApiInformation currentApi, 
+            Type type,
+            ServiceActivationMethod serviceActivationMethod,
+            Func<RequestExecutionContext, object> activationFunc, 
+            string name,
+            List<IEndPointMethodAuthorization> authorizations, Func<MethodInfo, bool> methodFilter,
             string obsoleteMessage)
         {
             methodFilter ??= DefaultFilterMethod;
@@ -77,7 +81,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
             foreach (var methodInfo in type.GetMethods().Where(methodFilter))
             {
-                ExposeMethod(currentApi, type, activationFunc, classAttributes, name, authorizations, obsoleteMessage, methodInfo);
+                ExposeMethod(currentApi, type,serviceActivationMethod, activationFunc, classAttributes, name, authorizations, obsoleteMessage, methodInfo);
             }
         }
 
@@ -96,6 +100,7 @@ namespace EasyRpc.AspNetCore.Configuration
         }
 
         protected virtual void ExposeMethod(ICurrentApiInformation currentApi, Type type,
+            ServiceActivationMethod serviceActivationMethod,
             Func<RequestExecutionContext, object> activationFunc,
             List<Attribute> classAttributes, string name, List<IEndPointMethodAuthorization> authorizations,
             string obsoleteMessage, MethodInfo methodInfo)
@@ -114,7 +119,8 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 foreach (var pathAttribute in pathAttributes)
                 {
-                    foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, activationFunc, classAttributes, name,
+                    foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, 
+                        serviceActivationMethod, activationFunc, classAttributes, name,
                         authorizations, obsoleteMessage, methodInfo, methodAttributes, pathAttribute as IPathAttribute))
                     {
                         var endPointMethodHandler =
@@ -126,7 +132,7 @@ namespace EasyRpc.AspNetCore.Configuration
             }
             else
             {
-                foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, activationFunc, classAttributes, name,
+                foreach (var configuration in CreateEndPointMethodConfiguration(currentApi, type, serviceActivationMethod, activationFunc, classAttributes, name,
                     authorizations, obsoleteMessage, methodInfo, methodAttributes, null))
                 {
                     var endPointMethodHandler =
@@ -154,8 +160,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 // set it to object and it will get wrapped later
                 returnType = typeof(object);
             }
-
-
+            
             if (configuration.Authorizations == null ||
                 configuration.Authorizations.Count == 0)
             {
@@ -175,7 +180,9 @@ namespace EasyRpc.AspNetCore.Configuration
 
         private IEnumerable<EndPointMethodConfiguration> CreateEndPointMethodConfiguration(
             ICurrentApiInformation currentApi,
-            Type type, Func<RequestExecutionContext, object> activationFunc,
+            Type type,
+            ServiceActivationMethod serviceActivationMethod,
+            Func<RequestExecutionContext, object> activationFunc,
             List<Attribute> classAttributes,
             string name,
             List<IEndPointMethodAuthorization> authorizations,
@@ -266,6 +273,10 @@ namespace EasyRpc.AspNetCore.Configuration
                 {
                     configuration.SupportsCompression = _compressionSelectorService.ShouldCompressResult(configuration);
                 }
+
+                var returnTypeAttribute = (ReturnsTypeAttribute)methodAttributes.FirstOrDefault(a => a is ReturnsTypeAttribute);
+                
+                configuration.DocumentationReturnType = returnTypeAttribute?.ReturnType;
 
                 yield return configuration;
             }
