@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace EasyRpc.Abstractions.Binding
+    <title>Delegate BindAction
    | EasyRpc documentation website </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace EasyRpc.Abstractions.Binding
+    <meta name="title" content="Delegate BindAction
    | EasyRpc documentation website ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -78,29 +78,51 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="EasyRpc.Abstractions.Binding">
+            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.BindAction">
   
-  <h1 id="EasyRpc_Abstractions_Binding" data-uid="EasyRpc.Abstractions.Binding" class="text-break">Namespace EasyRpc.Abstractions.Binding
+  
+  <h1 id="EasyRpc_AspNetCore_BindAction" data-uid="EasyRpc.AspNetCore.BindAction" class="text-break">Delegate BindAction
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="EasyRpc.Abstractions.Binding.BindFromHeaderAttribute.html">BindFromHeaderAttribute</a></h4>
-      <section><p>Bind from header</p>
-</section>
-      <h4><a class="xref" href="EasyRpc.Abstractions.Binding.BindFromQueryAttribute.html">BindFromQueryAttribute</a></h4>
-      <section></section>
-      <h4><a class="xref" href="EasyRpc.Abstractions.Binding.BindFromServicesAttribute.html">BindFromServicesAttribute</a></h4>
-      <section><p>Bind from services</p>
-</section>
-      <h4><a class="xref" href="EasyRpc.Abstractions.Binding.BindNewDataAttribute.html">BindNewDataAttribute</a></h4>
-      <section><p>Instance will be created using new and is not coming from the request</p>
-</section>
-      <h4><a class="xref" href="EasyRpc.Abstractions.Binding.BindRouteAttribute.html">BindRouteAttribute</a></h4>
-      <section><p>Bind from the route</p>
-</section>
+  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.html">EasyRpc.AspNetCore</a></h6>
+  <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
+  <h5 id="EasyRpc_AspNetCore_BindAction_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public delegate void BindAction(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameterInfo, IRequestParameters parameters);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.RequestExecutionContext.html">RequestExecutionContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.EndPoints.EndPointMethodConfiguration.html">EndPointMethodConfiguration</a></td>
+        <td><span class="parametername">configuration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IRpcParameterInfo.html">IRpcParameterInfo</a></td>
+        <td><span class="parametername">parameterInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.IRequestParameters.html">IRequestParameters</a></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -108,6 +130,12 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_BindAction.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.BindAction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/IRequestParameters.cs/#L184" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

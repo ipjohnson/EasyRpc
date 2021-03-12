@@ -62,6 +62,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.Abstractions.Binding.BindNewDataAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.Abstractions.Binding.BindNewDataAttribute.html",
+          "hash": "g3xsIs3jDq9j1myYYMOqeg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.Abstractions.Binding.BindRouteAttribute.yml",
       "output": {
         ".html": {
@@ -78,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.Abstractions.Binding.html",
-          "hash": "uU1bzMBY8NMYYNO+B6JajQ=="
+          "hash": "TTFpwmb/Qnivqg7jRDlqqg=="
         }
       },
       "is_incremental": false,
@@ -518,6 +530,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.BindAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.BindAction.html",
+          "hash": "dzZYQOrRErqXb7UuShgExw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.CodeGeneration.DeserializationTypeCreator.InternalParameterInfo.yml",
       "output": {
         ".html": {
@@ -738,7 +762,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Configuration.ApplicationConfigurationService.html",
-          "hash": "GSUgqoNPbAJEgP5THspJFw=="
+          "hash": "+4wlpk96f+dqRX1oHE34Tg=="
         }
       },
       "is_incremental": false,
@@ -1650,7 +1674,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPointBindingType.html",
-          "hash": "ANuKkQ65ccV/8m9BaMllQQ=="
+          "hash": "K+i2S0Yai4uD17VBho4r+w=="
         }
       },
       "is_incremental": false,
@@ -1662,7 +1686,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.EndPointMethodParameterSource.html",
-          "hash": "qFGZOnx25ZHDNpdnsHxwjA=="
+          "hash": "SbQmB7WDsIirgNEEL+duBw=="
         }
       },
       "is_incremental": false,
@@ -2394,7 +2418,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.IRequestParameters.html",
-          "hash": "UB6FbjjG2BraP8MnXus3qQ=="
+          "hash": "B5uXSrOHkIlQ4bynHLfHDw=="
         }
       },
       "is_incremental": false,
@@ -2466,7 +2490,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.IRpcParameterInfo.html",
-          "hash": "iM6VVFCGP3eIyr8Yscbr7A=="
+          "hash": "TdGPNnOXyBT5m9HzSRYPeQ=="
         }
       },
       "is_incremental": false,
@@ -2610,7 +2634,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BaseParameterBinderDelegateBuilder.html",
-          "hash": "U7f6z4XvdsmRcprbindfBw=="
+          "hash": "55LyxyZj0xSrRhGTUkTNLQ=="
         }
       },
       "is_incremental": false,
@@ -2622,7 +2646,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BodyParameterBinderDelegateBuilder.html",
-          "hash": "i0BHRJDxpopeOO2MvlNUEg=="
+          "hash": "/OvOcjuuWVSsEaGjsq4+mA=="
         }
       },
       "is_incremental": false,
@@ -2634,7 +2658,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.BodySingleParameterBinderDelegateBuilder.html",
-          "hash": "5MMPQ3Ej3UAW6Q/U9c7G3Q=="
+          "hash": "QXyPDiNqP8uBiDByKn5g+Q=="
         }
       },
       "is_incremental": false,
@@ -2706,7 +2730,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.ISpecialParameterBinder.html",
-          "hash": "0OQdD8DfLFqlOOl3iouQnA=="
+          "hash": "lDD29/+8TWq/48yEpBA54Q=="
         }
       },
       "is_incremental": false,
@@ -2778,7 +2802,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.NoBodyParameterBinderDelegateBuilder.html",
-          "hash": "GrEj0hDYIy4oBub+hbQgMw=="
+          "hash": "wkq6AcaKt6qkjScudmVo7A=="
         }
       },
       "is_incremental": false,
@@ -2802,7 +2826,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.SpecialParameterBinder.html",
-          "hash": "rgaSmiPp2XHZ6wZo3URCDA=="
+          "hash": "Raf0dipTJJ8OLGSIbUcljA=="
         }
       },
       "is_incremental": false,
@@ -2826,7 +2850,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.ModelBinding.html",
-          "hash": "IzWYH0fCa910CDYSYuZQyA=="
+          "hash": "D3X9zlVL4yRVhLQPySyAuQ=="
         }
       },
       "is_incremental": false,
@@ -3138,7 +3162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.RpcParameterInfo.html",
-          "hash": "byzr7yx2TdQnPf2zOdA9mg=="
+          "hash": "tBrupWksRrOoMAJRLjxqHQ=="
         }
       },
       "is_incremental": false,
@@ -3414,7 +3438,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.html",
-          "hash": "JSiVq/YXk48wPZVhivGmSA=="
+          "hash": "v3sc7mrV2g/LEwriwt7oMw=="
         }
       },
       "is_incremental": false,
@@ -3822,7 +3846,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "dOlRoRAI8DbgQkOtEDfDJg=="
+          "hash": "uGd+X5XxuHLizcmfu0sDqg=="
         }
       },
       "is_incremental": false,
@@ -3861,7 +3885,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 316,
+          "total_file_count": 318,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
