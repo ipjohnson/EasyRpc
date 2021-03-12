@@ -13,7 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EasyRpc.AspNetCore.ModelBinding
 {
-    /// <summary>
+
+    // <summary>
     /// Abstract base class for parameter binding builders
     /// </summary>
     public abstract class BaseParameterBinderDelegateBuilder
@@ -35,6 +36,7 @@ namespace EasyRpc.AspNetCore.ModelBinding
         /// </summary>
         protected IStringValueModelBinder _stringValueModelBinder;
 
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -85,43 +87,30 @@ namespace EasyRpc.AspNetCore.ModelBinding
             {
                 var parameter = parameters[i];
 
-                switch (parameter.ParameterSource)
+                if (parameter.BindAction != null)
                 {
-                    case EndPointMethodParameterSource.PathParameter:
-                        UrlParameterBinder.BindUrlParameter(context, configuration, parameter, parameterContext,
-                            ref currentIndex, pathSpan);
-                        break;
-                    case EndPointMethodParameterSource.HeaderParameter:
-                        BindHeaderParameter(context, configuration, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.QueryStringParameter:
-                        BindQueryStringParameter(context, configuration, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.RequestServices:
-                        SpecialParameterBinder.BindRequestServicesParameter(context, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.HttpContext:
-                        SpecialParameterBinder.BindHttpContextParameter(context, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.RequestExecutionContext:
-                        SpecialParameterBinder.BindRequestExecutionContextParameter(context, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.HttpResponse:
-                        SpecialParameterBinder.BindHttpResponseParameter(context, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.HttpRequest:
-                        SpecialParameterBinder.BindHttpRequestParameter(context, parameter, parameterContext);
-                        break;
-                    case EndPointMethodParameterSource.HttpCancellationToken:
-                        SpecialParameterBinder.BindHttpCancellationTokenParameter(context, parameter, parameterContext);
-                        break;
+                    parameter.BindAction(context, configuration, parameter, parameterContext);
+                }
+                else if(parameter.ParameterSource == EndPointMethodParameterSource.PathParameter)
+                {
+                    UrlParameterBinder.BindUrlParameter(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
                 }
             }
 
             return Task.CompletedTask;
         }
 
-        private void BindHeaderParameter(RequestExecutionContext context, EndPointMethodConfiguration configuration, RpcParameterInfo parameter, IRequestParameters parameters)
+        protected virtual void BindNewData<TValue>(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext) where TValue : new()
+        {
+            parameterContext[parameter.Position] = new TValue();
+        }
+
+        #region Bind header
+
+        private BindAction _headerBindAction;
+        private BindAction HeaderBindAction => _headerBindAction ??= BindHeaderParameter;
+        
+        private void BindHeaderParameter(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameters)
         {
             if (context.HttpContext.Request.Headers.TryGetValue(parameter.BindName, out var value))
             {
@@ -134,6 +123,8 @@ namespace EasyRpc.AspNetCore.ModelBinding
                 parameters[parameter.Position] = parameter.DefaultValue;
             }
         }
+
+        #endregion
 
         /// <summary>
         /// 
@@ -159,6 +150,8 @@ namespace EasyRpc.AspNetCore.ModelBinding
 
         protected virtual IReadOnlyList<RpcParameterInfo> GenerateOrderedNonBodyParameterList(IEndPointMethodConfigurationReadOnly configuration)
         {
+            AssignBindAction(configuration.Parameters);
+
             if (configuration.Parameters.All(parameter => parameter.ParameterSource != EndPointMethodParameterSource.PathParameter))
             {
                 return configuration.Parameters;
@@ -195,6 +188,82 @@ namespace EasyRpc.AspNetCore.ModelBinding
             }
 
             return newList.Equals(configuration.Parameters) ? configuration.Parameters : newList;
+        }
+
+
+        private BindAction _httpContextAction;
+        private BindAction HttpContextAction => _httpContextAction ??= SpecialParameterBinder.BindHttpContextParameter;
+
+        private BindAction _httpRequestAction;
+        private BindAction HttpRequestAction => _httpRequestAction ??= SpecialParameterBinder.BindHttpRequestParameter;
+
+        private BindAction _httpCancellationAction;
+        private BindAction HttpCancellationAction =>
+            _httpCancellationAction ??= SpecialParameterBinder.BindHttpCancellationTokenParameter;
+
+        private BindAction _httpResponseAction;
+        private BindAction HttpResponseAction =>
+            _httpResponseAction ??= SpecialParameterBinder.BindHttpResponseParameter;
+
+        private BindAction _queryStringAction;
+        private BindAction QueryStringAction => _queryStringAction ??= BindQueryStringParameter;
+
+        private BindAction _requestExecutionContextAction;
+        private BindAction RequestExecutionContextAction => _requestExecutionContextAction ??=
+            SpecialParameterBinder.BindRequestExecutionContextParameter;
+
+        private BindAction _requestServiceAction;
+        private BindAction RequestServiceAction =>
+            _requestServiceAction ??= SpecialParameterBinder.BindRequestServicesParameter;
+
+        private MethodInfo _newDataMethodInfo;
+        private MethodInfo NewDataMethodInfo => _newDataMethodInfo ??= GetType().GetMethod("BindNewData", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        private void AssignBindAction(IReadOnlyList<RpcParameterInfo> configurationParameters)
+        {
+            foreach (var parameter in configurationParameters)
+            {
+                switch (parameter.ParameterSource)
+                {
+                    case EndPointMethodParameterSource.HeaderParameter:
+                        parameter.BindAction = HeaderBindAction;
+                        break;
+
+                    case EndPointMethodParameterSource.HttpContext:
+                        parameter.BindAction = HttpContextAction;
+                        break;
+
+                    case EndPointMethodParameterSource.HttpRequest:
+                        parameter.BindAction = HttpRequestAction;
+                        break;
+
+                    case EndPointMethodParameterSource.HttpCancellationToken:
+                        parameter.BindAction = HttpCancellationAction;
+                        break;
+
+                    case EndPointMethodParameterSource.HttpResponse:
+                        parameter.BindAction = HttpResponseAction;
+                        break;
+
+                    case EndPointMethodParameterSource.QueryStringParameter:
+                        parameter.BindAction = QueryStringAction;
+                        break;
+
+                    case EndPointMethodParameterSource.RequestExecutionContext:
+                        parameter.BindAction = RequestExecutionContextAction;
+                        break;
+
+                    case EndPointMethodParameterSource.RequestServices:
+                        parameter.BindAction = RequestServiceAction;
+                        break;
+
+                    case EndPointMethodParameterSource.NewData:
+                        var genericMethod = NewDataMethodInfo.MakeGenericMethod(parameter.ParamType);
+
+                        parameter.BindAction = (BindAction)genericMethod.CreateDelegate(typeof(BindAction), this);
+                        break;
+                }
+            }
         }
     }
 }

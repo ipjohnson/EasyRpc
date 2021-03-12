@@ -102,7 +102,7 @@ namespace EasyRpc.AspNetCore.Documentation
                 if (brCompress)
                 {
                     using var memoryStream = new MemoryStream();
-                    using var brStream = new BrotliStream(memoryStream, CompressionLevel.Optimal);
+                    using var brStream = new BrotliStream(memoryStream, CompressionLevel.Fastest);
                     using var streamWriter = new StreamWriter(brStream);
 
                     streamWriter.Write(outputString);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using EasyRpc.AspNetCore.EndPoints;
 
 namespace EasyRpc.AspNetCore
 {
@@ -51,6 +52,11 @@ namespace EasyRpc.AspNetCore
         /// Parameter should be resolved from the request service scope
         /// </summary>
         RequestServices,
+
+        /// <summary>
+        /// Instance is created on the fly before invoke
+        /// </summary>
+        NewData,
 
         /// <summary>
         /// Parameter should be RequestExecutionContext
@@ -168,7 +174,15 @@ namespace EasyRpc.AspNetCore
 
         /// <inheritdoc />
         public EndPointMethodParameterSource ParameterSource { get; set; }
+
+        /// <summary>
+        /// Binding action if it's 
+        /// </summary>
+        public BindAction BindAction { get; set; }
     }
+
+    public delegate void BindAction(RequestExecutionContext context, EndPointMethodConfiguration configuration,
+        IRpcParameterInfo parameterInfo, IRequestParameters parameters);
 
     /// <summary>
     /// parameters for request 

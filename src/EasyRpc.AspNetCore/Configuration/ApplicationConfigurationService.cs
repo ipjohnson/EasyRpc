@@ -623,7 +623,7 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 lastPosition = parameterInfo.Position;
 
-                SetParameterSource(routeInformation, parameterInfo.ParameterType, rpcParam);
+                SetParameterSource(routeInformation, parameterInfo.ParameterType, rpcParam, parameterInfo);
 
                 if (rpcParam.ParameterSource == EndPointMethodParameterSource.PostParameter)
                 {
@@ -730,6 +730,14 @@ namespace EasyRpc.AspNetCore.Configuration
                     {
                         BindName = queryAttribute.Name,
                         ParameterSource = EndPointMethodParameterSource.QueryStringParameter
+                    };
+                }
+
+                if (attribute is BindNewDataAttribute)
+                {
+                    return new RpcParameterInfo
+                    {
+                        ParameterSource = EndPointMethodParameterSource.NewData
                     };
                 }
             }

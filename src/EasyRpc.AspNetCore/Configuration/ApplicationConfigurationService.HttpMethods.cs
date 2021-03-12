@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using EasyRpc.Abstractions.Binding;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.Data;
 using EasyRpc.AspNetCore.EndPoints;
@@ -120,7 +122,7 @@ namespace EasyRpc.AspNetCore.Configuration
                 yield return configuration;
             }
         }
-        
+
 
         /// <summary>
         /// Set parameter source based on type
@@ -128,9 +130,14 @@ namespace EasyRpc.AspNetCore.Configuration
         /// <param name="routeInformation"></param>
         /// <param name="parameterType"></param>
         /// <param name="rpcParameter"></param>
-        protected virtual void SetParameterSource(IRpcRouteInformation routeInformation, Type parameterType, RpcParameterInfo rpcParameter)
+        /// <param name="parameterInfo"></param>
+        protected virtual void SetParameterSource(IRpcRouteInformation routeInformation, Type parameterType,
+            RpcParameterInfo rpcParameter, ParameterInfo parameterInfo)
         {
-            if (_exposeConfigurations.ResolveFromContainer(parameterType))
+            var attributes = parameterInfo.GetCustomAttributes<Attribute>().ToList();
+
+            if (_exposeConfigurations.ResolveFromContainer(parameterType)
+                || attributes.Any(a => a is BindFromServicesAttribute))
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.RequestServices;
             }
@@ -153,6 +160,10 @@ namespace EasyRpc.AspNetCore.Configuration
             else if (parameterType == typeof(CancellationToken))
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.HttpCancellationToken;
+            }
+            else if (attributes.Any(a => a is BindNewDataAttribute))
+            {
+                rpcParameter.ParameterSource = EndPointMethodParameterSource.NewData;
             }
             else
             {
