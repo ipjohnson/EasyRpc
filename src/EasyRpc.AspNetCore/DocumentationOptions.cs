@@ -139,5 +139,19 @@ namespace EasyRpc.AspNetCore
         /// Auto tag methods if there is no tag.
         /// </summary>
         public bool AutoTag { get; set; } = true;
+
+        /// <summary>
+        /// Add documentation filter action
+        /// </summary>
+        /// <param name="filterAction"></param>
+        public void AddDocumentFilter(Action<DocumentFilterContext> filterAction) =>
+            DocumentFilters.Add(new DocumentFilterFunc(filterAction));
+
+        /// <summary>
+        /// Add operation filter action
+        /// </summary>
+        /// <param name="filterAction"></param>
+        public void AddOperationFilter(Action<OperationFilterContext> filterAction) =>
+            OperationFilters.Add(new OperationFilterFunc(filterAction));
     }
 }
