@@ -3661,6 +3661,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.MethodNameGenerator
   nameWithType: ExposeConfigurations.MethodNameGenerator
+- uid: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc
+  name: NewDataTypeFunc
+  href: api/EasyRpc.AspNetCore.Configuration.ExposeConfigurations.html#EasyRpc_AspNetCore_Configuration_ExposeConfigurations_NewDataTypeFunc
+  commentId: P:EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc
+  fullName: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc
+  nameWithType: ExposeConfigurations.NewDataTypeFunc
+- uid: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc*
+  name: NewDataTypeFunc
+  href: api/EasyRpc.AspNetCore.Configuration.ExposeConfigurations.html#EasyRpc_AspNetCore_Configuration_ExposeConfigurations_NewDataTypeFunc_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.NewDataTypeFunc
+  nameWithType: ExposeConfigurations.NewDataTypeFunc
 - uid: EasyRpc.AspNetCore.Configuration.ExposeConfigurations.ResolveFromContainer
   name: ResolveFromContainer
   href: api/EasyRpc.AspNetCore.Configuration.ExposeConfigurations.html#EasyRpc_AspNetCore_Configuration_ExposeConfigurations_ResolveFromContainer
