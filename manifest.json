@@ -1322,6 +1322,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.DocumentFilterFunc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.DocumentFilterFunc.html",
+          "hash": "O+M807EYI9kv9wcJF0FkrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.DocumentationEndPointInspector.yml",
       "output": {
         ".html": {
@@ -1538,6 +1550,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.OperationFilterFunc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EasyRpc.AspNetCore.Documentation.OperationFilterFunc.html",
+          "hash": "SvbWR2SGv0BNrNMMRTE9bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/EasyRpc.AspNetCore.Documentation.RedirectEndPointHandler.yml",
       "output": {
         ".html": {
@@ -1650,7 +1674,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Documentation.html",
-          "hash": "1Teyeh0cOkxDHO4x+y8mxg=="
+          "hash": "1UqqF1hvlBVFlkI/TS5FNw=="
         }
       },
       "is_incremental": false,
@@ -1662,7 +1686,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.DocumentationOptions.html",
-          "hash": "6O5C4L+nzf+4Uevzu0zttQ=="
+          "hash": "jcpozafY6v4OMEoKBnFDKQ=="
         }
       },
       "is_incremental": false,
@@ -3846,7 +3870,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "uGd+X5XxuHLizcmfu0sDqg=="
+          "hash": "r1kmA0Bea8YxYpdahXLRmQ=="
         }
       },
       "is_incremental": false,
@@ -3885,7 +3909,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 318,
+          "total_file_count": 320,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
