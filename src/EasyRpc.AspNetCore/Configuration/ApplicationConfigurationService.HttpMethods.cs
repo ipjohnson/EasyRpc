@@ -161,7 +161,8 @@ namespace EasyRpc.AspNetCore.Configuration
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.HttpCancellationToken;
             }
-            else if (attributes.Any(a => a is BindNewDataAttribute))
+            else if (attributes.Any(a => a is BindNewDataAttribute) ||
+                     _exposeConfigurations.NewDataTypeFunc(parameterType))
             {
                 rpcParameter.ParameterSource = EndPointMethodParameterSource.NewData;
             }

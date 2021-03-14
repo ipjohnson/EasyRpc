@@ -864,6 +864,7 @@ namespace EasyRpc.AspNetCore.Configuration
             var parameterType = parameterInfo.ParameterType;
 
             if (_exposeConfigurations.ResolveFromContainer(parameterType) ||
+                _exposeConfigurations.NewDataTypeFunc(parameterType) ||
                 parameterType == typeof(RequestExecutionContext) ||
                 parameterType == typeof(HttpContext) ||
                 parameterType == typeof(HttpResponse) ||
