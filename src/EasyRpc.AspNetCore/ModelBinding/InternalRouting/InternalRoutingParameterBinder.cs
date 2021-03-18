@@ -39,6 +39,11 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
                 parameterValue = ParseGuid(context, configuration, parameter, parameterContext, ref currentIndex,
                     pathSpan);
             }
+            else if (parameter.ParamType == typeof(long))
+            {
+                parameterValue = ParseLong(context, configuration, parameter, parameterContext, ref currentIndex,
+                    pathSpan);
+            }
             else
             {
                 HandleUnknownParameterType(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
@@ -49,6 +54,44 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             {
                 parameterContext[parameter.Position] = parameterValue;
             }
+        }
+
+        private object ParseLong(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)
+        {
+            long currentLongValue = 0;
+            var foundValue = false;
+
+            while (pathSpan.Length > currentIndex)
+            {
+                var currentChar = pathSpan[currentIndex];
+                currentIndex++;
+
+                if (char.IsDigit(currentChar))
+                {
+                    currentLongValue = (currentLongValue * 10) + (currentChar - '0');
+
+                    foundValue = true;
+                }
+                else if (currentChar == '/')
+                {
+                    return currentLongValue;
+                }
+                else if (parameter.HasDefaultValue)
+                {
+                    return parameter.DefaultValue;
+                }
+                else
+                {
+                    return currentLongValue;
+                }
+            }
+
+            if (foundValue)
+            {
+                return currentLongValue;
+            }
+
+            return HandleParameterNotFound(context, configuration, parameter, parameterContext, currentIndex, pathSpan);
         }
 
         private object ParseGuid(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)
@@ -187,8 +230,9 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext,
             ref int currentIndex, in ReadOnlySpan<char> pathSpan)
         {
-            throw new NotImplementedException("Yet");
+            throw new Exception($"Can't map parameter {pathSpan.ToString()} to type {parameter.ParamType.FullName}");
         }
+
         protected virtual object HandleParameterNotFound(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, in int currentIndex, in ReadOnlySpan<char> pathSpan)
         {
             if (parameter.HasDefaultValue)
