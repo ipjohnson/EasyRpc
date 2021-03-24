@@ -55,6 +55,10 @@ namespace EasyRpc.AspNetCore.Serializers
 
                 serializer.Serialize(xmlWriter, context.Result);
 
+                xmlWriter.Flush();
+
+                textWriter.Flush();
+
                 await fileWriteStream.DrainBufferAsync(context.HttpContext.Response.Body, context.HttpContext.RequestAborted);
             }
             finally
@@ -78,28 +82,12 @@ namespace EasyRpc.AspNetCore.Serializers
 
                 using var textReader = new StreamReader(fileReader);
 
-                var xmlReader = new XmlTextReader(textReader);
+                using var xmlReader = new XmlTextReader(textReader);
 
                 var serializer = GetSerializer(typeof(T));
 
                 return (T) serializer.Deserialize(xmlReader);
             }
-            catch (Exception e)
-            {
-                e.ToString();
-                throw;
-            }
-            //catch (InvalidOperationException exception) when (exception.InnerException != null &&
-            //                                                  exception.InnerException.InnerException == null &&
-            //                                                  string.Equals("Microsoft.GeneratedCode", exception.InnerException.Source, StringComparison.InvariantCulture))
-            //{
-            //    throw new Exception("Xml serializer exception", exception.InnerException);
-            //}
-            //catch (InvalidOperationException exception) when (exception.InnerException is FormatException ||
-            //                                                  exception.InnerException is XmlException)
-            //{
-            //    throw new Exception("Xml serializer exception", exception.InnerException);
-            //}
             finally
             {
                 await fileReader.DisposeAsync();

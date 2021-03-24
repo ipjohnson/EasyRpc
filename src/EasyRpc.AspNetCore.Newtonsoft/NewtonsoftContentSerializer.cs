@@ -12,10 +12,10 @@ using Json = Newtonsoft.Json;
 
 namespace EasyRpc.AspNetCore.Newtonsoft
 {
-    public class NewtonsoftContentSerializer : BaseSerializer
+    public class NewtonsoftContentSerializer : BaseSerializer, IApiConfigurationCompleteAware
     {
         protected readonly IConfigurationManager ConfigurationManager;
-        protected readonly Json.JsonSerializer JsonSerializer;
+        protected Json.JsonSerializer JsonSerializer;
         private const string _contentType = "application/json";
 
         /// <summary>
@@ -27,7 +27,6 @@ namespace EasyRpc.AspNetCore.Newtonsoft
         {
             ConfigurationManager = configurationManager;
             
-
             ConfigurationManager.CreationMethod(CreateJsonSerializer);
         }
 
@@ -68,7 +67,7 @@ namespace EasyRpc.AspNetCore.Newtonsoft
             {
                 await outputStream.FlushAsync(context.HttpContext.RequestAborted);
 
-                outputStream.Dispose();
+                await outputStream.DisposeAsync();
             }
         }
 
@@ -152,5 +151,10 @@ namespace EasyRpc.AspNetCore.Newtonsoft
             return new Json.JsonSerializer();
         }
 
+        /// <inheritdoc />
+        public void ApiConfigurationComplete(IServiceProvider serviceScope)
+        {
+            JsonSerializer = ConfigurationManager.GetConfiguration<Json.JsonSerializer>();
+        }
     }
 }

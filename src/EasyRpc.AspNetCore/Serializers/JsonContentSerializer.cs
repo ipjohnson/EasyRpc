@@ -66,7 +66,7 @@ namespace EasyRpc.AspNetCore.Serializers
             {
                 await outputStream.FlushAsync(context.HttpContext.RequestAborted);
 
-                outputStream.Dispose();
+                await outputStream.DisposeAsync();
             }
         }
 
