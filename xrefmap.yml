@@ -14215,6 +14215,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.NewtonsoftContentSerializer
   nameWithType: NewtonsoftContentSerializer.NewtonsoftContentSerializer
+- uid: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete(System.IServiceProvider)
+  name: ApiConfigurationComplete(IServiceProvider)
+  href: api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.html#EasyRpc_AspNetCore_Newtonsoft_NewtonsoftContentSerializer_ApiConfigurationComplete_System_IServiceProvider_
+  commentId: M:EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete(System.IServiceProvider)
+  fullName: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete(System.IServiceProvider)
+  nameWithType: NewtonsoftContentSerializer.ApiConfigurationComplete(IServiceProvider)
+- uid: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete*
+  name: ApiConfigurationComplete
+  href: api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.html#EasyRpc_AspNetCore_Newtonsoft_NewtonsoftContentSerializer_ApiConfigurationComplete_
+  commentId: Overload:EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.ApiConfigurationComplete
+  nameWithType: NewtonsoftContentSerializer.ApiConfigurationComplete
 - uid: EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.CanDeserialize(EasyRpc.AspNetCore.RequestExecutionContext,System.String)
   name: CanDeserialize(RequestExecutionContext, String)
   href: api/EasyRpc.AspNetCore.Newtonsoft.NewtonsoftContentSerializer.html#EasyRpc_AspNetCore_Newtonsoft_NewtonsoftContentSerializer_CanDeserialize_EasyRpc_AspNetCore_RequestExecutionContext_System_String_
@@ -15183,6 +15196,12 @@ references:
   commentId: F:EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.Integer
   fullName: EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.Integer
   nameWithType: RpcRouteTokenParseType.Integer
+- uid: EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.Long
+  name: Long
+  href: api/EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.html#EasyRpc_AspNetCore_Routing_RpcRouteTokenParseType_Long
+  commentId: F:EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.Long
+  fullName: EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.Long
+  nameWithType: RpcRouteTokenParseType.Long
 - uid: EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.String
   name: String
   href: api/EasyRpc.AspNetCore.Routing.RpcRouteTokenParseType.html#EasyRpc_AspNetCore_Routing_RpcRouteTokenParseType_String
