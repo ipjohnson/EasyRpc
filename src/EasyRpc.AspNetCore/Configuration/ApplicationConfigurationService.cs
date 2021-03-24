@@ -568,6 +568,8 @@ namespace EasyRpc.AspNetCore.Configuration
                     return RpcRouteTokenParseType.GUID;
                 case "datetime":
                     return RpcRouteTokenParseType.DateTime;
+                case "long":
+                    return RpcRouteTokenParseType.Long;
 
                 default:
                     return RpcRouteTokenParseType.String;
@@ -763,6 +765,9 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 case RpcRouteTokenParseType.GUID:
                     return typeof(Guid);
+
+                case RpcRouteTokenParseType.Long:
+                    return typeof(long);
 
                 default:
                     return typeof(string);

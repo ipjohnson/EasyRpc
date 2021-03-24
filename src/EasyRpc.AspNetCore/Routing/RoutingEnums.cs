@@ -27,6 +27,8 @@ namespace EasyRpc.AspNetCore.Routing
     {
         Integer,
 
+        Long,
+
         Decimal,
 
         Double,
