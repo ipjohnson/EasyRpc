@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using EasyRpc.Abstractions.Services;
 using EasyRpc.AspNetCore.Authorization;
