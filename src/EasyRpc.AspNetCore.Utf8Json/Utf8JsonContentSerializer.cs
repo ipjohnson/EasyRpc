@@ -58,12 +58,12 @@ namespace EasyRpc.AspNetCore.Utf8Json
             response.ContentType = ContentType;
             response.StatusCode = context.HttpStatusCode;
             response.ContentLength = serializedBytes.Length;
-
-            var span = context.HttpContext.Response.BodyWriter.GetSpan(serializedBytes.Length);
+            
+            var span = response.BodyWriter.GetSpan(serializedBytes.Length);
 
             serializedBytes.CopyTo(span);
 
-            context.HttpContext.Response.BodyWriter.Advance(serializedBytes.Length);
+            response.BodyWriter.Advance(serializedBytes.Length);
 
             return Task.CompletedTask;
         }
