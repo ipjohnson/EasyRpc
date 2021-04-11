@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Pipelines;
 using System.Text;
 using System.Threading.Tasks;
 using EasyRpc.AspNetCore.EndPoints;
@@ -61,21 +62,35 @@ namespace EasyRpc.AspNetCore.Serializers
 
             if (requestContext.Result is byte[] bytes)
             {
-                response.ContentLength = bytes.Length;
-
-                return response.Body.WriteAsync(bytes, 0, bytes.Length, requestContext.HttpContext.RequestAborted);
+                return ReturnByteArray(response, bytes);
             }
-            
+
+            if (requestContext.Result is string resultString)
+            {
+                return ReturnByteArray(response, Encoding.UTF8.GetBytes(resultString));
+            }
+
             if (requestContext.Result is Stream stream)
             {
                 return stream.CopyToAsync(response.Body, requestContext.HttpContext.RequestAborted);
             }
 
             var returnBytes = Encoding.UTF8.GetBytes(requestContext.Result?.ToString() ?? "");
+            
+            return ReturnByteArray(response, returnBytes);
+        }
 
-            response.ContentLength = returnBytes.Length;
+        private Task ReturnByteArray(HttpResponse response, ReadOnlySpan<byte> bytes)
+        {
+            response.ContentLength = bytes.Length;
 
-            return response.Body.WriteAsync(returnBytes, 0, returnBytes.Length, requestContext.HttpContext.RequestAborted);
+            var responseSpan = response.BodyWriter.GetSpan(bytes.Length);
+
+            bytes.CopyTo(responseSpan);
+            
+            response.BodyWriter.Advance(bytes.Length);
+
+            return Task.CompletedTask;
         }
     }
 }
