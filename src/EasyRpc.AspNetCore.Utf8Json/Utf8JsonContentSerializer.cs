@@ -51,7 +51,7 @@ namespace EasyRpc.AspNetCore.Utf8Json
         /// <inheritdoc />
         public override Task SerializeToResponse(RequestExecutionContext context)
         {
-            var serializedBytes = Utf8.JsonSerializer.NonGeneric.Serialize(context.Result);
+            ReadOnlySpan<byte> serializedBytes = Utf8.JsonSerializer.NonGeneric.Serialize(context.Result);
 
             var response = context.HttpContext.Response;
 
@@ -59,7 +59,13 @@ namespace EasyRpc.AspNetCore.Utf8Json
             response.StatusCode = context.HttpStatusCode;
             response.ContentLength = serializedBytes.Length;
 
-            return response.Body.WriteAsync(serializedBytes, 0, serializedBytes.Length, context.HttpContext.RequestAborted);
+            var span = context.HttpContext.Response.BodyWriter.GetSpan(serializedBytes.Length);
+
+            serializedBytes.CopyTo(span);
+
+            context.HttpContext.Response.BodyWriter.Advance(serializedBytes.Length);
+
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc />
