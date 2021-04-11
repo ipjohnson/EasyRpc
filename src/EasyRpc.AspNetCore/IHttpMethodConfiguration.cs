@@ -116,6 +116,19 @@ namespace EasyRpc.AspNetCore
             return Handle(HttpMethods.Get, path, method);
         }
 
+        /// <summary>
+        /// Expose string as a GET method
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="stringValue"></param>
+        /// <returns></returns>
+        IExposureDelegateConfiguration Get(string path, string stringValue)
+        {
+            var stringValueBytes = Encoding.UTF8.GetBytes(stringValue);
+
+            return Handle(HttpMethods.Get, path, () => stringValueBytes).Raw("text/plain");
+        }
+
         #endregion
 
         #region POST
