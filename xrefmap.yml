@@ -11783,6 +11783,12 @@ references:
   fullName.vb: EasyRpc.AspNetCore.IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(System.String, System.Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult))
   nameWithType: IHttpMethodConfiguration.Delete<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(String, Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>)
   nameWithType.vb: IHttpMethodConfiguration.Delete(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult)(String, Func(Of TArg1, TArg2, TArg3, TArg4, TArg5, TResult))
+- uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Get(System.String,System.String)
+  name: Get(String, String)
+  href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Get_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.IHttpMethodConfiguration.Get(System.String,System.String)
+  fullName: EasyRpc.AspNetCore.IHttpMethodConfiguration.Get(System.String, System.String)
+  nameWithType: IHttpMethodConfiguration.Get(String, String)
 - uid: EasyRpc.AspNetCore.IHttpMethodConfiguration.Get*
   name: Get
   href: api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html#EasyRpc_AspNetCore_IHttpMethodConfiguration_Get_

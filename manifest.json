@@ -2430,7 +2430,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.IHttpMethodConfiguration.html",
-          "hash": "uvt9otp+cQKK9DDFp14FusR09F19BQFXNXAjORUqwKk="
+          "hash": "gM0NSpDvlWyaJeEJ51+pO7rR3EPOTe4igKp49gqeebU="
         }
       },
       "is_incremental": false,
@@ -3258,7 +3258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.IRawContentWriter.html",
-          "hash": "I5tRx3n5SbH5u0MoQbIMw92ilRaviY/vKjvtcX8NvOA="
+          "hash": "xmcc+s0Ps7w09nm3iCj2JnpfnwmZ1mTELduT/BelSYE="
         }
       },
       "is_incremental": false,
@@ -3282,7 +3282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Serializers.RawContentWriter.html",
-          "hash": "SmKMlkPGax2cPuaOL9t81TBdNUhw2AZA8hz2Flf3VWo="
+          "hash": "X+noh13L+sDmA/QgLHt9lWiiIe0YGuHWYvyimbPeHUY="
         }
       },
       "is_incremental": false,
@@ -3342,7 +3342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/EasyRpc.AspNetCore.Utf8Json.Utf8JsonContentSerializer.html",
-          "hash": "eXm0b057yV+/3isx0tOXop7SWrND241yEbc0xyK+SuU="
+          "hash": "dGtrgjIgffxiREHRrf2FD37KpG1zd5yeXUtwBhSRDHY="
         }
       },
       "is_incremental": false,
