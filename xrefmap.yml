@@ -1473,6 +1473,694 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.AppBuilderExtensions.UseRpcRouting
   nameWithType: AppBuilderExtensions.UseRpcRouting
+- uid: EasyRpc.AspNetCore.Assets
+  name: EasyRpc.AspNetCore.Assets
+  href: api/EasyRpc.AspNetCore.Assets.html
+  commentId: N:EasyRpc.AspNetCore.Assets
+  fullName: EasyRpc.AspNetCore.Assets
+  nameWithType: EasyRpc.AspNetCore.Assets
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration
+  name: AssetConfiguration
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html
+  commentId: T:EasyRpc.AspNetCore.Assets.AssetConfiguration
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration
+  nameWithType: AssetConfiguration
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.#ctor(System.String,System.String,EasyRpc.AspNetCore.Configuration.ICurrentApiInformation)
+  name: AssetConfiguration(String, String, ICurrentApiInformation)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration__ctor_System_String_System_String_EasyRpc_AspNetCore_Configuration_ICurrentApiInformation_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.#ctor(System.String,System.String,EasyRpc.AspNetCore.Configuration.ICurrentApiInformation)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.AssetConfiguration(System.String, System.String, EasyRpc.AspNetCore.Configuration.ICurrentApiInformation)
+  nameWithType: AssetConfiguration.AssetConfiguration(String, String, ICurrentApiInformation)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.#ctor*
+  name: AssetConfiguration
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.AssetConfiguration
+  nameWithType: AssetConfiguration.AssetConfiguration
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize(System.String,System.String)
+  name: Authorize(String, String)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Authorize_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize(System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize(System.String, System.String)
+  nameWithType: AssetConfiguration.Authorize(String, String)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize*
+  name: Authorize
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Authorize_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Authorize
+  nameWithType: AssetConfiguration.Authorize
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
+  name: ExecuteConfiguration(IApplicationConfigurationService)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_ExecuteConfiguration_EasyRpc_AspNetCore_Configuration_IApplicationConfigurationService_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration(EasyRpc.AspNetCore.Configuration.IApplicationConfigurationService)
+  nameWithType: AssetConfiguration.ExecuteConfiguration(IApplicationConfigurationService)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration*
+  name: ExecuteConfiguration
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_ExecuteConfiguration_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.ExecuteConfiguration
+  nameWithType: AssetConfiguration.ExecuteConfiguration
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback(System.String)
+  name: Fallback(String)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Fallback_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback(System.String)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback(System.String)
+  nameWithType: AssetConfiguration.Fallback(String)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback*
+  name: Fallback
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Fallback_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Fallback
+  nameWithType: AssetConfiguration.Fallback
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  name: HttpMaxCacheAge(TimeSpan)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpMaxCacheAge_System_TimeSpan_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  nameWithType: AssetConfiguration.HttpMaxCacheAge(TimeSpan)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge*
+  name: HttpMaxCacheAge
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpMaxCacheAge_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpMaxCacheAge
+  nameWithType: AssetConfiguration.HttpMaxCacheAge
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache
+  name: HttpNoCache()
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpNoCache
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache()
+  nameWithType: AssetConfiguration.HttpNoCache()
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache*
+  name: HttpNoCache
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpNoCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpNoCache
+  nameWithType: AssetConfiguration.HttpNoCache
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache(System.Action{Microsoft.AspNetCore.Http.HttpContext,System.String})
+  name: HttpSetCache(Action<HttpContext, String>)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpSetCache_System_Action_Microsoft_AspNetCore_Http_HttpContext_System_String__
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache(System.Action{Microsoft.AspNetCore.Http.HttpContext,System.String})
+  name.vb: HttpSetCache(Action(Of HttpContext, String))
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache(System.Action<Microsoft.AspNetCore.Http.HttpContext, System.String>)
+  fullName.vb: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache(System.Action(Of Microsoft.AspNetCore.Http.HttpContext, System.String))
+  nameWithType: AssetConfiguration.HttpSetCache(Action<HttpContext, String>)
+  nameWithType.vb: AssetConfiguration.HttpSetCache(Action(Of HttpContext, String))
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache*
+  name: HttpSetCache
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_HttpSetCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.HttpSetCache
+  nameWithType: AssetConfiguration.HttpSetCache
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache(System.Boolean)
+  name: InMemoryCache(Boolean)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_InMemoryCache_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache(System.Boolean)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache(System.Boolean)
+  nameWithType: AssetConfiguration.InMemoryCache(Boolean)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache*
+  name: InMemoryCache
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_InMemoryCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.InMemoryCache
+  nameWithType: AssetConfiguration.InMemoryCache
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize(System.Double)
+  name: MaxFileCacheSize(Double)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_MaxFileCacheSize_System_Double_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize(System.Double)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize(System.Double)
+  nameWithType: AssetConfiguration.MaxFileCacheSize(Double)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize*
+  name: MaxFileCacheSize
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_MaxFileCacheSize_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.MaxFileCacheSize
+  nameWithType: AssetConfiguration.MaxFileCacheSize
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag(System.Boolean)
+  name: SetETag(Boolean)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_SetETag_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag(System.Boolean)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag(System.Boolean)
+  nameWithType: AssetConfiguration.SetETag(Boolean)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag*
+  name: SetETag
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_SetETag_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetETag
+  nameWithType: AssetConfiguration.SetETag
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified(System.Boolean)
+  name: SetLastModified(Boolean)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_SetLastModified_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified(System.Boolean)
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified(System.Boolean)
+  nameWithType: AssetConfiguration.SetLastModified(Boolean)
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified*
+  name: SetLastModified
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_SetLastModified_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.SetLastModified
+  nameWithType: AssetConfiguration.SetLastModified
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Where(System.Func{System.String,System.Boolean})
+  name: Where(Func<String, Boolean>)
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Where_System_Func_System_String_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.Assets.AssetConfiguration.Where(System.Func{System.String,System.Boolean})
+  name.vb: Where(Func(Of String, Boolean))
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Where(System.Func<System.String, System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.Assets.AssetConfiguration.Where(System.Func(Of System.String, System.Boolean))
+  nameWithType: AssetConfiguration.Where(Func<String, Boolean>)
+  nameWithType.vb: AssetConfiguration.Where(Func(Of String, Boolean))
+- uid: EasyRpc.AspNetCore.Assets.AssetConfiguration.Where*
+  name: Where
+  href: api/EasyRpc.AspNetCore.Assets.AssetConfiguration.html#EasyRpc_AspNetCore_Assets_AssetConfiguration_Where_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.AssetConfiguration.Where
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.AssetConfiguration.Where
+  nameWithType: AssetConfiguration.Where
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider
+  name: BaseAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html
+  commentId: T:EasyRpc.AspNetCore.Assets.BaseAssetProvider
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider
+  nameWithType: BaseAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)
+  name: BaseAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider__ctor_EasyRpc_AspNetCore_Assets_IFileAssetCache_Microsoft_AspNetCore_StaticFiles_FileExtensionContentTypeProvider_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BaseAssetProvider(EasyRpc.AspNetCore.Assets.IFileAssetCache, Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)
+  nameWithType: BaseAssetProvider.BaseAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor*
+  name: BaseAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BaseAssetProvider
+  nameWithType: BaseAssetProvider.BaseAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider._baseDirectoryPath
+  name: _baseDirectoryPath
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider__baseDirectoryPath
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider._baseDirectoryPath
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider._baseDirectoryPath
+  nameWithType: BaseAssetProvider._baseDirectoryPath
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider._contentTypeProvider
+  name: _contentTypeProvider
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider__contentTypeProvider
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider._contentTypeProvider
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider._contentTypeProvider
+  nameWithType: BaseAssetProvider._contentTypeProvider
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider._fileAssetCache
+  name: _fileAssetCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider__fileAssetCache
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider._fileAssetCache
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider._fileAssetCache
+  nameWithType: BaseAssetProvider._fileAssetCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: BrotliFile(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_BrotliFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.BrotliFile(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile*
+  name: BrotliFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_BrotliFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile
+  nameWithType: BaseAssetProvider.BrotliFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BRString
+  name: BRString
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_BRString
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider.BRString
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.BRString
+  nameWithType: BaseAssetProvider.BRString
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge
+  name: CacheMaxAge
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_CacheMaxAge
+  commentId: P:EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge
+  nameWithType: BaseAssetProvider.CacheMaxAge
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge*
+  name: CacheMaxAge
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_CacheMaxAge_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge
+  nameWithType: BaseAssetProvider.CacheMaxAge
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: FetchFile(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_FetchFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.FetchFile(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile*
+  name: FetchFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_FetchFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile
+  nameWithType: BaseAssetProvider.FetchFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound(Microsoft.AspNetCore.Http.HttpContext)
+  name: FileNotFound(HttpContext)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_FileNotFound_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: BaseAssetProvider.FileNotFound(HttpContext)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound*
+  name: FileNotFound
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_FileNotFound_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound
+  nameWithType: BaseAssetProvider.FileNotFound
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile(System.String)
+  name: GZipCompressFile(String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZipCompressFile_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile(System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile(System.String)
+  nameWithType: BaseAssetProvider.GZipCompressFile(String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile*
+  name: GZipCompressFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZipCompressFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile
+  nameWithType: BaseAssetProvider.GZipCompressFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: GZippedFile(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZippedFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.GZippedFile(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile*
+  name: GZippedFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZippedFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile
+  nameWithType: BaseAssetProvider.GZippedFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GzipString
+  name: GzipString
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GzipString
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GzipString
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GzipString
+  nameWithType: BaseAssetProvider.GzipString
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZString
+  name: GZString
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZString
+  commentId: F:EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZString
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZString
+  nameWithType: BaseAssetProvider.GZString
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache
+  name: InMemoryCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_InMemoryCache
+  commentId: P:EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache
+  nameWithType: BaseAssetProvider.InMemoryCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache*
+  name: InMemoryCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_InMemoryCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache
+  nameWithType: BaseAssetProvider.InMemoryCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize
+  name: MaxFileCacheSize
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_MaxFileCacheSize
+  commentId: P:EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize
+  nameWithType: BaseAssetProvider.MaxFileCacheSize
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize*
+  name: MaxFileCacheSize
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_MaxFileCacheSize_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize
+  nameWithType: BaseAssetProvider.MaxFileCacheSize
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache
+  name: NoCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_NoCache
+  commentId: P:EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache
+  nameWithType: BaseAssetProvider.NoCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache*
+  name: NoCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_NoCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache
+  nameWithType: BaseAssetProvider.NoCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: ProcessResourceRequest(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProcessResourceRequest_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.ProcessResourceRequest(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest*
+  name: ProcessResourceRequest
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProcessResourceRequest_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest
+  nameWithType: BaseAssetProvider.ProcessResourceRequest
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  name: ProvideAsset(HttpContext, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext, System.String)
+  nameWithType: BaseAssetProvider.ProvideAsset(HttpContext, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset*
+  name: ProvideAsset
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProvideAsset_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset
+  nameWithType: BaseAssetProvider.ProvideAsset
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache(System.IO.FileInfo)
+  name: ShouldCache(FileInfo)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCache_System_IO_FileInfo_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache(System.IO.FileInfo)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache(System.IO.FileInfo)
+  nameWithType: BaseAssetProvider.ShouldCache(FileInfo)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache*
+  name: ShouldCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache
+  nameWithType: BaseAssetProvider.ShouldCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress(System.String,System.String,System.IO.FileInfo)
+  name: ShouldCompress(String, String, FileInfo)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCompress_System_String_System_String_System_IO_FileInfo_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress(System.String,System.String,System.IO.FileInfo)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress(System.String, System.String, System.IO.FileInfo)
+  nameWithType: BaseAssetProvider.ShouldCompress(String, String, FileInfo)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress*
+  name: ShouldCompress
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCompress_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress
+  nameWithType: BaseAssetProvider.ShouldCompress
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: StreamFileWithoutCache(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_StreamFileWithoutCache_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.StreamFileWithoutCache(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache*
+  name: StreamFileWithoutCache
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_StreamFileWithoutCache_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache
+  nameWithType: BaseAssetProvider.StreamFileWithoutCache
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: UnknownFile(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_UnknownFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: BaseAssetProvider.UnknownFile(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile*
+  name: UnknownFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_UnknownFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile
+  nameWithType: BaseAssetProvider.UnknownFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  name: WriteAssetFile(HttpContext, FileAssetCacheEntry)
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteAssetFile_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_
+  commentId: M:EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile(Microsoft.AspNetCore.Http.HttpContext, EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  nameWithType: BaseAssetProvider.WriteAssetFile(HttpContext, FileAssetCacheEntry)
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile*
+  name: WriteAssetFile
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteAssetFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile
+  nameWithType: BaseAssetProvider.WriteAssetFile
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified
+  name: WriteLastModified
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteLastModified
+  commentId: P:EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified
+  nameWithType: BaseAssetProvider.WriteLastModified
+- uid: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified*
+  name: WriteLastModified
+  href: api/EasyRpc.AspNetCore.Assets.BaseAssetProvider.html#EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteLastModified_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified
+  nameWithType: BaseAssetProvider.WriteLastModified
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider
+  name: DirectoryAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html
+  commentId: T:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider
+  nameWithType: DirectoryAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,System.String,System.String)
+  name: DirectoryAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider__ctor_EasyRpc_AspNetCore_Assets_IFileAssetCache_Microsoft_AspNetCore_StaticFiles_FileExtensionContentTypeProvider_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.DirectoryAssetProvider(EasyRpc.AspNetCore.Assets.IFileAssetCache, Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider, System.String, System.String)
+  nameWithType: DirectoryAssetProvider.DirectoryAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider, String, String)
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.#ctor*
+  name: DirectoryAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.DirectoryAssetProvider
+  nameWithType: DirectoryAssetProvider.DirectoryAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  name: ProvideAsset(HttpContext, String)
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext, System.String)
+  nameWithType: DirectoryAssetProvider.ProvideAsset(HttpContext, String)
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset*
+  name: ProvideAsset
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider_ProvideAsset_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.ProvideAsset
+  nameWithType: DirectoryAssetProvider.ProvideAsset
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  name: UnknownFile(HttpContext, String, String)
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider_UnknownFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext, System.String, System.String)
+  nameWithType: DirectoryAssetProvider.UnknownFile(HttpContext, String, String)
+- uid: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile*
+  name: UnknownFile
+  href: api/EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html#EasyRpc_AspNetCore_Assets_DirectoryAssetProvider_UnknownFile_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.UnknownFile
+  nameWithType: DirectoryAssetProvider.UnknownFile
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry
+  name: FileAssetCacheEntry
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html
+  commentId: T:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry
+  nameWithType: FileAssetCacheEntry
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding
+  name: ContentEncoding
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ContentEncoding
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding
+  nameWithType: FileAssetCacheEntry.ContentEncoding
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding*
+  name: ContentEncoding
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ContentEncoding_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentEncoding
+  nameWithType: FileAssetCacheEntry.ContentEncoding
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ContentType
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType
+  nameWithType: FileAssetCacheEntry.ContentType
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType*
+  name: ContentType
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ContentType_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ContentType
+  nameWithType: FileAssetCacheEntry.ContentType
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag
+  name: ETag
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ETag
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag
+  nameWithType: FileAssetCacheEntry.ETag
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag*
+  name: ETag
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_ETag_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.ETag
+  nameWithType: FileAssetCacheEntry.ETag
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes
+  name: FileBytes
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_FileBytes
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes
+  nameWithType: FileAssetCacheEntry.FileBytes
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes*
+  name: FileBytes
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_FileBytes_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileBytes
+  nameWithType: FileAssetCacheEntry.FileBytes
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName
+  name: FileName
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_FileName
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName
+  nameWithType: FileAssetCacheEntry.FileName
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName*
+  name: FileName
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_FileName_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.FileName
+  nameWithType: FileAssetCacheEntry.FileName
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess
+  name: LastAccess
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_LastAccess
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess
+  nameWithType: FileAssetCacheEntry.LastAccess
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess*
+  name: LastAccess
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_LastAccess_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastAccess
+  nameWithType: FileAssetCacheEntry.LastAccess
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified
+  name: LastModified
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_LastModified
+  commentId: P:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified
+  nameWithType: FileAssetCacheEntry.LastModified
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified*
+  name: LastModified
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html#EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_LastModified_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.LastModified
+  nameWithType: FileAssetCacheEntry.LastModified
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped
+  name: FileAssetCacheScoped
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.html
+  commentId: T:EasyRpc.AspNetCore.Assets.FileAssetCacheScoped
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped
+  nameWithType: FileAssetCacheScoped
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  name: AddEntry(FileAssetCacheEntry)
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.html#EasyRpc_AspNetCore_Assets_FileAssetCacheScoped_AddEntry_EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_
+  commentId: M:EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  nameWithType: FileAssetCacheScoped.AddEntry(FileAssetCacheEntry)
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry*
+  name: AddEntry
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.html#EasyRpc_AspNetCore_Assets_FileAssetCacheScoped_AddEntry_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.AddEntry
+  nameWithType: FileAssetCacheScoped.AddEntry
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry(System.String)
+  name: LocateEntry(String)
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.html#EasyRpc_AspNetCore_Assets_FileAssetCacheScoped_LocateEntry_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry(System.String)
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry(System.String)
+  nameWithType: FileAssetCacheScoped.LocateEntry(String)
+- uid: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry*
+  name: LocateEntry
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.html#EasyRpc_AspNetCore_Assets_FileAssetCacheScoped_LocateEntry_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetCacheScoped.LocateEntry
+  nameWithType: FileAssetCacheScoped.LocateEntry
+- uid: EasyRpc.AspNetCore.Assets.FileAssetProvider
+  name: FileAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetProvider.html
+  commentId: T:EasyRpc.AspNetCore.Assets.FileAssetProvider
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetProvider
+  nameWithType: FileAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.FileAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,System.String)
+  name: FileAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider, String)
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetProvider.html#EasyRpc_AspNetCore_Assets_FileAssetProvider__ctor_EasyRpc_AspNetCore_Assets_IFileAssetCache_Microsoft_AspNetCore_StaticFiles_FileExtensionContentTypeProvider_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.FileAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetProvider.FileAssetProvider(EasyRpc.AspNetCore.Assets.IFileAssetCache, Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider, System.String)
+  nameWithType: FileAssetProvider.FileAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider, String)
+- uid: EasyRpc.AspNetCore.Assets.FileAssetProvider.#ctor*
+  name: FileAssetProvider
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetProvider.html#EasyRpc_AspNetCore_Assets_FileAssetProvider__ctor_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetProvider.#ctor
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetProvider.FileAssetProvider
+  nameWithType: FileAssetProvider.FileAssetProvider
+- uid: EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  name: ProvideAsset(HttpContext, String)
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetProvider.html#EasyRpc_AspNetCore_Assets_FileAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext, System.String)
+  nameWithType: FileAssetProvider.ProvideAsset(HttpContext, String)
+- uid: EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset*
+  name: ProvideAsset
+  href: api/EasyRpc.AspNetCore.Assets.FileAssetProvider.html#EasyRpc_AspNetCore_Assets_FileAssetProvider_ProvideAsset_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.FileAssetProvider.ProvideAsset
+  nameWithType: FileAssetProvider.ProvideAsset
+- uid: EasyRpc.AspNetCore.Assets.IFileAssetCache
+  name: IFileAssetCache
+  href: api/EasyRpc.AspNetCore.Assets.IFileAssetCache.html
+  commentId: T:EasyRpc.AspNetCore.Assets.IFileAssetCache
+  fullName: EasyRpc.AspNetCore.Assets.IFileAssetCache
+  nameWithType: IFileAssetCache
+- uid: EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  name: AddEntry(FileAssetCacheEntry)
+  href: api/EasyRpc.AspNetCore.Assets.IFileAssetCache.html#EasyRpc_AspNetCore_Assets_IFileAssetCache_AddEntry_EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_
+  commentId: M:EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  fullName: EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry(EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)
+  nameWithType: IFileAssetCache.AddEntry(FileAssetCacheEntry)
+- uid: EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry*
+  name: AddEntry
+  href: api/EasyRpc.AspNetCore.Assets.IFileAssetCache.html#EasyRpc_AspNetCore_Assets_IFileAssetCache_AddEntry_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.IFileAssetCache.AddEntry
+  nameWithType: IFileAssetCache.AddEntry
+- uid: EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry(System.String)
+  name: LocateEntry(String)
+  href: api/EasyRpc.AspNetCore.Assets.IFileAssetCache.html#EasyRpc_AspNetCore_Assets_IFileAssetCache_LocateEntry_System_String_
+  commentId: M:EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry(System.String)
+  fullName: EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry(System.String)
+  nameWithType: IFileAssetCache.LocateEntry(String)
+- uid: EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry*
+  name: LocateEntry
+  href: api/EasyRpc.AspNetCore.Assets.IFileAssetCache.html#EasyRpc_AspNetCore_Assets_IFileAssetCache_LocateEntry_
+  commentId: Overload:EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Assets.IFileAssetCache.LocateEntry
+  nameWithType: IFileAssetCache.LocateEntry
 - uid: EasyRpc.AspNetCore.Authorization
   name: EasyRpc.AspNetCore.Authorization
   href: api/EasyRpc.AspNetCore.Authorization.html
@@ -4296,6 +4984,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.AppServices
   nameWithType: InternalApiConfiguration.AppServices
+- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets(System.String,System.String)
+  name: Assets(String, String)
+  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Assets_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets(System.String,System.String)
+  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets(System.String, System.String)
+  nameWithType: InternalApiConfiguration.Assets(String, String)
+- uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets*
+  name: Assets
+  href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Assets_
+  commentId: Overload:EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Assets
+  nameWithType: InternalApiConfiguration.Assets
 - uid: EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.Authorize(System.Func{EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization}})
   name: Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>)
   href: api/EasyRpc.AspNetCore.Configuration.InternalApiConfiguration.html#EasyRpc_AspNetCore_Configuration_InternalApiConfiguration_Authorize_System_Func_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_System_Collections_Generic_IEnumerable_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization___
@@ -11182,6 +11883,148 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IApiEndPointInspector.InspectEndPoints
   nameWithType: IApiEndPointInspector.InspectEndPoints
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration
+  name: IAssetsConfiguration
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html
+  commentId: T:EasyRpc.AspNetCore.IAssetsConfiguration
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration
+  nameWithType: IAssetsConfiguration
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Authorize(System.String,System.String)
+  name: Authorize(String, String)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Authorize_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.Authorize(System.String,System.String)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Authorize(System.String, System.String)
+  nameWithType: IAssetsConfiguration.Authorize(String, String)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Authorize*
+  name: Authorize
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Authorize_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.Authorize
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Authorize
+  nameWithType: IAssetsConfiguration.Authorize
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Fallback(System.String)
+  name: Fallback(String)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Fallback_System_String_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.Fallback(System.String)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Fallback(System.String)
+  nameWithType: IAssetsConfiguration.Fallback(String)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Fallback*
+  name: Fallback
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Fallback_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.Fallback
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Fallback
+  nameWithType: IAssetsConfiguration.Fallback
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  name: HttpMaxCacheAge(TimeSpan)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpMaxCacheAge_System_TimeSpan_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge(System.TimeSpan)
+  nameWithType: IAssetsConfiguration.HttpMaxCacheAge(TimeSpan)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge*
+  name: HttpMaxCacheAge
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpMaxCacheAge_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpMaxCacheAge
+  nameWithType: IAssetsConfiguration.HttpMaxCacheAge
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache
+  name: HttpNoCache()
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpNoCache
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache()
+  nameWithType: IAssetsConfiguration.HttpNoCache()
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache*
+  name: HttpNoCache
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpNoCache_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpNoCache
+  nameWithType: IAssetsConfiguration.HttpNoCache
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache(System.Action{Microsoft.AspNetCore.Http.HttpContext,System.String})
+  name: HttpSetCache(Action<HttpContext, String>)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpSetCache_System_Action_Microsoft_AspNetCore_Http_HttpContext_System_String__
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache(System.Action{Microsoft.AspNetCore.Http.HttpContext,System.String})
+  name.vb: HttpSetCache(Action(Of HttpContext, String))
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache(System.Action<Microsoft.AspNetCore.Http.HttpContext, System.String>)
+  fullName.vb: EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache(System.Action(Of Microsoft.AspNetCore.Http.HttpContext, System.String))
+  nameWithType: IAssetsConfiguration.HttpSetCache(Action<HttpContext, String>)
+  nameWithType.vb: IAssetsConfiguration.HttpSetCache(Action(Of HttpContext, String))
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache*
+  name: HttpSetCache
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_HttpSetCache_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.HttpSetCache
+  nameWithType: IAssetsConfiguration.HttpSetCache
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache(System.Boolean)
+  name: InMemoryCache(Boolean)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_InMemoryCache_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache(System.Boolean)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache(System.Boolean)
+  nameWithType: IAssetsConfiguration.InMemoryCache(Boolean)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache*
+  name: InMemoryCache
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_InMemoryCache_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.InMemoryCache
+  nameWithType: IAssetsConfiguration.InMemoryCache
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize(System.Double)
+  name: MaxFileCacheSize(Double)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_MaxFileCacheSize_System_Double_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize(System.Double)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize(System.Double)
+  nameWithType: IAssetsConfiguration.MaxFileCacheSize(Double)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize*
+  name: MaxFileCacheSize
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_MaxFileCacheSize_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.MaxFileCacheSize
+  nameWithType: IAssetsConfiguration.MaxFileCacheSize
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.SetETag(System.Boolean)
+  name: SetETag(Boolean)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_SetETag_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.SetETag(System.Boolean)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.SetETag(System.Boolean)
+  nameWithType: IAssetsConfiguration.SetETag(Boolean)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.SetETag*
+  name: SetETag
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_SetETag_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.SetETag
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.SetETag
+  nameWithType: IAssetsConfiguration.SetETag
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified(System.Boolean)
+  name: SetLastModified(Boolean)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_SetLastModified_System_Boolean_
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified(System.Boolean)
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified(System.Boolean)
+  nameWithType: IAssetsConfiguration.SetLastModified(Boolean)
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified*
+  name: SetLastModified
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_SetLastModified_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.SetLastModified
+  nameWithType: IAssetsConfiguration.SetLastModified
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Where(System.Func{System.String,System.Boolean})
+  name: Where(Func<String, Boolean>)
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Where_System_Func_System_String_System_Boolean__
+  commentId: M:EasyRpc.AspNetCore.IAssetsConfiguration.Where(System.Func{System.String,System.Boolean})
+  name.vb: Where(Func(Of String, Boolean))
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Where(System.Func<System.String, System.Boolean>)
+  fullName.vb: EasyRpc.AspNetCore.IAssetsConfiguration.Where(System.Func(Of System.String, System.Boolean))
+  nameWithType: IAssetsConfiguration.Where(Func<String, Boolean>)
+  nameWithType.vb: IAssetsConfiguration.Where(Func(Of String, Boolean))
+- uid: EasyRpc.AspNetCore.IAssetsConfiguration.Where*
+  name: Where
+  href: api/EasyRpc.AspNetCore.IAssetsConfiguration.html#EasyRpc_AspNetCore_IAssetsConfiguration_Where_
+  commentId: Overload:EasyRpc.AspNetCore.IAssetsConfiguration.Where
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IAssetsConfiguration.Where
+  nameWithType: IAssetsConfiguration.Where
 - uid: EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly
   name: IEndPointMethodConfigurationReadOnly
   href: api/EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly.html
@@ -12305,6 +13148,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcApi.AppServices
   nameWithType: IRpcApi.AppServices
+- uid: EasyRpc.AspNetCore.IRpcApi.Assets(System.String,System.String)
+  name: Assets(String, String)
+  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Assets_System_String_System_String_
+  commentId: M:EasyRpc.AspNetCore.IRpcApi.Assets(System.String,System.String)
+  fullName: EasyRpc.AspNetCore.IRpcApi.Assets(System.String, System.String)
+  nameWithType: IRpcApi.Assets(String, String)
+- uid: EasyRpc.AspNetCore.IRpcApi.Assets*
+  name: Assets
+  href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Assets_
+  commentId: Overload:EasyRpc.AspNetCore.IRpcApi.Assets
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IRpcApi.Assets
+  nameWithType: IRpcApi.Assets
 - uid: EasyRpc.AspNetCore.IRpcApi.Authorize(System.Func{EasyRpc.AspNetCore.IEndPointMethodConfigurationReadOnly,System.Collections.Generic.IEnumerable{EasyRpc.AspNetCore.Authorization.IEndPointMethodAuthorization}})
   name: Authorize(Func<IEndPointMethodConfigurationReadOnly, IEnumerable<IEndPointMethodAuthorization>>)
   href: api/EasyRpc.AspNetCore.IRpcApi.html#EasyRpc_AspNetCore_IRpcApi_Authorize_System_Func_EasyRpc_AspNetCore_IEndPointMethodConfigurationReadOnly_System_Collections_Generic_IEnumerable_EasyRpc_AspNetCore_Authorization_IEndPointMethodAuthorization___
@@ -12709,6 +13565,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.IRpcParameterInfo.Position
   nameWithType: IRpcParameterInfo.Position
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter
+  name: TokenStopCharacter
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_TokenStopCharacter
+  commentId: P:EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter
+  nameWithType: IRpcParameterInfo.TokenStopCharacter
+- uid: EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter*
+  name: TokenStopCharacter
+  href: api/EasyRpc.AspNetCore.IRpcParameterInfo.html#EasyRpc_AspNetCore_IRpcParameterInfo_TokenStopCharacter_
+  commentId: Overload:EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.IRpcParameterInfo.TokenStopCharacter
+  nameWithType: IRpcParameterInfo.TokenStopCharacter
 - uid: EasyRpc.AspNetCore.ITypeSetExposureConfiguration
   name: ITypeSetExposureConfiguration
   href: api/EasyRpc.AspNetCore.ITypeSetExposureConfiguration.html
@@ -14960,6 +15829,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.ParseType
   nameWithType: IRpcRouteToken.ParseType
+- uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter
+  name: StopCharacter
+  href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_StopCharacter
+  commentId: P:EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter
+  fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter
+  nameWithType: IRpcRouteToken.StopCharacter
+- uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter*
+  name: StopCharacter
+  href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_StopCharacter_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Routing.IRpcRouteToken.StopCharacter
+  nameWithType: IRpcRouteToken.StopCharacter
 - uid: EasyRpc.AspNetCore.Routing.IRpcRouteToken.TokenType
   name: TokenType
   href: api/EasyRpc.AspNetCore.Routing.IRpcRouteToken.html#EasyRpc_AspNetCore_Routing_IRpcRouteToken_TokenType
@@ -15153,6 +16035,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.ParseType
   nameWithType: RpcRouteToken.ParseType
+- uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter
+  name: StopCharacter
+  href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_StopCharacter
+  commentId: P:EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter
+  fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter
+  nameWithType: RpcRouteToken.StopCharacter
+- uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter*
+  name: StopCharacter
+  href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_StopCharacter_
+  commentId: Overload:EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.Routing.RpcRouteToken.StopCharacter
+  nameWithType: RpcRouteToken.StopCharacter
 - uid: EasyRpc.AspNetCore.Routing.RpcRouteToken.TokenType
   name: TokenType
   href: api/EasyRpc.AspNetCore.Routing.RpcRouteToken.html#EasyRpc_AspNetCore_Routing_RpcRouteToken_TokenType
@@ -15443,6 +16338,19 @@ references:
   isSpec: "True"
   fullName: EasyRpc.AspNetCore.RpcParameterInfo.Position
   nameWithType: RpcParameterInfo.Position
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter
+  name: TokenStopCharacter
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_TokenStopCharacter
+  commentId: P:EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter
+  nameWithType: RpcParameterInfo.TokenStopCharacter
+- uid: EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter*
+  name: TokenStopCharacter
+  href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_TokenStopCharacter_
+  commentId: Overload:EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter
+  isSpec: "True"
+  fullName: EasyRpc.AspNetCore.RpcParameterInfo.TokenStopCharacter
+  nameWithType: RpcParameterInfo.TokenStopCharacter
 - uid: EasyRpc.AspNetCore.RpcParameterInfo.TypeName
   name: TypeName
   href: api/EasyRpc.AspNetCore.RpcParameterInfo.html#EasyRpc_AspNetCore_RpcParameterInfo_TypeName

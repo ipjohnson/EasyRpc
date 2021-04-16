@@ -1,0 +1,1181 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BaseAssetProvider
+   | EasyRpc documentation website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BaseAssetProvider
+   | EasyRpc documentation website ">
+    <meta name="generator" content="docfx 2.57.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider">
+  
+  
+  <h1 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider" class="text-break">Class BaseAssetProvider
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">BaseAssetProvider</span></div>
+      <div class="level2"><a class="xref" href="EasyRpc.AspNetCore.Assets.DirectoryAssetProvider.html">DirectoryAssetProvider</a></div>
+      <div class="level2"><a class="xref" href="EasyRpc.AspNetCore.Assets.FileAssetProvider.html">FileAssetProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="EasyRpc.AspNetCore.Assets.html">EasyRpc.AspNetCore.Assets</a></h6>
+  <h6><strong>Assembly</strong>: EasyRpc.AspNetCore.dll</h6>
+  <h5 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseAssetProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider__ctor_EasyRpc_AspNetCore_Assets_IFileAssetCache_Microsoft_AspNetCore_StaticFiles_FileExtensionContentTypeProvider_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.%23ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache%2CMicrosoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L23">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider__ctor_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider__ctor_EasyRpc_AspNetCore_Assets_IFileAssetCache_Microsoft_AspNetCore_StaticFiles_FileExtensionContentTypeProvider_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.#ctor(EasyRpc.AspNetCore.Assets.IFileAssetCache,Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)">BaseAssetProvider(IFileAssetCache, FileExtensionContentTypeProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected BaseAssetProvider(IFileAssetCache fileAssetCache, FileExtensionContentTypeProvider contentTypeProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Assets.IFileAssetCache.html">IFileAssetCache</a></td>
+        <td><span class="parametername">fileAssetCache</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider">FileExtensionContentTypeProvider</a></td>
+        <td><span class="parametername">contentTypeProvider</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider__baseDirectoryPath.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider._baseDirectoryPath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L21">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider__baseDirectoryPath" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider._baseDirectoryPath">_baseDirectoryPath</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string _baseDirectoryPath</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider__contentTypeProvider.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider._contentTypeProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L20">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider__contentTypeProvider" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider._contentTypeProvider">_contentTypeProvider</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly FileExtensionContentTypeProvider _contentTypeProvider</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider">FileExtensionContentTypeProvider</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider__fileAssetCache.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider._fileAssetCache%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L19">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider__fileAssetCache" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider._fileAssetCache">_fileAssetCache</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFileAssetCache _fileAssetCache</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Assets.IFileAssetCache.html">IFileAssetCache</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_BRString.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.BRString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L17">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_BRString" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.BRString">BRString</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string BRString = &quot;br&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_GzipString.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.GzipString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L15">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GzipString" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GzipString">GzipString</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string GzipString = &quot;gzip&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZString.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L16">View Source</a>
+  </span>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZString" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZString">GZString</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string GZString = &quot;gz&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_CacheMaxAge.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L32">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_CacheMaxAge_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_CacheMaxAge" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.CacheMaxAge">CacheMaxAge</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan CacheMaxAge { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_InMemoryCache.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L34">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_InMemoryCache_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_InMemoryCache" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.InMemoryCache">InMemoryCache</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InMemoryCache { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_MaxFileCacheSize.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L41">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_MaxFileCacheSize_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_MaxFileCacheSize" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.MaxFileCacheSize">MaxFileCacheSize</h4>
+  <div class="markdown level1 summary"><p>Max file cache size in MB</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double MaxFileCacheSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_NoCache.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L30">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_NoCache_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_NoCache" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.NoCache">NoCache</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NoCache { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteLastModified.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L36">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteLastModified_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteLastModified" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteLastModified">WriteLastModified</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WriteLastModified { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_BrotliFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L204">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_BrotliFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_BrotliFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.BrotliFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">BrotliFile(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task BrotliFile(HttpContext context, string path, string location)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">location</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_FetchFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L82">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_FetchFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_FetchFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.FetchFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">FetchFile(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task FetchFile(HttpContext context, string path, string fileLocation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_FileNotFound_Microsoft_AspNetCore_Http_HttpContext_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound(Microsoft.AspNetCore.Http.HttpContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L75">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_FileNotFound_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_FileNotFound_Microsoft_AspNetCore_Http_HttpContext_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.FileNotFound(Microsoft.AspNetCore.Http.HttpContext)">FileNotFound(HttpContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task FileNotFound(HttpContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZipCompressFile_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L115">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZipCompressFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZipCompressFile_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZipCompressFile(System.String)">GZipCompressFile(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected byte[] GZipCompressFile(string fileLocation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZippedFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L180">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZippedFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_GZippedFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.GZippedFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">GZippedFile(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task GZippedFile(HttpContext context, string path, string location)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">location</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProcessResourceRequest_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L45">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProcessResourceRequest_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProcessResourceRequest_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProcessResourceRequest(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">ProcessResourceRequest(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task ProcessResourceRequest(HttpContext context, string path, string fileLocation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L43">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProvideAsset_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ProvideAsset_Microsoft_AspNetCore_Http_HttpContext_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ProvideAsset(Microsoft.AspNetCore.Http.HttpContext,System.String)">ProvideAsset(HttpContext, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Task ProvideAsset(HttpContext context, string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCache_System_IO_FileInfo_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache(System.IO.FileInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L175">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCache_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCache_System_IO_FileInfo_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCache(System.IO.FileInfo)">ShouldCache(FileInfo)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool ShouldCache(FileInfo fileInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></td>
+        <td><span class="parametername">fileInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCompress_System_String_System_String_System_IO_FileInfo_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress(System.String%2CSystem.String%2CSystem.IO.FileInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L143">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCompress_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_ShouldCompress_System_String_System_String_System_IO_FileInfo_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.ShouldCompress(System.String,System.String,System.IO.FileInfo)">ShouldCompress(String, String, FileInfo)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool ShouldCompress(string fileLocation, string contentTypeString, FileInfo fileInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">contentTypeString</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></td>
+        <td><span class="parametername">fileInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_StreamFileWithoutCache_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L128">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_StreamFileWithoutCache_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_StreamFileWithoutCache_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.StreamFileWithoutCache(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">StreamFileWithoutCache(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task StreamFileWithoutCache(HttpContext context, string fileLocation, string contentEncoding = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">contentEncoding</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_UnknownFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L70">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_UnknownFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_UnknownFile_Microsoft_AspNetCore_Http_HttpContext_System_String_System_String_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.UnknownFile(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">UnknownFile(HttpContext, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task UnknownFile(HttpContext context, string path, string fileLocation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fileLocation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteAssetFile_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile(Microsoft.AspNetCore.Http.HttpContext%2CEasyRpc.AspNetCore.Assets.FileAssetCacheEntry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L228">View Source</a>
+  </span>
+  <a id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteAssetFile_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile*"></a>
+  <h4 id="EasyRpc_AspNetCore_Assets_BaseAssetProvider_WriteAssetFile_Microsoft_AspNetCore_Http_HttpContext_EasyRpc_AspNetCore_Assets_FileAssetCacheEntry_" data-uid="EasyRpc.AspNetCore.Assets.BaseAssetProvider.WriteAssetFile(Microsoft.AspNetCore.Http.HttpContext,EasyRpc.AspNetCore.Assets.FileAssetCacheEntry)">WriteAssetFile(HttpContext, FileAssetCacheEntry)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task WriteAssetFile(HttpContext httpContext, FileAssetCacheEntry entry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
+        <td><span class="parametername">httpContext</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="EasyRpc.AspNetCore.Assets.FileAssetCacheEntry.html">FileAssetCacheEntry</a></td>
+        <td><span class="parametername">entry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/new/master/apiSpec/new?filename=EasyRpc_AspNetCore_Assets_BaseAssetProvider.md&amp;value=---%0Auid%3A%20EasyRpc.AspNetCore.Assets.BaseAssetProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ipjohnson/EasyRpc/blob/master/src/EasyRpc.AspNetCore/Assets/BaseAssetProvider.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
