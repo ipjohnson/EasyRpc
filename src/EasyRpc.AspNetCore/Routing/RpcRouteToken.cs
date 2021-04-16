@@ -13,9 +13,12 @@ namespace EasyRpc.AspNetCore.Routing
         RpcRouteTokenParseType ParseType { get; set; }
         
         int ParameterIndex { get; set; }
+
         IRpcParameterInfo ParameterInfo { get; set; }
 
         bool? Optional { get; set; }
+
+        char? StopCharacter { get; set; }
     }
 
     public class RpcRouteToken : IRpcRouteToken
@@ -31,5 +34,7 @@ namespace EasyRpc.AspNetCore.Routing
         public IRpcParameterInfo ParameterInfo { get; set; }
 
         public bool? Optional { get; set; }
+
+        public char? StopCharacter { get; set; }
     }
 }

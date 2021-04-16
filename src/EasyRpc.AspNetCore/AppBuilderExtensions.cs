@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EasyRpc.Abstractions.Path;
+using EasyRpc.AspNetCore.Assets;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration;
 using EasyRpc.AspNetCore.Documentation;
@@ -19,6 +20,7 @@ using EasyRpc.AspNetCore.Routing;
 using EasyRpc.AspNetCore.Serializers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -92,6 +94,8 @@ namespace EasyRpc.AspNetCore
             serviceCollection.TryAddScoped<IConfigurationManager, ConfigurationManager>();
             serviceCollection.TryAddScoped<IAuthorizationImplementationProvider, AuthorizationImplementationProvider>();
             serviceCollection.TryAddScoped<IRegisteredEndPoints, RegisteredEndPoints>();
+            serviceCollection.TryAddScoped<FileExtensionContentTypeProvider>();
+            serviceCollection.TryAddScoped<IFileAssetCache, FileAssetCacheScoped>();
 
             serviceCollection.TryAddScoped<IOpenApiGenerationService, OpenApiGenerationService>();
             serviceCollection.TryAddScoped<IOpenApiSchemaGenerator, OpenApiSchemaGenerator>();

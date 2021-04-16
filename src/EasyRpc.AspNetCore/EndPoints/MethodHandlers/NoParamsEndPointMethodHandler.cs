@@ -30,7 +30,7 @@ namespace EasyRpc.AspNetCore.EndPoints.MethodHandlers
                 Parameters = EmptyParameters.Instance,
                 CanCompress = Configuration.SupportsCompression.GetValueOrDefault(false)
             };
-
+            
             if (ActivationFunc == null)
             {
                 SetupMethod();

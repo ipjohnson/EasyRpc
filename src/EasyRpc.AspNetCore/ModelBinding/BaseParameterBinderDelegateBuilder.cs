@@ -165,6 +165,8 @@ namespace EasyRpc.AspNetCore.ModelBinding
                     string.Compare(routeInformationToken.Name, parameter.Name,
                         StringComparison.CurrentCultureIgnoreCase) == 0);
 
+                rpcParameter.TokenStopCharacter = routeInformationToken.StopCharacter;
+
                 newList.Add(rpcParameter);
             }
 

@@ -37,6 +37,7 @@ namespace EasyRpc.TestApp
                 api.Method.Get("/plaintext", () => "Hello, World!").Raw("text/plain");
                 api.Method.Get("/json", () => new { message = "Hello, World!" });
                 api.Method.Post("/lists", (TestClass value) => Task.CompletedTask);
+                api.Assets("/assets/", "wwwroot");
             });
         }
 

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using EasyRpc.Abstractions.Path;
 using EasyRpc.Abstractions.Services;
+using EasyRpc.AspNetCore.Assets;
 using EasyRpc.AspNetCore.Authorization;
 using EasyRpc.AspNetCore.Configuration.DelegateConfiguration;
 using EasyRpc.AspNetCore.Data;
@@ -168,6 +169,17 @@ namespace EasyRpc.AspNetCore.Configuration
 
         /// <inheritdoc />
         public IHttpMethodConfiguration Method => _methodConfiguration ??= new HttpMethodConfiguration(this);
+
+
+        /// <inheritdoc />
+        public IAssetsConfiguration Assets(string urlPath, string fileSystemPath)
+        {
+            var assetConfig = new AssetConfiguration(urlPath, fileSystemPath, GetCurrentApiInformation());
+
+            ApplicationConfigurationService.AddConfigurationObject(assetConfig);
+
+            return assetConfig;
+        }
 
         /// <inheritdoc />
         public IRpcApi Header(string header, string value)

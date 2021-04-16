@@ -547,6 +547,18 @@ namespace EasyRpc.AspNetCore.Configuration
 
                 token.Name = tokenName;
 
+                if (tokenEndBracket < routeTemplate.Length - 1)
+                {
+                    var endCharacter = routeTemplate[tokenEndBracket + 1];
+
+                    if(endCharacter == '{')
+                    {
+                        throw new Exception("Path is invalid tokens need character separater");
+                    }
+
+                    token.StopCharacter = endCharacter;
+                }
+
                 rpcTokens.Add(token);
 
                 tokenStartBracket = routeTemplate.IndexOf('{', tokenEnd);

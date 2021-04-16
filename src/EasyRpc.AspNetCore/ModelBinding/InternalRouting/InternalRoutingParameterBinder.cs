@@ -24,7 +24,15 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             }
             else if (parameter.ParamType == typeof(string))
             {
-                parameterValue = ParseString(context, configuration, parameter, parameterContext, ref currentIndex, pathSpan);
+                if (parameter.TokenStopCharacter.HasValue)
+                {
+                    parameterValue = ParseString(context, configuration, parameter, parameterContext, ref currentIndex,
+                        pathSpan);
+                }
+                else
+                {
+                    parameterValue = ParseGreedyString(ref currentIndex, pathSpan);
+                }
             }
             else if (parameter.ParamType == typeof(double))
             {
@@ -56,6 +64,13 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
             }
         }
 
+        private string ParseGreedyString(ref int currentIndex, in ReadOnlySpan<char> pathSpan)
+        {
+            var slice = pathSpan.Slice(currentIndex, pathSpan.Length - currentIndex);
+
+            return new string(slice);
+        }
+
         private object ParseLong(RequestExecutionContext context, EndPointMethodConfiguration configuration, IRpcParameterInfo parameter, IRequestParameters parameterContext, ref int currentIndex, in ReadOnlySpan<char> pathSpan)
         {
             long currentLongValue = 0;
@@ -72,7 +87,7 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
 
                     foundValue = true;
                 }
-                else if (currentChar == '/')
+                else if (currentChar == parameter.TokenStopCharacter)
                 {
                     return currentLongValue;
                 }
@@ -161,7 +176,7 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
                 var currentChar = pathSpan[currentIndex];
                 currentIndex++;
 
-                if (currentChar == '/')
+                if (currentChar == parameter.TokenStopCharacter)
                 {
                     break;
                 }
@@ -204,7 +219,7 @@ namespace EasyRpc.AspNetCore.ModelBinding.InternalRouting
 
                     foundValue = true;
                 }
-                else if (currentChar == '/')
+                else if (currentChar == parameter.TokenStopCharacter)
                 {
                     return currentIntValue;
                 }

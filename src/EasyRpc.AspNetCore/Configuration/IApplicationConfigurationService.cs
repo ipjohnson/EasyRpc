@@ -23,7 +23,6 @@ namespace EasyRpc.AspNetCore.Configuration
             Func<MethodInfo, bool> methodFilter,
             string obsoleteMessage);
 
-
         void ExposeDelegate(ICurrentApiInformation currentApi, DelegateInstanceConfiguration delegateInstanceConfiguration, Delegate @delegate);
 
         Dictionary<string, Dictionary<string, IEndPointMethodHandler>> ProvideEndPointHandlers();

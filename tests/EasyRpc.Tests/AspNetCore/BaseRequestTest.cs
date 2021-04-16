@@ -91,10 +91,9 @@ namespace EasyRpc.Tests.AspNetCore
 
         }
 
-
         protected abstract void ApiRegistration(IRpcApi api);
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _client?.Dispose();
             _host?.Dispose();

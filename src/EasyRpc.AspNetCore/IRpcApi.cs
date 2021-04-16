@@ -39,7 +39,7 @@ namespace EasyRpc.AspNetCore
         /// </summary>
         /// <returns></returns>
         IRpcApi ClearAuthorize();
-
+        
         /// <summary>
         /// Configuration options that apply for all end points
         /// </summary>
@@ -106,6 +106,14 @@ namespace EasyRpc.AspNetCore
         /// Expose individual HTTP method
         /// </summary>
         IHttpMethodConfiguration Method { get; }
+
+        /// <summary>
+        /// Expose file system assets at a particular path
+        /// </summary>
+        /// <param name="urlPath"></param>
+        /// <param name="fileSystemPath"></param>
+        /// <returns></returns>
+        IAssetsConfiguration Assets(string urlPath, string fileSystemPath);
 
         /// <summary>
         /// Add header to all responses

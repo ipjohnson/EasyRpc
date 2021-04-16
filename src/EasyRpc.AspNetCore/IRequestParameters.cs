@@ -128,6 +128,11 @@ namespace EasyRpc.AspNetCore
         /// Source for parameter
         /// </summary>
         EndPointMethodParameterSource ParameterSource { get; }
+
+        /// <summary>
+        /// Character that to stop at when binding path parameter
+        /// </summary>
+        char? TokenStopCharacter { get; }
     }
 
     /// <summary>
@@ -175,6 +180,9 @@ namespace EasyRpc.AspNetCore
         /// <inheritdoc />
         public EndPointMethodParameterSource ParameterSource { get; set; }
 
+        /// <inheritdoc />
+        public char? TokenStopCharacter { get; set; }
+        
         /// <summary>
         /// Binding action if it's 
         /// </summary>
