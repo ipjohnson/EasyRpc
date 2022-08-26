@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <Description>json-rpc server built on top of Asp.Net Core</Description>
-    <TargetFrameworks>netstandard1.6;net461</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.1;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore</AssemblyName>
     <PackageId>EasyRpc.AspNetCore</PackageId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -23,6 +23,9 @@
     <PackageLicenseUrl>https://github.com/ipjohnson/EasyRpc/blob/master/License</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ipjohnson/EasyRpc</RepositoryUrl>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <FileVersion>4.1.0.0</FileVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
@@ -68,7 +71,7 @@
     <Reference Include="System.IO.Compression" />
   </ItemGroup>
 
-  <Target Condition="'$(OS)' == 'Windows_NT' AND '$(TargetFramework)' == 'netstandard1.6' " Name="CreateZip" BeforeTargets="BeforeBuild">
+  <Target Condition="'$(OS)' == 'Windows_NT' AND '$(TargetFramework)' == 'netstandard2.1' " Name="CreateZip" BeforeTargets="BeforeBuild">
     <PropertyGroup>
       <WebAssetPath>$(ProjectDir)Documentation\web-assets\</WebAssetPath>
       <WebAssetZip>$(ProjectDir)Documentation\web-assets.zip</WebAssetZip>

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>json-rpc client that generates implementations of interfaces</Description>
-    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
     <AssemblyName>EasyRpc.DynamicClient</AssemblyName>
     <PackageId>EasyRpc.DynamicClient</PackageId>
