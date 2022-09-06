@@ -1,6 +1,6 @@
 environment:
   build_version: 4.0.0
-  Version: $(build_version)-Beta%APPVEYOR_BUILD_NUMBER%
+  Version: $(build_version)-RC%APPVEYOR_BUILD_NUMBER%
   COVERALLS_REPO_TOKEN:
     secure: YF62Z8zohfAWBzPGACl+7cC9+26ZLZbVvCTd0SdtjRyCJMr21azzvEQ5c+z7cz9q
 version: $(build_version)-{build}
@@ -18,12 +18,10 @@ build:
   publish_nuget: true
   verbosity: minimal
 test_script:
-- cmd: cd tests/EasyRpc.Tests/
-- cmd: CodeCoverageAppVeyor.cmd
 - sh: dotnet test tests/EasyRpc.Tests/EasyRpc.Tests.csproj
 artifacts:
 - path: EasyRpc*.nupkg
   name: EasyRpc
 image:
-- Visual Studio 2019
+- Visual Studio 2022
 - Ubuntu

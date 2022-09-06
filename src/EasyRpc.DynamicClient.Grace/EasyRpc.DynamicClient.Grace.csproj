@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Dynamic client configuration for Grace DI</Description>
-    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3;</TargetFrameworks>
     <AssemblyName>EasyRpc.DynamicClient.Grace</AssemblyName>
     <PackageId>EasyRpc.DynamicClient.Grace</PackageId>

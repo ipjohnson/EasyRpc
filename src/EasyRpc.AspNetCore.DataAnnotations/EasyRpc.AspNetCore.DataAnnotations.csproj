@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <Description>Adds DataAnnotations validation to rpc calls</Description>
-    <TargetFrameworks>netstandard1.6;net461</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.1;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore.DataAnnotations</AssemblyName>
     <PackageId>EasyRpc.AspNetCore.DataAnnotations</PackageId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
