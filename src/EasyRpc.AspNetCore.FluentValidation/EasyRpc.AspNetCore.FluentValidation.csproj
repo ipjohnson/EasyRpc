@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Description>FluentValidation support for EasyRpc.AspNetCore</Description>
     <TargetFrameworks>netstandard2.1</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.1;</TargetFrameworks>
     <AssemblyName>EasyRpc.AspNetCore.FluentValidation</AssemblyName>
     <PackageId>EasyRpc.AspNetCore.FluentValidation</PackageId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
