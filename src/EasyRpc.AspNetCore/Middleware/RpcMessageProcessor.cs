@@ -115,7 +115,7 @@ namespace EasyRpc.AspNetCore.Middleware
             {
                 if (body != context.Request.Body)
                 {
-                    body.Dispose();
+                    await body.DisposeAsync();
                 }
             }
 
@@ -215,7 +215,7 @@ namespace EasyRpc.AspNetCore.Middleware
 
             if (responseStream != context.Response.Body)
             {
-                responseStream.Dispose();
+                await responseStream.DisposeAsync();
             }
         }
 
