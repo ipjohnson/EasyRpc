@@ -13,7 +13,7 @@
 > classes with plain methods.
 >
 > - Source: [ipjohnson/Hardened.Framework](https://github.com/ipjohnson/Hardened.Framework)
-> - Documentation: [ipjohnson-org.github.io/Hardened.Docs](https://ipjohnson-org.github.io/Hardened.Docs)
+> - Documentation: [https://ipjohnson.github.io/Hardened.Framework/](https://ipjohnson.github.io/Hardened.Framework/)
 >
 > The rest of this page describes EasyRpc as it was left.
 
