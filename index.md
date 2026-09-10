@@ -1,4 +1,22 @@
 # EasyRpc
+
+> ## EasyRpc is retired
+>
+> EasyRpc is no longer maintained. The last release targets ASP.NET Core on .NET 5, and there
+> will be no further releases or fixes. The published NuGet packages stay up so existing builds
+> keep working.
+>
+> New work should use [Hardened](https://ipjohnson-org.github.io/Hardened.Docs), which replaces
+> it. Hardened does the same job with source generators instead of runtime reflection: routing,
+> dependency injection, model binding and configuration are all generated during the build, so
+> there is no startup scan and the result runs under Native AOT. Handlers are still plain
+> classes with plain methods.
+>
+> - Source: [ipjohnson/Hardened.Framework](https://github.com/ipjohnson/Hardened.Framework)
+> - Documentation: [ipjohnson-org.github.io/Hardened.Docs](https://ipjohnson-org.github.io/Hardened.Docs)
+>
+> The rest of this page describes EasyRpc as it was left.
+
 Adds rpc service support to AspNetCore
 
 ```
@@ -42,8 +60,3 @@ that require the developer to think about which verbs they want to use.
 * Filter support similar to Asp.Net filter (not exactly the same as no controller is ever created)
 * Support for request/response gzip compression, br compression
 * Built in Swagger UI
-
-### Build
-[![Build status](https://ci.appveyor.com/api/projects/status/1sflvdvnetodybab?svg=true)](https://ci.appveyor.com/project/ipjohnson/easyrpc) [![Coverage Status](https://coveralls.io/repos/github/ipjohnson/EasyRpc/badge.svg?branch=master)](https://coveralls.io/github/ipjohnson/EasyRpc?branch=master)
-
-
